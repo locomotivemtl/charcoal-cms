@@ -11,7 +11,7 @@
     ],
     "autoload":{
         "psr-4":{
-            "Boilerplate\\": "src/Boilerplate"
+            "Charcoal\\Cms\\": "src/Charcoal/Cms"
         }
     }
 }
