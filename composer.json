@@ -1,5 +1,5 @@
 {
-    "name": "locomotivemtl/charcoal-project-boilerplate",
+    "name": "locomotivemtl/charcoal-cms",
     "require": {
         "locomotivemtl/charcoal-core":"@dev"
     },
