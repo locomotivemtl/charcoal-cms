@@ -1,0 +1,17 @@
+{
+    "name": "locomotivemtl/charcoal-project-boilerplate",
+    "require": {
+        "locomotivemtl/charcoal-core":"@dev"
+    },
+    "repositories":[
+        {
+            "type":"vcs",
+            "url":"https://github.com/locomotivemtl/charcoal-core"
+        }
+    ],
+    "autoload":{
+        "psr-4":{
+            "Boilerplate\\": "src/Boilerplate"
+        }
+    }
+}
