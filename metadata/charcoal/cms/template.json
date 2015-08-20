@@ -1,0 +1,29 @@
+{
+    "parent": "charcoal/object/content",
+
+    "properties":{
+      "ident":{
+        "type":"string",
+        "l10n":false,
+        "unique":true
+      },
+      "title":{
+        "type":"string",
+        "l10n":true
+      },
+      "options":{
+        "type":"structure"
+      }
+    },
+
+    "data":{
+      "active":true
+    },
+    "sources":{
+      "default":{
+        "type":"database",
+        "table":"cms_templates"
+      }
+    },
+    "default_source":"default"
+}

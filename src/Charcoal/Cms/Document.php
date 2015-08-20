@@ -2,9 +2,10 @@
 
 namespace Charcoal\Cms;
 
-use \Charcoal\Model\Model as Model;
+// Module `charcoal-base` dependencies
+use \Charcoal\Object\Content as Content;
 
-class Document extends Model
+class Document extends Content
 {
 
 }

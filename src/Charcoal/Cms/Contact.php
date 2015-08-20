@@ -2,7 +2,8 @@
 
 namespace Charcoal\Cms;
 
-use \Charcoal\Cms\UserData as UserData;
+// Module `charcoal-base` dependencies
+use \Charcoal\Object\UserData as UserData;
 
 class Contact extends UserData
 {

@@ -1,0 +1,128 @@
+{
+  "parent": "charcoal/object/content",
+
+  "properties":{
+    "id":{
+      "type":"id",
+      "mode":"auto-increment"
+    },
+    "title":{
+      "type":"string",
+      "l10n":true
+    },
+    "subtitle":{
+      "type":"html",
+      "l10n":true
+    },
+    "content":{
+      "type":"html",
+      "input_type":"charcoal/admin/property/input/tinymce",
+      "l10n":true
+    },
+    "template":{
+      "type":"object",
+      "obj_type":"charcoal/cms/template",
+      "allow_null":false
+    },
+    "template_options":{
+      "type":"structure"
+    },
+    "master":{
+      "type":"object",
+      "obj_type":"charcoal/cms/section",
+      "allow_null":true
+    },
+    "active":{
+      "type":"boolean",
+      "input_type":"charcoal/admin/property/input/switch"
+    }
+  },
+  "data":{
+    "active":true
+  },
+  "sources":{
+    "default":{
+      "type":"database",
+      "table":"cms_sections"
+    }
+  },
+  "default_source":"default",
+
+  "admin": {
+    "lists": {
+      "cms_section": {
+        "properties": [
+          "id",
+          "active"
+        ],
+        "properties_options": {
+
+        },
+        "filters": [
+
+        ],
+        "orders": [
+
+        ],
+        "pagination": [
+
+        ]
+
+      }
+    },
+    "default_list": "cms_section",
+
+    "forms":{
+      "cms_section":{
+        "groups":{
+          "all":{
+            "properties":[
+              "id",
+              "section_type",
+              "template",
+              "template_options",
+              "title",
+              "subtitle",
+              "content",
+              "active"
+            ]
+          }
+        }
+      }
+    },
+    "default_form":"cms_section",
+
+    "dashboards": {
+      "admin.edit": {
+        "layout": {
+          "structure": [{
+            "columns": [1]
+          }]
+        },
+        "widgets": {
+          "form": {
+            "type": "charcoal/admin/widget/objectForm",
+            "form_ident": "cms_section",
+            "obj_type": "charcoal/cms/section"
+          }
+        }
+      },
+      "admin.table": {
+        "layout": {
+          "structure": [{
+            "columns": [1]
+          }]
+        },
+        "widgets": {
+          "list": {
+            "type": "charcoal/admin/widget/table",
+            "label": "Table label",
+            "obj_type": "charcoal/cms/section"
+          }
+        }
+      }
+    },
+    "default_edit_dashboard": "admin.edit",
+    "default_collection_dashboard": "admin.table"
+  }
+}
