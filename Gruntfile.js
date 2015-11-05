@@ -1,132 +1,42 @@
 /**
-* Gruntfile.js
-* Charcoal-Core configuration for grunt. (The JavaScript Task Runner)
+* @file Charcoal CMS Task Runner for Grunt
 */
 
 module.exports = function(grunt) {
-	"use strict";
+    'use strict';
 
-	// Project configuration.
-	grunt.initConfig({
-		pkg: grunt.file.readJSON('package.json'),
+    function loadConfig(path) {
+        var glob = require('glob');
+        var object = {};
+        var key;
 
-		"yaml-validate": {
-			options: {
-				glob: ".travis.yml"
-			}
-		},
+        glob.sync('*.js', {cwd: path}).forEach(function(option) {
+            key = option.replace(/\.js$/,'');
+            object[key] = require(path + option);
+        });
 
-		jsonlint:{
-			meta:{
-				src:[
-					'*.json'
-				]
-			}
-		},
+        return object;
+    }
 
-		phplint:{
-			options: {
-				swapPath: '/tmp',
-				phpArgs : {
-					// add -f for fatal errors
-					'-lf': null
-				}
-			},
+    var config = {
+        pkg: grunt.file.readJSON('package.json')
+    };
 
-			src: [
-				'src/**/*.php'
-			],
-			tests: [
-				'tests/**/*.php'
-			]
-		},
+    grunt.loadTasks('grunt_tasks');
+    grunt.util._.extend(config, loadConfig('./grunt_tasks/'));
+    grunt.initConfig(config);
 
-		phpunit:{
+    // Load tasks
+    require('load-grunt-tasks')(grunt);
 
-			src: {
-				dir: 'tests/'
-			},
+    // Register Task(s)
+    grunt.registerTask('default', [
+        'phplint',
+        'phpunit'
+    ]);
+    grunt.registerTask('tests', [
+        'phplint',
+        'phpunit'
+    ]);
 
-			options: {
-				colors: true,
-				coverageHtml:'tests/tmp/report/',
-				coverageText:'tests/tmp/report/',
-				testdoxHtml:'tests/tmp/testdox.html',
-				testdoxText:'tests/tmp/testdox.text',
-				strict:true,
-				verbose:true,
-				debug:false,
-				bootstrap:'tests/bootstrap.php'
-			}
-		},
-
-		phpcs: {
-			src:{
-				dir:[
-					'src/**/*.php'
-				]
-			},
-			tests: {
-				dir:[
-					'tests/**/*.php'
-				]
-			},
-			options: {
-				//bin: '<%= directories.composerBin %>/phpcs',
-				standard: 'phpcs.xml',
-				//ignore: 'database',
-				extensions: 'php',
-				showSniffCodes: true
-			}
-		},
-
-		phpdocumentor: {
-			dist: {
-				options: {
-					config: 'phpdoc.dist.xml',
-					directory : ['src/', 'tests/'],
-					target : 'phpdoc/'
-				}
-			}
-		},
-		watch: {
-			php: {
-				files :[
-					'src/**/*.php',
-					'tests/**/*.php',
-				],
-				tasks: ['phplint']
-			}
-		},
-		githooks: {
-			all: {
-				'pre-commit': 'jsonlint phplint phpunit phpcs phpdocumentor',
-			}
-		}
-		
-	});
-
-	// Load plugin(s)
-	grunt.loadNpmTasks('grunt-yaml-validate');
-	grunt.loadNpmTasks('grunt-jsonlint');
-	grunt.loadNpmTasks("grunt-phplint");
-	grunt.loadNpmTasks('grunt-phpunit');
-	grunt.loadNpmTasks('grunt-phpcs');
-	grunt.loadNpmTasks('grunt-phpdocumentor');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-githooks');
-	grunt.loadNpmTasks('grunt-composer');	
-
-	// Register Task(s)
-	grunt.registerTask('default', [
-		'jsonlint',
-		'phpunit',
-		//'phplint' // To slow for default
-	]);
-	grunt.registerTask('tests', [
-		'phpunit',
-		'phplint'
-	]);
-	
 };
-
