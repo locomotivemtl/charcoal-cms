@@ -7,12 +7,7 @@ use \Charcoal\Object\Content as Content;
 
 class Text extends Content
 {
-	private $_title;
-	private $_subtitle;
-	private $_content;
-
-	public function set_data(array $data)
-	{
-		return $this;
-	}
+    private $title;
+    private $subtitle;
+    private $content;
 }

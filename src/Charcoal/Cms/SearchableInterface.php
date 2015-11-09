@@ -2,6 +2,9 @@
 
 namespace Charcoal\Cms;
 
+/**
+*
+*/
 interface SearchableInterface
 {
     /**
@@ -15,6 +18,7 @@ interface SearchableInterface
     * @return SearchableInterface Chainable
     */
     public function set_search_properties(array $properties);
+
     /**
     * @return array
     */

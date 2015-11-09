@@ -20,17 +20,17 @@ use \Charcoal\Cms\TemplateInterface as TemplateInterface;
 class Template extends Content implements TemplateInterface
 {
     /**
-    * @var string $_ident
+    * @var string $ident
     */
-    protected $_ident;
+    private $ident;
     /**
-    * @var TranslationString $_title
+    * @var TranslationString $title
     */
-    protected $_title;
+    private $title;
     /**
-    * @var array $_options
+    * @var array $options
     */
-    protected $_options;
+    private $options;
 
     /**
     * IndexableInterface > key()
@@ -43,35 +43,17 @@ class Template extends Content implements TemplateInterface
     }
 
     /**
-    * @param array $data
-    * @return Template Chainable
-    */
-    public function set_data(array $data)
-    {
-        parent::set_data($data);
-        if(isset($data['ident']) && $data['ident'] !== null) {
-            $this->set_ident($data['ident']);
-        }
-        if(isset($data['title']) && $data['title'] !== null) {
-            $this->set_title($data['title']);
-        }
-        if(isset($data['options']) && $data['options'] !== null) {
-            $this->set_options($data['options']);
-        }
-
-        return $this;
-    }
-
-    /**
     * @param string $ident
     * @return TemplateInterface Chainable
     */
     public function set_ident($ident)
     {
-        if(!is_string($ident)) {
-            throw new InvalidArgumentException('Ident must be a string.');
+        if (!is_string($ident)) {
+            throw new InvalidArgumentException(
+                'Ident must be a string.'
+            );
         }
-        $this->_ident = $ident;
+        $this->ident = $ident;
         return $this;
     }
 
@@ -80,7 +62,7 @@ class Template extends Content implements TemplateInterface
     */
     public function ident()
     {
-        return $this->_ident;
+        return $this->ident;
     }
 
     /**
@@ -89,7 +71,7 @@ class Template extends Content implements TemplateInterface
     */
     public function set_title($title)
     {
-        $this->_title = new TranslationString($title);
+        $this->title = new TranslationString($title);
         return $this;
     }
 
@@ -98,7 +80,7 @@ class Template extends Content implements TemplateInterface
     */
     public function title()
     {
-        return $this->_title;
+        return $this->title;
     }
 
     /**
@@ -107,7 +89,7 @@ class Template extends Content implements TemplateInterface
     */
     public function set_options($options)
     {
-        $this->_options = $options;
+        $this->options = $options;
         return $this;
     }
 
@@ -116,6 +98,6 @@ class Template extends Content implements TemplateInterface
     */
     public function options()
     {
-        return $this->_options;
+        return $this->options;
     }
 }

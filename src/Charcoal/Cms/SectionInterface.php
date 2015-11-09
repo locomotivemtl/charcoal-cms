@@ -2,6 +2,9 @@
 
 namespace Charcoal\Cms;
 
+/**
+*
+*/
 interface SectionInterface
 {
     /**
@@ -36,17 +39,6 @@ interface SectionInterface
     * @return TranslationString
     */
     public function subtitle();
-
-    /**
-    * @param mixed $content
-    * @return SectionInterface Chainable
-    */
-    public function set_content($content);
-
-    /**
-    * @return TranslationString
-    */
-    public function content();
 
     /**
     * @param mixed $template

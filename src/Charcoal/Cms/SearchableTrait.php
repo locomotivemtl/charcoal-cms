@@ -8,35 +8,36 @@ namespace Charcoal\Cms;
 trait SearchableTrait
 {
     /**
-    * @var array $_search_properties
+    * @var array $search_properties
     */
-    protected $_search_properties = [];
+    private $search_properties = [];
+
     /**
-    * @var TranslationString $_search_keywords
+    * @var TranslationString $search_keywords
     */
-    protected $_search_keywords;
+    private $search_keywords;
 
     /**
     * @param array $data;
     */
     public function set_searchable_data(array $data)
     {
-        if(isset($data['search_properties']) && $data['search_properties'] !== null) {
+        if (isset($data['search_properties']) && $data['search_properties'] !== null) {
             $this->set_search_properties($data['search_properties']);
         }
-        if(isset($data['search_keywords']) && $data['search_keywords'] !== null) {
+        if (isset($data['search_keywords']) && $data['search_keywords'] !== null) {
             $this->set_search_keywords($data['search_keywords']);
         }
         return $this;
     }
 
     /**
-    * @param array $_search_properties
+    * @param array $search_properties
     * @return SearchableInterface Chainable
     */
     public function set_search_properties(array $properties)
     {
-        $this->_search_properties = $properties;
+        $this->search_properties = $properties;
         return $this;
     }
 
@@ -45,7 +46,7 @@ trait SearchableTrait
     */
     public function search_properties()
     {
-        return $this->_search_properties;
+        return $this->search_properties;
     }
 
     /**
@@ -54,7 +55,7 @@ trait SearchableTrait
     */
     public function set_search_keywords($keywords)
     {
-        $this->_search_keywords = new TranslationString($keywords);
+        $this->search_keywords = new TranslationString($keywords);
         return $this;
     }
 
@@ -63,6 +64,6 @@ trait SearchableTrait
     */
     public function search_keywords()
     {
-        return $this->_search_keywords;
+        return $this->search_keywords;
     }
 }

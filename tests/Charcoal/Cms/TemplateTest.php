@@ -8,7 +8,8 @@ class TemplateTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-    * Asser
+    * Asserts that the `set_data()` method:
+    * - sets the template members values
     */
     public function testSetData()
     {

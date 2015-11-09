@@ -11,52 +11,42 @@ use \Charcoal\Translation\TranslationString as TranslationString;
 trait MetatagTrait
 {
     /**
-    * @var TranslationString $_meta_title
+    * @var TranslationString $meta_title
     */
-    protected $_meta_title;
+    private $meta_title;
     /**
-    * @var TranslationString $_meta_description
+    * @var TranslationString $meta_description
     */
-    protected $_meta_description;
+    private $meta_description;
     /**
-    * @var TranslationString $_meta_image
+    * @var TranslationString $meta_image
     */
-    protected $_meta_image;
+    private $meta_image;
     /**
-    * @var TranslationString $_meta_author
+    * @var TranslationString $meta_author
     */
-    protected $_meta_author;
-
-    protected $_facebook_app_id;
-
-    protected $_opengraph_title;
-    protected $_opengraph_site_name;
-    protected $_opengraph_description;
-    protected $_opengraph_type;
-    protected $_opengraph_image;
-    protected $_opengraph_author;
-    protected $_opengraph_publisher;
+    private $meta_author;
 
     /**
-    * @param array $data
-    * @return MetatagInterface Chainable
+    * @var string $facebook_app_id
     */
-    public function set_metatag_data(array $data)
-    {
-        if(isset($data['meta_title']) && $data['meta_title'] !== null) {
-            $this->set_meta_title($data['meta_title']);
-        }
-        if(isset($data['meta_description']) && $data['meta_description'] !== null) {
-            $this->set_meta_description($data['meta_description']);
-        }
-        if(isset($data['meta_image']) && $data['meta_image'] !== null) {
-            $this->set_meta_image($data['meta_image']);
-        }
-        if(isset($data['meta_author']) && $data['meta_author'] !== null) {
-            $this->set_meta_author($data['meta_author']);
-        }
-        return $this;
-    }
+    private $facebook_app_id;
+
+    /**
+    * @var TranslationString $opengraph_title
+    */
+    private $opengraph_title;
+
+    /**
+    * @var TranslationString $site_name
+    */
+    private $opengraph_site_name;
+    private $opengraph_description;
+    private $opengraph_type;
+    private $opengraph_image;
+    private $opengraph_author;
+    private $opengraph_publisher;
+
 
     /**
     * @return string
@@ -69,7 +59,7 @@ trait MetatagTrait
     */
     public function set_meta_title($title)
     {
-        $this->_meta_title = new TranslationString($title);
+        $this->meta_title = new TranslationString($title);
         return $this;
     }
 
@@ -78,7 +68,7 @@ trait MetatagTrait
     */
     public function meta_title()
     {
-        return $this->_meta_title();
+        return $this->meta_title();
     }
 
     /**
@@ -87,7 +77,7 @@ trait MetatagTrait
     */
     public function set_meta_description($description)
     {
-        $this->_meta_description = new TranslationString($description);
+        $this->meta_description = new TranslationString($description);
         return $this;
     }
 
@@ -96,7 +86,7 @@ trait MetatagTrait
     */
     public function meta_description()
     {
-        return $this->_meta_description();
+        return $this->meta_description();
     }
 
     /**
@@ -105,7 +95,7 @@ trait MetatagTrait
     */
     public function set_meta_image($image)
     {
-        $this->_meta_image = new TranslationString($image);
+        $this->meta_image = new TranslationString($image);
         return $this;
     }
 
@@ -114,7 +104,7 @@ trait MetatagTrait
     */
     public function meta_image()
     {
-        return $this->_meta_image();
+        return $this->meta_image();
     }
 
     /**
@@ -123,7 +113,7 @@ trait MetatagTrait
     */
     public function set_meta_author($author)
     {
-        $this->_meta_author = new TranslationString($author);
+        $this->meta_author = new TranslationString($author);
         return $this;
     }
 
@@ -132,7 +122,7 @@ trait MetatagTrait
     */
     public function meta_author()
     {
-        return $this->_meta_author();
+        return $this->meta_author();
     }
 
     /**
@@ -142,5 +132,128 @@ trait MetatagTrait
     {
         $tags = '';
         return $tags;
+    }
+
+    /**
+    * @param string $app_id The facebook App ID (numeric string)
+    * @return MetatagInterface Chainable
+    */
+    public function set_facebook_app_id($app_id)
+    {
+        $this->facebook_app_id = $app_id;
+        return $this;
+    }
+
+    /**
+    * @return string
+    */
+    public function facebook_app_id()
+    {
+        return $this->facebook_app_id;
+    }
+
+    /**
+    * @param mixed $title
+    * @return MetatagInterface Chainable
+    */
+    public function set_opengraph_title($title)
+    {
+        $this->opengraph_title = new TranslationString($title);
+        return $this;
+    }
+
+    /**
+    * @return TranslationString
+    */
+    public function opengraph_title()
+    {
+        return $this->opengraph_title;
+    }
+
+    /**
+    * @param mixed $site_name
+    * @return MetatagInterface Chainable
+    */
+    public function set_opengraph_site_name($site_name)
+    {
+        $this->opengraph_site_name = new TranslationString($site_name);
+        return $this;
+    }
+
+    /**
+    * @return TranslationString
+    */
+    public function opengraph_site_name()
+    {
+        return $this->opengraph_site_name;
+    }
+
+    /**
+    * @param mixed $description
+    * @return MetatagInterface Chainable
+    */
+    public function set_opengraph_description($description)
+    {
+        $this->opengraph_description = new TranslationString($description);
+    }
+
+    /**
+    * @return TranslationString
+    */
+    public function opengraph_description()
+    {
+        return $this->opengraph_description;
+    }
+
+    public function set_opengraph_type($type)
+    {
+        $this->opengraph_type = $type;
+        return $this;
+    }
+    
+    public function opengraph_type()
+    {
+        return $this->opengraph_type;
+    }
+
+    public function set_opengraph_image($image)
+    {
+        $this->opengraph_image = $image;
+        return $this;
+    }
+    
+    public function opengraph_image()
+    {
+        return $this->opengraph_image;
+    }
+
+    public function set_opengraph_author($author)
+    {
+        $this->opengraph_author = $author;
+        return $this;
+    }
+
+    public function opengraph_author()
+    {
+        return $this->opengraph_author;
+    }
+
+    public function set_opengraph_pulisher($publisher)
+    {
+        $this->opengraph_publisher = $publisher;
+        return $this;
+    }
+
+    public function opengraph_publisher()
+    {
+        return $this->opengraph_publisher;
+    }
+
+    /**
+    * @return string
+    */
+    public function opengraph_tags()
+    {
+        return '';
     }
 }

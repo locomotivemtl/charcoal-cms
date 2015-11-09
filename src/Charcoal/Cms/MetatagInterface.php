@@ -8,12 +8,6 @@ namespace Charcoal\Cms;
 interface MetatagInterface
 {
     /**
-    * @param array $data
-    * @return MetatagInterface Chainable
-    */
-    public function set_metatag_data(array $data);
-
-    /**
     * @return string
     */
     public function canonical_url();
@@ -51,7 +45,15 @@ interface MetatagInterface
     */
     public function meta_image();
 
+    /**
+    * @param mixed $author
+    * @return MetatagInterface Chainable
+    */
     public function set_meta_author($author);
+
+    /**
+    * @return TranslationString
+    */
     public function meta_author();
 
     /**
@@ -59,13 +61,43 @@ interface MetatagInterface
     */
     public function meta_tags();
 
+    /**
+    * @param string $app_id The facebook App ID (numeric string)
+    * @return MetatagInterface Chainable
+    */
     public function set_facebook_app_id($app_id);
+
+    /**
+    * @return string
+    */
     public function facebook_app_id();
 
+    /**
+    * @param mixed $title
+    * @return MetatagInterface Chainable
+    */
     public function set_opengraph_title($title);
+
+    /**
+    * @return TranslationString
+    */
     public function opengraph_title();
+
+    /**
+    * @param mixed $site_name
+    * @return MetatagInterface Chainable
+    */
     public function set_opengraph_site_name($site_name);
+
+    /**
+    * @return TranslationString
+    */
     public function opengraph_site_name();
+
+    /**
+    * @param mixed $description
+    * @return MetatagInterface Chainable
+    */
     public function set_opengraph_description($description);
     public function opengraph_description();
     public function set_opengraph_type($type);
