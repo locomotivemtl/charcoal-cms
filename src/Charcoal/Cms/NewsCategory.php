@@ -7,7 +7,7 @@ use \Charcoal\Object\Content;
 use \Charcoal\Object\CategoryInterface;
 use \Charcoal\Object\CategoryTrait;
 
-class FaqCategory extends Content implements CategoryInterface
+class NewsCategory extends Content implements CategoryInterface
 {
     use CategoryTrait;
 
