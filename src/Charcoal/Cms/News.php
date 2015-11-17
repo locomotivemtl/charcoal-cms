@@ -11,8 +11,10 @@ use \Charcoal\Object\CategorizableInterface;
 use \Charcoal\Object\CategorizableTrait;
 use \Charcoal\Object\PublishableInterface;
 use \Charcoal\Object\PublishableTrait;
-use \Charcoal\Object\RoutableInterface;
-use \Charcoal\Object\RoutableTrait;
+
+// From `charcoal-app`
+use \Charcoal\App\Routable\RoutableInterface;
+use \Charcoal\App\Routable\RoutableTrait;
 
 // Local namespace dependencies
 use \Charcoal\Cms\MetatagInterface;
@@ -31,6 +33,7 @@ class News extends Content implements
     use CategorizableTrait;
     use PublishableTrait;
     use MetatagTrait;
+    use RoutableTrait;
     use SearchableTrait;
 
     /**
@@ -150,5 +153,25 @@ class News extends Content implements
     public function canonical_url()
     {
         return '';
+    }
+
+    /**
+    * RoutableInterface > handle_route()
+    *
+    * @param string $slug
+    * @param RequestInterface $request
+    * @param ResponseInterface $response
+    * @throws InvalidArgumentException
+    * @return callable Route callback
+    */
+    public function handle_route($slug, $request, $response)
+    {
+        if (!is_string($slug)) {
+            throw new InvalidArgumentExeption(
+                'Route slug must be a string'
+            );
+        }
+        unset($request);
+        return $response->write($slug);
     }
 }
