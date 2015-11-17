@@ -2,6 +2,13 @@
 
 namespace Charcoal\Cms;
 
+// PHP Dependencies
+use \InvalidArgumentException;
+
+// PSR-7 (http messaging) dependencies
+use \Psr\Http\Message\RequestInterface;
+use \Psr\Http\Message\ResponseInterface;
+
 // From `charcoal-core`
 use \Charcoal\Translation\TranslationString;
 
@@ -158,20 +165,28 @@ class News extends Content implements
     /**
     * RoutableInterface > handle_route()
     *
-    * @param string $slug
+    * @param string $path
     * @param RequestInterface $request
     * @param ResponseInterface $response
     * @throws InvalidArgumentException
-    * @return callable Route callback
+    * @return callable|null Route dispatcher
     */
-    public function handle_route($slug, $request, $response)
+    public function handle_route($path, RequestInterface $request, ResponseInterface $response)
     {
-        if (!is_string($slug)) {
+        if (!is_string($path)) {
             throw new InvalidArgumentExeption(
-                'Route slug must be a string'
+                'Route path must be a string'
             );
         }
-        unset($request);
-        return $response->write($slug);
+        $match_path = $path == 'xxx'; // Insert logic here...
+        if($match_path) {
+            return function(RequestInterface $request, ResponseInterface $response) use ($path) {
+                $response->write($path);
+            };
+        }
+        else {
+            return null;
+        }
     }
+
 }
