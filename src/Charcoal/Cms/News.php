@@ -171,7 +171,7 @@ class News extends Content implements
     * @throws InvalidArgumentException
     * @return callable|null Route dispatcher
     */
-    public function handle_route($path, RequestInterface $request, ResponseInterface $response)
+    public function route_handler($path, RequestInterface $request, ResponseInterface $response)
     {
         if (!is_string($path)) {
             throw new InvalidArgumentExeption(
