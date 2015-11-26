@@ -1,6 +1,6 @@
 <?php
 
-namsepace Charccoal\Cms;
+namespace Charccoal\Cms;
 
 /**
 *
