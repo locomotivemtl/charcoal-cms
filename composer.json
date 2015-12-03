@@ -1,27 +1,21 @@
 {
-    "name": "locomotivemtl/charcoal-cms",
-    "minimum-stability":"dev",
-    "require": {
-        "locomotivemtl/charcoal-core":"@dev",
-        "locomotivemtl/charcoal-base":"@dev"
-    },
-    "repositories":[
-        {
-            "type":"vcs",
-            "url":"https://github.com/locomotivemtl/charcoal-core"
-        },
-        {
-            "type":"vcs",
-            "url":"https://github.com/locomotivemtl/charcoal-base"
-        },
-        {
-            "type":"vcs",
-            "url":"https://github.com/locomotivemtl/charcoal-image"
-        }
-    ],
-    "autoload":{
-        "psr-4":{
-            "Charcoal\\Cms\\": "src/Charcoal/Cms"
-        }
+  "name": "locomotivemtl/charcoal-cms",
+  "description": "Charcoal CMS (Content Management System) Module",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Mathieu Ducharme",
+      "email": "mat@locomotive.ca"
     }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "locomotivemtl/charcoal-core": "@dev",
+    "locomotivemtl/charcoal-base": "@dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "Charcoal\\Cms\\": "src/Charcoal/Cms"
+    }
+  }
 }

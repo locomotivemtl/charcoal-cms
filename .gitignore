@@ -1,4 +1,19 @@
-node_modules
-tests/tmp
-vendor
-composer.lock
+# Package Managers
+
+composer.phar
+vendor/
+node_modules/
+bower_components/
+
+# Documentation
+
+phpdoc/
+
+# Logging
+
+*.log
+logs/
+
+# Caches
+
+tmp/
