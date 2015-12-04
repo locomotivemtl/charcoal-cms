@@ -1,17 +1,30 @@
 {
   "name": "locomotivemtl/charcoal-cms",
   "description": "Charcoal CMS (Content Management System) Module",
+  "homepage": "https://charcoal.locomotive.ca",
   "license": "MIT",
+  "support": {
+    "issues": "https://github.com/locomotivemtl/charcoal-cms/issues",
+    "source": "https://github.com/locomotivemtl/charcoal-cms"
+  },
   "authors": [
     {
       "name": "Mathieu Ducharme",
       "email": "mat@locomotive.ca"
+    },
+    {
+      "name": "Locomotive",
+      "homepage": "https://locomotive.ca"
     }
   ],
   "minimum-stability": "dev",
   "require": {
     "locomotivemtl/charcoal-core": "@dev",
     "locomotivemtl/charcoal-base": "@dev"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.8",
+    "squizlabs/php_codesniffer": "^2.4"
   },
   "autoload": {
     "psr-4": {

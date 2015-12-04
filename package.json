@@ -1,26 +1,6 @@
 {
+  "private": true,
   "name": "@locomotivemtl/charcoal-cms",
-  "version": "0.0.1",
-  "description": "Charcoal CMS (Content Management System) Module",
-  "license": "MIT",
-  "homepage": "http://charcoal.locomotive.ca",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/locomotivemtl/charcoal-cms"
-  },
-  "bugs": {
-    "url": "https://github.com/locomotivemtl/charcoal-cms/issues"
-  },
-  "author": {
-    "name": "Mathieu Ducharme",
-    "email": "mat@locomotive.ca"
-  },
-  "contributors": [
-    {
-      "name": "Locomotive",
-      "homepage": "http://locomotive.ca"
-    }
-  ],
   "devDependencies": {
     "glob": "^6.0.1",
     "grunt": "^0.4.5",
@@ -34,6 +14,6 @@
     "grunt-phplint": "0.0.6",
     "grunt-phpunit": "^0.3.6",
     "grunt-yaml-validate": "^0.1.1",
-    "load-grunt-tasks": "^3.2.0"
+    "load-grunt-tasks": "^3.3.0"
   }
 }
