@@ -16,4 +16,6 @@ logs/
 
 # Caches
 
+build/docs/
+build/logs/
 tmp/

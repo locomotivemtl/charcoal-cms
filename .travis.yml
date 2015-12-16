@@ -7,11 +7,10 @@ php:
   - nightly
 
 before_script:
-  - wget http://getcomposer.org/composer.phar
-  - php composer.phar install
+  - composer install
   - pyrus install pear/PHP_CodeSniffer
   - phpenv rehash
 
-script: 
+script:
   - phpunit --configuration tests/phpunit.xml
-  - phpcs 
+  - phpcs

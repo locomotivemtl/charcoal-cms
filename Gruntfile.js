@@ -22,8 +22,8 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json')
     };
 
-    grunt.loadTasks('grunt_tasks');
-    grunt.util._.extend(config, loadConfig('./grunt_tasks/'));
+    grunt.loadTasks('build/grunt');
+    grunt.util._.extend(config, loadConfig('./build/grunt/'));
     grunt.initConfig(config);
 
     // Load tasks
