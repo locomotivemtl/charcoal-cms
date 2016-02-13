@@ -7,10 +7,7 @@ use \DateTimeInterface;
 use \Exception;
 use \InvalidArgumentException;
 
-// From `charcoal-core`
 use \Charcoal\Translation\TranslationString;
-
-// From `charcoal-base`
 use \Charcoal\Object\Content;
 use \Charcoal\Object\CategorizableInterface;
 use \Charcoal\Object\CategorizableTrait;
@@ -19,7 +16,6 @@ use \Charcoal\Object\PublishableTrait;
 use \Charcoal\Object\RoutableInterface;
 use \Charcoal\Object\RoutableTrait;
 
-// Local namespace dependencies
 use \Charcoal\Cms\MetatagInterface;
 use \Charcoal\Cms\SearchableInterface;
 

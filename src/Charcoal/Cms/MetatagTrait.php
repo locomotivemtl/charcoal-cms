@@ -2,8 +2,7 @@
 
 namespace Charcoal\Cms;
 
-// Module `charcoal-core` dependencies
-use \Charcoal\Translation\TranslationString as TranslationString;
+use \Charcoal\Translation\TranslationString;
 
 /**
 *
@@ -210,7 +209,7 @@ trait MetatagTrait
         $this->opengraph_type = $type;
         return $this;
     }
-    
+
     public function opengraph_type()
     {
         return $this->opengraph_type;
@@ -221,7 +220,7 @@ trait MetatagTrait
         $this->opengraph_image = $image;
         return $this;
     }
-    
+
     public function opengraph_image()
     {
         return $this->opengraph_image;

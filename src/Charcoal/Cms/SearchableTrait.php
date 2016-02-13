@@ -2,6 +2,8 @@
 
 namespace Charcoal\Cms;
 
+use \Charcoal\Translation\TranslationString;
+
 /**
 *Default implementation, as Trait, of the SearchableInterface
 */

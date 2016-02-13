@@ -2,10 +2,7 @@
 
 namespace Charcoal\Cms\Section;
 
-// From `charcoal-core`
 use \Charcoal\Translation\TranslationString;
-
-// Parant namespace dependencies
 use \Charcoal\Cms\AbstractSection;
 
 class ContentSection extends AbstractSection

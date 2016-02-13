@@ -2,28 +2,20 @@
 
 namespace Charcoal\Cms;
 
-// PHP Dependencies
 use \InvalidArgumentException;
 
-// PSR-7 (http messaging) dependencies
 use \Psr\Http\Message\RequestInterface;
 use \Psr\Http\Message\ResponseInterface;
 
-// From `charcoal-core`
 use \Charcoal\Translation\TranslationString;
-
-// From `charcoal-base`
 use \Charcoal\Object\Content;
 use \Charcoal\Object\CategorizableInterface;
 use \Charcoal\Object\CategorizableTrait;
 use \Charcoal\Object\PublishableInterface;
 use \Charcoal\Object\PublishableTrait;
-
-// From `charcoal-app`
 use \Charcoal\App\Routable\RoutableInterface;
 use \Charcoal\App\Routable\RoutableTrait;
 
-// Local namespace dependencies
 use \Charcoal\Cms\MetatagInterface;
 use \Charcoal\Cms\SearchableInterface;
 

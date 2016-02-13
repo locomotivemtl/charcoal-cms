@@ -2,17 +2,11 @@
 
 namespace Charcoal\Cms;
 
-// Dependencies from `PHP`
-use \InvalidArgumentException as InvalidArgumentException;
+use \InvalidArgumentException;
 
-// Module `charcoal-core` dependencies
-use \Charcoal\Translation\TranslationString as TranslationString;
-
-// Module `charcoal-base` dependencies
-use \Charcoal\Object\Content as Content;
-
-// Local namespace dependencies
-use \Charcoal\Cms\TemplateInterface as TemplateInterface;
+use \Charcoal\Translation\TranslationString;
+use \Charcoal\Object\Content;
+use \Charcoal\Cms\TemplateInterface;
 
 /**
 *
