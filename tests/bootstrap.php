@@ -10,4 +10,4 @@ $autoloader->add('Charcoal\\Cms\\Tests\\', __DIR__);
 
 // This var needs to be set automatically, for now
 Charcoal::init();
-Charcoal::config()['ROOT'] = '';
+Charcoal::config()['base_path'] = '';
