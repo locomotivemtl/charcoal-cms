@@ -16,7 +16,7 @@ class FaqCategory extends Content implements CategoryInterface
     *
     * @return string
     */
-    public function item_type()
+    public function itemType()
     {
         return 'charcoal/cms/faq';
     }
@@ -24,7 +24,7 @@ class FaqCategory extends Content implements CategoryInterface
     /**
     * @return Collection
     */
-    public function load_items()
+    public function loadItems()
     {
         return [];
     }

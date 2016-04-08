@@ -10,107 +10,107 @@ interface MetatagInterface
     /**
     * @return string
     */
-    public function canonical_url();
+    public function canonicalUrl();
 
     /**
     * @param mixed $title
     * @return MetatagInterface Chainable
     */
-    public function set_meta_title($title);
+    public function setMetaTitle($title);
 
     /**
     * @return TranslationString
     */
-    public function meta_title();
+    public function metaTitle();
 
     /**
     * @param mixed $description
     * @return MetatagInterface Chainable
     */
-    public function set_meta_description($description);
+    public function setMetaDescription($description);
 
     /**
     * @return TranslationString
     */
-    public function meta_description();
+    public function metaDescription();
 
     /**
     * @param mixed $image
     * @return MetatageInterface Chainable
     */
-    public function set_meta_image($image);
+    public function setMetaImage($image);
 
     /**
     * @return TranslationString
     */
-    public function meta_image();
+    public function metaImage();
 
     /**
     * @param mixed $author
     * @return MetatagInterface Chainable
     */
-    public function set_meta_author($author);
+    public function setMetaAuthor($author);
 
     /**
     * @return TranslationString
     */
-    public function meta_author();
+    public function metaAuthor();
 
     /**
     * @return string
     */
-    public function meta_tags();
+    public function metaTags();
 
     /**
-    * @param string $app_id The facebook App ID (numeric string)
+    * @param string $appId The facebook App ID (numeric string)
     * @return MetatagInterface Chainable
     */
-    public function set_facebook_app_id($app_id);
+    public function setFacebookAppId($appId);
 
     /**
     * @return string
     */
-    public function facebook_app_id();
+    public function facebookAppId();
 
     /**
     * @param mixed $title
     * @return MetatagInterface Chainable
     */
-    public function set_opengraph_title($title);
+    public function setOpengraphTitle($title);
 
     /**
     * @return TranslationString
     */
-    public function opengraph_title();
+    public function opengraphTitle();
 
     /**
-    * @param mixed $site_name
+    * @param mixed $siteName
     * @return MetatagInterface Chainable
     */
-    public function set_opengraph_site_name($site_name);
+    public function setOpengraphSiteName($siteName);
 
     /**
     * @return TranslationString
     */
-    public function opengraph_site_name();
+    public function opengraphSiteName();
 
     /**
     * @param mixed $description
     * @return MetatagInterface Chainable
     */
-    public function set_opengraph_description($description);
-    public function opengraph_description();
-    public function set_opengraph_type($type);
-    public function opengraph_type();
-    public function set_opengraph_image($image);
-    public function opengraph_image();
-    public function set_opengraph_author($author);
-    public function opengraph_author();
-    public function set_opengraph_pulisher($publisher);
-    public function opengraph_publisher();
+    public function setOpengraphDescription($description);
+    public function opengraphDescription();
+    public function setOpengraphType($type);
+    public function opengraphType();
+    public function setOpengraphImage($image);
+    public function opengraphImage();
+    public function setOpengraphAuthor($author);
+    public function opengraphAuthor();
+    public function setOpengraphPulisher($publisher);
+    public function opengraphPublisher();
 
     /**
     * @return string
     */
-    public function opengraph_tags();
+    public function opengraphTags();
 }

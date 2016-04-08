@@ -1,0 +1,167 @@
+{
+  "properties":{
+    "id":{
+      "type":"id"
+    },
+    "title":{
+      "type":"string",
+      "l10n":true,
+      "label":{
+        "en":"Title",
+        "fr":"Titre"
+      }
+    },
+    "subtitle":{
+      "type":"text",
+      "l10n":true,
+      "input_type":"charcoal/admin/property/input/textarea",
+      "label":{
+        "en":"Subtitle",
+        "fr":"Sous-titre"
+      }
+    },
+    "content":{
+      "type":"html",
+      "l10n":true,
+      "label":{
+        "en":"Content",
+        "fr":"Contenu"
+      }
+    },
+    "content_structure":{
+      "type":"structure",
+      "l10n":true
+    },
+    "news_date":{
+      "type":"date-time",
+      "label":{
+        "en":"News date",
+        "fr":"Date de la nouvelle"
+      },
+      "description":{
+        "en":"The \"display\" date of this news.",
+        "fr":"La date affichée de la nouvelle."
+      }
+    },
+    "images":{
+      "type":"image",
+      "l10n":true,
+      "multiple":true
+    },
+    "documents":{
+      "type":"file",
+      "l10n":true,
+      "multiple":true
+    },
+    "infoUrl":{
+      "type":"url",
+      "l10n":true
+    }
+  },
+
+  "data": {},
+
+  "sources":{
+    "default":{
+      "type":"database",
+      "table":"charcoal_cms_news"
+    }
+  },
+  "default_source":"default",
+
+  "admin":{
+    "lists":{
+      "default":{
+        "properties":[
+          "news_date",
+          "title"
+        ],
+        "orders":[{
+          "property":"news_date",
+          "mode":"desc"
+        }]
+      }
+    },
+    "default_list":"default",
+
+    "forms":{
+      "default":{
+        "groups":{
+          "info":{
+            "title":{
+                "en":"Informations",
+                "fr":"Informations"
+            },
+            "properties":[
+              "news_date",
+              "publish_status"
+            ]
+          },
+          "content":{
+            "title":{
+                "en":"Content",
+                "fr":"Contenu"
+            },
+            "properties":[
+              "title",
+              "subtitle",
+              "content"
+            ]
+          },
+          "media":{
+            "title":{
+                "en":"Media",
+                "fr":"Médias"
+            },
+            "properties":[
+                "images",
+                "documents"
+            ]
+          }
+        },
+        "sidebars":{
+          "actions":{}
+        }
+      }
+    },
+    "default_form":"default",
+
+    "dashboards":{
+      "edit":{
+        "layout": {
+          "structure": [
+            { "columns": [ 1 ] }
+          ]
+        },
+        "widgets": {
+          "form": {
+            "type": "charcoal/admin/widget/objectForm",
+            "form_ident": "default",
+            "obj_type": "charcoal/cms/news"
+          }
+        }
+      },
+      "table":{
+        "title": {
+          "fr":"Liste des nouvelles",
+          "en":"News list"
+        },
+        "layout": {
+          "structure": [
+            { "columns": [ 1 ] }
+          ]
+        },
+        "widgets": {
+          "form": {
+            "type": "charcoal/admin/widget/table",
+            "collection_ident": "default",
+            "obj_type": "charcoal/cms/news"
+          }
+        }
+      }
+    },
+    "default_create_dashboard": "edit",
+    "default_edit_dashboard": "edit",
+    "default_collection_dashboard": "table"
+  }
+}

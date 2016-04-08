@@ -10,248 +10,248 @@ use \Charcoal\Translation\TranslationString;
 trait MetatagTrait
 {
     /**
-    * @var TranslationString $meta_title
+    * @var TranslationString $metaTitle
     */
-    private $meta_title;
+    private $metaTitle;
     /**
-    * @var TranslationString $meta_description
+    * @var TranslationString $metaDescription
     */
-    private $meta_description;
+    private $metaDescription;
     /**
-    * @var TranslationString $meta_image
+    * @var TranslationString $metaImage
     */
-    private $meta_image;
+    private $metaImage;
     /**
-    * @var TranslationString $meta_author
+    * @var TranslationString $metaAuthor
     */
-    private $meta_author;
+    private $metaAuthor;
 
     /**
-    * @var string $facebook_app_id
+    * @var string $facebookAppId
     */
-    private $facebook_app_id;
+    private $facebookAppId;
 
     /**
-    * @var TranslationString $opengraph_title
+    * @var TranslationString $opengraphTitle
     */
-    private $opengraph_title;
+    private $opengraphTitle;
 
     /**
-    * @var TranslationString $site_name
+    * @var TranslationString $siteName
     */
-    private $opengraph_site_name;
-    private $opengraph_description;
-    private $opengraph_type;
-    private $opengraph_image;
-    private $opengraph_author;
-    private $opengraph_publisher;
+    private $opengraphSiteName;
+    private $opengraphDescription;
+    private $opengraphType;
+    private $opengraphImage;
+    private $opengraphAuthor;
+    private $opengraphPublisher;
 
 
     /**
     * @return string
     */
-    abstract public function canonical_url();
+    abstract public function canonicalUrl();
 
     /**
     * @param mixed $title
     * @return MetatagInterface Chainable
     */
-    public function set_meta_title($title)
+    public function setMetaTitle($title)
     {
-        $this->meta_title = new TranslationString($title);
+        $this->metaTitle = new TranslationString($title);
         return $this;
     }
 
     /**
     * @return TranslationString
     */
-    public function meta_title()
+    public function metaTitle()
     {
-        return $this->meta_title();
+        return $this->metaTitle();
     }
 
     /**
     * @param mixed $description
     * @return MetatagInterface Chainable
     */
-    public function set_meta_description($description)
+    public function setMetaDescription($description)
     {
-        $this->meta_description = new TranslationString($description);
+        $this->metaDescription = new TranslationString($description);
         return $this;
     }
 
     /**
     * @return TranslationString
     */
-    public function meta_description()
+    public function metaDescription()
     {
-        return $this->meta_description();
+        return $this->metaDescription();
     }
 
     /**
     * @param mixed $image
     * @return MetatagInterface Chainable
     */
-    public function set_meta_image($image)
+    public function setMetaImage($image)
     {
-        $this->meta_image = new TranslationString($image);
+        $this->metaImage = new TranslationString($image);
         return $this;
     }
 
     /**
     * @return TranslationString
     */
-    public function meta_image()
+    public function metaImage()
     {
-        return $this->meta_image();
+        return $this->metaImage();
     }
 
     /**
     * @param mixed $author
     * @return MetatagInterface Chainable
     */
-    public function set_meta_author($author)
+    public function setMetaAuthor($author)
     {
-        $this->meta_author = new TranslationString($author);
+        $this->metaAuthor = new TranslationString($author);
         return $this;
     }
 
     /**
     * @return TranslationString
     */
-    public function meta_author()
+    public function metaAuthor()
     {
-        return $this->meta_author();
+        return $this->metaAuthor();
     }
 
     /**
     * @return string
     */
-    public function meta_tags()
+    public function metaTags()
     {
         $tags = '';
         return $tags;
     }
 
     /**
-    * @param string $app_id The facebook App ID (numeric string)
+    * @param string $appId The facebook App ID (numeric string)
     * @return MetatagInterface Chainable
     */
-    public function set_facebook_app_id($app_id)
+    public function setFacebookAppId($appId)
     {
-        $this->facebook_app_id = $app_id;
+        $this->facebookAppId = $appId;
         return $this;
     }
 
     /**
     * @return string
     */
-    public function facebook_app_id()
+    public function facebookAppId()
     {
-        return $this->facebook_app_id;
+        return $this->facebookAppId;
     }
 
     /**
     * @param mixed $title
     * @return MetatagInterface Chainable
     */
-    public function set_opengraph_title($title)
+    public function setOpengraphTitle($title)
     {
-        $this->opengraph_title = new TranslationString($title);
+        $this->opengraphTitle = new TranslationString($title);
         return $this;
     }
 
     /**
     * @return TranslationString
     */
-    public function opengraph_title()
+    public function opengraphTitle()
     {
-        return $this->opengraph_title;
+        return $this->opengraphTitle;
     }
 
     /**
-    * @param mixed $site_name
+    * @param mixed $siteName
     * @return MetatagInterface Chainable
     */
-    public function set_opengraph_site_name($site_name)
+    public function setOpengraphSiteName($siteName)
     {
-        $this->opengraph_site_name = new TranslationString($site_name);
+        $this->opengraphSiteName = new TranslationString($siteName);
         return $this;
     }
 
     /**
     * @return TranslationString
     */
-    public function opengraph_site_name()
+    public function opengraphSiteName()
     {
-        return $this->opengraph_site_name;
+        return $this->opengraphSiteName;
     }
 
     /**
     * @param mixed $description
     * @return MetatagInterface Chainable
     */
-    public function set_opengraph_description($description)
+    public function setOpengraphDescription($description)
     {
-        $this->opengraph_description = new TranslationString($description);
+        $this->opengraphDescription = new TranslationString($description);
     }
 
     /**
     * @return TranslationString
     */
-    public function opengraph_description()
+    public function opengraphDescription()
     {
-        return $this->opengraph_description;
+        return $this->opengraphDescription;
     }
 
-    public function set_opengraph_type($type)
+    public function setOpengraphType($type)
     {
-        $this->opengraph_type = $type;
+        $this->opengraphType = $type;
         return $this;
     }
 
-    public function opengraph_type()
+    public function opengraphType()
     {
-        return $this->opengraph_type;
+        return $this->opengraphType;
     }
 
-    public function set_opengraph_image($image)
+    public function setOpengraphImage($image)
     {
-        $this->opengraph_image = $image;
+        $this->opengraphImage = $image;
         return $this;
     }
 
-    public function opengraph_image()
+    public function opengraphImage()
     {
-        return $this->opengraph_image;
+        return $this->opengraphImage;
     }
 
-    public function set_opengraph_author($author)
+    public function setOpengraphAuthor($author)
     {
-        $this->opengraph_author = $author;
+        $this->opengraphAuthor = $author;
         return $this;
     }
 
-    public function opengraph_author()
+    public function opengraphAuthor()
     {
-        return $this->opengraph_author;
+        return $this->opengraphAuthor;
     }
 
-    public function set_opengraph_pulisher($publisher)
+    public function setOpengraphPulisher($publisher)
     {
-        $this->opengraph_publisher = $publisher;
+        $this->opengraphPublisher = $publisher;
         return $this;
     }
 
-    public function opengraph_publisher()
+    public function opengraphPublisher()
     {
-        return $this->opengraph_publisher;
+        return $this->opengraphPublisher;
     }
 
     /**
     * @return string
     */
-    public function opengraph_tags()
+    public function opengraphTags()
     {
         return '';
     }

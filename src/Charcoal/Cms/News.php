@@ -2,25 +2,33 @@
 
 namespace Charcoal\Cms;
 
+use \DateTime;
+use \DateTimeInterface;
 use \InvalidArgumentException;
 
 use \Psr\Http\Message\RequestInterface;
 use \Psr\Http\Message\ResponseInterface;
 
+// Dependencies from `charcoal-translation`
 use \Charcoal\Translation\TranslationString;
+
+// Dependencies from `charcoal-base`
 use \Charcoal\Object\Content;
 use \Charcoal\Object\CategorizableInterface;
 use \Charcoal\Object\CategorizableTrait;
 use \Charcoal\Object\PublishableInterface;
 use \Charcoal\Object\PublishableTrait;
+
+// Dependencies from `charcoal-app`
 use \Charcoal\App\Routable\RoutableInterface;
 use \Charcoal\App\Routable\RoutableTrait;
 
+// Intra-module (`charcoal-cms`) dependencies
 use \Charcoal\Cms\MetatagInterface;
 use \Charcoal\Cms\SearchableInterface;
 
 /**
-*
+* News
 */
 class News extends Content implements
     CategorizableInterface,
@@ -51,23 +59,15 @@ class News extends Content implements
     private $content;
 
     /**
-    * @var Collection $blocks
+    * @var array $contentStructure
     */
-    private $blocks;
+    private $contentStructure;
 
     /**
-    * @var DateTime $start_date
+    * @var DateTime $newsDate
     */
-    private $start_date;
-    /**
-    * @var DateTime $start_date
-    */
-    private $end_date;
+    private $newsDate;
 
-    /**
-    * @var TranslationString $thumbnail
-    */
-    private $thumbnail;
     /**
     * @var TranslationString $image
     */
@@ -76,15 +76,19 @@ class News extends Content implements
     /**
     * @var Collection $documents
     */
-    private $documents;
-
+    public $documents;
 
     /**
-    * CategorizableTrait > category_type()
+    * @var TranslationString $infoUrl
+    */
+    private $infoUrl;
+
+    /**
+    * CategorizableTrait > categoryType()
     *
     * @return string
     */
-    public function category_type()
+    public function categoryType()
     {
         return 'charcoal/cms/news-category';
     }
@@ -93,7 +97,7 @@ class News extends Content implements
     * @param mixed $title
     * @return TranslationString
     */
-    public function set_title($title)
+    public function setTitle($title)
     {
         $this->title = new TranslationString($title);
         return $this;
@@ -111,7 +115,7 @@ class News extends Content implements
     * @param mixed $subbtitle
     * @return Event Chainable
     */
-    public function set_subtitle($subtitle)
+    public function setSubtitle($subtitle)
     {
         $this->subtitle = new TranslationString($subtitle);
         return $this;
@@ -129,7 +133,7 @@ class News extends Content implements
     * @param mixed $content
     * @return Event Chainable
     */
-    public function set_content($content)
+    public function setContent($content)
     {
         $this->content = new TranslationString($content);
         return $this;
@@ -144,12 +148,54 @@ class News extends Content implements
     }
 
     /**
+     * @param mixed $newsDate The news date.
+     * @throws InvalidArgumentException If the timestamp is invalid.
+     * @return ObjectRevision Chainable
+     */
+    public function setNewsDate($newsDate)
+    {
+        if ($newsDate === null) {
+            $this->newsDate = null;
+            return $this;
+        }
+        if (is_string($newsDate)) {
+            $newsDate = new DateTime($newsDate);
+        }
+        if (!($newsDate instanceof DateTimeInterface)) {
+            throw new InvalidArgumentException(
+                'Invalid "Revision Date" value. Must be a date/time string or a DateTimeInterface object.'
+            );
+        }
+        $this->newsDate = $newsDate;
+        return $this;
+    }
+
+    /**
+     * @return DateTime|null
+     */
+    public function newsDate()
+    {
+        return $this->newsDate;
+    }
+
+    public function setInfoUrl($url)
+    {
+        $this->infoUrl = new TranslationString($url);
+        return $this;
+    }
+
+    public function infoUrl()
+    {
+        return $this->infoUrl;
+    }
+
+    /**
     * MetatagTrait > canonical_url
     *
     * @return string
     * @todo
     */
-    public function canonical_url()
+    public function canonicalUrl()
     {
         return '';
     }
@@ -163,7 +209,7 @@ class News extends Content implements
     * @throws InvalidArgumentException
     * @return callable|null Route dispatcher
     */
-    public function route_handler($path, RequestInterface $request, ResponseInterface $response)
+    public function routeHandler($path, RequestInterface $request, ResponseInterface $response)
     {
         if (!is_string($path)) {
             throw new InvalidArgumentExeption(

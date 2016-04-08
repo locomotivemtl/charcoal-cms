@@ -13,7 +13,3 @@ indent_size = 4
 [*.md]
 indent_style = tab
 indent_size = 2
-
-[{*.json,*.yml,.bowerrc,.editorconfig,.env,.env.*,.gitattributes,.gitignore,.htaccess,.jscsrc,.jshintignore,.jshintrc,.npmrc,.sassdocrc}]
-insert_final_newline = false
-indent_size = 2
