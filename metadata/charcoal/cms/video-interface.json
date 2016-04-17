@@ -1,0 +1,7 @@
+{
+    "properties":{
+        "video_source":{
+            "type":"string"
+        }
+    }
+}

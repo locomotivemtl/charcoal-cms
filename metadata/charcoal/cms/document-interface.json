@@ -1,0 +1,24 @@
+{
+    "properties":{
+        "id":{
+            "type":"id"
+        },
+        "name":{
+            "type":"string",
+            "l10n":true,
+            "label":{
+                "en":"Name",
+                "fr":"Nom"
+            }
+        },
+        "file":{
+            "type":"file",
+            "public_access":true,
+            "upload_path":"uploads/documents/",
+            "overwrite":false
+        },
+        "position":{
+            "type":"integer"
+        }
+    }
+}

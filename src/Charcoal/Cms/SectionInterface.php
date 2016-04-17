@@ -3,62 +3,62 @@
 namespace Charcoal\Cms;
 
 /**
-*
-*/
+ *
+ */
 interface SectionInterface
 {
     /**
-    * @param string $section_type
-    * @return SectionInterface Chainable
-    */
-    public function set_section_type($section_type);
+     * @param string $sectionType The section type.
+     * @return SectionInterface Chainable
+     */
+    public function setSectionType($sectionType);
 
     /**
-    * @return string
-    */
-    public function section_type();
+     * @return string
+     */
+    public function sectionType();
 
     /**
-    * @param mixed $title
-    * @return SectionInterface Chainable
-    */
-    public function set_title($title);
+     * @param mixed $title Section title (localized).
+     * @return SectionInterface Chainable
+     */
+    public function setTitle($title);
 
     /**
-    * @return TranslationString
-    */
+     * @return TranslationString
+     */
     public function title();
 
     /**
-    * @param mixed $subtitle
-    * @return SectionInterface Chainable
-    */
-    public function set_subtitle($subtitle);
+     * @param mixed $subtitle Section subtitle (localized).
+     * @return SectionInterface Chainable
+     */
+    public function setSubtitle($subtitle);
 
     /**
-    * @return TranslationString
-    */
+     * @return TranslationString
+     */
     public function subtitle();
 
     /**
-    * @param mixed $template
-    * @return SectionInterface Chainable
-    */
-    public function set_template($template);
+     * @param mixed $template Section template (ident).
+     * @return SectionInterface Chainable
+     */
+    public function setTemplateIdent($template);
 
     /**
-    * @return mixed
-    */
-    public function template();
+     * @return mixed
+     */
+    public function templateIdent();
 
     /**
-    * @param array $template_options
-    * @return SectionInterface Chainable
-    */
-    public function set_template_options(array $template_options);
+     * @param array $templateOptions Extra template options.
+     * @return SectionInterface Chainable
+     */
+    public function setTemplateOptions(array $templateOptions);
 
     /**
-    * @return array
-    */
-    public function template_options();
+     * @return array
+     */
+    public function templateOptions();
 }

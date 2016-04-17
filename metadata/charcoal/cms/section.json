@@ -19,18 +19,15 @@
       "input_type":"charcoal/admin/property/input/tinymce",
       "l10n":true
     },
-    "template":{
-      "type":"object",
-      "obj_type":"charcoal/cms/template",
+    "template_ident":{
+      "type":"string",
       "allow_null":false
     },
     "template_options":{
       "type":"structure"
     },
     "master":{
-      "type":"object",
-      "obj_type":"charcoal/cms/section",
-      "allow_null":true
+      "obj_type":"charcoal/cms/section"
     },
     "active":{
       "type":"boolean",

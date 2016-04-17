@@ -7,24 +7,27 @@ use \Charcoal\Object\Content;
 use \Charcoal\Object\CategoryInterface;
 use \Charcoal\Object\CategoryTrait;
 
-class EventCategory extends Content implements CategoryInterface
+/**
+ * Event category.
+ */
+final class EventCategory extends Content implements CategoryInterface
 {
     use CategoryTrait;
 
     /**
-    * CategoryTrait > item_type()
-    *
-    * @return string
-    */
-    public function item_type()
+     * CategoryTrait > itemType()
+     *
+     * @return string
+     */
+    public function itemType()
     {
         return 'charcoal/cms/event';
     }
 
     /**
-    * @return Collection
-    */
-    public function load_items()
+     * @return Collection
+     */
+    public function loadCategoryItems()
     {
         return [];
     }

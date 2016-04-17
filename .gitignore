@@ -1,6 +1,6 @@
 # Package Managers
 
-.gitignore
+composer.lock
 composer.phar
 vendor/
 node_modules/

@@ -1,0 +1,29 @@
+{
+    "sources":{
+        "default":{
+            "table":"charcoal_cms_texts"
+        }
+    },
+    "default_source":"default",
+
+    "admin":{
+        "lists":{
+            "default":{
+                "properties":[
+
+                ]
+            }
+        },
+        "default_list":"default",
+
+        "forms":{
+            "default":{
+                "groups":{},
+                "sidebars":{
+                    "actions":{}
+                }
+            }
+        },
+        "default_form":"default"
+    }
+}

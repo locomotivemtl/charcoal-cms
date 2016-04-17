@@ -1,0 +1,42 @@
+{
+    "properties":{
+        "attachments":{
+            "allowed_types":{
+                "charcoal/cms/document":{},
+                "charcoal/cms/image":{},
+                "charcoal/cms/video":{}
+            }
+        }
+    },
+
+    "sources":{
+        "default":{
+            "table":"charcoal_cms_faqs"
+        }
+    },
+
+    "admin":{
+        "lists":{
+            "default":{
+
+            }
+        },
+        "default_list":"default",
+
+        "forms":{
+            "default":{
+                "groups":{
+
+                },
+                "sidebars":{
+                    "actions":{}
+                }
+            }
+        },
+        "default_form":"default",
+
+        "dashboards":{
+
+        }
+    }
+}

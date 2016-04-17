@@ -1,0 +1,31 @@
+{
+    "sources":{
+        "default":{
+            "table":"charcoal_cms_images"
+        }
+    },
+
+    "admin":{
+        "lists":{
+            "default":{
+
+            }
+        },
+        "default_list":"default",
+
+        "forms":{
+            "default":{
+                "groups":{
+                    "image":{
+                        "label":{},
+                        "properties":[]
+                    }
+                },
+                "sidebars":{
+                    "actions":{}
+                }
+            }
+        },
+        "default_form":"default"
+    }
+}

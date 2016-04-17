@@ -6,38 +6,42 @@ namespace Charcoal\Cms\Section;
 use \Charcoal\Cms\AbstractSection;
 
 /**
-*
-*/
+ * Blocks-content section
+ */
 class BlocksSection extends AbstractSection
 {
     /**
-    * @param Collection $blocks
-    */
+     * @var Collection $blocks
+     */
     private $blocks;
 
     /**
-    * Overrides `AbstractSection::section_type()`
-    *
-    * @return string
-    */
-    public function section_type()
+     * Overrides `AbstractSection::section_type()`
+     *
+     * @return string
+     */
+    public function sectionType()
     {
         return AbstractSection::TYPE_BLOCKS;
     }
 
     /**
-    * @return Collection List of `Block` objects
-    */
+     * @return Collection List of `Block` objects
+     */
     public function blocks()
     {
         if ($this->blocks === null) {
-            $this->blocks = $this->load_blocks();
+            $this->blocks = $this->loadBlocks();
         }
         return $this->blocks;
     }
 
-    public function load_blocks()
+    /**
+     * @return Collection
+     */
+    public function loadBlocks()
     {
         // @todo
+        return [];
     }
 }

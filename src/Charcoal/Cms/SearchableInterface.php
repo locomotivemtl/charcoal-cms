@@ -3,35 +3,29 @@
 namespace Charcoal\Cms;
 
 /**
-*
-*/
+ *
+ */
 interface SearchableInterface
 {
     /**
-    * @param array $data
-    * @return SearchableInterface Chainable
-    */
-    public function set_searchable_data(array $data);
+     * @param array $properties The properties to search into.
+     * @return SearchableInterface Chainable
+     */
+    public function setSearchProperties(array $properties);
 
     /**
-    * @param array $_search_properties
-    * @return SearchableInterface Chainable
-    */
-    public function set_search_properties(array $properties);
+     * @return array
+     */
+    public function searchProperties();
 
     /**
-    * @return array
-    */
-    public function search_properties();
+     * @param mixed $keywords The search keywords (localized).
+     * @return SearchableInterface Chainable
+     */
+    public function setSearchKeywords($keywords);
 
     /**
-    * @param mixed $keywords
-    * @return SearchableInterface Chainable
-    */
-    public function set_search_keywords($keywords);
-
-    /**
-    * @return TranslationString
-    */
-    public function search_keywords();
+     * @return TranslationString
+     */
+    public function searchKeywords();
 }

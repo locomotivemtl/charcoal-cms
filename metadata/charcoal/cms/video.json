@@ -1,0 +1,12 @@
+{
+    "sources":{
+        "default":{
+            "table":"charcoal_cms_videos"
+        }
+    },
+    "default_source":"default",
+
+    "admin":{
+
+    }
+}

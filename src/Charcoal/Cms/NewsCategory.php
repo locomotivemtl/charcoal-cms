@@ -7,24 +7,27 @@ use \Charcoal\Object\Content;
 use \Charcoal\Object\CategoryInterface;
 use \Charcoal\Object\CategoryTrait;
 
-class NewsCategory extends Content implements CategoryInterface
+/**
+ * News category
+ */
+final class NewsCategory extends Content implements CategoryInterface
 {
     use CategoryTrait;
 
     /**
-    * CategoryTrait > item_type()
-    *
-    * @return string
-    */
-    public function item_type()
+     * CategoryTrait > itemType()
+     *
+     * @return string
+     */
+    public function itemType()
     {
         return 'charcoal/cms/news';
     }
 
     /**
-    * @return Collection
-    */
-    public function load_items()
+     * @return Collection
+     */
+    public function loadCategoryItems()
     {
         return [];
     }

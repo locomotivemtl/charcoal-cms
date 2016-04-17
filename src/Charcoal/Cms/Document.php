@@ -2,10 +2,18 @@
 
 namespace Charcoal\Cms;
 
-// Module `charcoal-base` dependencies
-use \Charcoal\Object\Content as Content;
+use \Charcoal\Cms\AbstractDocument;
 
-class Document extends Content
+/**
+ *
+ */
+final class Document extends AbstractDocument
 {
-
+    /**
+     * @return string
+     */
+    public function categoryType()
+    {
+        return 'charcoal/cms/document-category';
+    }
 }

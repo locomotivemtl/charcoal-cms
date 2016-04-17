@@ -10,52 +10,87 @@ use \Charcoal\Translation\TranslationString;
 trait MetatagTrait
 {
     /**
-    * @var TranslationString $metaTitle
-    */
+     * @var TranslationString $metaTitle
+     */
     private $metaTitle;
     /**
-    * @var TranslationString $metaDescription
-    */
+     * @var TranslationString $metaDescription
+     */
     private $metaDescription;
     /**
-    * @var TranslationString $metaImage
-    */
+     * @var TranslationString $metaImage
+     */
     private $metaImage;
     /**
-    * @var TranslationString $metaAuthor
-    */
+     * @var TranslationString $metaAuthor
+     */
     private $metaAuthor;
 
     /**
-    * @var string $facebookAppId
-    */
+     * @var string $facebookAppId
+     */
     private $facebookAppId;
 
     /**
-    * @var TranslationString $opengraphTitle
-    */
+     * @var TranslationString $opengraphTitle
+     */
     private $opengraphTitle;
 
     /**
-    * @var TranslationString $siteName
-    */
+     * @var TranslationString $siteName
+     */
     private $opengraphSiteName;
+
+    /**
+     * @var TranslationString $opengraphDescription
+     */
     private $opengraphDescription;
+
+    /**
+     * @var string $opengraphType
+     */
     private $opengraphType;
+
+    /**
+     * @var TranslationString $opengraphImage
+     */
     private $opengraphImage;
+
+    /**
+     * @var TranslationString $opengraphAuthor
+     */
     private $opengraphAuthor;
+
+    /**
+     * @var TranslationString $opengraphPublisher
+     */
     private $opengraphPublisher;
 
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     abstract public function canonicalUrl();
 
     /**
-    * @param mixed $title
-    * @return MetatagInterface Chainable
-    */
+     * @return TranslationString
+     */
+    abstract public function defaultMetaTitle();
+
+    /**
+     * @return TranslationString
+     */
+    abstract public function defaultMetaDescription();
+
+    /**
+     * @return TranslationString
+     */
+    abstract public function defaultMetaImage();
+
+    /**
+     * @param mixed $title The meta tile (localized).
+     * @return MetatagInterface Chainable
+     */
     public function setMetaTitle($title)
     {
         $this->metaTitle = new TranslationString($title);
@@ -63,17 +98,20 @@ trait MetatagTrait
     }
 
     /**
-    * @return TranslationString
-    */
+     * @return TranslationString
+     */
     public function metaTitle()
     {
-        return $this->metaTitle();
+        if (!$this->metaTitle) {
+            return $this->defaultMetaTitle();
+        }
+        return $this->metaTitle;
     }
 
     /**
-    * @param mixed $description
-    * @return MetatagInterface Chainable
-    */
+     * @param mixed $description The meta description (localized).
+     * @return MetatagInterface Chainable
+     */
     public function setMetaDescription($description)
     {
         $this->metaDescription = new TranslationString($description);
@@ -81,17 +119,20 @@ trait MetatagTrait
     }
 
     /**
-    * @return TranslationString
-    */
+     * @return TranslationString
+     */
     public function metaDescription()
     {
-        return $this->metaDescription();
+        if (!$this->metaDescription) {
+            return $this->defaultMetaDescription();
+        }
+        return $this->metaDescription;
     }
 
     /**
-    * @param mixed $image
-    * @return MetatagInterface Chainable
-    */
+     * @param mixed $image The meta image (localized).
+     * @return MetatagInterface Chainable
+     */
     public function setMetaImage($image)
     {
         $this->metaImage = new TranslationString($image);
@@ -99,17 +140,20 @@ trait MetatagTrait
     }
 
     /**
-    * @return TranslationString
-    */
+     * @return TranslationString
+     */
     public function metaImage()
     {
-        return $this->metaImage();
+        if (!$this->metaImage) {
+            return $this->defaultMetaImage();
+        }
+        return $this->metaImage;
     }
 
     /**
-    * @param mixed $author
-    * @return MetatagInterface Chainable
-    */
+     * @param mixed $author The meta author (localized).
+     * @return MetatagInterface Chainable
+     */
     public function setMetaAuthor($author)
     {
         $this->metaAuthor = new TranslationString($author);
@@ -117,16 +161,16 @@ trait MetatagTrait
     }
 
     /**
-    * @return TranslationString
-    */
+     * @return TranslationString
+     */
     public function metaAuthor()
     {
-        return $this->metaAuthor();
+        return $this->metaAuthor;
     }
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function metaTags()
     {
         $tags = '';
@@ -134,9 +178,9 @@ trait MetatagTrait
     }
 
     /**
-    * @param string $appId The facebook App ID (numeric string)
-    * @return MetatagInterface Chainable
-    */
+     * @param string $appId The facebook App ID (numeric string).
+     * @return MetatagInterface Chainable
+     */
     public function setFacebookAppId($appId)
     {
         $this->facebookAppId = $appId;
@@ -144,17 +188,17 @@ trait MetatagTrait
     }
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function facebookAppId()
     {
         return $this->facebookAppId;
     }
 
     /**
-    * @param mixed $title
-    * @return MetatagInterface Chainable
-    */
+     * @param mixed $title The opengraph title (localized).
+     * @return MetatagInterface Chainable
+     */
     public function setOpengraphTitle($title)
     {
         $this->opengraphTitle = new TranslationString($title);
@@ -162,17 +206,24 @@ trait MetatagTrait
     }
 
     /**
-    * @return TranslationString
-    */
+     * Get the opengraph title.
+     *
+     * If not expilicitely defined, use the meta title as opengraph title.
+     *
+     * @return TranslationString
+     */
     public function opengraphTitle()
     {
+        if (!$this->opengraphTitle) {
+            return $this->metaTitle();
+        }
         return $this->opengraphTitle;
     }
 
     /**
-    * @param mixed $siteName
-    * @return MetatagInterface Chainable
-    */
+     * @param mixed $siteName The site name (localized).
+     * @return MetatagInterface Chainable
+     */
     public function setOpengraphSiteName($siteName)
     {
         $this->opengraphSiteName = new TranslationString($siteName);
@@ -180,77 +231,118 @@ trait MetatagTrait
     }
 
     /**
-    * @return TranslationString
-    */
+     * @return TranslationString
+     */
     public function opengraphSiteName()
     {
         return $this->opengraphSiteName;
     }
 
     /**
-    * @param mixed $description
-    * @return MetatagInterface Chainable
-    */
+     * @param mixed $description The opengraph description (localized).
+     * @return MetatagInterface Chainable
+     */
     public function setOpengraphDescription($description)
     {
         $this->opengraphDescription = new TranslationString($description);
+        return $this;
     }
 
     /**
-    * @return TranslationString
-    */
+     * @return TranslationString
+     */
     public function opengraphDescription()
     {
+        if (!$this->opengraphDescription) {
+            return $this->metaDescription();
+        }
         return $this->opengraphDescription;
     }
 
+    /**
+     * @param string $type The opengraph type.
+     * @return MetatagInterface Chainable
+     */
     public function setOpengraphType($type)
     {
         $this->opengraphType = $type;
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function opengraphType()
     {
         return $this->opengraphType;
     }
 
+    /**
+     * @param mixed $image The opengraph image (localized).
+     * @return MetatagInterface Chainable
+     */
     public function setOpengraphImage($image)
     {
-        $this->opengraphImage = $image;
+        $this->opengraphImage = new TranslationString($image);
         return $this;
     }
 
+    /**
+     * @return TranslationString
+     */
     public function opengraphImage()
     {
+        if (!$this->opengraphImage) {
+            return $this->metatagImage();
+        }
         return $this->opengraphImage;
     }
 
+    /**
+     * @param mixed $author The opengraph author (localized).
+     * @return MetatagInterface Chainable
+     */
     public function setOpengraphAuthor($author)
     {
-        $this->opengraphAuthor = $author;
+        $this->opengraphAuthor = new TranslationString($author);
         return $this;
     }
 
+    /**
+     * @return TranslationString
+     */
     public function opengraphAuthor()
     {
+        if (!$this->opengraphAuthor) {
+            return $this->metaAuthor();
+        }
         return $this->opengraphAuthor;
     }
 
+    /**
+     * @param mixed $publisher The opengraph publisher (localized).
+     * @return MetatagInterface Chainable
+     */
     public function setOpengraphPulisher($publisher)
     {
-        $this->opengraphPublisher = $publisher;
+        $this->opengraphPublisher = new TranslationString($publisher);
         return $this;
     }
 
+    /**
+     * @return TranslationString
+     */
     public function opengraphPublisher()
     {
+        if (!$this->opengraphPublisher) {
+            return $this->opengraphAuthor();
+        }
         return $this->opengraphPublisher;
     }
 
     /**
-    * @return string
-    */
+     * @return string
+     */
     public function opengraphTags()
     {
         return '';

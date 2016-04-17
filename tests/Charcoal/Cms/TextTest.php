@@ -2,16 +2,33 @@
 
 namespace Charcoal\Cms\Tests;
 
-use \Charcoal\Cms\Text as Text;
+use \Charcoal\Cms\Text;
 
 class TextTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-    * Hello world
-    */
-    public function testConstructor()
+    public $obj;
+
+    public function setUp()
     {
-        $obj = new Text();
-        $this->assertInstanceOf('\Charcoal\Cms\Text', $obj);
+        $this->obj = new Text();
+    }
+
+    public function testSetData()
+    {
+        $ret = $this->obj->setData([
+            'title'=>'Example title',
+            'subtitle'=>'Subtitle',
+            'content'=>'foobar'
+        ]);
+
+        $this->assertSame($ret, $this->obj);
+        $this->assertEquals('Example title', (string)$this->obj->title());
+        $this->assertEquals('Subtitle', (string)$this->obj->subtitle());
+        $this->assertEquals('foobar', (string)$this->obj->content());
+    }
+
+    public function testCategoryType()
+    {
+        $this->assertEquals('charcoal/cms/text-category', $this->obj->categoryType());
     }
 }

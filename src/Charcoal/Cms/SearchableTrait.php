@@ -5,67 +5,53 @@ namespace Charcoal\Cms;
 use \Charcoal\Translation\TranslationString;
 
 /**
-*Default implementation, as Trait, of the SearchableInterface
-*/
+ * Default implementation, as Trait, of the SearchableInterface
+ */
 trait SearchableTrait
 {
     /**
-    * @var array $search_properties
-    */
-    private $search_properties = [];
+     * @var array $searchProperties
+     */
+    private $searchProperties = [];
 
     /**
-    * @var TranslationString $search_keywords
-    */
-    private $search_keywords;
+     * @var TranslationString $searchKeywords
+     */
+    private $searchKeywords;
 
     /**
-    * @param array $data;
-    */
-    public function set_searchable_data(array $data)
+     * @param array $properties The properties to search into.
+     * @return SearchableInterface Chainable
+     */
+    public function setSearchProperties(array $properties)
     {
-        if (isset($data['search_properties']) && $data['search_properties'] !== null) {
-            $this->set_search_properties($data['search_properties']);
-        }
-        if (isset($data['search_keywords']) && $data['search_keywords'] !== null) {
-            $this->set_search_keywords($data['search_keywords']);
-        }
+        $this->searchProperties = $properties;
         return $this;
     }
 
     /**
-    * @param array $search_properties
-    * @return SearchableInterface Chainable
-    */
-    public function set_search_properties(array $properties)
+     * @return array
+     */
+    public function searchProperties()
     {
-        $this->search_properties = $properties;
+        return $this->searchProperties;
+    }
+
+    /**
+     * @param mixed $keywords The search keywords (localized).
+     * @return SearchableInterface Chainable
+     */
+    public function setSearchKeywords($keywords)
+    {
+        $this->searchKeywords = new TranslationString($keywords);
         return $this;
     }
 
     /**
-    * @return array
-    */
-    public function search_properties()
+     * @return TranslationString
+     */
+    public function searchKeywords()
     {
-        return $this->search_properties;
-    }
-
-    /**
-    * @param mixed $keywords
-    * @return SearchableInterface Chainable
-    */
-    public function set_search_keywords($keywords)
-    {
-        $this->search_keywords = new TranslationString($keywords);
-        return $this;
-    }
-
-    /**
-    * @return TranslationString
-    */
-    public function search_keywords()
-    {
-        return $this->search_keywords;
+        return $this->searchKeywords;
     }
 }

@@ -4,8 +4,13 @@ namespace Charcoal\Cms;
 
 use \InvalidArgumentException;
 
+// Module `charcoal-core` dependencies
 use \Charcoal\Model\Collection;
+
+// Module `charcoal-translation` dependencies
 use \Charcoal\Translation\TranslationString;
+
+// Module `charcoal-base` dependencies
 use \Charcoal\Object\Content;
 use \Charcoal\Object\CategorizableInterface;
 use \Charcoal\Object\CategorizableTrait;
@@ -14,31 +19,32 @@ use \Charcoal\Object\HierarchicalTrait;
 use \Charcoal\Object\RoutableInterface;
 use \Charcoal\Object\RoutableTrait;
 
+// Intra-module (`charcoal-cms`) dependencies
 use \Charcoal\Cms\MetatagInterface;
 use \Charcoal\Cms\SearchableInterface;
 use \Charcoal\Cms\SectionInterface;
 
 /**
-* A Section is a unique, reachable page.
-*
-* ## Types of sections
-* There can be different types of ection. 4 exists in the CMS module:
-* - `blocks`
-* - `content`
-* - `empty`
-* - `external`
-*
-* ## External implementations
-* Sections imlpement the following _Interface_ / _Trait_:
-* - From the `Charcoal\Object` namespace (in `charcoal-base`)
-*   - `Categorizable`
-*   - `Hierarchical`
-*   - `Routable`
-* - From the local `Charcoal\Cms` namespace
-*   - `Metatag`
-*   - `Searchable`
-*
-*/
+ * A Section is a unique, reachable page.
+ *
+ * ## Types of sections
+ * There can be different types of ection. 4 exists in the CMS module:
+ * - `blocks`
+ * - `content`
+ * - `empty`
+ * - `external`
+ *
+ * ## External implementations
+ * Sections imlpement the following _Interface_ / _Trait_:
+ * - From the `Charcoal\Object` namespace (in `charcoal-base`)
+ *   - `Categorizable`
+ *   - `Hierarchical`
+ *   - `Routable`
+ * - From the local `Charcoal\Cms` namespace
+ *   - `Metatag`
+ *   - `Searchable`
+ *
+ */
 abstract class AbstractSection extends Content implements
     CategorizableInterface,
     HierarchicalInterface,
@@ -60,142 +66,183 @@ abstract class AbstractSection extends Content implements
     const DEFAULT_TYPE = self::TYPE_CONTENT;
 
     /**
-    * @var string $section_type
-    */
-    private $section_type = self::DEFAULT_TYPE;
+     * @var string $sectionType
+     */
+    private $sectionType = self::DEFAULT_TYPE;
 
     /**
-    * @var TranslationString $title
-    */
+     * @var TranslationString $title
+     */
     private $title;
     /**
-    * @var TranslationString $subtitle
-    */
+     * @var TranslationString $subtitle
+     */
     private $subtitle;
     /**
-    * @var TranslationString $content
-    */
+     * @var TranslationString $content
+     */
     private $content;
 
     /**
-    * @var mixed $template
-    */
-    private $template;
+     * @var TranslationString $image
+     */
+    private $image;
+
     /**
-    * @var array $template_options
-    */
-    private $template_options = [];
+     * @var mixed $templateIdent
+     */
+    private $templateIdent;
+    /**
+     * @var array $templateOptions
+     */
+    private $templateOptions = [];
 
 
     /**
-    * @param string $section_type
-    * @throws InvalidArgumentException If the section type is not a string or not a valid section type.
-    * @return SectionInterface Chainable
-    */
-    public function set_section_type($section_type)
+     * @param string $sectionType The section type.
+     * @throws InvalidArgumentException If the section type is not a string or not a valid section type.
+     * @return SectionInterface Chainable
+     */
+    public function setSectionType($sectionType)
     {
-        if (!is_string($section_type)) {
+        if (!is_string($sectionType)) {
             throw new InvalidArgumentException('Section type must be a string');
         }
-        $valid_types = [
+        $validTypes = [
             self::TYPE_CONTENT,
             self::TYPE_EMPTY,
             self::TYPE_EXTERNAL
         ];
-        if (!in_array($section_type, $valid_types)) {
+        if (!in_array($sectionType, $validTypes)) {
             throw new InvalidArgumentException('Section type is not valid');
         }
 
-        $this->section_type = $section_type;
+        $this->sectionType = $sectionType;
         return $this;
     }
 
     /**
-    * @return string
-    */
-    public function section_type()
+     * @return string
+     */
+    public function sectionType()
     {
-        return $this->section_type;
+        return $this->sectionType;
     }
 
     /**
-    * @param mixed $title
-    * @return TranslationString
-    */
-    public function set_title($title)
+     * @param mixed $title The section title (localized).
+     * @return TranslationString
+     */
+    public function setTitle($title)
     {
         $this->title = new TranslationString($title);
         return $this;
     }
 
     /**
-    * @return TranslationString
-    */
+     * @return TranslationString
+     */
     public function title()
     {
         return $this->title;
     }
 
     /**
-    * @param mixed $subbtitle
-    * @return Section Chainable
-    */
-    public function set_subtitle($subtitle)
+     * @param mixed $subtitle The section subtitle (localized).
+     * @return Section Chainable
+     */
+    public function setSubtitle($subtitle)
     {
         $this->subtitle = new TranslationString($subtitle);
         return $this;
     }
 
     /**
-    * @return TranslationString
-    */
+     * @return TranslationString
+     */
     public function subtitle()
     {
         return $this->subtitle;
     }
 
     /**
-    * @param mixed $template
-    * @return SectionInterface Chainable
-    */
-    public function set_template($template)
+     * @param mixed $content The section content (localized).
+     * @return Section Chainable
+     */
+    public function setContent($content)
     {
-        $this->template = $template;
+        $this->content = new TranslationString($content);
         return $this;
     }
 
     /**
-    * @return mixed
-    */
-    public function template()
+     * @return TranslationString
+     */
+    public function content()
     {
-        return $this->template;
+        return $this->content;
     }
 
     /**
-    * @param array $template_options
-    * @return SectionInterface Chainable
-    */
-    public function set_template_options(array $template_options)
+     * @param mixed $image The section main image (localized).
+     * @return Section Chainable
+     */
+    public function setImage($image)
     {
-        $this->template_options = $template_options;
+        $this->image = new TranslationString($image);
         return $this;
     }
 
     /**
-    * @return array
-    */
-    public function template_options()
+     * @return TranslationString
+     */
+    public function image()
     {
-        return $this->template_options;
+        return $this->image;
     }
 
     /**
-    * HierarchicalTrait > load_children
-    *
-    * @return array
-    */
-    public function load_children()
+     * @param mixed $template The section template (ident).
+     * @return SectionInterface Chainable
+     */
+    public function setTemplateIdent($template)
+    {
+        $this->templateIdent = $template;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function templateIdent()
+    {
+        return $this->templateIdent;
+    }
+
+    /**
+     * @param array $templateOptions Extra template options, if any.
+     * @return SectionInterface Chainable
+     */
+    public function setTemplateOptions(array $templateOptions)
+    {
+        $this->templateOptions = $templateOptions;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function templateOptions()
+    {
+        return $this->templateOptions;
+    }
+
+    /**
+     * HierarchicalTrait > loadChildren
+     *
+     * @return array
+     */
+    public function loadChildren()
     {
         $source = clone($this->source());
         $source->reset();
@@ -209,7 +256,7 @@ abstract class AbstractSection extends Content implements
                 'val'=>1
             ]
         ]);
-        $source->set_orders([
+        $source->setOrders([
             [
                 'property'=>'position',
                 'mode'=>'asc'
@@ -220,13 +267,37 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-    * MetatagTrait > canonical_url
-    *
-    * @return string
-    * @todo
-    */
-    public function canonical_url()
+     * MetatagTrait > canonicalUrl
+     *
+     * @return string
+     * @todo
+     */
+    public function canonicalUrl()
     {
         return '';
+    }
+
+    /**
+     * @return TranslationString
+     */
+    public function defaultMetaTitle()
+    {
+        return $this->title();
+    }
+
+    /**
+     * @return TranslationString
+     */
+    public function defaultMetaDescription()
+    {
+        return $this->content();
+    }
+
+    /**
+     * @return TranslationString
+     */
+    public function defaultMetaImage()
+    {
+        return $this->image();
     }
 }

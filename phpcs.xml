@@ -1,15 +1,14 @@
 <?xml version="1.0"?>
-<ruleset name="Charcoal" encoding="utf-8" value="4">
+<ruleset name="Charcoal">
 <!-- PHP CodeSniffer ruleset -->
 
     <description>Charcoal Coding Standard</description>
+    <arg name="encoding" value="utf-8" />
+    <arg name="tab-width" value="4" />
 
 <!-- Include the whole PSR-1 standard -->
 
     <rule ref="PSR1"/>
-    <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
-        <severity>0</severity>
-    </rule>
 
 <!-- Include the whole PSR-2 standard -->
 
@@ -78,15 +77,19 @@
     <!-- Block comments should be used appropriately -->
     <!--<rule ref="Squiz.Commenting.BlockComment" />-->
     <!-- Class comment blocks -->
-    <!--<rule ref="Squiz.Commenting.ClassComment" />-->
+    <rule ref="Squiz.Commenting.ClassComment" />
     <!-- Tests that the stars in a doc comment align correctly. -->
-    <!-- <rule ref="Squiz.Commenting.DocCommentAlignment" /> -->
+    <rule ref="Squiz.Commenting.DocCommentAlignment" />
     <!-- Ensures CATCH clause must at least have a comment -->
     <rule ref="Squiz.Commenting.EmptyCatchComment" />
     <!-- File comment blocks -->
     <!--<rule ref="Squiz.Commenting.FileComment" />-->
     <!-- Function comment blocks -->
-    <!--<rule ref="Squiz.Commenting.FunctionComment" />-->
+    <rule ref="Squiz.Commenting.FunctionComment" />
+    <!-- Do not test scalar typehint (php-7 only feature) -->
+    <rule ref="Squiz.Commenting.FunctionComment.ScalarTypeHintMissing">
+        <severity>0</severity>
+    </rule>
     <!-- Verifies that a @throws tag exists for a function that throws exceptions -->
     <rule ref="Squiz.Commenting.FunctionCommentThrowTag" />
     <!-- Checks that there is adequate spacing between comments -->
@@ -94,7 +97,7 @@
     <!-- @todo doc me -->
     <!--<rule ref="Squiz.Commenting.LongConditionClosingComment" />-->
     <!-- Checks to ensure that there are no comments after statements (on same line, after ;) -->
-    <!--<rule ref="Squiz.Commenting.PostStatementComment" />-->
+    <rule ref="Squiz.Commenting.PostStatementComment" />
     <!-- Variable commenting rules -->
     <rule ref="Squiz.Commenting.VariableComment" />
 
@@ -104,19 +107,14 @@
     <rule ref="Generic.ControlStructures.InlineControlStructure" />
     <!-- Controls signature, such as spacing. IF (expr) {... -->
     <rule ref="Squiz.ControlStructures.ControlSignature" />
-    <!-- Usage of ELSEIF not allowed. The ELSE and the IF should be separated by a space -->
+    <!-- Usage of ELSEIF not allowed. The ELSE and the IF should be separated by a space. Incompatible with PSR -->
     <!--<rule ref="Squiz.ControlStructures.ElseIfDeclaration" />-->
     <!-- Verifies that there is a space between each condition of FOREACH loops -->
     <rule ref="Squiz.ControlStructures.ForEachLoopDeclaration" />
     <!-- Verifies that there is a space between each condition of FOR loops -->
     <rule ref="Squiz.ControlStructures.ForLoopDeclaration" />
     <!-- Tests the spacing of shorthand IF statements -->
-    <rule ref="Squiz.ControlStructures.InlineIfDeclaration" />
-    <!-- Allow inline shorthand IF statements to be declared on multiple lines -->
-    <rule ref="Squiz.ControlStructures.InlineIfDeclaration.NotSingleLine">
-        <!-- This returns false-positive; hide them -->
-        <severity>0</severity>
-    </rule>
+    <!-- <rule ref="Squiz.ControlStructures.InlineIfDeclaration" />-->
     <!-- Ensures all control structure keywords are lowercase -->
     <rule ref="Squiz.ControlStructures.LowercaseDeclaration" />
     <!--<rule ref="Squiz.ControlStructures.SwitchDeclaration" />-->
@@ -145,7 +143,7 @@
             <property name="absoluteLineLimit" value="0"/>
         </properties>
      </rule>-->
-    <!-- Checks that all file names are lowercased -->
+    <!-- Checks that all file names are lowercased. Incompatible with PSR. -->
     <!--<rule ref="Generic.Files.LowercasedFilename" />-->
 
 <!-- Formatting Sniffs -->
@@ -185,7 +183,7 @@
     <!-- @todo doc me -->
     <rule ref="Squiz.Functions.FunctionDuplicateArgument" />
     <!-- Completely disallow global Functions -->
-    <!--<rule ref="Squiz.Functions.GlobalFunction" />-->
+    <rule ref="Squiz.Functions.GlobalFunction" />
     <!-- @todo doc me -->
     <rule ref="Squiz.Functions.LowercaseFunctionKeywords" />
     <!-- Ensure single and multi-line function declarations are defined correctly -->
@@ -220,7 +218,9 @@
 <!-- Objects Sniffs -->
 
     <!-- Ensures objects are assigned to a variable when instantiated. -->
-    <rule ref="Squiz.Objects.ObjectInstantiation" />
+    <rule ref="Squiz.Objects.ObjectInstantiation">
+        <exclude name="Squiz.Objects.ObjectInstantiation.NotAssigned" />
+    </rule>
 
 <!-- Operators Sniffs -->
 
@@ -255,18 +255,22 @@
     <!--<rule ref="Generic.PHP.UpperCaseConstant" />-->
 
     <!-- Warn of commented out code -->
-    <!--<rule ref="Squiz.PHP.CommentedOutCode" />-->
+    <rule ref="Squiz.PHP.CommentedOutCode" />
     <!--<rule ref="Squiz.PHP.DisallowBooleanStatement" />-->
     <!-- @todo Doc me -->
     <!--<rule ref="Squiz.PHP.DisallowComparisonAssignment" />-->
     <!-- Disallow inline IF DISABLED -->
     <!--<rule ref="Squiz.PHP.DisallowInlineIf" />-->
 
-    <!--<rule ref="Squiz.PHP.DisallowMultipleAssignments" />-->
+    <rule ref="Squiz.PHP.DisallowMultipleAssignments" />
     <rule ref="Squiz.PHP.DisallowObEndFlush" />
     <rule ref="Squiz.PHP.DisallowSizeFunctionsInLoops" />
     <!-- @todo Doc me -->
-    <rule ref="Squiz.PHP.DiscouragedFunctions" />
+    <rule ref="Squiz.PHP.DiscouragedFunctions">
+        <properties>
+            <property name="forbiddenFunctions" type="array" value="print_r=>null,var_dump=>null,var_export=>null" />
+        </properties>
+    </rule>
     <rule ref="Squiz.PHP.EmbeddedPhp" />
     <rule ref="Squiz.PHP.EmbeddedPhp.Indent">
         <severity>0</severity>
@@ -294,11 +298,19 @@
 <!-- Strings Sniffs -->
 
     <!-- Use one string instead of concatenating 2 strings together -->
-    <rule ref="Generic.Strings.UnnecessaryStringConcat" />
+    <rule ref="Generic.Strings.UnnecessaryStringConcat">
+        <properties>
+            <property name="allowMultiline" value="true"/>
+        </properties>
+    </rule>
     <!-- Makes sure there are no spaces between the concatenation operator (.) the strings -->
-    <!--<rule ref="Squiz.Strings.ConcatenationSpacing" />-->
-    <!-- Makes sure that any use of Double Quotes ("") are warranted. @todo Enable me! -->
-    <!--<rule ref="Squiz.Strings.DoubleQuoteUsage" />-->
+    <rule ref="Squiz.Strings.ConcatenationSpacing">
+        <properties>
+            <property name="ignoreNewlines" value="true"/>
+        </properties>
+    </rule>
+    <!-- Makes sure that any use of Double Quotes ("") are warranted. -->
+    <rule ref="Squiz.Strings.DoubleQuoteUsage" />
     <!-- Makes sure that any strings that are "echoed" are not enclosed in brackets -->
     <rule ref="Squiz.Strings.EchoedStrings" />
 
@@ -315,7 +327,7 @@
     <rule ref="Generic.WhiteSpace.DisallowTabIndent" />
     <!-- Checks that control structures are structured correctly -->
     <!--<rule ref="Generic.Whitespace.ScopeIndent" />-->
-     <!-- There MUST NOT be trailing whitespace at the end of non-blank lines. -->
+    <!-- There MUST NOT be trailing whitespace at the end of non-blank lines. -->
     <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
         <properties>
             <property name="ignoreBlankLines" value="true"/>

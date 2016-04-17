@@ -1,0 +1,48 @@
+{
+    "sources": {
+        "default": {
+            "table": "charcoal_cms_events"
+        }
+    },
+    "default_source": "default",
+
+    "admin": {
+        "dashboards": {
+            "edit": {
+                "layout": {
+                    "structure": [{
+                        "columns": [1]
+                    }]
+                },
+                "widgets": {
+                    "form": {
+                        "type": "charcoal/admin/widget/objectForm",
+                        "form_ident": "default",
+                        "obj_type": "charcoal/cms/event"
+                    }
+                }
+            },
+            "table": {
+                "title": {
+                    "fr": "Liste des nouvelles",
+                    "en": "News list"
+                },
+                "layout": {
+                    "structure": [{
+                        "columns": [1]
+                    }]
+                },
+                "widgets": {
+                    "form": {
+                        "type": "charcoal/admin/widget/table",
+                        "collection_ident": "default",
+                        "obj_type": "charcoal/cms/event"
+                    }
+                }
+            }
+        },
+        "default_create_dashboard": "edit",
+        "default_edit_dashboard": "edit",
+        "default_collection_dashboard": "table"
+    }
+}
