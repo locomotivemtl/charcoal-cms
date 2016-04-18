@@ -14,7 +14,7 @@ interface DocumentInterface
     public function setName($name);
 
     /**
-     * @return TranslationString
+     * @return \Charcoal\Translation\TranslationString
      */
     public function name();
 

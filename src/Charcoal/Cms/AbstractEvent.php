@@ -60,9 +60,9 @@ abstract class AbstractEvent extends Content implements
     private $content;
 
     /**
-     * @var Collection $blocks
+     * @var TranslationString $image
      */
-    private $blocks;
+    private $image;
 
     /**
      * @var DateTime $startDate
@@ -72,20 +72,6 @@ abstract class AbstractEvent extends Content implements
      * @var DateTime $startDate
      */
     private $endDate;
-
-    /**
-     * @var TranslationString $thumbnail
-     */
-    private $thumbnail;
-    /**
-     * @var TranslationString $image
-     */
-    private $image;
-
-    /**
-     * @var array $attachments
-     */
-    private $attachments;
 
     /**
      * @param mixed $title The event title (localized).
@@ -139,6 +125,24 @@ abstract class AbstractEvent extends Content implements
     public function content()
     {
         return $this->content;
+    }
+
+    /**
+     * @param mixed $image The section main image (localized).
+     * @return Section Chainable
+     */
+    public function setImage($image)
+    {
+        $this->image = new TranslationString($image);
+        return $this;
+    }
+
+    /**
+     * @return TranslationString
+     */
+    public function image()
+    {
+        return $this->image;
     }
 
     /**
@@ -253,6 +257,6 @@ abstract class AbstractEvent extends Content implements
      */
     public function defaultMetaImage()
     {
-        return new TranslationString('');
+        return $this->image();
     }
 }

@@ -28,11 +28,20 @@
                 "fr":"Contenu"
             }
         },
-        "blocks":{},
-        "start_date":{},
-        "end_date":{},
+        "image":{
+            "type":"image",
+            "l10n":true,
+            "public_access":true,
+            "upload_path":"uploads/events/"
+        },
+        "start_date":{
+            "type":"date-time"
+        },
+        "end_date":{
+            "type":"date-time"
+            },
         "thumbnail":{},
-        "image":{},
+
         "attachments":{}
     }
 }

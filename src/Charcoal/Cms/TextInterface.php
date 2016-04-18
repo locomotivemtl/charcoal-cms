@@ -2,8 +2,6 @@
 
 namespace Charcoal\Cms;
 
-use \Charcoal\Cms\DocumentInterface;
-
 /**
  *
  */
@@ -11,12 +9,12 @@ interface TextInterface
 {
     /**
      * @param mixed $title News title (localized).
-     * @return TranslationString
+     * @return \Charcoal\Translation\TranslationString
      */
     public function setTitle($title);
 
     /**
-     * @return TranslationString
+     * @return \Charcoal\Translation\TranslationString
      */
     public function title();
 
@@ -27,7 +25,7 @@ interface TextInterface
     public function setSubtitle($subtitle);
 
     /**
-     * @return TranslationString
+     * @return \Charcoal\Translation\TranslationString
      */
     public function subtitle();
 
@@ -38,7 +36,7 @@ interface TextInterface
     public function setContent($content);
 
     /**
-     * @return TranslationString
+     * @return \Charcoal\Translation\TranslationString
      */
     public function content();
 }

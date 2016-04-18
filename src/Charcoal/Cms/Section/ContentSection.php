@@ -2,7 +2,6 @@
 
 namespace Charcoal\Cms\Section;
 
-use \Charcoal\Translation\TranslationString;
 use \Charcoal\Cms\AbstractSection;
 
 /**

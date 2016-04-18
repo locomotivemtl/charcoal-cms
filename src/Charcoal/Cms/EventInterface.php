@@ -9,12 +9,12 @@ interface EventInterface
 {
     /**
      * @param mixed $title News title (localized).
-     * @return TranslationString
+     * @return \Charcoal\Translation\TranslationString
      */
     public function setTitle($title);
 
     /**
-     * @return TranslationString
+     * @return \Charcoal\Translation\TranslationString
      */
     public function title();
 
@@ -25,7 +25,7 @@ interface EventInterface
     public function setSubtitle($subtitle);
 
     /**
-     * @return TranslationString
+     * @return \Charcoal\Translation\TranslationString
      */
     public function subtitle();
 
@@ -36,29 +36,29 @@ interface EventInterface
     public function setContent($content);
 
     /**
-     * @return TranslationString
+     * @return \Charcoal\Translation\TranslationString
      */
     public function content();
 
     /**
-     * @param string|DateTime $startDate Event starting date.
+     * @param string|\DateTime $startDate Event starting date.
      * @return EventInterface Chainable
      */
     public function setStartDate($startDate);
 
     /**
-     * @return DateTime|null
+     * @return \DateTime|null
      */
     public function startDate();
 
     /**
-     * @param string|DateTime $endDate Event end date.
+     * @param string|\DateTime $endDate Event end date.
      * @return EventInterface Chainable
      */
     public function setEndDate($endDate);
 
     /**
-     * @return DateTime|null
+     * @return \DateTime|null
      */
     public function endDate();
 }

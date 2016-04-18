@@ -28,9 +28,11 @@
         "fr":"Contenu"
       }
     },
-    "content_structure":{
-      "type":"structure",
-      "l10n":true
+    "image":{
+        "type":"image",
+        "l10n":true,
+        "public_access":true,
+        "upload_path":"uploads/sections/"
     },
     "news_date":{
       "type":"date-time",
@@ -42,16 +44,6 @@
         "en":"The \"display\" date of this news.",
         "fr":"La date affichée de la nouvelle."
       }
-    },
-    "images":{
-      "type":"image",
-      "l10n":true,
-      "multiple":true
-    },
-    "documents":{
-      "type":"file",
-      "l10n":true,
-      "multiple":true
     },
     "infoUrl":{
       "type":"url",

@@ -62,19 +62,14 @@ abstract class AbstractNews extends Content implements
     private $content;
 
     /**
-     * @var array $contentStructure
+     * @var TranslationString $image
      */
-    private $contentStructure;
+    private $image;
 
     /**
      * @var DateTime $newsDate
      */
     private $newsDate;
-
-    /**
-     * @var TranslationString $image
-     */
-    private $image;
 
     /**
      * @var Collection $documents
@@ -138,6 +133,24 @@ abstract class AbstractNews extends Content implements
     public function content()
     {
         return $this->content;
+    }
+
+    /**
+     * @param mixed $image The section main image (localized).
+     * @return Section Chainable
+     */
+    public function setImage($image)
+    {
+        $this->image = new TranslationString($image);
+        return $this;
+    }
+
+    /**
+     * @return TranslationString
+     */
+    public function image()
+    {
+        return $this->image;
     }
 
     /**
@@ -249,6 +262,6 @@ abstract class AbstractNews extends Content implements
      */
     public function defaultMetaImage()
     {
-        return new TranslationString('');
+        return $this->image();
     }
 }

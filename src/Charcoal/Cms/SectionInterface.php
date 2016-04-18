@@ -25,7 +25,7 @@ interface SectionInterface
     public function setTitle($title);
 
     /**
-     * @return TranslationString
+     * @return \Charcoal\Translation\TranslationString
      */
     public function title();
 
@@ -36,7 +36,7 @@ interface SectionInterface
     public function setSubtitle($subtitle);
 
     /**
-     * @return TranslationString
+     * @return \Charcoal\Translation\TranslationString
      */
     public function subtitle();
 
