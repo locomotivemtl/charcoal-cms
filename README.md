@@ -3,11 +3,38 @@ Charcoal CMS
 
 The CMS Charcoal Module (Content Management System).
 
+# How to install
+
+The preferred (and only supported) way of installing _charcoal-cms is with **composer**:
+
+```shell
+★ composer require locomotivemtl/charcoal-cms
+```
+
+
+## Dependencies
+
+- [`PHP 5.5+`](http://php.net)
+- [`locomotivemtl/charcoal-core`](https://github.com/locomotivemtl/charcoal-core)
+- [`locomotivemtl/charcoal-base`](https://github.com/locomotivemtl/charcoal-base)
 
 # Objects
 
 All objects in the `charcoal-cms` module implements `\Charcoal\Object\Content`, which allows to store creation & modification dates. Many objects also implement the `\Charcoal\Object\PublishableInterface`.
 
+
+- **Core objects**
+	- [Section](#section-object)
+	- [Text](#text-object)
+	- [Block](#block-object)
+- **CMS objets**
+	- [Event](#event-object)
+	- [FAQ](#faq-object)
+	- [News](#news-object)
+- **Media attachments objects**
+	- [Document](#document-object)
+	- [Image](#image-object)
+	- [Video](#video-object)
 
 # Core objects
 
@@ -42,6 +69,7 @@ Base section properties:
 | **subtitle**         | ✔    | html      |
 | **template_ident**   |      | string    |
 | **template_options** |      | structure |
+| **attachments**      | ✔    | multi-object |
 
 Extra _blocks_ properties:
 
@@ -116,6 +144,34 @@ The `\Charcoal\Cms\Section\*` objects are `final`. To extend, use the `\Charcoal
 
 ## Text object
 
+The **Text** object is a simple, translatable rich text snippet that can be embedded in any other objects, or displayed by itself. It is best used as an _attachment_ to other objects, like sections, news or events.
+
+Texts are standard Charcoal `Model`, meaning they are definable with a `Metadata` object (which define a map of `properties`) and storable with a `Source` object.
+
+Base text properties:
+
+| Name                 | L10n | Type      | Description |
+| -------------------- | :--: | --------- | ----------- |
+| **title**            | ✔    | string    |
+| **subtitle**         | ✔    | html      |
+| **content**          |      | string    |
+
+--
+
+Because _texts_ extends `\Charcoal\Object\Content`, they also have the following standard properties:
+
+| Name                  | L10n | Type | Description |
+| --------------------- | :--: | ---- | ----------- |
+| **id<sup>1</sup>**    |      |
+| **active**            |      |
+| **position**          |      |
+| **created**           |      |
+| **created_by**        |      |
+| **last_modified**     |      |
+| **last\_modified_by** |      |
+
+<small>[1] By default, the **key** of the text is the **id**.</small>.
+
 ## Block object
 
 # CMS objects
@@ -143,3 +199,52 @@ The `\Charcoal\Cms\Section\*` objects are `final`. To extend, use the `\Charcoal
 ## Video object
 
 # Extending objects
+
+# Development
+
+To install the development environment:
+
+```shell
+$ composer install --prefer-source
+```
+
+## API documentation
+
+- The auto-generated `phpDocumentor` API documentation is available at [https://locomotivemtl.github.io/charcoal-cms/docs/master/](https://locomotivemtl.github.io/charcoal-cms/docs/master/)
+- The auto-generated `apigen` API documentation is available at [https://codedoc.pub/locomotivemtl/charcoal-cms/master/](https://codedoc.pub/locomotivemtl/charcoal-cms/master/index.html)
+
+## Development dependencies
+
+- `phpunit/phpunit`
+- `squizlabs/php_codesniffer`
+- `satooshi/php-coveralls`
+
+## Continuous Integration
+
+| Service | Badge | Description |
+| ------- | ----- | ----------- |
+| [Travis](https://travis-ci.org/locomotivemtl/charcoal-cms) | [![Build Status](https://travis-ci.org/locomotivemtl/charcoal-cms.svg?branch=master)](https://travis-ci.org/locomotivemtl/charcoal-cms) | Runs code sniff check and unit tests. Auto-generates API documentation. |
+| [Scrutinizer](https://scrutinizer-ci.com/g/locomotivemtl/charcoal-cms/) | [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/locomotivemtl/charcoal-cms/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/locomotivemtl/charcoal-cms/?branch=master) | Code quality checker. Also validates API documentation quality. |
+| [Coveralls](https://coveralls.io/github/locomotivemtl/charcoal-cms) | [![Coverage Status](https://coveralls.io/repos/github/locomotivemtl/charcoal-cms/badge.svg?branch=master)](https://coveralls.io/github/locomotivemtl/charcoal-cms?branch=master) | Unit Tests code coverage. |
+| [Sensiolabs](https://insight.sensiolabs.com/projects/533b5796-7e69-42a7-a046-71342146308a) | [![SensioLabsInsight](https://insight.sensiolabs.com/projects/44d8d264-207b-417d-bcbd-dd52274fc201/mini.png)](https://insight.sensiolabs.com/projects/44d8d264-207b-417d-bcbd-dd52274fc201) | Another code quality checker, focused on PHP. |
+
+## Coding Style
+
+The Charcoal-App module follows the Charcoal coding-style:
+
+- [_PSR-1_](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md)
+- [_PSR-2_](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)
+- [_PSR-4_](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md), autoloading is therefore provided by _Composer_.
+- [_phpDocumentor_](http://phpdoc.org/) comments.
+- Read the [phpcs.xml](phpcs.xml) file for all the details on code style.
+
+> Coding style validation / enforcement can be performed with `composer phpcs`. An auto-fixer is also available with `composer phpcbf`.
+
+## Authors
+
+- Mathieu Ducharme <mat@locomotive.ca>
+
+
+## Changelog
+
+### Unreleased

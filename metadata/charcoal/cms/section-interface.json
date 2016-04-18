@@ -1,0 +1,53 @@
+{
+    "properties": {
+        "id": {
+            "type": "id",
+            "mode": "auto-increment"
+        },
+        "section_type": {
+            "type": "string"
+        },
+        "title": {
+            "type": "string",
+            "l10n": true
+        },
+        "subtitle": {
+            "type": "html",
+            "l10n": true
+        },
+        "content": {
+            "type": "html",
+            "input_type": "charcoal/admin/property/input/tinymce",
+            "l10n": true
+        },
+        "image":{
+            "type":"image",
+            "l10n":true,
+            "public_access":true,
+            "upload_path":"uploads/sections/"
+        },
+        "attachments": {
+            "type": "multi-object",
+            "multiple":true,
+            "allowed_types": {
+                "charcoal/cms/document": {},
+                "charcoal/cms/image": {},
+                "charcoal/cms/video": {},
+                "charcoal/cms/text": {}
+            }
+        },
+        "template_ident": {
+            "type": "string"
+        },
+        "template_options": {
+            "type": "structure"
+        },
+        "master": {
+            "obj_type": "charcoal/cms/section"
+        },
+        "active": {
+            "type": "boolean",
+            "input_type": "charcoal/admin/property/input/switch"
+        }
+    }
+}

@@ -97,6 +97,10 @@ abstract class AbstractSection extends Content implements
      */
     private $templateOptions = [];
 
+    /**
+     * @var array $attachments
+     */
+    private $attachments;
 
     /**
      * @param string $sectionType The section type.
@@ -238,6 +242,32 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
+     * @param string $type Optional type.
+     * @return array
+     */
+    public function attachments($type = null)
+    {
+        if (!$this->attachments) {
+            $this->attachments = $this->loadAttachments();
+        }
+        if ($type) {
+            // Return only the attachments of a certain type.
+            return $this->attachments[$type];
+        } else {
+            // Return all attachments, grouped by types.
+            return $this->attachments;
+        }
+    }
+
+    /**
+     * @return array
+     */
+    public function loadAttachments()
+    {
+        return [];
+    }
+
+    /**
      * HierarchicalTrait > loadChildren
      *
      * @return array
@@ -246,7 +276,7 @@ abstract class AbstractSection extends Content implements
     {
         $source = clone($this->source());
         $source->reset();
-        $source->set_filters([
+        $source->setFilters([
             [
                 'property'=>'master',
                 'val'=>$this->id()
@@ -262,7 +292,7 @@ abstract class AbstractSection extends Content implements
                 'mode'=>'asc'
             ]
         ]);
-        $children = $source->load_items();
+        $children = $source->loadItems();
         return $children;
     }
 
