@@ -1,16 +1,43 @@
 language: php
 php:
-  - 5.4
   - 5.5
   - 5.6
+  - 7.0
   - hhvm
   - nightly
 
+matrix:
+  allow_failures:
+    - php: 7.0
+    - php: hhvm
+    - php: nightly
+
 before_script:
-  - composer install
-  - pyrus install pear/PHP_CodeSniffer
-  - phpenv rehash
+  ## Init composer
+  - composer selfupdate --quiet
+  # see https://getcomposer.org/doc/articles/troubleshooting.md#package-not-found-on-travis-ci-org
+  - COMPOSER_ROOT_VERSION=dev-master composer install -n --dev
+  ## Install the PHPdoc binary
+#  - pear channel-discover pear.phpdoc.org
+#  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_PHP_VERSION" == "5.6" ]; then pear install phpdoc/phpDocumentor; fi
+#  - phpenv rehash
+  ## Create temporary folders
+  - mkdir -p build/logs
+#  - mkdir -p build/docs
 
 script:
-  - phpunit --configuration tests/phpunit.xml
-  - phpcs
+  ## Lint PHP Files
+  - find {src,tests} -name '*.php' -print0 | xargs -0 -n1 -P8 php -l | grep -v '^No syntax errors detected'; test $? -eq 1
+  - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then ./vendor/bin/phpcs --config-set ignore_warnings_on_exit 1;./vendor/bin/phpcs -ps --colors --standard=phpcs.xml src/; fi
+  ## Run PHPUnit Tests
+  - phpunit --configuration ./tests/phpunit.xml --coverage-text --coverage-clover build/logs/clover.xml
+  ## Generate phpdoc
+#  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_PHP_VERSION" == "5.6" ]; then phpdoc -p -d ./src -t ./build/docs; fi
+
+after_script:
+  - php vendor/bin/coveralls -v
+#  - bash build/travis/phpdoc_ghpages.sh
+
+notifications:
+  slack: locomotivemtl:d9h8ZWwTZ6b3WUsSP9s26nb1
+  email: charcoal@locomotive.ca
