@@ -40,12 +40,6 @@ abstract class AbstractFaq extends Content implements
     private $answer;
 
     /**
-     * The content attachments
-     * @var array $attachments
-     */
-    private $attachments;
-
-    /**
      * @param mixed $question The question (localized).
      * @return FaqInterface Chainable
      */

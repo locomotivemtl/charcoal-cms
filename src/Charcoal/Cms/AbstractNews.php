@@ -72,11 +72,6 @@ abstract class AbstractNews extends Content implements
     private $newsDate;
 
     /**
-     * @var Collection $documents
-     */
-    public $documents;
-
-    /**
      * @var TranslationString $infoUrl
      */
     private $infoUrl;
