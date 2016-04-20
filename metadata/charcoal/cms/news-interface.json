@@ -32,7 +32,7 @@
         "type":"image",
         "l10n":true,
         "public_access":true,
-        "upload_path":"uploads/sections/"
+        "upload_path":"uploads/news/"
     },
     "news_date":{
       "type":"date-time",

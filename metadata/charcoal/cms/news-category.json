@@ -1,0 +1,38 @@
+{
+
+    "properties":{
+
+    },
+
+    "sources":{
+        "default":{
+            "table":"charcoal_news_documents_categories"
+        }
+    },
+    "default_source":"default",
+
+    "admin":{
+        "lists":{
+            "default":{
+                "properties":[
+
+                ]
+            }
+        },
+        "default_list":"default",
+
+        "forms":{
+            "default":{
+                "groups":{
+
+                },
+                "sidebars":{
+                    "actions":{}
+                }
+            }
+        },
+        "default_form":"default",
+
+        "dashboards":{}
+    }
+}
