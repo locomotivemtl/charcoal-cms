@@ -52,10 +52,10 @@ interface SectionInterface
     public function templateIdent();
 
     /**
-     * @param array $templateOptions Extra template options.
+     * @param array|string $templateOptions Extra template options.
      * @return SectionInterface Chainable
      */
-    public function setTemplateOptions(array $templateOptions);
+    public function setTemplateOptions($templateOptions);
 
     /**
      * @return array

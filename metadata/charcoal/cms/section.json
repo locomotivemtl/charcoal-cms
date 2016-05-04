@@ -15,7 +15,7 @@
 
     "admin": {
         "lists": {
-            "default": {
+            "section": {
                 "properties": [
                     "id",
                     "active"
@@ -35,7 +35,7 @@
 
             }
         },
-        "default_list": "default",
+        "default_list": "section",
 
         "forms": {
             "default": {
@@ -65,16 +65,6 @@
                             "subtitle",
                             "content",
                             "image"
-                        ]
-                    },
-                    "attachments":{
-                        "priority":21,
-                        "title":{
-                            "en":"Attachments",
-                            "fr":"Pièces jointes"
-                        },
-                        "properties":[
-                            "attachments"
                         ]
                     },
                     "metadata":{

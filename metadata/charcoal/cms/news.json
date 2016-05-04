@@ -50,16 +50,6 @@
                             "subtitle",
                             "content"
                         ]
-                    },
-                    "media": {
-                        "title": {
-                            "en": "Media",
-                            "fr": "Médias"
-                        },
-                        "properties": [
-                            "images",
-                            "documents"
-                        ]
                     }
                 },
                 "sidebars": {

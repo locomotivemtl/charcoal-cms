@@ -18,10 +18,8 @@ use \Charcoal\Object\CategorizableInterface;
 use \Charcoal\Object\CategorizableTrait;
 use \Charcoal\Object\PublishableInterface;
 use \Charcoal\Object\PublishableTrait;
-
-// Dependencies from `charcoal-app`
-use \Charcoal\App\Routable\RoutableInterface;
-use \Charcoal\App\Routable\RoutableTrait;
+use \Charcoal\Object\RoutableInterface;
+use \Charcoal\Object\RoutableTrait;
 
 // Intra-module (`charcoal-cms`) dependencies
 use \Charcoal\Cms\MetatagInterface;
@@ -146,6 +144,50 @@ abstract class AbstractNews extends Content implements
     public function image()
     {
         return $this->image;
+    }
+
+    /**
+     * @param mixed $template The section template (ident).
+     * @return SectionInterface Chainable
+     */
+    public function setTemplateIdent($template)
+    {
+        $this->templateIdent = $template;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function templateIdent()
+    {
+        if (!$this->templateIdent) {
+            $metadata = $this->metadata();
+            return $metadata['template_ident'];
+        }
+        return $this->templateIdent;
+    }
+
+    /**
+     * @param array|string $templateOptions Extra template options, if any.
+     * @return SectionInterface Chainable
+     */
+    public function setTemplateOptions($templateOptions)
+    {
+        $this->templateOptions = $templateOptions;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function templateOptions()
+    {
+        if (!$this->templateOptions) {
+            $metadata = $this->metadata();
+            return $metadata['template_options'];
+        }
+        return $this->templateOptions;
     }
 
     /**

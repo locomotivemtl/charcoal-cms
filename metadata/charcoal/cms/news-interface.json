@@ -1,4 +1,4 @@
-{
+ {
   "properties":{
     "id":{
       "type":"id"
@@ -49,5 +49,7 @@
       "type":"url",
       "l10n":true
     }
-  }
+  },
+
+  "template_ident":"charcoal/cms/news"
 }

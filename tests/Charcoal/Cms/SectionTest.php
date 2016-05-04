@@ -48,6 +48,12 @@ class SectionTest extends \PHPUnit_Framework_TestCase
         $this->obj->setSectionType(false);
     }
 
+    public function testSetSectionTypeInvalidType()
+    {
+        $this->setExpectedException('\InvalidArgumentException');
+        $this->obj->setSectionType('FooBarFoo');
+    }
+
     public function testSetTitle()
     {
         $this->assertEquals('', (string)$this->obj->title());
@@ -70,6 +76,14 @@ class SectionTest extends \PHPUnit_Framework_TestCase
         $ret = $this->obj->setContent('Bar foo');
         $this->assertSame($ret, $this->obj);
         $this->assertEquals('Bar foo', (string)$this->obj->content());
+    }
+
+    public function testSetImage()
+    {
+        $this->assertEquals('', (string)$this->obj->image());
+        $ret = $this->obj->setImage('foo.png');
+        $this->assertSame($ret, $this->obj);
+        $this->assertEquals('foo.png', (string)$this->obj->image());
     }
 
     public function testMetaTitleDefaultsToTitle()

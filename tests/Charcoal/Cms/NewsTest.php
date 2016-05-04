@@ -31,7 +31,7 @@ class NewsTest extends \PHPUnit_Framework_TestCase
             '), $this->obj->newsDate());
     }
 
-        public function testSetTitle()
+    public function testSetTitle()
     {
         $this->assertEquals('', (string)$this->obj->title());
         $ret = $this->obj->setTitle('Foo bar');

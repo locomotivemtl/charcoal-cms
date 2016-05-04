@@ -16,10 +16,8 @@ use \Charcoal\Object\CategorizableInterface;
 use \Charcoal\Object\CategorizableTrait;
 use \Charcoal\Object\PublishableInterface;
 use \Charcoal\Object\PublishableTrait;
-
-// Dependencies from `charcoal-app`
-use \Charcoal\App\Routable\RoutableInterface;
-use \Charcoal\App\Routable\RoutableTrait;
+use \Charcoal\Object\RoutableInterface;
+use \Charcoal\Object\RoutableTrait;
 
 // Module `charcoal-translation` depdencies
 use \Charcoal\Translation\TranslationString;
@@ -208,33 +206,48 @@ abstract class AbstractEvent extends Content implements
     }
 
     /**
-     * RoutableInterface > handle_route()
-     *
-     * @param string            $path     The request path.
-     * @param RequestInterface  $request  PSR-7 (http) request.
-     * @param ResponseInterface $response PSR-7 (http) response.
-     * @throws InvalidArgumentException If the path is not a string.
-     * @return callable|null Route dispatcher
+     * @param mixed $template The section template (ident).
+     * @return SectionInterface Chainable
      */
-    public function routeHandler($path, RequestInterface $request, ResponseInterface $response)
+    public function setTemplateIdent($template)
     {
-        if (!is_string($path)) {
-            throw new InvalidArgumentException(
-                'Route path must be a string'
-            );
-        }
-        $match_path = $path == 'xxx';
-
-        // Insert logic here...
-        if ($match_path) {
-            return function(RequestInterface $request, ResponseInterface $response) use ($path) {
-                $response->write($path);
-            };
-        } else {
-            return null;
-        }
+        $this->templateIdent = $template;
+        return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function templateIdent()
+    {
+        if (!$this->templateIdent) {
+            $metadata = $this->metadata();
+            return $metadata['template_ident'];
+        }
+        return $this->templateIdent;
+    }
+
+    /**
+     * @param array|string $templateOptions Extra template options, if any.
+     * @return SectionInterface Chainable
+     */
+    public function setTemplateOptions($templateOptions)
+    {
+        $this->templateOptions = $templateOptions;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function templateOptions()
+    {
+        if (!$this->templateOptions) {
+            $metadata = $this->metadata();
+            return $metadata['template_options'];
+        }
+        return $this->templateOptions;
+    }
 
     /**
      * @return TranslationString

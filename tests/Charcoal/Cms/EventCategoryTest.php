@@ -14,7 +14,7 @@ class EventCategoryTest extends \PHPUnit_Framework_TestCase
         $this->obj = new EventCategory();
     }
 
-        public function testItemType()
+    public function testItemType()
     {
         $this->assertEquals('charcoal/cms/event', $this->obj->itemType());
     }

@@ -26,16 +26,6 @@
             "public_access":true,
             "upload_path":"uploads/sections/"
         },
-        "attachments": {
-            "type": "multi-object",
-            "multiple":true,
-            "allowed_types": {
-                "charcoal/cms/document": {},
-                "charcoal/cms/image": {},
-                "charcoal/cms/video": {},
-                "charcoal/cms/text": {}
-            }
-        },
         "template_ident": {
             "type": "string"
         },

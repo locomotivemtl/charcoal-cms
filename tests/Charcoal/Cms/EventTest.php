@@ -89,7 +89,7 @@ class EventTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('charcoal/cms/event-category', $this->obj->categoryType());
     }
 
-        public function testMetaTitleDefaultsToTitle()
+    public function testMetaTitleDefaultsToTitle()
     {
         $this->assertEquals('', (string)$this->obj->metaTitle());
 

@@ -12,8 +12,6 @@ use \Charcoal\Translation\TranslationString;
 
 // Module `charcoal-base` dependencies
 use \Charcoal\Object\Content;
-use \Charcoal\Object\CategorizableInterface;
-use \Charcoal\Object\CategorizableTrait;
 use \Charcoal\Object\HierarchicalInterface;
 use \Charcoal\Object\HierarchicalTrait;
 use \Charcoal\Object\RoutableInterface;
@@ -37,7 +35,6 @@ use \Charcoal\Cms\SectionInterface;
  * ## External implementations
  * Sections imlpement the following _Interface_ / _Trait_:
  * - From the `Charcoal\Object` namespace (in `charcoal-base`)
- *   - `Categorizable`
  *   - `Hierarchical`
  *   - `Routable`
  * - From the local `Charcoal\Cms` namespace
@@ -46,14 +43,12 @@ use \Charcoal\Cms\SectionInterface;
  *
  */
 abstract class AbstractSection extends Content implements
-    CategorizableInterface,
     HierarchicalInterface,
     MetatagInterface,
     RoutableInterface,
     SearchableInterface,
     SectionInterface
 {
-    use CategorizableTrait;
     use HierarchicalTrait;
     use MetatagTrait;
     use RoutableTrait;
@@ -110,7 +105,9 @@ abstract class AbstractSection extends Content implements
     public function setSectionType($sectionType)
     {
         if (!is_string($sectionType)) {
-            throw new InvalidArgumentException('Section type must be a string');
+            throw new InvalidArgumentException(
+                'Section type must be a string'
+            );
         }
         $validTypes = [
             self::TYPE_CONTENT,
@@ -118,7 +115,9 @@ abstract class AbstractSection extends Content implements
             self::TYPE_EXTERNAL
         ];
         if (!in_array($sectionType, $validTypes)) {
-            throw new InvalidArgumentException('Section type is not valid');
+            throw new InvalidArgumentException(
+                'Section type is not valid'
+            );
         }
 
         $this->sectionType = $sectionType;
@@ -220,14 +219,18 @@ abstract class AbstractSection extends Content implements
      */
     public function templateIdent()
     {
+        if (!$this->templateIdent) {
+            $metadata = $this->metadata();
+            return $metadata['template_ident'];
+        }
         return $this->templateIdent;
     }
 
     /**
-     * @param array $templateOptions Extra template options, if any.
+     * @param array|string $templateOptions Extra template options, if any.
      * @return SectionInterface Chainable
      */
-    public function setTemplateOptions(array $templateOptions)
+    public function setTemplateOptions($templateOptions)
     {
         $this->templateOptions = $templateOptions;
         return $this;
@@ -238,6 +241,10 @@ abstract class AbstractSection extends Content implements
      */
     public function templateOptions()
     {
+        if (!$this->templateOptions) {
+            $metadata = $this->metadata();
+            return $metadata['template_options'];
+        }
         return $this->templateOptions;
     }
 
