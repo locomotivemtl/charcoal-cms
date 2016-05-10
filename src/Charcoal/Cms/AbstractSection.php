@@ -98,6 +98,31 @@ abstract class AbstractSection extends Content implements
     private $attachments;
 
     /**
+     * Generate a slug on preSave
+     * @see RoutableTrait
+     * @return parent::preSave
+     */
+    public function preSave()
+    {
+        $this->setSlug($this->generateSlug());
+
+        return parent::preSave();
+    }
+
+    /**
+     * Generate a slug on preUpdate
+     * @see RoutableTrait
+     * @param array $properties Properties to update.
+     * @return parent::preUpdate
+     */
+    public function preUpdate(array $properties = null)
+    {
+        $this->setSlug($this->generateSlug());
+
+        return parent::preUpdate($properties);
+    }
+
+    /**
      * @param string $sectionType The section type.
      * @throws InvalidArgumentException If the section type is not a string or not a valid section type.
      * @return SectionInterface Chainable
