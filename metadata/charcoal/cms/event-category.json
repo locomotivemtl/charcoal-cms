@@ -1,7 +1,7 @@
 {
     "sources":{
         "default":{
-            "table":"charcoal_cms_events_categories"
+            "table":"cms_events_categories"
         }
     },
     "default_source":"default",

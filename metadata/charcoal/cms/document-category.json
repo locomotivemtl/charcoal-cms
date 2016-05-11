@@ -5,7 +5,7 @@
 
     "sources":{
         "default":{
-            "table":"charcoal_cms_documents_categories"
+            "table":"cms_documents_categories"
         }
     },
     "default_source":"default",

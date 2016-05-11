@@ -5,6 +5,11 @@
         }
     },
 
+    "slug_pattern":{
+        "en":"en/{{title}}",
+        "fr":"fr/{{title}}"
+    },
+
     "sources": {
         "default": {
             "type": "database",
@@ -18,6 +23,7 @@
             "section": {
                 "properties": [
                     "id",
+                    "title",
                     "active"
                 ],
                 "properties_options": {

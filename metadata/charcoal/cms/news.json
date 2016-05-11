@@ -5,6 +5,11 @@
         }
     },
 
+    "slug_pattern":{
+        "en":"en/news/{{title}}",
+        "fr":"fr/nouvelles/{{title}}"
+    },
+
     "sources": {
         "default": {
             "table": "cms_news"

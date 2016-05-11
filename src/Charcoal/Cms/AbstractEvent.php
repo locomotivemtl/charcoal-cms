@@ -272,4 +272,24 @@ abstract class AbstractEvent extends Content implements
     {
         return $this->image();
     }
+
+        /**
+     * {@inheritdoc}
+     */
+    public function preSave()
+    {
+        $this->slug = $this->generateSlug();
+        return parent::preSave();
+    }
+
+    /**
+     *{@inheritdoc}
+     */
+    public function preUpdate(array $properties = null)
+    {
+        if (!$this->slug) {
+            $this->slug = $this->generateSlug();
+        }
+        return parent::preUpdate($properties);
+    }
 }

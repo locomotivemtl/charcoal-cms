@@ -1,7 +1,7 @@
 {
     "sources":{
         "default":{
-            "table":"charcoal_cms_images"
+            "table":"cms_images"
         }
     },
 

@@ -11,7 +11,7 @@
 
     "sources":{
         "default":{
-            "table":"charcoal_cms_faqs"
+            "table":"cms_faqs"
         }
     },
 

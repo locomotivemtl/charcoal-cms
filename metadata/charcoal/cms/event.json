@@ -1,7 +1,12 @@
 {
+    "slug_pattern":{
+        "en":"en/events/{{title}}",
+        "fr":"fr/evenements/{{title}}"
+    },
+
     "sources": {
         "default": {
-            "table": "charcoal_cms_events"
+            "table": "cms_events"
         }
     },
     "default_source": "default",

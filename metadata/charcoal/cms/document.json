@@ -7,7 +7,7 @@
 
     "sources": {
         "default": {
-            "table": "charcoal_cms_documents"
+            "table": "cms_documents"
         }
     },
     "default_source":"default",
