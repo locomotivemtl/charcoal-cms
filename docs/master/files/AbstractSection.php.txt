@@ -340,6 +340,8 @@ abstract class AbstractSection extends Content implements
 
     /**
      * {@inheritdoc}
+     *
+     * @return boolean
      */
     public function preSave()
     {
@@ -348,7 +350,10 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     *{@inheritdoc}
+     * {@inheritdoc}
+     *
+     * @param array $properties Optional properties to update.
+     * @return boolean
      */
     public function preUpdate(array $properties = null)
     {
