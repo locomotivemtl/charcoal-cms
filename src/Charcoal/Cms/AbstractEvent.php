@@ -278,7 +278,7 @@ abstract class AbstractEvent extends Content implements
      */
     public function preSave()
     {
-        $this->slug = $this->generateSlug();
+        $this->setSlug($this->generateSlug());
         return parent::preSave();
     }
 
@@ -288,7 +288,7 @@ abstract class AbstractEvent extends Content implements
     public function preUpdate(array $properties = null)
     {
         if (!$this->slug) {
-            $this->slug = $this->generateSlug();
+            $this->setSlug($this->generateSlug());
         }
         return parent::preUpdate($properties);
     }

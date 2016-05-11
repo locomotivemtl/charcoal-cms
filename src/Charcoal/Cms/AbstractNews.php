@@ -75,32 +75,6 @@ abstract class AbstractNews extends Content implements
     private $infoUrl;
 
     /**
-     * Generate a slug on preSave
-     * @see RoutableTrait
-     * @return parent::preSave
-     */
-    public function preSave()
-    {
-        $this->setSlug($this->generateSlug());
-
-        return parent::preSave();
-    }
-
-    /**
-     * Generate a slug on preUpdate
-     * @see RoutableTrait
-     * @param array $properties Properties to update.
-     * @return parent::preUpdate
-     */
-    public function preUpdate(array $properties = null)
-    {
-        $this->setSlug($this->generateSlug());
-
-        return parent::preUpdate($properties);
-    }
-
-
-    /**
      * @param mixed $title The news title (localized).
      * @return TranslationString
      */
@@ -333,7 +307,7 @@ abstract class AbstractNews extends Content implements
      */
     public function preSave()
     {
-        $this->slug = $this->generateSlug();
+        $this->setSlug($this->generateSlug());
         return parent::preSave();
     }
 
@@ -343,7 +317,7 @@ abstract class AbstractNews extends Content implements
     public function preUpdate(array $properties = null)
     {
         if (!$this->slug) {
-            $this->slug = $this->generateSlug();
+            $this->setSlug($this->generateSlug());
         }
         return parent::preUpdate($properties);
     }
