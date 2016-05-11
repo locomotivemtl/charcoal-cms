@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Charcoal-cms by locomotivemtl</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Charcoal-cms</h1>
+      <h2 class="project-tagline">Charcoal Content Management System (CMS) Module</h2>
+      <a href="https://github.com/locomotivemtl/charcoal-cms" class="btn">View on GitHub</a>
+      <a href="https://github.com/locomotivemtl/charcoal-cms/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/locomotivemtl/charcoal-cms/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="charcoal-cms" class="anchor" href="#charcoal-cms" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Charcoal CMS</h1>
+
+<p>The CMS Charcoal Module (Content Management System).</p>
+
+<h1>
+<a id="how-to-install" class="anchor" href="#how-to-install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to install</h1>
+
+<p>The preferred (and only supported) way of installing _charcoal-cms is with <strong>composer</strong>:</p>
+
+<div class="highlight highlight-source-shell"><pre>★ composer require locomotivemtl/charcoal-cms</pre></div>
+
+<h2>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependencies</h2>
+
+<ul>
+<li><a href="http://php.net"><code>PHP 5.5+</code></a></li>
+<li><a href="https://github.com/locomotivemtl/charcoal-core"><code>locomotivemtl/charcoal-core</code></a></li>
+<li><a href="https://github.com/locomotivemtl/charcoal-base"><code>locomotivemtl/charcoal-base</code></a></li>
+</ul>
+
+<h1>
+<a id="objects" class="anchor" href="#objects" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Objects</h1>
+
+<p>All objects in the <code>charcoal-cms</code> module implements <code>\Charcoal\Object\Content</code>, which allows to store creation &amp; modification dates. Many objects also implement the <code>\Charcoal\Object\PublishableInterface</code>.</p>
+
+<ul>
+<li>
+<strong>Core objects</strong>
+
+<ul>
+<li><a href="#section-object">Section</a></li>
+<li><a href="#text-object">Text</a></li>
+<li><a href="#block-object">Block</a></li>
+</ul>
+</li>
+<li>
+<strong>CMS objets</strong>
+
+<ul>
+<li><a href="#event-object">Event</a></li>
+<li><a href="#faq-object">FAQ</a></li>
+<li><a href="#news-object">News</a></li>
+</ul>
+</li>
+<li>
+<strong>Media attachments objects</strong>
+
+<ul>
+<li><a href="#document-object">Document</a></li>
+<li><a href="#image-object">Image</a></li>
+<li><a href="#video-object">Video</a></li>
+</ul>
+</li>
+</ul>
+
+<h1>
+<a id="core-objects" class="anchor" href="#core-objects" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Core objects</h1>
+
+<ul>
+<li><a href="#section-object">Section</a></li>
+<li><a href="#text-object">Text</a></li>
+<li><a href="#block-object">Block</a></li>
+</ul>
+
+<h2>
+<a id="section-object" class="anchor" href="#section-object" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Section object</h2>
+
+<p>A <strong>section</strong>, in Charcoal, is a reachable page on the website, as part of the full hierarchical site map. They can be displayed in menus or breadcrumbs and be reached with a unique URL (<code>routable</code>).</p>
+
+<p>Types of sections:</p>
+
+<ul>
+<li>
+<code>blocks</code>
+
+<ul>
+<li>Blocks sections define their content as a structured map of blocks.</li>
+</ul>
+</li>
+<li>
+<code>content</code>
+
+<ul>
+<li>Content sections define their content in a single, simple <em>HTML</em> property.</li>
+</ul>
+</li>
+<li>
+<code>empty</code>
+
+<ul>
+<li>Empty sections are linked to a template but do not require any custom content.</li>
+</ul>
+</li>
+<li>
+<code>external</code>
+
+<ul>
+<li>External sections are simply a redirect to an external (or internal) URL.</li>
+</ul>
+</li>
+</ul>
+
+<p>All section types, except <em>external</em>, make use of a <code>Template</code> object to be rendered. Typically, a charcoal <code>view</code> make sure of linking the <code>template</code> (by default, <em>mustache</em></p>
+
+<p>Sections are standard Charcoal <code>Model</code>, meaning they are definable with a <code>Metadata</code> object (which define a map of <code>properties</code>) and storable with a <code>Source</code> object.</p>
+
+<p>Base section properties:</p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th align="center">L10n</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>title</strong></td>
+<td align="center">✔</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>subtitle</strong></td>
+<td align="center">✔</td>
+<td>html</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>template_ident</strong></td>
+<td align="center"></td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>template_options</strong></td>
+<td align="center"></td>
+<td>structure</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>attachments</strong></td>
+<td align="center">✔</td>
+<td>multi-object</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p>Extra <em>blocks</em> properties:</p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th align="center">L10n</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>blocks</strong></td>
+<td align="center">✔</td>
+<td>structure</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p>Extra <em>content</em> properties:</p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th align="center">L10n</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>content</strong></td>
+<td align="center">✔</td>
+<td>html</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p>Extra <em>external</em> properties:</p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th align="center">L10n</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>external_url</strong></td>
+<td align="center">✔</td>
+<td>url</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p>Note that <code>external</code> sections ignore the <em>template_ident</em> &amp; <em>template_options</em> properties as well as the <em>metatags</em> set of properties.</p>
+
+<h2></h2>
+
+<p>Because <em>sections</em> extends <code>\Charcoal\Object\Content</code>, they also have the following standard properties:</p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th align="center">L10n</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>id<sup>1</sup></strong></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>active</strong></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>position</strong></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>created</strong></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>created_by</strong></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>last_modified</strong></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>last_modified_by</strong></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p>[1] By default, the <strong>key</strong> of the section is the <strong>id</strong>..</p>
+
+<h2></h2>
+
+<p><em>Sections</em> are hierarchical. They can be indented inside one another to create multi-dimensional site maps. The additional properties are therefore available:</p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th align="center">L10n</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>master</strong></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p>The hierarchical interface also provide the following methods, amongst others:</p>
+
+<ul>
+<li><code>hierarchy()</code></li>
+<li><code>children()</code></li>
+<li><code>siblings()</code></li>
+</ul>
+
+<h2></h2>
+
+<p><em>Sections</em> have <em>metatags</em>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th align="center">L10n</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>meta_title</strong></td>
+<td align="center">✔</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>meta_description</strong></td>
+<td align="center">✔</td>
+<td>text</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>meta_image</strong></td>
+<td align="center">✔</td>
+<td>image</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>meta_author</strong></td>
+<td align="center">✔</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p>...and more specialized properties, for <em>facebook</em> / <em>opengraph</em>.</p>
+
+<p>__</p>
+
+<p>Like all <em>Content</em> objects, <em>sections</em> implement the <code>\Charcoal\Object\RevisionableInterface</code>, which tracks all save / update into <em>revisions</em>.</p>
+
+<h3>
+<a id="extending-the-section-object" class="anchor" href="#extending-the-section-object" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Extending the section object</h3>
+
+<p>The <code>\Charcoal\Cms\Section\*</code> objects are <code>final</code>. To extend, use the <code>\Charcoal\Cms\AbstractSection</code> base object instead, to make sure no metadata conflicts arise.</p>
+
+<h2>
+<a id="text-object" class="anchor" href="#text-object" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Text object</h2>
+
+<p>The <strong>Text</strong> object is a simple, translatable rich text snippet that can be embedded in any other objects, or displayed by itself. It is best used as an <em>attachment</em> to other objects, like sections, news or events.</p>
+
+<p>Texts are standard Charcoal <code>Model</code>, meaning they are definable with a <code>Metadata</code> object (which define a map of <code>properties</code>) and storable with a <code>Source</code> object.</p>
+
+<p>Base text properties:</p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th align="center">L10n</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>title</strong></td>
+<td align="center">✔</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>subtitle</strong></td>
+<td align="center">✔</td>
+<td>html</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>content</strong></td>
+<td align="center"></td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2></h2>
+
+<p>Because <em>texts</em> extends <code>\Charcoal\Object\Content</code>, they also have the following standard properties:</p>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th align="center">L10n</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>id<sup>1</sup></strong></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>active</strong></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>position</strong></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>created</strong></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>created_by</strong></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>last_modified</strong></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>last_modified_by</strong></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p>[1] By default, the <strong>key</strong> of the text is the <strong>id</strong>..</p>
+
+<h2>
+<a id="block-object" class="anchor" href="#block-object" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Block object</h2>
+
+<h1>
+<a id="cms-objects" class="anchor" href="#cms-objects" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CMS objects</h1>
+
+<ul>
+<li><a href="#event-object">Event</a></li>
+<li><a href="#faq-object">FAQ</a></li>
+<li><a href="#news-object">News</a></li>
+</ul>
+
+<h2>
+<a id="event-object" class="anchor" href="#event-object" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Event object</h2>
+
+<h2>
+<a id="faq-object" class="anchor" href="#faq-object" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FAQ object</h2>
+
+<h2>
+<a id="news-object" class="anchor" href="#news-object" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>News object</h2>
+
+<h1>
+<a id="media-attachments-objects" class="anchor" href="#media-attachments-objects" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Media attachments objects</h1>
+
+<ul>
+<li><a href="#document-object">Document</a></li>
+<li><a href="#image-object">Image</a></li>
+<li><a href="#video-object">Video</a></li>
+</ul>
+
+<h2>
+<a id="document-object" class="anchor" href="#document-object" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Document object</h2>
+
+<h2>
+<a id="image-object" class="anchor" href="#image-object" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Image object</h2>
+
+<h2>
+<a id="video-object" class="anchor" href="#video-object" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Video object</h2>
+
+<h1>
+<a id="extending-objects" class="anchor" href="#extending-objects" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Extending objects</h1>
+
+<h1>
+<a id="development" class="anchor" href="#development" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Development</h1>
+
+<p>To install the development environment:</p>
+
+<div class="highlight highlight-source-shell"><pre>$ composer install --prefer-source</pre></div>
+
+<h2>
+<a id="api-documentation" class="anchor" href="#api-documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API documentation</h2>
+
+<ul>
+<li>The auto-generated <code>phpDocumentor</code> API documentation is available at <a href="https://locomotivemtl.github.io/charcoal-cms/docs/master/">https://locomotivemtl.github.io/charcoal-cms/docs/master/</a>
+</li>
+<li>The auto-generated <code>apigen</code> API documentation is available at <a href="https://codedoc.pub/locomotivemtl/charcoal-cms/master/index.html">https://codedoc.pub/locomotivemtl/charcoal-cms/master/</a>
+</li>
+</ul>
+
+<h2>
+<a id="development-dependencies" class="anchor" href="#development-dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Development dependencies</h2>
+
+<ul>
+<li><code>phpunit/phpunit</code></li>
+<li><code>squizlabs/php_codesniffer</code></li>
+<li><code>satooshi/php-coveralls</code></li>
+</ul>
+
+<h2>
+<a id="continuous-integration" class="anchor" href="#continuous-integration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Continuous Integration</h2>
+
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Badge</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://travis-ci.org/locomotivemtl/charcoal-cms">Travis</a></td>
+<td><a href="https://travis-ci.org/locomotivemtl/charcoal-cms"><img src="https://travis-ci.org/locomotivemtl/charcoal-cms.svg?branch=master" alt="Build Status"></a></td>
+<td>Runs code sniff check and unit tests. Auto-generates API documentation.</td>
+</tr>
+<tr>
+<td><a href="https://scrutinizer-ci.com/g/locomotivemtl/charcoal-cms/">Scrutinizer</a></td>
+<td><a href="https://scrutinizer-ci.com/g/locomotivemtl/charcoal-cms/?branch=master"><img src="https://scrutinizer-ci.com/g/locomotivemtl/charcoal-cms/badges/quality-score.png?b=master" alt="Scrutinizer Code Quality"></a></td>
+<td>Code quality checker. Also validates API documentation quality.</td>
+</tr>
+<tr>
+<td><a href="https://coveralls.io/github/locomotivemtl/charcoal-cms">Coveralls</a></td>
+<td><a href="https://coveralls.io/github/locomotivemtl/charcoal-cms?branch=master"><img src="https://coveralls.io/repos/github/locomotivemtl/charcoal-cms/badge.svg?branch=master" alt="Coverage Status"></a></td>
+<td>Unit Tests code coverage.</td>
+</tr>
+<tr>
+<td><a href="https://insight.sensiolabs.com/projects/533b5796-7e69-42a7-a046-71342146308a">Sensiolabs</a></td>
+<td><a href="https://insight.sensiolabs.com/projects/44d8d264-207b-417d-bcbd-dd52274fc201"><img src="https://insight.sensiolabs.com/projects/44d8d264-207b-417d-bcbd-dd52274fc201/mini.png" alt="SensioLabsInsight"></a></td>
+<td>Another code quality checker, focused on PHP.</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="coding-style" class="anchor" href="#coding-style" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Coding Style</h2>
+
+<p>The Charcoal-App module follows the Charcoal coding-style:</p>
+
+<ul>
+<li><a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md"><em>PSR-1</em></a></li>
+<li><a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md"><em>PSR-2</em></a></li>
+<li>
+<a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md"><em>PSR-4</em></a>, autoloading is therefore provided by <em>Composer</em>.</li>
+<li>
+<a href="http://phpdoc.org/"><em>phpDocumentor</em></a> comments.</li>
+<li>Read the <a href="phpcs.xml">phpcs.xml</a> file for all the details on code style.</li>
+</ul>
+
+<blockquote>
+<p>Coding style validation / enforcement can be performed with <code>composer phpcs</code>. An auto-fixer is also available with <code>composer phpcbf</code>.</p>
+</blockquote>
+
+<h2>
+<a id="authors" class="anchor" href="#authors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors</h2>
+
+<ul>
+<li>Mathieu Ducharme <a href="mailto:mat@locomotive.ca">mat@locomotive.ca</a>
+</li>
+</ul>
+
+<h2>
+<a id="changelog" class="anchor" href="#changelog" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Changelog</h2>
+
+<h3>
+<a id="unreleased" class="anchor" href="#unreleased" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Unreleased</h3>
+
+<h1>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h1>
+
+<p><strong>The MIT License (MIT)</strong></p>
+
+<p><em>Copyright © 2016 Locomotive inc.</em></p>
+
+<blockquote>
+<p>See <a href="#authors">Authors</a>.</p>
+</blockquote>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/locomotivemtl/charcoal-cms">Charcoal-cms</a> is maintained by <a href="https://github.com/locomotivemtl">locomotivemtl</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
