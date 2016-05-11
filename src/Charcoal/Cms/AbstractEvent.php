@@ -273,8 +273,10 @@ abstract class AbstractEvent extends Content implements
         return $this->image();
     }
 
-        /**
+    /**
      * {@inheritdoc}
+     *
+     * @return boolean
      */
     public function preSave()
     {
@@ -283,7 +285,10 @@ abstract class AbstractEvent extends Content implements
     }
 
     /**
-     *{@inheritdoc}
+     * {@inheritdoc}
+     *
+     * @param array $properties Optional properties to update.
+     * @return boolean
      */
     public function preUpdate(array $properties = null)
     {
