@@ -477,25 +477,30 @@
 </span><span id="340" class="l"><a href="#340">340: </a>
 </span><span id="341" class="l"><a href="#341">341: </a>    <span class="php-comment">/**
 </span></span><span id="342" class="l"><a href="#342">342: </a><span class="php-comment">     * {@inheritdoc}
-</span></span><span id="343" class="l"><a href="#343">343: </a><span class="php-comment">     */</span>
-</span><span id="344" class="l"><a href="#344">344: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> preSave()
-</span><span id="345" class="l"><a href="#345">345: </a>    {
-</span><span id="346" class="l"><a href="#346">346: </a>        <span class="php-var">$this</span>-&gt;setSlug(<span class="php-var">$this</span>-&gt;generateSlug());
-</span><span id="347" class="l"><a href="#347">347: </a>        <span class="php-keyword1">return</span> parent::preSave();
-</span><span id="348" class="l"><a href="#348">348: </a>    }
-</span><span id="349" class="l"><a href="#349">349: </a>
-</span><span id="350" class="l"><a href="#350">350: </a>    <span class="php-comment">/**
-</span></span><span id="351" class="l"><a href="#351">351: </a><span class="php-comment">     *{@inheritdoc}
-</span></span><span id="352" class="l"><a href="#352">352: </a><span class="php-comment">     */</span>
-</span><span id="353" class="l"><a href="#353">353: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> preUpdate(<span class="php-keyword1">array</span> <span class="php-var">$properties</span> = <span class="php-keyword1">null</span>)
-</span><span id="354" class="l"><a href="#354">354: </a>    {
-</span><span id="355" class="l"><a href="#355">355: </a>        <span class="php-keyword1">if</span> (!<span class="php-var">$this</span>-&gt;slug) {
-</span><span id="356" class="l"><a href="#356">356: </a>            <span class="php-var">$this</span>-&gt;setSlug(<span class="php-var">$this</span>-&gt;generateSlug());
-</span><span id="357" class="l"><a href="#357">357: </a>        }
-</span><span id="358" class="l"><a href="#358">358: </a>        <span class="php-keyword1">return</span> parent::preUpdate(<span class="php-var">$properties</span>);
-</span><span id="359" class="l"><a href="#359">359: </a>    }
-</span><span id="360" class="l"><a href="#360">360: </a>}
-</span><span id="361" class="l"><a href="#361">361: </a></span></code></pre>
+</span></span><span id="343" class="l"><a href="#343">343: </a><span class="php-comment">     *
+</span></span><span id="344" class="l"><a href="#344">344: </a><span class="php-comment">     * @return boolean
+</span></span><span id="345" class="l"><a href="#345">345: </a><span class="php-comment">     */</span>
+</span><span id="346" class="l"><a href="#346">346: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> preSave()
+</span><span id="347" class="l"><a href="#347">347: </a>    {
+</span><span id="348" class="l"><a href="#348">348: </a>        <span class="php-var">$this</span>-&gt;setSlug(<span class="php-var">$this</span>-&gt;generateSlug());
+</span><span id="349" class="l"><a href="#349">349: </a>        <span class="php-keyword1">return</span> parent::preSave();
+</span><span id="350" class="l"><a href="#350">350: </a>    }
+</span><span id="351" class="l"><a href="#351">351: </a>
+</span><span id="352" class="l"><a href="#352">352: </a>    <span class="php-comment">/**
+</span></span><span id="353" class="l"><a href="#353">353: </a><span class="php-comment">     * {@inheritdoc}
+</span></span><span id="354" class="l"><a href="#354">354: </a><span class="php-comment">     *
+</span></span><span id="355" class="l"><a href="#355">355: </a><span class="php-comment">     * @param array $properties Optional properties to update.
+</span></span><span id="356" class="l"><a href="#356">356: </a><span class="php-comment">     * @return boolean
+</span></span><span id="357" class="l"><a href="#357">357: </a><span class="php-comment">     */</span>
+</span><span id="358" class="l"><a href="#358">358: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> preUpdate(<span class="php-keyword1">array</span> <span class="php-var">$properties</span> = <span class="php-keyword1">null</span>)
+</span><span id="359" class="l"><a href="#359">359: </a>    {
+</span><span id="360" class="l"><a href="#360">360: </a>        <span class="php-keyword1">if</span> (!<span class="php-var">$this</span>-&gt;slug) {
+</span><span id="361" class="l"><a href="#361">361: </a>            <span class="php-var">$this</span>-&gt;setSlug(<span class="php-var">$this</span>-&gt;generateSlug());
+</span><span id="362" class="l"><a href="#362">362: </a>        }
+</span><span id="363" class="l"><a href="#363">363: </a>        <span class="php-keyword1">return</span> parent::preUpdate(<span class="php-var">$properties</span>);
+</span><span id="364" class="l"><a href="#364">364: </a>    }
+</span><span id="365" class="l"><a href="#365">365: </a>}
+</span><span id="366" class="l"><a href="#366">366: </a></span></code></pre>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
