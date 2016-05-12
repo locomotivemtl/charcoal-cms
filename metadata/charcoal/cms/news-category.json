@@ -6,7 +6,7 @@
 
     "sources":{
         "default":{
-            "table":"charcoal_news_documents_categories"
+            "table":"news_categories"
         }
     },
     "default_source":"default",
