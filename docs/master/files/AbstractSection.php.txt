@@ -277,13 +277,15 @@ abstract class AbstractSection extends Content implements
     /**
      * HierarchicalTrait > loadChildren
      *
-     * @return array
+     * @return Co
      */
     public function loadChildren()
     {
-        $source = clone($this->source());
-        $source->reset();
-        $source->setFilters([
+        $loader = new CollectionLoader([
+            'logger' => $this->logger,
+            'factory' => $this->modelFactory()
+        ]);
+        $loader->setFilters([
             [
                 'property'=>'master',
                 'val'=>$this->id()
@@ -293,14 +295,13 @@ abstract class AbstractSection extends Content implements
                 'val'=>1
             ]
         ]);
-        $source->setOrders([
+        $loader->setOrders([
             [
                 'property'=>'position',
                 'mode'=>'asc'
             ]
         ]);
-        $children = $source->loadItems();
-        return $children;
+        return $loader->load();
     }
 
     /**
@@ -362,5 +363,6 @@ abstract class AbstractSection extends Content implements
         }
         return parent::preUpdate($properties);
     }
+
 }
 
