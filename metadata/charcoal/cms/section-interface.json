@@ -32,6 +32,10 @@
         "template_options": {
             "type": "structure"
         },
+        "position":{
+            "type":"number",
+            "label":"Position"
+        },
         "active": {
             "type": "boolean",
             "input_type": "charcoal/admin/property/input/switch"
