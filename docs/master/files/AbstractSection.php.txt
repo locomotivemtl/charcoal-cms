@@ -10,6 +10,8 @@ use \Charcoal\Model\Collection;
 // Module `charcoal-translation` dependencies
 use \Charcoal\Translation\TranslationString;
 
+use \Charcoal\Loader\CollectionLoader;
+
 // Module `charcoal-base` dependencies
 use \Charcoal\Object\Content;
 use \Charcoal\Object\HierarchicalInterface;
@@ -285,21 +287,19 @@ abstract class AbstractSection extends Content implements
             'logger' => $this->logger,
             'factory' => $this->modelFactory()
         ]);
-        $loader->setFilters([
-            [
-                'property'=>'master',
-                'val'=>$this->id()
-            ],
-            [
-                'property'=>'active',
-                'val'=>1
-            ]
+        $loader->setModel($this);
+        $loader->addFilter([
+            'property'=>'master',
+            'val'=>$this->id()
         ]);
-        $loader->setOrders([
-            [
-                'property'=>'position',
-                'mode'=>'asc'
-            ]
+        $loader->addFilter([
+            'property'=>'active',
+            'val'=>true
+        ]);
+
+        $loader->addOrder([
+            'property'=>'position',
+            'mode'=>'asc'
         ]);
         return $loader->load();
     }
@@ -358,9 +358,9 @@ abstract class AbstractSection extends Content implements
      */
     public function preUpdate(array $properties = null)
     {
-        if (!$this->slug) {
+        // if (!$this->slug) {
             $this->setSlug($this->generateSlug());
-        }
+        // }
         return parent::preUpdate($properties);
     }
 
