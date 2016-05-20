@@ -12,6 +12,8 @@ use \Pimple\Container;
 // Dependency from 'charcoal-app'
 use \Charcoal\App\Route\TemplateRoute;
 
+use \Charcoal\Translation\TranslationConfig;
+
 /**
  * Section Route
  */
@@ -94,6 +96,7 @@ class SectionRoute extends TemplateRoute
             $translator = $container['translator/config'];
             $langs = $translator->availableLanguages();
             $lang = $this->section->loadFromL10n('slug', $this->path, $langs);
+            TranslationConfig::instance()->setCurrentLanguage($lang);
         }
         return $this->section;
     }
