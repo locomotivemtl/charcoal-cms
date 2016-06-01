@@ -19,14 +19,14 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    "locomotivemtl/charcoal-core": "@dev",
-    "locomotivemtl/charcoal-base": "@dev"
+    "locomotivemtl/charcoal-core": "dev-master",
+    "locomotivemtl/charcoal-base": "dev-master",
+    "locomotivemtl/charcoal-app": "~0.2"
   },
   "require-dev": {
     "phpunit/phpunit": "^4.8",
     "squizlabs/php_codesniffer": "^2.4",
-    "satooshi/php-coveralls":"~1.0.1",
-    "seld/jsonlint": "^1.4"
+    "satooshi/php-coveralls":"~1.0.1"
   },
   "autoload": {
     "psr-4": {
