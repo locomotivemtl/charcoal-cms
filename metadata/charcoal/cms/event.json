@@ -1,4 +1,8 @@
 {
+    "properties":{
+
+    },
+
     "slug_pattern":{
         "en":"en/events/{{title}}",
         "fr":"fr/evenements/{{title}}"

@@ -20,6 +20,14 @@
         "fr":"Sous-titre"
       }
     },
+    "summary":{
+        "type":"html",
+        "l10n":true,
+        "label":{
+            "en":"Summary",
+            "fr":"Sommaire"
+        }
+    },
     "content":{
       "type":"html",
       "l10n":true,
@@ -45,7 +53,7 @@
         "fr":"La date affichée de la nouvelle."
       }
     },
-    "infoUrl":{
+    "info_url":{
       "type":"url",
       "l10n":true
     }

@@ -20,6 +20,14 @@
                 "fr":"Sous-titre"
             }
         },
+        "summary":{
+            "type":"html",
+            "l10n":true,
+            "label":{
+                "en":"Summary",
+                "fr":"Sommaire"
+            }
+        },
         "content":{
             "type":"html",
             "l10n":true,
@@ -39,9 +47,12 @@
         },
         "end_date":{
             "type":"date-time"
-            },
-        "thumbnail":{},
+        },
+        "info_url":{
+          "type":"url",
+          "l10n":true
+        }
+    },
 
-        "attachments":{}
-    }
+    "template_ident":"charcoal/cms/event"
 }

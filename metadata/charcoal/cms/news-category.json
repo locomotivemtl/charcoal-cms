@@ -6,7 +6,7 @@
 
     "sources":{
         "default":{
-            "table":"news_categories"
+            "table":"cms_news_categories"
         }
     },
     "default_source":"default",
