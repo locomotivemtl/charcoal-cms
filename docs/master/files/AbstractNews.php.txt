@@ -55,6 +55,11 @@ abstract class AbstractNews extends Content implements
     private $subtitle;
 
     /**
+     * @var TranslationString $title
+     */
+    private $summary;
+
+    /**
      * @var TranslationString $content
      */
     private $content;
@@ -76,7 +81,7 @@ abstract class AbstractNews extends Content implements
 
     /**
      * @param mixed $title The news title (localized).
-     * @return TranslationString
+     * @return NewsInterface Chainable
      */
     public function setTitle($title)
     {
@@ -94,7 +99,7 @@ abstract class AbstractNews extends Content implements
 
     /**
      * @param mixed $subtitle The news subtitle (localized).
-     * @return Event Chainable
+     * @return NewsInterface Chainable
      */
     public function setSubtitle($subtitle)
     {
@@ -111,8 +116,26 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
+     * @param mixed $summary The news summary (localized).
+     * @return NewsInterface Chainable
+     */
+    public function setSummary($summary)
+    {
+        $this->summary = new TranslationString($summary);
+        return $this;
+    }
+
+    /**
+     * @return TranslationString
+     */
+    public function summary()
+    {
+        return $this->summary;
+    }
+
+    /**
      * @param mixed $content The news content (localized).
-     * @return Event Chainable
+     * @return NewsInterface Chainable
      */
     public function setContent($content)
     {
@@ -130,7 +153,7 @@ abstract class AbstractNews extends Content implements
 
     /**
      * @param mixed $image The section main image (localized).
-     * @return Section Chainable
+     * @return NewsInterface Chainable
      */
     public function setImage($image)
     {
@@ -148,7 +171,7 @@ abstract class AbstractNews extends Content implements
 
     /**
      * @param mixed $template The section template (ident).
-     * @return SectionInterface Chainable
+     * @return NewsInterface Chainable
      */
     public function setTemplateIdent($template)
     {
@@ -170,7 +193,7 @@ abstract class AbstractNews extends Content implements
 
     /**
      * @param array|string $templateOptions Extra template options, if any.
-     * @return SectionInterface Chainable
+     * @return NewsInterface Chainable
      */
     public function setTemplateOptions($templateOptions)
     {
@@ -193,7 +216,7 @@ abstract class AbstractNews extends Content implements
     /**
      * @param mixed $newsDate The news date.
      * @throws InvalidArgumentException If the timestamp is invalid.
-     * @return ObjectRevision Chainable
+     * @return NewsInterface Chainable
      */
     public function setNewsDate($newsDate)
     {
@@ -248,34 +271,6 @@ abstract class AbstractNews extends Content implements
     public function canonicalUrl()
     {
         return '';
-    }
-
-    /**
-     * RoutableInterface > handle_route()
-     *
-     * @param string            $path     The request path.
-     * @param RequestInterface  $request  PSR-7 (http) request.
-     * @param ResponseInterface $response PSR-7 (http) response.
-     * @throws InvalidArgumentException If the path is not a string.
-     * @return callable|null Route dispatcher
-     */
-    public function routeHandler($path, RequestInterface $request, ResponseInterface $response)
-    {
-        if (!is_string($path)) {
-            throw new InvalidArgumentException(
-                'Route path must be a string'
-            );
-        }
-        $match_path = $path == 'xxx';
-
-        // Insert logic here...
-        if ($match_path) {
-            return function(RequestInterface $request, ResponseInterface $response) use ($path) {
-                $response->write($path);
-            };
-        } else {
-            return null;
-        }
     }
 
     /**

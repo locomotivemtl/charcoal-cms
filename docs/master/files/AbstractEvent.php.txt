@@ -31,6 +31,7 @@ use \Charcoal\Cms\SearchableInterface;
  */
 abstract class AbstractEvent extends Content implements
     CategorizableInterface,
+    EventInterface,
     MetatagInterface,
     PublishableInterface,
     RoutableInterface,
@@ -48,9 +49,14 @@ abstract class AbstractEvent extends Content implements
     private $title;
 
     /**
-     * @var TranslationString $title
+     * @var TranslationString $subtitle
      */
     private $subtitle;
+
+    /**
+     * @var TranslationString $summary
+     */
+    private $summary;
 
     /**
      * @var TranslationString $content
@@ -66,6 +72,7 @@ abstract class AbstractEvent extends Content implements
      * @var DateTime $startDate
      */
     private $startDate;
+
     /**
      * @var DateTime $startDate
      */
@@ -73,7 +80,7 @@ abstract class AbstractEvent extends Content implements
 
     /**
      * @param mixed $title The event title (localized).
-     * @return TranslationString
+     * @return EventInterface Chainable
      */
     public function setTitle($title)
     {
@@ -91,7 +98,7 @@ abstract class AbstractEvent extends Content implements
 
     /**
      * @param mixed $subtitle The event subtitle (localized).
-     * @return Event Chainable
+     * @return EventInterface Chainable
      */
     public function setSubtitle($subtitle)
     {
@@ -108,8 +115,26 @@ abstract class AbstractEvent extends Content implements
     }
 
     /**
+     * @param mixed $summary The news summary (localized).
+     * @return EventInterface Chainable
+     */
+    public function setSummary($summary)
+    {
+        $this->summary = new TranslationString($summary);
+        return $this;
+    }
+
+    /**
+     * @return TranslationString
+     */
+    public function summary()
+    {
+        return $this->summary;
+    }
+
+    /**
      * @param mixed $content The event content (localized).
-     * @return Event Chainable
+     * @return EventInterface Chainable
      */
     public function setContent($content)
     {
@@ -127,7 +152,7 @@ abstract class AbstractEvent extends Content implements
 
     /**
      * @param mixed $image The section main image (localized).
-     * @return Section Chainable
+     * @return EventInterface Chainable
      */
     public function setImage($image)
     {
@@ -207,7 +232,7 @@ abstract class AbstractEvent extends Content implements
 
     /**
      * @param mixed $template The section template (ident).
-     * @return SectionInterface Chainable
+     * @return EventInterface Chainable
      */
     public function setTemplateIdent($template)
     {
@@ -229,7 +254,7 @@ abstract class AbstractEvent extends Content implements
 
     /**
      * @param array|string $templateOptions Extra template options, if any.
-     * @return SectionInterface Chainable
+     * @return EventInterface Chainable
      */
     public function setTemplateOptions($templateOptions)
     {
@@ -247,6 +272,17 @@ abstract class AbstractEvent extends Content implements
             return $metadata['template_options'];
         }
         return $this->templateOptions;
+    }
+
+    /**
+     * MetatagTrait > canonical_url
+     *
+     * @return string
+     * @todo
+     */
+    public function canonicalUrl()
+    {
+        return '';
     }
 
     /**
