@@ -19,7 +19,6 @@ use \Charcoal\Translation\TranslationConfig;
  */
 class SectionRoute extends TemplateRoute
 {
-
     /**
      * @var string $path
      */
@@ -41,6 +40,7 @@ class SectionRoute extends TemplateRoute
     public function __construct($data)
     {
         parent::__construct($data);
+
         $this->path = ltrim($data['path'], '/');
     }
 
@@ -66,13 +66,14 @@ class SectionRoute extends TemplateRoute
 
         $section = $this->loadSectionFromPath($container);
 
-        $templateIdent      = $section->templateIdent();
-        $templateController = $section->templateIdent();
+        $templateIdent      = (string)$section->templateIdent();
+        $templateController = (string)$section->templateIdent();
 
         $templateFactory = $container['template/factory'];
+        $templateFactory->setDefaultClass($config['default_controller']);
 
         $template = $templateFactory->create($templateController);
-        $template->setDependencies($container);
+        $template->init($request);
 
         // Set custom data from config.
         $template->setData($config['template_data']);
@@ -92,10 +93,15 @@ class SectionRoute extends TemplateRoute
     protected function loadSectionFromPath(Container $container)
     {
         if (!$this->section) {
-            $this->section = $container['model/factory']->create($this->objType);
+            $config  = $this->config();
+            $objType = (isset($config['obj_type']) ? $config['obj_type'] : $this->objType);
+
+            $this->section = $container['model/factory']->create($objType);
+
             $translator = $container['translator/config'];
+
             $langs = $translator->availableLanguages();
-            $lang = $this->section->loadFromL10n('slug', $this->path, $langs);
+            $lang  = $this->section->loadFromL10n('slug', $this->path, $langs);
             TranslationConfig::instance()->setCurrentLanguage($lang);
         }
         return $this->section;
