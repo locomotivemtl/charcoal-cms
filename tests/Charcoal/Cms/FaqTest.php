@@ -2,6 +2,9 @@
 
 namespace Charcoal\Cms\Tests;
 
+use \Psr\Log\NullLogger;
+use \Cache\Adapter\Void\VoidCachePool;
+
 use \Charcoal\Cms\Faq;
 
 class FaqTest extends \PHPUnit_Framework_TestCase
@@ -11,7 +14,17 @@ class FaqTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->obj = new Faq();
+        $metadataLoader = new \Charcoal\Model\MetadataLoader([
+            'logger' => new NullLogger(),
+            'base_path' => __DIR__,
+            'paths' => ['metadata'],
+            'cache'  => new VoidCachePool()
+        ]);
+
+        $this->obj = new Faq([
+            'logger'=> new NullLogger(),
+            'metadata_loader' => $metadataLoader
+        ]);
     }
 
     public function testSetData()

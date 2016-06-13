@@ -363,5 +363,4 @@ abstract class AbstractSection extends Content implements
         // }
         return parent::preUpdate($properties);
     }
-
 }
