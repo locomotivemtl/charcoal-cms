@@ -84,15 +84,6 @@
                             "meta_description",
                             "meta_image"
                         ]
-                    },
-                    "revision":{
-                        "priority":41,
-                        "title":{
-                            "en":"Revision history",
-                            "fr":"Historique des révisions"
-                        },
-                        "properties":[
-                        ]
                     }
                 },
                 "sidebars":{
