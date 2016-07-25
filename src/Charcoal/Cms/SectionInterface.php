@@ -8,10 +8,10 @@ namespace Charcoal\Cms;
 interface SectionInterface
 {
     /**
-     * @param string $sectionType The section type.
+     * @param string $type The section type.
      * @return SectionInterface Chainable
      */
-    public function setSectionType($sectionType);
+    public function setSectionType($type);
 
     /**
      * @return string
@@ -39,26 +39,4 @@ interface SectionInterface
      * @return \Charcoal\Translation\TranslationString
      */
     public function subtitle();
-
-    /**
-     * @param mixed $template Section template (ident).
-     * @return SectionInterface Chainable
-     */
-    public function setTemplateIdent($template);
-
-    /**
-     * @return mixed
-     */
-    public function templateIdent();
-
-    /**
-     * @param array|string $templateOptions Extra template options.
-     * @return SectionInterface Chainable
-     */
-    public function setTemplateOptions($templateOptions);
-
-    /**
-     * @return array
-     */
-    public function templateOptions();
 }

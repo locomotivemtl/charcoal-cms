@@ -1,0 +1,22 @@
+{
+    "properties": {
+        "template_options": {
+            "type": "structure",
+            "input_type": "charcoal/admin/property/input/textarea",
+            "rows": 8,
+            "label": {
+                "fr": "Réglages de gabarit",
+                "en": "Template Settings"
+            }
+        },
+        "template_ident": {
+            "type": "text",
+            "input_type": "charcoal/admin/property/input/select",
+            "label": {
+                "fr": "Gabarit de page",
+                "en": "Page Template"
+            },
+            "choices": {}
+        }
+    }
+}
