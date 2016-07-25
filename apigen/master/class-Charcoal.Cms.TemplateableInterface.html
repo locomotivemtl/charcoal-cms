@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Interface Charcoal\Cms\VideoInterface</title>
+	<title>Interface Charcoal\Cms\TemplateableInterface</title>
 
 	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
 
@@ -87,9 +87,9 @@
 				<li><a href="class-Charcoal.Cms.NewsInterface.html">NewsInterface</a></li>
 				<li><a href="class-Charcoal.Cms.SearchableInterface.html">SearchableInterface</a></li>
 				<li><a href="class-Charcoal.Cms.SectionInterface.html">SectionInterface</a></li>
-				<li><a href="class-Charcoal.Cms.TemplateableInterface.html">TemplateableInterface</a></li>
+				<li class="active"><a href="class-Charcoal.Cms.TemplateableInterface.html">TemplateableInterface</a></li>
 				<li><a href="class-Charcoal.Cms.TextInterface.html">TextInterface</a></li>
-				<li class="active"><a href="class-Charcoal.Cms.VideoInterface.html">VideoInterface</a></li>
+				<li><a href="class-Charcoal.Cms.VideoInterface.html">VideoInterface</a></li>
 			</ul>
 
 			<h3>Traits</h3>
@@ -133,24 +133,30 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Interface VideoInterface</h1>
+	<h1>Interface TemplateableInterface</h1>
 
 
-
-	<dl class="tree">
-		<dd style="padding-left:0px">
-<b><span>Charcoal\Cms\VideoInterface</span></b>			
-			 implements 
-				<a href="class-Charcoal.Cms.DocumentInterface.html"><span>Charcoal\Cms\DocumentInterface</span></a>
-			
-			
-		</dd>
-	</dl>
+	<div class="description">
+	<p>Defines a renderable object associated to a template.</p>
+	</div>
 
 
 
 
 
+	<div>
+		<h4>Direct known implementers</h4>
+			<a href="class-Charcoal.Cms.AbstractSection.html">Charcoal\Cms\AbstractSection</a>
+	</div>
+
+	<div>
+		<h4>Indirect known implementers</h4>
+			<a href="class-Charcoal.Cms.EmptySection.html">Charcoal\Cms\EmptySection</a>, 
+			<a href="class-Charcoal.Cms.ExternalSection.html">Charcoal\Cms\ExternalSection</a>, 
+			<a href="class-Charcoal.Cms.Section.html">Charcoal\Cms\Section</a>, 
+			<a href="class-Charcoal.Cms.Section.BlocksSection.html">Charcoal\Cms\Section\BlocksSection</a>, 
+			<a href="class-Charcoal.Cms.Section.ContentSection.html">Charcoal\Cms\Section\ContentSection</a>
+	</div>
 
 
 
@@ -160,29 +166,162 @@
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Cms.html">Cms</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Cms.VideoInterface.html#5-11" title="Go to source code">Charcoal/Cms/VideoInterface.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Cms.TemplateableInterface.html#5-39" title="Go to source code">Charcoal/Cms/TemplateableInterface.php</a>
 		<br>
 	</div>
 
 
 
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="setTemplateIdent" id="_setTemplateIdent">
 
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-Charcoal.Cms.DocumentInterface.html#methods">Charcoal\Cms\DocumentInterface</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Charcoal.Cms.DocumentInterface.html#_file">file()</a>, 
-			<a href="class-Charcoal.Cms.DocumentInterface.html#_filename">filename()</a>, 
-			<a href="class-Charcoal.Cms.DocumentInterface.html#_filesize">filesize()</a>, 
-			<a href="class-Charcoal.Cms.DocumentInterface.html#_mimetype">mimetype()</a>, 
-			<a href="class-Charcoal.Cms.DocumentInterface.html#_name">name()</a>, 
-			<a href="class-Charcoal.Cms.DocumentInterface.html#_path">path()</a>, 
-			<a href="class-Charcoal.Cms.DocumentInterface.html#_setFile">setFile()</a>, 
-			<a href="class-Charcoal.Cms.DocumentInterface.html#_setName">setName()</a>, 
-			<a href="class-Charcoal.Cms.DocumentInterface.html#_url">url()</a>
-		</code></td>
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Charcoal.Cms.TemplateableInterface.html">Charcoal\Cms\TemplateableInterface</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setTemplateIdent">#</a>
+		<code><a href="source-class-Charcoal.Cms.TemplateableInterface.html#10-16" title="Go to source code">setTemplateIdent</a>( <span>mixed <var>$template</var></span> )</code>
+
+		<div class="description short">
+			<p>Set the renderable object's template identifier.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Set the renderable object's template identifier.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$template</var></dt>
+					<dd>The template ID.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Cms.TemplateableInterface.html">Charcoal\Cms\TemplateableInterface</a></code><br>Chainable
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="templateIdent" id="_templateIdent">
+
+		<td class="attributes"><code>
+			 public 
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_templateIdent">#</a>
+		<code><a href="source-class-Charcoal.Cms.TemplateableInterface.html#18-23" title="Go to source code">templateIdent</a>( )</code>
+
+		<div class="description short">
+			<p>Retrieve the renderable object's template identifier.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Retrieve the renderable object's template identifier.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					mixed
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setTemplateOptions" id="_setTemplateOptions">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Charcoal.Cms.TemplateableInterface.html">Charcoal\Cms\TemplateableInterface</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setTemplateOptions">#</a>
+		<code><a href="source-class-Charcoal.Cms.TemplateableInterface.html#25-31" title="Go to source code">setTemplateOptions</a>( <span>array|string <var>$options</var></span> )</code>
+
+		<div class="description short">
+			<p>Customize the template's options.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Customize the template's options.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$options</var></dt>
+					<dd>Template options.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Cms.TemplateableInterface.html">Charcoal\Cms\TemplateableInterface</a></code><br>Chainable
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="templateOptions" id="_templateOptions">
+
+		<td class="attributes"><code>
+			 public 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_templateOptions">#</a>
+		<code><a href="source-class-Charcoal.Cms.TemplateableInterface.html#33-38" title="Go to source code">templateOptions</a>( )</code>
+
+		<div class="description short">
+			<p>Retrieve the template's customized options.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Retrieve the template's customized options.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
+
+
+
+
+		</div>
+		</div></td>
 	</tr>
 	</table>
+
 
 
 

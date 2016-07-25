@@ -93,6 +93,7 @@
 				<li><a href="class-Charcoal.Cms.NewsInterface.html">Charcoal\Cms\NewsInterface</a></li>
 				<li><a href="class-Charcoal.Cms.SearchableInterface.html">Charcoal\Cms\SearchableInterface</a></li>
 				<li><a href="class-Charcoal.Cms.SectionInterface.html">Charcoal\Cms\SectionInterface</a></li>
+				<li><a href="class-Charcoal.Cms.TemplateableInterface.html">Charcoal\Cms\TemplateableInterface</a></li>
 				<li><a href="class-Charcoal.Cms.TextInterface.html">Charcoal\Cms\TextInterface</a></li>
 				<li><a href="class-Charcoal.Cms.VideoInterface.html">Charcoal\Cms\VideoInterface</a></li>
 			</ul>
@@ -101,6 +102,7 @@
 			<ul>
 				<li><a href="class-Charcoal.Cms.MetatagTrait.html">Charcoal\Cms\MetatagTrait</a></li>
 				<li><a href="class-Charcoal.Cms.SearchableTrait.html">Charcoal\Cms\SearchableTrait</a></li>
+				<li><a href="class-Charcoal.Cms.TemplateableTrait.html">Charcoal\Cms\TemplateableTrait</a></li>
 			</ul>
 
 
@@ -145,10 +147,10 @@
 </span><span id="8" class="l"><a href="#8"> 8: </a><span class="php-keyword1">interface</span> SectionInterface
 </span><span id="9" class="l"><a href="#9"> 9: </a>{
 </span><span id="10" class="l"><a href="#10">10: </a>    <span class="php-comment">/**
-</span></span><span id="11" class="l"><a href="#11">11: </a><span class="php-comment">     * @param string $sectionType The section type.
+</span></span><span id="11" class="l"><a href="#11">11: </a><span class="php-comment">     * @param string $type The section type.
 </span></span><span id="12" class="l"><a href="#12">12: </a><span class="php-comment">     * @return SectionInterface Chainable
 </span></span><span id="13" class="l"><a href="#13">13: </a><span class="php-comment">     */</span>
-</span><span id="14" class="l"><a href="#14">14: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setSectionType(<span class="php-var">$sectionType</span>);
+</span><span id="14" class="l"><a href="#14">14: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setSectionType(<span class="php-var">$type</span>);
 </span><span id="15" class="l"><a href="#15">15: </a>
 </span><span id="16" class="l"><a href="#16">16: </a>    <span class="php-comment">/**
 </span></span><span id="17" class="l"><a href="#17">17: </a><span class="php-comment">     * @return string
@@ -176,30 +178,8 @@
 </span></span><span id="39" class="l"><a href="#39">39: </a><span class="php-comment">     * @return \Charcoal\Translation\TranslationString
 </span></span><span id="40" class="l"><a href="#40">40: </a><span class="php-comment">     */</span>
 </span><span id="41" class="l"><a href="#41">41: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> subtitle();
-</span><span id="42" class="l"><a href="#42">42: </a>
-</span><span id="43" class="l"><a href="#43">43: </a>    <span class="php-comment">/**
-</span></span><span id="44" class="l"><a href="#44">44: </a><span class="php-comment">     * @param mixed $template Section template (ident).
-</span></span><span id="45" class="l"><a href="#45">45: </a><span class="php-comment">     * @return SectionInterface Chainable
-</span></span><span id="46" class="l"><a href="#46">46: </a><span class="php-comment">     */</span>
-</span><span id="47" class="l"><a href="#47">47: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setTemplateIdent(<span class="php-var">$template</span>);
-</span><span id="48" class="l"><a href="#48">48: </a>
-</span><span id="49" class="l"><a href="#49">49: </a>    <span class="php-comment">/**
-</span></span><span id="50" class="l"><a href="#50">50: </a><span class="php-comment">     * @return mixed
-</span></span><span id="51" class="l"><a href="#51">51: </a><span class="php-comment">     */</span>
-</span><span id="52" class="l"><a href="#52">52: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> templateIdent();
-</span><span id="53" class="l"><a href="#53">53: </a>
-</span><span id="54" class="l"><a href="#54">54: </a>    <span class="php-comment">/**
-</span></span><span id="55" class="l"><a href="#55">55: </a><span class="php-comment">     * @param array|string $templateOptions Extra template options.
-</span></span><span id="56" class="l"><a href="#56">56: </a><span class="php-comment">     * @return SectionInterface Chainable
-</span></span><span id="57" class="l"><a href="#57">57: </a><span class="php-comment">     */</span>
-</span><span id="58" class="l"><a href="#58">58: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setTemplateOptions(<span class="php-var">$templateOptions</span>);
-</span><span id="59" class="l"><a href="#59">59: </a>
-</span><span id="60" class="l"><a href="#60">60: </a>    <span class="php-comment">/**
-</span></span><span id="61" class="l"><a href="#61">61: </a><span class="php-comment">     * @return array
-</span></span><span id="62" class="l"><a href="#62">62: </a><span class="php-comment">     */</span>
-</span><span id="63" class="l"><a href="#63">63: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> templateOptions();
-</span><span id="64" class="l"><a href="#64">64: </a>}
-</span><span id="65" class="l"><a href="#65">65: </a></span></code></pre>
+</span><span id="42" class="l"><a href="#42">42: </a>}
+</span><span id="43" class="l"><a href="#43">43: </a></span></code></pre>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
@@ -207,6 +187,6 @@
 </div>
 </div>
 <script src="resources/combined.js?05de1fc8e13e6c0a22074df5eebe21ba985830eb"></script>
-<script src="elementlist.js?cbba81cbe444316a10c834186f07c2e3a0c21673"></script>
+<script src="elementlist.js?f1f35b2be47fb12e5c2b940917b4c375904fb926"></script>
 </body>
 </html>

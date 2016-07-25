@@ -87,6 +87,7 @@
 				<li><a href="class-Charcoal.Cms.NewsInterface.html">NewsInterface</a></li>
 				<li><a href="class-Charcoal.Cms.SearchableInterface.html">SearchableInterface</a></li>
 				<li class="active"><a href="class-Charcoal.Cms.SectionInterface.html">SectionInterface</a></li>
+				<li><a href="class-Charcoal.Cms.TemplateableInterface.html">TemplateableInterface</a></li>
 				<li><a href="class-Charcoal.Cms.TextInterface.html">TextInterface</a></li>
 				<li><a href="class-Charcoal.Cms.VideoInterface.html">VideoInterface</a></li>
 			</ul>
@@ -95,6 +96,7 @@
 			<ul>
 				<li><a href="class-Charcoal.Cms.MetatagTrait.html">MetatagTrait</a></li>
 				<li><a href="class-Charcoal.Cms.SearchableTrait.html">SearchableTrait</a></li>
+				<li><a href="class-Charcoal.Cms.TemplateableTrait.html">TemplateableTrait</a></li>
 			</ul>
 
 
@@ -161,7 +163,7 @@
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Cms.html">Cms</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Cms.SectionInterface.html#5-64" title="Go to source code">Charcoal/Cms/SectionInterface.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Cms.SectionInterface.html#5-42" title="Go to source code">Charcoal/Cms/SectionInterface.php</a>
 		<br>
 	</div>
 
@@ -181,7 +183,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSectionType">#</a>
-		<code><a href="source-class-Charcoal.Cms.SectionInterface.html#10-14" title="Go to source code">setSectionType</a>( <span>string <var>$sectionType</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.SectionInterface.html#10-14" title="Go to source code">setSectionType</a>( <span>string <var>$type</var></span> )</code>
 
 		<div class="description short">
 			
@@ -193,7 +195,7 @@
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$sectionType</var></dt>
+					<dt><var>$type</var></dt>
 					<dd>The section type.</dd>
 				</dl></div>
 
@@ -380,152 +382,6 @@
 				<h4>Returns</h4>
 				<div class="list">
 					Charcoal\Translation\TranslationString
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setTemplateIdent" id="_setTemplateIdent">
-
-		<td class="attributes"><code>
-			 public 
-
-			<code><a href="class-Charcoal.Cms.SectionInterface.html">Charcoal\Cms\SectionInterface</a></code>
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setTemplateIdent">#</a>
-		<code><a href="source-class-Charcoal.Cms.SectionInterface.html#43-47" title="Go to source code">setTemplateIdent</a>( <span>mixed <var>$template</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$template</var></dt>
-					<dd>Section template (ident).</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code><a href="class-Charcoal.Cms.SectionInterface.html">Charcoal\Cms\SectionInterface</a></code><br>Chainable
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="templateIdent" id="_templateIdent">
-
-		<td class="attributes"><code>
-			 public 
-
-			mixed
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_templateIdent">#</a>
-		<code><a href="source-class-Charcoal.Cms.SectionInterface.html#49-52" title="Go to source code">templateIdent</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					mixed
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setTemplateOptions" id="_setTemplateOptions">
-
-		<td class="attributes"><code>
-			 public 
-
-			<code><a href="class-Charcoal.Cms.SectionInterface.html">Charcoal\Cms\SectionInterface</a></code>
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setTemplateOptions">#</a>
-		<code><a href="source-class-Charcoal.Cms.SectionInterface.html#54-58" title="Go to source code">setTemplateOptions</a>( <span>array|string <var>$templateOptions</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$templateOptions</var></dt>
-					<dd>Extra template options.</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code><a href="class-Charcoal.Cms.SectionInterface.html">Charcoal\Cms\SectionInterface</a></code><br>Chainable
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="templateOptions" id="_templateOptions">
-
-		<td class="attributes"><code>
-			 public 
-
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_templateOptions">#</a>
-		<code><a href="source-class-Charcoal.Cms.SectionInterface.html#60-63" title="Go to source code">templateOptions</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					array
 				</div>
 
 

@@ -87,6 +87,7 @@
 				<li><a href="class-Charcoal.Cms.NewsInterface.html">NewsInterface</a></li>
 				<li><a href="class-Charcoal.Cms.SearchableInterface.html">SearchableInterface</a></li>
 				<li><a href="class-Charcoal.Cms.SectionInterface.html">SectionInterface</a></li>
+				<li><a href="class-Charcoal.Cms.TemplateableInterface.html">TemplateableInterface</a></li>
 				<li><a href="class-Charcoal.Cms.TextInterface.html">TextInterface</a></li>
 				<li><a href="class-Charcoal.Cms.VideoInterface.html">VideoInterface</a></li>
 			</ul>
@@ -95,6 +96,7 @@
 			<ul>
 				<li><a href="class-Charcoal.Cms.MetatagTrait.html">MetatagTrait</a></li>
 				<li><a href="class-Charcoal.Cms.SearchableTrait.html">SearchableTrait</a></li>
+				<li><a href="class-Charcoal.Cms.TemplateableTrait.html">TemplateableTrait</a></li>
 			</ul>
 
 
@@ -170,7 +172,9 @@ Charcoal\Object\Content
 			
 				<a href="class-Charcoal.Cms.SearchableInterface.html"><span>Charcoal\Cms\SearchableInterface</span></a>, 
 			
-				<a href="class-Charcoal.Cms.SectionInterface.html"><span>Charcoal\Cms\SectionInterface</span></a>
+				<a href="class-Charcoal.Cms.SectionInterface.html"><span>Charcoal\Cms\SectionInterface</span></a>, 
+			
+				<a href="class-Charcoal.Cms.TemplateableInterface.html"><span>Charcoal\Cms\TemplateableInterface</span></a>
 			
 			 uses 
 					Charcoal\Object\HierarchicalTrait (not available)
@@ -181,7 +185,9 @@ Charcoal\Object\Content
 					Charcoal\Object\RoutableTrait (not available)
 
 			
-					<a href="class-Charcoal.Cms.SearchableTrait.html"><span>Charcoal\Cms\SearchableTrait</span></a>
+					<a href="class-Charcoal.Cms.SearchableTrait.html"><span>Charcoal\Cms\SearchableTrait</span></a>, 
+			
+					<a href="class-Charcoal.Cms.TemplateableTrait.html"><span>Charcoal\Cms\TemplateableTrait</span></a>
 			
 		</dd>
 	</dl>
@@ -207,7 +213,7 @@ Charcoal\Object\Content
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Cms.html">Cms</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Cms.AbstractSection.html#27-366" title="Go to source code">Charcoal/Cms/AbstractSection.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Cms.AbstractSection.html#28-316" title="Go to source code">Charcoal/Cms/AbstractSection.php</a>
 		<br>
 	</div>
 
@@ -227,7 +233,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSectionType">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#102-127" title="Go to source code">setSectionType</a>( <span>string <var>$sectionType</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#96-121" title="Go to source code">setSectionType</a>( <span>string <var>$type</var></span> )</code>
 
 		<div class="description short">
 			
@@ -239,7 +245,7 @@ Charcoal\Object\Content
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$sectionType</var></dt>
+					<dt><var>$type</var></dt>
 					<dd>The section type.</dd>
 				</dl></div>
 
@@ -272,7 +278,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sectionType">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#129-135" title="Go to source code">sectionType</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#123-129" title="Go to source code">sectionType</a>( )</code>
 
 		<div class="description short">
 			
@@ -308,7 +314,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setTitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#137-145" title="Go to source code">setTitle</a>( <span>mixed <var>$title</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#131-139" title="Go to source code">setTitle</a>( <span>mixed <var>$title</var></span> )</code>
 
 		<div class="description short">
 			
@@ -349,7 +355,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_title">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#147-153" title="Go to source code">title</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#141-147" title="Go to source code">title</a>( )</code>
 
 		<div class="description short">
 			
@@ -385,7 +391,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSubtitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#155-163" title="Go to source code">setSubtitle</a>( <span>mixed <var>$subtitle</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#149-157" title="Go to source code">setSubtitle</a>( <span>mixed <var>$subtitle</var></span> )</code>
 
 		<div class="description short">
 			
@@ -426,7 +432,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_subtitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#165-171" title="Go to source code">subtitle</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#159-165" title="Go to source code">subtitle</a>( )</code>
 
 		<div class="description short">
 			
@@ -462,7 +468,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setContent">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#173-181" title="Go to source code">setContent</a>( <span>mixed <var>$content</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#167-175" title="Go to source code">setContent</a>( <span>mixed <var>$content</var></span> )</code>
 
 		<div class="description short">
 			
@@ -501,7 +507,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_content">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#183-189" title="Go to source code">content</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#177-183" title="Go to source code">content</a>( )</code>
 
 		<div class="description short">
 			
@@ -535,7 +541,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setImage">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#191-199" title="Go to source code">setImage</a>( <span>mixed <var>$image</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#185-193" title="Go to source code">setImage</a>( <span>mixed <var>$image</var></span> )</code>
 
 		<div class="description short">
 			
@@ -574,7 +580,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_image">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#201-207" title="Go to source code">image</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#195-201" title="Go to source code">image</a>( )</code>
 
 		<div class="description short">
 			
@@ -596,160 +602,6 @@ Charcoal\Object\Content
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="setTemplateIdent" id="_setTemplateIdent">
-
-		<td class="attributes"><code>
-			 public 
-
-			<code><a href="class-Charcoal.Cms.SectionInterface.html">Charcoal\Cms\SectionInterface</a></code>
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setTemplateIdent">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#209-217" title="Go to source code">setTemplateIdent</a>( <span>mixed <var>$template</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$template</var></dt>
-					<dd>The section template (ident).</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code><a href="class-Charcoal.Cms.SectionInterface.html">Charcoal\Cms\SectionInterface</a></code><br>Chainable
-				</div>
-
-
-
-
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Charcoal.Cms.SectionInterface.html#_setTemplateIdent">Charcoal\Cms\SectionInterface::setTemplateIdent()</a></code></div>
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="templateIdent" id="_templateIdent">
-
-		<td class="attributes"><code>
-			 public 
-
-			mixed
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_templateIdent">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#219-229" title="Go to source code">templateIdent</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					mixed
-				</div>
-
-
-
-
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Charcoal.Cms.SectionInterface.html#_templateIdent">Charcoal\Cms\SectionInterface::templateIdent()</a></code></div>
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setTemplateOptions" id="_setTemplateOptions">
-
-		<td class="attributes"><code>
-			 public 
-
-			<code><a href="class-Charcoal.Cms.SectionInterface.html">Charcoal\Cms\SectionInterface</a></code>
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setTemplateOptions">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#231-239" title="Go to source code">setTemplateOptions</a>( <span>array|string <var>$templateOptions</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$templateOptions</var></dt>
-					<dd>Extra template options, if any.</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code><a href="class-Charcoal.Cms.SectionInterface.html">Charcoal\Cms\SectionInterface</a></code><br>Chainable
-				</div>
-
-
-
-
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Charcoal.Cms.SectionInterface.html#_setTemplateOptions">Charcoal\Cms\SectionInterface::setTemplateOptions()</a></code></div>
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="templateOptions" id="_templateOptions">
-
-		<td class="attributes"><code>
-			 public 
-
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_templateOptions">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#241-251" title="Go to source code">templateOptions</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					array
-				</div>
-
-
-
-
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Charcoal.Cms.SectionInterface.html#_templateOptions">Charcoal\Cms\SectionInterface::templateOptions()</a></code></div>
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="attachments" id="_attachments">
 
 		<td class="attributes"><code>
@@ -762,7 +614,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_attachments">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#253-269" title="Go to source code">attachments</a>( <span>string <var>$type</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#203-219" title="Go to source code">attachments</a>( <span>string <var>$type</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -801,7 +653,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_loadAttachments">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#271-277" title="Go to source code">loadAttachments</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#221-227" title="Go to source code">loadAttachments</a>( )</code>
 
 		<div class="description short">
 			
@@ -835,7 +687,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_loadChildren">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#279-305" title="Go to source code">loadChildren</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#229-255" title="Go to source code">loadChildren</a>( )</code>
 
 		<div class="description short">
 			<p>HierarchicalTrait > loadChildren</p>
@@ -869,7 +721,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_canonicalUrl">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#307-316" title="Go to source code">canonicalUrl</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#257-266" title="Go to source code">canonicalUrl</a>( )</code>
 
 		<div class="description short">
 			<p>MetatagTrait > canonicalUrl</p>
@@ -905,7 +757,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_defaultMetaTitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#318-324" title="Go to source code">defaultMetaTitle</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#268-274" title="Go to source code">defaultMetaTitle</a>( )</code>
 
 		<div class="description short">
 			
@@ -941,7 +793,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_defaultMetaDescription">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#326-332" title="Go to source code">defaultMetaDescription</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#276-282" title="Go to source code">defaultMetaDescription</a>( )</code>
 
 		<div class="description short">
 			
@@ -977,7 +829,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_defaultMetaImage">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#334-340" title="Go to source code">defaultMetaImage</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#284-290" title="Go to source code">defaultMetaImage</a>( )</code>
 
 		<div class="description short">
 			
@@ -1013,7 +865,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_preSave">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#342-351" title="Go to source code">preSave</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#292-301" title="Go to source code">preSave</a>( )</code>
 
 		<div class="description short">
 			
@@ -1047,7 +899,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_preUpdate">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#353-365" title="Go to source code">preUpdate</a>( <span>array <var>$properties</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#303-315" title="Go to source code">preUpdate</a>( <span>array <var>$properties</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1120,6 +972,17 @@ Charcoal\Object\Content
 		</code></td>
 	</tr>
 	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Charcoal.Cms.TemplateableInterface.html#methods">Charcoal\Cms\TemplateableInterface</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Charcoal.Cms.TemplateableInterface.html#_setTemplateIdent">setTemplateIdent()</a>, 
+			<a href="class-Charcoal.Cms.TemplateableInterface.html#_setTemplateOptions">setTemplateOptions()</a>, 
+			<a href="class-Charcoal.Cms.TemplateableInterface.html#_templateIdent">templateIdent()</a>, 
+			<a href="class-Charcoal.Cms.TemplateableInterface.html#_templateOptions">templateOptions()</a>
+		</code></td>
+	</tr>
+	</table>
 
 	<table class="summary used">
 	<caption>Methods used from <a href="class-Charcoal.Cms.MetatagTrait.html#methods">Charcoal\Cms\MetatagTrait</a></caption>
@@ -1165,6 +1028,17 @@ Charcoal\Object\Content
 		</code></td>
 	</tr>
 	</table>
+	<table class="summary used">
+	<caption>Methods used from <a href="class-Charcoal.Cms.TemplateableTrait.html#methods">Charcoal\Cms\TemplateableTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Charcoal.Cms.TemplateableTrait.html#_setTemplateIdent">setTemplateIdent()</a>, 
+			<a href="class-Charcoal.Cms.TemplateableTrait.html#_setTemplateOptions">setTemplateOptions()</a>, 
+			<a href="class-Charcoal.Cms.TemplateableTrait.html#_templateIdent">templateIdent()</a>, 
+			<a href="class-Charcoal.Cms.TemplateableTrait.html#_templateOptions">templateOptions()</a>
+		</code></td>
+	</tr>
+	</table>
 
 
 
@@ -1178,7 +1052,7 @@ Charcoal\Object\Content
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-Charcoal.Cms.AbstractSection.html#59" title="Go to source code"><b>TYPE_BLOCKS</b></a>
+				<a href="source-class-Charcoal.Cms.AbstractSection.html#62" title="Go to source code"><b>TYPE_BLOCKS</b></a>
 			</code>
 
 			<div class="description short">
@@ -1202,7 +1076,7 @@ Charcoal\Object\Content
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-Charcoal.Cms.AbstractSection.html#60" title="Go to source code"><b>TYPE_CONTENT</b></a>
+				<a href="source-class-Charcoal.Cms.AbstractSection.html#63" title="Go to source code"><b>TYPE_CONTENT</b></a>
 			</code>
 
 			<div class="description short">
@@ -1226,7 +1100,7 @@ Charcoal\Object\Content
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-Charcoal.Cms.AbstractSection.html#61" title="Go to source code"><b>TYPE_EMPTY</b></a>
+				<a href="source-class-Charcoal.Cms.AbstractSection.html#64" title="Go to source code"><b>TYPE_EMPTY</b></a>
 			</code>
 
 			<div class="description short">
@@ -1250,7 +1124,7 @@ Charcoal\Object\Content
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-Charcoal.Cms.AbstractSection.html#62" title="Go to source code"><b>TYPE_EXTERNAL</b></a>
+				<a href="source-class-Charcoal.Cms.AbstractSection.html#65" title="Go to source code"><b>TYPE_EXTERNAL</b></a>
 			</code>
 
 			<div class="description short">
@@ -1274,7 +1148,7 @@ Charcoal\Object\Content
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-Charcoal.Cms.AbstractSection.html#63" title="Go to source code"><b>DEFAULT_TYPE</b></a>
+				<a href="source-class-Charcoal.Cms.AbstractSection.html#66" title="Go to source code"><b>DEFAULT_TYPE</b></a>
 			</code>
 
 			<div class="description short">
