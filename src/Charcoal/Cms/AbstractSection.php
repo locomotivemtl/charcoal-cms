@@ -94,6 +94,8 @@ abstract class AbstractSection extends Content implements
     private $attachments;
 
     /**
+     * Set the section's type.
+     *
      * @param string $type The section type.
      * @throws InvalidArgumentException If the section type is not a string or not a valid section type.
      * @return SectionInterface Chainable
@@ -105,11 +107,8 @@ abstract class AbstractSection extends Content implements
                 'Section type must be a string'
             );
         }
-        $validTypes = [
-            self::TYPE_CONTENT,
-            self::TYPE_EMPTY,
-            self::TYPE_EXTERNAL
-        ];
+
+        $validTypes = $this->acceptedSectionType();
         if (!in_array($type, $validTypes)) {
             throw new InvalidArgumentException(
                 'Section type is not valid'
@@ -117,10 +116,27 @@ abstract class AbstractSection extends Content implements
         }
 
         $this->sectionType = $type;
+
         return $this;
     }
 
     /**
+     * Retrieve the available section types.
+     *
+     * @return array
+     */
+    public function acceptedSectionType()
+    {
+        return [
+            self::TYPE_CONTENT,
+            self::TYPE_EMPTY,
+            self::TYPE_EXTERNAL
+        ];
+    }
+
+    /**
+     * Retrieve the section's type.
+     *
      * @return string
      */
     public function sectionType()

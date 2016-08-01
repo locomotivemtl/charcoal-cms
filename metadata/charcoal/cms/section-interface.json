@@ -5,7 +5,11 @@
             "mode": "auto-increment"
         },
         "section_type": {
-            "type": "string"
+            "type": "string",
+            "label": {
+                "fr": "Type de section",
+                "en": "Section Type"
+            }
         },
         "title": {
             "type": "string",
