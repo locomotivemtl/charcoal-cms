@@ -2,7 +2,8 @@
     "properties": {
         "id": {
             "type": "id",
-            "mode": "auto-increment"
+            "mode": "auto-increment",
+            "label": "ID"
         },
         "section_type": {
             "type": "string",
@@ -13,30 +14,38 @@
         },
         "title": {
             "type": "string",
-            "l10n": true
+            "l10n": true,
+            "label": {
+                "fr": "Titre",
+                "en": "Title"
+            }
         },
         "subtitle": {
             "type": "html",
-            "l10n": true
+            "l10n": true,
+            "label": {
+                "fr": "Sous-titre",
+                "en": "Subtitle"
+            }
         },
         "content": {
             "type": "html",
             "input_type": "charcoal/admin/property/input/tinymce",
-            "l10n": true
+            "l10n": true,
+            "label": {
+                "fr": "Contenu",
+                "en": "Content"
+            }
         },
-        "image":{
-            "type":"image",
-            "l10n":true,
-            "public_access":true,
-            "upload_path":"uploads/sections/"
+        "image": {
+            "type": "image",
+            "l10n": true,
+            "public_access": true,
+            "upload_path": "uploads/sections/"
         },
-        "position":{
-            "type":"number",
-            "label":"Position"
-        },
-        "active": {
-            "type": "boolean",
-            "input_type": "charcoal/admin/property/input/switch"
+        "position": {
+            "type": "number",
+            "label": "Position"
         }
     }
 }
