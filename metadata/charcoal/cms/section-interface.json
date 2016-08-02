@@ -30,12 +30,6 @@
             "public_access":true,
             "upload_path":"uploads/sections/"
         },
-        "template_ident": {
-            "type": "string"
-        },
-        "template_options": {
-            "type": "structure"
-        },
         "position":{
             "type":"number",
             "label":"Position"

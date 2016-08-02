@@ -10,7 +10,7 @@
             }
         },
         "template_ident": {
-            "type": "text",
+            "type": "string",
             "label": {
                 "fr": "Gabarit de page",
                 "en": "Page Template"
