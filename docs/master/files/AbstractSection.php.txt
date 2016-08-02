@@ -108,7 +108,7 @@ abstract class AbstractSection extends Content implements
             );
         }
 
-        $validTypes = $this->acceptedSectionType();
+        $validTypes = $this->acceptedSectionTypes();
         if (!in_array($type, $validTypes)) {
             throw new InvalidArgumentException(
                 'Section type is not valid'
@@ -125,7 +125,7 @@ abstract class AbstractSection extends Content implements
      *
      * @return array
      */
-    public function acceptedSectionType()
+    public function acceptedSectionTypes()
     {
         return [
             self::TYPE_CONTENT,
