@@ -2,34 +2,39 @@
 
 namespace Charcoal\Cms\Route;
 
-// PSR-7 (http messaging) dependencies
+// From PSR-7 (HTTP Messaging)
 use \Psr\Http\Message\RequestInterface;
 use \Psr\Http\Message\ResponseInterface;
 
-// Dependencies from `Pimple`
+// From Pimple
 use \Pimple\Container;
 
-// Dependency from 'charcoal-app'
+// From 'charcoal-app'
 use \Charcoal\App\Route\TemplateRoute;
 
 /**
- * News Route
+ * News Route Handler
  */
 class NewsRoute extends TemplateRoute
 {
-
     /**
-     * @var string $path
+     * URI path.
+     *
+     * @var string
      */
     private $path;
 
     /**
-     * @var \Charcoal\Cms\NewsInterface $news
+     * The news entry matching the URI path.
+     *
+     * @var \Charcoal\Cms\NewsInterface|\Charcoal\Object\RoutableInterface
      */
     private $news;
 
     /**
-     * @var string $objType
+     * The news entry model.
+     *
+     * @var string
      */
     private $objType = 'charcoal/cms/news';
 
@@ -43,6 +48,8 @@ class NewsRoute extends TemplateRoute
     }
 
     /**
+     * Determine if the URI path resolves to an object.
+     *
      * @param  Container $container A DI (Pimple) container.
      * @return boolean
      */
@@ -70,7 +77,7 @@ class NewsRoute extends TemplateRoute
         $templateFactory = $container['template/factory'];
 
         $template = $templateFactory->create($templateController);
-        $template->setDependencies($container);
+        $template->init($request);
 
         // Set custom data from config.
         $template->setData($config['template_data']);
@@ -90,9 +97,18 @@ class NewsRoute extends TemplateRoute
     protected function loadNewsFromPath(Container $container)
     {
         if (!$this->news) {
-            $this->news = $container['model/factory']->create($this->objType);
-            $this->news->loadFrom('slug_fr', $this->path);
+            $config  = $this->config();
+            $objType = (isset($config['obj_type']) ? $config['obj_type'] : $this->objType);
+
+            $this->news = $container['model/factory']->create($objType);
+
+            $translator = TranslationConfig::instance();
+
+            $langs = $translator->availableLanguages();
+            $lang  = $this->news->loadFromL10n('slug', $this->path, $langs);
+            $translator->setCurrentLanguage($lang);
         }
+
         return $this->news;
     }
 }

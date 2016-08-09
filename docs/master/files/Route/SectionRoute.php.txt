@@ -2,35 +2,42 @@
 
 namespace Charcoal\Cms\Route;
 
-// PSR-7 (http messaging) dependencies
+// From PSR-7 (HTTP Messaging)
 use \Psr\Http\Message\RequestInterface;
 use \Psr\Http\Message\ResponseInterface;
 
-// Dependencies from `Pimple`
+// From Pimple
 use \Pimple\Container;
 
-// Dependency from 'charcoal-app'
+// From 'charcoal-app'
 use \Charcoal\App\Route\TemplateRoute;
 
+// From 'charcoal-translation'
 use \Charcoal\Translation\TranslationConfig;
 
 /**
- * Section Route
+ * Section Route Handler
  */
 class SectionRoute extends TemplateRoute
 {
     /**
-     * @var string $path
+     * URI path.
+     *
+     * @var string
      */
     private $path;
 
     /**
-     * @var \Charcoal\Cms\SectionInterface $section
+     * The section object matching the URI path.
+     *
+     * @var \Charcoal\Cms\SectionInterface|\Charcoal\Object\RoutableInterface
      */
     private $section;
 
     /**
-     * @var string $objType
+     * The section model.
+     *
+     * @var string
      */
     private $objType = 'charcoal/cms/section';
 
@@ -45,6 +52,8 @@ class SectionRoute extends TemplateRoute
     }
 
     /**
+     * Determine if the URI path resolves to an object.
+     *
      * @param  Container $container A DI (Pimple) container.
      * @return boolean
      */
@@ -98,12 +107,13 @@ class SectionRoute extends TemplateRoute
 
             $this->section = $container['model/factory']->create($objType);
 
-            $translator = $container['translator/config'];
+            $translator = TranslationConfig::instance();
 
             $langs = $translator->availableLanguages();
             $lang  = $this->section->loadFromL10n('slug', $this->path, $langs);
-            TranslationConfig::instance()->setCurrentLanguage($lang);
+            $translator->setCurrentLanguage($lang);
         }
+
         return $this->section;
     }
 }
