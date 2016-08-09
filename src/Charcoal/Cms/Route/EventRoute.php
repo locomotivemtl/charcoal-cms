@@ -2,34 +2,39 @@
 
 namespace Charcoal\Cms\Route;
 
-// PSR-7 (http messaging) dependencies
+// From PSR-7 (HTTP Messaging)
 use \Psr\Http\Message\RequestInterface;
 use \Psr\Http\Message\ResponseInterface;
 
-// Dependencies from `Pimple`
+// From Pimple
 use \Pimple\Container;
 
-// Dependency from 'charcoal-app'
+// From 'charcoal-app'
 use \Charcoal\App\Route\TemplateRoute;
 
 /**
- * Event Route
+ * Event Route Handler
  */
 class EventRoute extends TemplateRoute
 {
-
     /**
-     * @var string $path
+     * URI path.
+     *
+     * @var string
      */
     private $path;
 
     /**
-     * @var \Charcoal\Cms\EventInterface $event
+     * The event object matching the URI path.
+     *
+     * @var \Charcoal\Cms\EventInterface|\Charcoal\Object\RoutableInterface
      */
     private $event;
 
     /**
-     * @var string $objType
+     * The event model.
+     *
+     * @var string
      */
     private $objType = 'charcoal/cms/event';
 
@@ -43,6 +48,8 @@ class EventRoute extends TemplateRoute
     }
 
     /**
+     * Determine if the URI path resolves to an object.
+     *
      * @param  Container $container A DI (Pimple) container.
      * @return boolean
      */
@@ -70,7 +77,7 @@ class EventRoute extends TemplateRoute
         $templateFactory = $container['template/factory'];
 
         $template = $templateFactory->create($templateController);
-        $template->setDependencies($container);
+        $template->init($request);
 
         // Set custom data from config.
         $template->setData($config['template_data']);
@@ -90,9 +97,18 @@ class EventRoute extends TemplateRoute
     protected function loadEventFromPath(Container $container)
     {
         if (!$this->event) {
-            $this->event = $container['model/factory']->create($this->objType);
-            $this->event->loadFrom('slug', $this->path);
+            $config  = $this->config();
+            $objType = (isset($config['obj_type']) ? $config['obj_type'] : $this->objType);
+
+            $this->event = $container['model/factory']->create($objType);
+
+            $translator = TranslationConfig::instance();
+
+            $langs = $translator->availableLanguages();
+            $lang  = $this->event->loadFromL10n('slug', $this->path, $langs);
+            $translator->setCurrentLanguage($lang);
         }
+
         return $this->event;
     }
 }
