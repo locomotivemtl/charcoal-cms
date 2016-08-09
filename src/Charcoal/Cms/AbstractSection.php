@@ -324,9 +324,7 @@ abstract class AbstractSection extends Content implements
      */
     public function preUpdate(array $properties = null)
     {
-        // if (!$this->slug) {
-            $this->setSlug($this->generateSlug());
-        // }
+        $this->setSlug($this->generateSlug());
         return parent::preUpdate($properties);
     }
 }

@@ -18,6 +18,5 @@ final class Faq extends AbstractFaq
     public function categoryType()
     {
         return 'charcoal/cms/faq-category';
-
     }
 }
