@@ -76,6 +76,10 @@ trait TemplateableTrait
      */
     public function setTemplateOptions($options)
     {
+        if (is_string($options)) {
+            $options = json_decode($options, true);
+        }
+
         $this->templateOptions = $options;
 
         return $this;
