@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Charcoal\Cms\Route\GenericRoute</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+				<li class="active">
+					<a href="namespace-Charcoal.html">
+						Charcoal<span></span>
+					</a>
+
+						<ul>
+				<li class="active">
+					<a href="namespace-Charcoal.Cms.html">
+						Cms<span></span>
+					</a>
+
+						<ul>
+				<li class="active">
+					<a href="namespace-Charcoal.Cms.Route.html">
+						Route					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Charcoal.Cms.Section.html">
+						Section					</a>
+
+						</li>
+							</ul></li></ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Charcoal.Cms.Route.EventRoute.html">EventRoute</a></li>
+				<li class="active"><a href="class-Charcoal.Cms.Route.GenericRoute.html">GenericRoute</a></li>
+				<li><a href="class-Charcoal.Cms.Route.NewsRoute.html">NewsRoute</a></li>
+				<li><a href="class-Charcoal.Cms.Route.SectionRoute.html">SectionRoute</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Charcoal.Cms.Route.html" title="Summary of Charcoal\Cms\Route"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class GenericRoute</h1>
+
+
+	<div class="description">
+	<p>Generic Object Route Handler</p>
+
+<p>Uses implementations of \Charcoal\Object\ObjectRouteInterface
+to match routes for catch-all routing patterns.</p>
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+Charcoal\App\Route\TemplateRoute
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>Charcoal\Cms\Route\GenericRoute</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Cms.html">Cms</a>\<a href="namespace-Charcoal.Cms.Route.html">Route</a><br>
+		
+
+			<b>Located at</b> <a href="source-class-Charcoal.Cms.Route.GenericRoute.html#34-413" title="Go to source code">Charcoal/Cms/Route/GenericRoute.php</a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Charcoal.Cms.Route.GenericRoute.html#87-97" title="Go to source code">__construct</a>( <span>array|ArrayAccess <var>$data</var></span> )</code>
+
+		<div class="description short">
+			<p>Returns new template route object.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Returns new template route object.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>Class depdendencies.</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setDependencies" id="_setDependencies">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setDependencies">#</a>
+		<code><a href="source-class-Charcoal.Cms.Route.GenericRoute.html#99-109" title="Go to source code">setDependencies</a>( <span>Pimple\Container <var>$container</var></span> )</code>
+
+		<div class="description short">
+			<p>Inject dependencies from a DI Container.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Inject dependencies from a DI Container.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$container</var></dt>
+					<dd>A dependencies container instance.</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="pathResolvable" id="_pathResolvable">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_pathResolvable">#</a>
+		<code><a href="source-class-Charcoal.Cms.Route.GenericRoute.html#111-133" title="Go to source code">pathResolvable</a>( <span>Pimple\Container <var>$container</var></span> )</code>
+
+		<div class="description short">
+			<p>Determine if the URI path resolves to an object.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Determine if the URI path resolves to an object.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$container</var></dt>
+					<dd>A DI (Pimple) container.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__invoke" id="___invoke">
+
+		<td class="attributes"><code>
+			 public 
+
+			Psr\Http\Message\ResponseInterface
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___invoke">#</a>
+		<code><a href="source-class-Charcoal.Cms.Route.GenericRoute.html#135-173" title="Go to source code">__invoke</a>( <span>Pimple\Container <var>$container</var></span>, <span>Psr\Http\Message\RequestInterface <var>$request</var></span>, <span>Psr\Http\Message\ResponseInterface <var>$response</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$container</var></dt>
+					<dd>A DI (Pimple) container.</dd>
+					<dt><var>$request</var></dt>
+					<dd>A PSR-7 compatible Request instance.</dd>
+					<dt><var>$response</var></dt>
+					<dd>A PSR-7 compatible Response instance.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					Psr\Http\Message\ResponseInterface
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createTemplate" id="_createTemplate">
+
+		<td class="attributes"><code>
+			 protected 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createTemplate">#</a>
+		<code><a href="source-class-Charcoal.Cms.Route.GenericRoute.html#175-188" title="Go to source code">createTemplate</a>( <span>Pimple\Container <var>$container</var></span>, <span>Psr\Http\Message\RequestInterface <var>$request</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$container</var></dt>
+					<dd>A DI (Pimple) container.</dd>
+					<dt><var>$request</var></dt>
+					<dd>The request to intialize the template with.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createRouteObject" id="_createRouteObject">
+
+		<td class="attributes"><code>
+			 public 
+
+			Charcoal\Object\ObjectRouteInterface
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createRouteObject">#</a>
+		<code><a href="source-class-Charcoal.Cms.Route.GenericRoute.html#190-200" title="Go to source code">createRouteObject</a>( )</code>
+
+		<div class="description short">
+			<p>Create a route object.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Create a route object.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Charcoal\Object\ObjectRouteInterface
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setObjectRouteClass" id="_setObjectRouteClass">
+
+		<td class="attributes"><code>
+			 protected 
+
+			AbstractPropertyDisplay
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setObjectRouteClass">#</a>
+		<code><a href="source-class-Charcoal.Cms.Route.GenericRoute.html#202-220" title="Go to source code">setObjectRouteClass</a>( <span>string <var>$className</var></span> )</code>
+
+		<div class="description short">
+			<p>Set the class name of the object route model.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Set the class name of the object route model.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$className</var></dt>
+					<dd>The class name of the object route model.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					AbstractPropertyDisplay<br>Chainable
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					InvalidArgumentException<br>If the class name is not a string.
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="objectRouteClass" id="_objectRouteClass">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_objectRouteClass">#</a>
+		<code><a href="source-class-Charcoal.Cms.Route.GenericRoute.html#222-230" title="Go to source code">objectRouteClass</a>( )</code>
+
+		<div class="description short">
+			<p>Retrieve the class name of the object route model.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Retrieve the class name of the object route model.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="loadContextObject" id="_loadContextObject">
+
+		<td class="attributes"><code>
+			 protected 
+
+			Charcoal\Object\RoutableInterface
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_loadContextObject">#</a>
+		<code><a href="source-class-Charcoal.Cms.Route.GenericRoute.html#232-262" title="Go to source code">loadContextObject</a>( )</code>
+
+		<div class="description short">
+			<p>Load the object associated with the matching object route.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Load the object associated with the matching object route.</p>
+
+<p>Validating if the object ID exists is delegated to the
+<a href="self::pathResolvable()">self::pathResolvable()</a> method.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Charcoal\Object\RoutableInterface
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="loadObjectRouteFromPath" id="_loadObjectRouteFromPath">
+
+		<td class="attributes"><code>
+			 protected 
+
+			Charcoal\Object\ObjectRouteInterface
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_loadObjectRouteFromPath">#</a>
+		<code><a href="source-class-Charcoal.Cms.Route.GenericRoute.html#264-289" title="Go to source code">loadObjectRouteFromPath</a>( )</code>
+
+		<div class="description short">
+			<p>Load the object route matching the URI path.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Load the object route matching the URI path.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Charcoal\Object\ObjectRouteInterface
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getLatestObjectPathHistory" id="_getLatestObjectPathHistory">
+
+		<td class="attributes"><code>
+			 public 
+
+			Charcoal\Object\ObjectRouteInterface
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getLatestObjectPathHistory">#</a>
+		<code><a href="source-class-Charcoal.Cms.Route.GenericRoute.html#291-321" title="Go to source code">getLatestObjectPathHistory</a>( <span>Charcoal\Object\ObjectRouteInterface <var>$route</var></span> )</code>
+
+		<div class="description short">
+			<p>Retrieve the latest object route from the given object route's
+associated object.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Retrieve the latest object route from the given object route's
+associated object.</p>
+
+<p>The object routes are ordered by descending creation date (latest first).
+Should never MISS, the given object route should exist.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$route</var></dt>
+					<dd>Routable Object.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					Charcoal\Object\ObjectRouteInterface
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setPath" id="_setPath">
+
+		<td class="attributes"><code>
+			 protected 
+
+			<code><a href="class-Charcoal.Cms.Route.GenericRoute.html">Charcoal\Cms\Route\GenericRoute</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setPath">#</a>
+		<code><a href="source-class-Charcoal.Cms.Route.GenericRoute.html#327-338" title="Go to source code">setPath</a>( <span>string <var>$path</var></span> )</code>
+
+		<div class="description short">
+			<p>Set the specified URI path.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Set the specified URI path.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd>The path to use for route resolution.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Cms.Route.GenericRoute.html">Charcoal\Cms\Route\GenericRoute</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setModelFactory" id="_setModelFactory">
+
+		<td class="attributes"><code>
+			 protected 
+
+			<code><a href="class-Charcoal.Cms.Route.GenericRoute.html">Charcoal\Cms\Route\GenericRoute</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setModelFactory">#</a>
+		<code><a href="source-class-Charcoal.Cms.Route.GenericRoute.html#340-351" title="Go to source code">setModelFactory</a>( <span>Charcoal\Factory\FactoryInterface <var>$factory</var></span> )</code>
+
+		<div class="description short">
+			<p>Set an object model factory.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Set an object model factory.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$factory</var></dt>
+					<dd>The model factory, to create objects.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Cms.Route.GenericRoute.html">Charcoal\Cms\Route\GenericRoute</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setCollectionLoader" id="_setCollectionLoader">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Charcoal.Cms.Route.GenericRoute.html">Charcoal\Cms\Route\GenericRoute</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setCollectionLoader">#</a>
+		<code><a href="source-class-Charcoal.Cms.Route.GenericRoute.html#353-364" title="Go to source code">setCollectionLoader</a>( <span>Charcoal\Loader\CollectionLoader <var>$loader</var></span> )</code>
+
+		<div class="description short">
+			<p>Set a model collection loader.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Set a model collection loader.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$loader</var></dt>
+					<dd>The collection loader.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Cms.Route.GenericRoute.html">Charcoal\Cms\Route\GenericRoute</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="path" id="_path">
+
+		<td class="attributes"><code>
+			 protected 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_path">#</a>
+		<code><a href="source-class-Charcoal.Cms.Route.GenericRoute.html#370-378" title="Go to source code">path</a>( )</code>
+
+		<div class="description short">
+			<p>Retrieve the URI path.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Retrieve the URI path.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="modelFactory" id="_modelFactory">
+
+		<td class="attributes"><code>
+			 public 
+
+			Charcoal\Factory\FactoryInterface
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_modelFactory">#</a>
+		<code><a href="source-class-Charcoal.Cms.Route.GenericRoute.html#380-395" title="Go to source code">modelFactory</a>( )</code>
+
+		<div class="description short">
+			<p>Retrieve the object model factory.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Retrieve the object model factory.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Charcoal\Factory\FactoryInterface
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					RuntimeException<br>If the model factory was not previously set.
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="collectionLoader" id="_collectionLoader">
+
+		<td class="attributes"><code>
+			 protected 
+
+			Charcoal\Loader\CollectionLoader
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_collectionLoader">#</a>
+		<code><a href="source-class-Charcoal.Cms.Route.GenericRoute.html#397-412" title="Go to source code">collectionLoader</a>( )</code>
+
+		<div class="description short">
+			<p>Retrieve the model collection loader.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Retrieve the model collection loader.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Charcoal\Loader\CollectionLoader
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					RuntimeException<br>If the collection loader was not previously set.
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="objectRouteClass" id="$objectRouteClass">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Charcoal.Cms.Route.GenericRoute.html#77-85" title="Go to source code"><var>$objectRouteClass</var></a>
+
+			<div class="description short">
+				<p>The class name of the object route model.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>The class name of the object route model.</p>
+
+<p>Must be a fully-qualified PHP namespace and an implementation of
+\Charcoal\Object\ObjectRouteInterface. Used by the model factory.</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$objectRouteClass" class="anchor">#</a>
+				<code>Charcoal\Cms\Route\ObjectRoute::class</code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>
