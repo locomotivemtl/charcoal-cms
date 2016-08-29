@@ -25,6 +25,7 @@ use \Charcoal\Translation\TranslationString;
 // Intra-module (`charcoal-cms`) dependencies
 use \Charcoal\Cms\MetatagInterface;
 use \Charcoal\Cms\SearchableInterface;
+use \Charcoal\Cms\TemplateableInterface;
 
 /**
  *
@@ -35,13 +36,15 @@ abstract class AbstractEvent extends Content implements
     MetatagInterface,
     PublishableInterface,
     RoutableInterface,
-    SearchableInterface
+    SearchableInterface,
+    TemplateableInterface
 {
     use CategorizableTrait;
     use PublishableTrait;
     use MetatagTrait;
     use RoutableTrait;
     use SearchableTrait;
+    use TemplateableTrait;
 
     /**
      * @var TranslationString $title
@@ -228,50 +231,6 @@ abstract class AbstractEvent extends Content implements
     public function endDate()
     {
         return $this->endDate;
-    }
-
-    /**
-     * @param mixed $template The section template (ident).
-     * @return EventInterface Chainable
-     */
-    public function setTemplateIdent($template)
-    {
-        $this->templateIdent = $template;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function templateIdent()
-    {
-        if (!$this->templateIdent) {
-            $metadata = $this->metadata();
-            return $metadata['template_ident'];
-        }
-        return $this->templateIdent;
-    }
-
-    /**
-     * @param array|string $templateOptions Extra template options, if any.
-     * @return EventInterface Chainable
-     */
-    public function setTemplateOptions($templateOptions)
-    {
-        $this->templateOptions = $templateOptions;
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function templateOptions()
-    {
-        if (!$this->templateOptions) {
-            $metadata = $this->metadata();
-            return $metadata['template_options'];
-        }
-        return $this->templateOptions;
     }
 
     /**
