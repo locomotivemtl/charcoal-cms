@@ -1,11 +1,9 @@
 {
-    "properties":{
+    "properties": {},
 
-    },
-
-    "slug_pattern":{
-        "en":"en/events/{{title}}",
-        "fr":"fr/evenements/{{title}}"
+    "slug_pattern": {
+        "en": "en/events/{{title}}",
+        "fr": "fr/evenements/{{title}}"
     },
 
     "sources": {
@@ -20,7 +18,7 @@
             "edit": {
                 "layout": {
                     "structure": [{
-                        "columns": [1]
+                        "columns": [ 1 ]
                     }]
                 },
                 "widgets": {
@@ -38,7 +36,7 @@
                 },
                 "layout": {
                     "structure": [{
-                        "columns": [1]
+                        "columns": [ 1 ]
                     }]
                 },
                 "widgets": {

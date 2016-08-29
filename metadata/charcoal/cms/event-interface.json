@@ -1,58 +1,60 @@
 {
-    "properties":{
-        "id":{
-            "type":"id"
-        },
-        "title":{
-            "type":"string",
-            "l10n":true,
-            "label":{
-                "en":"Title",
-                "fr":"Titre"
-            }
-        },
-        "subtitle":{
-            "type":"text",
-            "l10n":true,
-            "input_type":"charcoal/admin/property/input/textarea",
-            "label":{
-                "en":"Subtitle",
-                "fr":"Sous-titre"
-            }
-        },
-        "summary":{
-            "type":"html",
-            "l10n":true,
-            "label":{
-                "en":"Summary",
-                "fr":"Sommaire"
-            }
-        },
-        "content":{
-            "type":"html",
-            "l10n":true,
-            "label":{
-                "en":"Content",
-                "fr":"Contenu"
-            }
-        },
-        "image":{
-            "type":"image",
-            "l10n":true,
-            "public_access":true,
-            "upload_path":"uploads/events/"
-        },
-        "start_date":{
-            "type":"date-time"
-        },
-        "end_date":{
-            "type":"date-time"
-        },
-        "info_url":{
-          "type":"url",
-          "l10n":true
-        }
+    "template": {
+        "ident": "charcoal/cms/event"
     },
 
-    "template_ident":"charcoal/cms/event"
+    "properties": {
+        "id": {
+            "type": "id"
+        },
+        "title": {
+            "type": "string",
+            "l10n": true,
+            "label": {
+                "en": "Title",
+                "fr": "Titre"
+            }
+        },
+        "subtitle": {
+            "type": "text",
+            "l10n": true,
+            "input_type": "charcoal/admin/property/input/textarea",
+            "label": {
+                "en": "Subtitle",
+                "fr": "Sous-titre"
+            }
+        },
+        "summary": {
+            "type": "html",
+            "l10n": true,
+            "label": {
+                "en": "Summary",
+                "fr": "Sommaire"
+            }
+        },
+        "content": {
+            "type": "html",
+            "l10n": true,
+            "label": {
+                "en": "Content",
+                "fr": "Contenu"
+            }
+        },
+        "image": {
+            "type": "image",
+            "l10n": true,
+            "public_access": true,
+            "upload_path": "uploads/events/"
+        },
+        "start_date": {
+            "type": "date-time"
+        },
+        "end_date": {
+            "type": "date-time"
+        },
+        "info_url": {
+          "type": "url",
+          "l10n": true
+        }
+    }
 }

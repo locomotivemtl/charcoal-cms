@@ -1,20 +1,21 @@
 {
-    "properties":{
-        "meta_title":{
-            "type":"string",
-            "l10n":true
+    "properties": {
+        "meta_title": {
+            "type": "string",
+            "l10n": true
         },
-        "meta_description":{
-            "type":"text",
-            "l10n":true
+        "meta_description": {
+            "type": "text",
+            "l10n": true,
+            "max_length": 255
         },
-        "meta_image":{
-            "type":"image",
-            "l10n":true
+        "meta_image": {
+            "type": "image",
+            "l10n": true
         },
-        "meta_author":{
-            "type":"string",
-            "l10n":true
+        "meta_author": {
+            "type": "string",
+            "l10n": true
         }
     }
 }

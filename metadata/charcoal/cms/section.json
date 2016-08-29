@@ -1,13 +1,13 @@
 {
-    "properties":{
+    "properties": {
          "master": {
             "obj_type": "charcoal/cms/section"
         }
     },
 
-    "slug_pattern":{
-        "en":"en/{{title}}",
-        "fr":"fr/{{title}}"
+    "slug_pattern": {
+        "en": "en/{{title}}",
+        "fr": "fr/{{title}}"
     },
 
     "sources": {
@@ -25,20 +25,7 @@
                     "id",
                     "title",
                     "active"
-                ],
-                "properties_options": {
-
-                },
-                "filters": [
-
-                ],
-                "orders": [
-
-                ],
-                "pagination": [
-
                 ]
-
             }
         },
         "default_list": "section",
@@ -47,10 +34,10 @@
             "default": {
                 "groups": {
                     "infos": {
-                        "priority":1,
-                        "title":{
-                            "en":"Informations",
-                            "fr":"Informations"
+                        "priority": 1,
+                        "title": {
+                            "en": "Informations",
+                            "fr": "Informations"
                         },
                         "properties": [
                             "id",
@@ -60,34 +47,34 @@
                             "active"
                         ]
                     },
-                    "content":{
-                        "priority":11,
-                        "title":{
-                            "en":"Content",
-                            "fr":"Contenu"
+                    "content": {
+                        "priority": 11,
+                        "title": {
+                            "en": "Content",
+                            "fr": "Contenu"
                         },
-                        "properties":[
+                        "properties": [
                             "title",
                             "subtitle",
                             "content",
                             "image"
                         ]
                     },
-                    "metadata":{
-                        "priority":31,
-                        "title":{
-                            "en":"Metadata",
-                            "fr":"Metadata"
+                    "metadata": {
+                        "priority": 31,
+                        "title": {
+                            "en": "Metadata",
+                            "fr": "Metadata"
                         },
-                        "properties":[
+                        "properties": [
                             "meta_title",
                             "meta_description",
                             "meta_image"
                         ]
                     }
                 },
-                "sidebars":{
-                    "actions":{}
+                "sidebars": {
+                    "default": {}
                 }
             }
         },
@@ -97,7 +84,7 @@
             "admin.edit": {
                 "layout": {
                     "structure": [{
-                        "columns": [1]
+                        "columns": [ 1 ]
                     }]
                 },
                 "widgets": {
@@ -111,7 +98,7 @@
             "admin.table": {
                 "layout": {
                     "structure": [{
-                        "columns": [1]
+                        "columns": [ 1 ]
                     }]
                 },
                 "widgets": {

@@ -7,5 +7,4 @@ namespace Charcoal\Cms;
  */
 abstract class AbstractImage extends AbstractDocument
 {
-
 }

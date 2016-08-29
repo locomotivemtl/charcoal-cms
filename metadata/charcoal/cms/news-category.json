@@ -1,38 +1,31 @@
 {
+    "properties": {},
 
-    "properties":{
-
-    },
-
-    "sources":{
-        "default":{
-            "table":"cms_news_categories"
+    "sources": {
+        "default": {
+            "table": "cms_news_categories"
         }
     },
-    "default_source":"default",
+    "default_source": "default",
 
-    "admin":{
-        "lists":{
-            "default":{
-                "properties":[
-
-                ]
+    "admin": {
+        "lists": {
+            "default": {
+                "properties": []
             }
         },
-        "default_list":"default",
+        "default_list": "default",
 
-        "forms":{
-            "default":{
-                "groups":{
-
-                },
-                "sidebars":{
-                    "actions":{}
+        "forms": {
+            "default": {
+                "groups": {},
+                "sidebars": {
+                    "default": {}
                 }
             }
         },
-        "default_form":"default",
+        "default_form": "default",
 
-        "dashboards":{}
+        "dashboards": {}
     }
 }

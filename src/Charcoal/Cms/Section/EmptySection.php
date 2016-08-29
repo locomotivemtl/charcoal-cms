@@ -12,5 +12,4 @@ use \Charcoal\Cms\AbstractSection;
  */
 class EmptySection extends AbstractSection
 {
-
 }

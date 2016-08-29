@@ -1,7 +1,7 @@
 {
-    "properties":{
-        "video_source":{
-            "type":"string"
+    "properties": {
+        "video_source": {
+            "type": "string"
         }
     }
 }

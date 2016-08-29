@@ -7,5 +7,4 @@ namespace Charcoal\Cms;
  */
 final class Section extends AbstractSection
 {
-
 }

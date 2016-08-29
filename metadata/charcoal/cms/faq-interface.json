@@ -1,19 +1,19 @@
 {
-    "properties":{
-        "question":{
-            "type":"string",
-            "l10n":true
+    "properties": {
+        "question": {
+            "type": "string",
+            "l10n": true
         },
-        "answer":{
-            "type":"html",
-            "l10n":true
+        "answer": {
+            "type": "html",
+            "l10n": true
         },
-        "attachments":{
-            "type":"attachments",
-            "l10n":true,
-            "label":{
-                "en":"Content attachments",
-                "fr":"Contenus supplémentaires"
+        "attachments": {
+            "type": "attachments",
+            "l10n": true,
+            "label": {
+                "en": "Content attachments",
+                "fr": "Contenus supplémentaires"
             }
         }
     }

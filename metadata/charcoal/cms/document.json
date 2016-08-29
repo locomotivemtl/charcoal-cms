@@ -1,7 +1,7 @@
 {
-    "properties":{
-        "category":{
-            "obj_type":"charcoal/cms/document-category"
+    "properties": {
+        "category": {
+            "obj_type": "charcoal/cms/document-category"
         }
     },
 
@@ -10,7 +10,7 @@
             "table": "cms_documents"
         }
     },
-    "default_source":"default",
+    "default_source": "default",
 
     "admin": {
         "lists": {
@@ -37,7 +37,7 @@
                     }
                 },
                 "sidebars": {
-                    "actions": {}
+                    "default": {}
                 }
             }
         },
@@ -47,7 +47,7 @@
             "edit": {
                 "layout": {
                     "structure": [{
-                        "columns": [1]
+                        "columns": [ 1 ]
                     }]
                 },
                 "widgets": {
@@ -65,7 +65,7 @@
                 },
                 "layout": {
                     "structure": [{
-                        "columns": [1]
+                        "columns": [ 1 ]
                     }]
                 },
                 "widgets": {

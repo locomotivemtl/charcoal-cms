@@ -1,28 +1,28 @@
 {
-    "properties":{
-        "title":{
-            "type":"string",
-            "l10n":true,
-            "label":{
-                "en":"Title",
-                "fr":"Titre"
+    "properties": {
+        "title": {
+            "type": "string",
+            "l10n": true,
+            "label": {
+                "en": "Title",
+                "fr": "Titre"
             }
         },
-        "subtitle":{
-            "type":"text",
-            "l10n":true,
-            "input_type":"charcoal/admin/property/input/textarea",
-            "label":{
-                "en":"Subtitle",
-                "fr":"Sous-titre"
+        "subtitle": {
+            "type": "text",
+            "l10n": true,
+            "input_type": "charcoal/admin/property/input/textarea",
+            "label": {
+                "en": "Subtitle",
+                "fr": "Sous-titre"
             }
         },
-        "content":{
-            "type":"html",
-            "l10n":true,
-            "label":{
-                "en":"Content",
-                "fr":"Contenu"
+        "content": {
+            "type": "html",
+            "l10n": true,
+            "label": {
+                "en": "Content",
+                "fr": "Contenu"
             }
         }
     }

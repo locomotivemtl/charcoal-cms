@@ -14,33 +14,33 @@ The preferred (and only supported) way of installing _charcoal-cms is with **com
 
 ## Dependencies
 
-- [`PHP 5.5+`](http://php.net)
-- [`locomotivemtl/charcoal-core`](https://github.com/locomotivemtl/charcoal-core)
-- [`locomotivemtl/charcoal-base`](https://github.com/locomotivemtl/charcoal-base)
+-   [`PHP 5.5+`](http://php.net)
+-   [`locomotivemtl/charcoal-core`](https://github.com/locomotivemtl/charcoal-core)
+-   [`locomotivemtl/charcoal-base`](https://github.com/locomotivemtl/charcoal-base)
 
 # Objects
 
 All objects in the `charcoal-cms` module implements `\Charcoal\Object\Content`, which allows to store creation & modification dates. Many objects also implement the `\Charcoal\Object\PublishableInterface`.
 
 
-- **Core objects**
-	- [Section](#section-object)
-	- [Text](#text-object)
-	- [Block](#block-object)
-- **CMS objets**
-	- [Event](#event-object)
-	- [FAQ](#faq-object)
-	- [News](#news-object)
-- **Media attachments objects**
-	- [Document](#document-object)
-	- [Image](#image-object)
-	- [Video](#video-object)
+-   **Core objects**
+    -   [Section](#section-object)
+    -   [Text](#text-object)
+    -   [Block](#block-object)
+-   **CMS objets**
+    -   [Event](#event-object)
+    -   [FAQ](#faq-object)
+    -   [News](#news-object)
+-   **Media attachments objects**
+    -   [Document](#document-object)
+    -   [Image](#image-object)
+    -   [Video](#video-object)
 
 # Core objects
 
-- [Section](#section-object)
-- [Text](#text-object)
-- [Block](#block-object)
+-   [Section](#section-object)
+-   [Text](#text-object)
+-   [Block](#block-object)
 
 ## Section object
 
@@ -48,14 +48,14 @@ A **section**, in Charcoal, is a reachable page on the website, as part of the f
 
 Types of sections:
 
-- `blocks`
-	- Blocks sections define their content as a structured map of blocks.
-- `content`
-	- Content sections define their content in a single, simple _HTML_ property.
-- `empty`
-	- Empty sections are linked to a template but do not require any custom content.
-- `external`
-	- External sections are simply a redirect to an external (or internal) URL.
+-   `blocks`
+    -   Blocks sections define their content as a structured map of blocks.
+-   `content`
+    -   Content sections define their content in a single, simple _HTML_ property.
+-   `empty`
+    -   Empty sections are linked to a template but do not require any custom content.
+-   `external`
+    -   External sections are simply a redirect to an external (or internal) URL.
 
 All section types, except _external_, make use of a `Template` object to be rendered. Typically, a charcoal `view` make sure of linking the `template` (by default, _mustache_
 
@@ -117,9 +117,9 @@ _Sections_ are hierarchical. They can be indented inside one another to create m
 
 The hierarchical interface also provide the following methods, amongst others:
 
-- `hierarchy()`
-- `children()`
-- `siblings()`
+-   `hierarchy()`
+-   `children()`
+-   `siblings()`
 
 --
 
@@ -176,9 +176,9 @@ Because _texts_ extends `\Charcoal\Object\Content`, they also have the following
 
 # CMS objects
 
-- [Event](#event-object)
-- [FAQ](#faq-object)
-- [News](#news-object)
+-   [Event](#event-object)
+-   [FAQ](#faq-object)
+-   [News](#news-object)
 
 ## Event object
 
@@ -188,9 +188,9 @@ Because _texts_ extends `\Charcoal\Object\Content`, they also have the following
 
 # Media attachments objects
 
-- [Document](#document-object)
-- [Image](#image-object)
-- [Video](#video-object)
+-   [Document](#document-object)
+-   [Image](#image-object)
+-   [Video](#video-object)
 
 ## Document object
 
@@ -210,14 +210,14 @@ $ composer install --prefer-source
 
 ## API documentation
 
-- The auto-generated `phpDocumentor` API documentation is available at [https://locomotivemtl.github.io/charcoal-cms/docs/master/](https://locomotivemtl.github.io/charcoal-cms/docs/master/)
-- The auto-generated `apigen` API documentation is available at [https://codedoc.pub/locomotivemtl/charcoal-cms/master/](https://codedoc.pub/locomotivemtl/charcoal-cms/master/index.html)
+-   The auto-generated `phpDocumentor` API documentation is available at [https://locomotivemtl.github.io/charcoal-cms/docs/master/](https://locomotivemtl.github.io/charcoal-cms/docs/master/)
+-   The auto-generated `apigen` API documentation is available at [https://codedoc.pub/locomotivemtl/charcoal-cms/master/](https://codedoc.pub/locomotivemtl/charcoal-cms/master/index.html)
 
 ## Development dependencies
 
-- `phpunit/phpunit`
-- `squizlabs/php_codesniffer`
-- `satooshi/php-coveralls`
+-   `phpunit/phpunit`
+-   `squizlabs/php_codesniffer`
+-   `satooshi/php-coveralls`
 
 ## Continuous Integration
 
@@ -232,17 +232,17 @@ $ composer install --prefer-source
 
 The Charcoal-App module follows the Charcoal coding-style:
 
-- [_PSR-1_](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md)
-- [_PSR-2_](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)
-- [_PSR-4_](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md), autoloading is therefore provided by _Composer_.
-- [_phpDocumentor_](http://phpdoc.org/) comments.
-- Read the [phpcs.xml](phpcs.xml) file for all the details on code style.
+-   [_PSR-1_](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md)
+-   [_PSR-2_](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)
+-   [_PSR-4_](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md), autoloading is therefore provided by _Composer_.
+-   [_phpDocumentor_](http://phpdoc.org/) comments.
+-   Read the [phpcs.xml](phpcs.xml) file for all the details on code style.
 
 > Coding style validation / enforcement can be performed with `composer phpcs`. An auto-fixer is also available with `composer phpcbf`.
 
 ## Authors
 
-- Mathieu Ducharme <mat@locomotive.ca>
+-   Mathieu Ducharme <mat@locomotive.ca>
 
 ## Changelog
 

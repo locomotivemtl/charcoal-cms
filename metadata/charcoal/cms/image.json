@@ -1,31 +1,29 @@
 {
-    "sources":{
-        "default":{
-            "table":"cms_images"
+    "sources": {
+        "default": {
+            "table": "cms_images"
         }
     },
 
-    "admin":{
-        "lists":{
-            "default":{
-
-            }
+    "admin": {
+        "lists": {
+            "default": {}
         },
-        "default_list":"default",
+        "default_list": "default",
 
-        "forms":{
-            "default":{
-                "groups":{
-                    "image":{
-                        "label":{},
-                        "properties":[]
+        "forms": {
+            "default": {
+                "groups": {
+                    "image": {
+                        "label": {},
+                        "properties": []
                     }
                 },
-                "sidebars":{
-                    "actions":{}
+                "sidebars": {
+                    "default": {}
                 }
             }
         },
-        "default_form":"default"
+        "default_form": "default"
     }
 }

@@ -1,42 +1,36 @@
 {
-    "properties":{
-        "attachments":{
-            "allowed_types":{
-                "charcoal/cms/document":{},
-                "charcoal/cms/image":{},
-                "charcoal/cms/video":{}
+    "properties": {
+        "attachments": {
+            "allowed_types": {
+                "charcoal/cms/document": {},
+                "charcoal/cms/image": {},
+                "charcoal/cms/video": {}
             }
         }
     },
 
-    "sources":{
-        "default":{
-            "table":"cms_faqs"
+    "sources": {
+        "default": {
+            "table": "cms_faqs"
         }
     },
 
-    "admin":{
-        "lists":{
-            "default":{
+    "admin": {
+        "lists": {
+            "default": {
 
             }
         },
-        "default_list":"default",
+        "default_list": "default",
 
-        "forms":{
-            "default":{
-                "groups":{
-
-                },
-                "sidebars":{
-                    "actions":{}
+        "forms": {
+            "default": {
+                "groups": {},
+                "sidebars": {
+                    "default": {}
                 }
             }
         },
-        "default_form":"default",
-
-        "dashboards":{
-
-        }
+        "default_form": "default"
     }
 }

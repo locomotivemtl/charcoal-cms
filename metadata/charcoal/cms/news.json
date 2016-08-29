@@ -1,13 +1,13 @@
 {
-    "properties":{
-        "category":{
-            "obj_type":"charcoal/cms/news-category"
+    "properties": {
+        "category": {
+            "obj_type": "charcoal/cms/news-category"
         }
     },
 
-    "slug_pattern":{
-        "en":"en/news/{{title}}",
-        "fr":"fr/nouvelles/{{title}}"
+    "slug_pattern": {
+        "en": "en/news/{{title}}",
+        "fr": "fr/nouvelles/{{title}}"
     },
 
     "sources": {
@@ -58,7 +58,7 @@
                     }
                 },
                 "sidebars": {
-                    "actions": {}
+                    "default": {}
                 }
             }
         },
@@ -68,7 +68,7 @@
             "edit": {
                 "layout": {
                     "structure": [{
-                        "columns": [1]
+                        "columns": [ 1 ]
                     }]
                 },
                 "widgets": {
@@ -86,7 +86,7 @@
                 },
                 "layout": {
                     "structure": [{
-                        "columns": [1]
+                        "columns": [ 1 ]
                     }]
                 },
                 "widgets": {

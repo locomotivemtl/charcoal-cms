@@ -1,12 +1,8 @@
 {
-    "sources":{
-        "default":{
-            "table":"cms_videos"
+    "sources": {
+        "default": {
+            "table": "cms_videos"
         }
     },
-    "default_source":"default",
-
-    "admin":{
-
-    }
+    "default_source": "default"
 }

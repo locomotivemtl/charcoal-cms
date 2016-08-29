@@ -1,63 +1,65 @@
- {
-  "properties":{
-    "id":{
-      "type":"id"
+{
+    "template": {
+        "ident": "charcoal/cms/news"
     },
-    "title":{
-      "type":"string",
-      "l10n":true,
-      "label":{
-        "en":"Title",
-        "fr":"Titre"
-      }
-    },
-    "subtitle":{
-      "type":"text",
-      "l10n":true,
-      "input_type":"charcoal/admin/property/input/textarea",
-      "label":{
-        "en":"Subtitle",
-        "fr":"Sous-titre"
-      }
-    },
-    "summary":{
-        "type":"html",
-        "l10n":true,
-        "label":{
-            "en":"Summary",
-            "fr":"Sommaire"
-        }
-    },
-    "content":{
-      "type":"html",
-      "l10n":true,
-      "label":{
-        "en":"Content",
-        "fr":"Contenu"
-      }
-    },
-    "image":{
-        "type":"image",
-        "l10n":true,
-        "public_access":true,
-        "upload_path":"uploads/news/"
-    },
-    "news_date":{
-      "type":"date-time",
-      "label":{
-        "en":"News date",
-        "fr":"Date de la nouvelle"
-      },
-      "description":{
-        "en":"The \"display\" date of this news.",
-        "fr":"La date affichée de la nouvelle."
-      }
-    },
-    "info_url":{
-      "type":"url",
-      "l10n":true
-    }
-  },
 
-  "template_ident":"charcoal/cms/news"
+    "properties": {
+        "id": {
+            "type": "id"
+        },
+        "title": {
+            "type": "string",
+            "l10n": true,
+            "label": {
+                "en": "Title",
+                "fr": "Titre"
+            }
+        },
+        "subtitle": {
+            "type": "text",
+            "l10n": true,
+            "input_type": "charcoal/admin/property/input/textarea",
+            "label": {
+                "en": "Subtitle",
+                "fr": "Sous-titre"
+            }
+        },
+        "summary": {
+            "type": "html",
+            "l10n": true,
+            "label": {
+                "en": "Summary",
+                "fr": "Sommaire"
+            }
+        },
+        "content": {
+            "type": "html",
+            "l10n": true,
+            "label": {
+                "en": "Content",
+                "fr": "Contenu"
+            }
+        },
+        "image": {
+            "type": "image",
+            "l10n": true,
+            "public_access": true,
+            "upload_path": "uploads/news/"
+        },
+        "news_date": {
+            "type": "date-time",
+            "label": {
+                "en": "News date",
+                "fr": "Date de la nouvelle"
+            },
+            "description": {
+                "en": "The \"display\" date of this news.",
+                "fr": "La date affichée de la nouvelle."
+            }
+        },
+        "info_url": {
+            "type": "url",
+            "l10n": true
+        }
+    }
 }

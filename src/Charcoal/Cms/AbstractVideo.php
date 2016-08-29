@@ -9,5 +9,4 @@ use \Charcoal\Cms\AbstractDocument;
  */
 abstract class AbstractVideo extends AbstractDocument
 {
-
 }

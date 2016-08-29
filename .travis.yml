@@ -1,46 +1,46 @@
 language: php
 
 php:
-  - 5.5
-  - 5.6
-  - 7.0
-  - hhvm
-  - nightly
+    - 5.5
+    - 5.6
+    - 7.0
+    - hhvm
+    - nightly
 
 env:
-  global:
-    - secure: "RV9l8oOXu4d1QScBvQYyV0uoOrUUibgBiliGleQxZkw49FqWs3M1yo+R8Hhkru0BKAluj6Q+RilwEVePROp2rsbtTdL/EVpRPNKl3WDTaZ/J6xaDKMofBBHw6SiP4K2buwnI5Zul7u2R9BVhOEZySCO/E1oHhAk/T6z3cvYnkOrXS1G6u0gy3GzwKkBfBeWNn3KKamHxNr8ETdi2ptXO8KE7XmSCB7qqgCtLf5UowULd+GJvSy6ABcbklySx5W3T/V/mhZ+aa+6hFcbUVMywtqYM5fozHYyl6g3uPo+LDCBiOK43uYZ59X6AL7vnIaeOtI3v6nxLiHMjsZVr9xsYN3Xw1pUrqN7Ng+I6eOtUrvnOyomDtrg/96SkkiZg2N/RLpYW0MnR2SmeuRwZJbqLarlyYK1OX0HRXubJLTLehe6id4/NCx0ctGNdtbgfvppLNlCFleJFxffoNe1uCU3QY5QYq3U+mb1UfBugUC6NfAjsqgKGgCst99aur1gP21Nlq+4q18cjMRn3K28ik3znSnMc9vgCumd3to3SoUYCsS5G0lfq2oYNLPqejvSWi0dNqfFpQDzE8jRNzs4eka4Smx5Sy/z2WAaSufsDOdD6luQDeHC9ttwaQdmPMw2YeJPwtFM5DYMUX0qD/eth/DXFHJk2BDNFi7XtDxha1pc/DTM="
-    - GH_REPO: github.com/locomotivemtl/charcoal-cms.git
+    global:
+        - secure: "RV9l8oOXu4d1QScBvQYyV0uoOrUUibgBiliGleQxZkw49FqWs3M1yo+R8Hhkru0BKAluj6Q+RilwEVePROp2rsbtTdL/EVpRPNKl3WDTaZ/J6xaDKMofBBHw6SiP4K2buwnI5Zul7u2R9BVhOEZySCO/E1oHhAk/T6z3cvYnkOrXS1G6u0gy3GzwKkBfBeWNn3KKamHxNr8ETdi2ptXO8KE7XmSCB7qqgCtLf5UowULd+GJvSy6ABcbklySx5W3T/V/mhZ+aa+6hFcbUVMywtqYM5fozHYyl6g3uPo+LDCBiOK43uYZ59X6AL7vnIaeOtI3v6nxLiHMjsZVr9xsYN3Xw1pUrqN7Ng+I6eOtUrvnOyomDtrg/96SkkiZg2N/RLpYW0MnR2SmeuRwZJbqLarlyYK1OX0HRXubJLTLehe6id4/NCx0ctGNdtbgfvppLNlCFleJFxffoNe1uCU3QY5QYq3U+mb1UfBugUC6NfAjsqgKGgCst99aur1gP21Nlq+4q18cjMRn3K28ik3znSnMc9vgCumd3to3SoUYCsS5G0lfq2oYNLPqejvSWi0dNqfFpQDzE8jRNzs4eka4Smx5Sy/z2WAaSufsDOdD6luQDeHC9ttwaQdmPMw2YeJPwtFM5DYMUX0qD/eth/DXFHJk2BDNFi7XtDxha1pc/DTM="
+        - GH_REPO: github.com/locomotivemtl/charcoal-cms.git
 
 matrix:
-  allow_failures:
-    - php: 7.0
-    - php: hhvm
-    - php: nightly
+    allow_failures:
+        - php: 7.0
+        - php: hhvm
+        - php: nightly
 
 before_script:
-  ## Init composer
-  - composer selfupdate --quiet
-  - COMPOSER_ROOT_VERSION=dev-master composer install -n --dev
+    ## Init composer
+    - composer selfupdate --quiet
+    - COMPOSER_ROOT_VERSION=dev-master composer install -n --dev
 
-  ## Create temporary folders
-  - mkdir -p build/logs\
+    ## Create temporary folders
+    - mkdir -p build/logs\
 
 script:
-  ## Lint PHP Files
-  - find {src,tests} -name '*.php' -print0 | xargs -0 -n1 -P8 php -l | grep -v '^No syntax errors detected'; test $? -eq 1
+    ## Lint PHP Files
+    - find {src,tests} -name '*.php' -print0 | xargs -0 -n1 -P8 php -l | grep -v '^No syntax errors detected'; test $? -eq 1
 
-  ## PHP Code Sniffer
-  - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then ./vendor/bin/phpcs --config-set ignore_warnings_on_exit 1;./vendor/bin/phpcs -ps --colors --standard=phpcs.xml src/; fi
+    ## PHP Code Sniffer
+    - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then ./vendor/bin/phpcs --config-set ignore_warnings_on_exit 1;./vendor/bin/phpcs -ps --colors --standard=phpcs.xml src/; fi
 
-  ## Run PHPUnit Tests
-  - phpunit --configuration ./tests/phpunit.xml --coverage-text --coverage-clover build/logs/clover.xml
+    ## Run PHPUnit Tests
+    - phpunit --configuration ./tests/phpunit.xml --coverage-text --coverage-clover build/logs/clover.xml
 
 after_script:
-  - php vendor/bin/coveralls -v
-  - bash build/travis/phpdoc_ghpages.sh
-  - bash build/travis/apigen_ghpages.sh
+    - php vendor/bin/coveralls -v
+    - bash build/travis/phpdoc_ghpages.sh
+    - bash build/travis/apigen_ghpages.sh
 
 notifications:
-  slack: locomotivemtl:d9h8ZWwTZ6b3WUsSP9s26nb1
-  email: charcoal@locomotive.ca
+    slack: locomotivemtl:d9h8ZWwTZ6b3WUsSP9s26nb1
+    email: charcoal@locomotive.ca
