@@ -10,7 +10,6 @@ use \Charcoal\Cms\AbstractNew;
 */
 final class News extends AbstractNews
 {
-
     /**
      * CategorizableTrait > categoryType()
      *

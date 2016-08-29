@@ -19,7 +19,6 @@ final class Event extends AbstractEvent
         return 'charcoal/cms/event-category';
     }
 
-
     /**
      * MetatagTrait > canonical_url
      *
