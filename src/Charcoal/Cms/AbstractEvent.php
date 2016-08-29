@@ -257,7 +257,15 @@ abstract class AbstractEvent extends Content implements
      */
     public function defaultMetaDescription()
     {
-        return $this->content();
+        $content = $this->content();
+
+        if ($content instanceof TranslationString) {
+            foreach ($content->all() as $lang => $text) {
+                $content[$lang] = strip_tags($text);
+            }
+        }
+
+        return $content;
     }
 
     /**
