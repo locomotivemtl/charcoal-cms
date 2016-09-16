@@ -23,11 +23,11 @@
     },
     "require": {
         "psr/http-message": "^1.0",
-        "locomotivemtl/charcoal-core": "^0.1",
-        "locomotivemtl/charcoal-base": "^0.1",
+        "locomotivemtl/charcoal-core": "~0.1",
+        "locomotivemtl/charcoal-base": "~0.1",
         "locomotivemtl/charcoal-app": "~0.2",
         "locomotivemtl/charcoal-factory": "~0.3",
-        "locomotivemtl/charcoal-translation": "dev-master"
+        "locomotivemtl/charcoal-translation": "~0.1"
     },
     "require-dev": {
         "psr/log": "^1.0",
