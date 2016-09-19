@@ -5,7 +5,7 @@ The CMS Charcoal Module (Content Management System).
 
 # How to install
 
-The preferred (and only supported) way of installing _charcoal-cms is with **composer**:
+The preferred (and only supported) way of installing _charcoal-cms_ is with **composer**:
 
 ```shell
 ★ composer require locomotivemtl/charcoal-cms
