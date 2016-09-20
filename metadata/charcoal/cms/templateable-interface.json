@@ -14,8 +14,7 @@
             "label": {
                 "fr": "Gabarit de page",
                 "en": "Page Template"
-            },
-            "choices": {}
+            }
         }
     }
 }
