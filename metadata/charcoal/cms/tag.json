@@ -1,0 +1,186 @@
+{
+    "default_data": {
+        "color": "#D6E066"
+    },
+
+	"properties": {
+		"id": {
+			"type": "id"
+		},
+        "name": {
+            "type": "string",
+            "l10n_mode": "loop_inputs"
+        },
+		"position": {
+			"type": "number",
+			"l10n": false,
+			"label": {
+				"en": "Position",
+				"fr": "Position"
+			},
+			"description": {
+				"en": "Position determines the linear sorting order of this section relative to others.",
+				"fr": "La position détermine l'ordre linéaire de cette section par rapport aux autres dans le tri des listes."
+			}
+		},
+        "color": {
+            "type": "string",
+            "input_type": "charcoal/admin/property/input/radio-color",
+            "choices": {
+                "#D6E066": {},
+                "#F89742": {},
+                "#E74C3C": {},
+                "#C767BD": {},
+                "#4D84F1": {},
+                "#48CFC7": {},
+                "#2ECC71": {},
+                "#212121": {}
+            },
+            "required": true,
+            "label": {
+                "en": "Color",
+                "fr": "Couleur"
+            },
+            "description": {
+                "en": "The color for the tag",
+                "fr": "La couleur du tag"
+            }
+        }
+	},
+	"key": "id",
+
+	"sources": {
+		"default": {
+			"type": "database",
+			"table": "charcoal_cms_tags"
+		}
+	},
+	"default_source": "default",
+
+	"admin": {
+		"lists": {
+			"default": {
+				"label": {
+					"en": "Tags",
+					"fr": "Tags"
+				},
+				"properties": [
+					"name",
+                    "color"
+				],
+				"list_actions": [
+					{
+						"label": {
+							"en": "New tag",
+							"fr": "Nouvelle étiquette"
+						},
+						"ident": "create",
+						"url": "object/edit?obj_type=charcoal/cms/tag"
+					}
+				],
+				"orders": {
+					"position": {
+						"property": "position",
+						"mode": "asc"
+					}
+				}
+			}
+		},
+		"default_list": "default",
+
+		"forms": {
+			"default": {
+				"label": {
+					"en": "Tag",
+					"fr": "Étiquette"
+				},
+                "l10n_mode": "loop_inputs",
+				"groups": {
+					"info": {
+						"title": {
+							"en": "Info",
+							"fr": "Info"
+						},
+                        "display_title": false,
+						"priority": 10,
+						"properties": [
+							"name",
+                            "color"
+						]
+					}
+				},
+				"sidebars": {
+					"action": {
+						"title": "Actions",
+						"properties": [],
+						"actions": {}
+					}
+				}
+			},
+            "quick": {
+                "label": {
+                    "en": "Tag",
+                    "fr": "Étiquette"
+                },
+                "l10n_mode": "loop",
+                "groups": {
+                    "info": {
+                        "title": {
+                            "en": "Info",
+                            "fr": "Info"
+                        },
+                        "show_title": false,
+                        "priority": 10,
+                        "properties": [
+                            "name",
+                            "color"
+                        ]
+                    }
+                },
+                "sidebars": {
+                    "action": {
+                        "title": "Actions",
+                        "properties": [],
+                        "actions": {}
+                    }
+                }
+            }
+		},
+		"default_form": "default",
+
+		"dashboards": {
+			"admin.edit": {
+				"layout": {
+					"structure": [
+						{"columns": [1]}
+					]
+				},
+				"widgets": {
+					"form": {
+						"type": "charcoal/admin/widget/objectForm",
+						"form_ident": "default",
+						"obj_type": "charcoal/cms/tag"
+					}
+				}
+			},
+			"admin.table": {
+				"layout": {
+					"structure": [
+						{"columns": [1]}
+					]
+				},
+				"widgets": {
+					"table": {
+						"type": "charcoal/admin/widget/table",
+						"collection_ident": "default",
+						"obj_type": "charcoal/cms/tag",
+						"sortable": true
+					}
+				}
+			}
+		},
+		"default_create_dashboard": "admin.edit",
+		"default_edit_dashboard": "admin.edit",
+		"default_collection_dashboard": "admin.table"
+	}
+}
