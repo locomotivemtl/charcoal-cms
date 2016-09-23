@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class Charcoal\Cms\Faq</title>
+	<title>Class Charcoal\Cms\Tag</title>
 
 	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
 
@@ -64,14 +64,14 @@
 				<li><a href="class-Charcoal.Cms.Event.html">Event</a></li>
 				<li><a href="class-Charcoal.Cms.EventCategory.html">EventCategory</a></li>
 				<li><a href="class-Charcoal.Cms.ExternalSection.html">ExternalSection</a></li>
-				<li class="active"><a href="class-Charcoal.Cms.Faq.html">Faq</a></li>
+				<li><a href="class-Charcoal.Cms.Faq.html">Faq</a></li>
 				<li><a href="class-Charcoal.Cms.FaqCategory.html">FaqCategory</a></li>
 				<li><a href="class-Charcoal.Cms.Image.html">Image</a></li>
 				<li><a href="class-Charcoal.Cms.ImageCategory.html">ImageCategory</a></li>
 				<li><a href="class-Charcoal.Cms.News.html">News</a></li>
 				<li><a href="class-Charcoal.Cms.NewsCategory.html">NewsCategory</a></li>
 				<li><a href="class-Charcoal.Cms.Section.html">Section</a></li>
-				<li><a href="class-Charcoal.Cms.Tag.html">Tag</a></li>
+				<li class="active"><a href="class-Charcoal.Cms.Tag.html">Tag</a></li>
 				<li><a href="class-Charcoal.Cms.Text.html">Text</a></li>
 				<li><a href="class-Charcoal.Cms.TextCategory.html">TextCategory</a></li>
 				<li><a href="class-Charcoal.Cms.Video.html">Video</a></li>
@@ -134,9 +134,12 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class Faq</h1>
+	<h1>Class Tag</h1>
 
 
+	<div class="description">
+	<p>CMS Tag</p>
+	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
@@ -146,31 +149,13 @@ Charcoal\Object\Content
 		</dd>
 		<dd style="padding-left:30px">
 			<img src="resources/inherit.png" alt="Extended by">
-			<a href="class-Charcoal.Cms.AbstractFaq.html"><span>Charcoal\Cms\AbstractFaq</span></a>
-			
+<b><span>Charcoal\Cms\Tag</span></b>			
 			 implements 
-<span>Charcoal\Object\CategorizableInterface</span>, 
-			
-				<a href="class-Charcoal.Cms.FaqInterface.html"><span>Charcoal\Cms\FaqInterface</span></a>, 
-			
-<span>Charcoal\Object\PublishableInterface</span>, 
-			
-				<a href="class-Charcoal.Cms.SearchableInterface.html"><span>Charcoal\Cms\SearchableInterface</span></a>
+<span>Charcoal\Object\CategoryInterface</span>
 			
 			 uses 
-					Charcoal\Object\CategorizableTrait (not available)
+					Charcoal\Object\CategoryTrait (not available)
 
-			
-					Charcoal\Object\PublishableTrait (not available)
-
-			
-					<a href="class-Charcoal.Cms.SearchableTrait.html"><span>Charcoal\Cms\SearchableTrait</span></a>
-			
-		</dd>
-		<dd style="padding-left:60px">
-			<img src="resources/inherit.png" alt="Extended by">
-<b><span>Charcoal\Cms\Faq</span></b>			
-			
 			
 		</dd>
 	</dl>
@@ -183,12 +168,12 @@ Charcoal\Object\Content
 
 
 	<div class="info">
-		<b>Final</b><br>
+		
 		
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Cms.html">Cms</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Cms.Faq.html#8-22" title="Go to source code">Charcoal/Cms/Faq.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Cms.Tag.html#10-100" title="Go to source code">Charcoal/Cms/Tag.php</a>
 		<br>
 	</div>
 
@@ -196,32 +181,213 @@ Charcoal\Object\Content
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="categoryType" id="_categoryType">
+	<tr data-order="__construct" id="___construct">
 
 		<td class="attributes"><code>
 			 public 
 
-			string
+			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_categoryType">#</a>
-		<code><a href="source-class-Charcoal.Cms.Faq.html#13-21" title="Go to source code">categoryType</a>( )</code>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Charcoal.Cms.Tag.html#28-37" title="Go to source code">__construct</a>( <span>array|null <var>$data</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
-			<p>CategorizableTrait > categoryType()</p>
+			<p>Section constructor.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>CategorizableTrait > categoryType()</p>
+			<p>Section constructor.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>The object's data options.</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="loadCategoryItems" id="_loadCategoryItems">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_loadCategoryItems">#</a>
+		<code><a href="source-class-Charcoal.Cms.Tag.html#43-50" title="Go to source code">loadCategoryItems</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+				<h4>Throws</h4>
+				<div class="list">
+					Exception<br>If function is called.
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="name" id="_name">
+
+		<td class="attributes"><code>
+			 public 
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_name">#</a>
+		<code><a href="source-class-Charcoal.Cms.Tag.html#56-62" title="Go to source code">name</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					string
+					mixed<br>The tag's name.
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="color" id="_color">
+
+		<td class="attributes"><code>
+			 public 
+
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_color">#</a>
+		<code><a href="source-class-Charcoal.Cms.Tag.html#64-70" title="Go to source code">color</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					mixed<br>The tag's color.
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setName" id="_setName">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Charcoal.Cms.Tag.html">Charcoal\Cms\Tag</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setName">#</a>
+		<code><a href="source-class-Charcoal.Cms.Tag.html#76-89" title="Go to source code">setName</a>( <span>string|string[] <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd>The name of the tag.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Cms.Tag.html">Charcoal\Cms\Tag</a></code><br>chainable
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setColor" id="_setColor">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Charcoal.Cms.Tag.html">Charcoal\Cms\Tag</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setColor">#</a>
+		<code><a href="source-class-Charcoal.Cms.Tag.html#91-99" title="Go to source code">setColor</a>( <span>string <var>$color</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$color</var></dt>
+					<dd>The color in HEX format as a string.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Cms.Tag.html">Charcoal\Cms\Tag</a></code><br>chainable
 				</div>
 
 
@@ -232,50 +398,70 @@ Charcoal\Object\Content
 	</tr>
 	</table>
 
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-Charcoal.Cms.AbstractFaq.html#methods">Charcoal\Cms\AbstractFaq</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Charcoal.Cms.AbstractFaq.html#_answer">answer()</a>, 
-			<a href="class-Charcoal.Cms.AbstractFaq.html#_question">question()</a>, 
-			<a href="class-Charcoal.Cms.AbstractFaq.html#_setAnswer">setAnswer()</a>, 
-			<a href="class-Charcoal.Cms.AbstractFaq.html#_setQuestion">setQuestion()</a>
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="name" id="$name">
+		<td class="attributes"><code>
+			protected  
+			object|string
 		</code></td>
+
+		<td class="name">
+				<a href="source-class-Charcoal.Cms.Tag.html#18-21" title="Go to source code"><var>$name</var></a>
+
+			<div class="description short">
+				<p>$name The tag's name.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>$name The tag's name.</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$name" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="color" id="$color">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Charcoal.Cms.Tag.html#23-26" title="Go to source code"><var>$color</var></a>
+
+			<div class="description short">
+				<p>$color The tag's color.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>$color The tag's color.</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$color" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
 	</tr>
 	</table>
-	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-Charcoal.Cms.SearchableInterface.html#methods">Charcoal\Cms\SearchableInterface</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Charcoal.Cms.SearchableInterface.html#_searchKeywords">searchKeywords()</a>, 
-			<a href="class-Charcoal.Cms.SearchableInterface.html#_searchProperties">searchProperties()</a>, 
-			<a href="class-Charcoal.Cms.SearchableInterface.html#_setSearchKeywords">setSearchKeywords()</a>, 
-			<a href="class-Charcoal.Cms.SearchableInterface.html#_setSearchProperties">setSearchProperties()</a>
-		</code></td>
-	</tr>
-	</table>
-
-	<table class="summary used">
-	<caption>Methods used from <a href="class-Charcoal.Cms.SearchableTrait.html#methods">Charcoal\Cms\SearchableTrait</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Charcoal.Cms.SearchableTrait.html#_searchKeywords">searchKeywords()</a>, 
-			<a href="class-Charcoal.Cms.SearchableTrait.html#_searchProperties">searchProperties()</a>, 
-			<a href="class-Charcoal.Cms.SearchableTrait.html#_setSearchKeywords">setSearchKeywords()</a>, 
-			<a href="class-Charcoal.Cms.SearchableTrait.html#_setSearchProperties">setSearchProperties()</a>
-		</code></td>
-	</tr>
-	</table>
-
-
-
-
-
-
-
-
-
-
 
 
 
