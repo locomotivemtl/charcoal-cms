@@ -12,59 +12,59 @@ trait MetatagTrait
     /**
      * @var TranslationString $metaTitle
      */
-    private $metaTitle;
+    protected $metaTitle;
     /**
      * @var TranslationString $metaDescription
      */
-    private $metaDescription;
+    protected $metaDescription;
     /**
      * @var TranslationString $metaImage
      */
-    private $metaImage;
+    protected $metaImage;
     /**
      * @var TranslationString $metaAuthor
      */
-    private $metaAuthor;
+    protected $metaAuthor;
 
     /**
      * @var string $facebookAppId
      */
-    private $facebookAppId;
+    protected $facebookAppId;
 
     /**
      * @var TranslationString $opengraphTitle
      */
-    private $opengraphTitle;
+    protected $opengraphTitle;
 
     /**
      * @var TranslationString $siteName
      */
-    private $opengraphSiteName;
+    protected $opengraphSiteName;
 
     /**
      * @var TranslationString $opengraphDescription
      */
-    private $opengraphDescription;
+    protected $opengraphDescription;
 
     /**
      * @var string $opengraphType
      */
-    private $opengraphType;
+    protected $opengraphType;
 
     /**
      * @var TranslationString $opengraphImage
      */
-    private $opengraphImage;
+    protected $opengraphImage;
 
     /**
      * @var TranslationString $opengraphAuthor
      */
-    private $opengraphAuthor;
+    protected $opengraphAuthor;
 
     /**
      * @var TranslationString $opengraphPublisher
      */
-    private $opengraphPublisher;
+    protected $opengraphPublisher;
 
 
     /**
