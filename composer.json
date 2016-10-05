@@ -2,7 +2,7 @@
     "name": "locomotivemtl/charcoal-cms",
     "type": "library",
     "description": "Charcoal CMS (Content Management System) Module",
-    "keywords": [ "charcoal", "cms" ],
+    "keywords": ["charcoal", "cms"],
     "homepage": "https://charcoal.locomotive.ca",
     "license": "MIT",
     "authors": [
@@ -38,7 +38,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Charcoal\\Cms\\": "src/Charcoal/Cms"
+            "Charcoal\\Cms\\": "src/Charcoal/Cms",
+            "Charcoal\\Property\\": "src/Charcoal/Property"
         }
     },
     "scripts": {

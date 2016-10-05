@@ -85,6 +85,11 @@ class GenericRoute extends TemplateRoute
     protected $objectRouteClass = ObjectRoute::class;
 
     /**
+     * @var array $availableTemplates
+     */
+    protected $availableTemplates = [];
+
+    /**
      * Returns new template route object.
      *
      * @param array|\ArrayAccess $data Class depdendencies.
@@ -106,6 +111,9 @@ class GenericRoute extends TemplateRoute
     {
         $this->setModelFactory($container['model/factory']);
         $this->setCollectionLoader($container['model/collection/loader']);
+        if (isset($container['config']['templates'])) {
+            $this->availableTemplates = $container['config']['templates'];
+        }
     }
 
     /**
@@ -149,11 +157,40 @@ class GenericRoute extends TemplateRoute
 
         $translator->setCurrentLanguage($objectRoute->lang());
 
-        $templateIdent = (string)$contextObject->templateIdent();
+        $templateChoice = [];
+
+        if ($contextObject instanceof TemplateableInterface) {
+            $property = $contextObject->property('template_ident');
+
+            $templateIdent  = $property->val();
+            $templateChoice = $property->choice($templateIdent);
+        } else {
+            $templateIdent = $objectRoute->routeTemplate();
+            foreach ($this->availableTemplates as $templateKey => $templateData) {
+                if (!isset($templateData['value'])) {
+                    $templateData['value'] = $templateKey;
+                }
+                if ($templateData['value'] === $templateIdent) {
+                    $templateChoice = $templateData;
+                    break;
+                }
+            }
+        }
+
+        if (isset($templateChoice['template'])) {
+            $templatePath       = $templateChoice['template'];
+            $templateController = $templateChoice['template'];
+        } else {
+            $templatePath       = $templateIdent;
+            $templateController = $templateIdent;
+        }
+        if (isset($templateChoice['controller'])) {
+            $templateController = $templateChoice['controller'];
+        }
 
         $config = [
-            'template'   => $templateIdent,
-            'controller' => $templateIdent
+            'template'   => $templatePath,
+            'controller' => $templateController
         ];
 
         if ($contextObject instanceof TemplateableInterface) {
@@ -320,9 +357,9 @@ class GenericRoute extends TemplateRoute
         return $latestRoute;
     }
 
-/**
- * SETTERS
- */
+    /**
+     * SETTERS
+     */
 
     /**
      * Set the specified URI path.
@@ -363,9 +400,9 @@ class GenericRoute extends TemplateRoute
         return $this;
     }
 
-/**
- * GETTERS
- */
+    /**
+     * GETTERS
+     */
 
     /**
      * Retrieve the URI path.
