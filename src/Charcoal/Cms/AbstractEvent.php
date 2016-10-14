@@ -88,6 +88,7 @@ abstract class AbstractEvent extends Content implements
     public function setTitle($title)
     {
         $this->title = new TranslationString($title);
+
         return $this;
     }
 
@@ -106,6 +107,7 @@ abstract class AbstractEvent extends Content implements
     public function setSubtitle($subtitle)
     {
         $this->subtitle = new TranslationString($subtitle);
+
         return $this;
     }
 
@@ -124,6 +126,7 @@ abstract class AbstractEvent extends Content implements
     public function setSummary($summary)
     {
         $this->summary = new TranslationString($summary);
+
         return $this;
     }
 
@@ -142,6 +145,7 @@ abstract class AbstractEvent extends Content implements
     public function setContent($content)
     {
         $this->content = new TranslationString($content);
+
         return $this;
     }
 
@@ -160,6 +164,7 @@ abstract class AbstractEvent extends Content implements
     public function setImage($image)
     {
         $this->image = new TranslationString($image);
+
         return $this;
     }
 
@@ -178,8 +183,9 @@ abstract class AbstractEvent extends Content implements
      */
     public function setStartDate($startDate)
     {
-        if ($startDate === null) {
+        if ($startDate === null || $startDate === '') {
             $this->startDate = null;
+
             return $this;
         }
         if (is_string($startDate)) {
@@ -191,6 +197,7 @@ abstract class AbstractEvent extends Content implements
             );
         }
         $this->startDate = $startDate;
+
         return $this;
     }
 
@@ -209,8 +216,9 @@ abstract class AbstractEvent extends Content implements
      */
     public function setEndDate($endDate)
     {
-        if ($endDate === null) {
+        if ($endDate === null || $endDate === '') {
             $this->endDate = null;
+
             return $this;
         }
         if (is_string($endDate)) {
@@ -222,6 +230,7 @@ abstract class AbstractEvent extends Content implements
             );
         }
         $this->endDate = $endDate;
+
         return $this;
     }
 
@@ -284,6 +293,7 @@ abstract class AbstractEvent extends Content implements
     public function preSave()
     {
         $this->setSlug($this->generateSlug());
+
         return parent::preSave();
     }
 
@@ -298,6 +308,7 @@ abstract class AbstractEvent extends Content implements
         if (!$this->slug) {
             $this->setSlug($this->generateSlug());
         }
+
         return parent::preUpdate($properties);
     }
 }

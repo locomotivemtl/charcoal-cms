@@ -89,6 +89,7 @@ abstract class AbstractNews extends Content implements
     public function setTitle($title)
     {
         $this->title = new TranslationString($title);
+
         return $this;
     }
 
@@ -107,6 +108,7 @@ abstract class AbstractNews extends Content implements
     public function setSubtitle($subtitle)
     {
         $this->subtitle = new TranslationString($subtitle);
+
         return $this;
     }
 
@@ -125,6 +127,7 @@ abstract class AbstractNews extends Content implements
     public function setSummary($summary)
     {
         $this->summary = new TranslationString($summary);
+
         return $this;
     }
 
@@ -143,6 +146,7 @@ abstract class AbstractNews extends Content implements
     public function setContent($content)
     {
         $this->content = new TranslationString($content);
+
         return $this;
     }
 
@@ -161,6 +165,7 @@ abstract class AbstractNews extends Content implements
     public function setImage($image)
     {
         $this->image = new TranslationString($image);
+
         return $this;
     }
 
@@ -179,8 +184,9 @@ abstract class AbstractNews extends Content implements
      */
     public function setNewsDate($newsDate)
     {
-        if ($newsDate === null) {
+        if ($newsDate === null || $newsDate === '') {
             $this->newsDate = null;
+
             return $this;
         }
         if (is_string($newsDate)) {
@@ -192,6 +198,7 @@ abstract class AbstractNews extends Content implements
             );
         }
         $this->newsDate = $newsDate;
+
         return $this;
     }
 
@@ -210,6 +217,7 @@ abstract class AbstractNews extends Content implements
     public function setInfoUrl($url)
     {
         $this->infoUrl = new TranslationString($url);
+
         return $this;
     }
 
@@ -272,6 +280,7 @@ abstract class AbstractNews extends Content implements
     public function preSave()
     {
         $this->setSlug($this->generateSlug());
+
         return parent::preSave();
     }
 
@@ -284,6 +293,7 @@ abstract class AbstractNews extends Content implements
     public function preUpdate(array $properties = null)
     {
         $this->setSlug($this->generateSlug());
+
         return parent::preUpdate($properties);
     }
 }
