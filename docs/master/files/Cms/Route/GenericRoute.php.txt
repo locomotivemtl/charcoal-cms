@@ -163,8 +163,8 @@ class GenericRoute extends TemplateRoute
             $identProperty = $contextObject->property('template_ident');
             $controllerProperty = $contextObject->property('controller_ident');
 
-            $templateIdent  = $identProperty->val();
-            $controllerIdent  = $controllerProperty->val();
+            $templateIdent = $identProperty->val();
+            $controllerIdent = empty($controllerProperty->val()) ? $templateIdent : $controllerProperty->val();
 
             $templateChoice = $identProperty->choice($templateIdent);
         } else {
