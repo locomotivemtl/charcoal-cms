@@ -160,10 +160,13 @@ class GenericRoute extends TemplateRoute
         $templateChoice = [];
 
         if ($contextObject instanceof TemplateableInterface) {
-            $property = $contextObject->property('template_ident');
+            $identProperty = $contextObject->property('template_ident');
+            $controllerProperty = $contextObject->property('controller_ident');
 
-            $templateIdent  = $property->val();
-            $templateChoice = $property->choice($templateIdent);
+            $templateIdent  = $identProperty->val();
+            $controllerIdent  = $controllerProperty->val();
+
+            $templateChoice = $identProperty->choice($templateIdent);
         } else {
             $templateIdent = $objectRoute->routeTemplate();
             foreach ($this->availableTemplates as $templateKey => $templateData) {
@@ -182,7 +185,7 @@ class GenericRoute extends TemplateRoute
             $templateController = $templateChoice['template'];
         } else {
             $templatePath       = $templateIdent;
-            $templateController = $templateIdent;
+            $templateController = $controllerIdent;
         }
         if (isset($templateChoice['controller'])) {
             $templateController = $templateChoice['controller'];

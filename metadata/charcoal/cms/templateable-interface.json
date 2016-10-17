@@ -15,6 +15,13 @@
                 "fr": "Gabarit de page",
                 "en": "Page Template"
             }
+        },
+        "controller_ident": {
+            "type": "string",
+            "label": {
+                "fr": "Controlleur de page",
+                "en": "Page Controller"
+            }
         }
     }
 }
