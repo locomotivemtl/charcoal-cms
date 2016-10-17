@@ -311,8 +311,8 @@
 </span><span id="163" class="l"><a href="#163">163: </a>            <span class="php-var">$identProperty</span> = <span class="php-var">$contextObject</span>-&gt;property(<span class="php-quote">'template_ident'</span>);
 </span><span id="164" class="l"><a href="#164">164: </a>            <span class="php-var">$controllerProperty</span> = <span class="php-var">$contextObject</span>-&gt;property(<span class="php-quote">'controller_ident'</span>);
 </span><span id="165" class="l"><a href="#165">165: </a>
-</span><span id="166" class="l"><a href="#166">166: </a>            <span class="php-var">$templateIdent</span>  = <span class="php-var">$identProperty</span>-&gt;val();
-</span><span id="167" class="l"><a href="#167">167: </a>            <span class="php-var">$controllerIdent</span>  = <span class="php-var">$controllerProperty</span>-&gt;val();
+</span><span id="166" class="l"><a href="#166">166: </a>            <span class="php-var">$templateIdent</span> = <span class="php-var">$identProperty</span>-&gt;val();
+</span><span id="167" class="l"><a href="#167">167: </a>            <span class="php-var">$controllerIdent</span> = <span class="php-keyword1">empty</span>(<span class="php-var">$controllerProperty</span>-&gt;val()) ? <span class="php-var">$templateIdent</span> : <span class="php-var">$controllerProperty</span>-&gt;val();
 </span><span id="168" class="l"><a href="#168">168: </a>
 </span><span id="169" class="l"><a href="#169">169: </a>            <span class="php-var">$templateChoice</span> = <span class="php-var">$identProperty</span>-&gt;choice(<span class="php-var">$templateIdent</span>);
 </span><span id="170" class="l"><a href="#170">170: </a>        } <span class="php-keyword1">else</span> {
