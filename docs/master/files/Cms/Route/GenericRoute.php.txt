@@ -166,9 +166,11 @@ class GenericRoute extends TemplateRoute
             $templateIdent = $identProperty->val();
             $controllerIdent = empty($controllerProperty->val()) ? $templateIdent : $controllerProperty->val();
 
+
             $templateChoice = $identProperty->choice($templateIdent);
         } else {
             $templateIdent = $objectRoute->routeTemplate();
+            $controllerIdent = $templateIdent;
             foreach ($this->availableTemplates as $templateKey => $templateData) {
                 if (!isset($templateData['value'])) {
                     $templateData['value'] = $templateKey;
