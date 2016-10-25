@@ -151,9 +151,20 @@ class GenericRoute extends TemplateRoute
         RequestInterface $request,
         ResponseInterface $response
     ) {
-        $objectRoute   = $this->loadObjectRouteFromPath();
+        $objectRoute = $this->loadObjectRouteFromPath();
+
+        // Could be the SAME
+        $latest = $this->getLatestObjectPathHistory($objectRoute);
+
+        if ($latest->creationDate() > $objectRoute->creationDate()) {
+            $redirection = $this->parseRedirect($latest->slug(), $request);
+
+            return $response->withRedirect($redirection, 301);
+        }
+
         $contextObject = $this->loadContextObject();
-        $translator    = TranslationConfig::instance();
+
+        $translator = TranslationConfig::instance();
 
         $translator->setCurrentLanguage($objectRoute->lang());
 
@@ -286,14 +297,6 @@ class GenericRoute extends TemplateRoute
         }
 
         $objectRoute = $this->loadObjectRouteFromPath();
-
-        // Could be the SAME
-        $latest = $this->getLatestObjectPathHistory($objectRoute);
-
-        if ($latest->creationDate() > $objectRoute->creationDate()) {
-            $objectRoute = $latest;
-            // Redirect 302
-        }
 
         $obj = $this->modelFactory()->create($objectRoute->routeObjType());
         $obj->load($objectRoute->routeObjId());
