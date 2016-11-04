@@ -204,6 +204,13 @@ class GenericRoute extends TemplateRoute
             $templateController = $templateChoice['controller'];
         }
 
+        // Last verification
+        // Legacy style. Old projects didn't have the template_ident and controller_ident property.
+        // Object route should always fallback on the actual template_ident value set in it.
+        // @bene
+        $templatePath = $templatePath ? : $objectRoute->routeTemplate();
+        $templateController = $templateController ? : $objectRoute->routeTemplate();
+
         $config = [
             'template'   => $templatePath,
             'controller' => $templateController
