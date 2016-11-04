@@ -141,6 +141,13 @@ class GenericRoute extends TemplateRoute
     }
 
     /**
+     * Resolve the dynamic route.
+     *
+     * Notes:
+     * [^1]: 2016-11-04 — @bene: Backwards compatibility for older projects
+     *     which didn't have `template_ident` and `controller_ident` properties.
+     *     Object route should always fallback on the actual template_ident value set in it.
+     *
      * @param  Container         $container A DI (Pimple) container.
      * @param  RequestInterface  $request   A PSR-7 compatible Request instance.
      * @param  ResponseInterface $response  A PSR-7 compatible Response instance.
@@ -151,6 +158,8 @@ class GenericRoute extends TemplateRoute
         RequestInterface $request,
         ResponseInterface $response
     ) {
+        $config = $this->config();
+
         $objectRoute = $this->loadObjectRouteFromPath();
 
         // Could be the SAME
@@ -204,22 +213,23 @@ class GenericRoute extends TemplateRoute
             $templateController = $templateChoice['controller'];
         }
 
-        // Last verification
-        // Legacy style. Old projects didn't have the template_ident and controller_ident property.
-        // Object route should always fallback on the actual template_ident value set in it.
-        // @bene
-        $templatePath = $templatePath ? : $objectRoute->routeTemplate();
-        $templateController = $templateController ? : $objectRoute->routeTemplate();
+        /** [^1] */
+        if (!$templatePath) {
+            $tempaltePath = $objectRoute->routeTemplate();
+        }
 
-        $config = [
-            'template'   => $templatePath,
-            'controller' => $templateController
-        ];
+        /** [^1] */
+        if (!$templateController) {
+            $templateController = $objectRoute->routeTemplate();
+        }
+
+        $config['template']   = $templatePath;
+        $config['controller'] = $templateController;
 
         if ($contextObject instanceof TemplateableInterface) {
             $templateOptions = $contextObject->templateOptions();
             if ($templateOptions) {
-                $config['template_data'] = $templateOptions;
+                $config['template_data'] = array_merge($config['template_data'], $templateOptions);
             }
         }
 
