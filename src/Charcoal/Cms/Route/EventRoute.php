@@ -11,6 +11,9 @@ use \Psr\Http\Message\ResponseInterface;
 // From 'charcoal-app'
 use \Charcoal\App\Route\TemplateRoute;
 
+// From `charcoal-translation`
+use \Charcoal\Translation\TranslationString;
+
 /**
  * Event Route Handler
  */

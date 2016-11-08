@@ -3,6 +3,8 @@
 namespace Charcoal\Cms\Route;
 
 use \Exception;
+use \InvalidArgumentException;
+use \RuntimeException;
 
 use \Pimple\Container;
 
