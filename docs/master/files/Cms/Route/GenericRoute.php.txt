@@ -216,7 +216,7 @@ class GenericRoute extends TemplateRoute
 
         /** [^1] */
         if (!$templatePath) {
-            $tempaltePath = $objectRoute->routeTemplate();
+            $templatePath = $objectRoute->routeTemplate();
         }
 
         /** [^1] */
