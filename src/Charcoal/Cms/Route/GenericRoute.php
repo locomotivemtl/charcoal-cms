@@ -144,11 +144,6 @@ class GenericRoute extends TemplateRoute
     /**
      * Resolve the dynamic route.
      *
-     * Notes:
-     * [^1]: 2016-11-04 — @bene: Backwards compatibility for older projects
-     *     which didn't have `template_ident` and `controller_ident` properties.
-     *     Object route should always fallback on the actual template_ident value set in it.
-     *
      * @param  Container         $container A DI (Pimple) container.
      * @param  RequestInterface  $request   A PSR-7 compatible Request instance.
      * @param  ResponseInterface $response  A PSR-7 compatible Response instance.
@@ -161,35 +156,39 @@ class GenericRoute extends TemplateRoute
     ) {
         $config = $this->config();
 
+        // Current object route
         $objectRoute = $this->loadObjectRouteFromPath();
 
-        // Could be the SAME
+        // Could be the SAME as current object route
         $latest = $this->getLatestObjectPathHistory($objectRoute);
 
+        // Redirect if latest route is newer
         if ($latest->creationDate() > $objectRoute->creationDate()) {
             $redirection = $this->parseRedirect($latest->slug(), $request);
-
             return $response->withRedirect($redirection, 301);
         }
 
         $contextObject = $this->loadContextObject();
 
+        // Set language according to the route's language
         $translator = TranslationConfig::instance();
-
         $translator->setCurrentLanguage($objectRoute->lang());
 
+        //
         $templateChoice = [];
 
+        // Templateable Objects have specific methods
         if ($contextObject instanceof TemplateableInterface) {
             $identProperty = $contextObject->property('template_ident');
             $controllerProperty = $contextObject->property('controller_ident');
 
-            $templateIdent = $identProperty->val();
-            $controllerIdent = empty($controllerProperty->val()) ? $templateIdent : $controllerProperty->val();
-
+            // Methods from TemplateableInterface / Trait
+            $templateIdent = $contextObject->templateIdent() ? : $objectRoute->routeTemplate(); // Default fallback to routeTemplate
+            $controllerIdent = $contextObject->controllerIdent() ? $templateIdent : $contextObject->controllerIdent();
 
             $templateChoice = $identProperty->choice($templateIdent);
         } else {
+            // Use global templates to verify for custom paths
             $templateIdent = $objectRoute->routeTemplate();
             $controllerIdent = $templateIdent;
             foreach ($this->availableTemplates as $templateKey => $templateData) {
@@ -203,6 +202,8 @@ class GenericRoute extends TemplateRoute
             }
         }
 
+        // Template ident defined in template global config
+        // Check for custom path / controller
         if (isset($templateChoice['template'])) {
             $templatePath       = $templateChoice['template'];
             $templateController = $templateChoice['template'];
@@ -210,28 +211,31 @@ class GenericRoute extends TemplateRoute
             $templatePath       = $templateIdent;
             $templateController = $controllerIdent;
         }
+
+        // Template controller defined in choices, affect it.
         if (isset($templateChoice['controller'])) {
             $templateController = $templateChoice['controller'];
-        }
-
-        /** [^1] */
-        if (!$templatePath) {
-            $templatePath = $objectRoute->routeTemplate();
-        }
-
-        /** [^1] */
-        if (!$templateController) {
-            $templateController = $objectRoute->routeTemplate();
         }
 
         $config['template']   = $templatePath;
         $config['controller'] = $templateController;
 
+        // Always be an array
+        $templateOptions = [];
+
+        // Custom template options
+        if (isset($templateChoice['template_options'])) {
+            $templateOptions = $templateChoice['template_options'];
+        }
+
+        // Overwrite from custom object template_options
         if ($contextObject instanceof TemplateableInterface) {
-            $templateOptions = $contextObject->templateOptions();
-            if ($templateOptions) {
-                $config['template_data'] = array_merge($config['template_data'], $templateOptions);
-            }
+            $templateOptions = (!empty($contextObject->templateOptions())) ? $contextObject->templateOptions() : $templateOptions;
+        }
+
+        if (isset($templateOptions) && $templateOptions) {
+            // Not sure what this was about?
+            $config['template_data'] = array_merge($config['template_data'], $templateOptions);
         }
 
         $this->setConfig($config);

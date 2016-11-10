@@ -16,6 +16,13 @@ trait TemplateableTrait
     private $templateIdent;
 
     /**
+     * The object's template controller identifier.
+     *
+     * @var mixed
+     */
+    private $controllerIdent;
+
+    /**
      * The customized template options.
      *
      * @var array
@@ -43,6 +50,29 @@ trait TemplateableTrait
     public function templateIdent()
     {
         return $this->templateIdent;
+    }
+
+    /**
+     * Set the renderable object's template controller identifier.
+     *
+     * @param  mixed $ident The template controller identifier.
+     * @return TemplateableInterface Chainable
+     */
+    public function setControllerIdent($ident)
+    {
+        $this->controllerIdent = $ident;
+
+        return $this;
+    }
+
+    /**
+     * Retrieve the renderable object's template controller identifier.
+     *
+     * @return mixed
+     */
+    public function controllerIdent()
+    {
+        return $this->controllerIdent;
     }
 
     /**
