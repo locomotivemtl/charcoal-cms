@@ -332,7 +332,7 @@
 </span><span id="184" class="l"><a href="#184">184: </a>
 </span><span id="185" class="l"><a href="#185">185: </a>            <span class="php-comment">// Methods from TemplateableInterface / Trait</span>
 </span><span id="186" class="l"><a href="#186">186: </a>            <span class="php-var">$templateIdent</span> = <span class="php-var">$contextObject</span>-&gt;templateIdent() ? : <span class="php-var">$objectRoute</span>-&gt;routeTemplate(); <span class="php-comment">// Default fallback to routeTemplate</span>
-</span><span id="187" class="l"><a href="#187">187: </a>            <span class="php-var">$controllerIdent</span> = <span class="php-var">$contextObject</span>-&gt;controllerIdent() ? <span class="php-var">$templateIdent</span> : <span class="php-var">$contextObject</span>-&gt;controllerIdent();
+</span><span id="187" class="l"><a href="#187">187: </a>            <span class="php-var">$controllerIdent</span> = <span class="php-var">$contextObject</span>-&gt;controllerIdent() ? : <span class="php-var">$templateIdent</span>;
 </span><span id="188" class="l"><a href="#188">188: </a>
 </span><span id="189" class="l"><a href="#189">189: </a>            <span class="php-var">$templateChoice</span> = <span class="php-var">$identProperty</span>-&gt;choice(<span class="php-var">$templateIdent</span>);
 </span><span id="190" class="l"><a href="#190">190: </a>        } <span class="php-keyword1">else</span> {
