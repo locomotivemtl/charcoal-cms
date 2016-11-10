@@ -90,12 +90,4 @@ class TemplateProperty extends AbstractProperty implements SelectablePropertyInt
     {
         return \PDO::PARAM_STR;
     }
-
-    /**
-     * @return mixed
-     */
-    public function save()
-    {
-        return $this->val();
-    }
 }
