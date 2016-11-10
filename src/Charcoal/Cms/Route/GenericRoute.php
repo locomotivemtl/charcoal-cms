@@ -184,7 +184,7 @@ class GenericRoute extends TemplateRoute
 
             // Methods from TemplateableInterface / Trait
             $templateIdent = $contextObject->templateIdent() ? : $objectRoute->routeTemplate(); // Default fallback to routeTemplate
-            $controllerIdent = $contextObject->controllerIdent() ? $templateIdent : $contextObject->controllerIdent();
+            $controllerIdent = $contextObject->controllerIdent() ? : $templateIdent;
 
             $templateChoice = $identProperty->choice($templateIdent);
         } else {
