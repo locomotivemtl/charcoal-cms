@@ -12,7 +12,7 @@ use \Psr\Http\Message\ResponseInterface;
 use \Charcoal\App\Route\TemplateRoute;
 
 // From `charcoal-translation`
-use \Charcoal\Translation\TranslationString;
+use \Charcoal\Translation\TranslationConfig;
 
 /**
  * Event Route Handler
@@ -75,6 +75,10 @@ class EventRoute extends TemplateRoute
 
         $templateIdent      = $event->templateIdent();
         $templateController = $event->templateIdent();
+
+        if (!$templateController) {
+            return $response->withStatus(404);
+        }
 
         $templateFactory = $container['template/factory'];
 
