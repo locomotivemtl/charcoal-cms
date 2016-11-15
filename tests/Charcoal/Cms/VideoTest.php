@@ -5,8 +5,13 @@ namespace Charcoal\Cms\Tests;
 use \Psr\Log\NullLogger;
 use \Cache\Adapter\Void\VoidCachePool;
 
+use \Charcoal\Model\Service\MetadataLoader;
+
 use \Charcoal\Cms\Video;
 
+/**
+ *
+ */
 class VideoTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -14,7 +19,7 @@ class VideoTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $metadataLoader = new \Charcoal\Model\MetadataLoader([
+        $metadataLoader = new MetadataLoader([
             'logger' => new NullLogger(),
             'base_path' => __DIR__,
             'paths' => ['metadata'],
