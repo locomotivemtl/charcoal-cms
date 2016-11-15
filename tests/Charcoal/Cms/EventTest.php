@@ -5,9 +5,13 @@ namespace Charcoal\Cms\Tests;
 use \Psr\Log\NullLogger;
 use \Cache\Adapter\Void\VoidCachePool;
 
+use \Pimple\Container;
+
 use \Charcoal\Model\Service\MetadataLoader;
 
 use \Charcoal\Cms\Event;
+
+use \Charcoal\Tests\Cms\ContainerProvider;
 
 class EventTest extends \PHPUnit_Framework_TestCase
 {
@@ -16,16 +20,22 @@ class EventTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $metadataLoader = new MetadataLoader([
-            'logger' => new NullLogger(),
-            'base_path' => __DIR__,
-            'paths' => ['metadata'],
-            'cache'  => new VoidCachePool()
-        ]);
+        $provider = new ContainerProvider();
+
+        $container = new Container();
+        $provider->registerBaseServices($container);
+        $provider->registerMetadataLoader($container);
+        $provider->registerModelFactory($container);
+        $provider->registerSourceFactory($container);
+        $provider->registerPropertyFactory($container);
+        $provider->registerModelCollectionLoader($container);
 
         $this->obj = new Event([
-            'logger'=> new NullLogger(),
-            'metadata_loader' => $metadataLoader
+            'container'         => $container,
+            'logger'            => $container['logger'],
+            'metadata_loader'   => $container['metadata/loader'],
+            'property_factory'  => $container['property/factory'],
+            'source_factory'    => $container['source/factory']
         ]);;
     }
 
@@ -61,6 +71,14 @@ class EventTest extends \PHPUnit_Framework_TestCase
         $ret = $this->obj->setSubtitle('Bar foo');
         $this->assertSame($ret, $this->obj);
         $this->assertEquals('Bar foo', (string)$this->obj->subtitle());
+    }
+
+    public function testSetSummary()
+    {
+        $this->assertEquals('', (string)$this->obj->summary());
+        $ret = $this->obj->setSummary('Bar foo baz');
+        $this->assertSame($ret, $this->obj);
+        $this->assertEquals('Bar foo baz', (string)$this->obj->summary());
     }
 
     public function testSetContent()
@@ -139,4 +157,14 @@ class EventTest extends \PHPUnit_Framework_TestCase
     //     $this->obj->setMetaImage('Bar.jpg');
     //     $this->assertEquals('Bar.jpg', (string)$this->obj->metaImage());
     // }
+
+    public function testSaveGeneratesSlug()
+    {
+        $this->obj->setData([
+            'title'=>'foo'
+        ]);
+        $this->obj->save();
+
+        $this->assertEquals('en/events/foo', (string)$this->obj->slug());
+    }
 }
