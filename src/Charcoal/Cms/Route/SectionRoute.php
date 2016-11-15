@@ -77,6 +77,10 @@ class SectionRoute extends TemplateRoute
         $templateIdent      = (string)$section->templateIdent();
         $templateController = (string)$section->templateIdent();
 
+        if (!$templateController) {
+            return $response->withStatus(404);
+        }
+
         $templateFactory = $container['template/factory'];
         $templateFactory->setDefaultClass($config['default_controller']);
 

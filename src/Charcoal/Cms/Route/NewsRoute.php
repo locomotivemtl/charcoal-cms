@@ -12,7 +12,7 @@ use \Psr\Http\Message\ResponseInterface;
 use \Charcoal\App\Route\TemplateRoute;
 
 // From `charcoal-translation`
-use \Charcoal\Translation\TranslationString;
+use \Charcoal\Translation\TranslationConfig;
 
 /**
  * News Route Handler
@@ -75,6 +75,10 @@ class NewsRoute extends TemplateRoute
 
         $templateIdent      = $news->templateIdent();
         $templateController = $news->templateIdent();
+
+        if (!$templateController) {
+            return $response->withStatus(404);
+        }
 
         $templateFactory = $container['template/factory'];
 
