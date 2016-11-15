@@ -36,7 +36,8 @@ class EventTest extends \PHPUnit_Framework_TestCase
             'metadata_loader'   => $container['metadata/loader'],
             'property_factory'  => $container['property/factory'],
             'source_factory'    => $container['source/factory']
-        ]);;
+        ]);
+        ;
     }
 
     public function testSetData()

@@ -16,7 +16,7 @@ class FaqCategoryTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-       $metadataLoader = new MetadataLoader([
+        $metadataLoader = new MetadataLoader([
             'logger' => new NullLogger(),
             'base_path' => __DIR__,
             'paths' => ['metadata'],
