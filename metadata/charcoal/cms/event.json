@@ -1,5 +1,9 @@
 {
-    "properties": {},
+    "properties": {
+        "category":{
+            "obj_type":"charcoal/cms/event-category"
+        }
+    },
 
     "slug_pattern": {
         "en": "en/events/{{title}}",
