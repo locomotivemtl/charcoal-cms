@@ -55,7 +55,7 @@ class GenericRoute extends TemplateRoute
     private $objectRoute;
 
     /**
-     * The target object of the {@see self::$objectRoute}.
+     * The target object of the {@see GenericRoute Chainable::$objectRoute}.
      *
      * @var ModelInterface|RoutableInterface
      */
@@ -154,8 +154,28 @@ class GenericRoute extends TemplateRoute
         RequestInterface $request,
         ResponseInterface $response
     ) {
-        $config = $this->config();
+        $response = $this->resolveLatestObjectRoute($request, $response);
 
+        if (!$response->isRedirect()) {
+            $this->resolveTemplateContextObject();
+
+            $templateContent = $this->templateContent($container, $request);
+
+            $response->write($templateContent);
+        }
+
+        return $response;
+    }
+
+    /**
+     * @param  RequestInterface  $request  A PSR-7 compatible Request instance.
+     * @param  ResponseInterface $response A PSR-7 compatible Response instance.
+     * @return ResponseInterface
+     */
+    protected function resolveLatestObjectRoute(
+        RequestInterface $request,
+        ResponseInterface $response
+    ) {
         // Current object route
         $objectRoute = $this->loadObjectRouteFromPath();
 
@@ -165,16 +185,26 @@ class GenericRoute extends TemplateRoute
         // Redirect if latest route is newer
         if ($latest->creationDate() > $objectRoute->creationDate()) {
             $redirection = $this->parseRedirect($latest->slug(), $request);
-            return $response->withRedirect($redirection, 301);
+            $response = $response->withRedirect($redirection, 301);
         }
 
+        return $response;
+    }
+
+    /**
+     * @return GenericRoute Chainable
+     */
+    protected function resolveTemplateContextObject()
+    {
+        $config = $this->config();
+
+        $objectRoute   = $this->loadObjectRouteFromPath();
         $contextObject = $this->loadContextObject();
 
         // Set language according to the route's language
         $translator = TranslationConfig::instance();
         $translator->setCurrentLanguage($objectRoute->lang());
 
-        //
         $templateChoice = [];
 
         // Templateable Objects have specific methods
@@ -184,7 +214,7 @@ class GenericRoute extends TemplateRoute
 
             // Methods from TemplateableInterface / Trait
             $templateIdent = $contextObject->templateIdent() ? : $objectRoute->routeTemplate();
-// Default fallback to routeTemplate
+            // Default fallback to routeTemplate
             $controllerIdent = $contextObject->controllerIdent() ? : $templateIdent;
 
             $templateChoice = $identProperty->choice($templateIdent);
@@ -231,7 +261,9 @@ class GenericRoute extends TemplateRoute
 
         // Overwrite from custom object template_options
         if ($contextObject instanceof TemplateableInterface) {
-            $templateOptions = (!empty($contextObject->templateOptions())) ? $contextObject->templateOptions() : $templateOptions;
+            if (!empty($contextObject->templateOptions())) {
+                $templateOptions = $contextObject->templateOptions();
+            }
         }
 
         if (isset($templateOptions) && $templateOptions) {
@@ -241,11 +273,7 @@ class GenericRoute extends TemplateRoute
 
         $this->setConfig($config);
 
-        $templateContent = $this->templateContent($container, $request);
-
-        $response->write($templateContent);
-
-        return $response;
+        return $this;
     }
 
     /**
@@ -280,7 +308,7 @@ class GenericRoute extends TemplateRoute
      *
      * @param  string $className The class name of the object route model.
      * @throws InvalidArgumentException If the class name is not a string.
-     * @return AbstractPropertyDisplay Chainable
+     * @return GenericRoute Chainable
      */
     protected function setObjectRouteClass($className)
     {
@@ -309,7 +337,7 @@ class GenericRoute extends TemplateRoute
      * Load the object associated with the matching object route.
      *
      * Validating if the object ID exists is delegated to the
-     * {@see self::pathResolvable()} method.
+     * {@see GenericRoute Chainable::pathResolvable()} method.
      *
      * @return RoutableInterface
      */
@@ -369,9 +397,8 @@ class GenericRoute extends TemplateRoute
     public function getLatestObjectPathHistory(ObjectRouteInterface $route)
     {
         $loader = $this->collectionLoader();
-        $loader->setModel($route);
-
         $loader
+            ->setModel($route)
             ->addFilter('active', true)
             ->addFilter('route_obj_type', $route->routeObjType())
             ->addFilter('route_obj_id', $route->routeObjId())
@@ -396,7 +423,7 @@ class GenericRoute extends TemplateRoute
      * Set the specified URI path.
      *
      * @param string $path The path to use for route resolution.
-     * @return self
+     * @return GenericRoute Chainable
      */
     protected function setPath($path)
     {
@@ -409,7 +436,7 @@ class GenericRoute extends TemplateRoute
      * Set an object model factory.
      *
      * @param FactoryInterface $factory The model factory, to create objects.
-     * @return self
+     * @return GenericRoute Chainable
      */
     protected function setModelFactory(FactoryInterface $factory)
     {
@@ -422,7 +449,7 @@ class GenericRoute extends TemplateRoute
      * Set a model collection loader.
      *
      * @param CollectionLoader $loader The collection loader.
-     * @return self
+     * @return GenericRoute Chainable
      */
     public function setCollectionLoader(CollectionLoader $loader)
     {
