@@ -38,7 +38,7 @@ class ContainerProvider
 
     public function registerPdo(Container $container)
     {
-        $container['pdo'] = function (Container $container) {
+        $container['database'] = function (Container $container) {
             $pdo = new PDO('sqlite::memory:');
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $pdo;
@@ -84,7 +84,7 @@ class ContainerProvider
                 'arguments'  => [[
                     'logger' => $container['logger'],
                     'cache'  => $container['cache'],
-                    'pdo'    => $container['pdo']
+                    'pdo'    => $container['database']
                 ]]
             ]);
         };
@@ -115,6 +115,7 @@ class ContainerProvider
                 ],
                 'arguments' => [[
                     'container' => $container,
+                    'database'  => $container['database'],
                     'logger'    => $container['logger']
                 ]]
             ]);
@@ -126,7 +127,7 @@ class ContainerProvider
         $container['model/collection/loader'] = function (Container $container) {
             return new \Charcoal\Loader\CollectionLoader([
                 'logger' => $container['logger'],
-                'cache' => $container['cache']
+                'cache'  => $container['cache']
             ]);
         };
     }
