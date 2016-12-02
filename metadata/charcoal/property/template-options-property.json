@@ -1,0 +1,12 @@
+{
+    "admin": {
+        "input_type": "charcoal/admin/property/input/textarea",
+        "form_group": {
+            "type": "charcoal/admin/widget/form-group/template-options",
+            "template": "charcoal/admin/widget/form-group/structure",
+            "storage_property": null,
+            "template_property": null,
+            "controller_ident": null
+        }
+    }
+}
