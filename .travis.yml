@@ -3,7 +3,7 @@ language: php
 php:
     - 5.6
     - 7.0
-    - hhvm
+    - 7.1
     - nightly
 
 env:
@@ -13,24 +13,22 @@ env:
 
 matrix:
     allow_failures:
-        - php: 7.0
-        - php: hhvm
         - php: nightly
 
 before_script:
-    ## Init composer
+    ## Init Composer
     - composer selfupdate --quiet
     - COMPOSER_ROOT_VERSION=dev-master composer install -n --dev
 
     ## Create temporary folders
-    - mkdir -p build/logs\
+    - mkdir -p build/logs
 
 script:
     ## Lint PHP Files
     - find {src,tests} -name '*.php' -print0 | xargs -0 -n1 -P8 php -l | grep -v '^No syntax errors detected'; test $? -eq 1
 
-    ## PHP Code Sniffer
-    - if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then ./vendor/bin/phpcs --config-set ignore_warnings_on_exit 1;./vendor/bin/phpcs -ps --colors --standard=phpcs.xml src/; fi
+    ## Run PHP Code Sniffer
+    - ./vendor/bin/phpcs --config-set ignore_warnings_on_exit 1;./vendor/bin/phpcs -ps --colors --standard=phpcs.xml src/
 
     ## Run PHPUnit Tests
     - phpunit --configuration ./tests/phpunit.xml --coverage-text --coverage-clover build/logs/clover.xml
