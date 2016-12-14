@@ -1,9 +1,58 @@
 {
+    "routable": {
+        "pattern": {
+            "fr": "{{ title }}",
+            "en": "{{ title }}"
+        },
+        "prefix": {
+            "fr": "{{^ hasMaster }}/fr{{/ hasMaster }}{{# hasMaster}}{{ master.slug }}{{/ hasMaster}}/",
+            "en": "{{^ hasMaster }}/en{{/ hasMaster }}{{# hasMaster}}{{ master.slug }}{{/ hasMaster}}/"
+        }
+    },
+
+    "default_data": {
+        "template_ident": "generic",
+        "main_menu": "content",
+        "side_menu": "content"
+    },
+
+    "sources": {
+        "default": {
+            "table": "cms_sections"
+        }
+    },
+    "default_source": "default",
+
+    "labels": {
+        "name": "Pages",
+        "singular_name": "Page",
+        "edit_item": {
+            "en": "Edit Page",
+            "fr": "Modifier la page"
+        },
+        "all_items": {
+            "en": "All Pages",
+            "fr": "Toutes les pages"
+        },
+        "menu_items": "Pages"
+    },
+
     "properties": {
         "id": {
             "type": "id",
             "mode": "auto-increment",
             "label": "ID"
+        },
+        "locked": {
+            "type": "boolean",
+            "label": {
+                "fr": "Verrouillé",
+                "en": "Locked"
+            },
+            "description": {
+                "en": "A <em>locked</em> object cannot be deleted.",
+                "fr": "Un objet <em>verrouillé</em> ne peut pas être supprimé."
+            }
         },
         "section_type": {
             "type": "string",
@@ -28,6 +77,17 @@
                 "en": "Subtitle"
             }
         },
+        "summary": {
+            "label": {
+                "fr": "Sommaire",
+                "en": "Summary"
+            },
+            "type": "text",
+            "l10n": true,
+            "input_type": "charcoal/admin/property/input/textarea",
+            "rows": 5,
+            "input_class": "u-resize-vertical"
+        },
         "content": {
             "type": "html",
             "input_type": "charcoal/admin/property/input/tinymce",
@@ -46,6 +106,551 @@
         "position": {
             "type": "number",
             "label": "Position"
+        },
+        "master": {
+            "type_foo": "object",
+            "type": "Charcoal\\Support\\Property\\HierarchicalObjectProperty",
+            "obj_type": "volleyball/object/section",
+            "pattern": "{{ hierarchicalLabel }}",
+            "label": {
+                "fr": "Page Parente",
+                "en": "Parent Page"
+            }
+        },
+        "external_url": {
+            "type": "string",
+            "l10n": true,
+            "label": {
+                "fr": "Hyperlien",
+                "en": "Hyperlink"
+            },
+            "description": {
+                "en": "If the page is an \"External Destination\", visistors will be redirected to the URL defined below when accessing this page's route.",
+                "fr": "Si la page est une \"Destination externe\", les visiteurs seront redirigés vers l'URL défini ci-dessous lors de l'accès de l'URL de cette page."
+            },
+            "notes": {
+                "en": "Will replace the section url for this external url",
+                "fr": "Remplaçera le liens de la section pour ce liens externe"
+            }
+        },
+        "in_menu": {
+            "type": "boolean",
+            "label": {
+                "fr": "Inclure dans le menu principal",
+                "en": "Include in the main menu"
+            }
+        },
+        "meta_title": {
+            "description": {
+                "en": "Meta tags are useful for search engine optimisation and sharing on social medias",
+                "fr": "Les tags méta sont utilisés pour optimiser les moteurs de cherches et lors des partages sur les résaux sociaux"
+            },
+            "notes": {
+                "en": "Meta tags will be auto-generated if not filled",
+                "fr": "Les tags méta seront générés automatiquement si laissés vide"
+            }
+        },
+        "meta_description": {
+            "input_type": "charcoal/admin/property/input/textarea",
+            "rows": 5,
+            "input_class": "u-resize-vertical",
+            "description": {
+                "en": "Meta tags are useful for search engine optimisation and sharing on social medias",
+                "fr": "Les tags méta sont utilisés pour optimiser les moteurs de cherches et lors des partages sur les résaux sociaux"
+            },
+            "notes": {
+                "en": "Meta tags will be auto-generated if not filled",
+                "fr": "Les tags méta seront générés automatiquement si laissés vide"
+            }
+        },
+        "meta_image": {
+            "description": {
+                "en": "Meta tags are useful for search engine optimisation and sharing on social medias",
+                "fr": "Les tags méta sont utilisés pour optimiser les moteurs de cherches et lors des partages sur les résaux sociaux"
+            },
+            "notes": {
+                "en": "Meta tags will be auto-generated if not filled",
+                "fr": "Les tags méta seront générés automatiquement si laissés vide"
+            }
+        },
+        "keywords": {
+            "type": "object",
+            "obj_type": "charcoal/cms/tag",
+            "input_type": "charcoal/admin/property/input/selectize/tags",
+            "multiple": true,
+            "label": {
+                "fr": "Mots-clés",
+                "en": "Keywords"
+            },
+            "description": {
+                "fr": "Les mots-clés permettent d'optimiser la recherche",
+                "en": "Key-words optimises research"
+            }
+        },
+        "slug": {
+            "description": {
+                "en": "The part of the url that point to the article on the site",
+                "fr": "La partie du url qui pointe vers cet article"
+            },
+            "notes": {
+                "en": "Will be automatically generated if blank",
+                "fr": "Sera généré automatiquement si laissé vide"
+            }
+        },
+        "template_ident": {
+            "type": "template",
+            "allow_null": false
         }
+    },
+
+    "admin": {
+        "lists": {
+            "cms.default": {
+                "properties": [
+                    "title",
+                    "template_ident",
+                    "last_modified",
+                    "active"
+                ],
+                "properties_options": {
+                    "title": {
+                        "display_type": "charcoal/support/admin/property/display/hierarchical",
+                        "view_options": {
+                            "attr": {
+                                "width": "55%"
+                            }
+                        }
+                    },
+                    "template_ident": {
+                        "view_options": {
+                            "attr": {
+                                "width": "15%"
+                            }
+                        }
+                    },
+                    "last_modified": {
+                        "view_options": {
+                            "attr": {
+                                "width": "15%"
+                            }
+                        }
+                    },
+                    "active": {
+                        "view_options": {
+                            "attr": {
+                                "width": "5%",
+                                "class": "text-center"
+                            }
+                        }
+                    }
+                },
+                "list_actions": [
+                    {
+                        "ident": "create",
+                        "priority": 1,
+                        "label": {
+                            "en": "New Page",
+                            "fr": "Nouvelle Page"
+                        },
+                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}"
+                    },
+                    {
+                        "ident": "main_menu",
+                        "priority": 2,
+                        "label": {
+                            "en": "Pages in menu",
+                            "fr": "Pages dans le menu"
+                        },
+                        "url": "object/collection?obj_type={{obj_type}}&dashboard_ident=admin.table&collection_ident=cms.in_menu"
+                    }
+                ],
+                "object_actions": {
+                    "edit": {
+                        "label": {
+                            "en": "Modify",
+                            "fr": "Modifier"
+                        },
+                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&obj_id={{id}}",
+                        "priority": 1
+                    },
+                    "goto": {
+                        "label": {
+                            "en": "Go to page",
+                            "fr": "Voir la page"
+                        },
+                        "url": "{{baseUrl}}{{url}}",
+                        "priority": 2
+                    },
+                    "clone": {
+                        "label": {
+                            "en": "Clone",
+                            "fr": "Cloner"
+                        },
+                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&clone_id={{id}}",
+                        "priority": 3
+                    },
+                    "delete": {
+                        "label": {
+                            "en": "Delete",
+                            "fr": "Supprimer"
+                        },
+                        "priority": 4
+                    }
+                },
+                "orders": {
+                    "position": {
+                        "property": "position",
+                        "mode": "asc"
+                    }
+                }
+            },
+            "cms.in_menu": {
+                "label": {
+                    "fr": "Pages du menu principal",
+                    "en": "Pages in Main Menu"
+                },
+                "properties": [
+                    "title",
+                    "last_modified",
+                    "active"
+                ],
+                "properties_options": {
+                    "title": {
+                        "view_options": {
+                            "attr": {
+                                "width": "70%"
+                            }
+                        }
+                    },
+                    "last_modified": {
+                        "view_options": {
+                            "attr": {
+                                "width": "15%"
+                            }
+                        }
+                    },
+                    "active": {
+                        "view_options": {
+                            "attr": {
+                                "width": "5%",
+                                "class": "text-center"
+                            }
+                        }
+                    }
+                },
+                "list_actions": [
+                    {
+                        "ident": "create",
+                        "priority": 1,
+                        "label": {
+                            "en": "New Page",
+                            "fr": "Nouvelle Page"
+                        },
+                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}"
+                    },
+                    {
+                        "ident": "sidebar",
+                        "priority": 2,
+                        "label": {
+                            "en": "All Pages",
+                            "fr": "Toutes les pages"
+                        },
+                        "url": "object/collection?obj_type={{obj_type}}"
+                    }
+                ],
+                "object_actions": [
+                    {
+                        "label": {
+                            "en": "Modify",
+                            "fr": "Modifier"
+                        },
+                        "ident": "edit",
+                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&obj_id={{id}}"
+                    },
+                    {
+                        "label": {
+                            "en": "Go to page",
+                            "fr": "Voir la page"
+                        },
+                        "url": "{{baseUrl}}{{url}}",
+                        "priority": 2
+                    },
+                    {
+                        "label": {
+                            "en": "Clone",
+                            "fr": "Cloner"
+                        },
+                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&clone_id={{id}}",
+                        "priority": 3
+                    },
+                    {
+                        "label": {
+                            "en": "Delete",
+                            "fr": "Supprimer"
+                        },
+                        "priority": 4
+                    }
+                ],
+                "filters": [
+                    {
+                        "property": "in_menu",
+                        "operator": "FIND_IN_SET",
+                        "val": true
+                    }
+                ],
+                "orders": [
+                    {
+                        "property": "position",
+                        "mode": "asc"
+                    }
+                ]
+            }
+        },
+        "forms": {
+            "cms.default": {
+                "groups": {
+                    "info": {
+                        "priority": 100
+                    },
+                    "contents": {
+                        "priority": 200
+                    },
+                    "meta": {
+                        "priority": 400
+                    },
+                    "advanced": {
+                        "priority": 300
+                    },
+                    "table": {
+                        "priority": 7000
+                    },
+                    "revisions": {
+                        "priority": 8000
+                    }
+                },
+                "sidebars": {
+                    "default": {
+                        "properties": [
+                            "created",
+                            "created_by",
+                            "last_modified",
+                            "last_modified_by"
+                        ]
+                    }
+                }
+            }
+        },
+        "form_groups": {
+            "info": {
+                "title": "Info",
+                "show_title": false,
+                "show_header": false,
+                "icon": "info",
+                "properties": [
+                    "title",
+                    "summary",
+                    "image"
+                ],
+                "priority": 100
+            },
+            "gallery": {
+                "title": {
+                    "fr": "Galerie d'images",
+                    "en": "Gallery"
+                },
+                "show_title": false,
+                "show_header": false,
+                "icon": "photo",
+                "template": "charcoal/admin/widget/form-group/attachment",
+                "type": "charcoal/admin/widget/form-group/attachment",
+                "group": "image-gallery",
+                "attachable_objects": {
+                    "charcoal/attachment/image": {
+                        "label": {
+                            "fr": "Image",
+                            "en": "Image"
+                        }
+                    }
+                }
+            },
+            "resources": {
+                "title": {
+                    "en": "Documents",
+                    "fr": "Ressources"
+                },
+                "show_title": false,
+                "show_header": false,
+                "icon": "paperclip",
+                "template": "charcoal/admin/widget/form-group/attachment",
+                "type": "charcoal/admin/widget/form-group/attachment",
+                "group": "document",
+                "attachable_objects": {
+                    "charcoal/attachment/file": {
+                        "label": {
+                            "fr": "Document",
+                            "en": "Document"
+                        }
+                    },
+                    "charcoal/attachment/link": {
+                        "label": {
+                            "fr": "Lien",
+                            "en": "Link"
+                        }
+                    }
+                }
+            },
+            "meta": {
+                "show_title": false,
+                "show_header": false,
+                "icon": "tags",
+                "title": {
+                    "fr": "Description méta",
+                    "en": "Meta tags"
+                },
+                "properties": [
+                    "meta_title",
+                    "meta_description",
+                    "meta_image",
+                    "keywords"
+                ]
+            },
+            "advanced": {
+                "title": "Options",
+                "show_title": false,
+                "show_header": false,
+                "icon": "cog",
+                "properties": [
+                    "master",
+                    "template_ident",
+                    "external_url",
+                    "slug",
+                    "in_menu",
+                    "active"
+                ]
+            },
+            "table": {
+                "title": {
+                    "fr": "Hiérarchie",
+                    "en": "Hierarchy"
+                },
+                "show_title": false,
+                "show_header": false,
+                "icon": "sitemap",
+                "template": "utils/widget/form-group/widget",
+                "type": "utils/widget/form-group/widget",
+                "widget_type": "charcoal/admin/widget/table",
+                "collection_ident": "default",
+                "priority": 7000,
+                "sortable": true,
+                "renderable_data": {
+                    "obj_type": "{{obj_type}}",
+                    "collection_config": {
+                        "properties": [
+                            "title",
+                            "slug"
+                        ],
+                        "orders": [
+                            {
+                                "property": "position",
+                                "mode": "asc"
+                            }
+                        ],
+                        "filters": [
+                            {
+                                "property": "master",
+                                "val": "{{id}}"
+                            }
+                        ],
+                        "list_actions": [
+                            {
+                                "label": {
+                                    "en": "New Page",
+                                    "fr": "Nouvelle Page"
+                                },
+                                "ident": "create",
+                                "url": "object/edit?obj_type={{obj_type}}&form_data[master]={{id}}"
+                            }
+                        ],
+                        "object_actions": [
+                            {
+                                "label": {
+                                    "en": "Edit",
+                                    "fr": "Modifier"
+                                },
+                                "ident": "edit",
+                                "url": "object/edit?obj_type={{obj_type}}&form_data[master]={{id}}"
+                            }
+                        ],
+                        "pagination": {
+                            "num_per_page": 100
+                        }
+                    }
+                }
+            },
+            "revisions": {
+                "title": {
+                    "fr": "Révisions",
+                    "en": "Revisions"
+                },
+                "show_title": false,
+                "show_header": false,
+                "icon": "floppy-o",
+                "template": "charcoal/admin/widget/form-group/object-revisions",
+                "type": "charcoal/admin/widget/form-group/object-revisions"
+            }
+        },
+
+        "dashboards": {
+            "cms.edit": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1]},
+                        {"columns": [1]},
+                        {"columns": [1]},
+                        {"columns": [1]}
+                    ]
+                },
+                "widgets": {
+                    "form": {
+                        "priority": 10,
+                        "type": "charcoal/admin/widget/objectForm",
+                        "form_ident": "cms.default",
+                        "group_display_mode": "tab"
+                    }
+                }
+            },
+            "cms.table.hierarchical": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1]}
+                    ]
+                },
+                "widgets": {
+                    "list": {
+                        "type": "charcoal/admin/widget/cms/hierarchical-section-table",
+                        "collection_ident": "cms.default",
+                        "data_sources": ["request"]
+                    }
+                }
+            },
+            "cms.table": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1]}
+                    ]
+                },
+                "widgets": {
+                    "table": {
+                        "type": "charcoal/support/admin/widget/table",
+                        "collection_ident": "cms.default",
+                        "sortable": true,
+                        "data_sources": ["request"]
+                    }
+                }
+            }
+        },
+        "default_create_dashboard": "cms.edit",
+        "default_edit_dashboard": "cms.edit",
+        "default_collection_dashboard": "cms.table.hierarchical"
     }
 }

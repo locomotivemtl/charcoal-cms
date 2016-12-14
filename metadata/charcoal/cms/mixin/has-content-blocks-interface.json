@@ -1,0 +1,25 @@
+{
+    "admin": {
+        "form_groups": {
+            "contents": {
+                "title": {
+                    "fr": "Contenus",
+                    "en": "Content"
+                },
+                "show_title": false,
+                "show_header": false,
+                "icon": "edit",
+                "priority": 200,
+                "type": "charcoal/admin/widget/form-group/attachment",
+                "template": "charcoal/admin/widget/form-group/attachment",
+                "group": "contents",
+                "attachment_heading": "{{ ident }}",
+                "show_attachment_heading": false,
+                "show_attachment_preview": true,
+                "attachable_objects": {
+
+                }
+            }
+        }
+    }
+}

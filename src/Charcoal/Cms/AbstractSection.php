@@ -58,11 +58,11 @@ abstract class AbstractSection extends Content implements
     use SearchableTrait;
     use TemplateableTrait;
 
-    const TYPE_BLOCKS   = 'charcoal/cms/section/blocks';
-    const TYPE_CONTENT  = 'charcoal/cms/section/content';
-    const TYPE_EMPTY    = 'charcoal/cms/section/empty';
+    const TYPE_BLOCKS = 'charcoal/cms/section/blocks';
+    const TYPE_CONTENT = 'charcoal/cms/section/content';
+    const TYPE_EMPTY = 'charcoal/cms/section/empty';
     const TYPE_EXTERNAL = 'charcoal/cms/section/external';
-    const DEFAULT_TYPE  = self::TYPE_CONTENT;
+    const DEFAULT_TYPE = self::TYPE_CONTENT;
 
     /**
      * @var string
@@ -95,30 +95,118 @@ abstract class AbstractSection extends Content implements
     private $attachments;
 
     /**
-     * Set the section's type.
+     * The menus this object is shown in.
      *
-     * @param  string $type The section type.
-     * @throws InvalidArgumentException If the section type is not a string or not a valid section type.
-     * @return self
+     * @var string[]
      */
-    public function setSectionType($type)
+    protected $inMenu;
+
+    /**
+     * @var array
+     */
+    protected $keywords;
+
+    /**
+     * @var TranslationString $summary
+     */
+    protected $summary;
+
+    /**
+     * @var string $externalUrl
+     */
+    protected $externalUrl;
+
+    /**
+     * @var boolean $locked
+     */
+    protected $locked;
+
+    // ==========================================================================
+    // INIT
+    // ==========================================================================
+
+    /**
+     * Section constructor.
+     * @param array $data Init data.
+     */
+    public function __construct(array $data = null)
     {
-        if (!is_string($type)) {
-            throw new InvalidArgumentException(
-                'Section type must be a string'
-            );
+        parent::__construct($data);
+
+        if (is_callable([ $this, 'defaultData' ])) {
+            $this->setData($this->defaultData());
+        }
+    }
+
+    /**
+     * Route generated on postSave in case
+     * it contains the ID of the section, which
+     * you only get once you have save
+     *
+     * @return boolean
+     */
+    public function postSave()
+    {
+        // RoutableTrait
+        if (!$this->locked()) {
+            $this->generateObjectRoute($this->slug());
         }
 
-        $validTypes = $this->acceptedSectionTypes();
-        if (!in_array($type, $validTypes)) {
-            throw new InvalidArgumentException(
-                'Section type is not valid'
-            );
+        return parent::postSave();
+    }
+
+    /**
+     * Check whatever before the update.
+     *
+     * @param  array|null $properties Properties.
+     * @return boolean
+     */
+    public function postUpdate(array $properties = null)
+    {
+        if (!$this->locked()) {
+            $this->generateObjectRoute($this->slug());
         }
 
-        $this->sectionType = $type;
+        return parent::postUpdate($properties);
+    }
 
-        return $this;
+    /**
+     * {@inheritdoc}
+     *
+     * @return boolean
+     */
+    public function preSave()
+    {
+        $this->setSlug($this->generateSlug());
+
+        return parent::preSave();
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @param array $properties Optional properties to update.
+     * @return boolean
+     */
+    public function preUpdate(array $properties = null)
+    {
+        $this->setSlug($this->generateSlug());
+
+        return parent::preUpdate($properties);
+    }
+
+    // ==========================================================================
+    // FUNCTIONS
+    // ==========================================================================
+
+    /**
+     * Retrieve the object's title.
+     *
+     * @return string
+     */
+    public function hierarchicalLabel()
+    {
+        return str_repeat('— ', ($this->hierarchyLevel() - 1)).$this->title();
     }
 
     /**
@@ -136,89 +224,36 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * Retrieve the section's type.
+     * HierarchicalTrait > loadChildren
      *
-     * @return string
+     * @return \ArrayAccess|\Traversable
      */
-    public function sectionType()
+    public function loadChildren()
     {
-        return $this->sectionType;
+        $loader = new CollectionLoader([
+            'logger'  => $this->logger,
+            'factory' => $this->modelFactory()
+        ]);
+        $loader->setModel($this);
+        $loader->addFilter([
+            'property' => 'master',
+            'val'      => $this->id()
+        ]);
+        $loader->addFilter([
+            'property' => 'active',
+            'val'      => true
+        ]);
+
+        $loader->addOrder([
+            'property' => 'position',
+            'mode'     => 'asc'
+        ]);
+
+        return $loader->load();
     }
 
     /**
-     * @param  mixed $title The section title (localized).
-     * @return self
-     */
-    public function setTitle($title)
-    {
-        $this->title = $this->translator()->translation($title);
-        return $this;
-    }
-
-    /**
-     * @return Translation|string|null
-     */
-    public function title()
-    {
-        return $this->title;
-    }
-
-    /**
-     * @param  mixed $subtitle The section subtitle (localized).
-     * @return self
-     */
-    public function setSubtitle($subtitle)
-    {
-        $this->subtitle = $this->translator()->translation($subtitle);
-        return $this;
-    }
-
-    /**
-     * @return Translation|string|null
-     */
-    public function subtitle()
-    {
-        return $this->subtitle;
-    }
-
-    /**
-     * @param  mixed $content The section content (localized).
-     * @return self
-     */
-    public function setContent($content)
-    {
-        $this->content = $this->translator()->translation($content);
-        return $this;
-    }
-
-    /**
-     * @return Translation|string|null
-     */
-    public function content()
-    {
-        return $this->content;
-    }
-
-    /**
-     * @param  mixed $image The section main image (localized).
-     * @return self
-     */
-    public function setImage($image)
-    {
-        $this->image = $this->translator()->translation($image);
-        return $this;
-    }
-
-    /**
-     * @return Translation|string|null
-     */
-    public function image()
-    {
-        return $this->image;
-    }
-
-    /**
-     * @param  string $type Optional type.
+     * @param string $type Optional type.
      * @return array
      */
     public function attachments($type = null)
@@ -243,33 +278,240 @@ abstract class AbstractSection extends Content implements
         return [];
     }
 
+    // ==========================================================================
+    // SETTERS
+    // ==========================================================================
+
+    /**
+     * Set the section's type.
+     *
+     * @param  string $type The section type.
+     * @throws InvalidArgumentException If the section type is not a string or not a valid section type.
+     *                      <<<<<<< HEAD
+     * @return self
+    =======
+     * @return SectionInterface
+    >>>>>>> Section Update:
+     */
+    public function setSectionType($type)
+    {
+        if (!is_string($type)) {
+            throw new InvalidArgumentException(
+                'Section type must be a string'
+            );
+        }
+
+        $validTypes = $this->acceptedSectionTypes();
+        if (!in_array($type, $validTypes)) {
+            throw new InvalidArgumentException(
+                'Section type is not valid'
+            );
+        }
+
+        $this->sectionType = $type;
+
+        return $this;
+    }
+
+    /**
+     * Set the menus this object belongs to.
+     *
+     * @param  string|string[] $menu One or more menu identifiers.
+     * @return self
+     */
+    public function setInMenu($menu)
+    {
+        $this->inMenu = $menu;
+
+        return $this;
+    }
+
+    /**
+     * Set the object's keywords.
+     *
+     * @param  string|string[] $keywords One or more entries.
+     * @return self
+     */
+    public function setKeywords($keywords)
+    {
+        $this->keywords = $this->parseAsMultiple($keywords);
+
+        return $this;
+    }
+
+    /**
+     * @param Translation|string|null $summary The summary.
+     * @return self
+     */
+    public function setSummary($summary)
+    {
+        $this->summary = $summary;
+
+        return $this;
+    }
+
+    /**
+     * @param Translation|string|null $externalUrl The external url.
+     * @return self
+     */
+    public function setExternalUrl($externalUrl)
+    {
+        $this->externalUrl = $externalUrl;
+
+        return $this;
+    }
+
+    /**
+     * Section is locked when you can't change the URL
+     * @param boolean $locked Prevent new route creation about that object.
+     * @return self
+     */
+    public function setLocked($locked)
+    {
+        $this->locked = $locked;
+
+        return $this;
+    }
+
+    /**
+     * @param Translation|string|null $title The section title (localized).
+     * @return self
+     */
+    public function setTitle($title)
+    {
+        $this->title = $this->translator()->translation($title);
+
+        return $this;
+    }
+
+    /**
+     * @param Translation|string|null $subtitle The section subtitle (localized).
+     * @return self
+     */
+    public function setSubtitle($subtitle)
+    {
+        $this->subtitle = $this->translator()->translation($subtitle);
+
+        return $this;
+    }
+
+    /**
+     * @param Translation|string|null $content The section content (localized).
+     * @return self
+     */
+    public function setContent($content)
+    {
+        $this->content = $this->translator()->translation($content);
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $image The section main image (localized).
+     * @return self
+     */
+    public function setImage($image)
+    {
+        $this->image = $this->translator()->translation($image);
+
+        return $this;
+    }
+
+    // ==========================================================================
+    // GETTERS
+    // ==========================================================================
+
+    /**
+     * Retrieve the section's type.
+     *
+     * @return string
+     */
+    public function sectionType()
+    {
+        return $this->sectionType;
+    }
+
+    /**
+     * @return Translation|string|null
+     */
+    public function title()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @return Translation|string|null
+     */
+    public function subtitle()
+    {
+        return $this->subtitle;
+    }
+
+    /**
+     * @return Translation|string|null
+     */
+    public function content()
+    {
+        return $this->content;
+    }
+
+    /**
+     * @return Translation|string|null
+     */
+    public function image()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Retrieve the menus this object belongs to.
+     *
+     * @return Translation|string|null
+     */
+    public function inMenu()
+    {
+        return $this->inMenu;
+    }
+
+    /**
+     * Retrieve the object's keywords.
+     *
+     * @return string[]
+     */
+    public function keywords()
+    {
+        return $this->keywords;
+    }
+
     /**
      * HierarchicalTrait > loadChildren
      *
-     * @return Collection
+     * @return Translation|string|null
      */
-    public function loadChildren()
+    public function summary()
     {
-        $loader = new CollectionLoader([
-            'logger'  => $this->logger,
-            'factory' => $this->modelFactory()
-        ]);
-        $loader->setModel($this);
-        $loader->addFilter([
-            'property' => 'master',
-            'val'      => $this->id()
-        ]);
-        $loader->addFilter([
-            'property' => 'active',
-            'val'      => true
-        ]);
-
-        $loader->addOrder([
-            'property' => 'position',
-            'mode'     => 'asc'
-        ]);
-        return $loader->load();
+        return $this->summary;
     }
+
+    /**
+     * @return Translation|string|null
+     */
+    public function externalUrl()
+    {
+        return $this->externalUrl;
+    }
+
+    /**
+     * @return boolean Or Null.
+     */
+    public function locked()
+    {
+        return $this->locked;
+    }
+
+    // ==========================================================================
+    // DEFAULT META
+    // ==========================================================================
 
     /**
      * MetatagTrait > canonicalUrl
@@ -279,7 +521,7 @@ abstract class AbstractSection extends Content implements
      */
     public function canonicalUrl()
     {
-        return '';
+        return $this->url();
     }
 
     /**
@@ -316,28 +558,45 @@ abstract class AbstractSection extends Content implements
         return $this->image();
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @return boolean
-     */
-    public function preSave()
-    {
-        $this->setSlug($this->generateSlug());
-        $this->generateDefaultMetaTags();
-        return parent::preSave();
-    }
+    // ==========================================================================
+    // Utils
+    // ==========================================================================
 
     /**
-     * {@inheritdoc}
+     * Parse the property value as a "multiple" value type.
      *
-     * @param array $properties Optional properties to update.
-     * @return boolean
+     * @param  mixed                    $value     The value being converted to an array.
+     * @param  string|PropertyInterface $separator The boundary string.
+     * @return array
      */
-    public function preUpdate(array $properties = null)
+    public function parseAsMultiple($value, $separator = ',')
     {
-        $this->setSlug($this->generateSlug());
-        $this->generateDefaultMetaTags();
-        return parent::preUpdate($properties);
+        if (
+            !isset($value) ||
+            (is_string($value) && !strlen(trim($value))) ||
+            (is_array($value) && !count(array_filter($value, 'strlen')))
+        ) {
+            return [];
+        }
+
+        /**
+         * This property is marked as "multiple".
+         * Manually handling the resolution to array
+         * until the property itself manages this.
+         */
+        if (is_string($value)) {
+            return explode($separator, $value);
+        }
+
+        /**
+         * If the parameter isn't an array yet,
+         * means we might be dealing with an integer,
+         * an empty string, or an object.
+         */
+        if (!is_array($value)) {
+            return [ $value ];
+        }
+
+        return $value;
     }
 }
