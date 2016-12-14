@@ -267,7 +267,7 @@ Charcoal\Object\Content
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Cms.html">Cms</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Cms.AbstractSection.html#28-338" title="Go to source code">Charcoal/Cms/AbstractSection.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Cms.AbstractSection.html#28-608" title="Go to source code">Charcoal/Cms/AbstractSection.php</a>
 		<br>
 	</div>
 
@@ -275,48 +275,222 @@ Charcoal\Object\Content
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="setSectionType" id="_setSectionType">
+	<tr data-order="__construct" id="___construct">
 
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Cms.SectionInterface.html">Charcoal\Cms\SectionInterface</a></code>
+			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_setSectionType">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#96-121" title="Go to source code">setSectionType</a>( <span>string <var>$type</var></span> )</code>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#127-138" title="Go to source code">__construct</a>( <span>array <var>$data</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
-			<p>Set the section's type.</p>
+			<p>Section constructor.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Set the section's type.</p>
+			<p>Section constructor.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$type</var></dt>
-					<dd>The section type.</dd>
+					<dt><var>$data</var></dt>
+					<dd>Init data.</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="postSave" id="_postSave">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_postSave">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#140-155" title="Go to source code">postSave</a>( )</code>
+
+		<div class="description short">
+			<p>Route generated on postSave in case
+it contains the ID of the section, which
+you only get once you have save</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Route generated on postSave in case
+it contains the ID of the section, which
+you only get once you have save</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="postUpdate" id="_postUpdate">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_postUpdate">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#157-170" title="Go to source code">postUpdate</a>( <span>array <var>$properties</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			<p>Check whatever before the update.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Check whatever before the update.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$properties</var></dt>
+					<dd>Properties.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.SectionInterface.html">Charcoal\Cms\SectionInterface</a></code><br>Chainable
+					boolean
 				</div>
 
-				<h4>Throws</h4>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="preSave" id="_preSave">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_preSave">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#172-182" title="Go to source code">preSave</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
 				<div class="list">
-					InvalidArgumentException<br>If the section type is not a string or not a valid section type.
+					boolean
 				</div>
 
 
 
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Charcoal.Cms.SectionInterface.html#_setSectionType">Charcoal\Cms\SectionInterface::setSectionType()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="preUpdate" id="_preUpdate">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_preUpdate">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#184-195" title="Go to source code">preUpdate</a>( <span>array <var>$properties</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$properties</var></dt>
+					<dd>Optional properties to update.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="hierarchicalLabel" id="_hierarchicalLabel">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_hierarchicalLabel">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#201-209" title="Go to source code">hierarchicalLabel</a>( )</code>
+
+		<div class="description short">
+			<p>Retrieve the object's title.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Retrieve the object's title.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
 		</div>
 		</div></td>
 	</tr>
@@ -332,7 +506,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_acceptedSectionTypes">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#123-135" title="Go to source code">acceptedSectionTypes</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#211-223" title="Go to source code">acceptedSectionTypes</a>( )</code>
 
 		<div class="description short">
 			<p>Retrieve the available section types.</p>
@@ -354,334 +528,32 @@ Charcoal\Object\Content
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="sectionType" id="_sectionType">
+	<tr data-order="loadChildren" id="_loadChildren">
 
 		<td class="attributes"><code>
 			 public 
 
-			string
+			ArrayAccess|Traversable
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_sectionType">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#137-145" title="Go to source code">sectionType</a>( )</code>
+		<a class="anchor" href="#_loadChildren">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#225-252" title="Go to source code">loadChildren</a>( )</code>
 
 		<div class="description short">
-			<p>Retrieve the section's type.</p>
+			<p>HierarchicalTrait > loadChildren</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Retrieve the section's type.</p>
+			<p>HierarchicalTrait > loadChildren</p>
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					string
-				</div>
-
-
-
-
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Charcoal.Cms.SectionInterface.html#_sectionType">Charcoal\Cms\SectionInterface::sectionType()</a></code></div>
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setTitle" id="_setTitle">
-
-		<td class="attributes"><code>
-			 public 
-
-			Charcoal\Translation\TranslationString
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setTitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#147-155" title="Go to source code">setTitle</a>( <span>mixed <var>$title</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$title</var></dt>
-					<dd>The section title (localized).</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					Charcoal\Translation\TranslationString
-				</div>
-
-
-
-
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Charcoal.Cms.SectionInterface.html#_setTitle">Charcoal\Cms\SectionInterface::setTitle()</a></code></div>
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="title" id="_title">
-
-		<td class="attributes"><code>
-			 public 
-
-			Charcoal\Translation\TranslationString
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_title">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#157-163" title="Go to source code">title</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					Charcoal\Translation\TranslationString
-				</div>
-
-
-
-
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Charcoal.Cms.SectionInterface.html#_title">Charcoal\Cms\SectionInterface::title()</a></code></div>
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setSubtitle" id="_setSubtitle">
-
-		<td class="attributes"><code>
-			 public 
-
-			<code><a href="class-Charcoal.Cms.Section.html">Charcoal\Cms\Section</a></code>
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setSubtitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#165-173" title="Go to source code">setSubtitle</a>( <span>mixed <var>$subtitle</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$subtitle</var></dt>
-					<dd>The section subtitle (localized).</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code><a href="class-Charcoal.Cms.Section.html">Charcoal\Cms\Section</a></code><br>Chainable
-				</div>
-
-
-
-
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Charcoal.Cms.SectionInterface.html#_setSubtitle">Charcoal\Cms\SectionInterface::setSubtitle()</a></code></div>
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="subtitle" id="_subtitle">
-
-		<td class="attributes"><code>
-			 public 
-
-			Charcoal\Translation\TranslationString
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_subtitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#175-181" title="Go to source code">subtitle</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					Charcoal\Translation\TranslationString
-				</div>
-
-
-
-
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Charcoal.Cms.SectionInterface.html#_subtitle">Charcoal\Cms\SectionInterface::subtitle()</a></code></div>
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setContent" id="_setContent">
-
-		<td class="attributes"><code>
-			 public 
-
-			<code><a href="class-Charcoal.Cms.Section.html">Charcoal\Cms\Section</a></code>
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setContent">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#183-191" title="Go to source code">setContent</a>( <span>mixed <var>$content</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$content</var></dt>
-					<dd>The section content (localized).</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code><a href="class-Charcoal.Cms.Section.html">Charcoal\Cms\Section</a></code><br>Chainable
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="content" id="_content">
-
-		<td class="attributes"><code>
-			 public 
-
-			Charcoal\Translation\TranslationString
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_content">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#193-199" title="Go to source code">content</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					Charcoal\Translation\TranslationString
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setImage" id="_setImage">
-
-		<td class="attributes"><code>
-			 public 
-
-			<code><a href="class-Charcoal.Cms.Section.html">Charcoal\Cms\Section</a></code>
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setImage">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#201-209" title="Go to source code">setImage</a>( <span>mixed <var>$image</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$image</var></dt>
-					<dd>The section main image (localized).</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code><a href="class-Charcoal.Cms.Section.html">Charcoal\Cms\Section</a></code><br>Chainable
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="image" id="_image">
-
-		<td class="attributes"><code>
-			 public 
-
-			Charcoal\Translation\TranslationString
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_image">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#211-217" title="Go to source code">image</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					Charcoal\Translation\TranslationString
+					ArrayAccess|Traversable
 				</div>
 
 
@@ -702,7 +574,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_attachments">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#219-235" title="Go to source code">attachments</a>( <span>string <var>$type</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#254-270" title="Go to source code">attachments</a>( <span>string <var>$type</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -741,7 +613,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_loadAttachments">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#237-243" title="Go to source code">loadAttachments</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#272-278" title="Go to source code">loadAttachments</a>( )</code>
 
 		<div class="description short">
 			
@@ -763,32 +635,744 @@ Charcoal\Object\Content
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="loadChildren" id="_loadChildren">
+	<tr data-order="setSectionType" id="_setSectionType">
 
 		<td class="attributes"><code>
 			 public 
 
-			Co
+			<code><a href="class-Charcoal.Cms.SectionInterface.html">Charcoal\Cms\SectionInterface</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_loadChildren">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#245-271" title="Go to source code">loadChildren</a>( )</code>
+		<a class="anchor" href="#_setSectionType">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#284-309" title="Go to source code">setSectionType</a>( <span>string <var>$type</var></span> )</code>
 
 		<div class="description short">
-			<p>HierarchicalTrait > loadChildren</p>
+			<p>Set the section's type.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>HierarchicalTrait > loadChildren</p>
+			<p>Set the section's type.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$type</var></dt>
+					<dd>The section type.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Cms.SectionInterface.html">Charcoal\Cms\SectionInterface</a></code>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					InvalidArgumentException<br>If the section type is not a string or not a valid section type.
+				</div>
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Charcoal.Cms.SectionInterface.html#_setSectionType">Charcoal\Cms\SectionInterface::setSectionType()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setInMenu" id="_setInMenu">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Charcoal.Cms.AbstractSection.html">Charcoal\Cms\AbstractSection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setInMenu">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#311-322" title="Go to source code">setInMenu</a>( <span>string|string[] <var>$menu</var></span> )</code>
+
+		<div class="description short">
+			<p>Set the menus this object belongs to.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Set the menus this object belongs to.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$menu</var></dt>
+					<dd>One or more menu identifiers.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Cms.AbstractSection.html">Charcoal\Cms\AbstractSection</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setKeywords" id="_setKeywords">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Charcoal.Cms.AbstractSection.html">Charcoal\Cms\AbstractSection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setKeywords">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#324-335" title="Go to source code">setKeywords</a>( <span>string|string[] <var>$keywords</var></span> )</code>
+
+		<div class="description short">
+			<p>Set the object's keywords.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Set the object's keywords.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$keywords</var></dt>
+					<dd>One or more entries.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Cms.AbstractSection.html">Charcoal\Cms\AbstractSection</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setSummary" id="_setSummary">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Charcoal.Cms.AbstractSection.html">Charcoal\Cms\AbstractSection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setSummary">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#337-346" title="Go to source code">setSummary</a>( <span>Charcoal\Translation\TranslationString|string <var>$summary</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$summary</var></dt>
+					<dd>The summary.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Cms.AbstractSection.html">Charcoal\Cms\AbstractSection</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setExternalUrl" id="_setExternalUrl">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Charcoal.Cms.AbstractSection.html">Charcoal\Cms\AbstractSection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setExternalUrl">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#348-357" title="Go to source code">setExternalUrl</a>( <span>Charcoal\Translation\TranslationString|string <var>$externalUrl</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$externalUrl</var></dt>
+					<dd>The external url.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Cms.AbstractSection.html">Charcoal\Cms\AbstractSection</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setLocked" id="_setLocked">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Charcoal.Cms.AbstractSection.html">Charcoal\Cms\AbstractSection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setLocked">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#359-369" title="Go to source code">setLocked</a>( <span>boolean <var>$locked</var></span> )</code>
+
+		<div class="description short">
+			<p>Section is locked when you can't change the URL</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Section is locked when you can't change the URL</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$locked</var></dt>
+					<dd>Prevent new route creation about that object.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Cms.AbstractSection.html">Charcoal\Cms\AbstractSection</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setTitle" id="_setTitle">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Charcoal.Cms.AbstractSection.html">Charcoal\Cms\AbstractSection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setTitle">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#371-380" title="Go to source code">setTitle</a>( <span>mixed <var>$title</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$title</var></dt>
+					<dd>The section title (localized).</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Cms.AbstractSection.html">Charcoal\Cms\AbstractSection</a></code>
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Charcoal.Cms.SectionInterface.html#_setTitle">Charcoal\Cms\SectionInterface::setTitle()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setSubtitle" id="_setSubtitle">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Charcoal.Cms.AbstractSection.html">Charcoal\Cms\AbstractSection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setSubtitle">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#382-391" title="Go to source code">setSubtitle</a>( <span>mixed <var>$subtitle</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$subtitle</var></dt>
+					<dd>The section subtitle (localized).</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Cms.AbstractSection.html">Charcoal\Cms\AbstractSection</a></code>
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Charcoal.Cms.SectionInterface.html#_setSubtitle">Charcoal\Cms\SectionInterface::setSubtitle()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setContent" id="_setContent">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Charcoal.Cms.AbstractSection.html">Charcoal\Cms\AbstractSection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setContent">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#393-402" title="Go to source code">setContent</a>( <span>mixed <var>$content</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$content</var></dt>
+					<dd>The section content (localized).</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Cms.AbstractSection.html">Charcoal\Cms\AbstractSection</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setImage" id="_setImage">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Charcoal.Cms.AbstractSection.html">Charcoal\Cms\AbstractSection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setImage">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#404-413" title="Go to source code">setImage</a>( <span>mixed <var>$image</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$image</var></dt>
+					<dd>The section main image (localized).</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Cms.AbstractSection.html">Charcoal\Cms\AbstractSection</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="sectionType" id="_sectionType">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_sectionType">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#419-427" title="Go to source code">sectionType</a>( )</code>
+
+		<div class="description short">
+			<p>Retrieve the section's type.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Retrieve the section's type.</p>
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					Co
+					string
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Charcoal.Cms.SectionInterface.html#_sectionType">Charcoal\Cms\SectionInterface::sectionType()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="title" id="_title">
+
+		<td class="attributes"><code>
+			 public 
+
+			Charcoal\Translation\TranslationString
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_title">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#429-435" title="Go to source code">title</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Charcoal\Translation\TranslationString
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Charcoal.Cms.SectionInterface.html#_title">Charcoal\Cms\SectionInterface::title()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="subtitle" id="_subtitle">
+
+		<td class="attributes"><code>
+			 public 
+
+			Charcoal\Translation\TranslationString
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_subtitle">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#437-443" title="Go to source code">subtitle</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Charcoal\Translation\TranslationString
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Charcoal.Cms.SectionInterface.html#_subtitle">Charcoal\Cms\SectionInterface::subtitle()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="content" id="_content">
+
+		<td class="attributes"><code>
+			 public 
+
+			Charcoal\Translation\TranslationString
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_content">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#445-451" title="Go to source code">content</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Charcoal\Translation\TranslationString
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="image" id="_image">
+
+		<td class="attributes"><code>
+			 public 
+
+			Charcoal\Translation\TranslationString
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_image">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#453-459" title="Go to source code">image</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Charcoal\Translation\TranslationString
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="inMenu" id="_inMenu">
+
+		<td class="attributes"><code>
+			 public 
+
+			string|Charcoal\Translation\TranslationString
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_inMenu">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#461-469" title="Go to source code">inMenu</a>( )</code>
+
+		<div class="description short">
+			<p>Retrieve the menus this object belongs to.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Retrieve the menus this object belongs to.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string|Charcoal\Translation\TranslationString
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="keywords" id="_keywords">
+
+		<td class="attributes"><code>
+			 public 
+
+			string[]
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_keywords">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#471-479" title="Go to source code">keywords</a>( )</code>
+
+		<div class="description short">
+			<p>Retrieve the object's keywords.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Retrieve the object's keywords.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string[]
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="summary" id="_summary">
+
+		<td class="attributes"><code>
+			 public 
+
+			Charcoal\Translation\TranslationString
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_summary">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#481-487" title="Go to source code">summary</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Charcoal\Translation\TranslationString
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="externalUrl" id="_externalUrl">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_externalUrl">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#489-495" title="Go to source code">externalUrl</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="locked" id="_locked">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_locked">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#497-503" title="Go to source code">locked</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean<br>Or Null.
 				</div>
 
 
@@ -809,7 +1393,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_canonicalUrl">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#273-282" title="Go to source code">canonicalUrl</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#509-518" title="Go to source code">canonicalUrl</a>( )</code>
 
 		<div class="description short">
 			<p>MetatagTrait > canonicalUrl</p>
@@ -845,7 +1429,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_defaultMetaTitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#284-290" title="Go to source code">defaultMetaTitle</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#520-526" title="Go to source code">defaultMetaTitle</a>( )</code>
 
 		<div class="description short">
 			
@@ -881,7 +1465,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_defaultMetaDescription">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#292-306" title="Go to source code">defaultMetaDescription</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#528-542" title="Go to source code">defaultMetaDescription</a>( )</code>
 
 		<div class="description short">
 			
@@ -917,7 +1501,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_defaultMetaImage">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#308-314" title="Go to source code">defaultMetaImage</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#544-550" title="Go to source code">defaultMetaImage</a>( )</code>
 
 		<div class="description short">
 			
@@ -941,32 +1525,39 @@ Charcoal\Object\Content
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="preSave" id="_preSave">
+	<tr data-order="parseAsMultiple" id="_parseAsMultiple">
 
 		<td class="attributes"><code>
 			 public 
 
-			boolean
+			array
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_preSave">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#316-325" title="Go to source code">preSave</a>( )</code>
+		<a class="anchor" href="#_parseAsMultiple">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#556-592" title="Go to source code">parseAsMultiple</a>( <span>mixed <var>$value</var></span>, <span>string|PropertyInterface <var>$separator</var> = <span class="php-quote">','</span></span> )</code>
 
 		<div class="description short">
-			
+			<p>Parse the property value as a "multiple" value type.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Parse the property value as a "multiple" value type.</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value</var></dt>
+					<dd>The value being converted to an array.</dd>
+					<dt><var>$separator</var></dt>
+					<dd>The boundary string.</dd>
+				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					boolean
+					array
 				</div>
 
 
@@ -975,37 +1566,37 @@ Charcoal\Object\Content
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="preUpdate" id="_preUpdate">
+	<tr data-order="parseAsTranslatable" id="_parseAsTranslatable">
 
 		<td class="attributes"><code>
 			 public 
 
-			boolean
+			Charcoal\Translation\TranslationString|string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_preUpdate">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#327-337" title="Go to source code">preUpdate</a>( <span>array <var>$properties</var> = <span class="php-keyword1">null</span></span> )</code>
+		<a class="anchor" href="#_parseAsTranslatable">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#594-607" title="Go to source code">parseAsTranslatable</a>( <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Parse the property value as a "L10N" value type.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Parse the property value as a "L10N" value type.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$properties</var></dt>
-					<dd>Optional properties to update.</dd>
+					<dt><var>$value</var></dt>
+					<dd>The value being localized.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					boolean
+					Charcoal\Translation\TranslationString|string
 				</div>
 
 
@@ -1264,6 +1855,134 @@ Charcoal\Object\Content
 
 
 
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="inMenu" id="$inMenu">
+		<td class="attributes"><code>
+			protected  
+			string[]
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Charcoal.Cms.AbstractSection.html#96-101" title="Go to source code"><var>$inMenu</var></a>
+
+			<div class="description short">
+				<p>The menus this object is shown in.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>The menus this object is shown in.</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$inMenu" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="keywords" id="$keywords">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Charcoal.Cms.AbstractSection.html#103-106" title="Go to source code"><var>$keywords</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$keywords" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="summary" id="$summary">
+		<td class="attributes"><code>
+			protected  
+			Charcoal\Translation\TranslationString
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Charcoal.Cms.AbstractSection.html#108-111" title="Go to source code"><var>$summary</var></a>
+
+			<div class="description short">
+				<p>$summary</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>$summary</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$summary" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="externalUrl" id="$externalUrl">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Charcoal.Cms.AbstractSection.html#113-116" title="Go to source code"><var>$externalUrl</var></a>
+
+			<div class="description short">
+				<p>$externalUrl</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>$externalUrl</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$externalUrl" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="locked" id="$locked">
+		<td class="attributes"><code>
+			protected  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Charcoal.Cms.AbstractSection.html#118-121" title="Go to source code"><var>$locked</var></a>
+
+			<div class="description short">
+				<p>$locked</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>$locked</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$locked" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	</table>
 
 
 	<table class="summary used">
