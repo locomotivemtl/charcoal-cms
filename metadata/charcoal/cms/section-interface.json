@@ -247,7 +247,7 @@
                 "list_actions": [
                     {
                         "ident": "create",
-                        "priority": 1,
+                        "priority": 10,
                         "label": {
                             "en": "New Page",
                             "fr": "Nouvelle Page"
@@ -256,7 +256,7 @@
                     },
                     {
                         "ident": "main_menu",
-                        "priority": 2,
+                        "priority": 20,
                         "label": {
                             "en": "Pages in menu",
                             "fr": "Pages dans le menu"
@@ -406,42 +406,9 @@
                 ]
             }
         },
-        "forms": {
-            "cms.default": {
-                "groups": {
-                    "info": {
-                        "priority": 100
-                    },
-                    "contents": {
-                        "priority": 200
-                    },
-                    "meta": {
-                        "priority": 400
-                    },
-                    "advanced": {
-                        "priority": 300
-                    },
-                    "table": {
-                        "priority": 7000
-                    },
-                    "revisions": {
-                        "priority": 8000
-                    }
-                },
-                "sidebars": {
-                    "default": {
-                        "properties": [
-                            "created",
-                            "created_by",
-                            "last_modified",
-                            "last_modified_by"
-                        ]
-                    }
-                }
-            }
-        },
+
         "form_groups": {
-            "info": {
+            "cms.info": {
                 "title": "Info",
                 "show_title": false,
                 "show_header": false,
@@ -453,7 +420,7 @@
                 ],
                 "priority": 100
             },
-            "gallery": {
+            "cms.gallery": {
                 "title": {
                     "fr": "Galerie d'images",
                     "en": "Gallery"
@@ -473,7 +440,7 @@
                     }
                 }
             },
-            "resources": {
+            "cms.resources": {
                 "title": {
                     "en": "Documents",
                     "fr": "Ressources"
@@ -499,7 +466,7 @@
                     }
                 }
             },
-            "meta": {
+            "cms.meta": {
                 "show_title": false,
                 "show_header": false,
                 "icon": "tags",
@@ -514,7 +481,7 @@
                     "keywords"
                 ]
             },
-            "advanced": {
+            "cms.advanced": {
                 "title": "Options",
                 "show_title": false,
                 "show_header": false,
@@ -528,7 +495,7 @@
                     "active"
                 ]
             },
-            "table": {
+            "cms.table": {
                 "title": {
                     "fr": "Hiérarchie",
                     "en": "Hierarchy"
@@ -587,7 +554,7 @@
                     }
                 }
             },
-            "revisions": {
+            "cms.revisions": {
                 "title": {
                     "fr": "Révisions",
                     "en": "Revisions"
