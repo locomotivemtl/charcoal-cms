@@ -116,6 +116,7 @@
 			<ul>
 				<li class="active"><a href="class-Charcoal.Cms.Section.BlocksSection.html">BlocksSection</a></li>
 				<li><a href="class-Charcoal.Cms.Section.ContentSection.html">ContentSection</a></li>
+				<li><a href="class-Charcoal.Cms.Section.EmptySection.html">EmptySection</a></li>
 			</ul>
 
 
@@ -201,7 +202,13 @@ Charcoal\Object\Content
 		<dd style="padding-left:60px">
 			<img src="resources/inherit.png" alt="Extended by">
 <b><span>Charcoal\Cms\Section\BlocksSection</span></b>			
+			 implements 
+				<a href="class-Charcoal.Cms.Mixin.HasContentBlocksInterface.html"><span>Charcoal\Cms\Mixin\HasContentBlocksInterface</span></a>, 
 			
+				<a href="class-Charcoal.Cms.BlocksSectionInterface.html"><span>Charcoal\Cms\BlocksSectionInterface</span></a>
+			
+			 uses 
+					<a href="class-Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html"><span>Charcoal\Cms\Mixin\Traits\HasContentBlocksTrait</span></a>
 			
 		</dd>
 	</dl>
@@ -219,7 +226,7 @@ Charcoal\Object\Content
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Cms.html">Cms</a>\<a href="namespace-Charcoal.Cms.Section.html">Section</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Cms.Section.BlocksSection.html#8-47" title="Go to source code">Charcoal/Cms/Section/BlocksSection.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Cms.Section.BlocksSection.html#20-92" title="Go to source code">Charcoal/Cms/Section/BlocksSection.php</a>
 		<br>
 	</div>
 
@@ -227,6 +234,118 @@ Charcoal\Object\Content
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
+	<tr data-order="setDependencies" id="_setDependencies">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setDependencies">#</a>
+		<code><a href="source-class-Charcoal.Cms.Section.BlocksSection.html#40-51" title="Go to source code">setDependencies</a>( <span>Pimple\Container <var>$container</var></span> )</code>
+
+		<div class="description short">
+			<p>Inject dependencies from a DI Container.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Inject dependencies from a DI Container.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$container</var></dt>
+					<dd>A dependencies container instance.</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setCollectionLoader" id="_setCollectionLoader">
+
+		<td class="attributes"><code>
+			 protected 
+
+			<code><a href="class-Charcoal.Cms.Section.BlocksSection.html">Charcoal\Cms\Section\BlocksSection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setCollectionLoader">#</a>
+		<code><a href="source-class-Charcoal.Cms.Section.BlocksSection.html#53-64" title="Go to source code">setCollectionLoader</a>( <span>Charcoal\Loader\CollectionLoader <var>$loader</var></span> )</code>
+
+		<div class="description short">
+			<p>Set a model collection loader.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Set a model collection loader.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$loader</var></dt>
+					<dd>The collection loader.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Cms.Section.BlocksSection.html">Charcoal\Cms\Section\BlocksSection</a></code>
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="collectionLoader" id="_collectionLoader">
+
+		<td class="attributes"><code>
+			 public 
+
+			Charcoal\Loader\CollectionLoader
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_collectionLoader">#</a>
+		<code><a href="source-class-Charcoal.Cms.Section.BlocksSection.html#66-81" title="Go to source code">collectionLoader</a>( )</code>
+
+		<div class="description short">
+			<p>Retrieve the model collection loader.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Retrieve the model collection loader.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Charcoal\Loader\CollectionLoader
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					RuntimeException<br>If the collection loader was not previously set.
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="sectionType" id="_sectionType">
 
 		<td class="attributes"><code>
@@ -239,7 +358,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sectionType">#</a>
-		<code><a href="source-class-Charcoal.Cms.Section.BlocksSection.html#18-26" title="Go to source code">sectionType</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.Section.BlocksSection.html#83-91" title="Go to source code">sectionType</a>( )</code>
 
 		<div class="description short">
 			<p>Overrides <code>AbstractSection::section_type()</code></p>
@@ -259,74 +378,6 @@ Charcoal\Object\Content
 
 				<h4>Overrides</h4>
 				<div class="list"><code><a href="class-Charcoal.Cms.AbstractSection.html#_sectionType">Charcoal\Cms\AbstractSection::sectionType()</a></code></div>
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="blocks" id="_blocks">
-
-		<td class="attributes"><code>
-			 public 
-
-			Collection
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_blocks">#</a>
-		<code><a href="source-class-Charcoal.Cms.Section.BlocksSection.html#28-37" title="Go to source code">blocks</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					Collection<br>List of <code>Block</code> objects
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="loadBlocks" id="_loadBlocks">
-
-		<td class="attributes"><code>
-			 public 
-
-			Collection
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_loadBlocks">#</a>
-		<code><a href="source-class-Charcoal.Cms.Section.BlocksSection.html#39-46" title="Go to source code">loadBlocks</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					Collection
-				</div>
-
-
-
 
 		</div>
 		</div></td>
@@ -434,6 +485,17 @@ Charcoal\Object\Content
 	</table>
 
 	<table class="summary used">
+	<caption>Methods used from <a href="class-Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html#methods">Charcoal\Cms\Mixin\Traits\HasContentBlocksTrait</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html#_contentBlocks">contentBlocks()</a>, 
+			<a href="class-Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html#_defaultMetaDescription">defaultMetaDescription()</a>, 
+			<a href="class-Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html#_hasContentBlocks">hasContentBlocks()</a>, 
+			<a href="class-Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html#_numContentBlocks">numContentBlocks()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary used">
 	<caption>Methods used from <a href="class-Charcoal.Cms.MetatagTrait.html#methods">Charcoal\Cms\MetatagTrait</a></caption>
 	<tr>
 		<td><code>
@@ -512,6 +574,34 @@ Charcoal\Object\Content
 
 
 
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="collectionLoader" id="$collectionLoader">
+		<td class="attributes"><code>
+			protected  
+			Charcoal\Loader\CollectionLoader
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Charcoal.Cms.Section.BlocksSection.html#29-34" title="Go to source code"><var>$collectionLoader</var></a>
+
+			<div class="description short">
+				<p>Store the collection loader for the current class.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Store the collection loader for the current class.</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$collectionLoader" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	</table>
 
 	<table class="summary inherited">
 	<caption>Properties inherited from <a href="class-Charcoal.Cms.AbstractSection.html#properties">Charcoal\Cms\AbstractSection</a></caption>
