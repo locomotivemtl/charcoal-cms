@@ -3,11 +3,13 @@
 namespace Charcoal\Cms\Section;
 
 use \Charcoal\Cms\AbstractSection;
+use Charcoal\Cms\ContentSectionInterface;
 
 /**
  * Content section
  */
-class ContentSection extends AbstractSection
+class ContentSection extends AbstractSection implements
+    ContentSectionInterface
 {
     /**
      * @return string

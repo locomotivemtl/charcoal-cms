@@ -1,0 +1,11 @@
+<?php
+
+namespace Charcoal\Cms;
+
+/**
+ * Interface ContentSectionInterface
+ */
+interface ContentSectionInterface
+{
+}
+
