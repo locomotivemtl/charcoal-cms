@@ -2,6 +2,8 @@
 
 namespace Charcoal\Cms;
 
+use Charcoal\Translation\TranslationString;
+
 /**
  *
  */
@@ -9,7 +11,7 @@ interface SectionInterface
 {
     /**
      * @param string $type The section type.
-     * @return SectionInterface Chainable
+     * @return SectionInterface
      */
     public function setSectionType($type);
 
@@ -20,7 +22,7 @@ interface SectionInterface
 
     /**
      * @param mixed $title Section title (localized).
-     * @return SectionInterface Chainable
+     * @return SectionInterface
      */
     public function setTitle($title);
 
@@ -31,7 +33,7 @@ interface SectionInterface
 
     /**
      * @param mixed $subtitle Section subtitle (localized).
-     * @return SectionInterface Chainable
+     * @return SectionInterface
      */
     public function setSubtitle($subtitle);
 
@@ -39,5 +41,125 @@ interface SectionInterface
      * @return \Charcoal\Translation\TranslationString
      */
     public function subtitle();
+
+    /**
+     * Set the menus this object belongs to.
+     *
+     * @param  string|string[] $menu One or more menu identifiers.
+     * @return self
+     */
+    public function setInMenu($menu);
+
+    /**
+     * Set the object's keywords.
+     *
+     * @param  string|string[] $keywords One or more entries.
+     * @return self
+     */
+    public function setKeywords($keywords);
+
+    /**
+     * @param TranslationString|string $summary The summary.
+     * @return self
+     */
+    public function setSummary($summary);
+
+    /**
+     * @param TranslationString|string $externalUrl The external url.
+     * @return self
+     */
+    public function setExternalUrl($externalUrl);
+
+    /**
+     * Section is locked when you can't change the URL
+     * @param boolean $locked Prevent new route creation about that object.
+     * @return self
+     */
+    public function setLocked($locked);
+
+    /**
+     * @param mixed $content The section content (localized).
+     * @return self
+     */
+    public function setContent($content);
+
+    /**
+     * @param mixed $image The section main image (localized).
+     * @return self
+     */
+    public function setImage($image);
+
+    /**
+     * @return TranslationString
+     */
+    public function content();
+
+    /**
+     * @return TranslationString
+     */
+    public function image();
+
+    /**
+     * Retrieve the menus this object belongs to.
+     *
+     * @return string|TranslationString
+     */
+    public function inMenu();
+
+    /**
+     * Retrieve the object's keywords.
+     *
+     * @return string[]
+     */
+    public function keywords();
+
+    /**
+     * @return TranslationString
+     */
+    public function summary();
+
+    /**
+     * @return string
+     */
+    public function externalUrl();
+
+    /**
+     * @return boolean Or Null.
+     */
+    public function locked();
+
+    /**
+     * MetatagTrait > canonicalUrl
+     *
+     * @return string
+     * @todo
+     */
+    public function canonicalUrl();
+
+    /**
+     * @return TranslationString
+     */
+    public function defaultMetaTitle();
+
+    /**
+     * @return TranslationString
+     */
+    public function defaultMetaDescription();
+
+    /**
+     * @return TranslationString
+     */
+    public function defaultMetaImage();
+
+    /**
+     * @param string $type Optional type.
+     * @return array
+     */
+    public function attachments($type = null);
+
+    /**
+     * @return array
+     */
+    public function loadAttachments();
 }
 
