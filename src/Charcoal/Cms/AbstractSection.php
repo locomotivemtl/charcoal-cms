@@ -58,10 +58,10 @@ abstract class AbstractSection extends Content implements
     use SearchableTrait;
     use TemplateableTrait;
 
-    const TYPE_BLOCKS = 'charcoal/cms/section/blocks';
-    const TYPE_CONTENT = 'charcoal/cms/section/content';
-    const TYPE_EMPTY = 'charcoal/cms/section/empty';
-    const TYPE_EXTERNAL = 'charcoal/cms/section/external';
+    const TYPE_BLOCKS = 'charcoal/cms/section/blocks-section';
+    const TYPE_CONTENT = 'charcoal/cms/section/content-section';
+    const TYPE_EMPTY = 'charcoal/cms/section/empty-section';
+    const TYPE_EXTERNAL = 'charcoal/cms/section/external-section';
     const DEFAULT_TYPE = self::TYPE_CONTENT;
 
     /**
@@ -218,6 +218,7 @@ abstract class AbstractSection extends Content implements
     {
         return [
             self::TYPE_CONTENT,
+            self::TYPE_BLOCKS,
             self::TYPE_EMPTY,
             self::TYPE_EXTERNAL
         ];
