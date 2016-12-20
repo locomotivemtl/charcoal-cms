@@ -18,7 +18,7 @@ use Charcoal\Property\PropertyInterface;
 use Charcoal\Translation\TranslationString;
 
 // Local dependency
-use Volleyball\Object\Section;
+use Charcoal\Cms\AbstractSection;
 
 /**
  *
@@ -94,11 +94,11 @@ trait SectionTableTrait
 
             case 'title':
             case 'menu_label':
-                $sectionTag  = null;
+                $sectionTag = null;
                 $sectionType = $object->sectionType();
 
                 switch ($sectionType) {
-                    case Section::TYPE_EXTERNAL:
+                    case AbstractSection::TYPE_EXTERNAL:
                         $externalUrl = (string)$object->externalUrl();
                         $linkExcerpt = '';
                         $tagTemplate = '<span class="glyphicon glyphicon-link" data-toggle="tooltip" '.
@@ -126,7 +126,7 @@ trait SectionTableTrait
         }
 
         if ($propertyIdent === 'title') {
-            if (is_callable([$object, 'navMenu']) && $object->navMenu()) {
+            if (is_callable([ $object, 'navMenu' ]) && $object->navMenu()) {
                 $propertyValue .= sprintf(
                     ' &nbsp; '.
                     '<span class="glyphicon glyphicon-list" data-toggle="tooltip" '.
@@ -138,7 +138,7 @@ trait SectionTableTrait
                 );
             }
 
-            if (is_callable([$object, 'locked']) && $object->locked()) {
+            if (is_callable([ $object, 'locked' ]) && $object->locked()) {
                 $propertyValue .= sprintf(
                     ' &nbsp; '.
                     '<span class="glyphicon glyphicon-lock" data-toggle="tooltip" '.
