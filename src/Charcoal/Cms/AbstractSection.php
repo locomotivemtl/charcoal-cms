@@ -195,6 +195,32 @@ abstract class AbstractSection extends Content implements
         return parent::preUpdate($properties);
     }
 
+    /**
+     * Event called before _deleting_ the object.
+     *
+     * @see    \Charcoal\Model\AbstractModel::preDelete() For the "delete" Event.
+     * @see    \Charcoal\Attachment\Traits\AttachmentAwareTrait::removeJoins
+     * @return boolean
+     */
+    public function preDelete()
+    {
+        if ($this->locked()) {
+            return false;
+        }
+
+        return parent::preDelete();
+    }
+
+    /**
+     * Determine if the object can be deleted.
+     *
+     * @return boolean
+     */
+    public function isDeletable()
+    {
+        return !!$this->id() && !$this->locked();
+    }
+
     // ==========================================================================
     // FUNCTIONS
     // ==========================================================================
@@ -207,21 +233,6 @@ abstract class AbstractSection extends Content implements
     public function hierarchicalLabel()
     {
         return str_repeat('— ', ($this->hierarchyLevel() - 1)).$this->title();
-    }
-
-    /**
-     * Retrieve the available section types.
-     *
-     * @return array
-     */
-    public function acceptedSectionTypes()
-    {
-        return [
-            self::TYPE_CONTENT,
-            self::TYPE_BLOCKS,
-            self::TYPE_EMPTY,
-            self::TYPE_EXTERNAL
-        ];
     }
 
     /**
@@ -299,13 +310,6 @@ abstract class AbstractSection extends Content implements
         if (!is_string($type)) {
             throw new InvalidArgumentException(
                 'Section type must be a string'
-            );
-        }
-
-        $validTypes = $this->acceptedSectionTypes();
-        if (!in_array($type, $validTypes)) {
-            throw new InvalidArgumentException(
-                'Section type is not valid'
             );
         }
 
