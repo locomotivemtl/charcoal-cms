@@ -25,6 +25,7 @@ class ExternalSection extends AbstractSection
     public function setExternalUrl($url)
     {
         $this->externalUrl = new TranslationString($url);
+
         return $this;
     }
 

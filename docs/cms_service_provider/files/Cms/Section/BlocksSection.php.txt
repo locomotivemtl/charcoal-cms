@@ -4,9 +4,8 @@ namespace Charcoal\Cms\Section;
 
 // Parent namespace dependencies
 use \Charcoal\Cms\AbstractSection;
-use Charcoal\Cms\BlocksSectionInterface;
-use Charcoal\Cms\Mixin\HasContentBlocksInterface;
-use Charcoal\Cms\Mixin\Traits\HasContentBlocksTrait;
+use Charcoal\Cms\Mixin\BlocksSectionInterface;
+use Charcoal\Cms\Mixin\Traits\BlocksSectionTrait;
 
 // dependencies from `charcoal-core`
 use Charcoal\Loader\CollectionLoader;
@@ -21,10 +20,9 @@ use \RuntimeException;
  * Blocks-content section
  */
 class BlocksSection extends AbstractSection implements
-    HasContentBlocksInterface,
     BlocksSectionInterface
 {
-    use HasContentBlocksTrait;
+    use BlocksSectionTrait;
 
     /**
      * Store the collection loader for the current class.

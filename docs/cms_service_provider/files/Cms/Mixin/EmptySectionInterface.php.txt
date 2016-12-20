@@ -1,6 +1,6 @@
 <?php
 
-namespace Charcoal\Cms;
+namespace Charcoal\Cms\Mixin;
 
 /**
  * Interface EmptySectionInterface

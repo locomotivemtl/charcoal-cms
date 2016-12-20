@@ -3,7 +3,7 @@
 namespace Charcoal\Cms\Section;
 
 use \Charcoal\Cms\AbstractSection;
-use Charcoal\Cms\EmptySectionInterface;
+use Charcoal\Cms\Mixin\EmptySectionInterface;
 
 /**
  * Empty section
