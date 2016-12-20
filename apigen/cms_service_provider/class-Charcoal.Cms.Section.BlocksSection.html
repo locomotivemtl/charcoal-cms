@@ -203,12 +203,10 @@ Charcoal\Object\Content
 			<img src="resources/inherit.png" alt="Extended by">
 <b><span>Charcoal\Cms\Section\BlocksSection</span></b>			
 			 implements 
-				<a href="class-Charcoal.Cms.Mixin.HasContentBlocksInterface.html"><span>Charcoal\Cms\Mixin\HasContentBlocksInterface</span></a>, 
-			
-				<a href="class-Charcoal.Cms.BlocksSectionInterface.html"><span>Charcoal\Cms\BlocksSectionInterface</span></a>
+				<a href="class-Charcoal.Cms.Mixin.BlocksSectionInterface.html"><span>Charcoal\Cms\Mixin\BlocksSectionInterface</span></a>
 			
 			 uses 
-					<a href="class-Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html"><span>Charcoal\Cms\Mixin\Traits\HasContentBlocksTrait</span></a>
+					<a href="class-Charcoal.Cms.Mixin.Traits.BlocksSectionTrait.html"><span>Charcoal\Cms\Mixin\Traits\BlocksSectionTrait</span></a>
 			
 		</dd>
 	</dl>
@@ -226,7 +224,7 @@ Charcoal\Object\Content
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Cms.html">Cms</a>\<a href="namespace-Charcoal.Cms.Section.html">Section</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Cms.Section.BlocksSection.html#20-92" title="Go to source code">Charcoal/Cms/Section/BlocksSection.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Cms.Section.BlocksSection.html#19-90" title="Go to source code">Charcoal/Cms/Section/BlocksSection.php</a>
 		<br>
 	</div>
 
@@ -246,7 +244,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setDependencies">#</a>
-		<code><a href="source-class-Charcoal.Cms.Section.BlocksSection.html#40-51" title="Go to source code">setDependencies</a>( <span>Pimple\Container <var>$container</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.Section.BlocksSection.html#38-49" title="Go to source code">setDependencies</a>( <span>Pimple\Container <var>$container</var></span> )</code>
 
 		<div class="description short">
 			<p>Inject dependencies from a DI Container.</p>
@@ -281,7 +279,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setCollectionLoader">#</a>
-		<code><a href="source-class-Charcoal.Cms.Section.BlocksSection.html#53-64" title="Go to source code">setCollectionLoader</a>( <span>Charcoal\Loader\CollectionLoader <var>$loader</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.Section.BlocksSection.html#51-62" title="Go to source code">setCollectionLoader</a>( <span>Charcoal\Loader\CollectionLoader <var>$loader</var></span> )</code>
 
 		<div class="description short">
 			<p>Set a model collection loader.</p>
@@ -320,7 +318,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_collectionLoader">#</a>
-		<code><a href="source-class-Charcoal.Cms.Section.BlocksSection.html#66-81" title="Go to source code">collectionLoader</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.Section.BlocksSection.html#64-79" title="Go to source code">collectionLoader</a>( )</code>
 
 		<div class="description short">
 			<p>Retrieve the model collection loader.</p>
@@ -358,7 +356,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sectionType">#</a>
-		<code><a href="source-class-Charcoal.Cms.Section.BlocksSection.html#83-91" title="Go to source code">sectionType</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.Section.BlocksSection.html#81-89" title="Go to source code">sectionType</a>( )</code>
 
 		<div class="description short">
 			<p>Overrides <code>AbstractSection::section_type()</code></p>
@@ -389,7 +387,6 @@ Charcoal\Object\Content
 	<tr>
 		<td><code>
 			<a href="class-Charcoal.Cms.AbstractSection.html#___construct">__construct()</a>, 
-			<a href="class-Charcoal.Cms.AbstractSection.html#_acceptedSectionTypes">acceptedSectionTypes()</a>, 
 			<a href="class-Charcoal.Cms.AbstractSection.html#_attachments">attachments()</a>, 
 			<a href="class-Charcoal.Cms.AbstractSection.html#_canonicalUrl">canonicalUrl()</a>, 
 			<a href="class-Charcoal.Cms.AbstractSection.html#_content">content()</a>, 
@@ -400,6 +397,7 @@ Charcoal\Object\Content
 			<a href="class-Charcoal.Cms.AbstractSection.html#_hierarchicalLabel">hierarchicalLabel()</a>, 
 			<a href="class-Charcoal.Cms.AbstractSection.html#_image">image()</a>, 
 			<a href="class-Charcoal.Cms.AbstractSection.html#_inMenu">inMenu()</a>, 
+			<a href="class-Charcoal.Cms.AbstractSection.html#_isDeletable">isDeletable()</a>, 
 			<a href="class-Charcoal.Cms.AbstractSection.html#_keywords">keywords()</a>, 
 			<a href="class-Charcoal.Cms.AbstractSection.html#_loadAttachments">loadAttachments()</a>, 
 			<a href="class-Charcoal.Cms.AbstractSection.html#_loadChildren">loadChildren()</a>, 
@@ -408,6 +406,7 @@ Charcoal\Object\Content
 			<a href="class-Charcoal.Cms.AbstractSection.html#_parseAsTranslatable">parseAsTranslatable()</a>, 
 			<a href="class-Charcoal.Cms.AbstractSection.html#_postSave">postSave()</a>, 
 			<a href="class-Charcoal.Cms.AbstractSection.html#_postUpdate">postUpdate()</a>, 
+			<a href="class-Charcoal.Cms.AbstractSection.html#_preDelete">preDelete()</a>, 
 			<a href="class-Charcoal.Cms.AbstractSection.html#_preSave">preSave()</a>, 
 			<a href="class-Charcoal.Cms.AbstractSection.html#_preUpdate">preUpdate()</a>, 
 			<a href="class-Charcoal.Cms.AbstractSection.html#_setContent">setContent()</a>, 
@@ -583,7 +582,7 @@ Charcoal\Object\Content
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Charcoal.Cms.Section.BlocksSection.html#29-34" title="Go to source code"><var>$collectionLoader</var></a>
+				<a href="source-class-Charcoal.Cms.Section.BlocksSection.html#27-32" title="Go to source code"><var>$collectionLoader</var></a>
 
 			<div class="description short">
 				<p>Store the collection loader for the current class.</p>

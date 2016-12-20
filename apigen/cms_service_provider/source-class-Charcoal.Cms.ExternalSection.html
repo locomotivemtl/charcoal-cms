@@ -158,14 +158,14 @@
 
 			<h3>Interfaces</h3>
 			<ul>
-				<li><a href="class-Charcoal.Cms.BlocksSectionInterface.html">Charcoal\Cms\BlocksSectionInterface</a></li>
-				<li><a href="class-Charcoal.Cms.ContentSectionInterface.html">Charcoal\Cms\ContentSectionInterface</a></li>
 				<li><a href="class-Charcoal.Cms.DocumentInterface.html">Charcoal\Cms\DocumentInterface</a></li>
-				<li><a href="class-Charcoal.Cms.EmptySectionInterface.html">Charcoal\Cms\EmptySectionInterface</a></li>
 				<li><a href="class-Charcoal.Cms.EventInterface.html">Charcoal\Cms\EventInterface</a></li>
 				<li><a href="class-Charcoal.Cms.FaqInterface.html">Charcoal\Cms\FaqInterface</a></li>
 				<li><a href="class-Charcoal.Cms.ImageInterface.html">Charcoal\Cms\ImageInterface</a></li>
 				<li><a href="class-Charcoal.Cms.MetatagInterface.html">Charcoal\Cms\MetatagInterface</a></li>
+				<li><a href="class-Charcoal.Cms.Mixin.BlocksSectionInterface.html">Charcoal\Cms\Mixin\BlocksSectionInterface</a></li>
+				<li><a href="class-Charcoal.Cms.Mixin.ContentSectionInterface.html">Charcoal\Cms\Mixin\ContentSectionInterface</a></li>
+				<li><a href="class-Charcoal.Cms.Mixin.EmptySectionInterface.html">Charcoal\Cms\Mixin\EmptySectionInterface</a></li>
 				<li><a href="class-Charcoal.Cms.Mixin.HasContentBlocksInterface.html">Charcoal\Cms\Mixin\HasContentBlocksInterface</a></li>
 				<li><a href="class-Charcoal.Cms.NewsInterface.html">Charcoal\Cms\NewsInterface</a></li>
 				<li><a href="class-Charcoal.Cms.SearchableInterface.html">Charcoal\Cms\SearchableInterface</a></li>
@@ -179,6 +179,7 @@
 			<ul>
 				<li><a href="class-Charcoal.Admin.Widget.Cms.SectionTableTrait.html">Charcoal\Admin\Widget\Cms\SectionTableTrait</a></li>
 				<li><a href="class-Charcoal.Cms.MetatagTrait.html">Charcoal\Cms\MetatagTrait</a></li>
+				<li><a href="class-Charcoal.Cms.Mixin.Traits.BlocksSectionTrait.html">Charcoal\Cms\Mixin\Traits\BlocksSectionTrait</a></li>
 				<li><a href="class-Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html">Charcoal\Cms\Mixin\Traits\HasContentBlocksTrait</a></li>
 				<li><a href="class-Charcoal.Cms.SearchableTrait.html">Charcoal\Cms\SearchableTrait</a></li>
 				<li><a href="class-Charcoal.Cms.Support.Traits.SectionLoaderAwareTrait.html">Charcoal\Cms\Support\Traits\SectionLoaderAwareTrait</a></li>
@@ -244,18 +245,19 @@
 </span><span id="25" class="l"><a href="#25">25: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setExternalUrl(<span class="php-var">$url</span>)
 </span><span id="26" class="l"><a href="#26">26: </a>    {
 </span><span id="27" class="l"><a href="#27">27: </a>        <span class="php-var">$this</span>-&gt;externalUrl = <span class="php-keyword1">new</span> TranslationString(<span class="php-var">$url</span>);
-</span><span id="28" class="l"><a href="#28">28: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
-</span><span id="29" class="l"><a href="#29">29: </a>    }
-</span><span id="30" class="l"><a href="#30">30: </a>
-</span><span id="31" class="l"><a href="#31">31: </a>    <span class="php-comment">/**
-</span></span><span id="32" class="l"><a href="#32">32: </a><span class="php-comment">     * @return TranslationString
-</span></span><span id="33" class="l"><a href="#33">33: </a><span class="php-comment">     */</span>
-</span><span id="34" class="l"><a href="#34">34: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> externalUrl()
-</span><span id="35" class="l"><a href="#35">35: </a>    {
-</span><span id="36" class="l"><a href="#36">36: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;externalUrl;
-</span><span id="37" class="l"><a href="#37">37: </a>    }
-</span><span id="38" class="l"><a href="#38">38: </a>}
-</span><span id="39" class="l"><a href="#39">39: </a></span></code></pre>
+</span><span id="28" class="l"><a href="#28">28: </a>
+</span><span id="29" class="l"><a href="#29">29: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
+</span><span id="30" class="l"><a href="#30">30: </a>    }
+</span><span id="31" class="l"><a href="#31">31: </a>
+</span><span id="32" class="l"><a href="#32">32: </a>    <span class="php-comment">/**
+</span></span><span id="33" class="l"><a href="#33">33: </a><span class="php-comment">     * @return TranslationString
+</span></span><span id="34" class="l"><a href="#34">34: </a><span class="php-comment">     */</span>
+</span><span id="35" class="l"><a href="#35">35: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> externalUrl()
+</span><span id="36" class="l"><a href="#36">36: </a>    {
+</span><span id="37" class="l"><a href="#37">37: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;externalUrl;
+</span><span id="38" class="l"><a href="#38">38: </a>    }
+</span><span id="39" class="l"><a href="#39">39: </a>}
+</span><span id="40" class="l"><a href="#40">40: </a></span></code></pre>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
@@ -263,6 +265,6 @@
 </div>
 </div>
 <script src="resources/combined.js?05de1fc8e13e6c0a22074df5eebe21ba985830eb"></script>
-<script src="elementlist.js?d42858fff8ca1369d9e2edcc9856843e4f664d4b"></script>
+<script src="elementlist.js?6c7e7289749b941ae81e5a85fa7ee4989f5fcaef"></script>
 </body>
 </html>

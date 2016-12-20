@@ -143,10 +143,7 @@
 
 			<h3>Interfaces</h3>
 			<ul>
-				<li><a href="class-Charcoal.Cms.BlocksSectionInterface.html">BlocksSectionInterface</a></li>
-				<li><a href="class-Charcoal.Cms.ContentSectionInterface.html">ContentSectionInterface</a></li>
 				<li><a href="class-Charcoal.Cms.DocumentInterface.html">DocumentInterface</a></li>
-				<li><a href="class-Charcoal.Cms.EmptySectionInterface.html">EmptySectionInterface</a></li>
 				<li><a href="class-Charcoal.Cms.EventInterface.html">EventInterface</a></li>
 				<li><a href="class-Charcoal.Cms.FaqInterface.html">FaqInterface</a></li>
 				<li><a href="class-Charcoal.Cms.ImageInterface.html">ImageInterface</a></li>
@@ -280,7 +277,7 @@ Charcoal\Object\Content
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Cms.html">Cms</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Cms.AbstractSection.html#28-609" title="Go to source code">Charcoal/Cms/AbstractSection.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Cms.AbstractSection.html#28-613" title="Go to source code">Charcoal/Cms/AbstractSection.php</a>
 		<br>
 	</div>
 
@@ -473,6 +470,79 @@ you only get once you have save</p>
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="preDelete" id="_preDelete">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_preDelete">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#197-211" title="Go to source code">preDelete</a>( )</code>
+
+		<div class="description short">
+			<p>Event called before <em>deleting</em> the object.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Event called before <em>deleting</em> the object.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+				<h4>See</h4>
+				<div class="list">
+						\Charcoal\Model\AbstractModel::preDelete() For the "delete" Event.<br>
+						\Charcoal\Attachment\Traits\AttachmentAwareTrait::removeJoins<br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isDeletable" id="_isDeletable">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isDeletable">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#213-221" title="Go to source code">isDeletable</a>( )</code>
+
+		<div class="description short">
+			<p>Determine if the object can be deleted.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Determine if the object can be deleted.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="hierarchicalLabel" id="_hierarchicalLabel">
 
 		<td class="attributes"><code>
@@ -485,7 +555,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hierarchicalLabel">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#201-209" title="Go to source code">hierarchicalLabel</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#227-235" title="Go to source code">hierarchicalLabel</a>( )</code>
 
 		<div class="description short">
 			<p>Retrieve the object's title.</p>
@@ -507,40 +577,6 @@ you only get once you have save</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="acceptedSectionTypes" id="_acceptedSectionTypes">
-
-		<td class="attributes"><code>
-			 public 
-
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_acceptedSectionTypes">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#211-224" title="Go to source code">acceptedSectionTypes</a>( )</code>
-
-		<div class="description short">
-			<p>Retrieve the available section types.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Retrieve the available section types.</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					array
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
 	<tr data-order="loadChildren" id="_loadChildren">
 
 		<td class="attributes"><code>
@@ -553,7 +589,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_loadChildren">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#226-253" title="Go to source code">loadChildren</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#237-264" title="Go to source code">loadChildren</a>( )</code>
 
 		<div class="description short">
 			<p>HierarchicalTrait > loadChildren</p>
@@ -587,7 +623,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_attachments">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#255-271" title="Go to source code">attachments</a>( <span>string <var>$type</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#266-282" title="Go to source code">attachments</a>( <span>string <var>$type</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -628,7 +664,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_loadAttachments">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#273-279" title="Go to source code">loadAttachments</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#284-290" title="Go to source code">loadAttachments</a>( )</code>
 
 		<div class="description short">
 			
@@ -664,7 +700,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSectionType">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#285-310" title="Go to source code">setSectionType</a>( <span>string <var>$type</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#296-314" title="Go to source code">setSectionType</a>( <span>string <var>$type</var></span> )</code>
 
 		<div class="description short">
 			<p>Set the section's type.</p>
@@ -709,7 +745,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setInMenu">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#312-323" title="Go to source code">setInMenu</a>( <span>string|string[] <var>$menu</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#316-327" title="Go to source code">setInMenu</a>( <span>string|string[] <var>$menu</var></span> )</code>
 
 		<div class="description short">
 			<p>Set the menus this object belongs to.</p>
@@ -750,7 +786,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setKeywords">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#325-336" title="Go to source code">setKeywords</a>( <span>string|string[] <var>$keywords</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#329-340" title="Go to source code">setKeywords</a>( <span>string|string[] <var>$keywords</var></span> )</code>
 
 		<div class="description short">
 			<p>Set the object's keywords.</p>
@@ -791,7 +827,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSummary">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#338-347" title="Go to source code">setSummary</a>( <span>Charcoal\Translation\TranslationString|string <var>$summary</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#342-351" title="Go to source code">setSummary</a>( <span>Charcoal\Translation\TranslationString|string <var>$summary</var></span> )</code>
 
 		<div class="description short">
 			
@@ -832,7 +868,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setExternalUrl">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#349-358" title="Go to source code">setExternalUrl</a>( <span>Charcoal\Translation\TranslationString|string <var>$externalUrl</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#353-362" title="Go to source code">setExternalUrl</a>( <span>Charcoal\Translation\TranslationString|string <var>$externalUrl</var></span> )</code>
 
 		<div class="description short">
 			
@@ -873,7 +909,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setLocked">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#360-370" title="Go to source code">setLocked</a>( <span>boolean <var>$locked</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#364-374" title="Go to source code">setLocked</a>( <span>boolean <var>$locked</var></span> )</code>
 
 		<div class="description short">
 			<p>Section is locked when you can't change the URL</p>
@@ -914,7 +950,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setTitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#372-381" title="Go to source code">setTitle</a>( <span>mixed <var>$title</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#376-385" title="Go to source code">setTitle</a>( <span>mixed <var>$title</var></span> )</code>
 
 		<div class="description short">
 			
@@ -955,7 +991,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSubtitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#383-392" title="Go to source code">setSubtitle</a>( <span>mixed <var>$subtitle</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#387-396" title="Go to source code">setSubtitle</a>( <span>mixed <var>$subtitle</var></span> )</code>
 
 		<div class="description short">
 			
@@ -996,7 +1032,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setContent">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#394-403" title="Go to source code">setContent</a>( <span>mixed <var>$content</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#398-407" title="Go to source code">setContent</a>( <span>mixed <var>$content</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1037,7 +1073,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setImage">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#405-414" title="Go to source code">setImage</a>( <span>mixed <var>$image</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#409-418" title="Go to source code">setImage</a>( <span>mixed <var>$image</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1078,7 +1114,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sectionType">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#420-428" title="Go to source code">sectionType</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#424-432" title="Go to source code">sectionType</a>( )</code>
 
 		<div class="description short">
 			<p>Retrieve the section's type.</p>
@@ -1114,7 +1150,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_title">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#430-436" title="Go to source code">title</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#434-440" title="Go to source code">title</a>( )</code>
 
 		<div class="description short">
 			
@@ -1150,7 +1186,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_subtitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#438-444" title="Go to source code">subtitle</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#442-448" title="Go to source code">subtitle</a>( )</code>
 
 		<div class="description short">
 			
@@ -1186,7 +1222,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_content">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#446-452" title="Go to source code">content</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#450-456" title="Go to source code">content</a>( )</code>
 
 		<div class="description short">
 			
@@ -1222,7 +1258,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_image">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#454-460" title="Go to source code">image</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#458-464" title="Go to source code">image</a>( )</code>
 
 		<div class="description short">
 			
@@ -1258,7 +1294,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_inMenu">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#462-470" title="Go to source code">inMenu</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#466-474" title="Go to source code">inMenu</a>( )</code>
 
 		<div class="description short">
 			<p>Retrieve the menus this object belongs to.</p>
@@ -1294,7 +1330,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_keywords">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#472-480" title="Go to source code">keywords</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#476-484" title="Go to source code">keywords</a>( )</code>
 
 		<div class="description short">
 			<p>Retrieve the object's keywords.</p>
@@ -1330,7 +1366,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_summary">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#482-488" title="Go to source code">summary</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#486-492" title="Go to source code">summary</a>( )</code>
 
 		<div class="description short">
 			
@@ -1366,7 +1402,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_externalUrl">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#490-496" title="Go to source code">externalUrl</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#494-500" title="Go to source code">externalUrl</a>( )</code>
 
 		<div class="description short">
 			
@@ -1402,7 +1438,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_locked">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#498-504" title="Go to source code">locked</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#502-508" title="Go to source code">locked</a>( )</code>
 
 		<div class="description short">
 			
@@ -1438,7 +1474,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_canonicalUrl">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#510-519" title="Go to source code">canonicalUrl</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#514-523" title="Go to source code">canonicalUrl</a>( )</code>
 
 		<div class="description short">
 			<p>MetatagTrait > canonicalUrl</p>
@@ -1474,7 +1510,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_defaultMetaTitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#521-527" title="Go to source code">defaultMetaTitle</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#525-531" title="Go to source code">defaultMetaTitle</a>( )</code>
 
 		<div class="description short">
 			
@@ -1510,7 +1546,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_defaultMetaDescription">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#529-543" title="Go to source code">defaultMetaDescription</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#533-547" title="Go to source code">defaultMetaDescription</a>( )</code>
 
 		<div class="description short">
 			
@@ -1546,7 +1582,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_defaultMetaImage">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#545-551" title="Go to source code">defaultMetaImage</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#549-555" title="Go to source code">defaultMetaImage</a>( )</code>
 
 		<div class="description short">
 			
@@ -1582,7 +1618,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_parseAsMultiple">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#557-593" title="Go to source code">parseAsMultiple</a>( <span>mixed <var>$value</var></span>, <span>string|PropertyInterface <var>$separator</var> = <span class="php-quote">','</span></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#561-597" title="Go to source code">parseAsMultiple</a>( <span>mixed <var>$value</var></span>, <span>string|PropertyInterface <var>$separator</var> = <span class="php-quote">','</span></span> )</code>
 
 		<div class="description short">
 			<p>Parse the property value as a "multiple" value type.</p>
@@ -1623,7 +1659,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_parseAsTranslatable">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#595-608" title="Go to source code">parseAsTranslatable</a>( <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#599-612" title="Go to source code">parseAsTranslatable</a>( <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			<p>Parse the property value as a "L10N" value type.</p>
