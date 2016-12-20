@@ -1,0 +1,77 @@
+{
+    "admin": {
+        "forms": {
+            "cms.content": {
+                "groups": {
+                    "cms.content.info": {
+                        "priority": 100
+                    },
+                    "cms.meta": {
+                        "priority": 400
+                    },
+                    "cms.advanced": {
+                        "priority": 300
+                    },
+                    "cms.dev": {
+                        "priority": 6000
+                    },
+                    "cms.table": {
+                        "priority": 7000
+                    },
+                    "cms.revisions": {
+                        "priority": 8000
+                    }
+                },
+                "sidebars": {
+                    "default": {
+                        "properties": [
+                            "created",
+                            "created_by",
+                            "last_modified",
+                            "last_modified_by"
+                        ]
+                    }
+                }
+            }
+        },
+
+        "form_groups": {
+            "cms.content.info": {
+                "title": "Info",
+                "show_title": false,
+                "show_header": false,
+                "icon": "info",
+                "properties": [
+                    "title",
+                    "summary",
+                    "content",
+                    "image"
+                ],
+                "priority": 100
+            }
+        },
+
+        "dashboards": {
+            "cms.content.edit": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1]},
+                        {"columns": [1]},
+                        {"columns": [1]},
+                        {"columns": [1]}
+                    ]
+                },
+                "widgets": {
+                    "form": {
+                        "priority": 10,
+                        "type": "charcoal/admin/widget/objectForm",
+                        "form_ident": "cms.content",
+                        "group_display_mode": "tab"
+                    }
+                }
+            }
+        },
+        "default_create_dashboard": "cms.content.edit",
+        "default_edit_dashboard": "cms.content.edit"
+    }
+}

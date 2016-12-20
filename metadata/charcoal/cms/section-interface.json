@@ -50,12 +50,13 @@
                 "en": "Locked"
             },
             "description": {
-                "en": "A <em>locked</em> object cannot be deleted.",
-                "fr": "Un objet <em>verrouillé</em> ne peut pas être supprimé."
+                "en": "A locked object cannot be deleted nor the slug be modified.",
+                "fr": "Un objet verrouillé ne peut être supprimé et son slug ne peut être modifié."
             }
         },
         "section_type": {
             "type": "string",
+            "allow_null": false,
             "label": {
                 "fr": "Type de section",
                 "en": "Section Type"
@@ -110,7 +111,7 @@
         "master": {
             "type_foo": "object",
             "type": "Charcoal\\Support\\Property\\HierarchicalObjectProperty",
-            "obj_type": "volleyball/object/section",
+            "obj_type": "charcoal/cms/section/content-section",
             "pattern": "{{ hierarchicalLabel }}",
             "label": {
                 "fr": "Page Parente",
@@ -488,11 +489,22 @@
                 "icon": "cog",
                 "properties": [
                     "master",
-                    "template_ident",
                     "external_url",
                     "slug",
                     "in_menu",
                     "active"
+                ]
+            },
+            "cms.dev": {
+                "title": "Dev",
+                "show_title": false,
+                "show_header": false,
+                "icon": "code",
+                "permissions": ["section_dev"],
+                "properties": [
+                    "template_ident",
+                    "section_type",
+                    "locked"
                 ]
             },
             "cms.table": {

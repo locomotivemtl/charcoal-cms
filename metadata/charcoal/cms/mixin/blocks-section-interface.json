@@ -1,0 +1,64 @@
+{
+    "admin": {
+        "forms": {
+            "cms.blocks": {
+                "groups": {
+                    "cms.info": {
+                        "priority": 100
+                    },
+                    "contents": {
+                        "priority": 200
+                    },
+                    "cms.advanced": {
+                        "priority": 300
+                    },
+                    "cms.meta": {
+                        "priority": 400
+                    },
+                    "cms.table": {
+                        "priority": 7000
+                    },
+                    "cms.revisions": {
+                        "priority": 8000
+                    },
+                    "cms.dev": {
+                        "priority": 6000
+                    }
+                },
+                "sidebars": {
+                    "default": {
+                        "properties": [
+                            "created",
+                            "created_by",
+                            "last_modified",
+                            "last_modified_by"
+                        ]
+                    }
+                }
+            }
+        },
+
+        "dashboards": {
+            "cms.blocks.edit": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1]},
+                        {"columns": [1]},
+                        {"columns": [1]},
+                        {"columns": [1]}
+                    ]
+                },
+                "widgets": {
+                    "form": {
+                        "priority": 10,
+                        "type": "charcoal/admin/widget/objectForm",
+                        "form_ident": "cms.blocks",
+                        "group_display_mode": "tab"
+                    }
+                }
+            }
+        },
+        "default_create_dashboard": "cms.blocks.edit",
+        "default_edit_dashboard": "cms.blocks.edit"
+    }
+}

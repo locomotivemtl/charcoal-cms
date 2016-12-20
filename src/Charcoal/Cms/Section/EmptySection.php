@@ -4,6 +4,7 @@ namespace Charcoal\Cms;
 
 // From 'charcoal-cms'
 use Charcoal\Cms\AbstractSection;
+use Charcoal\Cms\Mixin\EmptySectionInterface;
 
 /**
  * Empty section
