@@ -1,6 +1,6 @@
 <?php
 
-namespace Charcoal\Cms\Service\Loader;
+namespace Charcoal\Cms\Service\Manager;
 
 // dependency from charcoal-factory
 use Charcoal\Factory\FactoryInterface;
@@ -8,14 +8,14 @@ use Charcoal\Factory\FactoryInterface;
 // dependency from charcoal-core
 use Charcoal\Loader\CollectionLoader;
 
-// dependency from php
+// Psr-7 dependencies
 use RuntimeException;
 use Exception;
 
 /**
- * Abstract Loader
+ * Abstract Manager
  */
-class AbstractLoader
+class AbstractManager
 {
     /**
      * Store the factory instance for the current class.
@@ -32,14 +32,14 @@ class AbstractLoader
     protected $collectionLoader;
 
     /**
-     * @var object $objType The object to load.
+     * @var object $adminConfig The admin config object model.
      */
-    protected $objType;
+    protected $adminConfig;
 
     /**
-     * NewsLoader constructor.
+     * NewsManager constructor.
      * @param array $data The Data.
-     * @throws Exception When there is missing data.
+     * @throws Exception When $data index is not set.
      */
     public function __construct(array $data)
     {
@@ -55,8 +55,13 @@ class AbstractLoader
                 get_called_class()
             ));
         }
+        if (!isset($data['cms/config'])) {
+            throw new Exception('You must define a global config object in your cms.json config file. (config_obj)');
+        }
+
         $this->setModelFactory($data['factory']);
         $this->setCollectionLoader($data['loader']);
+        $this->setAdminConfig($data['cms/config']);
     }
 
     /**
@@ -117,5 +122,24 @@ class AbstractLoader
         }
 
         return $this->collectionLoader;
+    }
+
+    /**
+     * @param mixed $adminConfig The admin configuration.
+     * @return self
+     */
+    public function setAdminConfig($adminConfig)
+    {
+        $this->adminConfig = $adminConfig;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function adminConfig()
+    {
+        return $this->adminConfig;
     }
 }
