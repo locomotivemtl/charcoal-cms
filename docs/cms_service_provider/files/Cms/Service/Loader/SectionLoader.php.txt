@@ -56,7 +56,7 @@ class SectionLoader extends AbstractLoader
      */
     public function all()
     {
-        $proto  = $this->modelFactory()->get($this->objType());
+        $proto = $this->modelFactory()->get($this->objType());
         $loader = $this->collectionLoader();
         $loader->setModel($proto);
         $loader->addFilter('active', true);
@@ -71,7 +71,11 @@ class SectionLoader extends AbstractLoader
     public function masters()
     {
         $loader = $this->all();
-        $loader->addFilter('master', $this->baseSection());
+        $operator = [];
+        if (!$this->baseSection()) {
+            $operator = [ 'operator' => 'IS NULL' ];
+        }
+        $loader->addFilter('master', $this->baseSection(), $operator);
 
         return $loader->load();
     }
@@ -83,7 +87,7 @@ class SectionLoader extends AbstractLoader
     {
         $masters = $this->masters();
 
-        $children    = [];
+        $children = [];
         $hasChildren = count($masters) > 0;
 
         while ($hasChildren) {
@@ -101,7 +105,7 @@ class SectionLoader extends AbstractLoader
                 ])
                 ->load();
 
-            $children    = array_merge($children, $masters);
+            $children = array_merge($children, $masters);
             $hasChildren = count($masters) > 0;
         }
 
@@ -118,7 +122,7 @@ class SectionLoader extends AbstractLoader
             return $this->sectionRoutes;
         }
 
-        $proto  = $this->modelFactory()->get(ObjectRoute::class);
+        $proto = $this->modelFactory()->get(ObjectRoute::class);
         $loader = $this->collectionLoader();
         $loader->setModel($proto);
         $loader->addFilter('route_obj_type', $this->objType())
@@ -130,10 +134,10 @@ class SectionLoader extends AbstractLoader
         $objectRoutes = $loader->load();
 
         $sections = [];
-        $routes   = [];
+        $routes = [];
         // The current language
         $translator = new TranslationString();
-        $lang       = $translator->currentLanguage();
+        $lang = $translator->currentLanguage();
         foreach ($objectRoutes as $o) {
             if ($o->lang() === $lang) {
                 // Will automatically override previous slug set
@@ -159,7 +163,7 @@ class SectionLoader extends AbstractLoader
     public function resolveRoute($route)
     {
         $routes = $this->sectionRoutes();
-        $sId    = $this->resolveSectionId($route);
+        $sId = $this->resolveSectionId($route);
 
         if (!isset($routes['sections'][$sId])) {
             return '';
@@ -204,12 +208,6 @@ class SectionLoader extends AbstractLoader
      */
     public function baseSection()
     {
-        if (!$this->baseSection) {
-            throw new Exception(
-                'container[config][city/section/base_section] must be defined'
-            );
-        }
-
         return $this->baseSection;
     }
 

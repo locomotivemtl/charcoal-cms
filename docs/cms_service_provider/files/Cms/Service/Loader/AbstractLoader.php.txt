@@ -10,7 +10,11 @@ use Charcoal\Loader\CollectionLoader;
 
 // dependency from php
 use RuntimeException;
+use Exception;
 
+/**
+ * Abstract Loader
+ */
 class AbstractLoader
 {
     /**
@@ -35,9 +39,22 @@ class AbstractLoader
     /**
      * NewsLoader constructor.
      * @param array $data The Data.
+     * @throws Exception When there is missing data.
      */
     public function __construct(array $data)
     {
+        if (!isset($data['factory'])) {
+            throw new Exception(sprintf(
+                'Model Factory must be defined in the %s constructor.',
+                get_called_class()
+            ));
+        }
+        if (!isset($data['loader'])) {
+            throw new Exception(sprintf(
+                'CollectionLoader must be defined in the %s constructor.',
+                get_called_class()
+            ));
+        }
         $this->setModelFactory($data['factory']);
         $this->setCollectionLoader($data['loader']);
     }

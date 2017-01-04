@@ -1,0 +1,132 @@
+<?php
+
+namespace Charcoal\Cms\Service\Loader;
+
+// dependencies from `charcoal-core`
+use Charcoal\Loader\CollectionLoader;
+
+// PHP dependencies
+use DateTime;
+
+/**
+ * News Loader
+ */
+class NewsLoader extends AbstractLoader
+{
+    /**
+     * @var string $median The median between upcoming and archive entries.
+     */
+    protected $median;
+
+    /**
+     * @var object $objType The object to load.
+     */
+    protected $objType;
+
+    /**
+     * @return CollectionLoader
+     */
+    public function all()
+    {
+        $proto = $this->modelFactory()->get($this->objType());
+        $loader = $this->collectionLoader()->setModel($proto);
+        $loader->addFilter('active', true);
+
+        return $loader;
+    }
+
+    /**
+     * @return CollectionLoader
+     */
+    public function published()
+    {
+        $now = new DateTime();
+        $loader = $this->all();
+        $loader->addFilter('publish_date', $now->format('Y-m-d H:i:s'), [ 'operator' => '<=' ])
+            ->addFilter('expiry_date', $now->format('Y-m-d H:i:s'), [ 'operator' => '>=' ]);
+
+        return $loader;
+    }
+
+    /**
+     * @return CollectionLoader
+     */
+    public function expired()
+    {
+        $now = new DateTime();
+        $loader = $this->all();
+        $loader->addFilter('publish_date', $now->format('Y-m-d H:i:s'), [ 'operator' => '<=' ])
+            ->addFilter('expiry_date', $now->format('Y-m-d H:i:s'), [ 'operator' => '<=' ]);
+
+        return $loader;
+    }
+
+    /**
+     * Fetch upcoming entries based on the median or now.
+     * @return CollectionLoader
+     */
+    public function upcoming()
+    {
+        $loader = $this->published();
+
+        return $loader;
+    }
+
+    /**
+     * Fetch upcoming entries based on the median or now.
+     * @return CollectionLoader
+     */
+    public function archive()
+    {
+        $loader = $this->expired();
+
+        return $loader;
+    }
+
+    // ==========================================================================
+    // GETTERS
+    // ==========================================================================
+
+    /**
+     * @return mixed
+     */
+    public function median()
+    {
+        return $this->median;
+    }
+
+    /**
+     * @return object
+     */
+    public function objType()
+    {
+        return $this->objType;
+    }
+
+    // ==========================================================================
+    // SETTERS
+    // ==========================================================================
+
+    /**
+     * @param string $median The median between upcoming and archive.
+     * @return self
+     */
+    public function setMedian($median)
+    {
+        $this->median = $median;
+
+        return $this;
+    }
+
+    /**
+     * @param object $objType The object type.
+     * @return self
+     */
+    public function setObjType($objType)
+    {
+        $this->objType = $objType;
+
+        return $this;
+    }
+}
+
