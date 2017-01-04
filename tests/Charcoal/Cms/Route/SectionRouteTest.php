@@ -34,6 +34,7 @@ class SectionRouteTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Set up the test.
+     * @return \Pimple\Container
      */
     public function setUp()
     {
@@ -48,6 +49,21 @@ class SectionRouteTest extends \PHPUnit_Framework_TestCase
             'config' => [],
             'path'   => 'en/sections/foo'
         ]);
+
+        $appConfig = $container['config'];
+        $appConfig['templates'] = [
+            [
+                'value'    => 'generic',
+                'label'    => [
+                    'en' => 'Generic',
+                    'fr' => 'Générique'
+                ],
+                'template' => 'tests/template/generic',
+            ],
+        ];
+        $appConfig['view.default_controller'] = 'Charcoal\\Tests\\Cms\\Mock\\Generic';
+
+        return $container;
     }
 
     /**
@@ -57,7 +73,7 @@ class SectionRouteTest extends \PHPUnit_Framework_TestCase
     {
         $container = $this->getContainer();
 
-        $locales   = $container['locales/manager'];
+        $locales = $container['locales/manager'];
         $locales->setCurrentLocale($locales->currentLocale());
 
         // Create the section table
@@ -86,8 +102,8 @@ class SectionRouteTest extends \PHPUnit_Framework_TestCase
     public function testInvoke()
     {
         $container = $this->getContainer();
-        $request   = $this->getMock(RequestInterface::class);
-        $response  = new Response();
+        $request = $this->getMock(RequestInterface::class);
+        $response = new Response();
 
         // Create the section table
         $section = $container['model/factory']->create(Section::class);

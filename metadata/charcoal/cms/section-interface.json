@@ -409,6 +409,18 @@
         },
 
         "form_groups": {
+            "cms.template_options": {
+                "title": {
+                    "en": "Template Options",
+                    "fr": "Options de gabarit"
+                },
+                "show_header": false,
+                "show_title": false,
+                "icon": "wrench",
+                "template": "charcoal/admin/widget/form-group/structure",
+                "type": "charcoal/admin/widget/form-group/structure",
+                "storage_property": "template_options"
+            },
             "cms.info": {
                 "title": "Info",
                 "show_title": false,
@@ -418,8 +430,7 @@
                     "title",
                     "summary",
                     "image"
-                ],
-                "priority": 100
+                ]
             },
             "cms.gallery": {
                 "title": {

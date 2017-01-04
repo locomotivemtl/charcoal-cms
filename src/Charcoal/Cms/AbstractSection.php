@@ -28,14 +28,14 @@ use Charcoal\Cms\TemplateableInterface;
  * A Section is a unique, reachable page.
  *
  * ## Types of sections
- * There can be different types of ection. 4 exists in the CMS module:
+ * There can be different types of section. 4 exists in the CMS module:
  * - `blocks`
  * - `content`
  * - `empty`
  * - `external`
  *
  * ## External implementations
- * Sections imlpement the following _Interface_ / _Trait_:
+ * Sections implement the following _Interface_ / _Trait_:
  * - From the `Charcoal\Object` namespace (in `charcoal-base`)
  *   - `Hierarchical`
  *   - `Routable`
@@ -107,7 +107,7 @@ abstract class AbstractSection extends Content implements
     protected $keywords;
 
     /**
-     * @var TranslationString $summary
+     * @var Translation|string $summary
      */
     protected $summary;
 
@@ -138,78 +138,9 @@ abstract class AbstractSection extends Content implements
         }
     }
 
-    /**
-     * Route generated on postSave in case
-     * it contains the ID of the section, which
-     * you only get once you have save
-     *
-     * @return boolean
-     */
-    public function postSave()
-    {
-        // RoutableTrait
-        if (!$this->locked()) {
-            $this->generateObjectRoute($this->slug());
-        }
-
-        return parent::postSave();
-    }
-
-    /**
-     * Check whatever before the update.
-     *
-     * @param  array|null $properties Properties.
-     * @return boolean
-     */
-    public function postUpdate(array $properties = null)
-    {
-        if (!$this->locked()) {
-            $this->generateObjectRoute($this->slug());
-        }
-
-        return parent::postUpdate($properties);
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @return boolean
-     */
-    public function preSave()
-    {
-        $this->setSlug($this->generateSlug());
-
-        return parent::preSave();
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @param array $properties Optional properties to update.
-     * @return boolean
-     */
-    public function preUpdate(array $properties = null)
-    {
-        $this->setSlug($this->generateSlug());
-
-        return parent::preUpdate($properties);
-    }
-
-    /**
-     * Event called before _deleting_ the object.
-     *
-     * @see    \Charcoal\Model\AbstractModel::preDelete() For the "delete" Event.
-     * @see    \Charcoal\Attachment\Traits\AttachmentAwareTrait::removeJoins
-     * @return boolean
-     */
-    public function preDelete()
-    {
-        if ($this->locked()) {
-            return false;
-        }
-
-        return parent::preDelete();
-    }
+    // ==========================================================================
+    // FUNCTIONS
+    // ==========================================================================
 
     /**
      * Determine if the object can be deleted.
@@ -220,10 +151,6 @@ abstract class AbstractSection extends Content implements
     {
         return !!$this->id() && !$this->locked();
     }
-
-    // ==========================================================================
-    // FUNCTIONS
-    // ==========================================================================
 
     /**
      * Retrieve the object's title.
@@ -299,11 +226,7 @@ abstract class AbstractSection extends Content implements
      *
      * @param  string $type The section type.
      * @throws InvalidArgumentException If the section type is not a string or not a valid section type.
-     *                      <<<<<<< HEAD
      * @return self
-    =======
-     * @return SectionInterface
-    >>>>>>> Section Update:
      */
     public function setSectionType($type)
     {
@@ -576,8 +499,7 @@ abstract class AbstractSection extends Content implements
      */
     public function parseAsMultiple($value, $separator = ',')
     {
-        if (
-            !isset($value) ||
+        if (!isset($value) ||
             (is_string($value) && !strlen(trim($value))) ||
             (is_array($value) && !count(array_filter($value, 'strlen')))
         ) {
@@ -603,5 +525,82 @@ abstract class AbstractSection extends Content implements
         }
 
         return $value;
+    }
+
+    // ==========================================================================
+    // EVENTS
+    // ==========================================================================
+
+    /**
+     * Route generated on postSave in case
+     * it contains the ID of the section, which
+     * you only get once you have save
+     *
+     * @return boolean
+     */
+    public function postSave()
+    {
+        // RoutableTrait
+        if (!$this->locked()) {
+            $this->generateObjectRoute($this->slug());
+        }
+
+        return parent::postSave();
+    }
+
+    /**
+     * Check whatever before the update.
+     *
+     * @param  array|null $properties Properties.
+     * @return boolean
+     */
+    public function postUpdate(array $properties = null)
+    {
+        if (!$this->locked()) {
+            $this->generateObjectRoute($this->slug());
+        }
+
+        return parent::postUpdate($properties);
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @return boolean
+     */
+    public function preSave()
+    {
+        $this->setSlug($this->generateSlug());
+
+        return parent::preSave();
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @param array $properties Optional properties to update.
+     * @return boolean
+     */
+    public function preUpdate(array $properties = null)
+    {
+        $this->setSlug($this->generateSlug());
+
+        return parent::preUpdate($properties);
+    }
+
+    /**
+     * Event called before _deleting_ the object.
+     *
+     * @see    \Charcoal\Model\AbstractModel::preDelete() For the "delete" Event.
+     * @see    \Charcoal\Attachment\Traits\AttachmentAwareTrait::removeJoins
+     * @return boolean
+     */
+    public function preDelete()
+    {
+        if ($this->locked()) {
+            return false;
+        }
+
+        return parent::preDelete();
     }
 }
