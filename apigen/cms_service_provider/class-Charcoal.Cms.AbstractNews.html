@@ -49,6 +49,11 @@
 
 						<ul>
 				<li>
+					<a href="namespace-Charcoal.Cms.Config.html">
+						Config					</a>
+
+						</li>
+				<li>
 					<a href="namespace-Charcoal.Cms.Mixin.html">
 						Mixin<span></span>
 					</a>
@@ -60,6 +65,11 @@
 
 						</li>
 							</ul></li>
+				<li>
+					<a href="namespace-Charcoal.Cms.News.html">
+						News					</a>
+
+						</li>
 				<li>
 					<a href="namespace-Charcoal.Cms.Route.html">
 						Route					</a>
@@ -81,6 +91,11 @@
 						Loader					</a>
 
 						</li>
+				<li>
+					<a href="namespace-Charcoal.Cms.Service.Manager.html">
+						Manager					</a>
+
+						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-Charcoal.Cms.ServiceProvider.html">
@@ -93,6 +108,16 @@
 					</a>
 
 						<ul>
+				<li>
+					<a href="namespace-Charcoal.Cms.Support.Helpers.html">
+						Helpers					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Charcoal.Cms.Support.Interfaces.html">
+						Interfaces					</a>
+
+						</li>
 				<li>
 					<a href="namespace-Charcoal.Cms.Support.Traits.html">
 						Traits					</a>
@@ -122,6 +147,7 @@
 				<li><a href="class-Charcoal.Cms.AbstractSection.html">AbstractSection</a></li>
 				<li><a href="class-Charcoal.Cms.AbstractText.html">AbstractText</a></li>
 				<li><a href="class-Charcoal.Cms.AbstractVideo.html">AbstractVideo</a></li>
+				<li><a href="class-Charcoal.Cms.Config.html">Config</a></li>
 				<li><a href="class-Charcoal.Cms.Document.html">Document</a></li>
 				<li><a href="class-Charcoal.Cms.DocumentCategory.html">DocumentCategory</a></li>
 				<li><a href="class-Charcoal.Cms.Event.html">Event</a></li>
@@ -250,7 +276,9 @@ Charcoal\Object\Content
 
 	<div>
 		<h4>Direct known subclasses</h4>
-			<a href="class-Charcoal.Cms.News.html">Charcoal\Cms\News</a>
+			<a href="class-Charcoal.Cms.News.html">Charcoal\Cms\News</a>, 
+			<a href="class-Charcoal.Cms.News.BlocksNews.html">Charcoal\Cms\News\BlocksNews</a>, 
+			<a href="class-Charcoal.Cms.News.ContentNews.html">Charcoal\Cms\News\ContentNews</a>
 	</div>
 
 
@@ -264,7 +292,7 @@ Charcoal\Object\Content
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Cms.html">Cms</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Cms.AbstractNews.html#31-299" title="Go to source code">Charcoal/Cms/AbstractNews.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Cms.AbstractNews.html#28-489" title="Go to source code">Charcoal/Cms/AbstractNews.php</a>
 		<br>
 	</div>
 
@@ -272,6 +300,174 @@ Charcoal\Object\Content
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#101-112" title="Go to source code">__construct</a>( <span>array <var>$data</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			<p>Section constructor.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Section constructor.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$data</var></dt>
+					<dd>The data.</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setDependencies" id="_setDependencies">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setDependencies">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#114-123" title="Go to source code">setDependencies</a>( <span>Pimple\Container <var>$container</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$container</var></dt>
+					<dd>Pimple/Container.</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="dateTimeDate" id="_dateTimeDate">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_dateTimeDate">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#129-138" title="Go to source code">dateTimeDate</a>( )</code>
+
+		<div class="description short">
+			<p>In the datetime attribute of the <time> tag</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>In the datetime attribute of the <time> tag</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>The datetime attribute formatted.
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="verifyDates" id="_verifyDates">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_verifyDates">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#140-161" title="Go to source code">verifyDates</a>( )</code>
+
+		<div class="description short">
+			<p>Some dates cannot be null</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Some dates cannot be null</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="adminDateFilter" id="_adminDateFilter">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_adminDateFilter">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#163-172" title="Go to source code">adminDateFilter</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>The date filtered for admin dual select input and others.
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="setTitle" id="_setTitle">
 
 		<td class="attributes"><code>
@@ -284,7 +480,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setTitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#85-94" title="Go to source code">setTitle</a>( <span>mixed <var>$title</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#178-187" title="Go to source code">setTitle</a>( <span>mixed <var>$title</var></span> )</code>
 
 		<div class="description short">
 			
@@ -302,7 +498,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.NewsInterface.html">Charcoal\Cms\NewsInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.NewsInterface.html">Charcoal\Cms\NewsInterface</a></code>
 				</div>
 
 
@@ -310,42 +506,6 @@ Charcoal\Object\Content
 
 				<h4>Implementation of</h4>
 				<div class="list"><code><a href="class-Charcoal.Cms.NewsInterface.html#_setTitle">Charcoal\Cms\NewsInterface::setTitle()</a></code></div>
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="title" id="_title">
-
-		<td class="attributes"><code>
-			 public 
-
-			Charcoal\Translation\TranslationString
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_title">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#96-102" title="Go to source code">title</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					Charcoal\Translation\TranslationString
-				</div>
-
-
-
-
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Charcoal.Cms.NewsInterface.html#_title">Charcoal\Cms\NewsInterface::title()</a></code></div>
 		</div>
 		</div></td>
 	</tr>
@@ -361,7 +521,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSubtitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#104-113" title="Go to source code">setSubtitle</a>( <span>mixed <var>$subtitle</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#189-198" title="Go to source code">setSubtitle</a>( <span>mixed <var>$subtitle</var></span> )</code>
 
 		<div class="description short">
 			
@@ -379,7 +539,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.NewsInterface.html">Charcoal\Cms\NewsInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.NewsInterface.html">Charcoal\Cms\NewsInterface</a></code>
 				</div>
 
 
@@ -387,42 +547,6 @@ Charcoal\Object\Content
 
 				<h4>Implementation of</h4>
 				<div class="list"><code><a href="class-Charcoal.Cms.NewsInterface.html#_setSubtitle">Charcoal\Cms\NewsInterface::setSubtitle()</a></code></div>
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="subtitle" id="_subtitle">
-
-		<td class="attributes"><code>
-			 public 
-
-			Charcoal\Translation\TranslationString
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_subtitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#115-121" title="Go to source code">subtitle</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					Charcoal\Translation\TranslationString
-				</div>
-
-
-
-
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Charcoal.Cms.NewsInterface.html#_subtitle">Charcoal\Cms\NewsInterface::subtitle()</a></code></div>
 		</div>
 		</div></td>
 	</tr>
@@ -438,7 +562,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSummary">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#123-132" title="Go to source code">setSummary</a>( <span>mixed <var>$summary</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#200-209" title="Go to source code">setSummary</a>( <span>mixed <var>$summary</var></span> )</code>
 
 		<div class="description short">
 			
@@ -456,41 +580,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.NewsInterface.html">Charcoal\Cms\NewsInterface</a></code><br>Chainable
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="summary" id="_summary">
-
-		<td class="attributes"><code>
-			 public 
-
-			Charcoal\Translation\TranslationString
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_summary">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#134-140" title="Go to source code">summary</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					Charcoal\Translation\TranslationString
+					<code><a href="class-Charcoal.Cms.NewsInterface.html">Charcoal\Cms\NewsInterface</a></code>
 				</div>
 
 
@@ -511,7 +601,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setContent">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#142-151" title="Go to source code">setContent</a>( <span>mixed <var>$content</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#211-220" title="Go to source code">setContent</a>( <span>mixed <var>$content</var></span> )</code>
 
 		<div class="description short">
 			
@@ -529,7 +619,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.NewsInterface.html">Charcoal\Cms\NewsInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.NewsInterface.html">Charcoal\Cms\NewsInterface</a></code>
 				</div>
 
 
@@ -537,42 +627,6 @@ Charcoal\Object\Content
 
 				<h4>Implementation of</h4>
 				<div class="list"><code><a href="class-Charcoal.Cms.NewsInterface.html#_setContent">Charcoal\Cms\NewsInterface::setContent()</a></code></div>
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="content" id="_content">
-
-		<td class="attributes"><code>
-			 public 
-
-			Charcoal\Translation\TranslationString
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_content">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#153-159" title="Go to source code">content</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					Charcoal\Translation\TranslationString
-				</div>
-
-
-
-
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Charcoal.Cms.NewsInterface.html#_content">Charcoal\Cms\NewsInterface::content()</a></code></div>
 		</div>
 		</div></td>
 	</tr>
@@ -588,7 +642,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setImage">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#161-170" title="Go to source code">setImage</a>( <span>mixed <var>$image</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#222-231" title="Go to source code">setImage</a>( <span>mixed <var>$image</var></span> )</code>
 
 		<div class="description short">
 			
@@ -606,127 +660,12 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.NewsInterface.html">Charcoal\Cms\NewsInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.NewsInterface.html">Charcoal\Cms\NewsInterface</a></code>
 				</div>
 
 
 
 
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="image" id="_image">
-
-		<td class="attributes"><code>
-			 public 
-
-			Charcoal\Translation\TranslationString
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_image">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#172-178" title="Go to source code">image</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					Charcoal\Translation\TranslationString
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setNewsDate" id="_setNewsDate">
-
-		<td class="attributes"><code>
-			 public 
-
-			<code><a href="class-Charcoal.Cms.NewsInterface.html">Charcoal\Cms\NewsInterface</a></code>
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setNewsDate">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#180-203" title="Go to source code">setNewsDate</a>( <span>mixed <var>$newsDate</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$newsDate</var></dt>
-					<dd>The news date.</dd>
-				</dl></div>
-
-				<h4>Returns</h4>
-				<div class="list">
-					<code><a href="class-Charcoal.Cms.NewsInterface.html">Charcoal\Cms\NewsInterface</a></code><br>Chainable
-				</div>
-
-				<h4>Throws</h4>
-				<div class="list">
-					InvalidArgumentException<br>If the timestamp is invalid.
-				</div>
-
-
-
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Charcoal.Cms.NewsInterface.html#_setNewsDate">Charcoal\Cms\NewsInterface::setNewsDate()</a></code></div>
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="newsDate" id="_newsDate">
-
-		<td class="attributes"><code>
-			 public 
-
-			DateTime|null
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_newsDate">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#205-211" title="Go to source code">newsDate</a>( )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					DateTime|null
-				</div>
-
-
-
-
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Charcoal.Cms.NewsInterface.html#_newsDate">Charcoal\Cms\NewsInterface::newsDate()</a></code></div>
 		</div>
 		</div></td>
 	</tr>
@@ -742,7 +681,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setInfoUrl">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#213-222" title="Go to source code">setInfoUrl</a>( <span>mixed <var>$url</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#233-242" title="Go to source code">setInfoUrl</a>( <span>mixed <var>$url</var></span> )</code>
 
 		<div class="description short">
 			
@@ -760,7 +699,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.NewsInterface.html">Charcoal\Cms\NewsInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.NewsInterface.html">Charcoal\Cms\NewsInterface</a></code>
 				</div>
 
 
@@ -771,19 +710,19 @@ Charcoal\Object\Content
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="infoUrl" id="_infoUrl">
+	<tr data-order="setNewsDate" id="_setNewsDate">
 
 		<td class="attributes"><code>
 			 public 
 
-			Charcoal\Translation\TranslationString
+			<code><a href="class-Charcoal.Cms.NewsInterface.html">Charcoal\Cms\NewsInterface</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_infoUrl">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#224-230" title="Go to source code">infoUrl</a>( )</code>
+		<a class="anchor" href="#_setNewsDate">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#244-267" title="Go to source code">setNewsDate</a>( <span>mixed <var>$newsDate</var></span> )</code>
 
 		<div class="description short">
 			
@@ -793,17 +732,65 @@ Charcoal\Object\Content
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$newsDate</var></dt>
+					<dd>The news date.</dd>
+				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					Charcoal\Translation\TranslationString
+					<code><a href="class-Charcoal.Cms.NewsInterface.html">Charcoal\Cms\NewsInterface</a></code>
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					InvalidArgumentException<br>If the timestamp is invalid.
+				</div>
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Charcoal.Cms.NewsInterface.html#_setNewsDate">Charcoal\Cms\NewsInterface::setNewsDate()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setKeywords" id="_setKeywords">
+
+		<td class="attributes"><code>
+			 public 
+
+			<code><a href="class-Charcoal.Cms.AbstractNews.html">Charcoal\Cms\AbstractNews</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setKeywords">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#269-280" title="Go to source code">setKeywords</a>( <span>string|string[] <var>$keywords</var></span> )</code>
+
+		<div class="description short">
+			<p>Set the object's keywords.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Set the object's keywords.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$keywords</var></dt>
+					<dd>One or more entries.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Charcoal.Cms.AbstractNews.html">Charcoal\Cms\AbstractNews</a></code>
 				</div>
 
 
 
 
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Charcoal.Cms.NewsInterface.html#_infoUrl">Charcoal\Cms\NewsInterface::infoUrl()</a></code></div>
 		</div>
 		</div></td>
 	</tr>
@@ -819,7 +806,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_canonicalUrl">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#232-241" title="Go to source code">canonicalUrl</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#286-295" title="Go to source code">canonicalUrl</a>( )</code>
 
 		<div class="description short">
 			<p>MetatagTrait > canonical_url</p>
@@ -843,6 +830,254 @@ Charcoal\Object\Content
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="title" id="_title">
+
+		<td class="attributes"><code>
+			 public 
+
+			Charcoal\Translation\TranslationString
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_title">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#297-303" title="Go to source code">title</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Charcoal\Translation\TranslationString
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Charcoal.Cms.NewsInterface.html#_title">Charcoal\Cms\NewsInterface::title()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="subtitle" id="_subtitle">
+
+		<td class="attributes"><code>
+			 public 
+
+			Charcoal\Translation\TranslationString
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_subtitle">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#305-311" title="Go to source code">subtitle</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Charcoal\Translation\TranslationString
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Charcoal.Cms.NewsInterface.html#_subtitle">Charcoal\Cms\NewsInterface::subtitle()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="summary" id="_summary">
+
+		<td class="attributes"><code>
+			 public 
+
+			Charcoal\Translation\TranslationString
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_summary">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#313-319" title="Go to source code">summary</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Charcoal\Translation\TranslationString
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="infoUrl" id="_infoUrl">
+
+		<td class="attributes"><code>
+			 public 
+
+			Charcoal\Translation\TranslationString
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_infoUrl">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#321-327" title="Go to source code">infoUrl</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Charcoal\Translation\TranslationString
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Charcoal.Cms.NewsInterface.html#_infoUrl">Charcoal\Cms\NewsInterface::infoUrl()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="newsDate" id="_newsDate">
+
+		<td class="attributes"><code>
+			 public 
+
+			DateTime|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_newsDate">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#329-335" title="Go to source code">newsDate</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					DateTime|null
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Charcoal.Cms.NewsInterface.html#_newsDate">Charcoal\Cms\NewsInterface::newsDate()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="content" id="_content">
+
+		<td class="attributes"><code>
+			 public 
+
+			Charcoal\Translation\TranslationString
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_content">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#337-343" title="Go to source code">content</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Charcoal\Translation\TranslationString
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Charcoal.Cms.NewsInterface.html#_content">Charcoal\Cms\NewsInterface::content()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="image" id="_image">
+
+		<td class="attributes"><code>
+			 public 
+
+			Charcoal\Translation\TranslationString
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_image">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#345-351" title="Go to source code">image</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Charcoal\Translation\TranslationString
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="defaultMetaTitle" id="_defaultMetaTitle">
 
 		<td class="attributes"><code>
@@ -855,7 +1090,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_defaultMetaTitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#243-249" title="Go to source code">defaultMetaTitle</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#353-359" title="Go to source code">defaultMetaTitle</a>( )</code>
 
 		<div class="description short">
 			
@@ -891,7 +1126,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_defaultMetaDescription">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#251-265" title="Go to source code">defaultMetaDescription</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#361-375" title="Go to source code">defaultMetaDescription</a>( )</code>
 
 		<div class="description short">
 			
@@ -927,7 +1162,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_defaultMetaImage">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#267-273" title="Go to source code">defaultMetaImage</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#377-383" title="Go to source code">defaultMetaImage</a>( )</code>
 
 		<div class="description short">
 			
@@ -951,6 +1186,81 @@ Charcoal\Object\Content
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="keywords" id="_keywords">
+
+		<td class="attributes"><code>
+			 public 
+
+			string[]
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_keywords">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#385-393" title="Go to source code">keywords</a>( )</code>
+
+		<div class="description short">
+			<p>Retrieve the object's keywords.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Retrieve the object's keywords.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string[]
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="parseAsMultiple" id="_parseAsMultiple">
+
+		<td class="attributes"><code>
+			 public 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_parseAsMultiple">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#399-434" title="Go to source code">parseAsMultiple</a>( <span>mixed <var>$value</var></span>, <span>string|PropertyInterface <var>$separator</var> = <span class="php-quote">','</span></span> )</code>
+
+		<div class="description short">
+			<p>Parse the property value as a "multiple" value type.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Parse the property value as a "multiple" value type.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value</var></dt>
+					<dd>The value being converted to an array.</dd>
+					<dt><var>$separator</var></dt>
+					<dd>The boundary string.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="preSave" id="_preSave">
 
 		<td class="attributes"><code>
@@ -963,7 +1273,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_preSave">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#275-285" title="Go to source code">preSave</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#440-451" title="Go to source code">preSave</a>( )</code>
 
 		<div class="description short">
 			
@@ -997,7 +1307,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_preUpdate">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#287-298" title="Go to source code">preUpdate</a>( <span>array <var>$properties</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#453-465" title="Go to source code">preUpdate</a>( <span>array <var>$properties</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1011,6 +1321,79 @@ Charcoal\Object\Content
 				<div class="list"><dl>
 					<dt><var>$properties</var></dt>
 					<dd>Optional properties to update.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="postSave" id="_postSave">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_postSave">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#467-476" title="Go to source code">postSave</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean<br>Parent postSave().
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="postUpdate" id="_postUpdate">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_postUpdate">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractNews.html#478-488" title="Go to source code">postUpdate</a>( <span>array <var>$properties</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$properties</var></dt>
+					<dd>Properties.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1151,6 +1534,84 @@ Charcoal\Object\Content
 
 
 
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="config" id="$config">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Charcoal.Cms.AbstractNews.html#47-50" title="Go to source code"><var>$config</var></a>
+
+			<div class="description short">
+				<p>$config The news config.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>$config The news config.</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$config" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="dateHelper" id="$dateHelper">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-Charcoal.Cms.Support.Helpers.DateHelper.html">Charcoal\Cms\Support\Helpers\DateHelper</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Charcoal.Cms.AbstractNews.html#52-55" title="Go to source code"><var>$dateHelper</var></a>
+
+			<div class="description short">
+				<p>$dateHelper The date helper provider.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>$dateHelper The date helper provider.</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$dateHelper" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="keywords" id="$keywords">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Charcoal.Cms.AbstractNews.html#92-95" title="Go to source code"><var>$keywords</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$keywords" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	</table>
 
 
 	<table class="summary used">

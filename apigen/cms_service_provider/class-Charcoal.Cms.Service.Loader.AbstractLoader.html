@@ -49,6 +49,11 @@
 
 						<ul>
 				<li>
+					<a href="namespace-Charcoal.Cms.Config.html">
+						Config					</a>
+
+						</li>
+				<li>
 					<a href="namespace-Charcoal.Cms.Mixin.html">
 						Mixin<span></span>
 					</a>
@@ -60,6 +65,11 @@
 
 						</li>
 							</ul></li>
+				<li>
+					<a href="namespace-Charcoal.Cms.News.html">
+						News					</a>
+
+						</li>
 				<li>
 					<a href="namespace-Charcoal.Cms.Route.html">
 						Route					</a>
@@ -81,6 +91,11 @@
 						Loader					</a>
 
 						</li>
+				<li>
+					<a href="namespace-Charcoal.Cms.Service.Manager.html">
+						Manager					</a>
+
+						</li>
 							</ul></li>
 				<li>
 					<a href="namespace-Charcoal.Cms.ServiceProvider.html">
@@ -93,6 +108,16 @@
 					</a>
 
 						<ul>
+				<li>
+					<a href="namespace-Charcoal.Cms.Support.Helpers.html">
+						Helpers					</a>
+
+						</li>
+				<li>
+					<a href="namespace-Charcoal.Cms.Support.Interfaces.html">
+						Interfaces					</a>
+
+						</li>
 				<li>
 					<a href="namespace-Charcoal.Cms.Support.Traits.html">
 						Traits					</a>
@@ -115,6 +140,8 @@
 			<h3>Classes</h3>
 			<ul>
 				<li class="active"><a href="class-Charcoal.Cms.Service.Loader.AbstractLoader.html">AbstractLoader</a></li>
+				<li><a href="class-Charcoal.Cms.Service.Loader.EventLoader.html">EventLoader</a></li>
+				<li><a href="class-Charcoal.Cms.Service.Loader.NewsLoader.html">NewsLoader</a></li>
 				<li><a href="class-Charcoal.Cms.Service.Loader.SectionLoader.html">SectionLoader</a></li>
 			</ul>
 
@@ -157,11 +184,16 @@
 	<h1>Class AbstractLoader</h1>
 
 
+	<div class="description">
+	<p>Abstract Loader</p>
+	</div>
 
 
 
 	<div>
 		<h4>Direct known subclasses</h4>
+			<a href="class-Charcoal.Cms.Service.Loader.EventLoader.html">Charcoal\Cms\Service\Loader\EventLoader</a>, 
+			<a href="class-Charcoal.Cms.Service.Loader.NewsLoader.html">Charcoal\Cms\Service\Loader\NewsLoader</a>, 
 			<a href="class-Charcoal.Cms.Service.Loader.SectionLoader.html">Charcoal\Cms\Service\Loader\SectionLoader</a>
 	</div>
 
@@ -176,7 +208,7 @@
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Cms.html">Cms</a>\<a href="namespace-Charcoal.Cms.Service.html">Service</a>\<a href="namespace-Charcoal.Cms.Service.Loader.html">Loader</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Cms.Service.Loader.AbstractLoader.html#14-104" title="Go to source code">Charcoal/Cms/Service/Loader/AbstractLoader.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Cms.Service.Loader.AbstractLoader.html#15-121" title="Go to source code">Charcoal/Cms/Service/Loader/AbstractLoader.php</a>
 		<br>
 	</div>
 
@@ -196,7 +228,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Charcoal.Cms.Service.Loader.AbstractLoader.html#35-43" title="Go to source code">__construct</a>( <span>array <var>$data</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.Service.Loader.AbstractLoader.html#39-60" title="Go to source code">__construct</a>( <span>array <var>$data</var></span> )</code>
 
 		<div class="description short">
 			<p>NewsLoader constructor.</p>
@@ -213,6 +245,10 @@
 				</dl></div>
 
 
+				<h4>Throws</h4>
+				<div class="list">
+					Exception<br>When there is missing data.
+				</div>
 
 
 
@@ -231,7 +267,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setModelFactory">#</a>
-		<code><a href="source-class-Charcoal.Cms.Service.Loader.AbstractLoader.html#45-56" title="Go to source code">setModelFactory</a>( <span>Charcoal\Factory\FactoryInterface <var>$factory</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.Service.Loader.AbstractLoader.html#62-73" title="Go to source code">setModelFactory</a>( <span>Charcoal\Factory\FactoryInterface <var>$factory</var></span> )</code>
 
 		<div class="description short">
 			<p>Set an object model factory.</p>
@@ -270,7 +306,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_modelFactory">#</a>
-		<code><a href="source-class-Charcoal.Cms.Service.Loader.AbstractLoader.html#58-73" title="Go to source code">modelFactory</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.Service.Loader.AbstractLoader.html#75-90" title="Go to source code">modelFactory</a>( )</code>
 
 		<div class="description short">
 			<p>Retrieve the object model factory.</p>
@@ -308,7 +344,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setCollectionLoader">#</a>
-		<code><a href="source-class-Charcoal.Cms.Service.Loader.AbstractLoader.html#75-86" title="Go to source code">setCollectionLoader</a>( <span>Charcoal\Loader\CollectionLoader <var>$loader</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.Service.Loader.AbstractLoader.html#92-103" title="Go to source code">setCollectionLoader</a>( <span>Charcoal\Loader\CollectionLoader <var>$loader</var></span> )</code>
 
 		<div class="description short">
 			<p>Set a model collection loader.</p>
@@ -347,7 +383,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_collectionLoader">#</a>
-		<code><a href="source-class-Charcoal.Cms.Service.Loader.AbstractLoader.html#88-103" title="Go to source code">collectionLoader</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.Service.Loader.AbstractLoader.html#105-120" title="Go to source code">collectionLoader</a>( )</code>
 
 		<div class="description short">
 			<p>Retrieve the model collection loader.</p>
@@ -395,7 +431,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Charcoal.Cms.Service.Loader.AbstractLoader.html#16-21" title="Go to source code"><var>$modelFactory</var></a>
+				<a href="source-class-Charcoal.Cms.Service.Loader.AbstractLoader.html#20-25" title="Go to source code"><var>$modelFactory</var></a>
 
 			<div class="description short">
 				<p>Store the factory instance for the current class.</p>
@@ -420,7 +456,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Charcoal.Cms.Service.Loader.AbstractLoader.html#23-28" title="Go to source code"><var>$collectionLoader</var></a>
+				<a href="source-class-Charcoal.Cms.Service.Loader.AbstractLoader.html#27-32" title="Go to source code"><var>$collectionLoader</var></a>
 
 			<div class="description short">
 				<p>Store the collection loader for the current class.</p>
@@ -445,7 +481,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Charcoal.Cms.Service.Loader.AbstractLoader.html#30-33" title="Go to source code"><var>$objType</var></a>
+				<a href="source-class-Charcoal.Cms.Service.Loader.AbstractLoader.html#34-37" title="Go to source code"><var>$objType</var></a>
 
 			<div class="description short">
 				<p>$objType The object to load.</p>
