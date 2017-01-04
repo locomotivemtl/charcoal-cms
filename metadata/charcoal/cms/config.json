@@ -1,0 +1,349 @@
+{
+    "properties": {
+        "id": {
+            "type": "id"
+        },
+        "social_facebook": {
+            "type": "string",
+            "label": {
+                "fr": "Page facebook",
+                "en": "Facebook page"
+            }
+        },
+        "social_twitter": {
+            "type": "string",
+            "label": {
+                "fr": "Page twitter",
+                "en": "Twitter page"
+            }
+        },
+        "social_instagram": {
+            "type": "string",
+            "label": {
+                "fr": "Page instagram",
+                "en": "Instagram page"
+            }
+        },
+
+        "default_from_email": {
+            "type": "string",
+            "l10n": false,
+            "label": {
+                "en": "Default from email",
+                "fr": "Email de retour par défaut"
+            },
+            "description": {
+                "en": "The default sending email for contact confirmations",
+                "fr": "Le courriel émetteur lors d'un envoie de confirmation"
+            }
+        },
+        "default_meta_title": {
+            "type": "string",
+            "l10n": true,
+            "label": {
+                "en": "Default meta title",
+                "fr": "Titre méta par default"
+            },
+            "description": {
+                "en": "The meta tags are used when sharing a page on social medias and to facilitate indexing",
+                "fr": "Les étiquettes méta sont utilisées lors du partage sur les résaux sociaux et pour faciliter le référencement"
+            }
+        },
+        "default_meta_description": {
+            "type": "string",
+            "l10n": true,
+            "label": {
+                "en": "Default meta description",
+                "fr": "Description méta par default"
+            },
+            "description": {
+                "en": "The meta tags are used when sharing a page on social medias and to facilitate indexing",
+                "fr": "Les étiquettes méta sont utilisées lors du partage sur les résaux sociaux et pour faciliter le référencement"
+            }
+        },
+        "default_meta_image": {
+            "type": "image",
+            "label": {
+                "en": "Default meta image",
+                "fr": "Image méta par default"
+            },
+            "upload_path": "uploads/options/config/",
+            "public_access": true,
+            "view_options": {
+                "charcoal/admin/property/display/image": {
+                    "height": 50
+                }
+            },
+            "description": {
+                "en": "The meta tags are used when sharing a page on social medias and to facilitate indexing",
+                "fr": "Les étiquettes méta sont utilisées lors du partage sur les résaux sociaux et pour faciliter le référencement"
+            }
+        },
+        "default_meta_url": {
+            "type": "string",
+            "l10n": true,
+            "label": {
+                "en": "Default meta url",
+                "fr": "Url méta par default"
+            },
+            "description": {
+                "en": "The meta tags are used when sharing a page on social medias and to facilitate indexing",
+                "fr": "Les étiquettes méta sont utilisées lors du partage sur les résaux sociaux et pour faciliter le référencement"
+            }
+        },
+        "home_news": {
+            "type": "object",
+            "input_type": "charcoal/admin/property/input/dual-select",
+            "obj_type": "charcoal/cms/news",
+            "multiple": true,
+            "orders": {
+                "position": {
+                    "property": "publish_date",
+                    "mode": "desc"
+                }
+            },
+            "dualselect_options": {
+                "searchable": true,
+                "sort": false,
+                "submitAllLeft": false,
+                "reorderable": true
+            },
+            "pattern": "{{ admin_date_filter}} - {{title}}",
+            "label": {
+                "en": "News on home page",
+                "fr": "Nouvelles à l'acceuil"
+            },
+            "description": {
+                "en": "",
+                "fr": ""
+            }
+        },
+        "home_events": {
+            "type": "object",
+            "input_type": "charcoal/admin/property/input/dual-select",
+            "obj_type": "charcoal/cms/event",
+            "multiple": true,
+            "orders": {
+                "position": {
+                    "property": "publish_date",
+                    "mode": "desc"
+                }
+            },
+            "dualselect_options": {
+                "searchable": true,
+                "sort": false,
+                "submitAllLeft": false,
+                "reorderable": true
+            },
+            "pattern": "{{ admin_date_filter }} - {{title}}",
+            "label": {
+                "en": "Events on home page",
+                "fr": "Événements à l'acceuil"
+            },
+            "description": {
+                "en": "",
+                "fr": ""
+            }
+        }
+    },
+    "key": "id",
+
+    "sources": {
+        "default": {
+            "type": "database",
+            "table": "cms_config"
+        }
+    },
+    "default_source": "default",
+
+    "admin": {
+        "lists": {
+            "default": {
+                "label": {
+                    "en": "Configs",
+                    "fr": "Configs"
+                },
+                "properties": [
+                    ""
+                ],
+                "list_actions": [
+                    {
+                        "label": {
+                            "en": "New config",
+                            "fr": "Nouvel config"
+                        },
+                        "ident": "create",
+                        "url": "object/edit?obj_type=charcoal/cms/config"
+                    }
+                ],
+                "orders": {
+                    "position": {
+                        "property": "position",
+                        "mode": "asc"
+                    }
+                }
+            }
+        },
+        "default_list": "default",
+
+        "forms": {
+            "default": {
+                "label": "Configuration",
+                "groups": {
+                    "general": {
+                        "layout": {
+                            "structure": [
+                                {"columns": [1]},
+                                {"columns": [1]},
+                                {"columns": [1, 1]}
+                            ]
+                        },
+                        "title": {
+                            "en": "General",
+                            "fr": "Général"
+                        },
+                        "show_title": false,
+                        "icon": "wrench",
+                        "priority": 100,
+                        "properties": [
+                            "default_from_email"
+                        ]
+                    },
+                    "featured": {
+                        "layout": {
+                            "structure": [
+                                {"columns": [1]},
+                                {"columns": [1]}
+                            ]
+                        },
+                        "title": {
+                            "en": "Featured articles",
+                            "fr": "Articles en vedettes"
+                        },
+                        "show_title": false,
+                        "icon": "star",
+                        "priority": 200,
+                        "properties": [
+                            "home_news",
+                            "home_events"
+                        ]
+                    },
+                    "sharer": {
+                        "layout": {
+                            "structure": [
+                                {"columns": [1]},
+                                {"columns": [1]},
+                                {"columns": [1]}
+                            ]
+                        },
+                        "title": {
+                            "en": "Social media",
+                            "fr": "Média sociaux"
+                        },
+                        "show_title": false,
+                        "icon": "share-square",
+                        "priority": 300,
+                        "properties": [
+                            "social_facebook",
+                            "social_twitter",
+                            "social_instagram"
+                        ]
+                    },
+                    "meta": {
+                        "layout": {
+                            "structure": [
+                                {"columns": [1, 1]},
+                                {"columns": [1, 1]}
+                            ]
+                        },
+                        "title": {
+                            "en": "Meta tags",
+                            "fr": "Tags Méta"
+                        },
+                        "show_title": false,
+                        "icon": "tag",
+                        "priority": 400,
+                        "properties": [
+                            "default_meta_title",
+                            "default_meta_description",
+                            "default_meta_url",
+                            "default_meta_image"
+                        ]
+                    },
+                    "revisions": {
+                        "title": {
+                            "fr": "Révisions",
+                            "en": "Revisions"
+                        },
+                        "show_title": false,
+                        "show_header": false,
+                        "icon": "floppy-o",
+                        "template": "charcoal/admin/widget/form-group/object-revisions",
+                        "type": "charcoal/admin/widget/form-group/object-revisions",
+                        "priority": 8000
+                    }
+                },
+                "sidebars": {
+                    "action": {
+                        "permissions": {
+                            "footer": [
+                                "dev-footer"
+                            ]
+                        },
+                        "title": "Actions",
+                        "properties": [],
+                        "actions": {}
+                    }
+                }
+            }
+        },
+        "default_form": "default",
+
+        "dashboards": {
+            "admin.edit": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1]}
+                    ]
+                },
+                "widgets": {
+                    "form": {
+                        "type": "charcoal/admin/widget/objectForm",
+                        "form_ident": "default",
+                        "obj_type": "charcoal/cms/config",
+                        "request": "main_menu=configuration",
+                        "group_display_mode": "tab"
+                    }
+                },
+                "sidemenu": {
+                    "widget_options": {
+                        "ident": "options"
+                    }
+                }
+            },
+            "admin.table": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1]}
+                    ]
+                },
+                "widgets": {
+                    "table": {
+                        "type": "charcoal/admin/widget/table",
+                        "collection_ident": "default",
+                        "obj_type": "charcoal/cms/config",
+                        "sortable": true
+                    }
+                },
+                "sidemenu": {
+                    "widget_options": {
+                        "ident": "options"
+                    }
+                }
+            }
+        },
+        "default_create_dashboard": "admin.edit",
+        "default_edit_dashboard": "admin.edit",
+        "default_collection_dashboard": "admin.table"
+    }
+}
