@@ -3,6 +3,8 @@
 namespace Charcoal\Tests\Cms;
 
 use PDO;
+use Charcoal\Cms\Config\CmsConfig;
+use Charcoal\Cms\Support\Helpers\DateHelper;
 
 // From PSR-3
 use Psr\Log\NullLogger;
@@ -39,6 +41,8 @@ class ContainerProvider
     public function registerBaseServices(Container $container)
     {
         $this->registerConfig($container);
+        $this->registerCmsConfig($container);
+        $this->registerDateHelper($container);
         $this->registerPdo($container);
         $this->registerLogger($container);
         $this->registerCache($container);
@@ -48,6 +52,23 @@ class ContainerProvider
     {
         $container['config'] = function (Container $container) {
             return new AppConfig();
+        };
+    }
+
+    public function registerCmsConfig(Container $container)
+    {
+        $container['cms/config'] = function (Container $container) {
+            return new CmsConfig();
+        };
+    }
+
+    public function registerDateHelper(Container $container)
+    {
+        $container['date/helper'] = function (Container $container) {
+            return new DateHelper([
+                'date_formats' => '',
+                'time_formats' => ''
+            ]);
         };
     }
 
