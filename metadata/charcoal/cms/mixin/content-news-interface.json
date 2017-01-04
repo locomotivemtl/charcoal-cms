@@ -1,0 +1,17 @@
+{
+    "admin": {
+        "forms": {
+            "cms.default": {
+                "cms.info": {
+                    "priority": 100
+                },
+                "cms.gallery": {
+                    "priority": 300
+                },
+                "cms.resources": {
+                    "priority": 400
+                }
+            }
+        }
+    }
+}
