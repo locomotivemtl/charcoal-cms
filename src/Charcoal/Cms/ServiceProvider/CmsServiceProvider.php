@@ -148,13 +148,13 @@ class CmsServiceProvider implements ServiceProviderInterface
             $newsLoader = new NewsLoader([
                 'loader'  => $container['model/collection/loader'],
                 'factory' => $container['model/factory'],
-            'cache'   => $container['cache']
+                'cache'   => $container['cache']
             ]);
 
-            $config = $container['config'];
+            $newsConfig = $container['cms/config']->newsConfig();
 
             // Cms.json
-            $objType = $config->get('cms.news.obj_type');
+            $objType = $newsConfig->get('obj_type');
             $newsLoader->setObjType($objType);
 
             return $newsLoader;
