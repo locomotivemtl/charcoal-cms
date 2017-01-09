@@ -413,13 +413,13 @@
 </span><span id="148" class="l"><a href="#148">148: </a>            <span class="php-var">$newsLoader</span> = <span class="php-keyword1">new</span> NewsLoader([
 </span><span id="149" class="l"><a href="#149">149: </a>                <span class="php-quote">'loader'</span>  =&gt; <span class="php-var">$container</span>[<span class="php-quote">'model/collection/loader'</span>],
 </span><span id="150" class="l"><a href="#150">150: </a>                <span class="php-quote">'factory'</span> =&gt; <span class="php-var">$container</span>[<span class="php-quote">'model/factory'</span>],
-</span><span id="151" class="l"><a href="#151">151: </a>            <span class="php-quote">'cache'</span>   =&gt; <span class="php-var">$container</span>[<span class="php-quote">'cache'</span>]
+</span><span id="151" class="l"><a href="#151">151: </a>                <span class="php-quote">'cache'</span>   =&gt; <span class="php-var">$container</span>[<span class="php-quote">'cache'</span>]
 </span><span id="152" class="l"><a href="#152">152: </a>            ]);
 </span><span id="153" class="l"><a href="#153">153: </a>
-</span><span id="154" class="l"><a href="#154">154: </a>            <span class="php-var">$config</span> = <span class="php-var">$container</span>[<span class="php-quote">'config'</span>];
+</span><span id="154" class="l"><a href="#154">154: </a>            <span class="php-var">$newsConfig</span> = <span class="php-var">$container</span>[<span class="php-quote">'cms/config'</span>]-&gt;newsConfig();
 </span><span id="155" class="l"><a href="#155">155: </a>
 </span><span id="156" class="l"><a href="#156">156: </a>            <span class="php-comment">// Cms.json</span>
-</span><span id="157" class="l"><a href="#157">157: </a>            <span class="php-var">$objType</span> = <span class="php-var">$config</span>-&gt;get(<span class="php-quote">'cms.news.obj_type'</span>);
+</span><span id="157" class="l"><a href="#157">157: </a>            <span class="php-var">$objType</span> = <span class="php-var">$newsConfig</span>-&gt;get(<span class="php-quote">'obj_type'</span>);
 </span><span id="158" class="l"><a href="#158">158: </a>            <span class="php-var">$newsLoader</span>-&gt;setObjType(<span class="php-var">$objType</span>);
 </span><span id="159" class="l"><a href="#159">159: </a>
 </span><span id="160" class="l"><a href="#160">160: </a>            <span class="php-keyword1">return</span> <span class="php-var">$newsLoader</span>;
