@@ -218,9 +218,9 @@ trait NewsManagerAwareTrait
     }
 
     /**
-     * @param NewsInterface $news The current news.
-     * @return array The needed properties.
-     */
+ * @param NewsInterface $news The current news.
+ * @return array The needed properties.
+ */
     protected function newsFormatFull(NewsInterface $news)
     {
         $contentBlocks = $news->attachments('content');

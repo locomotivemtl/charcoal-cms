@@ -67,12 +67,12 @@ class CmsConfig extends AbstractConfig
     /**
      * @var array $dateFormats
      */
-    protected $dateFormats;
+    protected $dateFormats = [];
 
     /**
      * @var array $timeFormats
      */
-    protected $timeFormats;
+    protected $timeFormats = [];
 
     // ==========================================================================
     // INIT
@@ -208,7 +208,10 @@ class CmsConfig extends AbstractConfig
      */
     public function setDateFormats(array $dateFormats)
     {
-        $this->dateFormats = $dateFormats;
+        $this->dateFormats = array_replace_recursive(
+            $this->dateFormats,
+            $dateFormats
+        );
 
         return $this;
     }
@@ -219,7 +222,10 @@ class CmsConfig extends AbstractConfig
      */
     public function setTimeFormats(array $timeFormats)
     {
-        $this->timeFormats = $timeFormats;
+        $this->timeFormats = array_replace_recursive(
+            $this->timeFormats,
+            $timeFormats
+        );
 
         return $this;
     }
