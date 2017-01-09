@@ -5,7 +5,7 @@
     "news": {
         "num_per_page": 0,
         "entry_cycle": false,
-        "default_expiry": "2 month",
+        "default_expiry": null,
         "median": "now",
         "obj_type": "Cms\\News\\ContentNews",
         "category": "Cms\\NewsCategory",

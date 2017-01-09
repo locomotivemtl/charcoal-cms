@@ -162,10 +162,12 @@ abstract class AbstractNews extends Content implements
         }
 
         if (!$this->expiryDate()) {
-            $expiry_length = date_interval_create_from_date_string($this->config['default_expiry']);
-            $date = clone $this->newsDate();
-            date_add($date, $expiry_length);
-            $this->setExpiryDate($date);
+            if (isset($this->config['default_expiry'])) {
+                $expiry_length = date_interval_create_from_date_string($this->config['default_expiry']);
+                $date = clone $this->newsDate();
+                date_add($date, $expiry_length);
+                $this->setExpiryDate($date);
+            }
         }
     }
 
