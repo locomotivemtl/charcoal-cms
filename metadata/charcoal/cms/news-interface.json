@@ -152,30 +152,33 @@
                             "fr": "Modifier"
                         },
                         "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&obj_id={{id}}",
-                        "priority": 1
-                    },
-                    "goto": {
-                        "label": {
-                            "en": "Go to news",
-                            "fr": "Voir la nouvelle"
-                        },
-                        "url": "{{baseUrl}}{{url}}",
-                        "priority": 2
-                    },
-                    "clone": {
-                        "label": {
-                            "en": "Clone",
-                            "fr": "Cloner"
-                        },
-                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&clone_id={{id}}",
-                        "priority": 3
-                    },
-                    "delete": {
-                        "label": {
-                            "en": "Delete",
-                            "fr": "Supprimer"
-                        },
-                        "priority": 4
+                        "priority": 1,
+                        "split_button": true,
+                        "actions": {
+                            "goto": {
+                                "label": {
+                                    "en": "Go to news",
+                                    "fr": "Voir la nouvelle"
+                                },
+                                "url": "{{baseUrl}}{{url}}",
+                                "priority": 2
+                            },
+                            "clone": {
+                                "label": {
+                                    "en": "Clone",
+                                    "fr": "Cloner"
+                                },
+                                "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&clone_id={{id}}",
+                                "priority": 3
+                            },
+                            "delete": {
+                                "label": {
+                                    "en": "Delete",
+                                    "fr": "Supprimer"
+                                },
+                                "priority": 4
+                            }
+                        }
                     }
                 },
                 "orders": {

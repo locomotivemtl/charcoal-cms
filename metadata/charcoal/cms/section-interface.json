@@ -282,15 +282,8 @@
                         },
                         "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&obj_id={{id}}",
                         "priority": 1,
+                        "split_button": true,
                         "actions": {
-                            "edit": {
-                                "label": {
-                                    "en": "Modify",
-                                    "fr": "Modifier"
-                                },
-                                "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&obj_id={{id}}",
-                                "priority": 1
-                            },
                             "goto": {
                                 "label": {
                                     "en": "Go to page",
