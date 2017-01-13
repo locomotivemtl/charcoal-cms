@@ -245,17 +245,26 @@
                         }
                     }
                 },
-                "list_actions": [
-                    {
+                "list_actions": {
+                    "create": {
                         "ident": "create",
                         "priority": 10,
                         "label": {
-                            "en": "New Page",
-                            "fr": "Nouvelle Page"
+                            "en": "Add",
+                            "fr": "Ajouter"
                         },
-                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}"
+                        "actions": {
+                            "page": {
+                                "priority": 10,
+                                "label": {
+                                    "en": "Page",
+                                    "fr": "Page"
+                                },
+                                "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}"
+                            }
+                        }
                     },
-                    {
+                    "main_menu": {
                         "ident": "main_menu",
                         "priority": 20,
                         "label": {
@@ -264,7 +273,7 @@
                         },
                         "url": "object/collection?obj_type={{obj_type}}&dashboard_ident=admin.table&collection_ident=cms.in_menu"
                     }
-                ],
+                },
                 "object_actions": {
                     "edit": {
                         "label": {
@@ -272,30 +281,40 @@
                             "fr": "Modifier"
                         },
                         "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&obj_id={{id}}",
-                        "priority": 1
-                    },
-                    "goto": {
-                        "label": {
-                            "en": "Go to page",
-                            "fr": "Voir la page"
-                        },
-                        "url": "{{baseUrl}}{{url}}",
-                        "priority": 2
-                    },
-                    "clone": {
-                        "label": {
-                            "en": "Clone",
-                            "fr": "Cloner"
-                        },
-                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&clone_id={{id}}",
-                        "priority": 3
-                    },
-                    "delete": {
-                        "label": {
-                            "en": "Delete",
-                            "fr": "Supprimer"
-                        },
-                        "priority": 4
+                        "priority": 1,
+                        "actions": {
+                            "edit": {
+                                "label": {
+                                    "en": "Modify",
+                                    "fr": "Modifier"
+                                },
+                                "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&obj_id={{id}}",
+                                "priority": 1
+                            },
+                            "goto": {
+                                "label": {
+                                    "en": "Go to page",
+                                    "fr": "Voir la page"
+                                },
+                                "url": "{{baseUrl}}{{url}}",
+                                "priority": 2
+                            },
+                            "clone": {
+                                "label": {
+                                    "en": "Clone",
+                                    "fr": "Cloner"
+                                },
+                                "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&clone_id={{id}}",
+                                "priority": 3
+                            },
+                            "delete": {
+                                "label": {
+                                    "en": "Delete",
+                                    "fr": "Supprimer"
+                                },
+                                "priority": 4
+                            }
+                        }
                     }
                 },
                 "orders": {
