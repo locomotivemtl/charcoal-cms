@@ -250,19 +250,10 @@
                         "ident": "create",
                         "priority": 10,
                         "label": {
-                            "en": "Add",
-                            "fr": "Ajouter"
+                            "en": "new Page",
+                            "fr": "Nouvelle page"
                         },
-                        "actions": {
-                            "page": {
-                                "priority": 10,
-                                "label": {
-                                    "en": "Page",
-                                    "fr": "Page"
-                                },
-                                "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}"
-                            }
-                        }
+                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}"
                     },
                     "main_menu": {
                         "ident": "main_menu",
@@ -541,6 +532,7 @@
                 "template": "utils/widget/form-group/widget",
                 "type": "utils/widget/form-group/widget",
                 "widget_type": "charcoal/admin/widget/table",
+                "obj_type": "{{obj_type}}",
                 "collection_ident": "default",
                 "priority": 7000,
                 "sortable": true,
@@ -570,17 +562,7 @@
                                     "fr": "Nouvelle Page"
                                 },
                                 "ident": "create",
-                                "url": "object/edit?obj_type={{obj_type}}&form_data[master]={{id}}"
-                            }
-                        ],
-                        "object_actions": [
-                            {
-                                "label": {
-                                    "en": "Edit",
-                                    "fr": "Modifier"
-                                },
-                                "ident": "edit",
-                                "url": "object/edit?obj_type={{obj_type}}&form_data[master]={{id}}"
+                                "url": "object/edit?main_menu={{main_menu}}?obj_type={{obj_type}}&form_data[master]={{id}}"
                             }
                         ],
                         "pagination": {

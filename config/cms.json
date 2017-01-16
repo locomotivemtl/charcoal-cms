@@ -91,6 +91,68 @@
                     }
                 }
             }
+        },
+        "admin": {
+            "single": {
+                "content": {
+                    "en": "%s",
+                    "fr": "le %s"
+                },
+                "formats": {
+                    "from": {
+                        "en": "%b the %d",
+                        "fr": "%d %b"
+                    }
+                }
+            },
+            "different_day": {
+                "content": {
+                    "en": "from %s to %s",
+                    "fr": "du %s au %s"
+                },
+                "formats": {
+                    "from": {
+                        "en": "%d %b",
+                        "fr": "%d"
+                    },
+                    "to": {
+                        "en": "%d",
+                        "fr": "%d %b"
+                    }
+                }
+            },
+            "different_month": {
+                "content": {
+                    "en": "from %s to %s",
+                    "fr": "du %s au %s"
+                },
+                "formats": {
+                    "from": {
+                        "en": "%b %d",
+                        "fr": "%d %b"
+                    },
+                    "to": {
+                        "en": "%b %d",
+                        "fr": "%d %b"
+                    }
+                }
+            },
+            "different_year": {
+                "content": {
+                    "en": "from %s to %s",
+                    "fr": "du %s au %s"
+                },
+                "formats": {
+                    "from": {
+                        "en": "%b %d %y",
+                        "fr": "%d %b %y"
+                    },
+                    "to": {
+                        "en": "%b %d %y",
+                        "fr": "%d %b %y"
+                    }
+                }
+            }
         }
     },
     "time_formats": {
