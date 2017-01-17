@@ -100,8 +100,8 @@
                 },
                 "formats": {
                     "from": {
-                        "en": "%b the %d",
-                        "fr": "%d %b"
+                        "en": "%b the %d %Y",
+                        "fr": "%d %b %Y"
                     }
                 }
             },

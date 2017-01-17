@@ -90,11 +90,6 @@ abstract class AbstractSection extends Content implements
     private $image;
 
     /**
-     * @var array $attachments
-     */
-    private $attachments;
-
-    /**
      * The menus this object is shown in.
      *
      * @var string[]
@@ -189,32 +184,6 @@ abstract class AbstractSection extends Content implements
         ]);
 
         return $loader->load();
-    }
-
-    /**
-     * @param string $type Optional type.
-     * @return array
-     */
-    public function attachments($type = null)
-    {
-        if (!$this->attachments) {
-            $this->attachments = $this->loadAttachments();
-        }
-        if ($type) {
-            // Return only the attachments of a certain type.
-            return $this->attachments[$type];
-        } else {
-            // Return all attachments, grouped by types.
-            return $this->attachments;
-        }
-    }
-
-    /**
-     * @return array
-     */
-    public function loadAttachments()
-    {
-        return [];
     }
 
     // ==========================================================================
@@ -592,7 +561,6 @@ abstract class AbstractSection extends Content implements
      * Event called before _deleting_ the object.
      *
      * @see    \Charcoal\Model\AbstractModel::preDelete() For the "delete" Event.
-     * @see    \Charcoal\Attachment\Traits\AttachmentAwareTrait::removeJoins
      * @return boolean
      */
     public function preDelete()

@@ -151,15 +151,4 @@ interface SectionInterface
      * @return Translation
      */
     public function defaultMetaImage();
-
-    /**
-     * @param string $type Optional type.
-     * @return array
-     */
-    public function attachments($type = null);
-
-    /**
-     * @return array
-     */
-    public function loadAttachments();
 }
