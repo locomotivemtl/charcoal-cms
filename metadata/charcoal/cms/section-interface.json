@@ -562,7 +562,7 @@
                                     "fr": "Nouvelle Page"
                                 },
                                 "ident": "create",
-                                "url": "object/edit?main_menu={{main_menu}}?obj_type={{obj_type}}&form_data[master]={{id}}"
+                                "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&form_data[master]={{id}}"
                             }
                         ],
                         "pagination": {
