@@ -144,37 +144,37 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-2024254232"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-205901571"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-2024254232" class="accordion-body collapse in">
+            <div id="namespace-205901571" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1622591236"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1595885097"></a>
                                 <a href="../namespaces/Charcoal.html" style="margin-left: 30px; padding-left: 0">Charcoal</a>
             </div>
-            <div id="namespace-1622591236" class="accordion-body collapse ">
+            <div id="namespace-1595885097" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2096652318"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-799602544"></a>
                                 <a href="../namespaces/Charcoal.Cms.html" style="margin-left: 30px; padding-left: 0">Cms</a>
             </div>
-            <div id="namespace-2096652318" class="accordion-body collapse ">
+            <div id="namespace-799602544" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-536721793"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-541805662"></a>
                                 <a href="../namespaces/Charcoal.Cms.Route.html" style="margin-left: 30px; padding-left: 0">Route</a>
             </div>
-            <div id="namespace-536721793" class="accordion-body collapse ">
+            <div id="namespace-541805662" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -192,10 +192,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1729355805"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-619640577"></a>
                                 <a href="../namespaces/Charcoal.Cms.Section.html" style="margin-left: 30px; padding-left: 0">Section</a>
             </div>
-            <div id="namespace-1729355805" class="accordion-body collapse ">
+            <div id="namespace-619640577" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -259,10 +259,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-803226923"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1811065804"></a>
                                 <a href="../namespaces/Charcoal.Property.html" style="margin-left: 30px; padding-left: 0">Property</a>
             </div>
-            <div id="namespace-803226923" class="accordion-body collapse ">
+            <div id="namespace-1811065804" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -352,6 +352,8 @@
                                                                     <a href="../classes/Charcoal.Cms.MetatagTrait.html#method_setOpengraphPulisher" class="">setOpengraphPulisher()</a><br />
                                                                     <a href="../classes/Charcoal.Cms.MetatagTrait.html#method_opengraphPublisher" class="">opengraphPublisher()</a><br />
                                                                     <a href="../classes/Charcoal.Cms.MetatagTrait.html#method_opengraphTags" class="">opengraphTags()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.MetatagTrait.html#method_generateDefaultMetaTags" class="">generateDefaultMetaTags()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.MetatagTrait.html#method_isEmptyMeta" class="">isEmptyMeta()</a><br />
                                                             </section>
                             <section class="span4">
                                                                     <em>No public properties found</em>
@@ -1736,6 +1738,85 @@
         </aside>
     </div>
 
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_generateDefaultMetaTags" name="method_generateDefaultMetaTags" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">generateDefaultMetaTags()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">generateDefaultMetaTags() : self</pre>
+                <p><em>Generates the default metatags for the current object.</em></p>
+                <p>Prevents some problem where the defaultMetaTag method
+content isn't set at the moment of setting the meta.
+Should be called on preSave and preUpdate of the object.</p>
+
+                
+                
+                                    <h4>Returns</h4>
+                    self
+                                            &mdash; <p>$this.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Cms.MetatagTrait.html"><div class="path-wrapper">Cms/MetatagTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isEmptyMeta" name="method_isEmptyMeta" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">isEmptyMeta()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isEmptyMeta(mixed  <span class="argument">$meta</span>) : boolean</pre>
+                <p><em>Check if the meta is empty. Method exists
+because at this point we don&#039;t really know
+what&#039;s in the meta.</em></p>
+                <p>Possible param type:</p>
+<ul>
+<li>[ lang =&gt; value, lang =&gt; value ]</li>
+<li>TranslationString</li>
+<li>null</li>
+</ul>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$meta </td>
+                                <td><p>Current meta value.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>Empty or not.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Cms.MetatagTrait.html"><div class="path-wrapper">Cms/MetatagTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
                                                                     </div>
     </section>
 
@@ -1786,7 +1867,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on December 13th, 2016 at 21:09.
+                    on January 18th, 2017 at 22:02.
                 </section>
             </section>
         </section>

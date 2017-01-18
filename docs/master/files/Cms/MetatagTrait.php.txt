@@ -102,9 +102,6 @@ trait MetatagTrait
      */
     public function metaTitle()
     {
-        if (!$this->metaTitle) {
-            return $this->defaultMetaTitle();
-        }
         return $this->metaTitle;
     }
 
@@ -123,9 +120,6 @@ trait MetatagTrait
      */
     public function metaDescription()
     {
-        if (!$this->metaDescription) {
-            return $this->defaultMetaDescription();
-        }
         return $this->metaDescription;
     }
 
@@ -144,9 +138,6 @@ trait MetatagTrait
      */
     public function metaImage()
     {
-        if (!$this->metaImage) {
-            return $this->defaultMetaImage();
-        }
         return $this->metaImage;
     }
 
@@ -346,6 +337,64 @@ trait MetatagTrait
     public function opengraphTags()
     {
         return '';
+    }
+
+    /**
+     * Generates the default metatags for the current object.
+     * Prevents some problem where the defaultMetaTag method
+     * content isn't set at the moment of setting the meta.
+     * Should be called on preSave and preUpdate of the object.
+     * @return self $this.
+     */
+    public function generateDefaultMetaTags()
+    {
+        if ($this->isEmptyMeta($this->metaTitle)) {
+            $this->setMetaTitle($this->defaultMetaTitle());
+        }
+        if ($this->isEmptyMeta($this->metaDescription)) {
+            $this->setMetaDescription($this->defaultMetaDescription());
+        }
+        if ($this->isEmptyMeta($this->metaImage)) {
+            $this->setMetaImage($this->defaultMetaImage());
+        }
+        return $this;
+    }
+
+    /**
+     * Check if the meta is empty. Method exists
+     * because at this point we don't really know
+     * what's in the meta.
+     * Possible param type:
+     * - [ lang => value, lang => value ]
+     * - TranslationString
+     * - null
+     * @param  mixed  $meta  Current meta value.
+     * @return boolean       Empty or not.
+     */
+    public function isEmptyMeta($meta)
+    {
+        if (!$meta) {
+            return true;
+        }
+
+        // From back-end form which post meta_description[lang]=value
+        // Gives [ lang => value ] as value
+        if (is_array($meta)) {
+            $meta = new TranslationString($meta);
+        }
+
+        // If one value is set in whatever language,
+        // this is NOT empty.
+        if ($meta instanceof TranslationString) {
+            $empty = true;
+            foreach ($meta->all() as $lang => $val) {
+                if ($val && $val != '') {
+                    $empty = false;
+                }
+            }
+            return $empty;
+        }
+        return true;
     }
 }
 

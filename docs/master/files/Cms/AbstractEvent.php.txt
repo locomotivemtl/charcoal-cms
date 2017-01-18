@@ -268,13 +268,17 @@ abstract class AbstractEvent extends Content implements
     {
         $content = $this->content();
 
-        if ($content instanceof TranslationString) {
-            foreach ($content->all() as $lang => $text) {
-                $content[$lang] = strip_tags($text);
-            }
+        if (!($content instanceof TranslationString)) {
+            $content = new TranslationString($content);
         }
 
-        return $content;
+        $out = [];
+        foreach ($content->all() as $lang => $text) {
+            $out[$lang] = strip_tags($text);
+        }
+
+        // Don't affect the content's content.
+        return new TranslationString($out);
     }
 
     /**
@@ -293,6 +297,7 @@ abstract class AbstractEvent extends Content implements
     public function preSave()
     {
         $this->setSlug($this->generateSlug());
+        $this->generateDefaultMetaTags();
 
         return parent::preSave();
     }
@@ -308,6 +313,7 @@ abstract class AbstractEvent extends Content implements
         if (!$this->slug) {
             $this->setSlug($this->generateSlug());
         }
+        $this->generateDefaultMetaTags();
 
         return parent::preUpdate($properties);
     }
