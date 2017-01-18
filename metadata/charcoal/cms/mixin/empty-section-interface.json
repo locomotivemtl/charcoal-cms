@@ -20,14 +20,7 @@
                     }
                 },
                 "sidebars": {
-                    "default": {
-                        "properties": [
-                            "created",
-                            "created_by",
-                            "last_modified",
-                            "last_modified_by"
-                        ]
-                    }
+                    "cms.default": {}
                 }
             }
         },

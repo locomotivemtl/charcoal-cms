@@ -539,7 +539,9 @@ abstract class AbstractSection extends Content implements
      */
     public function preSave()
     {
-        $this->setSlug($this->generateSlug());
+        if (!$this->locked()) {
+            $this->setSlug($this->generateSlug());
+        }
 
         return parent::preSave();
     }
@@ -552,7 +554,9 @@ abstract class AbstractSection extends Content implements
      */
     public function preUpdate(array $properties = null)
     {
-        $this->setSlug($this->generateSlug());
+        if (!$this->locked()) {
+            $this->setSlug($this->generateSlug());
+        }
 
         return parent::preUpdate($properties);
     }

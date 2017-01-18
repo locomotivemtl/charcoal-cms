@@ -262,7 +262,7 @@
                             "en": "Pages in menu",
                             "fr": "Pages dans le menu"
                         },
-                        "url": "object/collection?obj_type={{obj_type}}&dashboard_ident=admin.table&collection_ident=cms.in_menu"
+                        "url": "object/collection?main_menu={{main_menu}}&obj_type={{obj_type}}&dashboard_ident=cms.table&collection_ident=cms.in_menu"
                     }
                 },
                 "object_actions": {
@@ -315,6 +315,7 @@
                 },
                 "properties": [
                     "title",
+                    "template_ident",
                     "last_modified",
                     "active"
                 ],
@@ -322,7 +323,14 @@
                     "title": {
                         "view_options": {
                             "attr": {
-                                "width": "70%"
+                                "width": "55%"
+                            }
+                        }
+                    },
+                    "template_ident": {
+                        "view_options": {
+                            "attr": {
+                                "width": "15%"
                             }
                         }
                     },
@@ -342,8 +350,8 @@
                         }
                     }
                 },
-                "list_actions": [
-                    {
+                "list_actions": {
+                    "create": {
                         "ident": "create",
                         "priority": 1,
                         "label": {
@@ -352,49 +360,52 @@
                         },
                         "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}"
                     },
-                    {
+                    "main_menu": {
                         "ident": "sidebar",
                         "priority": 2,
                         "label": {
                             "en": "All Pages",
                             "fr": "Toutes les pages"
                         },
-                        "url": "object/collection?obj_type={{obj_type}}"
+                        "url": "object/collection?main_menu={{main_menu}}&obj_type={{obj_type}}"
                     }
-                ],
-                "object_actions": [
-                    {
+                },
+                "object_actions": {
+                    "edit": {
                         "label": {
                             "en": "Modify",
                             "fr": "Modifier"
                         },
-                        "ident": "edit",
-                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&obj_id={{id}}"
-                    },
-                    {
-                        "label": {
-                            "en": "Go to page",
-                            "fr": "Voir la page"
-                        },
-                        "url": "{{baseUrl}}{{url}}",
-                        "priority": 2
-                    },
-                    {
-                        "label": {
-                            "en": "Clone",
-                            "fr": "Cloner"
-                        },
-                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&clone_id={{id}}",
-                        "priority": 3
-                    },
-                    {
-                        "label": {
-                            "en": "Delete",
-                            "fr": "Supprimer"
-                        },
-                        "priority": 4
+                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&obj_id={{id}}",
+                        "priority": 1,
+                        "split_button": true,
+                        "actions": {
+                            "goto": {
+                                "label": {
+                                    "en": "Go to page",
+                                    "fr": "Voir la page"
+                                },
+                                "url": "{{baseUrl}}{{url}}",
+                                "priority": 2
+                            },
+                            "clone": {
+                                "label": {
+                                    "en": "Clone",
+                                    "fr": "Cloner"
+                                },
+                                "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&clone_id={{id}}",
+                                "priority": 3
+                            },
+                            "delete": {
+                                "label": {
+                                    "en": "Delete",
+                                    "fr": "Supprimer"
+                                },
+                                "priority": 4
+                            }
+                        }
                     }
-                ],
+                },
                 "filters": [
                     {
                         "property": "in_menu",
@@ -533,15 +544,13 @@
                 "type": "utils/widget/form-group/widget",
                 "widget_type": "charcoal/admin/widget/table",
                 "obj_type": "{{obj_type}}",
-                "collection_ident": "default",
+                "collection_ident": "cms.default",
                 "priority": 7000,
                 "sortable": true,
                 "renderable_data": {
                     "obj_type": "{{obj_type}}",
                     "collection_config": {
                         "properties": [
-                            "title",
-                            "slug"
                         ],
                         "orders": [
                             {
@@ -555,16 +564,20 @@
                                 "val": "{{id}}"
                             }
                         ],
-                        "list_actions": [
-                            {
+                        "list_actions": {
+                            "create": {
                                 "label": {
                                     "en": "New Page",
                                     "fr": "Nouvelle Page"
                                 },
                                 "ident": "create",
                                 "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&form_data[master]={{id}}"
+                            },
+                            "main_menu": {
+                                "ident": "main_menu",
+                                "active": false
                             }
-                        ],
+                        },
                         "pagination": {
                             "num_per_page": 100
                         }
@@ -581,6 +594,28 @@
                 "icon": "floppy-o",
                 "template": "charcoal/admin/widget/form-group/object-revisions",
                 "type": "charcoal/admin/widget/form-group/object-revisions"
+            }
+        },
+
+        "form_sidebars": {
+            "cms.default": {
+                "properties": [
+                    "created",
+                    "created_by",
+                    "last_modified",
+                    "last_modified_by"
+                ],
+                "actions": {
+                    "return_to_team": {
+                        "label": {
+                            "en": "Back up a level",
+                            "fr": "Remonter d'un niveau"
+                        },
+                        "url": "admin/object/edit?main_menu={{main_menu}}&obj_type={{master.sectionType}}&obj_id={{master.id}}&tab_ident=cms.table",
+                        "type": "default",
+                        "active": "{{master}}"
+                    }
+                }
             }
         },
 
