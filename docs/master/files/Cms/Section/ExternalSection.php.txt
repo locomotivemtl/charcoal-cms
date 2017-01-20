@@ -2,9 +2,9 @@
 
 namespace Charcoal\Cms;
 
-use \Charcoal\Translation\TranslationString;
+use Charcoal\Translation\TranslationString;
 
-use \Charcoal\Cms\AbstractSection;
+use Charcoal\Cms\AbstractSection;
 
 /**
  * External section may appear in menus and breadcrumbs, but only

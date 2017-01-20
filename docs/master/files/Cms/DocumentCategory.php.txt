@@ -3,9 +3,12 @@
 namespace Charcoal\Cms;
 
 // Module `charcoal-base` dependencies
-use \Charcoal\Object\Content;
-use \Charcoal\Object\CategoryInterface;
-use \Charcoal\Object\CategoryTrait;
+use Charcoal\Object\Content;
+use Charcoal\Object\CategoryInterface;
+use Charcoal\Object\CategoryTrait;
+
+// Local namespace (`charcooal-cms) dependency
+use Charcoal\Cms\Document;
 
 /**
  * Document category.
@@ -21,7 +24,7 @@ final class DocumentCategory extends Content implements CategoryInterface
      */
     public function itemType()
     {
-        return 'charcoal/cms/document';
+        return Document::class;
     }
 
     /**

@@ -3,7 +3,7 @@
 namespace Charcoal\Cms\Section;
 
 // Parent namespace dependencies
-use \Charcoal\Cms\AbstractSection;
+use Charcoal\Cms\AbstractSection;
 
 /**
  * Blocks-content section

@@ -3,19 +3,19 @@
 namespace Charcoal\Cms;
 
 // Dependencies from `charcoal-translation`
-use \Charcoal\Translation\TranslationString;
+use Charcoal\Translation\TranslationString;
 
 // Module `charcoal-base` dependencies
-use \Charcoal\Object\Content;
-use \Charcoal\Object\CategorizableInterface;
-use \Charcoal\Object\CategorizableTrait;
-use \Charcoal\Object\PublishableInterface;
-use \Charcoal\Object\PublishableTrait;
+use Charcoal\Object\Content;
+use Charcoal\Object\CategorizableInterface;
+use Charcoal\Object\CategorizableTrait;
+use Charcoal\Object\PublishableInterface;
+use Charcoal\Object\PublishableTrait;
 
 // Intra-module (`charcoal-cms`) dependencies
-use \Charcoal\Cms\SearchableInterface;
-use \Charcoal\Cms\SearchableTrait;
-use \Charcoal\Cms\TextInterface;
+use Charcoal\Cms\SearchableInterface;
+use Charcoal\Cms\SearchableTrait;
+use Charcoal\Cms\TextInterface;
 
 /**
  * Text

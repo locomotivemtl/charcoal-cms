@@ -2,7 +2,7 @@
 
 namespace Charcoal\Cms;
 
-use \Charcoal\Translation\TranslationString;
+use Charcoal\Translation\TranslationString;
 
 /**
 *
@@ -368,7 +368,7 @@ trait MetatagTrait
      * - [ lang => value, lang => value ]
      * - TranslationString
      * - null
-     * @param  mixed  $meta  Current meta value.
+     * @param  mixed $meta Current meta value.
      * @return boolean       Empty or not.
      */
     public function isEmptyMeta($meta)

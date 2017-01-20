@@ -2,35 +2,35 @@
 
 namespace Charcoal\Cms\Route;
 
-use \InvalidArgumentException;
-use \RuntimeException;
+use InvalidArgumentException;
+use RuntimeException;
 
-use \Pimple\Container;
+use Pimple\Container;
 
 // From PSR-7 (HTTP Messaging)
-use \Psr\Http\Message\RequestInterface;
-use \Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 // Dependency from 'charcoal-app'
-use \Charcoal\App\Route\TemplateRoute;
+use Charcoal\App\Route\TemplateRoute;
 
 // Dependency from 'charcoal-cms'
-use \Charcoal\Cms\TemplateableInterface;
+use Charcoal\Cms\TemplateableInterface;
 
 // From 'charcoal-factory'
-use \Charcoal\Factory\FactoryInterface;
+use Charcoal\Factory\FactoryInterface;
 
 // From 'charcoal-core'
-use \Charcoal\Model\ModelInterface;
-use \Charcoal\Loader\CollectionLoader;
+use Charcoal\Model\ModelInterface;
+use Charcoal\Loader\CollectionLoader;
 
 // From 'charcoal-translation'
-use \Charcoal\Translation\TranslationConfig;
+use Charcoal\Translation\TranslationConfig;
 
-// Local Dependencies
-use \Charcoal\Object\ObjectRoute;
-use \Charcoal\Object\ObjectRouteInterface;
-use \Charcoal\Object\RoutableInterface;
+// From 'charcoal-object'
+use Charcoal\Object\ObjectRoute;
+use Charcoal\Object\ObjectRouteInterface;
+use Charcoal\Object\RoutableInterface;
 
 /**
  * Generic Object Route Handler

@@ -3,9 +3,11 @@
 namespace Charcoal\Cms;
 
 // Module `charcoal-base` dependencies
-use \Charcoal\Object\Content;
-use \Charcoal\Object\CategoryInterface;
-use \Charcoal\Object\CategoryTrait;
+use Charcoal\Object\Content;
+use Charcoal\Object\CategoryInterface;
+use Charcoal\Object\CategoryTrait;
+
+use Charcoal\Cms\Event;
 
 /**
  * Event category.
@@ -21,7 +23,7 @@ final class EventCategory extends Content implements CategoryInterface
      */
     public function itemType()
     {
-        return 'charcoal/cms/event';
+        return Event::class;
     }
 
     /**

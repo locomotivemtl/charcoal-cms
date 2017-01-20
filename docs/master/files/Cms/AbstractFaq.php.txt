@@ -2,18 +2,21 @@
 
 namespace Charcoal\Cms;
 
-use \Charcoal\Translation\TranslationString;
+// Module `charcoal-translation` dependency
+use Charcoal\Translation\TranslationString;
 
-use \Charcoal\Object\Content;
-use \Charcoal\Object\CategorizableInterface;
-use \Charcoal\Object\CategorizableTrait;
-use \Charcoal\Object\PublishableInterface;
-use \Charcoal\Object\PublishableTrait;
+// Module `charcoal-object` dependencies
+use Charcoal\Object\Content;
+use Charcoal\Object\CategorizableInterface;
+use Charcoal\Object\CategorizableTrait;
+use Charcoal\Object\PublishableInterface;
+use Charcoal\Object\PublishableTrait;
 
-use \Charcoal\Cms\FaqInterface;
-use \Charcoal\Cms\MetatagInterface;
-use \Charcoal\Cms\SearchableInterface;
-use \Charcoal\Cms\Searchabletrait;
+// Local namespace (`charcoal-cms`) dependencies
+use Charcoal\Cms\FaqInterface;
+use Charcoal\Cms\MetatagInterface;
+use Charcoal\Cms\SearchableInterface;
+use Charcoal\Cms\Searchabletrait;
 
 /**
  * FAQ Entry.
