@@ -3,9 +3,11 @@
 namespace Charcoal\Cms;
 
 // Module `charcoal-base` dependencies
-use \Charcoal\Object\Content;
-use \Charcoal\Object\CategoryInterface;
-use \Charcoal\Object\CategoryTrait;
+use Charcoal\Object\Content;
+use Charcoal\Object\CategoryInterface;
+use Charcoal\Object\CategoryTrait;
+
+use Charcoal\Cms\News;
 
 /**
  * News category
@@ -21,7 +23,7 @@ final class NewsCategory extends Content implements CategoryInterface
      */
     public function itemType()
     {
-        return 'charcoal/cms/news';
+        return News::class;
     }
 
     /**

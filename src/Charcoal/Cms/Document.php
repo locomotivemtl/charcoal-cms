@@ -2,7 +2,8 @@
 
 namespace Charcoal\Cms;
 
-use \Charcoal\Cms\AbstractDocument;
+use Charcoal\Cms\AbstractDocument;
+use Charcoal\Cms\DocumentCategory;
 
 /**
  *
@@ -14,6 +15,6 @@ final class Document extends AbstractDocument
      */
     public function categoryType()
     {
-        return 'charcoal/cms/document-category';
+        return DocumentCategory::class;
     }
 }

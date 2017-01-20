@@ -2,28 +2,28 @@
 
 namespace Charcoal\Cms;
 
-use \InvalidArgumentException;
+use InvalidArgumentException;
 
 // Module `charcoal-core` dependencies
-use \Charcoal\Model\Collection;
+use Charcoal\Model\Collection;
 
 // Module `charcoal-translation` dependencies
-use \Charcoal\Translation\TranslationString;
+use Charcoal\Translation\TranslationString;
 
-use \Charcoal\Loader\CollectionLoader;
+use Charcoal\Loader\CollectionLoader;
 
 // Module `charcoal-base` dependencies
-use \Charcoal\Object\Content;
-use \Charcoal\Object\HierarchicalInterface;
-use \Charcoal\Object\HierarchicalTrait;
-use \Charcoal\Object\RoutableInterface;
-use \Charcoal\Object\RoutableTrait;
+use Charcoal\Object\Content;
+use Charcoal\Object\HierarchicalInterface;
+use Charcoal\Object\HierarchicalTrait;
+use Charcoal\Object\RoutableInterface;
+use Charcoal\Object\RoutableTrait;
 
 // Intra-module (`charcoal-cms`) dependencies
-use \Charcoal\Cms\MetatagInterface;
-use \Charcoal\Cms\SearchableInterface;
-use \Charcoal\Cms\SectionInterface;
-use \Charcoal\Cms\TemplateableInterface;
+use Charcoal\Cms\MetatagInterface;
+use Charcoal\Cms\SearchableInterface;
+use Charcoal\Cms\SectionInterface;
+use Charcoal\Cms\TemplateableInterface;
 
 /**
  * A Section is a unique, reachable page.

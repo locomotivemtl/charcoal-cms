@@ -2,14 +2,17 @@
 
 namespace Charcoal\Cms\Tests;
 
-use \Psr\Log\NullLogger;
-use \Cache\Adapter\Void\VoidCachePool;
+use PHPUnit_Framework_TestCase;
 
-use \Charcoal\Model\Service\MetadataLoader;
+use Psr\Log\NullLogger;
+use Cache\Adapter\Void\VoidCachePool;
 
-use \Charcoal\Cms\DocumentCategory;
+use Charcoal\Model\Service\MetadataLoader;
 
-class DocumentCategoryTest extends \PHPUnit_Framework_TestCase
+use Charcoal\Cms\DocumentCategory;
+use Charcoal\Cms\Document;
+
+class DocumentCategoryTest extends PHPUnit_Framework_TestCase
 {
 
     public $obj;
@@ -31,6 +34,6 @@ class DocumentCategoryTest extends \PHPUnit_Framework_TestCase
 
     public function testItemType()
     {
-        $this->assertEquals('charcoal/cms/document', $this->obj->itemType());
+        $this->assertEquals(Document::class, $this->obj->itemType());
     }
 }

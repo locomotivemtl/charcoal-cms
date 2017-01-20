@@ -8,6 +8,7 @@ use \Cache\Adapter\Void\VoidCachePool;
 use \Charcoal\Model\Service\MetadataLoader;
 
 use \Charcoal\Cms\VideoCategory;
+use Charcoal\Cms\Video;
 
 class VideoCategoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -31,6 +32,6 @@ class VideoCategoryTest extends \PHPUnit_Framework_TestCase
 
     public function testItemType()
     {
-        $this->assertEquals('charcoal/cms/video', $this->obj->itemType());
+        $this->assertEquals(Video::class, $this->obj->itemType());
     }
 }

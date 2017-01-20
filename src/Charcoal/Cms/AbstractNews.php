@@ -2,31 +2,31 @@
 
 namespace Charcoal\Cms;
 
-use \DateTime;
-use \DateTimeInterface;
-use \InvalidArgumentException;
+use DateTime;
+use DateTimeInterface;
+use InvalidArgumentException;
 
-use \Psr\Http\Message\RequestInterface;
-use \Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 // Dependencies from `charcoal-translation`
-use \Charcoal\Translation\TranslationString;
+use Charcoal\Translation\TranslationString;
 
-// Dependencies from `charcoal-base`
-use \Charcoal\Object\Content;
-use \Charcoal\Object\CategorizableInterface;
-use \Charcoal\Object\CategorizableTrait;
-use \Charcoal\Object\PublishableInterface;
-use \Charcoal\Object\PublishableTrait;
-use \Charcoal\Object\RoutableInterface;
-use \Charcoal\Object\RoutableTrait;
+// Dependencies from `charcoal-object`
+use Charcoal\Object\Content;
+use Charcoal\Object\CategorizableInterface;
+use Charcoal\Object\CategorizableTrait;
+use Charcoal\Object\PublishableInterface;
+use Charcoal\Object\PublishableTrait;
+use Charcoal\Object\RoutableInterface;
+use Charcoal\Object\RoutableTrait;
 
 // Intra-module (`charcoal-cms`) dependencies
-use \Charcoal\Cms\MetatagInterface;
-use \Charcoal\Cms\NewsInterface;
-use \Charcoal\Cms\SearchableInterface;
-use \Charcoal\Cms\SearchableTrait;
-use \Charcoal\Cms\TemplateableInterface;
+use Charcoal\Cms\MetatagInterface;
+use Charcoal\Cms\NewsInterface;
+use Charcoal\Cms\SearchableInterface;
+use Charcoal\Cms\SearchableTrait;
+use Charcoal\Cms\TemplateableInterface;
 
 /**
  * News

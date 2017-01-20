@@ -2,7 +2,8 @@
 
 namespace Charcoal\Cms;
 
-use \Charcoal\Cms\AbstractImage;
+use Charcoal\Cms\AbstractImage;
+use Charcoal\Cms\ImageCategory;
 
 /**
  *
@@ -14,6 +15,6 @@ final class Image extends AbstractImage
      */
     public function categoryType()
     {
-        return 'charcoal/cms/image-category';
+        return ImageCategory::Class;
     }
 }

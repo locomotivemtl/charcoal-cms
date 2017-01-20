@@ -3,6 +3,7 @@
 namespace Charcoal\Cms;
 
 use \Charcoal\Cms\AbstractVideo;
+use Charcoal\Cms\VideoCategory;
 
 /**
  *
@@ -14,6 +15,6 @@ final class Video extends AbstractVideo
      */
     public function categoryType()
     {
-        return 'charcoal/cms/video-category';
+        return VideoCategory::class;
     }
 }

@@ -2,14 +2,20 @@
 
 namespace Charcoal\Cms\Tests;
 
-use \Psr\Log\NullLogger;
-use \Cache\Adapter\Void\VoidCachePool;
+use PHPUnit_Framework_TestCase;
 
-use \Charcoal\Model\Service\MetadataLoader;
+use Psr\Log\NullLogger;
+use Cache\Adapter\Void\VoidCachePool;
 
-use \Charcoal\Cms\ImageCategory;
+use Charcoal\Model\Service\MetadataLoader;
 
-class ImageCategoryTest extends \PHPUnit_Framework_TestCase
+use Charcoal\Cms\ImageCategory;
+use Charcoal\Cms\Image;
+
+/**
+ *
+ */
+class ImageCategoryTest extends PHPUnit_Framework_TestCase
 {
 
     public $obj;
@@ -31,6 +37,6 @@ class ImageCategoryTest extends \PHPUnit_Framework_TestCase
 
     public function testItemType()
     {
-        $this->assertEquals('charcoal/cms/image', $this->obj->itemType());
+        $this->assertEquals(Image::class, $this->obj->itemType());
     }
 }

@@ -2,13 +2,19 @@
 
 namespace Charcoal\Cms\Tests;
 
-use \Psr\Log\NullLogger;
-use \Cache\Adapter\Void\VoidCachePool;
+use PHPUnit_Framework_TestCase;
 
-use \Charcoal\Model\Service\MetadataLoader;
+use Psr\Log\NullLogger;
+use Cache\Adapter\Void\VoidCachePool;
 
-use \Charcoal\Cms\NewsCategory;
+use Charcoal\Model\Service\MetadataLoader;
 
+use Charcoal\Cms\NewsCategory;
+use Charcoal\Cms\News;
+
+/**
+ *
+ */
 class NewsCategoryTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -31,6 +37,6 @@ class NewsCategoryTest extends \PHPUnit_Framework_TestCase
 
     public function testItemType()
     {
-        $this->assertEquals('charcoal/cms/news', $this->obj->itemType());
+        $this->assertEquals(News::class, $this->obj->itemType());
     }
 }

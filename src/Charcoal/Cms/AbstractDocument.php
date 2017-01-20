@@ -2,16 +2,16 @@
 
 namespace Charcoal\Cms;
 
-// Module `charcoal-base` dependencies
-use \Charcoal\Object\Content;
-use \Charcoal\Object\CategorizableInterface;
-use \Charcoal\Object\CategorizableTrait;
+// Module `charcoal-object` dependencies
+use Charcoal\Object\Content;
+use Charcoal\Object\CategorizableInterface;
+use Charcoal\Object\CategorizableTrait;
 
 // Module `charcoal-translation` dependencies
-use \Charcoal\Translation\TranslationString;
+use Charcoal\Translation\TranslationString;
 
 // Intra-module `charcoal-cms` depdencies
-use \Charcoal\Cms\DocumentInterface;
+use Charcoal\Cms\DocumentInterface;
 
 /**
  * Base document class.
@@ -96,7 +96,6 @@ abstract class AbstractDocument extends Content implements
     public function basePath()
     {
         if (!$this->basePath) {
-            $p = $this->property('file');
             return '';
         }
         return rtrim($this->basePath, '/').'/';
@@ -144,7 +143,7 @@ abstract class AbstractDocument extends Content implements
     public function mimetype()
     {
         $p = $this->property('file');
-        return $p->mimetype($this->file());
+        return $p->mimetype($this->path());
     }
 
     /**

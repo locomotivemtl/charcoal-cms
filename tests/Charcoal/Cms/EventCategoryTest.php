@@ -2,12 +2,13 @@
 
 namespace Charcoal\Cms\Tests;
 
-use \Psr\Log\NullLogger;
-use \Cache\Adapter\Void\VoidCachePool;
+use Psr\Log\NullLogger;
+use Cache\Adapter\Void\VoidCachePool;
 
-use \Charcoal\Model\Service\MetadataLoader;
+use Charcoal\Model\Service\MetadataLoader;
 
-use \Charcoal\Cms\EventCategory;
+use Charcoal\Cms\EventCategory;
+use Charcoal\Cms\Event;
 
 class EventCategoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -31,6 +32,6 @@ class EventCategoryTest extends \PHPUnit_Framework_TestCase
 
     public function testItemType()
     {
-        $this->assertEquals('charcoal/cms/event', $this->obj->itemType());
+        $this->assertEquals(Event::class, $this->obj->itemType());
     }
 }

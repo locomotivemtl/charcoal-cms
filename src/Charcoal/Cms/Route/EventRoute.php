@@ -2,17 +2,17 @@
 
 namespace Charcoal\Cms\Route;
 
-use \Pimple\Container;
+use Pimple\Container;
 
 // From PSR-7 (HTTP Messaging)
-use \Psr\Http\Message\RequestInterface;
-use \Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 // From 'charcoal-app'
-use \Charcoal\App\Route\TemplateRoute;
+use Charcoal\App\Route\TemplateRoute;
 
 // From `charcoal-translation`
-use \Charcoal\Translation\TranslationConfig;
+use Charcoal\Translation\TranslationConfig;
 
 /**
  * Event Route Handler

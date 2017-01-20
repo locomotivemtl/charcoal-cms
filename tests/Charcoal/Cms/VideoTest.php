@@ -2,17 +2,20 @@
 
 namespace Charcoal\Cms\Tests;
 
-use \Psr\Log\NullLogger;
-use \Cache\Adapter\Void\VoidCachePool;
+use PHPUnit_Framework_TestCase;
 
-use \Charcoal\Model\Service\MetadataLoader;
+use Psr\Log\NullLogger;
+use Cache\Adapter\Void\VoidCachePool;
 
-use \Charcoal\Cms\Video;
+use Charcoal\Model\Service\MetadataLoader;
+
+use Charcoal\Cms\Video;
+use Charcoal\Cms\VideoCategory;
 
 /**
  *
  */
-class VideoTest extends \PHPUnit_Framework_TestCase
+class VideoTest extends PHPUnit_Framework_TestCase
 {
 
     public $obj;
@@ -50,6 +53,6 @@ class VideoTest extends \PHPUnit_Framework_TestCase
 
     public function testCategoryType()
     {
-        $this->assertEquals('charcoal/cms/video-category', $this->obj->categoryType());
+        $this->assertEquals(VideoCategory::class, $this->obj->categoryType());
     }
 }

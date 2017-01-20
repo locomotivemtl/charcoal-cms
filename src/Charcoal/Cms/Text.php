@@ -2,7 +2,8 @@
 
 namespace Charcoal\Cms;
 
-use \Charcoal\Cms\AbstractText;
+use Charcoal\Cms\AbstractText;
+use Charcoal\Cms\TextCategory;
 
 /**
  * CMS Text
@@ -16,6 +17,6 @@ final class Text extends AbstractText
       */
     public function categoryType()
     {
-        return 'charcoal/cms/text-category';
+        return TextCategory::class;
     }
 }

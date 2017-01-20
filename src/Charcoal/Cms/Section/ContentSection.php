@@ -2,7 +2,7 @@
 
 namespace Charcoal\Cms\Section;
 
-use \Charcoal\Cms\AbstractSection;
+use Charcoal\Cms\AbstractSection;
 
 /**
  * Content section

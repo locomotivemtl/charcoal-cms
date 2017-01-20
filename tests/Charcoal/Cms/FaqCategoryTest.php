@@ -2,13 +2,19 @@
 
 namespace Charcoal\Cms\Tests;
 
-use \Psr\Log\NullLogger;
-use \Cache\Adapter\Void\VoidCachePool;
+use PHPUnit_Framework_TestCase;
 
-use \Charcoal\Model\Service\MetadataLoader;
+use Psr\Log\NullLogger;
+use Cache\Adapter\Void\VoidCachePool;
 
-use \Charcoal\Cms\FaqCategory;
+use Charcoal\Model\Service\MetadataLoader;
 
+use Charcoal\Cms\FaqCategory;
+use Charcoal\Cms\Faq;
+
+/**
+ *
+ */
 class FaqCategoryTest extends \PHPUnit_Framework_TestCase
 {
 
@@ -31,6 +37,6 @@ class FaqCategoryTest extends \PHPUnit_Framework_TestCase
 
     public function testItemType()
     {
-        $this->assertEquals('charcoal/cms/faq', $this->obj->itemType());
+        $this->assertEquals(Faq::class, $this->obj->itemType());
     }
 }

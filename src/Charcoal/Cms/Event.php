@@ -2,7 +2,8 @@
 
 namespace Charcoal\Cms;
 
-use \Charcoal\Cms\AbstractEvent;
+use Charcoal\Cms\AbstractEvent;
+use Charcoal\Cms\EventCategory;
 
 /**
  * CMS Event.
@@ -16,7 +17,7 @@ final class Event extends AbstractEvent
      */
     public function categoryType()
     {
-        return 'charcoal/cms/event-category';
+        return EventCategory::class;
     }
 
     /**

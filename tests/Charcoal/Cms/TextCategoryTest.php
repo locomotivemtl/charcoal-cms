@@ -2,14 +2,20 @@
 
 namespace Charcoal\Cms\Tests;
 
-use \Psr\Log\NullLogger;
-use \Cache\Adapter\Void\VoidCachePool;
+use PHPUnit_Framework_TestCase;
 
-use \Charcoal\Model\Service\MetadataLoader;
+use Psr\Log\NullLogger;
+use Cache\Adapter\Void\VoidCachePool;
 
-use \Charcoal\Cms\TextCategory;
+use Charcoal\Model\Service\MetadataLoader;
 
-class TextCategoryTest extends \PHPUnit_Framework_TestCase
+use Charcoal\Cms\TextCategory;
+use Charcoal\Cms\Text;
+
+/**
+ *
+ */
+class TextCategoryTest extends PHPUnit_Framework_TestCase
 {
 
     public $obj;
@@ -31,6 +37,6 @@ class TextCategoryTest extends \PHPUnit_Framework_TestCase
 
     public function testItemType()
     {
-        $this->assertEquals('charcoal/cms/text', $this->obj->itemType());
+        $this->assertEquals(Text::class, $this->obj->itemType());
     }
 }

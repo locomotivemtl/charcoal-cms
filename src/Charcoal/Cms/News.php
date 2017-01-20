@@ -3,7 +3,8 @@
 namespace Charcoal\Cms;
 
 // Intra-module (`charcoal-cms`) dependencies
-use \Charcoal\Cms\AbstractNew;
+use Charcoal\Cms\AbstractNew;
+use Charcoal\Cms\NewsCategory;
 
 /**
 * CMS News
@@ -17,6 +18,6 @@ final class News extends AbstractNews
      */
     public function categoryType()
     {
-        return 'charcoal/cms/news-category';
+        return NewsCategory::class;
     }
 }
