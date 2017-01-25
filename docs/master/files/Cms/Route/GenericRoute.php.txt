@@ -91,6 +91,13 @@ class GenericRoute extends TemplateRoute
     protected $availableTemplates = [];
 
     /**
+     * Setting Language on TranslatorConfig allows to seT local properly.
+     *
+     * @var TranslatorConfig $translatorConfig
+     */
+    protected $translatorConfig;
+
+    /**
      * Returns new template route object.
      *
      * @param array|\ArrayAccess $data Class depdendencies.
@@ -110,6 +117,7 @@ class GenericRoute extends TemplateRoute
      */
     public function setDependencies(Container $container)
     {
+        $this->translatorConfig = $container['translator/config'];
         $this->setModelFactory($container['model/factory']);
         $this->setCollectionLoader($container['model/collection/loader']);
         if (isset($container['config']['templates'])) {
@@ -198,12 +206,13 @@ class GenericRoute extends TemplateRoute
     {
         $config = $this->config();
 
-        $objectRoute   = $this->loadObjectRouteFromPath();
+        $objectRoute = $this->loadObjectRouteFromPath();
         $contextObject = $this->loadContextObject();
 
         // Set language according to the route's language
         $translator = TranslationConfig::instance();
         $translator->setCurrentLanguage($objectRoute->lang());
+        $this->translatorConfig->setCurrentLanguage($objectRoute->lang());
 
         $templateChoice = [];
 
@@ -213,9 +222,9 @@ class GenericRoute extends TemplateRoute
             $controllerProperty = $contextObject->property('controller_ident');
 
             // Methods from TemplateableInterface / Trait
-            $templateIdent = $contextObject->templateIdent() ? : $objectRoute->routeTemplate();
+            $templateIdent = $contextObject->templateIdent() ?: $objectRoute->routeTemplate();
             // Default fallback to routeTemplate
-            $controllerIdent = $contextObject->controllerIdent() ? : $templateIdent;
+            $controllerIdent = $contextObject->controllerIdent() ?: $templateIdent;
 
             $templateChoice = $identProperty->choice($templateIdent);
         } else {
@@ -236,10 +245,10 @@ class GenericRoute extends TemplateRoute
         // Template ident defined in template global config
         // Check for custom path / controller
         if (isset($templateChoice['template'])) {
-            $templatePath       = $templateChoice['template'];
+            $templatePath = $templateChoice['template'];
             $templateController = $templateChoice['template'];
         } else {
-            $templatePath       = $templateIdent;
+            $templatePath = $templateIdent;
             $templateController = $controllerIdent;
         }
 
@@ -248,7 +257,7 @@ class GenericRoute extends TemplateRoute
             $templateController = $templateChoice['controller'];
         }
 
-        $config['template']   = $templatePath;
+        $config['template'] = $templatePath;
         $config['controller'] = $templateController;
 
         // Always be an array
@@ -408,7 +417,7 @@ class GenericRoute extends TemplateRoute
             ->setNumPerPage(1);
 
         $collection = $loader->load();
-        $routes     = $collection->objects();
+        $routes = $collection->objects();
 
         $latestRoute = $routes[0];
 
