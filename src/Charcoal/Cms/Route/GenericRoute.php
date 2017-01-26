@@ -212,7 +212,9 @@ class GenericRoute extends TemplateRoute
         // Set language according to the route's language
         $translator = TranslationConfig::instance();
         $translator->setCurrentLanguage($objectRoute->lang());
-        $this->translatorConfig->setCurrentLanguage($objectRoute->lang());
+
+        $locale = $translator->language($translator->currentLanguage())->locale();
+        setlocale(LC_ALL, $locale);
 
         $templateChoice = [];
 
