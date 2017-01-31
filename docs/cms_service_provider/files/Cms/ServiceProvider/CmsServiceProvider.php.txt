@@ -129,6 +129,7 @@ class CmsServiceProvider implements ServiceProviderInterface
 
             $sectionLoader->setObjType($sectionConfig->get('objType'));
             $sectionLoader->setBaseSection($sectionConfig->get('baseSection'));
+            $sectionLoader->setSectionTypes($sectionConfig->get('sectionTypes'));
 
             return $sectionLoader;
         };
