@@ -47,7 +47,6 @@ class SectionLoader extends AbstractLoader
     public function fromSlug($slug)
     {
         $id = $this->resolveSectionId($slug);
-
         return $this->fromId($id);
     }
 
@@ -123,15 +122,35 @@ class SectionLoader extends AbstractLoader
         }
 
         $proto = $this->modelFactory()->get(ObjectRoute::class);
+
+        $sectionTypes = $this->sectionTypes();
+        if (!$sectionTypes) {
+            $sectionTypes = [
+                'base' => $this->objType()
+            ];
+        }
+
         $loader = $this->collectionLoader();
         $loader->setModel($proto);
-        $loader->addFilter('route_obj_type', $this->objType())
-            // This is important. This is why it all works
-            // Loading it from the first created to the last created
-            // makes the following foreach override previous data.
-            ->addOrder('creation_date', 'asc');
 
-        $objectRoutes = $loader->load();
+        $filters = [];
+        foreach ($sectionTypes as $key => $val) {
+            $filters[] = 'route_obj_type = \''.$val.'\'';
+        }
+        $q = 'SELECT * FROM `'.$proto->source()->table().'`
+            WHERE active=1 AND ( '
+            . implode(' OR ', $filters) . ' )
+            ORDER BY creation_date ASC';
+
+        $objectRoutes = $loader->loadFromQuery($q);
+
+        // $loader->addFilter('route_obj_type', $this->objType())
+        //     // This is important. This is why it all works
+        //     // Loading it from the first created to the last created
+        //     // makes the following foreach override previous data.
+        //     ->addOrder('creation_date', 'asc');
+
+        // $objectRoutes = $loader->load();
 
         $sections = [];
         $routes = [];
@@ -204,11 +223,18 @@ class SectionLoader extends AbstractLoader
 
     /**
      * @return integer
-     * @throws Exception When a config is missing.
      */
     public function baseSection()
     {
         return $this->baseSection;
+    }
+
+    /**
+     * @return array
+     */
+    public function sectionTypes()
+    {
+        return $this->sectionTypes;
     }
 
     // ==========================================================================
@@ -233,6 +259,17 @@ class SectionLoader extends AbstractLoader
     public function setBaseSection($baseSection)
     {
         $this->baseSection = $baseSection;
+
+        return $this;
+    }
+
+    /**
+     * @param array $sectionTypes Section types array | null.
+     * @return self
+     */
+    public function setSectionTypes($sectionTypes)
+    {
+        $this->sectionTypes = $sectionTypes;
 
         return $this;
     }

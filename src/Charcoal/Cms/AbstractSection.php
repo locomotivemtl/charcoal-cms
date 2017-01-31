@@ -572,6 +572,9 @@ abstract class AbstractSection extends Content implements
         if ($this->locked()) {
             return false;
         }
+        // Routable trait
+        // Remove all unnecessary routes.
+        $this->deleteObjectRoutes();
 
         return parent::preDelete();
     }

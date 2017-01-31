@@ -15,6 +15,13 @@ class SectionConfig extends AbstractConfig
     private $baseSection;
 
     /**
+     * Different section type available
+     * They should be extending the baseSection
+     * @var mixed
+     */
+    private $sectionTypes;
+
+    /**
      * @var string
      */
     private $objType;
@@ -30,6 +37,16 @@ class SectionConfig extends AbstractConfig
     {
         $this->baseSection = $baseSection;
 
+        return $this;
+    }
+
+    /**
+     * Set the available section types
+     * @param mixed $sectionTypes Section types.
+     */
+    public function setSectionTypes($sectionTypes)
+    {
+        $this->sectionTypes = $sectionTypes;
         return $this;
     }
 
@@ -50,6 +67,15 @@ class SectionConfig extends AbstractConfig
     public function baseSection()
     {
         return $this->baseSection;
+    }
+
+    /**
+     * Available section types.
+     * @return mixed Section types. Could be null.
+     */
+    public function sectionTypes()
+    {
+        return $this->sectionTypes;
     }
 
     /**
