@@ -281,6 +281,7 @@
                                     "fr": "Voir la page"
                                 },
                                 "url": "{{baseUrl}}{{url}}",
+                                "target": "_blank",
                                 "priority": 2
                             },
                             "clone": {
@@ -386,6 +387,7 @@
                                     "fr": "Voir la page"
                                 },
                                 "url": "{{baseUrl}}{{url}}",
+                                "target": "_blank",
                                 "priority": 2
                             },
                             "clone": {
