@@ -2,34 +2,40 @@
 
 namespace Charcoal\Cms\Tests;
 
-use PHPUnit_Framework_TestCase;
+use DateTime;
 
-use Pimple\Container;
+// From 'charcoal-object'
+use Charcoal\Object\ObjectRoute;
 
+// From 'charcoal-cms'
 use Charcoal\Cms\Event;
 use Charcoal\Cms\EventCategory;
-
-use Charcoal\Tests\Cms\ContainerProvider;
 
 /**
  *
  */
-class EventTest extends PHPUnit_Framework_TestCase
+class EventTest extends \PHPUnit_Framework_TestCase
 {
+    use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
-    public $obj;
+    /**
+     * Tested Class.
+     *
+     * @var Event
+     */
+    private $obj;
 
+    /**
+     * Set up the test.
+     */
     public function setUp()
     {
-        $provider = new ContainerProvider();
+        $container = $this->getContainer();
 
-        $container = new Container();
-        $provider->registerBaseServices($container);
-        $provider->registerMetadataLoader($container);
-        $provider->registerModelFactory($container);
-        $provider->registerSourceFactory($container);
-        $provider->registerPropertyFactory($container);
-        $provider->registerModelCollectionLoader($container);
+        $route = $container['model/factory']->get(ObjectRoute::class);
+        if ($route->source()->tableExists() === false) {
+            $route->source()->createTable();
+        }
 
         $this->obj = new Event([
             'container'         => $container,
@@ -43,19 +49,18 @@ class EventTest extends PHPUnit_Framework_TestCase
     public function testSetData()
     {
         $ret = $this->obj->setData([
-            'title'=>'Example title',
-            'subtitle'=>'Subtitle',
-            'content'=>'foobar',
-            'start_date'=>'2015-01-01 20:00:00',
-            'end_date'=>'2015-01-01 21:30:00'
+            'title'      => 'Example title',
+            'subtitle'   => 'Subtitle',
+            'content'    => 'foobar',
+            'start_date' => '2015-01-01 20:00:00',
+            'end_date'   => '2015-01-01 21:30:00'
         ]);
 
         $this->assertSame($ret, $this->obj);
         $this->assertEquals('Example title', (string)$this->obj->title());
         $this->assertEquals('Subtitle', (string)$this->obj->subtitle());
         $this->assertEquals('foobar', (string)$this->obj->content());
-        $this->assertEquals(new \DateTime('2015-01-01 20:00:00
-            '), $this->obj->startDate());
+        $this->assertEquals(new DateTime('2015-01-01 20:00:00'), $this->obj->startDate());
     }
 
     public function testSetTitle()
@@ -119,7 +124,7 @@ class EventTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(null, $this->obj->startDate());
         $ret = $this->obj->setStartDate('2016-02-02');
         $this->assertSame($ret, $this->obj);
-        $this->assertEquals(new \DateTime('2016-02-02'), $ret->startDate());
+        $this->assertEquals(new DateTime('2016-02-02'), $ret->startDate());
 
         $this->obj->setStartDate(null);
         $this->assertEquals(null, $this->obj->startDate());
@@ -139,7 +144,7 @@ class EventTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(null, $this->obj->endDate());
         $ret = $this->obj->setEndDate('2016-02-02');
         $this->assertSame($ret, $this->obj);
-        $this->assertEquals(new \DateTime('2016-02-02'), $ret->endDate());
+        $this->assertEquals(new DateTime('2016-02-02'), $ret->endDate());
 
         $this->obj->setEndDate(null);
         $this->assertEquals(null, $this->obj->endDate());
@@ -183,23 +188,25 @@ class EventTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('Barfoo', (string)$this->obj->metaDescription());
     }
 
-    // public function testMetaImageDefaultsToImage()
-    // {
-    //     $this->assertEquals('', (string)$this->obj->metaImage());
+    /*
+    public function testMetaImageDefaultsToImage()
+    {
+        $this->assertEquals('', (string)$this->obj->metaImage());
 
-    //     $this->obj->setImage('Foo.png');
-    //     $this->assertSame($this->obj->image(), $this->obj->metaImage());
-    //     $this->assertEquals('Foo.png', (string)$this->obj->metaImage());
+        $this->obj->setImage('Foo.png');
+        $this->assertSame($this->obj->image(), $this->obj->metaImage());
+        $this->assertEquals('Foo.png', (string)$this->obj->metaImage());
 
-    //     $this->obj->setMetaImage('Bar.jpg');
-    //     $this->assertEquals('Bar.jpg', (string)$this->obj->metaImage());
-    // }
+        $this->obj->setMetaImage('Bar.jpg');
+        $this->assertEquals('Bar.jpg', (string)$this->obj->metaImage());
+    }
+    */
 
     public function testSaveGeneratesSlug()
     {
         $this->assertEquals('', $this->obj->slug());
         $this->obj->setData([
-            'title'=>'foo'
+            'title' => 'foo'
         ]);
         $this->obj->save();
 
@@ -210,7 +217,7 @@ class EventTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals('', $this->obj->slug());
         $this->obj->setData([
-            'title'=>'foo'
+            'title' => 'foo'
         ]);
         $this->obj->update();
 
@@ -224,9 +231,9 @@ class EventTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('', (string)$this->obj->metaImage());
 
         $this->obj->setData([
-            'title'=>'foo',
-            'content'=>'<p>Foo bar</p>',
-            'image' => 'x.jpg'
+            'title'   => 'foo',
+            'content' => '<p>Foo bar</p>',
+            'image'   => 'x.jpg'
         ]);
         $this->obj->save();
 
@@ -242,9 +249,9 @@ class EventTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('', (string)$this->obj->metaImage());
 
         $this->obj->setData([
-            'title'=>'foo',
-            'content'=>'<p>Foo bar</p>',
-            'image' => 'x.jpg'
+            'title'   => 'foo',
+            'content' => '<p>Foo bar</p>',
+            'image'   => 'x.jpg'
         ]);
         $this->obj->update();
 

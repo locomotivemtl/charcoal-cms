@@ -2,6 +2,7 @@
 
 namespace Charcoal\Cms\Section;
 
+// From 'charcoal-cms'
 use Charcoal\Cms\AbstractSection;
 
 /**

@@ -2,44 +2,43 @@
 
 namespace Charcoal\Cms\Tests;
 
-use PHPUnit_Framework_TestCase;
-
-use Psr\Log\NullLogger;
-use Cache\Adapter\Void\VoidCachePool;
-
-use Charcoal\Model\Service\MetadataLoader;
-
+// From 'charcoal-cms'
 use Charcoal\Cms\Text;
 use Charcoal\Cms\TextCategory;
 
 /**
  *
  */
-class TextTest extends PHPUnit_Framework_TestCase
+class TextTest extends \PHPUnit_Framework_TestCase
 {
-    public $obj;
+    use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
+    /**
+     * Tested Class.
+     *
+     * @var Text
+     */
+    private $obj;
+
+    /**
+     * Set up the test.
+     */
     public function setUp()
     {
-        $metadataLoader = new MetadataLoader([
-            'logger' => new NullLogger(),
-            'base_path' => __DIR__,
-            'paths' => ['metadata'],
-            'cache'  => new VoidCachePool()
-        ]);
+        $container = $this->getContainer();
 
         $this->obj = new Text([
-            'logger'=> new NullLogger(),
-            'metadata_loader' => $metadataLoader
+            'container' => $container,
+            'logger'    => $container['logger']
         ]);
     }
 
     public function testSetData()
     {
         $ret = $this->obj->setData([
-            'title'=>'Example title',
-            'subtitle'=>'Subtitle',
-            'content'=>'foobar'
+            'title'    => 'Example title',
+            'subtitle' => 'Subtitle',
+            'content'  => 'foobar'
         ]);
 
         $this->assertSame($ret, $this->obj);

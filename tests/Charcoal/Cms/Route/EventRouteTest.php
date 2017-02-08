@@ -2,64 +2,52 @@
 
 namespace Charcoal\Tests\Cms\Route;
 
-use \PDO;
+// From PSR-7
+use Psr\Http\Message\RequestInterface;
 
-use \Psr\Log\NullLogger;
-use \Cache\Adapter\Void\VoidCachePool;
+// From Slim
+use Slim\Http\Response;
 
-use \Pimple\Container;
+// From 'charcoal-object'
+use Charcoal\Object\ObjectRoute;
 
-use \Charcoal\Factory\GenericFactory as Factory;
+// From 'charcoal-translator'
+use Charcoal\Translator\Translation;
 
-use \Charcoal\App\AppConfig;
-
-use \Charcoal\Model\Service\MetadataLoader;
-use \Charcoal\Source\DatabaseSource;
-
-use \Charcoal\Translation\TranslationString;
-
-use \Charcoal\Cms\Route\EventRoute;
-
-use \Charcoal\Tests\Cms\ContainerProvider;
+// From 'charcoal-cms'
+use Charcoal\Cms\Event;
+use Charcoal\Cms\Route\EventRoute;
 
 /**
  *
  */
 class EventRouteTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @var EventRoute
-     */
-    public $obj;
+    use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
     /**
+     * Tested Class.
      *
+     * @var EventRoute
+     */
+    private $obj;
+
+    /**
+     * Set up the test.
      */
     public function setUp()
     {
+        $container = $this->getContainer();
+
+        $route = $container['model/factory']->get(ObjectRoute::class);
+        if ($route->source()->tableExists() === false) {
+            $route->source()->createTable();
+        }
+
         $this->obj = new EventRoute([
             'config' => [],
-            'path' => 'en/events/foo'
+            'path'   => 'en/events/foo'
         ]);
-    }
-
-    /**
-     * @return Container
-     * @see ContainerProvider
-     */
-    private function getContainer()
-    {
-        $provider = new ContainerProvider();
-        $container = new Container();
-
-        $provider->registerBaseServices($container);
-        $provider->registerMetadataLoader($container);
-        $provider->registerSourceFactory($container);
-        $provider->registerPropertyFactory($container);
-        $provider->registerModelFactory($container);
-        $provider->registerModelCollectionLoader($container);
-
-        return $container;
     }
 
     /**
@@ -69,8 +57,11 @@ class EventRouteTest extends \PHPUnit_Framework_TestCase
     {
         $container = $this->getContainer();
 
+        $locales   = $container['locales/manager'];
+        $locales->setCurrentLocale($locales->currentLocale());
+
         // Create the event table
-        $event = $container['model/factory']->create('charcoal/cms/event');
+        $event = $container['model/factory']->create(Event::class);
         $event->source()->createTable();
 
         $ret = $this->obj->pathResolvable($container);
@@ -78,10 +69,10 @@ class EventRouteTest extends \PHPUnit_Framework_TestCase
 
         // Now try with a resolvable event.
         $event->setData([
-            'id' => 1,
-            'title'=>'Foo',
-            'slug'=>new TranslationString('foo'),
-            'template_ident'=>'bar'
+            'id'             => 1,
+            'title'          => 'Foo',
+            'slug'           => new Translation('foo', $locales),
+            'template_ident' => 'bar'
         ]);
         $id = $event->save();
 
@@ -95,24 +86,11 @@ class EventRouteTest extends \PHPUnit_Framework_TestCase
     public function testInvoke()
     {
         $container = $this->getContainer();
-        $request = $this->getMock('\Psr\Http\Message\RequestInterface');
-        $response = new \Slim\Http\Response();
-
-
-        $container['template/factory'] = function (Container $container) {
-            return new Factory([
-                'resolver_options' => [
-                    'suffix' => 'Template'
-                ],
-                'arguments' => [[
-                    'container' => $container,
-                    'logger' => $container['logger']
-                ]]
-            ]);
-        };
+        $request   = $this->getMock(RequestInterface::class);
+        $response  = new Response();
 
         // Create the event table
-        $event = $container['model/factory']->create('charcoal/cms/event');
+        $event = $container['model/factory']->create(Event::class);
         $event->source()->createTable();
 
         $obj = $this->obj;

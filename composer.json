@@ -2,7 +2,7 @@
     "name": "locomotivemtl/charcoal-cms",
     "type": "library",
     "description": "Charcoal CMS (Content Management System) Module",
-    "keywords": ["charcoal", "cms"],
+    "keywords": [ "charcoal", "cms" ],
     "homepage": "https://charcoal.locomotive.ca",
     "license": "MIT",
     "authors": [
@@ -15,32 +15,33 @@
             "homepage": "https://locomotive.ca"
         }
     ],
+    "minimum-stability":"dev",
+    "prefer-stable": true,
     "extra": {
         "branch-alias": {
-            "dev-master": "0.1.x-dev"
+            "dev-master": "0.2.x-dev"
         }
     },
-    "minimum-stability":"dev",
     "require": {
         "php": ">=5.6.0",
         "psr/http-message": "^1.0",
-        "locomotivemtl/charcoal-app": "~0.2",
-        "locomotivemtl/charcoal-core": "~0.1",
-        "locomotivemtl/charcoal-factory": "~0.3",
+        "locomotivemtl/charcoal-app": "~0.4",
+        "locomotivemtl/charcoal-core": "~0.2",
+        "locomotivemtl/charcoal-factory": "~0.4",
         "locomotivemtl/charcoal-object": "~0.1",
-        "locomotivemtl/charcoal-translation": "~0.1"
+        "locomotivemtl/charcoal-translator": "~0.1"
     },
     "require-dev": {
         "psr/log": "^1.0",
         "phpunit/phpunit": "^4.8",
+        "mockery/mockery": "^0.9.6",
         "squizlabs/php_codesniffer": "^2.4",
         "satooshi/php-coveralls": "~1.0.1",
         "cache/void-adapter": "^0.3.0"
     },
     "autoload": {
         "psr-4": {
-            "Charcoal\\Cms\\": "src/Charcoal/Cms",
-            "Charcoal\\Property\\": "src/Charcoal/Property"
+            "Charcoal\\": "src/Charcoal"
         }
     },
     "autoload-dev": {

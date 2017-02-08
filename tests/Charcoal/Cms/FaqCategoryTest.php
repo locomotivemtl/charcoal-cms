@@ -2,13 +2,7 @@
 
 namespace Charcoal\Cms\Tests;
 
-use PHPUnit_Framework_TestCase;
-
-use Psr\Log\NullLogger;
-use Cache\Adapter\Void\VoidCachePool;
-
-use Charcoal\Model\Service\MetadataLoader;
-
+// From 'charcoal-cms'
 use Charcoal\Cms\FaqCategory;
 use Charcoal\Cms\Faq;
 
@@ -17,21 +11,25 @@ use Charcoal\Cms\Faq;
  */
 class FaqCategoryTest extends \PHPUnit_Framework_TestCase
 {
+    use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
-    public $obj;
+    /**
+     * Tested Class.
+     *
+     * @var FaqCategory
+     */
+    private $obj;
 
+    /**
+     * Set up the test.
+     */
     public function setUp()
     {
-        $metadataLoader = new MetadataLoader([
-            'logger' => new NullLogger(),
-            'base_path' => __DIR__,
-            'paths' => ['metadata'],
-            'cache'  => new VoidCachePool()
-        ]);
+        $container = $this->getContainer();
 
         $this->obj = new FaqCategory([
-            'logger'=> new NullLogger(),
-            'metadata_loader' => $metadataLoader
+            'container' => $container,
+            'logger'    => $container['logger']
         ]);
     }
 

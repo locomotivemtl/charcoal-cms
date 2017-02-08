@@ -2,30 +2,33 @@
 
 namespace Charcoal\Cms;
 
+// From 'charcoal-translator'
+use Charcoal\Translator\Translation;
+
 /**
  *
  */
 interface FaqInterface
 {
     /**
-     * @param mixed $question The question (localized).
-     * @return Faq Chainable
+     * @param  mixed $question The question (localized).
+     * @return self
      */
     public function setQuestion($question);
 
     /**
-     * @return \Charcoal\Translation\TranslationString|null
+     * @return Translation|string|null
      */
     public function question();
 
     /**
-     * @param mixed $answer The answer (localized).
-     * @return Faq Chainable
+     * @param  mixed $answer The answer (localized).
+     * @return self
      */
     public function setAnswer($answer);
 
     /**
-     * @return \Charcoal\Translation\TranslationString|null
+     * @return Translation|string|null
      */
     public function answer();
 }

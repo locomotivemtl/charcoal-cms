@@ -2,35 +2,40 @@
 
 namespace Charcoal\Cms\Tests;
 
-use PHPUnit_Framework_TestCase;
+// From 'charcoal-object'
+use Charcoal\Object\ObjectRoute;
 
-use Pimple\Container;
-
+// From 'charcoal-cms'
 use Charcoal\Cms\Section;
-
-use Charcoal\Tests\Cms\ContainerProvider;
 
 /**
  *
  */
-class SectionTest extends PHPUnit_Framework_TestCase
+class SectionTest extends \PHPUnit_Framework_TestCase
 {
-    public $obj;
+    use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
+    /**
+     * Tested Class.
+     *
+     * @var Section
+     */
+    private $obj;
+
+    /**
+     * Set up the test.
+     */
     public function setUp()
     {
-        $container = new Container();
-        $provider = new ContainerProvider();
+        $container = $this->getContainer();
 
-        $provider->registerBaseServices($container);
-        $provider->registerMetadataLoader($container);
-        $provider->registerModelFactory($container);
-        $provider->registerSourceFactory($container);
-        $provider->registerPropertyFactory($container);
-        $provider->registerModelCollectionLoader($container);
+        $route = $container['model/factory']->get(ObjectRoute::class);
+        if ($route->source()->tableExists() === false) {
+            $route->source()->createTable();
+        }
 
         $this->obj = new Section([
-             'container'         => $container,
+            'container'         => $container,
             'logger'            => $container['logger'],
             'metadata_loader'   => $container['metadata/loader'],
             'property_factory'  => $container['property/factory'],
@@ -42,14 +47,14 @@ class SectionTest extends PHPUnit_Framework_TestCase
     {
         $obj = $this->obj;
         $ret = $obj->setData([
-            'section_type'  => Section::TYPE_EXTERNAL,
-            'title'         => 'foo',
-            'subtitle'      => 'bar',
-            'content'       => 'baz',
-            'image'         => 'foobar.png',
-            'template_ident' => 'foobar',
+            'section_type'     => Section::TYPE_EXTERNAL,
+            'title'            => 'foo',
+            'subtitle'         => 'bar',
+            'content'          => 'baz',
+            'image'            => 'foobar.png',
+            'template_ident'   => 'foobar',
             'template_options' => [
-                'x'=>'y'
+                'x' => 'y'
             ]
         ]);
         $this->assertSame($ret, $obj);
@@ -60,7 +65,7 @@ class SectionTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('baz', (string)$obj->content());
         $this->assertEquals('foobar.png', (string)$obj->image());
         $this->assertEquals('foobar', $obj->templateIdent());
-        $this->assertEquals(['x'=>'y'], $obj->templateOptions());
+        $this->assertEquals([ 'x' => 'y' ], $obj->templateOptions());
     }
 
     public function testSetSectionType()
@@ -175,7 +180,7 @@ class SectionTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals('', $this->obj->slug());
         $this->obj->setData([
-            'title'=>'foo'
+            'title' => 'foo'
         ]);
         $this->obj->save();
 
@@ -186,7 +191,7 @@ class SectionTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals('', $this->obj->slug());
         $this->obj->setData([
-            'title'=>'foo'
+            'title' => 'foo'
         ]);
         $this->obj->update();
 
@@ -200,9 +205,9 @@ class SectionTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('', (string)$this->obj->metaImage());
 
         $this->obj->setData([
-            'title'=>'foo',
-            'content'=>'<p>Foo bar</p>',
-            'image' => 'x.jpg'
+            'title'   => 'foo',
+            'content' => '<p>Foo bar</p>',
+            'image'   => 'x.jpg'
         ]);
         $this->obj->save();
 
@@ -218,9 +223,9 @@ class SectionTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('', (string)$this->obj->metaImage());
 
         $this->obj->setData([
-            'title'=>'foo',
-            'content'=>'<p>Foo bar</p>',
-            'image' => 'x.jpg'
+            'title'   => 'foo',
+            'content' => '<p>Foo bar</p>',
+            'image'   => 'x.jpg'
         ]);
         $this->obj->update();
 

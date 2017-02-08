@@ -2,11 +2,12 @@
 
 namespace Charcoal\Cms;
 
+// From 'charcoal-cms'
 use Charcoal\Cms\AbstractEvent;
 use Charcoal\Cms\EventCategory;
 
 /**
- * CMS Event.
+ * CMS Event
  */
 final class Event extends AbstractEvent
 {
@@ -23,8 +24,8 @@ final class Event extends AbstractEvent
     /**
      * MetatagTrait > canonical_url
      *
-     * @return string
      * @todo
+     * @return string
      */
     public function canonicalUrl()
     {

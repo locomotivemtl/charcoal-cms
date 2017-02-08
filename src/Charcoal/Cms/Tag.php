@@ -4,10 +4,13 @@ namespace Charcoal\Cms;
 
 use Exception;
 
+// From 'charcoal-translator'
+use Charcoal\Translator\Translation;
+
+// From 'charcoal-cms'
 use Charcoal\Object\CategoryInterface;
 use Charcoal\Object\CategoryTrait;
 use Charcoal\Object\Content;
-use Charcoal\Translation\TranslationString;
 
 /**
  * CMS Tag
@@ -18,20 +21,23 @@ class Tag extends Content implements
     use CategoryTrait;
 
     /**
-     * @var object|string $name The tag's name.
+     * The tag's name.
+     *
+     * @var Translation|string|null
      */
     protected $name;
 
     /**
-     * @var string $color The tag's color.
+     * The tag's color.
+     *
+     * @var string
      */
     protected $color;
 
     /**
-     * Section constructor.
-     * @param array|null $data The object's data options.
+     * @param array $data The object's data options.
      */
-    public function __construct($data = null)
+    public function __construct(array $data = null)
     {
         parent::__construct($data);
 
@@ -56,7 +62,9 @@ class Tag extends Content implements
     // ==========================================================================
 
     /**
-     * @return mixed The tag's name.
+     * The tag's name.
+     *
+     * @return Translation|string|null
      */
     public function name()
     {
@@ -64,7 +72,9 @@ class Tag extends Content implements
     }
 
     /**
-     * @return mixed The tag's color.
+     * The tag's color.
+     *
+     * @return mixed
      */
     public function color()
     {
@@ -76,23 +86,18 @@ class Tag extends Content implements
     // ==========================================================================
 
     /**
-     * @param string|string[] $name The name of the tag.
-     * @return self chainable
+     * @param  mixed $name The name of the tag.
+     * @return self
      */
     public function setName($name)
     {
-        if (TranslationString::isTranslatable($name)) {
-            $this->name = new TranslationString($name);
-        } else {
-            $this->name = null;
-        }
-
+        $this->name = $this->translator()->translation($name);
         return $this;
     }
 
     /**
-     * @param string $color The color in HEX format as a string.
-     * @return self chainable
+     * @param  string $color The color in HEX format as a string.
+     * @return self
      */
     public function setColor($color)
     {

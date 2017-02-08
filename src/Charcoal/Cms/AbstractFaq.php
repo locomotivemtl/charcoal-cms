@@ -2,17 +2,17 @@
 
 namespace Charcoal\Cms;
 
-// Module `charcoal-translation` dependency
-use Charcoal\Translation\TranslationString;
-
-// Module `charcoal-object` dependencies
+// From 'charcoal-object'
 use Charcoal\Object\Content;
 use Charcoal\Object\CategorizableInterface;
 use Charcoal\Object\CategorizableTrait;
 use Charcoal\Object\PublishableInterface;
 use Charcoal\Object\PublishableTrait;
 
-// Local namespace (`charcoal-cms`) dependencies
+// From 'charcoal-translator'
+use Charcoal\Translator\Translation;
+
+// From 'charcoal-cms'
 use Charcoal\Cms\FaqInterface;
 use Charcoal\Cms\MetatagInterface;
 use Charcoal\Cms\SearchableInterface;
@@ -32,28 +32,29 @@ abstract class AbstractFaq extends Content implements
     use SearchableTrait;
 
     /**
-     * The question, or "title", of this entry
-     * @var TranslationString $question
+     * The question, or "title", of this entry.
+     *
+     * @var Translation|string|null
      */
     private $question;
 
     /**
-     * @var TranslationString $answer
+     * @var Translation|string|null
      */
     private $answer;
 
     /**
-     * @param mixed $question The question (localized).
-     * @return FaqInterface Chainable
+     * @param  mixed $question The question (localized).
+     * @return self
      */
     public function setQuestion($question)
     {
-        $this->question = new TranslationString($question);
+        $this->question = $this->translator()->translation($question);
         return $this;
     }
 
     /**
-     * @return TranslationString|null
+     * @return Translation|string|null
      */
     public function question()
     {
@@ -61,17 +62,17 @@ abstract class AbstractFaq extends Content implements
     }
 
     /**
-     * @param mixed $answer The answer (localized).
-     * @return FaqInterface Chainable
+     * @param  mixed $answer The answer (localized).
+     * @return self
      */
     public function setAnswer($answer)
     {
-        $this->answer = new TranslationString($answer);
+        $this->answer = $this->translator()->translation($answer);
         return $this;
     }
 
     /**
-     * @return TranslationString|null
+     * @return Translation|string|null
      */
     public function answer()
     {

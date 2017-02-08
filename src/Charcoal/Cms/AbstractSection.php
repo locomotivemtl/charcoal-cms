@@ -4,22 +4,21 @@ namespace Charcoal\Cms;
 
 use InvalidArgumentException;
 
-// Module `charcoal-core` dependencies
+// From 'charcoal-core'
 use Charcoal\Model\Collection;
-
-// Module `charcoal-translation` dependencies
-use Charcoal\Translation\TranslationString;
-
 use Charcoal\Loader\CollectionLoader;
 
-// Module `charcoal-base` dependencies
+// From 'charcoal-object'
 use Charcoal\Object\Content;
 use Charcoal\Object\HierarchicalInterface;
 use Charcoal\Object\HierarchicalTrait;
 use Charcoal\Object\RoutableInterface;
 use Charcoal\Object\RoutableTrait;
 
-// Intra-module (`charcoal-cms`) dependencies
+// From 'charcoal-translator'
+use Charcoal\Translator\Translation;
+
+// From 'charcoal-cms'
 use Charcoal\Cms\MetatagInterface;
 use Charcoal\Cms\SearchableInterface;
 use Charcoal\Cms\SectionInterface;
@@ -66,25 +65,27 @@ abstract class AbstractSection extends Content implements
     const DEFAULT_TYPE  = self::TYPE_CONTENT;
 
     /**
-     * @var string $sectionType
+     * @var string
      */
     private $sectionType = self::DEFAULT_TYPE;
 
     /**
-     * @var TranslationString $title
+     * @var Translation|string|null
      */
     private $title;
+
     /**
-     * @var TranslationString $subtitle
+     * @var Translation|string|null
      */
     private $subtitle;
+
     /**
-     * @var TranslationString $content
+     * @var Translation|string|null
      */
     private $content;
 
     /**
-     * @var TranslationString $image
+     * @var Translation|string|null
      */
     private $image;
 
@@ -96,9 +97,9 @@ abstract class AbstractSection extends Content implements
     /**
      * Set the section's type.
      *
-     * @param string $type The section type.
+     * @param  string $type The section type.
      * @throws InvalidArgumentException If the section type is not a string or not a valid section type.
-     * @return SectionInterface Chainable
+     * @return self
      */
     public function setSectionType($type)
     {
@@ -145,17 +146,17 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @param mixed $title The section title (localized).
-     * @return TranslationString
+     * @param  mixed $title The section title (localized).
+     * @return self
      */
     public function setTitle($title)
     {
-        $this->title = new TranslationString($title);
+        $this->title = $this->translator()->translation($title);
         return $this;
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function title()
     {
@@ -163,17 +164,17 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @param mixed $subtitle The section subtitle (localized).
-     * @return Section Chainable
+     * @param  mixed $subtitle The section subtitle (localized).
+     * @return self
      */
     public function setSubtitle($subtitle)
     {
-        $this->subtitle = new TranslationString($subtitle);
+        $this->subtitle = $this->translator()->translation($subtitle);
         return $this;
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function subtitle()
     {
@@ -181,17 +182,17 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @param mixed $content The section content (localized).
-     * @return Section Chainable
+     * @param  mixed $content The section content (localized).
+     * @return self
      */
     public function setContent($content)
     {
-        $this->content = new TranslationString($content);
+        $this->content = $this->translator()->translation($content);
         return $this;
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function content()
     {
@@ -199,17 +200,17 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @param mixed $image The section main image (localized).
-     * @return Section Chainable
+     * @param  mixed $image The section main image (localized).
+     * @return self
      */
     public function setImage($image)
     {
-        $this->image = new TranslationString($image);
+        $this->image = $this->translator()->translation($image);
         return $this;
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function image()
     {
@@ -217,7 +218,7 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @param string $type Optional type.
+     * @param  string $type Optional type.
      * @return array
      */
     public function attachments($type = null)
@@ -245,7 +246,7 @@ abstract class AbstractSection extends Content implements
     /**
      * HierarchicalTrait > loadChildren
      *
-     * @return Co
+     * @return Collection
      */
     public function loadChildren()
     {
@@ -273,8 +274,8 @@ abstract class AbstractSection extends Content implements
     /**
      * MetatagTrait > canonicalUrl
      *
-     * @return string
      * @todo
+     * @return string
      */
     public function canonicalUrl()
     {
@@ -282,7 +283,7 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function defaultMetaTitle()
     {
@@ -290,27 +291,25 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function defaultMetaDescription()
     {
-        $content = $this->content();
+        $content = $this->translator()->translation($this->content());
+        if ($content instanceof Translation) {
+            $desc = [];
+            foreach ($content->data() as $lang => $text) {
+                $desc[$lang] = strip_tags($text);
+            }
 
-        if (!($content instanceof TranslationString)) {
-            $content = new TranslationString($content);
+            return $this->translator()->translation($desc);
         }
 
-        $out = [];
-        foreach ($content->all() as $lang => $text) {
-            $out[$lang] = strip_tags($text);
-        }
-
-        // Don't affect the content's content.
-        return new TranslationString($out);
+        return null;
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function defaultMetaImage()
     {

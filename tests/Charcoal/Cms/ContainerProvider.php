@@ -2,25 +2,40 @@
 
 namespace Charcoal\Tests\Cms;
 
-use \PDO;
+use PDO;
 
-use \Psr\Log\NullLogger;
-use \Cache\Adapter\Void\VoidCachePool;
+// From PSR-3
+use Psr\Log\NullLogger;
 
-use \Pimple\Container;
+// From 'cache/void-adapter' (PSR-6)
+use Cache\Adapter\Void\VoidCachePool;
 
-use \Charcoal\Factory\GenericFactory as Factory;
+// From 'tedivm/stash' (PSR-6)
+use Stash\Pool;
+use Stash\Driver\Ephemeral;
 
-use \Charcoal\App\AppConfig;
+// From Pimple
+use Pimple\Container;
 
-use \Charcoal\Model\Service\MetadataLoader;
-use \Charcoal\Source\DatabaseSource;
+// From 'charcoal-factory'
+use Charcoal\Factory\GenericFactory as Factory;
 
-use \Charcoal\Translation\TranslationString;
+// From 'charcoal-core'
+use Charcoal\Model\Service\MetadataLoader;
+use Charcoal\Source\DatabaseSource;
 
+// From 'charcoal-translator'
+use Charcoal\Translator\LocalesManager;
+use Charcoal\Translator\Translator;
+
+// From 'charcoal-app'
+use Charcoal\App\AppConfig;
+
+/**
+ * Service Container for Unit Tests
+ */
 class ContainerProvider
 {
-
     public function registerBaseServices(Container $container)
     {
         $this->registerConfig($container);
@@ -55,7 +70,24 @@ class ContainerProvider
     public function registerCache(Container $container)
     {
         $container['cache'] = function ($container) {
-            return new VoidCachePool();
+            return new Pool(new Ephemeral());
+        };
+    }
+
+    public function registerTranslator(Container $container)
+    {
+        $container['locales/manager'] = function (Container $container) {
+            return new LocalesManager([
+                'locales' => [
+                    'en' => [ 'locale' => 'en-US' ]
+                ]
+            ]);
+        };
+
+        $container['translator'] = function (Container $container) {
+            return new Translator([
+                'manager' => $container['locales/manager']
+            ]);
         };
     }
 
@@ -63,11 +95,11 @@ class ContainerProvider
     {
         $container['metadata/loader'] = function (Container $container) {
             return new MetadataLoader([
-                'logger' => $container['logger'],
+                'logger'    => $container['logger'],
                 'base_path' => realpath(__DIR__.'/../../../'),
                     'paths' => [
                         'metadata',
-                        'vendor/locomotivemtl/charcoal-base/metadata'
+                        'vendor/locomotivemtl/charcoal-object/metadata'
                     ],
                 'cache'  => $container['cache']
             ]);
@@ -110,13 +142,14 @@ class ContainerProvider
         $container['property/factory'] = function (Container $container) {
             return new Factory([
                 'resolver_options' => [
-                    'prefix' => '\Charcoal\Property\\',
+                    'prefix' => '\\Charcoal\\Property\\',
                     'suffix' => 'Property'
                 ],
                 'arguments' => [[
-                    'container' => $container,
-                    'database'  => $container['database'],
-                    'logger'    => $container['logger']
+                    'container'  => $container,
+                    'database'   => $container['database'],
+                    'logger'     => $container['logger'],
+                    'translator' => $container['translator']
                 ]]
             ]);
         };
@@ -130,5 +163,31 @@ class ContainerProvider
                 'cache'  => $container['cache']
             ]);
         };
+    }
+
+    public function registerTemplateFactory(Container $container)
+    {
+        $container['template/factory'] = function ($container) {
+            return new Factory([
+                'resolver_options' => [
+                    'suffix' => 'Template'
+                ],
+                'arguments'  => [[
+                    'container' => $container,
+                    'logger'    => $container['logger']
+                ]]
+            ]);
+        };
+    }
+
+    public function registerModelDependencies(Container $container)
+    {
+        $this->registerBaseServices($container);
+        $this->registerTranslator($container);
+        $this->registerMetadataLoader($container);
+        $this->registerSourceFactory($container);
+        $this->registerPropertyFactory($container);
+        $this->registerModelFactory($container);
+        $this->registerModelCollectionLoader($container);
     }
 }

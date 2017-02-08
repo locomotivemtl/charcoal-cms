@@ -6,13 +6,11 @@ use DateTime;
 use DateTimeInterface;
 use InvalidArgumentException;
 
+// From PSR-7
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-// Dependencies from `charcoal-translation`
-use Charcoal\Translation\TranslationString;
-
-// Dependencies from `charcoal-object`
+// From 'charcoal-object'
 use Charcoal\Object\Content;
 use Charcoal\Object\CategorizableInterface;
 use Charcoal\Object\CategorizableTrait;
@@ -21,7 +19,10 @@ use Charcoal\Object\PublishableTrait;
 use Charcoal\Object\RoutableInterface;
 use Charcoal\Object\RoutableTrait;
 
-// Intra-module (`charcoal-cms`) dependencies
+// From 'charcoal-translator'
+use Charcoal\Translator\Translation;
+
+// From 'charcoal-cms'
 use Charcoal\Cms\MetatagInterface;
 use Charcoal\Cms\NewsInterface;
 use Charcoal\Cms\SearchableInterface;
@@ -48,53 +49,53 @@ abstract class AbstractNews extends Content implements
     use TemplateableTrait;
 
     /**
-     * @var TranslationString $title
+     * @var Translation|string|null
      */
     private $title;
 
     /**
-     * @var TranslationString $title
+     * @var Translation|string|null
      */
     private $subtitle;
 
     /**
-     * @var TranslationString $title
+     * @var Translation|string|null
      */
     private $summary;
 
     /**
-     * @var TranslationString $content
+     * @var Translation|string|null
      */
     private $content;
 
     /**
-     * @var TranslationString $image
+     * @var Translation|string|null
      */
     private $image;
 
     /**
-     * @var DateTime $newsDate
+     * @var DateTimeInterface|null
      */
     private $newsDate;
 
     /**
-     * @var TranslationString $infoUrl
+     * @var Translation|string|null
      */
     private $infoUrl;
 
     /**
-     * @param mixed $title The news title (localized).
-     * @return NewsInterface Chainable
+     * @param  mixed $title The news title (localized).
+     * @return self
      */
     public function setTitle($title)
     {
-        $this->title = new TranslationString($title);
+        $this->title = $this->translator()->translation($title);
 
         return $this;
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function title()
     {
@@ -102,18 +103,18 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @param mixed $subtitle The news subtitle (localized).
-     * @return NewsInterface Chainable
+     * @param  mixed $subtitle The news subtitle (localized).
+     * @return self
      */
     public function setSubtitle($subtitle)
     {
-        $this->subtitle = new TranslationString($subtitle);
+        $this->subtitle = $this->translator()->translation($subtitle);
 
         return $this;
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function subtitle()
     {
@@ -121,18 +122,18 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @param mixed $summary The news summary (localized).
-     * @return NewsInterface Chainable
+     * @param  mixed $summary The news summary (localized).
+     * @return self
      */
     public function setSummary($summary)
     {
-        $this->summary = new TranslationString($summary);
+        $this->summary = $this->translator()->translation($summary);
 
         return $this;
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function summary()
     {
@@ -140,18 +141,18 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @param mixed $content The news content (localized).
-     * @return NewsInterface Chainable
+     * @param  mixed $content The news content (localized).
+     * @return self
      */
     public function setContent($content)
     {
-        $this->content = new TranslationString($content);
+        $this->content = $this->translator()->translation($content);
 
         return $this;
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function content()
     {
@@ -159,18 +160,18 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @param mixed $image The section main image (localized).
-     * @return NewsInterface Chainable
+     * @param  mixed $image The section main image (localized).
+     * @return self
      */
     public function setImage($image)
     {
-        $this->image = new TranslationString($image);
+        $this->image = $this->translator()->translation($image);
 
         return $this;
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function image()
     {
@@ -178,9 +179,9 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @param mixed $newsDate The news date.
+     * @param  string|DateTimeInterface $newsDate The news date.
      * @throws InvalidArgumentException If the timestamp is invalid.
-     * @return NewsInterface Chainable
+     * @return self
      */
     public function setNewsDate($newsDate)
     {
@@ -203,7 +204,7 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return DateTime|null
+     * @return DateTimeInterface|null
      */
     public function newsDate()
     {
@@ -211,18 +212,18 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @param mixed $url The info URL (news source or where to find more information; localized).
-     * @return NewsInterface Chainable
+     * @param  mixed $url The info URL (news source or where to find more information; localized).
+     * @return self
      */
     public function setInfoUrl($url)
     {
-        $this->infoUrl = new TranslationString($url);
+        $this->infoUrl = $this->translator()->translation($url);
 
         return $this;
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function infoUrl()
     {
@@ -232,8 +233,8 @@ abstract class AbstractNews extends Content implements
     /**
      * MetatagTrait > canonical_url
      *
-     * @return string
      * @todo
+     * @return string
      */
     public function canonicalUrl()
     {
@@ -241,7 +242,7 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function defaultMetaTitle()
     {
@@ -249,26 +250,24 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function defaultMetaDescription()
     {
-        $content = $this->content();
+        $content = $this->translator()->translation($this->content());
+        if ($content instanceof Translation) {
+            $desc = [];
+            foreach ($content->data() as $lang => $text) {
+                $desc[$lang] = strip_tags($text);
+            }
 
-        if (!($content instanceof TranslationString)) {
-            $content = new TranslationString($content);
+            return $this->translator()->translation($desc);
         }
 
-        $out = [];
-        foreach ($content->all() as $lang => $text) {
-            $out[$lang] = strip_tags($text);
-        }
-
-        // Don't affect the content's content.
-        return new TranslationString($out);
+        return null;
     }
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function defaultMetaImage()
     {

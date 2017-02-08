@@ -2,36 +2,34 @@
 
 namespace Charcoal\Cms\Tests;
 
-use PHPUnit_Framework_TestCase;
-
-use Psr\Log\NullLogger;
-use Cache\Adapter\Void\VoidCachePool;
-
-use Charcoal\Model\Service\MetadataLoader;
-
+// From 'charcoal-cms'
 use Charcoal\Cms\Image;
 use Charcoal\Cms\ImageCategory;
 
 /**
  *
  */
-class ImageTest extends PHPUnit_Framework_TestCase
+class ImageTest extends \PHPUnit_Framework_TestCase
 {
+    use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
-    public $obj;
+    /**
+     * Tested Class.
+     *
+     * @var Image
+     */
+    private $obj;
 
+    /**
+     * Set up the test.
+     */
     public function setUp()
     {
-        $metadataLoader = new MetadataLoader([
-            'logger' => new NullLogger(),
-            'base_path' => __DIR__,
-            'paths' => ['metadata'],
-            'cache'  => new VoidCachePool()
-        ]);
+        $container = $this->getContainer();
 
         $this->obj = new Image([
-            'logger'=> new NullLogger(),
-            'metadata_loader' => $metadataLoader
+            'container' => $container,
+            'logger'    => $container['logger']
         ]);
     }
 

@@ -2,23 +2,30 @@
 
 namespace Charcoal\Cms\Route;
 
+// From Pimple
 use Pimple\Container;
 
-// From PSR-7 (HTTP Messaging)
+// From PSR-7
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+
+// From 'charcoal-translator'
+use Charcoal\Translator\TranslatorAwareTrait;
 
 // From 'charcoal-app'
 use Charcoal\App\Route\TemplateRoute;
 
-// From `charcoal-translation`
-use Charcoal\Translation\TranslationConfig;
+// From 'charcoal-cms'
+use Charcoal\Cms\NewsInterface;
+use Charcoal\Object\RoutableInterface;
 
 /**
  * News Route Handler
  */
 class NewsRoute extends TemplateRoute
 {
+    use TranslatorAwareTrait;
+
     /**
      * URI path.
      *
@@ -29,7 +36,7 @@ class NewsRoute extends TemplateRoute
     /**
      * The news entry matching the URI path.
      *
-     * @var \Charcoal\Cms\NewsInterface|\Charcoal\Object\RoutableInterface
+     * @var NewsInterface|RoutableInterface
      */
     private $news;
 
@@ -41,9 +48,9 @@ class NewsRoute extends TemplateRoute
     private $objType = 'charcoal/cms/news';
 
     /**
-     * @param array|\ArrayAccess $data Class depdendencies.
+     * @param array $data Class depdendencies.
      */
-    public function __construct($data)
+    public function __construct(array $data)
     {
         parent::__construct($data);
         $this->path = ltrim($data['path'], '/');
@@ -67,8 +74,11 @@ class NewsRoute extends TemplateRoute
      * @param  ResponseInterface $response  A PSR-7 compatible Response instance.
      * @return ResponseInterface
      */
-    public function __invoke(Container $container, RequestInterface $request, ResponseInterface $response)
-    {
+    public function __invoke(
+        Container $container,
+        RequestInterface $request,
+        ResponseInterface $response
+    ) {
         $config = $this->config();
 
         $news = $this->loadNewsFromPath($container);
@@ -97,8 +107,9 @@ class NewsRoute extends TemplateRoute
     }
 
     /**
-     * @param Container $container Pimple DI container.
-     * @return \Charcoal\Cms\NewsInterface
+     * @todo   Add support for `@see setlocale()`; {@see GenericRoute::setLocale()}
+     * @param  Container $container Pimple DI container.
+     * @return NewsInterface
      */
     protected function loadNewsFromPath(Container $container)
     {
@@ -108,11 +119,9 @@ class NewsRoute extends TemplateRoute
 
             $this->news = $container['model/factory']->create($objType);
 
-            $translator = TranslationConfig::instance();
-
-            $langs = $translator->availableLanguages();
+            $langs = $container['translator']->availableLocales();
             $lang  = $this->news->loadFromL10n('slug', $this->path, $langs);
-            $translator->setCurrentLanguage($lang);
+            $container['translator']->setLocale($lang);
         }
 
         return $this->news;

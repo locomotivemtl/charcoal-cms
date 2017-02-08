@@ -2,13 +2,13 @@
 
 namespace Charcoal\Cms;
 
-// Intra-module (`charcoal-cms`) dependencies
+// From 'charcoal-cms'
 use Charcoal\Cms\AbstractNew;
 use Charcoal\Cms\NewsCategory;
 
 /**
-* CMS News
-*/
+ * CMS News
+ */
 final class News extends AbstractNews
 {
     /**

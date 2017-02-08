@@ -2,31 +2,34 @@
 
 namespace Charcoal\Cms\Tests;
 
-use \Psr\Log\NullLogger;
-use \Cache\Adapter\Void\VoidCachePool;
-
-use \Charcoal\Model\Service\MetadataLoader;
-
-use \Charcoal\Cms\VideoCategory;
+// From 'charcoal-cms'
+use Charcoal\Cms\VideoCategory;
 use Charcoal\Cms\Video;
 
+/**
+ *
+ */
 class VideoCategoryTest extends \PHPUnit_Framework_TestCase
 {
+    use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
-    public $obj;
+    /**
+     * Tested Class.
+     *
+     * @var VideoCategory
+     */
+    private $obj;
 
+    /**
+     * Set up the test.
+     */
     public function setUp()
     {
-        $metadataLoader = new MetadataLoader([
-            'logger' => new NullLogger(),
-            'base_path' => __DIR__,
-            'paths' => ['metadata'],
-            'cache'  => new VoidCachePool()
-        ]);
+        $container = $this->getContainer();
 
         $this->obj = new VideoCategory([
-            'logger'=> new NullLogger(),
-            'metadata_loader' => $metadataLoader
+            'container' => $container,
+            'logger'    => $container['logger']
         ]);
     }
 

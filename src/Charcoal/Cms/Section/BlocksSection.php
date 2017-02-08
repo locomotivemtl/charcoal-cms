@@ -2,7 +2,7 @@
 
 namespace Charcoal\Cms\Section;
 
-// Parent namespace dependencies
+// From 'charcoal-cms'
 use Charcoal\Cms\AbstractSection;
 
 /**

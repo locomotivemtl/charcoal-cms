@@ -2,31 +2,34 @@
 
 namespace Charcoal\Cms\Tests;
 
-use Psr\Log\NullLogger;
-use Cache\Adapter\Void\VoidCachePool;
-
-use Charcoal\Model\Service\MetadataLoader;
-
+// From 'charcoal-cms'
 use Charcoal\Cms\EventCategory;
 use Charcoal\Cms\Event;
 
+/**
+ *
+ */
 class EventCategoryTest extends \PHPUnit_Framework_TestCase
 {
+    use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
-    public $obj;
+    /**
+     * Tested Class.
+     *
+     * @var EventCategory
+     */
+    private $obj;
 
+    /**
+     * Set up the test.
+     */
     public function setUp()
     {
-        $metadataLoader = new MetadataLoader([
-            'logger' => new NullLogger(),
-            'base_path' => __DIR__,
-            'paths' => ['metadata'],
-            'cache'  => new VoidCachePool()
-        ]);
+        $container = $this->getContainer();
 
         $this->obj = new EventCategory([
-            'logger'=> new NullLogger(),
-            'metadata_loader' => $metadataLoader
+            'container' => $container,
+            'logger'    => $container['logger']
         ]);
     }
 

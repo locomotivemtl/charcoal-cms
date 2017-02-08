@@ -2,16 +2,16 @@
 
 namespace Charcoal\Cms;
 
-// Module `charcoal-base` dependencies
+// From 'charcoal-object'
 use Charcoal\Object\Content;
 use Charcoal\Object\CategoryInterface;
 use Charcoal\Object\CategoryTrait;
 
-// Local namespace (`charcooal-cms) dependency
+// From 'charcoal-cms'
 use Charcoal\Cms\Document;
 
 /**
- * Document category.
+ * Document Category
  */
 final class DocumentCategory extends Content implements CategoryInterface
 {
@@ -28,7 +28,7 @@ final class DocumentCategory extends Content implements CategoryInterface
     }
 
     /**
-     * @return Collection
+     * @return \Charcoal\Model\Collection|array
      */
     public function loadCategoryItems()
     {
