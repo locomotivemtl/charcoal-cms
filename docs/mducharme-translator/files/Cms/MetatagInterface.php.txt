@@ -1,0 +1,172 @@
+<?php
+
+namespace Charcoal\Cms;
+
+/**
+ *
+ */
+interface MetatagInterface
+{
+    /**
+     * @return string
+     */
+    public function canonicalUrl();
+
+    /**
+     * @return \Charcoal\Translator\Translation
+     */
+    public function defaultMetaTitle();
+
+    /**
+     * @return \Charcoal\Translator\Translation
+     */
+    public function defaultMetaDescription();
+
+    /**
+     * @return \Charcoal\Translator\Translation
+     */
+    public function defaultMetaImage();
+
+    /**
+     * @param mixed $title The meta title (localized).
+     * @return MetatagInterface Chainable
+     */
+    public function setMetaTitle($title);
+
+    /**
+     * @return \Charcoal\Translator\Translation
+     */
+    public function metaTitle();
+
+    /**
+     * @param mixed $description The meta description (localized).
+     * @return MetatagInterface Chainable
+     */
+    public function setMetaDescription($description);
+
+    /**
+     * @return \Charcoal\Translator\Translation
+     */
+    public function metaDescription();
+
+    /**
+     * @param mixed $image The meta image (localized).
+     * @return MetatageInterface Chainable
+     */
+    public function setMetaImage($image);
+
+    /**
+     * @return \Charcoal\Translator\Translation
+     */
+    public function metaImage();
+
+    /**
+     * @param mixed $author The meta author (localized).
+     * @return MetatagInterface Chainable
+     */
+    public function setMetaAuthor($author);
+
+    /**
+     * @return \Charcoal\Translator\Translation
+     */
+    public function metaAuthor();
+
+    /**
+     * @return string
+     */
+    public function metaTags();
+
+    /**
+     * @param string $appId The facebook App ID (numeric string).
+     * @return MetatagInterface Chainable
+     */
+    public function setFacebookAppId($appId);
+
+    /**
+     * @return string
+     */
+    public function facebookAppId();
+
+    /**
+     * @param mixed $title The opengraph title (localized).
+     * @return MetatagInterface Chainable
+     */
+    public function setOpengraphTitle($title);
+
+    /**
+     * @return \Charcoal\Translator\Translation
+     */
+    public function opengraphTitle();
+
+    /**
+     * @param mixed $siteName The opengraph site name (localized).
+     * @return MetatagInterface Chainable
+     */
+    public function setOpengraphSiteName($siteName);
+
+    /**
+     * @return \Charcoal\Translator\Translation
+     */
+    public function opengraphSiteName();
+
+    /**
+     * @param mixed $description The opengraph description (localized).
+     * @return MetatagInterface Chainable
+     */
+    public function setOpengraphDescription($description);
+
+    /**
+     * @return \Charcoal\Translator\Translation
+     */
+    public function opengraphDescription();
+
+    /**
+     * @param string $type The opengraph type.
+     * @return MetatagInterface Chainable
+     */
+    public function setOpengraphType($type);
+
+    /**
+     * @return string
+     */
+    public function opengraphType();
+
+    /**
+     * @param mixed $image The opengraph image (localized).
+     * @return MetatagInterface Chainable
+     */
+    public function setOpengraphImage($image);
+
+    /**
+     * @return \Charcoal\Translator\Translation
+     */
+    public function opengraphImage();
+
+    /**
+     * @param mixed $author The opengraph author (localized).
+     * @return MetatagInterface Chainable
+     */
+    public function setOpengraphAuthor($author);
+
+    /**
+     * @return \Charcoal\Translator\Translation
+     */
+    public function opengraphAuthor();
+
+    /**
+     * @param mixed $publisher The opengraph publisher (localized).
+     * @return MetatagInterface
+     */
+    public function setOpengraphPulisher($publisher);
+
+    /**
+     * @return \Charcoal\Translator\Translation
+     */
+    public function opengraphPublisher();
+
+    /**
+     * @return string
+     */
+    public function opengraphTags();
+}
+

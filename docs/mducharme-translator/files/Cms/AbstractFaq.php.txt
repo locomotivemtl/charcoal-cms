@@ -1,0 +1,78 @@
+<?php
+
+namespace Charcoal\Cms;
+
+// Module `charcoal-object` dependencies
+use Charcoal\Object\Content;
+use Charcoal\Object\CategorizableInterface;
+use Charcoal\Object\CategorizableTrait;
+use Charcoal\Object\PublishableInterface;
+use Charcoal\Object\PublishableTrait;
+
+// Local namespace (`charcoal-cms`) dependencies
+use Charcoal\Cms\FaqInterface;
+use Charcoal\Cms\MetatagInterface;
+use Charcoal\Cms\SearchableInterface;
+use Charcoal\Cms\Searchabletrait;
+
+/**
+ * FAQ Entry.
+ */
+abstract class AbstractFaq extends Content implements
+    CategorizableInterface,
+    FaqInterface,
+    PublishableInterface,
+    SearchableInterface
+{
+    use CategorizableTrait;
+    use PublishableTrait;
+    use SearchableTrait;
+
+    /**
+     * The question, or "title", of this entry
+     * @var \Charcoal\Translator\Translation
+     */
+    private $question;
+
+    /**
+     * @var \Charcoal\Translator\Translation
+     */
+    private $answer;
+
+    /**
+     * @param mixed $question The question (localized).
+     * @return FaqInterface Chainable
+     */
+    public function setQuestion($question)
+    {
+        $this->question = $this->translator()->translation($question);
+        return $this;
+    }
+
+    /**
+     * @return \Charcoal\Translator\Translation
+     */
+    public function question()
+    {
+        return $this->question;
+    }
+
+    /**
+     * @param mixed $answer The answer (localized).
+     * @return FaqInterface Chainable
+     */
+    public function setAnswer($answer)
+    {
+        $this->answer = $this->translator()->translation($answer);
+        return $this;
+    }
+
+    /**
+     * @return \Charcoal\Translator\Translation
+     */
+    public function answer()
+    {
+        return $this->answer;
+    }
+}
+

@@ -1,0 +1,37 @@
+<?php
+
+namespace Charcoal\Cms;
+
+use Charcoal\Cms\AbstractSection;
+
+/**
+ * External section may appear in menus and breadcrumbs, but only
+ *
+ * Unlike all other section types, they do not provide any metadata information.
+ */
+class ExternalSection extends AbstractSection
+{
+    /**
+     * @var \Charcoal\Translator\Translation|null
+     */
+    private $externalUrl;
+
+    /**
+     * @param mixed $url The external URL (localized).
+     * @return ExternalSection Chainable
+     */
+    public function setExternalUrl($url)
+    {
+        $this->externalUrl = $this->translator()->translation($url);
+        return $this;
+    }
+
+    /**
+     * @return \Charcoal\Translator\Translation|null
+     */
+    public function externalUrl()
+    {
+        return $this->externalUrl;
+    }
+}
+
