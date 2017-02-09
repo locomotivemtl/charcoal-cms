@@ -2,6 +2,8 @@
 
 namespace Charcoal\Cms;
 
+use Exception;
+
 use Charcoal\Object\CategoryInterface;
 use Charcoal\Object\CategoryTrait;
 use Charcoal\Object\Content;
@@ -41,12 +43,12 @@ class Tag extends Content implements
     // ==========================================================================
 
     /**
-     * @throws \Exception If function is called.
+     * @throws Exception If function is called.
      * @return void
      */
     public function loadCategoryItems()
     {
-        throw new \Exception('Cannot use loadCategoryItems');
+        throw new Exception('Cannot use loadCategoryItems');
     }
 
     // ==========================================================================
