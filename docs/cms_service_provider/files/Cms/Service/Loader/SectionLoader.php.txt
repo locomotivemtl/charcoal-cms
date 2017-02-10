@@ -35,7 +35,7 @@ class SectionLoader extends AbstractLoader
      */
     public function fromId($id)
     {
-        $proto = $this->modelFactory()->get($this->objType());
+        $proto = $this->modelFactory()->create($this->objType());
 
         return $proto->loadFrom('id', $id);
     }
