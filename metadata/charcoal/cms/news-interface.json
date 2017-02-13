@@ -161,6 +161,7 @@
                                     "fr": "Voir la nouvelle"
                                 },
                                 "url": "{{baseUrl}}{{url}}",
+                                "target": "_blank",
                                 "priority": 2
                             },
                             "clone": {

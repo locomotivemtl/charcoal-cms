@@ -608,7 +608,7 @@
                     "last_modified_by"
                 ],
                 "actions": {
-                    "return_to_team": {
+                    "return_to_master": {
                         "label": {
                             "en": "Back up a level",
                             "fr": "Remonter d'un niveau"

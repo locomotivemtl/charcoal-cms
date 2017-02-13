@@ -3,7 +3,9 @@
 namespace Charcoal\Cms\ServiceProvider;
 
 // Pimple dependencies
+use Charcoal\Cms\Service\Loader\EventLoader;
 use Charcoal\Cms\Service\Loader\NewsLoader;
+use Charcoal\Cms\Service\Manager\EventManager;
 use Charcoal\Cms\Service\Manager\NewsManager;
 use Charcoal\Cms\Support\Helpers\DateHelper;
 use Pimple\Container;
@@ -176,6 +178,50 @@ class CmsServiceProvider implements ServiceProviderInterface
             ]);
 
             return $newsManager;
+        };
+    }
+
+    /**
+     * @param Container $container Pimple DI Container.
+     * @return void
+     */
+    private function registerEventServices(Container $container)
+    {
+        /**
+         * @param Container $container Pimple DI Container.
+         * @return EventLoader
+         */
+        $container['cms/event/loader'] = function (Container $container) {
+            $eventLoader = new EventLoader([
+                'loader'  => $container['model/collection/loader'],
+                'factory' => $container['model/factory'],
+                'cache'   => $container['cache']
+            ]);
+
+            $eventConfig = $container['cms/config']->eventConfig();
+
+            // Cms.json
+            $objType = $eventConfig->get('obj_type');
+            $eventLoader->setObjType($objType);
+
+            return $eventLoader;
+        };
+
+        /**
+         * @param Container $container
+         * @return EventManager
+         */
+        $container['cms/event/manager'] = function (Container $container) {
+
+            $eventManager = new EventManager([
+                'loader'       => $container['model/collection/loader'],
+                'factory'      => $container['model/factory'],
+                'event/loader' => $container['cms/event/loader'],
+                'cache'        => $container['cache'],
+                'cms/config'   => $container['cms/config']
+            ]);
+
+            return $eventManager;
         };
     }
 }
