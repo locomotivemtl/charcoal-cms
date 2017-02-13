@@ -90,60 +90,6 @@
                 "en": "The meta tags are used when sharing a page on social medias and to facilitate indexing",
                 "fr": "Les étiquettes méta sont utilisées lors du partage sur les résaux sociaux et pour faciliter le référencement"
             }
-        },
-        "home_news": {
-            "type": "object",
-            "input_type": "charcoal/admin/property/input/dual-select",
-            "obj_type": "charcoal/cms/news",
-            "multiple": true,
-            "orders": {
-                "position": {
-                    "property": "publish_date",
-                    "mode": "desc"
-                }
-            },
-            "dualselect_options": {
-                "searchable": true,
-                "sort": false,
-                "submitAllLeft": false,
-                "reorderable": true
-            },
-            "pattern": "{{ admin_date_filter}} - {{title}}",
-            "label": {
-                "en": "News on home page",
-                "fr": "Nouvelles à l'acceuil"
-            },
-            "description": {
-                "en": "",
-                "fr": ""
-            }
-        },
-        "home_events": {
-            "type": "object",
-            "input_type": "charcoal/admin/property/input/dual-select",
-            "obj_type": "charcoal/cms/event",
-            "multiple": true,
-            "orders": {
-                "position": {
-                    "property": "publish_date",
-                    "mode": "desc"
-                }
-            },
-            "dualselect_options": {
-                "searchable": true,
-                "sort": false,
-                "submitAllLeft": false,
-                "reorderable": true
-            },
-            "pattern": "{{ admin_date_filter }} - {{title}}",
-            "label": {
-                "en": "Events on home page",
-                "fr": "Événements à l'acceuil"
-            },
-            "description": {
-                "en": "",
-                "fr": ""
-            }
         }
     },
     "key": "id",
@@ -207,25 +153,6 @@
                         "priority": 100,
                         "properties": [
                             "default_from_email"
-                        ]
-                    },
-                    "featured": {
-                        "layout": {
-                            "structure": [
-                                {"columns": [1]},
-                                {"columns": [1]}
-                            ]
-                        },
-                        "title": {
-                            "en": "Featured articles",
-                            "fr": "Articles en vedettes"
-                        },
-                        "show_title": false,
-                        "icon": "star",
-                        "priority": 200,
-                        "properties": [
-                            "home_news",
-                            "home_events"
                         ]
                     },
                     "sharer": {
