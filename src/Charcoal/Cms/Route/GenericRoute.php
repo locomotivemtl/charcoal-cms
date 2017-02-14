@@ -516,4 +516,31 @@ class GenericRoute extends TemplateRoute
 
         return $this->collectionLoader;
     }
+
+    /**
+     * @return boolean
+     */
+    protected function cacheEnabled()
+    {
+        $obj = $this->loadContextObject();
+        return $obj['cache'] ?: false;
+    }
+
+    /**
+     * @return integer
+     */
+    protected function cacheTtl()
+    {
+        $obj = $this->loadContextObject();
+        return $obj['cache_ttl'] ?: 0;
+    }
+
+    /**
+     * @return string
+     */
+    protected function cacheIdent()
+    {
+        $obj = $this->loadContextObject();
+        return $obj->objType().'.'.$obj->id();
+    }
 }
