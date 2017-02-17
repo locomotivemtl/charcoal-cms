@@ -2,10 +2,12 @@
 
 namespace Charcoal\Property;
 
+use InvalidArgumentException;
+
 // From 'charcoal-property'
-use \Charcoal\Property\PropertyInterface;
-use \Charcoal\Property\StructureProperty;
-use \Charcoal\Property\TemplateProperty;
+use Charcoal\Property\PropertyInterface;
+use Charcoal\Property\StructureProperty;
+use Charcoal\Property\TemplateProperty;
 
 /**
  * Object Property holds a reference to an external object.
