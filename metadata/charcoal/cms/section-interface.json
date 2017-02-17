@@ -613,7 +613,7 @@
                             "en": "Back up a level",
                             "fr": "Remonter d'un niveau"
                         },
-                        "url": "admin/object/edit?main_menu={{main_menu}}&obj_type={{master.sectionType}}&obj_id={{master.id}}&tab_ident=cms.table",
+                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{master.sectionType}}&obj_id={{master.id}}&tab_ident=cms.table",
                         "type": "default",
                         "active": "{{master}}"
                     }
