@@ -301,4 +301,18 @@ abstract class AbstractNews extends Content implements
 
         return parent::preUpdate($properties);
     }
+
+    /**
+     * GenericRoute checks if the route is active.
+     * Default in RoutableTrait.
+     *
+     * @return boolean
+     */
+    public function isActiveRoute()
+    {
+        return (
+            $this->active() &&
+            $this->isPublished()
+        );
+    }
 }

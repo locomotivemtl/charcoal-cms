@@ -146,7 +146,7 @@ class GenericRoute extends TemplateRoute
             return false;
         }
 
-        return !!$contextObject->active();
+        return (!!$contextObject->active() && !!$contextObject->isActiveRoute());
     }
 
     /**
