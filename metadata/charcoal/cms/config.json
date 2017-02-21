@@ -3,28 +3,41 @@
         "id": {
             "type": "id"
         },
-        "social_facebook": {
-            "type": "string",
+        "social_medias": {
+            "type": "structure",
             "label": {
-                "fr": "Page facebook",
-                "en": "Facebook page"
+                "en": "Social medias",
+                "fr": "Médias sociaux"
+            },
+            "structure_metadata": {
+                "properties": {
+                    "facebook": {
+                        "type": "string",
+                        "input_prefix": "http://facebook.com/",
+                        "label": {
+                            "fr": "Page facebook",
+                            "en": "Facebook page"
+                        }
+                    },
+                    "twitter": {
+                        "type": "string",
+                        "input_prefix": "https://twitter.com/",
+                        "label": {
+                            "fr": "Page twitter",
+                            "en": "Twitter page"
+                        }
+                    },
+                    "instagram": {
+                        "type": "string",
+                        "input_prefix": "https://www.instagram.com/",
+                        "label": {
+                            "fr": "Page instagram",
+                            "en": "Instagram page"
+                        }
+                    }
+                }
             }
         },
-        "social_twitter": {
-            "type": "string",
-            "label": {
-                "fr": "Page twitter",
-                "en": "Twitter page"
-            }
-        },
-        "social_instagram": {
-            "type": "string",
-            "label": {
-                "fr": "Page instagram",
-                "en": "Instagram page"
-            }
-        },
-
         "default_from_email": {
             "type": "string",
             "l10n": false,
@@ -136,77 +149,16 @@
             "default": {
                 "label": "Configuration",
                 "groups": {
-                    "general": {
-                        "layout": {
-                            "structure": [
-                                {"columns": [1]},
-                                {"columns": [1]},
-                                {"columns": [1, 1]}
-                            ]
-                        },
-                        "title": {
-                            "en": "General",
-                            "fr": "Général"
-                        },
-                        "show_title": false,
-                        "icon": "wrench",
-                        "priority": 100,
-                        "properties": [
-                            "default_from_email"
-                        ]
+                    "cms.general": {
+                        "priority": 100
                     },
-                    "sharer": {
-                        "layout": {
-                            "structure": [
-                                {"columns": [1]},
-                                {"columns": [1]},
-                                {"columns": [1]}
-                            ]
-                        },
-                        "title": {
-                            "en": "Social media",
-                            "fr": "Média sociaux"
-                        },
-                        "show_title": false,
-                        "icon": "share-square",
-                        "priority": 300,
-                        "properties": [
-                            "social_facebook",
-                            "social_twitter",
-                            "social_instagram"
-                        ]
+                    "cms.sharer": {
+                        "priority": 300
                     },
-                    "meta": {
-                        "layout": {
-                            "structure": [
-                                {"columns": [1, 1]},
-                                {"columns": [1, 1]}
-                            ]
-                        },
-                        "title": {
-                            "en": "Meta tags",
-                            "fr": "Tags Méta"
-                        },
-                        "show_title": false,
-                        "icon": "tag",
-                        "priority": 400,
-                        "properties": [
-                            "default_meta_title",
-                            "default_meta_description",
-                            "default_meta_url",
-                            "default_meta_image"
-                        ]
+                    "cms.meta": {
+                        "priority": 400
                     },
-                    "revisions": {
-                        "title": {
-                            "fr": "Révisions",
-                            "en": "Revisions"
-                        },
-                        "show_title": false,
-                        "show_header": false,
-                        "icon": "floppy-o",
-                        "template": "charcoal/admin/widget/form-group/object-revisions",
-                        "type": "charcoal/admin/widget/form-group/object-revisions",
+                    "cms.revisions": {
                         "priority": 8000
                     }
                 },
@@ -225,6 +177,78 @@
             }
         },
         "default_form": "default",
+
+        "form_groups": {
+            "cms.general": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1]},
+                        {"columns": [1]},
+                        {"columns": [1, 1]}
+                    ]
+                },
+                "title": {
+                    "en": "General",
+                    "fr": "Général"
+                },
+                "show_title": false,
+                "icon": "wrench",
+                "properties": [
+                    "default_from_email"
+                ]
+            },
+            "cms.sharer": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1, 1]},
+                        {"columns": [1, 1]},
+                        {"columns": [1, 1]},
+                        {"columns": [1, 1]},
+                        {"columns": [1, 1]}
+                    ]
+                },
+                "title": {
+                    "en": "Social media",
+                    "fr": "Média sociaux"
+                },
+                "show_title": false,
+                "icon": "share-square",
+                "template": "charcoal/admin/widget/form-group/structure",
+                "type": "charcoal/admin/widget/form-group/structure",
+                "storage_property": "social_medias"
+            },
+            "cms.meta": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1, 1]},
+                        {"columns": [1, 1]}
+                    ]
+                },
+                "title": {
+                    "en": "Meta tags",
+                    "fr": "Tags Méta"
+                },
+                "show_title": false,
+                "icon": "tag",
+                "properties": [
+                    "default_meta_title",
+                    "default_meta_description",
+                    "default_meta_url",
+                    "default_meta_image"
+                ]
+            },
+            "cms.revisions": {
+                "title": {
+                    "fr": "Révisions",
+                    "en": "Revisions"
+                },
+                "show_title": false,
+                "show_header": false,
+                "icon": "floppy-o",
+                "template": "charcoal/admin/widget/form-group/object-revisions",
+                "type": "charcoal/admin/widget/form-group/object-revisions"
+            }
+        },
 
         "dashboards": {
             "admin.edit": {
