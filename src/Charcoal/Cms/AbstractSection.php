@@ -242,7 +242,7 @@ abstract class AbstractSection extends Content implements
      */
     public function setSummary($summary)
     {
-        $this->summary = $summary;
+        $this->summary = $this->translator()->translation($summary);
 
         return $this;
     }
@@ -253,7 +253,7 @@ abstract class AbstractSection extends Content implements
      */
     public function setExternalUrl($externalUrl)
     {
-        $this->externalUrl = $externalUrl;
+        $this->externalUrl = $this->translator()->translation($externalUrl);
 
         return $this;
     }
