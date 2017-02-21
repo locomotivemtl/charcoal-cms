@@ -358,7 +358,7 @@
 </span></span><span id="93" class="l"><a href="#93"> 93: </a><span class="php-comment">     */</span>
 </span><span id="94" class="l"><a href="#94"> 94: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setMetaTitle(<span class="php-var">$title</span>)
 </span><span id="95" class="l"><a href="#95"> 95: </a>    {
-</span><span id="96" class="l"><a href="#96"> 96: </a>        <span class="php-var">$this</span>-&gt;metaTitle = <span class="php-keyword1">new</span> TranslationString(<span class="php-var">$title</span>);
+</span><span id="96" class="l"><a href="#96"> 96: </a>        <span class="php-var">$this</span>-&gt;metaTitle = <span class="php-var">$this</span>-&gt;translator()-&gt;translation(<span class="php-var">$title</span>);
 </span><span id="97" class="l"><a href="#97"> 97: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
 </span><span id="98" class="l"><a href="#98"> 98: </a>    }
 </span><span id="99" class="l"><a href="#99"> 99: </a>
@@ -379,7 +379,7 @@
 </span></span><span id="114" class="l"><a href="#114">114: </a><span class="php-comment">     */</span>
 </span><span id="115" class="l"><a href="#115">115: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setMetaDescription(<span class="php-var">$description</span>)
 </span><span id="116" class="l"><a href="#116">116: </a>    {
-</span><span id="117" class="l"><a href="#117">117: </a>        <span class="php-var">$this</span>-&gt;metaDescription = <span class="php-keyword1">new</span> TranslationString(<span class="php-var">$description</span>);
+</span><span id="117" class="l"><a href="#117">117: </a>        <span class="php-var">$this</span>-&gt;metaDescription = <span class="php-var">$this</span>-&gt;translator()-&gt;translation(<span class="php-var">$description</span>);
 </span><span id="118" class="l"><a href="#118">118: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
 </span><span id="119" class="l"><a href="#119">119: </a>    }
 </span><span id="120" class="l"><a href="#120">120: </a>
@@ -400,7 +400,7 @@
 </span></span><span id="135" class="l"><a href="#135">135: </a><span class="php-comment">     */</span>
 </span><span id="136" class="l"><a href="#136">136: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setMetaImage(<span class="php-var">$image</span>)
 </span><span id="137" class="l"><a href="#137">137: </a>    {
-</span><span id="138" class="l"><a href="#138">138: </a>        <span class="php-var">$this</span>-&gt;metaImage = <span class="php-keyword1">new</span> TranslationString(<span class="php-var">$image</span>);
+</span><span id="138" class="l"><a href="#138">138: </a>        <span class="php-var">$this</span>-&gt;metaImage = <span class="php-var">$this</span>-&gt;translator()-&gt;translation(<span class="php-var">$image</span>);
 </span><span id="139" class="l"><a href="#139">139: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
 </span><span id="140" class="l"><a href="#140">140: </a>    }
 </span><span id="141" class="l"><a href="#141">141: </a>
@@ -421,7 +421,7 @@
 </span></span><span id="156" class="l"><a href="#156">156: </a><span class="php-comment">     */</span>
 </span><span id="157" class="l"><a href="#157">157: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setMetaAuthor(<span class="php-var">$author</span>)
 </span><span id="158" class="l"><a href="#158">158: </a>    {
-</span><span id="159" class="l"><a href="#159">159: </a>        <span class="php-var">$this</span>-&gt;metaAuthor = <span class="php-keyword1">new</span> TranslationString(<span class="php-var">$author</span>);
+</span><span id="159" class="l"><a href="#159">159: </a>        <span class="php-var">$this</span>-&gt;metaAuthor = <span class="php-var">$this</span>-&gt;translator()-&gt;translation(<span class="php-var">$author</span>);
 </span><span id="160" class="l"><a href="#160">160: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
 </span><span id="161" class="l"><a href="#161">161: </a>    }
 </span><span id="162" class="l"><a href="#162">162: </a>
@@ -466,7 +466,7 @@
 </span></span><span id="201" class="l"><a href="#201">201: </a><span class="php-comment">     */</span>
 </span><span id="202" class="l"><a href="#202">202: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setOpengraphTitle(<span class="php-var">$title</span>)
 </span><span id="203" class="l"><a href="#203">203: </a>    {
-</span><span id="204" class="l"><a href="#204">204: </a>        <span class="php-var">$this</span>-&gt;opengraphTitle = <span class="php-keyword1">new</span> TranslationString(<span class="php-var">$title</span>);
+</span><span id="204" class="l"><a href="#204">204: </a>        <span class="php-var">$this</span>-&gt;opengraphTitle = <span class="php-var">$this</span>-&gt;translator()-&gt;translation(<span class="php-var">$title</span>);
 </span><span id="205" class="l"><a href="#205">205: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
 </span><span id="206" class="l"><a href="#206">206: </a>    }
 </span><span id="207" class="l"><a href="#207">207: </a>
@@ -491,7 +491,7 @@
 </span></span><span id="226" class="l"><a href="#226">226: </a><span class="php-comment">     */</span>
 </span><span id="227" class="l"><a href="#227">227: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setOpengraphSiteName(<span class="php-var">$siteName</span>)
 </span><span id="228" class="l"><a href="#228">228: </a>    {
-</span><span id="229" class="l"><a href="#229">229: </a>        <span class="php-var">$this</span>-&gt;opengraphSiteName = <span class="php-keyword1">new</span> TranslationString(<span class="php-var">$siteName</span>);
+</span><span id="229" class="l"><a href="#229">229: </a>        <span class="php-var">$this</span>-&gt;opengraphSiteName = <span class="php-var">$this</span>-&gt;translator()-&gt;translation(<span class="php-var">$siteName</span>);
 </span><span id="230" class="l"><a href="#230">230: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
 </span><span id="231" class="l"><a href="#231">231: </a>    }
 </span><span id="232" class="l"><a href="#232">232: </a>
@@ -509,7 +509,7 @@
 </span></span><span id="244" class="l"><a href="#244">244: </a><span class="php-comment">     */</span>
 </span><span id="245" class="l"><a href="#245">245: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setOpengraphDescription(<span class="php-var">$description</span>)
 </span><span id="246" class="l"><a href="#246">246: </a>    {
-</span><span id="247" class="l"><a href="#247">247: </a>        <span class="php-var">$this</span>-&gt;opengraphDescription = <span class="php-keyword1">new</span> TranslationString(<span class="php-var">$description</span>);
+</span><span id="247" class="l"><a href="#247">247: </a>        <span class="php-var">$this</span>-&gt;opengraphDescription = <span class="php-var">$this</span>-&gt;translator()-&gt;translation(<span class="php-var">$description</span>);
 </span><span id="248" class="l"><a href="#248">248: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
 </span><span id="249" class="l"><a href="#249">249: </a>    }
 </span><span id="250" class="l"><a href="#250">250: </a>
@@ -548,7 +548,7 @@
 </span></span><span id="283" class="l"><a href="#283">283: </a><span class="php-comment">     */</span>
 </span><span id="284" class="l"><a href="#284">284: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setOpengraphImage(<span class="php-var">$image</span>)
 </span><span id="285" class="l"><a href="#285">285: </a>    {
-</span><span id="286" class="l"><a href="#286">286: </a>        <span class="php-var">$this</span>-&gt;opengraphImage = <span class="php-keyword1">new</span> TranslationString(<span class="php-var">$image</span>);
+</span><span id="286" class="l"><a href="#286">286: </a>        <span class="php-var">$this</span>-&gt;opengraphImage = <span class="php-var">$this</span>-&gt;translator()-&gt;translation(<span class="php-var">$image</span>);
 </span><span id="287" class="l"><a href="#287">287: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
 </span><span id="288" class="l"><a href="#288">288: </a>    }
 </span><span id="289" class="l"><a href="#289">289: </a>
@@ -569,7 +569,7 @@
 </span></span><span id="304" class="l"><a href="#304">304: </a><span class="php-comment">     */</span>
 </span><span id="305" class="l"><a href="#305">305: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setOpengraphAuthor(<span class="php-var">$author</span>)
 </span><span id="306" class="l"><a href="#306">306: </a>    {
-</span><span id="307" class="l"><a href="#307">307: </a>        <span class="php-var">$this</span>-&gt;opengraphAuthor = <span class="php-keyword1">new</span> TranslationString(<span class="php-var">$author</span>);
+</span><span id="307" class="l"><a href="#307">307: </a>        <span class="php-var">$this</span>-&gt;opengraphAuthor = <span class="php-var">$this</span>-&gt;translator()-&gt;translation(<span class="php-var">$author</span>);
 </span><span id="308" class="l"><a href="#308">308: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
 </span><span id="309" class="l"><a href="#309">309: </a>    }
 </span><span id="310" class="l"><a href="#310">310: </a>
@@ -590,7 +590,7 @@
 </span></span><span id="325" class="l"><a href="#325">325: </a><span class="php-comment">     */</span>
 </span><span id="326" class="l"><a href="#326">326: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setOpengraphPulisher(<span class="php-var">$publisher</span>)
 </span><span id="327" class="l"><a href="#327">327: </a>    {
-</span><span id="328" class="l"><a href="#328">328: </a>        <span class="php-var">$this</span>-&gt;opengraphPublisher = <span class="php-keyword1">new</span> TranslationString(<span class="php-var">$publisher</span>);
+</span><span id="328" class="l"><a href="#328">328: </a>        <span class="php-var">$this</span>-&gt;opengraphPublisher = <span class="php-var">$this</span>-&gt;translator()-&gt;translation(<span class="php-var">$publisher</span>);
 </span><span id="329" class="l"><a href="#329">329: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
 </span><span id="330" class="l"><a href="#330">330: </a>    }
 </span><span id="331" class="l"><a href="#331">331: </a>
