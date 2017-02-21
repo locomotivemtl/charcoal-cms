@@ -93,7 +93,7 @@ trait MetatagTrait
      */
     public function setMetaTitle($title)
     {
-        $this->metaTitle = new TranslationString($title);
+        $this->metaTitle = $this->translator()->translation($title);
         return $this;
     }
 
@@ -114,7 +114,7 @@ trait MetatagTrait
      */
     public function setMetaDescription($description)
     {
-        $this->metaDescription = new TranslationString($description);
+        $this->metaDescription = $this->translator()->translation($description);
         return $this;
     }
 
@@ -135,7 +135,7 @@ trait MetatagTrait
      */
     public function setMetaImage($image)
     {
-        $this->metaImage = new TranslationString($image);
+        $this->metaImage = $this->translator()->translation($image);
         return $this;
     }
 
@@ -156,7 +156,7 @@ trait MetatagTrait
      */
     public function setMetaAuthor($author)
     {
-        $this->metaAuthor = new TranslationString($author);
+        $this->metaAuthor = $this->translator()->translation($author);
         return $this;
     }
 
@@ -201,7 +201,7 @@ trait MetatagTrait
      */
     public function setOpengraphTitle($title)
     {
-        $this->opengraphTitle = new TranslationString($title);
+        $this->opengraphTitle = $this->translator()->translation($title);
         return $this;
     }
 
@@ -226,7 +226,7 @@ trait MetatagTrait
      */
     public function setOpengraphSiteName($siteName)
     {
-        $this->opengraphSiteName = new TranslationString($siteName);
+        $this->opengraphSiteName = $this->translator()->translation($siteName);
         return $this;
     }
 
@@ -244,7 +244,7 @@ trait MetatagTrait
      */
     public function setOpengraphDescription($description)
     {
-        $this->opengraphDescription = new TranslationString($description);
+        $this->opengraphDescription = $this->translator()->translation($description);
         return $this;
     }
 
@@ -283,7 +283,7 @@ trait MetatagTrait
      */
     public function setOpengraphImage($image)
     {
-        $this->opengraphImage = new TranslationString($image);
+        $this->opengraphImage = $this->translator()->translation($image);
         return $this;
     }
 
@@ -304,7 +304,7 @@ trait MetatagTrait
      */
     public function setOpengraphAuthor($author)
     {
-        $this->opengraphAuthor = new TranslationString($author);
+        $this->opengraphAuthor = $this->translator()->translation($author);
         return $this;
     }
 
@@ -325,7 +325,7 @@ trait MetatagTrait
      */
     public function setOpengraphPulisher($publisher)
     {
-        $this->opengraphPublisher = new TranslationString($publisher);
+        $this->opengraphPublisher = $this->translator()->translation($publisher);
         return $this;
     }
 

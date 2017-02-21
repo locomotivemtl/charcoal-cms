@@ -241,7 +241,7 @@ abstract class AbstractSection extends Content implements
      */
     public function setSummary($summary)
     {
-        $this->summary = $summary;
+        $this->summary = $this->translator()->translation($summary);
 
         return $this;
     }
@@ -252,7 +252,7 @@ abstract class AbstractSection extends Content implements
      */
     public function setExternalUrl($externalUrl)
     {
-        $this->externalUrl = $externalUrl;
+        $this->externalUrl = $this->translator()->translation($externalUrl);
 
         return $this;
     }
@@ -275,7 +275,7 @@ abstract class AbstractSection extends Content implements
      */
     public function setTitle($title)
     {
-        $this->title = new TranslationString($title);
+        $this->title = $this->translator()->translation($title);
 
         return $this;
     }
@@ -286,7 +286,7 @@ abstract class AbstractSection extends Content implements
      */
     public function setSubtitle($subtitle)
     {
-        $this->subtitle = new TranslationString($subtitle);
+        $this->subtitle = $this->translator()->translation($subtitle);
 
         return $this;
     }
@@ -297,7 +297,7 @@ abstract class AbstractSection extends Content implements
      */
     public function setContent($content)
     {
-        $this->content = new TranslationString($content);
+        $this->content = $this->translator()->translation($content);
 
         return $this;
     }
@@ -308,7 +308,7 @@ abstract class AbstractSection extends Content implements
      */
     public function setImage($image)
     {
-        $this->image = new TranslationString($image);
+        $this->image = $this->translator()->translation($image);
 
         return $this;
     }
@@ -384,7 +384,7 @@ abstract class AbstractSection extends Content implements
      */
     public function summary()
     {
-        return $this->parseAsTranslatable($this->summary);
+        return $this->summary;
     }
 
     /**
@@ -392,7 +392,7 @@ abstract class AbstractSection extends Content implements
      */
     public function externalUrl()
     {
-        return $this->parseAsTranslatable($this->externalUrl);
+        return $this->externalUrl;
     }
 
     /**
@@ -491,20 +491,6 @@ abstract class AbstractSection extends Content implements
         return $value;
     }
 
-    /**
-     * Parse the property value as a "L10N" value type.
-     *
-     * @param  mixed $value The value being localized.
-     * @return TranslationString|string
-     */
-    public function parseAsTranslatable($value)
-    {
-        if (TranslationString::isTranslatable($value)) {
-            return new TranslationString($value);
-        } else {
-            return '';
-        }
-    }
 
     // ==========================================================================
     // EVENTS
