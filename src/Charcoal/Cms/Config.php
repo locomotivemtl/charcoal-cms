@@ -5,9 +5,6 @@ namespace Charcoal\Cms;
 // dependencies from `charcoal-base`
 use Charcoal\Object\Content;
 
-// dependencies from `charcoal-translation`
-use Charcoal\Translation\TranslationString;
-
 /**
  * Class Config
  */
@@ -43,7 +40,7 @@ class Config extends Content
      */
     public function setDefaultMetaTitle($defaultMetaTitle)
     {
-        $this->defaultMetaTitle = $this->parseAsTranslatable($defaultMetaTitle);
+        $this->defaultMetaTitle = $this->translator()->translation($defaultMetaTitle);
 
         return $this;
     }
@@ -54,7 +51,7 @@ class Config extends Content
      */
     public function setDefaultMetaDescription($defaultMetaDescription)
     {
-        $this->defaultMetaDescription = $this->parseAsTranslatable($defaultMetaDescription);
+        $this->defaultMetaDescription = $this->translator()->translation($defaultMetaDescription);
 
         return $this;
     }
@@ -76,7 +73,7 @@ class Config extends Content
      */
     public function setDefaultMetaUrl($defaultMetaUrl)
     {
-        $this->defaultMetaUrl = $this->parseAsTranslatable($defaultMetaUrl);
+        $this->defaultMetaUrl = $this->translator()->translation($defaultMetaUrl);
 
         return $this;
     }
@@ -115,24 +112,5 @@ class Config extends Content
     public function defaultMetaUrl()
     {
         return $this->defaultMetaUrl;
-    }
-
-    // ==========================================================================
-    // UTILS
-    // ==========================================================================
-
-    /**
-     * Parse the property value as a "L10N" value type.
-     *
-     * @param  mixed $value The value being localized.
-     * @return TranslationString|string
-     */
-    public function parseAsTranslatable($value)
-    {
-        if (TranslationString::isTranslatable($value)) {
-            return new TranslationString($value);
-        } else {
-            return '';
-        }
     }
 }

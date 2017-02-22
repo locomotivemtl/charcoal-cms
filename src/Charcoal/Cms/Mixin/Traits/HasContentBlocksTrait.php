@@ -6,7 +6,7 @@ namespace Charcoal\Cms\Mixin\Traits;
 use Charcoal\Attachment\Traits\AttachmentAwareTrait;
 
 // dependencies from `charcoal-translation`
-use Charcoal\Translation\TranslationString;
+use Charcoal\Translator\Translation;
 
 /**
  * An implementation, as Trait, of the `HasContentBlocksInterface`.
@@ -52,7 +52,7 @@ trait HasContentBlocksTrait
     // ==========================================================================
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function defaultMetaDescription()
     {
@@ -69,7 +69,7 @@ trait HasContentBlocksTrait
      * Gets the content excerpt from attachments if a text attachment is found, otherwise
      * it return null.
      *
-     * @return TranslationString|null|string|\string[] The content from attachment
+     * @return Translation|null|string|\string[] The content from attachment
      */
     private function metaDescFromAttachments()
     {
@@ -83,12 +83,12 @@ trait HasContentBlocksTrait
             if ($attachment->isText()) {
                 $content = $attachment->description();
 
-                if ($content instanceof TranslationString) {
-                    $content = $content->all();
+                if ($content instanceof Translation) {
+                    $content = $content->data();
                     foreach ($content as $lang => $text) {
                         $content[$lang] = substr(strip_tags($text), 0, 200);
                     }
-                    $content = new TranslationString($content);
+                    $content = $this->translator()->translation($content);
                 } else {
                     $content = substr(strip_tags($content), 0, 200);
                 }

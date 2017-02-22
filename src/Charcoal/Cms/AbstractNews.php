@@ -379,6 +379,7 @@ abstract class AbstractNews extends Content implements
             $desc = [];
             foreach ($content->data() as $lang => $text) {
                 $desc[$lang] = strip_tags($text);
+
             }
 
             return $this->translator()->translation($desc);

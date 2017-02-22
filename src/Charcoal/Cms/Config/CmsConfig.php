@@ -11,9 +11,6 @@ use Charcoal\Cms\Config\SectionConfig;
 use Charcoal\Config\AbstractConfig;
 use Charcoal\Model\ModelInterface;
 
-// dependencies from `charcoal-translation`
-use Charcoal\Translation\TranslationString;
-
 /**
  * Class Config
  */
@@ -320,24 +317,5 @@ class CmsConfig extends AbstractConfig
     public function timeFormats()
     {
         return $this->timeFormats;
-    }
-
-    // ==========================================================================
-    // UTILS
-    // ==========================================================================
-
-    /**
-     * Parse the property value as a "L10N" value type.
-     *
-     * @param  mixed $value The value being localized.
-     * @return TranslationString|string
-     */
-    public function parseAsTranslatable($value)
-    {
-        if (TranslationString::isTranslatable($value)) {
-            return new TranslationString($value);
-        } else {
-            return '';
-        }
     }
 }

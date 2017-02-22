@@ -27,6 +27,10 @@ use Charcoal\Cms\MetatagInterface;
 use Charcoal\Cms\SearchableInterface;
 use Charcoal\Cms\TemplateableInterface;
 
+use Charcoal\Cms\MetatagTrait;
+use Charcoal\Cms\SearchableTrait;
+use Charcoal\Cms\TemplateableTrait;
+
 /**
  *
  */

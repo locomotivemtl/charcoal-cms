@@ -2,18 +2,19 @@
 
 namespace Charcoal\Cms\Support\Helpers;
 
-// dependencies from `charcoal-translation`
-use Charcoal\Translation\TranslationString;
-
 // Psr-7 dependencies
 use DateTime;
 use Exception;
+
+use \Charcoal\Translator\TranslatorAwareTrait;
 
 /**
  * Class DateHelper
  */
 class DateHelper
 {
+    use TranslatorAwareTrait;
+
     /**
      * @var DateTime $from
      */
@@ -57,7 +58,11 @@ class DateHelper
         if (!isset($data['time_formats'])) {
             throw new Exception('time formats configuration must be defined in the DateHelper constructor.');
         }
+        if (!isset($data['translator'])) {
+            throw new Exception('Translator needs to be defined in the dateHelper class.');
+        }
 
+        $this->setTranslator($data['translator']);
         $this->dateFormats = $data['date_formats'];
         $this->timeFormats = $data['time_formats'];
     }
@@ -187,10 +192,10 @@ class DateHelper
         $dateFormats = $this->dateFormats;
         $case = $dateFormats[$this->dateFormat][$case];
 
-        $content = new TranslationString($case['content']);
+        $content = $this->translator()->translation($case['content']);
 
-        $formats['from'] = new TranslationString($case['formats']['from']);
-        $formats['to'] = isset($case['formats']['to']) ? new TranslationString($case['formats']['to']) : null;
+        $formats['from'] = $this->translator()->translation($case['formats']['from']);
+        $formats['to'] = isset($case['formats']['to']) ? $this->translator()->translation($case['formats']['to']) : null;
 
         $formats['from'] = $this->crossPlatformFormat((string)$formats['from']);
         $formats['to'] = $this->crossPlatformFormat((string)$formats['to']);
@@ -218,13 +223,13 @@ class DateHelper
         $timeFormats = $this->timeFormats;
         $case = $timeFormats[$this->timeFormat][$case];
 
-        $content = new TranslationString($case['content']);
+        $content = $this->translator()->translation($case['content']);
 
         $formats['from'] = $case['formats']['from'];
         $formats['to'] = isset($case['formats']['to']) ? $case['formats']['to'] : null;
 
-        $formats['from'] = new TranslationString($formats['from']);
-        $formats['to'] = new TranslationString($formats['to']);
+        $formats['from'] = $this->translator()->translation($formats['from']);
+        $formats['to'] = $this->translator()->translation($formats['to']);
 
         if (!$this->to || !$formats['to']) {
             return sprintf(
