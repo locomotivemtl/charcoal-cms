@@ -272,8 +272,8 @@
 </span><span id="7" class="l"><a href="#7">  7: </a><span class="php-comment">// Module `charcoal-core` dependencies</span>
 </span><span id="8" class="l"><a href="#8">  8: </a><span class="php-keyword1">use</span> \Charcoal\Model\Collection;
 </span><span id="9" class="l"><a href="#9">  9: </a>
-</span><span id="10" class="l"><a href="#10"> 10: </a><span class="php-comment">// Module `charcoal-translation` dependencies</span>
-</span><span id="11" class="l"><a href="#11"> 11: </a><span class="php-keyword1">use</span> \Charcoal\Translation\TranslationString;
+</span><span id="10" class="l"><a href="#10"> 10: </a><span class="php-comment">// Module `charcoal-translator` dependencies</span>
+</span><span id="11" class="l"><a href="#11"> 11: </a><span class="php-keyword1">use</span> \Charcoal\Translator\Translation;
 </span><span id="12" class="l"><a href="#12"> 12: </a>
 </span><span id="13" class="l"><a href="#13"> 13: </a><span class="php-keyword1">use</span> \Charcoal\Loader\CollectionLoader;
 </span><span id="14" class="l"><a href="#14"> 14: </a>
@@ -336,20 +336,20 @@
 </span><span id="71" class="l"><a href="#71"> 71: </a>    <span class="php-keyword1">private</span> <span class="php-var">$sectionType</span> = self::DEFAULT_TYPE;
 </span><span id="72" class="l"><a href="#72"> 72: </a>
 </span><span id="73" class="l"><a href="#73"> 73: </a>    <span class="php-comment">/**
-</span></span><span id="74" class="l"><a href="#74"> 74: </a><span class="php-comment">     * @var TranslationString $title
+</span></span><span id="74" class="l"><a href="#74"> 74: </a><span class="php-comment">     * @var Translation $title
 </span></span><span id="75" class="l"><a href="#75"> 75: </a><span class="php-comment">     */</span>
 </span><span id="76" class="l"><a href="#76"> 76: </a>    <span class="php-keyword1">private</span> <span class="php-var">$title</span>;
 </span><span id="77" class="l"><a href="#77"> 77: </a>    <span class="php-comment">/**
-</span></span><span id="78" class="l"><a href="#78"> 78: </a><span class="php-comment">     * @var TranslationString $subtitle
+</span></span><span id="78" class="l"><a href="#78"> 78: </a><span class="php-comment">     * @var Translation $subtitle
 </span></span><span id="79" class="l"><a href="#79"> 79: </a><span class="php-comment">     */</span>
 </span><span id="80" class="l"><a href="#80"> 80: </a>    <span class="php-keyword1">private</span> <span class="php-var">$subtitle</span>;
 </span><span id="81" class="l"><a href="#81"> 81: </a>    <span class="php-comment">/**
-</span></span><span id="82" class="l"><a href="#82"> 82: </a><span class="php-comment">     * @var TranslationString $content
+</span></span><span id="82" class="l"><a href="#82"> 82: </a><span class="php-comment">     * @var Translation $content
 </span></span><span id="83" class="l"><a href="#83"> 83: </a><span class="php-comment">     */</span>
 </span><span id="84" class="l"><a href="#84"> 84: </a>    <span class="php-keyword1">private</span> <span class="php-var">$content</span>;
 </span><span id="85" class="l"><a href="#85"> 85: </a>
 </span><span id="86" class="l"><a href="#86"> 86: </a>    <span class="php-comment">/**
-</span></span><span id="87" class="l"><a href="#87"> 87: </a><span class="php-comment">     * @var TranslationString $image
+</span></span><span id="87" class="l"><a href="#87"> 87: </a><span class="php-comment">     * @var Translation $image
 </span></span><span id="88" class="l"><a href="#88"> 88: </a><span class="php-comment">     */</span>
 </span><span id="89" class="l"><a href="#89"> 89: </a>    <span class="php-keyword1">private</span> <span class="php-var">$image</span>;
 </span><span id="90" class="l"><a href="#90"> 90: </a>
@@ -366,7 +366,7 @@
 </span><span id="101" class="l"><a href="#101">101: </a>    <span class="php-keyword1">protected</span> <span class="php-var">$keywords</span>;
 </span><span id="102" class="l"><a href="#102">102: </a>
 </span><span id="103" class="l"><a href="#103">103: </a>    <span class="php-comment">/**
-</span></span><span id="104" class="l"><a href="#104">104: </a><span class="php-comment">     * @var TranslationString $summary
+</span></span><span id="104" class="l"><a href="#104">104: </a><span class="php-comment">     * @var Translation $summary
 </span></span><span id="105" class="l"><a href="#105">105: </a><span class="php-comment">     */</span>
 </span><span id="106" class="l"><a href="#106">106: </a>    <span class="php-keyword1">protected</span> <span class="php-var">$summary</span>;
 </span><span id="107" class="l"><a href="#107">107: </a>
@@ -501,7 +501,7 @@
 </span><span id="236" class="l"><a href="#236">236: </a>    }
 </span><span id="237" class="l"><a href="#237">237: </a>
 </span><span id="238" class="l"><a href="#238">238: </a>    <span class="php-comment">/**
-</span></span><span id="239" class="l"><a href="#239">239: </a><span class="php-comment">     * @param TranslationString|string $summary The summary.
+</span></span><span id="239" class="l"><a href="#239">239: </a><span class="php-comment">     * @param Translation|string $summary The summary.
 </span></span><span id="240" class="l"><a href="#240">240: </a><span class="php-comment">     * @return self
 </span></span><span id="241" class="l"><a href="#241">241: </a><span class="php-comment">     */</span>
 </span><span id="242" class="l"><a href="#242">242: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setSummary(<span class="php-var">$summary</span>)
@@ -512,7 +512,7 @@
 </span><span id="247" class="l"><a href="#247">247: </a>    }
 </span><span id="248" class="l"><a href="#248">248: </a>
 </span><span id="249" class="l"><a href="#249">249: </a>    <span class="php-comment">/**
-</span></span><span id="250" class="l"><a href="#250">250: </a><span class="php-comment">     * @param TranslationString|string $externalUrl The external url.
+</span></span><span id="250" class="l"><a href="#250">250: </a><span class="php-comment">     * @param Translation|string $externalUrl The external url.
 </span></span><span id="251" class="l"><a href="#251">251: </a><span class="php-comment">     * @return self
 </span></span><span id="252" class="l"><a href="#252">252: </a><span class="php-comment">     */</span>
 </span><span id="253" class="l"><a href="#253">253: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setExternalUrl(<span class="php-var">$externalUrl</span>)
@@ -593,7 +593,7 @@
 </span><span id="328" class="l"><a href="#328">328: </a>    }
 </span><span id="329" class="l"><a href="#329">329: </a>
 </span><span id="330" class="l"><a href="#330">330: </a>    <span class="php-comment">/**
-</span></span><span id="331" class="l"><a href="#331">331: </a><span class="php-comment">     * @return TranslationString
+</span></span><span id="331" class="l"><a href="#331">331: </a><span class="php-comment">     * @return Translation
 </span></span><span id="332" class="l"><a href="#332">332: </a><span class="php-comment">     */</span>
 </span><span id="333" class="l"><a href="#333">333: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> title()
 </span><span id="334" class="l"><a href="#334">334: </a>    {
@@ -601,7 +601,7 @@
 </span><span id="336" class="l"><a href="#336">336: </a>    }
 </span><span id="337" class="l"><a href="#337">337: </a>
 </span><span id="338" class="l"><a href="#338">338: </a>    <span class="php-comment">/**
-</span></span><span id="339" class="l"><a href="#339">339: </a><span class="php-comment">     * @return TranslationString
+</span></span><span id="339" class="l"><a href="#339">339: </a><span class="php-comment">     * @return Translation
 </span></span><span id="340" class="l"><a href="#340">340: </a><span class="php-comment">     */</span>
 </span><span id="341" class="l"><a href="#341">341: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> subtitle()
 </span><span id="342" class="l"><a href="#342">342: </a>    {
@@ -609,7 +609,7 @@
 </span><span id="344" class="l"><a href="#344">344: </a>    }
 </span><span id="345" class="l"><a href="#345">345: </a>
 </span><span id="346" class="l"><a href="#346">346: </a>    <span class="php-comment">/**
-</span></span><span id="347" class="l"><a href="#347">347: </a><span class="php-comment">     * @return TranslationString
+</span></span><span id="347" class="l"><a href="#347">347: </a><span class="php-comment">     * @return Translation
 </span></span><span id="348" class="l"><a href="#348">348: </a><span class="php-comment">     */</span>
 </span><span id="349" class="l"><a href="#349">349: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> content()
 </span><span id="350" class="l"><a href="#350">350: </a>    {
@@ -617,7 +617,7 @@
 </span><span id="352" class="l"><a href="#352">352: </a>    }
 </span><span id="353" class="l"><a href="#353">353: </a>
 </span><span id="354" class="l"><a href="#354">354: </a>    <span class="php-comment">/**
-</span></span><span id="355" class="l"><a href="#355">355: </a><span class="php-comment">     * @return TranslationString
+</span></span><span id="355" class="l"><a href="#355">355: </a><span class="php-comment">     * @return Translation
 </span></span><span id="356" class="l"><a href="#356">356: </a><span class="php-comment">     */</span>
 </span><span id="357" class="l"><a href="#357">357: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> image()
 </span><span id="358" class="l"><a href="#358">358: </a>    {
@@ -627,7 +627,7 @@
 </span><span id="362" class="l"><a href="#362">362: </a>    <span class="php-comment">/**
 </span></span><span id="363" class="l"><a href="#363">363: </a><span class="php-comment">     * Retrieve the menus this object belongs to.
 </span></span><span id="364" class="l"><a href="#364">364: </a><span class="php-comment">     *
-</span></span><span id="365" class="l"><a href="#365">365: </a><span class="php-comment">     * @return string|TranslationString
+</span></span><span id="365" class="l"><a href="#365">365: </a><span class="php-comment">     * @return string|Translation
 </span></span><span id="366" class="l"><a href="#366">366: </a><span class="php-comment">     */</span>
 </span><span id="367" class="l"><a href="#367">367: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> inMenu()
 </span><span id="368" class="l"><a href="#368">368: </a>    {
@@ -645,7 +645,7 @@
 </span><span id="380" class="l"><a href="#380">380: </a>    }
 </span><span id="381" class="l"><a href="#381">381: </a>
 </span><span id="382" class="l"><a href="#382">382: </a>    <span class="php-comment">/**
-</span></span><span id="383" class="l"><a href="#383">383: </a><span class="php-comment">     * @return TranslationString
+</span></span><span id="383" class="l"><a href="#383">383: </a><span class="php-comment">     * @return Translation
 </span></span><span id="384" class="l"><a href="#384">384: </a><span class="php-comment">     */</span>
 </span><span id="385" class="l"><a href="#385">385: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> summary()
 </span><span id="386" class="l"><a href="#386">386: </a>    {
@@ -684,7 +684,7 @@
 </span><span id="419" class="l"><a href="#419">419: </a>    }
 </span><span id="420" class="l"><a href="#420">420: </a>
 </span><span id="421" class="l"><a href="#421">421: </a>    <span class="php-comment">/**
-</span></span><span id="422" class="l"><a href="#422">422: </a><span class="php-comment">     * @return TranslationString
+</span></span><span id="422" class="l"><a href="#422">422: </a><span class="php-comment">     * @return Translation
 </span></span><span id="423" class="l"><a href="#423">423: </a><span class="php-comment">     */</span>
 </span><span id="424" class="l"><a href="#424">424: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> defaultMetaTitle()
 </span><span id="425" class="l"><a href="#425">425: </a>    {
@@ -692,14 +692,14 @@
 </span><span id="427" class="l"><a href="#427">427: </a>    }
 </span><span id="428" class="l"><a href="#428">428: </a>
 </span><span id="429" class="l"><a href="#429">429: </a>    <span class="php-comment">/**
-</span></span><span id="430" class="l"><a href="#430">430: </a><span class="php-comment">     * @return TranslationString
+</span></span><span id="430" class="l"><a href="#430">430: </a><span class="php-comment">     * @return Translation
 </span></span><span id="431" class="l"><a href="#431">431: </a><span class="php-comment">     */</span>
 </span><span id="432" class="l"><a href="#432">432: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> defaultMetaDescription()
 </span><span id="433" class="l"><a href="#433">433: </a>    {
 </span><span id="434" class="l"><a href="#434">434: </a>        <span class="php-var">$content</span> = <span class="php-var">$this</span>-&gt;content();
 </span><span id="435" class="l"><a href="#435">435: </a>
-</span><span id="436" class="l"><a href="#436">436: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$content</span> <span class="php-keyword1">instanceof</span> TranslationString) {
-</span><span id="437" class="l"><a href="#437">437: </a>            <span class="php-keyword1">foreach</span> (<span class="php-var">$content</span>-&gt;all() <span class="php-keyword1">as</span> <span class="php-var">$lang</span> =&gt; <span class="php-var">$text</span>) {
+</span><span id="436" class="l"><a href="#436">436: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$content</span> <span class="php-keyword1">instanceof</span> Translation) {
+</span><span id="437" class="l"><a href="#437">437: </a>            <span class="php-keyword1">foreach</span> (<span class="php-var">$content</span>-&gt;data() <span class="php-keyword1">as</span> <span class="php-var">$lang</span> =&gt; <span class="php-var">$text</span>) {
 </span><span id="438" class="l"><a href="#438">438: </a>                <span class="php-var">$content</span>[<span class="php-var">$lang</span>] = <span class="php-keyword2">strip_tags</span>(<span class="php-var">$text</span>);
 </span><span id="439" class="l"><a href="#439">439: </a>            }
 </span><span id="440" class="l"><a href="#440">440: </a>        }
@@ -708,7 +708,7 @@
 </span><span id="443" class="l"><a href="#443">443: </a>    }
 </span><span id="444" class="l"><a href="#444">444: </a>
 </span><span id="445" class="l"><a href="#445">445: </a>    <span class="php-comment">/**
-</span></span><span id="446" class="l"><a href="#446">446: </a><span class="php-comment">     * @return TranslationString
+</span></span><span id="446" class="l"><a href="#446">446: </a><span class="php-comment">     * @return Translation
 </span></span><span id="447" class="l"><a href="#447">447: </a><span class="php-comment">     */</span>
 </span><span id="448" class="l"><a href="#448">448: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> defaultMetaImage()
 </span><span id="449" class="l"><a href="#449">449: </a>    {
