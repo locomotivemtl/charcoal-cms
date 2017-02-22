@@ -7,8 +7,8 @@ use \DateTime;
 use \DateTimeInterface;
 use \InvalidArgumentException;
 
-// Dependencies from `charcoal-translation`
-use \Charcoal\Translation\TranslationString;
+// Depedencies from `charcoal-translator`
+use \Charcoal\Translator\Translation;
 
 // Dependencies from `charcoal-base`
 use \Charcoal\Object\Content;
@@ -55,27 +55,27 @@ abstract class AbstractNews extends Content implements
     protected $dateHelper;
 
     /**
-     * @var TranslationString $title
+     * @var Translation $title
      */
     private $title;
 
     /**
-     * @var TranslationString $title
+     * @var Translation $title
      */
     private $subtitle;
 
     /**
-     * @var TranslationString $title
+     * @var Translation $title
      */
     private $summary;
 
     /**
-     * @var TranslationString $content
+     * @var Translation $content
      */
     private $content;
 
     /**
-     * @var TranslationString $image
+     * @var Translation $image
      */
     private $image;
 
@@ -85,7 +85,7 @@ abstract class AbstractNews extends Content implements
     private $newsDate;
 
     /**
-     * @var TranslationString $infoUrl
+     * @var Translation $infoUrl
      */
     private $infoUrl;
 
@@ -182,7 +182,7 @@ abstract class AbstractNews extends Content implements
      */
     public function setTitle($title)
     {
-        $this->title = new TranslationString($title);
+        $this->title = $this->translator()->translation($title);
 
         return $this;
     }
@@ -193,7 +193,7 @@ abstract class AbstractNews extends Content implements
      */
     public function setSubtitle($subtitle)
     {
-        $this->subtitle = new TranslationString($subtitle);
+        $this->subtitle = $this->translator()->translation($subtitle);
 
         return $this;
     }
@@ -204,7 +204,7 @@ abstract class AbstractNews extends Content implements
      */
     public function setSummary($summary)
     {
-        $this->summary = new TranslationString($summary);
+        $this->summary = $this->translator()->translation($summary);
 
         return $this;
     }
@@ -215,7 +215,7 @@ abstract class AbstractNews extends Content implements
      */
     public function setContent($content)
     {
-        $this->content = new TranslationString($content);
+        $this->content = $this->translator()->translation($content);
 
         return $this;
     }
@@ -226,7 +226,7 @@ abstract class AbstractNews extends Content implements
      */
     public function setImage($image)
     {
-        $this->image = new TranslationString($image);
+        $this->image = $this->translator()->translation($image);
 
         return $this;
     }
@@ -237,7 +237,7 @@ abstract class AbstractNews extends Content implements
      */
     public function setInfoUrl($url)
     {
-        $this->infoUrl = new TranslationString($url);
+        $this->infoUrl = $this->translator()->translation($url);
 
         return $this;
     }
@@ -296,7 +296,7 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function title()
     {
@@ -304,7 +304,7 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function subtitle()
     {
@@ -312,7 +312,7 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function summary()
     {
@@ -320,7 +320,7 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function infoUrl()
     {
@@ -336,7 +336,7 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function content()
     {
@@ -344,7 +344,7 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function image()
     {
@@ -352,7 +352,7 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function defaultMetaTitle()
     {
@@ -360,14 +360,14 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function defaultMetaDescription()
     {
         $content = $this->content();
 
-        if ($content instanceof TranslationString) {
-            foreach ($content->all() as $lang => $text) {
+        if ($content instanceof Translation) {
+            foreach ($content->data() as $lang => $text) {
                 $content[$lang] = strip_tags($text);
             }
         }
@@ -376,7 +376,7 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function defaultMetaImage()
     {

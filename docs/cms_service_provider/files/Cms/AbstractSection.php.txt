@@ -7,8 +7,8 @@ use \InvalidArgumentException;
 // Module `charcoal-core` dependencies
 use \Charcoal\Model\Collection;
 
-// Module `charcoal-translation` dependencies
-use \Charcoal\Translation\TranslationString;
+// Module `charcoal-translator` dependencies
+use \Charcoal\Translator\Translation;
 
 use \Charcoal\Loader\CollectionLoader;
 
@@ -71,20 +71,20 @@ abstract class AbstractSection extends Content implements
     private $sectionType = self::DEFAULT_TYPE;
 
     /**
-     * @var TranslationString $title
+     * @var Translation $title
      */
     private $title;
     /**
-     * @var TranslationString $subtitle
+     * @var Translation $subtitle
      */
     private $subtitle;
     /**
-     * @var TranslationString $content
+     * @var Translation $content
      */
     private $content;
 
     /**
-     * @var TranslationString $image
+     * @var Translation $image
      */
     private $image;
 
@@ -101,7 +101,7 @@ abstract class AbstractSection extends Content implements
     protected $keywords;
 
     /**
-     * @var TranslationString $summary
+     * @var Translation $summary
      */
     protected $summary;
 
@@ -236,7 +236,7 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @param TranslationString|string $summary The summary.
+     * @param Translation|string $summary The summary.
      * @return self
      */
     public function setSummary($summary)
@@ -247,7 +247,7 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @param TranslationString|string $externalUrl The external url.
+     * @param Translation|string $externalUrl The external url.
      * @return self
      */
     public function setExternalUrl($externalUrl)
@@ -328,7 +328,7 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function title()
     {
@@ -336,7 +336,7 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function subtitle()
     {
@@ -344,7 +344,7 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function content()
     {
@@ -352,7 +352,7 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function image()
     {
@@ -362,7 +362,7 @@ abstract class AbstractSection extends Content implements
     /**
      * Retrieve the menus this object belongs to.
      *
-     * @return string|TranslationString
+     * @return string|Translation
      */
     public function inMenu()
     {
@@ -380,7 +380,7 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function summary()
     {
@@ -419,7 +419,7 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function defaultMetaTitle()
     {
@@ -427,14 +427,14 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function defaultMetaDescription()
     {
         $content = $this->content();
 
-        if ($content instanceof TranslationString) {
-            foreach ($content->all() as $lang => $text) {
+        if ($content instanceof Translation) {
+            foreach ($content->data() as $lang => $text) {
                 $content[$lang] = strip_tags($text);
             }
         }
@@ -443,7 +443,7 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function defaultMetaImage()
     {

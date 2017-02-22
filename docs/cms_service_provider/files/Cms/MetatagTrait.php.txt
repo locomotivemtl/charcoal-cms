@@ -2,7 +2,7 @@
 
 namespace Charcoal\Cms;
 
-use \Charcoal\Translation\TranslationString;
+use \Charcoal\Translator\Translation;
 
 /**
 *
@@ -10,19 +10,19 @@ use \Charcoal\Translation\TranslationString;
 trait MetatagTrait
 {
     /**
-     * @var TranslationString $metaTitle
+     * @var Translation $metaTitle
      */
     protected $metaTitle;
     /**
-     * @var TranslationString $metaDescription
+     * @var Translation $metaDescription
      */
     protected $metaDescription;
     /**
-     * @var TranslationString $metaImage
+     * @var Translation $metaImage
      */
     protected $metaImage;
     /**
-     * @var TranslationString $metaAuthor
+     * @var Translation $metaAuthor
      */
     protected $metaAuthor;
 
@@ -32,17 +32,17 @@ trait MetatagTrait
     protected $facebookAppId;
 
     /**
-     * @var TranslationString $opengraphTitle
+     * @var Translation $opengraphTitle
      */
     protected $opengraphTitle;
 
     /**
-     * @var TranslationString $siteName
+     * @var Translation $siteName
      */
     protected $opengraphSiteName;
 
     /**
-     * @var TranslationString $opengraphDescription
+     * @var Translation $opengraphDescription
      */
     protected $opengraphDescription;
 
@@ -52,17 +52,17 @@ trait MetatagTrait
     protected $opengraphType;
 
     /**
-     * @var TranslationString $opengraphImage
+     * @var Translation $opengraphImage
      */
     protected $opengraphImage;
 
     /**
-     * @var TranslationString $opengraphAuthor
+     * @var Translation $opengraphAuthor
      */
     protected $opengraphAuthor;
 
     /**
-     * @var TranslationString $opengraphPublisher
+     * @var Translation $opengraphPublisher
      */
     protected $opengraphPublisher;
 
@@ -73,17 +73,17 @@ trait MetatagTrait
     abstract public function canonicalUrl();
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     abstract public function defaultMetaTitle();
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     abstract public function defaultMetaDescription();
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     abstract public function defaultMetaImage();
 
@@ -98,7 +98,7 @@ trait MetatagTrait
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function metaTitle()
     {
@@ -119,7 +119,7 @@ trait MetatagTrait
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function metaDescription()
     {
@@ -140,7 +140,7 @@ trait MetatagTrait
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function metaImage()
     {
@@ -161,7 +161,7 @@ trait MetatagTrait
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function metaAuthor()
     {
@@ -210,7 +210,7 @@ trait MetatagTrait
      *
      * If not expilicitely defined, use the meta title as opengraph title.
      *
-     * @return TranslationString
+     * @return Translation
      */
     public function opengraphTitle()
     {
@@ -231,7 +231,7 @@ trait MetatagTrait
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function opengraphSiteName()
     {
@@ -249,7 +249,7 @@ trait MetatagTrait
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function opengraphDescription()
     {
@@ -288,7 +288,7 @@ trait MetatagTrait
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function opengraphImage()
     {
@@ -309,7 +309,7 @@ trait MetatagTrait
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function opengraphAuthor()
     {
@@ -330,7 +330,7 @@ trait MetatagTrait
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function opengraphPublisher()
     {

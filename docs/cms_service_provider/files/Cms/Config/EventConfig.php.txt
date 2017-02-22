@@ -4,9 +4,6 @@ namespace Charcoal\Cms\Config;
 // dependencies from `charcoal-config`
 use Charcoal\Config\AbstractConfig;
 
-// dependencies from `charcoal-translation`
-use \Charcoal\Translation\TranslationString;
-
 /**
  * Event Config
  */
@@ -204,7 +201,7 @@ class EventConfig extends AbstractConfig
      */
     public function setParentSectionSlug($parentSectionSlug)
     {
-        $this->parentSectionSlug = new TranslationString($parentSectionSlug);
+        $this->parentSectionSlug = $this->translator()->translation($parentSectionSlug);
 
         return $this;
     }

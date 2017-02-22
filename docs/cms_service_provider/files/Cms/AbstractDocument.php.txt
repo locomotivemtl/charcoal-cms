@@ -7,9 +7,6 @@ use \Charcoal\Object\Content;
 use \Charcoal\Object\CategorizableInterface;
 use \Charcoal\Object\CategorizableTrait;
 
-// Module `charcoal-translation` dependencies
-use \Charcoal\Translation\TranslationString;
-
 // Intra-module `charcoal-cms` depdencies
 use \Charcoal\Cms\DocumentInterface;
 
@@ -23,7 +20,7 @@ abstract class AbstractDocument extends Content implements
     use CategorizableTrait;
 
     /**
-     * @var TranslationString $name
+     * @var string|Translation $name
      */
     private $name;
 
@@ -48,12 +45,12 @@ abstract class AbstractDocument extends Content implements
      */
     public function setName($name)
     {
-        $this->name = new TranslationString($name);
+        $this->name = $this->translator()->translation($name);
         return $this;
     }
 
     /**
-     * @return TranslationString
+     * @return string|Translation
      */
     public function name()
     {

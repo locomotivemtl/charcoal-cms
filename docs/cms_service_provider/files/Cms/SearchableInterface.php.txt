@@ -25,7 +25,7 @@ interface SearchableInterface
     public function setSearchKeywords($keywords);
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function searchKeywords();
 }

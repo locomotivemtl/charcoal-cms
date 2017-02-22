@@ -4,9 +4,9 @@ namespace Charcoal\Cms\Service\Loader;
 
 use Charcoal\Loader\CollectionLoader;
 use Charcoal\Object\ObjectRoute;
-use Charcoal\Translation\TranslationString;
 use Exception;
 
+use \Charcoal\Translator\TranslatorAwareTrait;
 /**
  * Section Loader
  */
@@ -155,8 +155,7 @@ class SectionLoader extends AbstractLoader
         $sections = [];
         $routes = [];
         // The current language
-        $translator = new TranslationString();
-        $lang = $translator->currentLanguage();
+        $lang = $this->translator()->getLocale();
         foreach ($objectRoutes as $o) {
             if ($o->lang() === $lang) {
                 // Will automatically override previous slug set

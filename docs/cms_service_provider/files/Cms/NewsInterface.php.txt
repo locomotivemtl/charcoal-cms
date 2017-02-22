@@ -9,12 +9,12 @@ interface NewsInterface
 {
     /**
      * @param mixed $title News title (localized).
-     * @return \Charcoal\Translation\TranslationString
+     * @return \Charcoal\Translator\Translation
      */
     public function setTitle($title);
 
     /**
-     * @return \Charcoal\Translation\TranslationString
+     * @return \Charcoal\Translator\Translation
      */
     public function title();
 
@@ -25,7 +25,7 @@ interface NewsInterface
     public function setSubtitle($subtitle);
 
     /**
-     * @return \Charcoal\Translation\TranslationString
+     * @return \Charcoal\Translator\Translation
      */
     public function subtitle();
 
@@ -36,7 +36,7 @@ interface NewsInterface
     public function setContent($content);
 
     /**
-     * @return \Charcoal\Translation\TranslationString
+     * @return \Charcoal\Translator\Translation
      */
     public function content();
 
@@ -58,7 +58,7 @@ interface NewsInterface
     public function setInfoUrl($url);
 
     /**
-     * @return \Charcoal\Translation\TranslationString
+     * @return \Charcoal\Translator\Translation
      */
     public function infoUrl();
 }

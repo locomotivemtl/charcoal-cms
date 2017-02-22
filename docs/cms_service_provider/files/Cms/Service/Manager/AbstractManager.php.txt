@@ -12,11 +12,15 @@ use Charcoal\Loader\CollectionLoader;
 use RuntimeException;
 use Exception;
 
+use \Charcoal\Translator\TranslatorAwareTrait;
+
 /**
  * Abstract Manager
  */
 class AbstractManager
 {
+    use TranslatorAwareTrait;
+
     /**
      * Store the factory instance for the current class.
      *
@@ -57,6 +61,10 @@ class AbstractManager
         }
         if (!isset($data['cms/config'])) {
             throw new Exception('You must define a global config object in your cms.json config file. (config_obj)');
+        }
+
+        if (isset($data['translator'])) {
+            $this->setTranslator($data['translator']);
         }
 
         $this->setModelFactory($data['factory']);

@@ -14,9 +14,6 @@ use Charcoal\Factory\FactoryInterface;
 // From 'charcoal-property'
 use Charcoal\Property\PropertyInterface;
 
-// From 'charcoal-translation'
-use Charcoal\Translation\TranslationString;
-
 // Local dependency
 use Charcoal\Cms\AbstractSection;
 
@@ -84,7 +81,7 @@ trait SectionTableTrait
                 if ($object->templateIdent() === 'volleyball/template/page') {
                     $propertyValue = sprintf(
                         '<span aria-hidden="true">─</span><span class="sr-only">%s</span>',
-                        new TranslationString([
+                        $this->translator()->translation([
                             'en' => 'Default Template',
                             'fr' => 'Modèle par défaut'
                         ])
@@ -131,7 +128,7 @@ trait SectionTableTrait
                     ' &nbsp; '.
                     '<span class="glyphicon glyphicon-list" data-toggle="tooltip" '.
                     'data-placement="auto" title="%s"></span>',
-                    new TranslationString([
+                    $this->translator()->translation([
                         'en' => 'Present in a menu',
                         'fr' => 'Présent dans un menu'
                     ])

@@ -6,7 +6,6 @@ namespace Charcoal\Cms;
 use \Charcoal\Object\Content;
 use \Charcoal\Object\CategoryInterface;
 use \Charcoal\Object\CategoryTrait;
-use Charcoal\Translation\TranslationString;
 
 /**
  * News category
@@ -66,7 +65,7 @@ class NewsCategory extends Content implements CategoryInterface
      */
     public function setName($name)
     {
-        $this->name = new TranslationString($name);
+        $this->name = $this->translator()->translation($name);
 
         return $this;
     }

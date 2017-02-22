@@ -3,7 +3,7 @@
 namespace Charcoal\Cms;
 
 // Dependencies from `charcoal-translation`
-use \Charcoal\Translation\TranslationString;
+use \Charcoal\Translator\Translation;
 
 // Module `charcoal-base` dependencies
 use \Charcoal\Object\Content;
@@ -31,32 +31,32 @@ abstract class AbstractText extends Content implements
     use SearchableTrait;
 
     /**
-     * @var TranslationString $title
+     * @var Translation $title
      */
     private $title;
 
     /**
-     * @var TranslationString $title
+     * @var Translation $title
      */
     private $subtitle;
 
     /**
-     * @var TranslationString $content
+     * @var Translation $content
      */
     private $content;
 
     /**
      * @param mixed $title The news title (localized).
-     * @return TranslationString
+     * @return Translation
      */
     public function setTitle($title)
     {
-        $this->title = new TranslationString($title);
+        $this->title = $this->translator()->translation($title);
         return $this;
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function title()
     {
@@ -69,12 +69,12 @@ abstract class AbstractText extends Content implements
      */
     public function setSubtitle($subtitle)
     {
-        $this->subtitle = new TranslationString($subtitle);
+        $this->subtitle = $this->translator()->translation($subtitle);
         return $this;
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function subtitle()
     {
@@ -87,12 +87,12 @@ abstract class AbstractText extends Content implements
      */
     public function setContent($content)
     {
-        $this->content = new TranslationString($content);
+        $this->content = $this->translator()->translation($content);
         return $this;
     }
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function content()
     {

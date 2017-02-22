@@ -5,7 +5,6 @@ namespace Charcoal\Cms;
 use Charcoal\Object\CategoryInterface;
 use Charcoal\Object\CategoryTrait;
 use Charcoal\Object\Content;
-use Charcoal\Translation\TranslationString;
 
 /**
  * CMS Tag
@@ -79,12 +78,7 @@ class Tag extends Content implements
      */
     public function setName($name)
     {
-        if (TranslationString::isTranslatable($name)) {
-            $this->name = new TranslationString($name);
-        } else {
-            $this->name = null;
-        }
-
+        $this->name = $this->translator()->translation($name);
         return $this;
     }
 

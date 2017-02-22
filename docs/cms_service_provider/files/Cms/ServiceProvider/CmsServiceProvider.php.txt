@@ -87,7 +87,8 @@ class CmsServiceProvider implements ServiceProviderInterface
 
             return new DateHelper([
                 'date_formats' => $container['cms/config']->get('date_formats'),
-                'time_formats' => $container['cms/config']->get('time_formats')
+                'time_formats' => $container['cms/config']->get('time_formats'),
+                'translator'   => $container['translator']
             ]);
         };
 
@@ -121,9 +122,10 @@ class CmsServiceProvider implements ServiceProviderInterface
          */
         $container['cms/section/loader'] = function (Container $container) {
             $sectionLoader = new SectionLoader([
-                'loader'  => $container['model/collection/loader'],
-                'factory' => $container['model/factory'],
-                'cache'   => $container['cache']
+                'loader'        => $container['model/collection/loader'],
+                'factory'       => $container['model/factory'],
+                'cache'         => $container['cache'],
+                'translator'    => $container['translator']
             ]);
 
             // Cms.json
@@ -151,7 +153,8 @@ class CmsServiceProvider implements ServiceProviderInterface
             $newsLoader = new NewsLoader([
                 'loader'  => $container['model/collection/loader'],
                 'factory' => $container['model/factory'],
-                'cache'   => $container['cache']
+                'cache'   => $container['cache'],
+                'translator'    => $container['translator']
             ]);
 
             $newsConfig = $container['cms/config']->newsConfig();
@@ -174,7 +177,8 @@ class CmsServiceProvider implements ServiceProviderInterface
                 'factory'     => $container['model/factory'],
                 'news/loader' => $container['cms/news/loader'],
                 'cache'       => $container['cache'],
-                'cms/config'  => $container['cms/config']
+                'cms/config'  => $container['cms/config'],
+                'translator'  => $container['translator']
             ]);
 
             return $newsManager;
@@ -193,9 +197,10 @@ class CmsServiceProvider implements ServiceProviderInterface
          */
         $container['cms/event/loader'] = function (Container $container) {
             $eventLoader = new EventLoader([
-                'loader'  => $container['model/collection/loader'],
-                'factory' => $container['model/factory'],
-                'cache'   => $container['cache']
+                'loader'        => $container['model/collection/loader'],
+                'factory'       => $container['model/factory'],
+                'cache'         => $container['cache'],
+                'translator'    => $container['translator']
             ]);
 
             $eventConfig = $container['cms/config']->eventConfig();
@@ -218,7 +223,8 @@ class CmsServiceProvider implements ServiceProviderInterface
                 'factory'      => $container['model/factory'],
                 'event/loader' => $container['cms/event/loader'],
                 'cache'        => $container['cache'],
-                'cms/config'   => $container['cms/config']
+                'cms/config'   => $container['cms/config'],
+                'translator'   => $container['translator']
             ]);
 
             return $eventManager;

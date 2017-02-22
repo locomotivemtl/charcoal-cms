@@ -12,11 +12,15 @@ use Charcoal\Loader\CollectionLoader;
 use RuntimeException;
 use Exception;
 
+use \Charcoal\Translator\TranslatorAwareTrait;
+
 /**
  * Abstract Loader
  */
 class AbstractLoader
 {
+    use TranslatorAwareTrait;
+
     /**
      * Store the factory instance for the current class.
      *
@@ -54,6 +58,10 @@ class AbstractLoader
                 'CollectionLoader must be defined in the %s constructor.',
                 get_called_class()
             ));
+        }
+
+        if (isset($data['translator'])) {
+            $this->setTranslator($data['translator']);
         }
         $this->setModelFactory($data['factory']);
         $this->setCollectionLoader($data['loader']);

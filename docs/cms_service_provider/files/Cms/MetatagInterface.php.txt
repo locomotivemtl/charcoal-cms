@@ -13,17 +13,17 @@ interface MetatagInterface
     public function canonicalUrl();
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function defaultMetaTitle();
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function defaultMetaDescription();
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function defaultMetaImage();
 
@@ -34,7 +34,7 @@ interface MetatagInterface
     public function setMetaTitle($title);
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function metaTitle();
 
@@ -45,7 +45,7 @@ interface MetatagInterface
     public function setMetaDescription($description);
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function metaDescription();
 
@@ -56,7 +56,7 @@ interface MetatagInterface
     public function setMetaImage($image);
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function metaImage();
 
@@ -67,7 +67,7 @@ interface MetatagInterface
     public function setMetaAuthor($author);
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function metaAuthor();
 
@@ -94,7 +94,7 @@ interface MetatagInterface
     public function setOpengraphTitle($title);
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function opengraphTitle();
 
@@ -105,7 +105,7 @@ interface MetatagInterface
     public function setOpengraphSiteName($siteName);
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function opengraphSiteName();
 
@@ -116,7 +116,7 @@ interface MetatagInterface
     public function setOpengraphDescription($description);
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function opengraphDescription();
 
@@ -138,7 +138,7 @@ interface MetatagInterface
     public function setOpengraphImage($image);
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function opengraphImage();
 
@@ -149,7 +149,7 @@ interface MetatagInterface
     public function setOpengraphAuthor($author);
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function opengraphAuthor();
 
@@ -160,7 +160,7 @@ interface MetatagInterface
     public function setOpengraphPulisher($publisher);
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function opengraphPublisher();
 

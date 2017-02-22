@@ -2,8 +2,6 @@
 
 namespace Charcoal\Cms;
 
-use \Charcoal\Translation\TranslationString;
-
 use \Charcoal\Object\Content;
 use \Charcoal\Object\CategorizableInterface;
 use \Charcoal\Object\CategorizableTrait;
@@ -30,12 +28,12 @@ abstract class AbstractFaq extends Content implements
 
     /**
      * The question, or "title", of this entry
-     * @var TranslationString $question
+     * @var Translation $question
      */
     private $question;
 
     /**
-     * @var TranslationString $answer
+     * @var Translation $answer
      */
     private $answer;
 
@@ -45,12 +43,12 @@ abstract class AbstractFaq extends Content implements
      */
     public function setQuestion($question)
     {
-        $this->question = new TranslationString($question);
+        $this->question = $this->translator()->translation($question);
         return $this;
     }
 
     /**
-     * @return TranslationString|null
+     * @return Translation|null
      */
     public function question()
     {
@@ -63,12 +61,12 @@ abstract class AbstractFaq extends Content implements
      */
     public function setAnswer($answer)
     {
-        $this->answer = new TranslationString($answer);
+        $this->answer = $this->translator()->translation($answer);
         return $this;
     }
 
     /**
-     * @return TranslationString|null
+     * @return Translation|null
      */
     public function answer()
     {

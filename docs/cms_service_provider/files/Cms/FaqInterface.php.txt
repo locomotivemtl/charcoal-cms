@@ -14,7 +14,7 @@ interface FaqInterface
     public function setQuestion($question);
 
     /**
-     * @return \Charcoal\Translation\TranslationString|null
+     * @return \Charcoal\Translator\Translation|null
      */
     public function question();
 
@@ -25,7 +25,7 @@ interface FaqInterface
     public function setAnswer($answer);
 
     /**
-     * @return \Charcoal\Translation\TranslationString|null
+     * @return \Charcoal\Translator\Translation|null
      */
     public function answer();
 }

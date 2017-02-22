@@ -2,7 +2,7 @@
 
 namespace Charcoal\Cms;
 
-use Charcoal\Translation\TranslationString;
+use Charcoal\Translator\Translation;
 
 /**
  *
@@ -27,7 +27,7 @@ interface SectionInterface
     public function setTitle($title);
 
     /**
-     * @return \Charcoal\Translation\TranslationString
+     * @return \Charcoal\Translator\Translation
      */
     public function title();
 
@@ -38,7 +38,7 @@ interface SectionInterface
     public function setSubtitle($subtitle);
 
     /**
-     * @return \Charcoal\Translation\TranslationString
+     * @return \Charcoal\Translator\Translation
      */
     public function subtitle();
 
@@ -59,13 +59,13 @@ interface SectionInterface
     public function setKeywords($keywords);
 
     /**
-     * @param TranslationString|string $summary The summary.
+     * @param Translation|string $summary The summary.
      * @return self
      */
     public function setSummary($summary);
 
     /**
-     * @param TranslationString|string $externalUrl The external url.
+     * @param Translation|string $externalUrl The external url.
      * @return self
      */
     public function setExternalUrl($externalUrl);
@@ -90,19 +90,19 @@ interface SectionInterface
     public function setImage($image);
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function content();
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function image();
 
     /**
      * Retrieve the menus this object belongs to.
      *
-     * @return string|TranslationString
+     * @return string|Translation
      */
     public function inMenu();
 
@@ -114,7 +114,7 @@ interface SectionInterface
     public function keywords();
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function summary();
 
@@ -137,17 +137,17 @@ interface SectionInterface
     public function canonicalUrl();
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function defaultMetaTitle();
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function defaultMetaDescription();
 
     /**
-     * @return TranslationString
+     * @return Translation
      */
     public function defaultMetaImage();
 }
