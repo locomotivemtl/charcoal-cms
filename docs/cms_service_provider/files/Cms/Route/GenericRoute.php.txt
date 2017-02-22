@@ -24,13 +24,12 @@ use \Charcoal\Factory\FactoryInterface;
 use \Charcoal\Model\ModelInterface;
 use \Charcoal\Loader\CollectionLoader;
 
-// From 'charcoal-translation'
-use \Charcoal\Translation\TranslationConfig;
-
 // Local Dependencies
 use \Charcoal\Object\ObjectRoute;
 use \Charcoal\Object\ObjectRouteInterface;
 use \Charcoal\Object\RoutableInterface;
+
+use \Charcoal\Translator\TranslatorAwareTrait;
 
 /**
  * Generic Object Route Handler
@@ -40,6 +39,8 @@ use \Charcoal\Object\RoutableInterface;
  */
 class GenericRoute extends TemplateRoute
 {
+    use TranslatorAwareTrait;
+
     /**
      * The URI path.
      *
@@ -112,6 +113,7 @@ class GenericRoute extends TemplateRoute
     {
         $this->setModelFactory($container['model/factory']);
         $this->setCollectionLoader($container['model/collection/loader']);
+        $this->setTranslator($container['translator']);
         if (isset($container['config']['templates'])) {
             $this->availableTemplates = $container['config']['templates'];
         }
@@ -202,8 +204,7 @@ class GenericRoute extends TemplateRoute
         $contextObject = $this->loadContextObject();
 
         // Set language according to the route's language
-        $translator = TranslationConfig::instance();
-        $translator->setCurrentLanguage($objectRoute->lang());
+        $this->translator()->setLocale($objectRoute->lang());
 
         $templateChoice = [];
 
