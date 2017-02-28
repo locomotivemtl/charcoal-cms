@@ -2,6 +2,7 @@
 
 namespace Charcoal\Cms;
 
+// From 'charcoal-cms'
 use Charcoal\Cms\AbstractText;
 use Charcoal\Cms\TextCategory;
 

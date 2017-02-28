@@ -2,13 +2,17 @@
 
 namespace Charcoal\Property;
 
-use \RuntimeException;
-use \InvalidArgumentException;
+use PDO;
 
-use \Pimple\Container;
+use RuntimeException;
+use InvalidArgumentException;
 
-use \Charcoal\Property\SelectablePropertyInterface;
-use \Charcoal\Property\SelectablePropertyTrait;
+// From Pimple
+use Pimple\Container;
+
+// From 'charcoal-cms'
+use Charcoal\Property\SelectablePropertyInterface;
+use Charcoal\Property\SelectablePropertyTrait;
 
 /**
  * Object Property holds a reference to an external object.
@@ -88,7 +92,7 @@ class TemplateProperty extends AbstractProperty implements SelectablePropertyInt
      */
     public function sqlPdoType()
     {
-        return \PDO::PARAM_STR;
+        return PDO::PARAM_STR;
     }
 }
 

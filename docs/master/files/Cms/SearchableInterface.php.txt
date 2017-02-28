@@ -2,14 +2,17 @@
 
 namespace Charcoal\Cms;
 
+// From 'charcoal-translator'
+use Charcoal\Translator\Translation;
+
 /**
  *
  */
 interface SearchableInterface
 {
     /**
-     * @param array $properties The properties to search into.
-     * @return SearchableInterface Chainable
+     * @param  array $properties The properties to search into.
+     * @return self
      */
     public function setSearchProperties(array $properties);
 
@@ -19,13 +22,13 @@ interface SearchableInterface
     public function searchProperties();
 
     /**
-     * @param mixed $keywords The search keywords (localized).
-     * @return SearchableInterface Chainable
+     * @param  mixed $keywords The search keywords (localized).
+     * @return self
      */
     public function setSearchKeywords($keywords);
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function searchKeywords();
 }

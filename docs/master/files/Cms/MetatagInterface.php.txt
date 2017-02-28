@@ -2,6 +2,9 @@
 
 namespace Charcoal\Cms;
 
+// From 'charcoal-translator'
+use Charcoal\Translator\Translation;
+
 /**
  *
  */
@@ -13,61 +16,61 @@ interface MetatagInterface
     public function canonicalUrl();
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function defaultMetaTitle();
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function defaultMetaDescription();
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function defaultMetaImage();
 
     /**
-     * @param mixed $title The meta title (localized).
-     * @return MetatagInterface Chainable
+     * @param  mixed $title The meta title (localized).
+     * @return self
      */
     public function setMetaTitle($title);
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function metaTitle();
 
     /**
-     * @param mixed $description The meta description (localized).
-     * @return MetatagInterface Chainable
+     * @param  mixed $description The meta description (localized).
+     * @return self
      */
     public function setMetaDescription($description);
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function metaDescription();
 
     /**
-     * @param mixed $image The meta image (localized).
-     * @return MetatageInterface Chainable
+     * @param  mixed $image The meta image (localized).
+     * @return self
      */
     public function setMetaImage($image);
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function metaImage();
 
     /**
-     * @param mixed $author The meta author (localized).
-     * @return MetatagInterface Chainable
+     * @param  mixed $author The meta author (localized).
+     * @return self
      */
     public function setMetaAuthor($author);
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function metaAuthor();
 
@@ -77,8 +80,8 @@ interface MetatagInterface
     public function metaTags();
 
     /**
-     * @param string $appId The facebook App ID (numeric string).
-     * @return MetatagInterface Chainable
+     * @param  string $appId The facebook App ID (numeric string).
+     * @return self
      */
     public function setFacebookAppId($appId);
 
@@ -88,41 +91,41 @@ interface MetatagInterface
     public function facebookAppId();
 
     /**
-     * @param mixed $title The opengraph title (localized).
-     * @return MetatagInterface Chainable
+     * @param  mixed $title The opengraph title (localized).
+     * @return self
      */
     public function setOpengraphTitle($title);
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function opengraphTitle();
 
     /**
-     * @param mixed $siteName The opengraph site name (localized).
-     * @return MetatagInterface Chainable
+     * @param  mixed $siteName The opengraph site name (localized).
+     * @return self
      */
     public function setOpengraphSiteName($siteName);
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function opengraphSiteName();
 
     /**
-     * @param mixed $description The opengraph description (localized).
-     * @return MetatagInterface Chainable
+     * @param  mixed $description The opengraph description (localized).
+     * @return self
      */
     public function setOpengraphDescription($description);
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function opengraphDescription();
 
     /**
-     * @param string $type The opengraph type.
-     * @return MetatagInterface Chainable
+     * @param  string $type The opengraph type.
+     * @return self
      */
     public function setOpengraphType($type);
 
@@ -132,35 +135,35 @@ interface MetatagInterface
     public function opengraphType();
 
     /**
-     * @param mixed $image The opengraph image (localized).
-     * @return MetatagInterface Chainable
+     * @param  mixed $image The opengraph image (localized).
+     * @return self
      */
     public function setOpengraphImage($image);
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function opengraphImage();
 
     /**
-     * @param mixed $author The opengraph author (localized).
-     * @return MetatagInterface Chainable
+     * @param  mixed $author The opengraph author (localized).
+     * @return self
      */
     public function setOpengraphAuthor($author);
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function opengraphAuthor();
 
     /**
-     * @param mixed $publisher The opengraph publisher (localized).
+     * @param  mixed $publisher The opengraph publisher (localized).
      * @return MetatagInterface
      */
     public function setOpengraphPulisher($publisher);
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function opengraphPublisher();
 

@@ -10,8 +10,8 @@ interface TemplateableInterface
     /**
      * Set the renderable object's template identifier.
      *
-     * @param mixed $template The template ID.
-     * @return TemplateableInterface Chainable
+     * @param  mixed $template The template ID.
+     * @return self
      */
     public function setTemplateIdent($template);
 
@@ -26,7 +26,7 @@ interface TemplateableInterface
      * Set the renderable object's template controller identifier.
      *
      * @param  mixed $ident The template controller identifier.
-     * @return TemplateableInterface Chainable
+     * @return self
      */
     public function setControllerIdent($ident);
 
@@ -40,8 +40,8 @@ interface TemplateableInterface
     /**
      * Customize the template's options.
      *
-     * @param array|string $options Template options.
-     * @return TemplateableInterface Chainable
+     * @param  array|string $options Template options.
+     * @return self
      */
     public function setTemplateOptions($options);
 

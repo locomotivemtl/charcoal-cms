@@ -2,7 +2,8 @@
 
 namespace Charcoal\Cms;
 
-use \Charcoal\Cms\AbstractVideo;
+// From 'charcoal-cms'
+use Charcoal\Cms\AbstractVideo;
 use Charcoal\Cms\VideoCategory;
 
 /**

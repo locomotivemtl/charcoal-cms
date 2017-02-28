@@ -2,15 +2,16 @@
 
 namespace Charcoal\Cms;
 
-// Module `charcoal-base` dependencies
+// From 'charcoal-object'
 use Charcoal\Object\Content;
 use Charcoal\Object\CategoryInterface;
 use Charcoal\Object\CategoryTrait;
 
+// From 'charcoal-cms'
 use Charcoal\Cms\Video;
 
 /**
- * Video category
+ * Video Category
  */
 final class VideoCategory extends Content implements CategoryInterface
 {
@@ -27,7 +28,7 @@ final class VideoCategory extends Content implements CategoryInterface
     }
 
     /**
-     * @return Collection
+     * @return \Charcoal\Model\Collection|array
      */
     public function loadCategoryItems()
     {

@@ -2,15 +2,15 @@
 
 namespace Charcoal\Cms;
 
-// Module `charcoal-object` dependencies
+// From 'charcoal-object'
 use Charcoal\Object\Content;
 use Charcoal\Object\CategorizableInterface;
 use Charcoal\Object\CategorizableTrait;
 
-// Module `charcoal-translation` dependencies
-use Charcoal\Translation\TranslationString;
+// From 'charcoal-translator'
+use Charcoal\Translator\Translation;
 
-// Intra-module `charcoal-cms` depdencies
+// From 'charcoal-cms'
 use Charcoal\Cms\DocumentInterface;
 
 /**
@@ -23,7 +23,7 @@ abstract class AbstractDocument extends Content implements
     use CategorizableTrait;
 
     /**
-     * @var TranslationString $name
+     * @var Translation|string|null $name
      */
     private $name;
 
@@ -43,17 +43,17 @@ abstract class AbstractDocument extends Content implements
     private $baseUrl;
 
     /**
-     * @param mixed $name The document name.
-     * @return DocumentInterface Chainable
+     * @param  mixed $name The document name.
+     * @return self
      */
     public function setName($name)
     {
-        $this->name = new TranslationString($name);
+        $this->name = $this->translator()->translation($name);
         return $this;
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function name()
     {
@@ -61,8 +61,8 @@ abstract class AbstractDocument extends Content implements
     }
 
     /**
-     * @param string $file The file relative path / url.
-     * @return DocumentInterface Chainable
+     * @param  string $file The file relative path / url.
+     * @return self
      */
     public function setFile($file)
     {
@@ -79,8 +79,8 @@ abstract class AbstractDocument extends Content implements
     }
 
     /**
-     * @param string $path The document base path.
-     * @return DocumentInterface Chainable
+     * @param  string $path The document base path.
+     * @return self
      */
     public function setBasePath($path)
     {
@@ -102,8 +102,8 @@ abstract class AbstractDocument extends Content implements
     }
 
     /**
-     * @param string $url The document base URL.
-     * @return DocumentInterface Chainable
+     * @param  string $url The document base URL.
+     * @return self
      */
     public function setBaseUrl($url)
     {

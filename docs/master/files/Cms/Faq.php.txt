@@ -2,7 +2,7 @@
 
 namespace Charcoal\Cms;
 
-// Intra-module (`charcoal-cms`) dependencies
+// From 'charcoal-cms'
 use Charcoal\Cms\AbstractFaq;
 use Charcoal\Cms\FaqCategory;
 

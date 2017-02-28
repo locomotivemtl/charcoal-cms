@@ -4,14 +4,13 @@ namespace Charcoal\Cms;
 
 use DateTime;
 use DateTimeInterface;
-use Exception;
 use InvalidArgumentException;
 
-// PSR-7 (HTTP messaging) dependencies
+// From PSR-7
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-// Module `charcoal-object` dependencies
+// From 'charcoal-object'
 use Charcoal\Object\Content;
 use Charcoal\Object\CategorizableInterface;
 use Charcoal\Object\CategorizableTrait;
@@ -20,10 +19,10 @@ use Charcoal\Object\PublishableTrait;
 use Charcoal\Object\RoutableInterface;
 use Charcoal\Object\RoutableTrait;
 
-// Module `charcoal-translation` depdencies
-use Charcoal\Translation\TranslationString;
+// From 'charcoal-translator'
+use Charcoal\Translator\Translation;
 
-// Intra-module (`charcoal-cms`) dependencies
+// From 'charcoal-cms'
 use Charcoal\Cms\MetatagInterface;
 use Charcoal\Cms\SearchableInterface;
 use Charcoal\Cms\TemplateableInterface;
@@ -48,53 +47,53 @@ abstract class AbstractEvent extends Content implements
     use TemplateableTrait;
 
     /**
-     * @var TranslationString $title
+     * @var Translation|string|null
      */
     private $title;
 
     /**
-     * @var TranslationString $subtitle
+     * @var Translation|string|null
      */
     private $subtitle;
 
     /**
-     * @var TranslationString $summary
+     * @var Translation|string|null
      */
     private $summary;
 
     /**
-     * @var TranslationString $content
+     * @var Translation|string|null
      */
     private $content;
 
     /**
-     * @var TranslationString $image
+     * @var Translation|string|null
      */
     private $image;
 
     /**
-     * @var DateTime $startDate
+     * @var DateTimeInterface|null
      */
     private $startDate;
 
     /**
-     * @var DateTime $startDate
+     * @var DateTimeInterface|null
      */
     private $endDate;
 
     /**
-     * @param mixed $title The event title (localized).
-     * @return EventInterface Chainable
+     * @param  mixed $title The event title (localized).
+     * @return self
      */
     public function setTitle($title)
     {
-        $this->title = new TranslationString($title);
+        $this->title = $this->translator()->translation($title);
 
         return $this;
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function title()
     {
@@ -102,18 +101,18 @@ abstract class AbstractEvent extends Content implements
     }
 
     /**
-     * @param mixed $subtitle The event subtitle (localized).
-     * @return EventInterface Chainable
+     * @param  mixed $subtitle The event subtitle (localized).
+     * @return self
      */
     public function setSubtitle($subtitle)
     {
-        $this->subtitle = new TranslationString($subtitle);
+        $this->subtitle = $this->translator()->translation($subtitle);
 
         return $this;
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function subtitle()
     {
@@ -121,18 +120,18 @@ abstract class AbstractEvent extends Content implements
     }
 
     /**
-     * @param mixed $summary The news summary (localized).
-     * @return EventInterface Chainable
+     * @param  mixed $summary The news summary (localized).
+     * @return self
      */
     public function setSummary($summary)
     {
-        $this->summary = new TranslationString($summary);
+        $this->summary = $this->translator()->translation($summary);
 
         return $this;
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function summary()
     {
@@ -140,18 +139,18 @@ abstract class AbstractEvent extends Content implements
     }
 
     /**
-     * @param mixed $content The event content (localized).
-     * @return EventInterface Chainable
+     * @param  mixed $content The event content (localized).
+     * @return self
      */
     public function setContent($content)
     {
-        $this->content = new TranslationString($content);
+        $this->content = $this->translator()->translation($content);
 
         return $this;
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function content()
     {
@@ -159,18 +158,18 @@ abstract class AbstractEvent extends Content implements
     }
 
     /**
-     * @param mixed $image The section main image (localized).
-     * @return EventInterface Chainable
+     * @param  mixed $image The section main image (localized).
+     * @return self
      */
     public function setImage($image)
     {
-        $this->image = new TranslationString($image);
+        $this->image = $this->translator()->translation($image);
 
         return $this;
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function image()
     {
@@ -178,9 +177,9 @@ abstract class AbstractEvent extends Content implements
     }
 
     /**
-     * @param string|DateTime $startDate Event starting date.
+     * @param  string|DateTimeInterface $startDate Event starting date.
      * @throws InvalidArgumentException If the timestamp is invalid.
-     * @return EventInterface Chainable
+     * @return self
      */
     public function setStartDate($startDate)
     {
@@ -203,7 +202,7 @@ abstract class AbstractEvent extends Content implements
     }
 
     /**
-     * @return DateTime|null
+     * @return DateTimeInterface|null
      */
     public function startDate()
     {
@@ -211,9 +210,9 @@ abstract class AbstractEvent extends Content implements
     }
 
     /**
-     * @param string|DateTime $endDate Event end date.
+     * @param  string|DateTimeInterface $endDate Event end date.
      * @throws InvalidArgumentException If the timestamp is invalid.
-     * @return EventInterface Chainable
+     * @return self
      */
     public function setEndDate($endDate)
     {
@@ -236,7 +235,7 @@ abstract class AbstractEvent extends Content implements
     }
 
     /**
-     * @return DateTime|null
+     * @return DateTimeInterface|null
      */
     public function endDate()
     {
@@ -246,8 +245,8 @@ abstract class AbstractEvent extends Content implements
     /**
      * MetatagTrait > canonical_url
      *
-     * @return string
      * @todo
+     * @return string
      */
     public function canonicalUrl()
     {
@@ -255,7 +254,7 @@ abstract class AbstractEvent extends Content implements
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function defaultMetaTitle()
     {
@@ -263,27 +262,25 @@ abstract class AbstractEvent extends Content implements
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function defaultMetaDescription()
     {
-        $content = $this->content();
+        $content = $this->translator()->translation($this->content());
+        if ($content instanceof Translation) {
+            $desc = [];
+            foreach ($content->data() as $lang => $text) {
+                $desc[$lang] = strip_tags($text);
+            }
 
-        if (!($content instanceof TranslationString)) {
-            $content = new TranslationString($content);
+            return $this->translator()->translation($desc);
         }
 
-        $out = [];
-        foreach ($content->all() as $lang => $text) {
-            $out[$lang] = strip_tags($text);
-        }
-
-        // Don't affect the content's content.
-        return new TranslationString($out);
+        return null;
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function defaultMetaImage()
     {
@@ -306,7 +303,7 @@ abstract class AbstractEvent extends Content implements
     /**
      * {@inheritdoc}
      *
-     * @param array $properties Optional properties to update.
+     * @param  array $properties Optional properties to update.
      * @return boolean
      */
     public function preUpdate(array $properties = null)

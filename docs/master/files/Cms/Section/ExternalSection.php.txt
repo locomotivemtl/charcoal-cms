@@ -2,8 +2,10 @@
 
 namespace Charcoal\Cms;
 
-use Charcoal\Translation\TranslationString;
+// From 'charcoal-translator'
+use Charcoal\Translator\Translation;
 
+// From 'charcoal-cms'
 use Charcoal\Cms\AbstractSection;
 
 /**
@@ -14,22 +16,22 @@ use Charcoal\Cms\AbstractSection;
 class ExternalSection extends AbstractSection
 {
     /**
-     * @var TranslationString $externalUrl
+     * @var Translation|string|null
      */
     private $externalUrl;
 
     /**
-     * @param mixed $url The external URL (localized).
-     * @return ExternalSection Chainable
+     * @param  mixed $url The external URL (localized).
+     * @return self
      */
     public function setExternalUrl($url)
     {
-        $this->externalUrl = new TranslationString($url);
+        $this->externalUrl = $this->translator()->translation($url);
         return $this;
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function externalUrl()
     {

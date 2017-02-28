@@ -2,7 +2,8 @@
 
 namespace Charcoal\Cms;
 
-use Charcoal\Translation\TranslationString;
+// From 'charcoal-translator'
+use Charcoal\Translator\Translation;
 
 /**
  * Default implementation, as Trait, of the SearchableInterface
@@ -10,18 +11,18 @@ use Charcoal\Translation\TranslationString;
 trait SearchableTrait
 {
     /**
-     * @var array $searchProperties
+     * @var array
      */
     private $searchProperties = [];
 
     /**
-     * @var TranslationString $searchKeywords
+     * @var Translation|string|null
      */
     private $searchKeywords;
 
     /**
-     * @param array $properties The properties to search into.
-     * @return SearchableInterface Chainable
+     * @param  array $properties The properties to search into.
+     * @return self
      */
     public function setSearchProperties(array $properties)
     {
@@ -38,17 +39,17 @@ trait SearchableTrait
     }
 
     /**
-     * @param mixed $keywords The search keywords (localized).
-     * @return SearchableInterface Chainable
+     * @param  mixed $keywords The search keywords (localized).
+     * @return self
      */
     public function setSearchKeywords($keywords)
     {
-        $this->searchKeywords = new TranslationString($keywords);
+        $this->searchKeywords = $this->translator()->translation($keywords);
         return $this;
     }
 
     /**
-     * @return TranslationString
+     * @return Translation|string|null
      */
     public function searchKeywords()
     {

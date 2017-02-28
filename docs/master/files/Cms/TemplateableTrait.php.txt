@@ -33,7 +33,7 @@ trait TemplateableTrait
      * Set the renderable object's template identifier.
      *
      * @param  mixed $template The template ID.
-     * @return TemplateableInterface Chainable
+     * @return self
      */
     public function setTemplateIdent($template)
     {
@@ -56,7 +56,7 @@ trait TemplateableTrait
      * Set the renderable object's template controller identifier.
      *
      * @param  mixed $ident The template controller identifier.
-     * @return TemplateableInterface Chainable
+     * @return self
      */
     public function setControllerIdent($ident)
     {
@@ -79,7 +79,7 @@ trait TemplateableTrait
      * Customize the template's options.
      *
      * @param  mixed $options Template options.
-     * @return TemplateableInterface Chainable
+     * @return self
      */
     public function setTemplateOptions($options)
     {

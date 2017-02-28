@@ -2,6 +2,7 @@
 
 namespace Charcoal\Cms;
 
+// From 'charcoal-cms'
 use Charcoal\Cms\AbstractImage;
 use Charcoal\Cms\ImageCategory;
 
