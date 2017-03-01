@@ -615,7 +615,7 @@
                         },
                         "url": "object/edit?main_menu={{main_menu}}&obj_type={{master.sectionType}}&obj_id={{master.id}}&tab_ident=cms.table",
                         "type": "default",
-                        "active": "{{master}}"
+                        "condition": "{{master}}"
                     }
                 }
             }
