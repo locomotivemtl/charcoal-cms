@@ -11,7 +11,6 @@ use Charcoal\Object\CategoryTrait;
 
 // Local dependencies
 use Charcoal\Cms\Config\CmsConfig;
-use Charcoal\Cms\NewsCategory;
 use Charcoal\Cms\NewsInterface;
 use Charcoal\Cms\Service\Loader\NewsLoader;
 
@@ -75,6 +74,11 @@ class NewsManager extends AbstractManager
 
     /** @var NewsLoader $loader The news loader provider. */
     protected $loader;
+
+    /**
+     * @var array
+     */
+    protected $categoryItem = [];
 
     /**
      * NewsManager constructor.
@@ -167,7 +171,7 @@ class NewsManager extends AbstractManager
      */
     public function loadCategoryItems()
     {
-        $proto = $this->modelFactory()->get($this->categoryItemType());
+        $proto = $this->modelFactory()->create($this->categoryItemType());
         $loader = $this->collectionLoader()->setModel($proto);
         $loader->addFilter('active', true);
 
@@ -176,13 +180,17 @@ class NewsManager extends AbstractManager
 
     /**
      * @param integer $id The category id.
-     * @return CategoryInterface|NewsCategory
+     * @return CategoryInterface
      */
     public function categoryItem($id)
     {
-        $category = $this->modelFactory()->get($this->categoryItemType());
+        if (isset($this->categoryItem[$id])) {
+            return $this->categoryItem[$id];
+        }
+        $category = $this->modelFactory()->create($this->categoryItemType());
 
-        return $category->load($id);
+        $this->categoryItem[$id] = $category->load($id);
+        return $this->categoryItem[$id];
     }
 
     /**

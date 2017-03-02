@@ -28,11 +28,16 @@ class NewsLoader extends AbstractLoader
      */
     public function all()
     {
-        $proto = $this->modelFactory()->get($this->objType());
+        $proto = $this->newsProto();
         $loader = $this->collectionLoader()->setModel($proto);
         $loader->addFilter('active', true);
 
         return $loader;
+    }
+
+    public function newsProto()
+    {
+        return $this->modelFactory()->get($this->objType());
     }
 
     /**
