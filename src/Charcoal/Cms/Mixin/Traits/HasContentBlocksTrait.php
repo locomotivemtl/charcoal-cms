@@ -83,20 +83,32 @@ trait HasContentBlocksTrait
             if ($attachment->isText()) {
                 $content = $attachment->description();
 
-                if ($content instanceof Translation) {
-                    $content = $content->data();
-                    foreach ($content as $lang => $text) {
-                        $content[$lang] = substr(strip_tags($text), 0, 200);
-                    }
-                    $content = $this->translator()->translation($content);
-                } else {
-                    $content = substr(strip_tags($content), 0, 200);
-                }
+                $content = $this->ellipsis($content);
 
                 return $content;
             }
         }
 
         return null;
+    }
+
+    /**
+     * @param string|Translation $content The content to shorten.
+     * @param integer            $length  The length to shorten to. Default : 200.
+     * @return string|Translation
+     */
+    public function ellipsis($content, $length = 200)
+    {
+        if ($content instanceof Translation) {
+            $content = $content->data();
+            foreach ($content as $lang => $text) {
+                $content[$lang] = strlen($text) > $length ? substr(strip_tags($text), 0, $length).'...' : $text;
+            }
+            $content = $this->translator()->translation($content);
+        } else {
+            $content = strlen($content) > $length ? substr(strip_tags($content), 0, $length): $content;
+        }
+
+        return $content;
     }
 }
