@@ -203,8 +203,7 @@ class GenericRoute extends TemplateRoute
         $objectRoute   = $this->loadObjectRouteFromPath();
         $contextObject = $this->loadContextObject();
 
-        // Set language according to the route's language
-        $this->translator()->setLocale($objectRoute->lang());
+        $this->setLocale($objectRoute->lang());
 
         $templateChoice = [];
 
@@ -457,6 +456,32 @@ class GenericRoute extends TemplateRoute
         $this->collectionLoader = $loader;
 
         return $this;
+    }
+
+    /**
+     * Sets the environment's current locale.
+     *
+     * @param  string $langCode The locale's language code.
+     * @return void
+     */
+    protected function setLocale($langCode)
+    {
+        $translator = $this->translator();
+        $translator->setLocale($langCode);
+        $available  = $translator->locales();
+        $fallbacks  = $translator->getFallbackLocales();
+        array_unshift($fallbacks, $langCode);
+        array_unique($fallbacks);
+        $locales = [];
+        foreach ($fallbacks as $code) {
+            if (isset($available[$code])) {
+                $locale = (array)$available[$code]['locale'];
+                array_push($locales, ...$locale);
+            }
+        }
+        if ($locales) {
+            setlocale(LC_ALL, ...$locales);
+        }
     }
 
     /**
