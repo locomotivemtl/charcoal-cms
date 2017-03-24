@@ -11,6 +11,31 @@ use Charcoal\Attachment\Interfaces\AttachmentAwareInterface;
  *
  * See `HasContentBlocksTrait` for a basic implementation.
  */
-interface HasContentBlocksInterface extends AttachmentAwareInterface
+interface HasContentBlocksInterface
 {
+    /**
+     * Retrieve this object's content blocks.
+     *
+     * @return Collection|Attachment[]
+     */
+    public function contentBlocks();
+
+    /**
+     * Determine if this object has any content blocks.
+     *
+     * @return boolean
+     */
+    public function hasContentBlocks();
+
+    /**
+     * Count the number of content blocks associated to this object.
+     *
+     * @return integer
+     */
+    public function numContentBlocks();
+
+    /**
+     * @return Translation
+     */
+    public function defaultMetaDescription();
 }
