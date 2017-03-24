@@ -2,9 +2,6 @@
 
 namespace Charcoal\Cms\Mixin\Traits;
 
-// dependencies from `beneroch/charcoal-attachment`
-use Charcoal\Attachment\Traits\AttachmentAwareTrait;
-
 // dependencies from `charcoal-translation`
 use Charcoal\Translator\Translation;
 
@@ -15,8 +12,6 @@ use Charcoal\Translator\Translation;
  */
 trait HasContentBlocksTrait
 {
-    use AttachmentAwareTrait;
-
     /**
      * Retrieve this object's content blocks.
      *
@@ -97,7 +92,7 @@ trait HasContentBlocksTrait
      * @param integer            $length  The length to shorten to. Default : 200.
      * @return string|Translation
      */
-    public function ellipsis($content, $length = 200)
+    private function ellipsis($content, $length = 200)
     {
         if ($content instanceof Translation) {
             $content = $content->data();
@@ -106,10 +101,22 @@ trait HasContentBlocksTrait
             }
             $content = $this->translator()->translation($content);
         } else {
-            $content = strlen($content) > $length ? substr(strip_tags($content), 0, $length): $content;
+            $content = strlen($content) > $length ? substr(strip_tags($content), 0, $length) : $content;
         }
 
         return $content;
     }
+
+    /**
+     * Retrieve the objects associated to the current object.
+     *
+     * As defined in Charcoal\Attachment\Traits\AttachmentAwareTrait.
+     *
+     * @param  string|null $group Filter the attachments by a group identifier.
+     * @param  string|null $type  Filter the attachments by type.
+     * @throws InvalidArgumentException If the $group or $type is invalid.
+     * @return Collection|Attachment[]
+     */
+    abstract public function attachments($group = null, $type = null);
 }
 
