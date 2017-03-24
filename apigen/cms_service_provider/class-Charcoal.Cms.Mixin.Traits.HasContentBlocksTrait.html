@@ -66,18 +66,8 @@
 						</li>
 							</ul></li>
 				<li>
-					<a href="namespace-Charcoal.Cms.News.html">
-						News					</a>
-
-						</li>
-				<li>
 					<a href="namespace-Charcoal.Cms.Route.html">
 						Route					</a>
-
-						</li>
-				<li>
-					<a href="namespace-Charcoal.Cms.Section.html">
-						Section					</a>
 
 						</li>
 				<li>
@@ -141,8 +131,6 @@
 
 			<h3>Traits</h3>
 			<ul>
-				<li><a href="class-Charcoal.Cms.Mixin.Traits.BlocksNewsTrait.html">BlocksNewsTrait</a></li>
-				<li><a href="class-Charcoal.Cms.Mixin.Traits.BlocksSectionTrait.html">BlocksSectionTrait</a></li>
 				<li class="active"><a href="class-Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html">HasContentBlocksTrait</a></li>
 			</ul>
 
@@ -187,27 +175,12 @@
 	<p>An implementation, as Trait, of the <code>HasContentBlocksInterface</code>.</p>
 	</div>
 
-	<dl class="tree">
-		<dd style="padding-left:0px">
-<b><span>Charcoal\Cms\Mixin\Traits\HasContentBlocksTrait</span></b>			
-			
-			 uses 
-					Charcoal\Attachment\Traits\AttachmentAwareTrait (not available)
-
-			
-		</dd>
-	</dl>
 
 
 
 
 
 
-	<div>
-		<h4>Direct Known Users</h4>
-			<a href="class-Charcoal.Cms.Mixin.Traits.BlocksNewsTrait.html">Charcoal\Cms\Mixin\Traits\BlocksNewsTrait</a>, 
-			<a href="class-Charcoal.Cms.Mixin.Traits.BlocksSectionTrait.html">Charcoal\Cms\Mixin\Traits\BlocksSectionTrait</a>
-	</div>
 
 
 	<div class="info">
@@ -218,7 +191,7 @@
 
 				<b>Uses:</b>
 				Charcoal\Attachment\Traits\AttachmentAwareTrait<br>
-			<b>Located at</b> <a href="source-class-Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html#11-114" title="Go to source code">Charcoal/Cms/Mixin/Traits/HasContentBlocksTrait.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html#8-121" title="Go to source code">Charcoal/Cms/Mixin/Traits/HasContentBlocksTrait.php</a>
 		<br>
 	</div>
 
@@ -238,7 +211,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_contentBlocks">#</a>
-		<code><a href="source-class-Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html#20-28" title="Go to source code">contentBlocks</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html#15-23" title="Go to source code">contentBlocks</a>( )</code>
 
 		<div class="description short">
 			<p>Retrieve this object's content blocks.</p>
@@ -272,7 +245,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hasContentBlocks">#</a>
-		<code><a href="source-class-Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html#30-38" title="Go to source code">hasContentBlocks</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html#25-33" title="Go to source code">hasContentBlocks</a>( )</code>
 
 		<div class="description short">
 			<p>Determine if this object has any content blocks.</p>
@@ -306,7 +279,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_numContentBlocks">#</a>
-		<code><a href="source-class-Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html#40-48" title="Go to source code">numContentBlocks</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html#35-43" title="Go to source code">numContentBlocks</a>( )</code>
 
 		<div class="description short">
 			<p>Count the number of content blocks associated to this object.</p>
@@ -340,7 +313,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_defaultMetaDescription">#</a>
-		<code><a href="source-class-Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html#54-66" title="Go to source code">defaultMetaDescription</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html#49-61" title="Go to source code">defaultMetaDescription</a>( )</code>
 
 		<div class="description short">
 			
@@ -362,41 +335,47 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="ellipsis" id="_ellipsis">
+	<tr data-order="attachments" id="_attachments">
 
 		<td class="attributes"><code>
-			 public 
+			abstract public 
 
-			string|Charcoal\Translator\Translation
+			Collection|Attachment[]
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_ellipsis">#</a>
-		<code><a href="source-class-Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html#95-113" title="Go to source code">ellipsis</a>( <span>string|Charcoal\Translator\Translation <var>$content</var></span>, <span>integer <var>$length</var> = <span class="php-num">200</span></span> )</code>
+		<a class="anchor" href="#_attachments">#</a>
+		<code><a href="source-class-Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html#110-120" title="Go to source code">attachments</a>( <span>string|null <var>$group</var> = <span class="php-keyword1">null</span></span>, <span>string|null <var>$type</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
-			
+			<p>Retrieve the objects associated to the current object.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Retrieve the objects associated to the current object.</p>
+
+<p>As defined in Charcoal\Attachment\Traits\AttachmentAwareTrait.</p>
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$content</var></dt>
-					<dd>The content to shorten.</dd>
-					<dt><var>$length</var></dt>
-					<dd>The length to shorten to. Default : 200.</dd>
+					<dt><var>$group</var></dt>
+					<dd>Filter the attachments by a group identifier.</dd>
+					<dt><var>$type</var></dt>
+					<dd>Filter the attachments by type.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					string|Charcoal\Translator\Translation
+					Collection|Attachment[]
 				</div>
 
+				<h4>Throws</h4>
+				<div class="list">
+					InvalidArgumentException<br>If the $group or $type is invalid.
+				</div>
 
 
 

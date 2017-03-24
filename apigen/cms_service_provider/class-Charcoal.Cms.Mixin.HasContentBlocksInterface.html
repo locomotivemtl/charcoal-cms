@@ -66,18 +66,8 @@
 						</li>
 							</ul></li>
 				<li>
-					<a href="namespace-Charcoal.Cms.News.html">
-						News					</a>
-
-						</li>
-				<li>
 					<a href="namespace-Charcoal.Cms.Route.html">
 						Route					</a>
-
-						</li>
-				<li>
-					<a href="namespace-Charcoal.Cms.Section.html">
-						Section					</a>
 
 						</li>
 				<li>
@@ -140,11 +130,6 @@
 
 			<h3>Interfaces</h3>
 			<ul>
-				<li><a href="class-Charcoal.Cms.Mixin.BlocksNewsInterface.html">BlocksNewsInterface</a></li>
-				<li><a href="class-Charcoal.Cms.Mixin.BlocksSectionInterface.html">BlocksSectionInterface</a></li>
-				<li><a href="class-Charcoal.Cms.Mixin.ContentNewsInterface.html">ContentNewsInterface</a></li>
-				<li><a href="class-Charcoal.Cms.Mixin.ContentSectionInterface.html">ContentSectionInterface</a></li>
-				<li><a href="class-Charcoal.Cms.Mixin.EmptySectionInterface.html">EmptySectionInterface</a></li>
 				<li class="active"><a href="class-Charcoal.Cms.Mixin.HasContentBlocksInterface.html">HasContentBlocksInterface</a></li>
 			</ul>
 
@@ -193,30 +178,11 @@
 <p>See <code>HasContentBlocksTrait</code> for a basic implementation.</p>
 	</div>
 
-	<dl class="tree">
-		<dd style="padding-left:0px">
-<b><span>Charcoal\Cms\Mixin\HasContentBlocksInterface</span></b>			
-			 implements 
-<span>Charcoal\Attachment\Interfaces\AttachmentAwareInterface</span>
-			
-			
-		</dd>
-	</dl>
 
 
 
 
-	<div>
-		<h4>Direct known implementers</h4>
-			<a href="class-Charcoal.Cms.Mixin.BlocksNewsInterface.html">Charcoal\Cms\Mixin\BlocksNewsInterface</a>, 
-			<a href="class-Charcoal.Cms.Mixin.BlocksSectionInterface.html">Charcoal\Cms\Mixin\BlocksSectionInterface</a>
-	</div>
 
-	<div>
-		<h4>Indirect known implementers</h4>
-			<a href="class-Charcoal.Cms.News.BlocksNews.html">Charcoal\Cms\News\BlocksNews</a>, 
-			<a href="class-Charcoal.Cms.Section.BlocksSection.html">Charcoal\Cms\Section\BlocksSection</a>
-	</div>
 
 
 
@@ -226,12 +192,151 @@
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Cms.html">Cms</a>\<a href="namespace-Charcoal.Cms.Mixin.html">Mixin</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Cms.Mixin.HasContentBlocksInterface.html#8-16" title="Go to source code">Charcoal/Cms/Mixin/HasContentBlocksInterface.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Cms.Mixin.HasContentBlocksInterface.html#8-41" title="Go to source code">Charcoal/Cms/Mixin/HasContentBlocksInterface.php</a>
 		<br>
 	</div>
 
 
 
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="contentBlocks" id="_contentBlocks">
+
+		<td class="attributes"><code>
+			 public 
+
+			Collection|Attachment[]
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_contentBlocks">#</a>
+		<code><a href="source-class-Charcoal.Cms.Mixin.HasContentBlocksInterface.html#16-21" title="Go to source code">contentBlocks</a>( )</code>
+
+		<div class="description short">
+			<p>Retrieve this object's content blocks.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Retrieve this object's content blocks.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Collection|Attachment[]
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="hasContentBlocks" id="_hasContentBlocks">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_hasContentBlocks">#</a>
+		<code><a href="source-class-Charcoal.Cms.Mixin.HasContentBlocksInterface.html#23-28" title="Go to source code">hasContentBlocks</a>( )</code>
+
+		<div class="description short">
+			<p>Determine if this object has any content blocks.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Determine if this object has any content blocks.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="numContentBlocks" id="_numContentBlocks">
+
+		<td class="attributes"><code>
+			 public 
+
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_numContentBlocks">#</a>
+		<code><a href="source-class-Charcoal.Cms.Mixin.HasContentBlocksInterface.html#30-35" title="Go to source code">numContentBlocks</a>( )</code>
+
+		<div class="description short">
+			<p>Count the number of content blocks associated to this object.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Count the number of content blocks associated to this object.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					integer
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="defaultMetaDescription" id="_defaultMetaDescription">
+
+		<td class="attributes"><code>
+			 public 
+
+			Translation
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_defaultMetaDescription">#</a>
+		<code><a href="source-class-Charcoal.Cms.Mixin.HasContentBlocksInterface.html#37-40" title="Go to source code">defaultMetaDescription</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Translation
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
 
 
 
