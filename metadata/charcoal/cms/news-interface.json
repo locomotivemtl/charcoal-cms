@@ -191,35 +191,7 @@
             }
         },
 
-        "forms": {
-            "cms.default": {
-                "label": {
-                    "fr": "Nouvelle / actualité",
-                    "en": "News / short story"
-                },
-                "groups": {
-                    "cms.advanced": {
-                        "priority": 500
-                    },
-                    "cms.meta": {
-                        "priority": 7000
-                    },
-                    "cms.revisions": {
-                        "priority": 8000
-                    }
-                },
-                "sidebars": {
-                    "default": {
-                        "properties": [
-                            "created",
-                            "created_by",
-                            "last_modified",
-                            "last_modified_by"
-                        ]
-                    }
-                }
-            }
-        },
+        "forms": {},
 
         "form_groups": {
             "cms.info": {
