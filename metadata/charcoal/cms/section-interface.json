@@ -111,7 +111,7 @@
         "master": {
             "type_foo": "object",
             "type": "Charcoal\\Support\\Property\\HierarchicalObjectProperty",
-            "obj_type": "charcoal/cms/section/content-section",
+            "obj_type": "charcoal/cms/section",
             "pattern": "{{ hierarchicalLabel }}",
             "label": {
                 "fr": "Page Parente",
