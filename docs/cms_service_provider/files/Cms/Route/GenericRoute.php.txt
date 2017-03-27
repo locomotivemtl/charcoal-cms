@@ -2,34 +2,36 @@
 
 namespace Charcoal\Cms\Route;
 
-use \InvalidArgumentException;
-use \RuntimeException;
+use RuntimeException;
+use InvalidArgumentException;
 
-use \Pimple\Container;
+// From Pimple
+use Pimple\Container;
 
-// From PSR-7 (HTTP Messaging)
-use \Psr\Http\Message\RequestInterface;
-use \Psr\Http\Message\ResponseInterface;
+// From PSR-7
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
-// Dependency from 'charcoal-app'
-use \Charcoal\App\Route\TemplateRoute;
+// From 'charcoal-app'
+use Charcoal\App\Route\TemplateRoute;
 
-// Dependency from 'charcoal-cms'
-use \Charcoal\Cms\TemplateableInterface;
+// From 'charcoal-cms'
+use Charcoal\Cms\TemplateableInterface;
 
 // From 'charcoal-factory'
-use \Charcoal\Factory\FactoryInterface;
+use Charcoal\Factory\FactoryInterface;
 
 // From 'charcoal-core'
-use \Charcoal\Model\ModelInterface;
-use \Charcoal\Loader\CollectionLoader;
+use Charcoal\Model\ModelInterface;
+use Charcoal\Loader\CollectionLoader;
 
-// Local Dependencies
-use \Charcoal\Object\ObjectRoute;
-use \Charcoal\Object\ObjectRouteInterface;
-use \Charcoal\Object\RoutableInterface;
+// From 'charcoal-translator'
+use Charcoal\Translator\TranslatorAwareTrait;
 
-use \Charcoal\Translator\TranslatorAwareTrait;
+// From 'charcoal-object'
+use Charcoal\Object\ObjectRoute;
+use Charcoal\Object\ObjectRouteInterface;
+use Charcoal\Object\RoutableInterface;
 
 /**
  * Generic Object Route Handler
@@ -87,16 +89,18 @@ class GenericRoute extends TemplateRoute
     protected $objectRouteClass = ObjectRoute::class;
 
     /**
-     * @var array $availableTemplates
+     * Store the available templates.
+     *
+     * @var array
      */
     protected $availableTemplates = [];
 
     /**
      * Returns new template route object.
      *
-     * @param array|\ArrayAccess $data Class depdendencies.
+     * @param array $data Class depdendencies.
      */
-    public function __construct($data)
+    public function __construct(array $data)
     {
         parent::__construct($data);
 
@@ -111,9 +115,10 @@ class GenericRoute extends TemplateRoute
      */
     public function setDependencies(Container $container)
     {
+        $this->setTranslator($container['translator']);
         $this->setModelFactory($container['model/factory']);
         $this->setCollectionLoader($container['model/collection/loader']);
-        $this->setTranslator($container['translator']);
+
         if (isset($container['config']['templates'])) {
             $this->availableTemplates = $container['config']['templates'];
         }
@@ -140,7 +145,7 @@ class GenericRoute extends TemplateRoute
             return false;
         }
 
-        return !!$contextObject->active();
+        return (!!$contextObject->active() && !!$contextObject->isActiveRoute());
     }
 
     /**
@@ -194,7 +199,7 @@ class GenericRoute extends TemplateRoute
     }
 
     /**
-     * @return GenericRoute Chainable
+     * @return self
      */
     protected function resolveTemplateContextObject()
     {
@@ -202,8 +207,11 @@ class GenericRoute extends TemplateRoute
 
         $objectRoute   = $this->loadObjectRouteFromPath();
         $contextObject = $this->loadContextObject();
+        $translator    = $this->translator();
+        $currentLang   = $objectRoute->lang();
 
-        $this->setLocale($objectRoute->lang());
+        // Set language according to the route's language
+        $this->setLocale($currentLang);
 
         $templateChoice = [];
 
@@ -213,9 +221,9 @@ class GenericRoute extends TemplateRoute
             $controllerProperty = $contextObject->property('controller_ident');
 
             // Methods from TemplateableInterface / Trait
-            $templateIdent = $contextObject->templateIdent() ? : $objectRoute->routeTemplate();
+            $templateIdent = $contextObject->templateIdent() ?: $objectRoute->routeTemplate();
             // Default fallback to routeTemplate
-            $controllerIdent = $contextObject->controllerIdent() ? : $templateIdent;
+            $controllerIdent = $contextObject->controllerIdent() ?: $templateIdent;
 
             $templateChoice = $identProperty->choice($templateIdent);
         } else {
@@ -236,10 +244,10 @@ class GenericRoute extends TemplateRoute
         // Template ident defined in template global config
         // Check for custom path / controller
         if (isset($templateChoice['template'])) {
-            $templatePath       = $templateChoice['template'];
+            $templatePath = $templateChoice['template'];
             $templateController = $templateChoice['template'];
         } else {
-            $templatePath       = $templateIdent;
+            $templatePath = $templateIdent;
             $templateController = $controllerIdent;
         }
 
@@ -248,7 +256,7 @@ class GenericRoute extends TemplateRoute
             $templateController = $templateChoice['controller'];
         }
 
-        $config['template']   = $templatePath;
+        $config['template'] = $templatePath;
         $config['controller'] = $templateController;
 
         // Always be an array
@@ -308,7 +316,7 @@ class GenericRoute extends TemplateRoute
      *
      * @param  string $className The class name of the object route model.
      * @throws InvalidArgumentException If the class name is not a string.
-     * @return GenericRoute Chainable
+     * @return self
      */
     protected function setObjectRouteClass($className)
     {
@@ -408,7 +416,7 @@ class GenericRoute extends TemplateRoute
             ->setNumPerPage(1);
 
         $collection = $loader->load();
-        $routes     = $collection->objects();
+        $routes = $collection->objects();
 
         $latestRoute = $routes[0];
 
@@ -423,7 +431,7 @@ class GenericRoute extends TemplateRoute
      * Set the specified URI path.
      *
      * @param string $path The path to use for route resolution.
-     * @return GenericRoute Chainable
+     * @return self
      */
     protected function setPath($path)
     {
@@ -436,7 +444,7 @@ class GenericRoute extends TemplateRoute
      * Set an object model factory.
      *
      * @param FactoryInterface $factory The model factory, to create objects.
-     * @return GenericRoute Chainable
+     * @return self
      */
     protected function setModelFactory(FactoryInterface $factory)
     {
@@ -449,7 +457,7 @@ class GenericRoute extends TemplateRoute
      * Set a model collection loader.
      *
      * @param CollectionLoader $loader The collection loader.
-     * @return GenericRoute Chainable
+     * @return self
      */
     public function setCollectionLoader(CollectionLoader $loader)
     {
@@ -468,10 +476,13 @@ class GenericRoute extends TemplateRoute
     {
         $translator = $this->translator();
         $translator->setLocale($langCode);
+
         $available  = $translator->locales();
         $fallbacks  = $translator->getFallbackLocales();
+
         array_unshift($fallbacks, $langCode);
         array_unique($fallbacks);
+
         $locales = [];
         foreach ($fallbacks as $code) {
             if (isset($available[$code])) {
@@ -479,6 +490,7 @@ class GenericRoute extends TemplateRoute
                 array_push($locales, ...$locale);
             }
         }
+
         if ($locales) {
             setlocale(LC_ALL, ...$locales);
         }
@@ -530,6 +542,33 @@ class GenericRoute extends TemplateRoute
         }
 
         return $this->collectionLoader;
+    }
+
+    /**
+     * @return boolean
+     */
+    protected function cacheEnabled()
+    {
+        $obj = $this->loadContextObject();
+        return $obj['cache'] ?: false;
+    }
+
+    /**
+     * @return integer
+     */
+    protected function cacheTtl()
+    {
+        $obj = $this->loadContextObject();
+        return $obj['cache_ttl'] ?: 0;
+    }
+
+    /**
+     * @return string
+     */
+    protected function cacheIdent()
+    {
+        $obj = $this->loadContextObject();
+        return $obj->objType().'.'.$obj->id();
     }
 }
 

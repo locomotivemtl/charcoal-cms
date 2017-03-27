@@ -2,25 +2,28 @@
 
 namespace Charcoal\Cms;
 
+// From 'charcoal-translator'
+use Charcoal\Translator\Translation;
+
 /**
  *
  */
 interface DocumentInterface
 {
     /**
-     * @param mixed $name The document name (localized).
-     * @return DocumentInterface Chainable
+     * @param  mixed $name The document name (localized).
+     * @return self
      */
     public function setName($name);
 
     /**
-     * @return \Charcoal\Translator\Translation
+     * @return Translation|string|null
      */
     public function name();
 
     /**
-     * @param string $file The file relative path / url (localized).
-     * @return DocumentInterface Chainable
+     * @param  string $file The file relative path / url (localized).
+     * @return self
      */
     public function setFile($file);
 

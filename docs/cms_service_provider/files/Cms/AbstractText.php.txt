@@ -2,20 +2,20 @@
 
 namespace Charcoal\Cms;
 
-// Dependencies from `charcoal-translation`
-use \Charcoal\Translator\Translation;
+// From 'charcoal-object'
+use Charcoal\Object\Content;
+use Charcoal\Object\CategorizableInterface;
+use Charcoal\Object\CategorizableTrait;
+use Charcoal\Object\PublishableInterface;
+use Charcoal\Object\PublishableTrait;
 
-// Module `charcoal-base` dependencies
-use \Charcoal\Object\Content;
-use \Charcoal\Object\CategorizableInterface;
-use \Charcoal\Object\CategorizableTrait;
-use \Charcoal\Object\PublishableInterface;
-use \Charcoal\Object\PublishableTrait;
+// From 'charcoal-translator'
+use Charcoal\Translator\Translation;
 
-// Intra-module (`charcoal-cms`) dependencies
-use \Charcoal\Cms\SearchableInterface;
-use \Charcoal\Cms\SearchableTrait;
-use \Charcoal\Cms\TextInterface;
+// From 'charcoal-cms'
+use Charcoal\Cms\SearchableInterface;
+use Charcoal\Cms\SearchableTrait;
+use Charcoal\Cms\TextInterface;
 
 /**
  * Text
@@ -31,23 +31,23 @@ abstract class AbstractText extends Content implements
     use SearchableTrait;
 
     /**
-     * @var Translation $title
+     * @var Translation|string|null
      */
     private $title;
 
     /**
-     * @var Translation $title
+     * @var Translation|string|null
      */
     private $subtitle;
 
     /**
-     * @var Translation $content
+     * @var Translation|string|null
      */
     private $content;
 
     /**
-     * @param mixed $title The news title (localized).
-     * @return Translation
+     * @param  mixed $title The news title (localized).
+     * @return TextInterface
      */
     public function setTitle($title)
     {
@@ -56,7 +56,7 @@ abstract class AbstractText extends Content implements
     }
 
     /**
-     * @return Translation
+     * @return Translation|string|null
      */
     public function title()
     {
@@ -64,8 +64,8 @@ abstract class AbstractText extends Content implements
     }
 
     /**
-     * @param mixed $subtitle The news subtitle (localized).
-     * @return Event Chainable
+     * @param  mixed $subtitle The news subtitle (localized).
+     * @return self
      */
     public function setSubtitle($subtitle)
     {
@@ -74,7 +74,7 @@ abstract class AbstractText extends Content implements
     }
 
     /**
-     * @return Translation
+     * @return Translation|string|null
      */
     public function subtitle()
     {
@@ -82,8 +82,8 @@ abstract class AbstractText extends Content implements
     }
 
     /**
-     * @param mixed $content The news content (localized).
-     * @return Event Chainable
+     * @param  mixed $content The news content (localized).
+     * @return self
      */
     public function setContent($content)
     {
@@ -92,7 +92,7 @@ abstract class AbstractText extends Content implements
     }
 
     /**
-     * @return Translation
+     * @return Translation|string|null
      */
     public function content()
     {

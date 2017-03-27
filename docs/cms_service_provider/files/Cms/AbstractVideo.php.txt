@@ -2,7 +2,8 @@
 
 namespace Charcoal\Cms;
 
-use \Charcoal\Cms\AbstractDocument;
+// From 'charcoal-cms'
+use Charcoal\Cms\AbstractDocument;
 
 /**
  * Base video class

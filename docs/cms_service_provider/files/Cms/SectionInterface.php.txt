@@ -2,6 +2,7 @@
 
 namespace Charcoal\Cms;
 
+// From 'charcoal-translator'
 use Charcoal\Translator\Translation;
 
 /**
@@ -11,7 +12,7 @@ interface SectionInterface
 {
     /**
      * @param string $type The section type.
-     * @return SectionInterface
+     * @return self
      */
     public function setSectionType($type);
 
@@ -22,23 +23,23 @@ interface SectionInterface
 
     /**
      * @param mixed $title Section title (localized).
-     * @return SectionInterface
+     * @return self
      */
     public function setTitle($title);
 
     /**
-     * @return \Charcoal\Translator\Translation
+     * @return Translation|string|null
      */
     public function title();
 
     /**
      * @param mixed $subtitle Section subtitle (localized).
-     * @return SectionInterface
+     * @return self
      */
     public function setSubtitle($subtitle);
 
     /**
-     * @return \Charcoal\Translator\Translation
+     * @return Translation|string|null
      */
     public function subtitle();
 

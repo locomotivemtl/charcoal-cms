@@ -2,23 +2,30 @@
 
 namespace Charcoal\Cms\Route;
 
-use \Pimple\Container;
+// From Pimple
+use Pimple\Container;
 
-// From PSR-7 (HTTP Messaging)
-use \Psr\Http\Message\RequestInterface;
-use \Psr\Http\Message\ResponseInterface;
+// From PSR-7
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+
+// From 'charcoal-translator'
+use Charcoal\Translator\TranslatorAwareTrait;
 
 // From 'charcoal-app'
-use \Charcoal\App\Route\TemplateRoute;
+use Charcoal\App\Route\TemplateRoute;
 
-// From 'charcoal-translation'
-use \Charcoal\Translation\TranslationConfig;
+// From 'charcoal-cms'
+use Charcoal\Cms\SectionInterface;
+use Charcoal\Object\RoutableInterface;
 
 /**
  * Section Route Handler
  */
 class SectionRoute extends TemplateRoute
 {
+    use TranslatorAwareTrait;
+
     /**
      * URI path.
      *
@@ -29,7 +36,7 @@ class SectionRoute extends TemplateRoute
     /**
      * The section object matching the URI path.
      *
-     * @var \Charcoal\Cms\SectionInterface|\Charcoal\Object\RoutableInterface
+     * @var SectionInterface|RoutableInterface
      */
     private $section;
 
@@ -41,9 +48,9 @@ class SectionRoute extends TemplateRoute
     private $objType = 'charcoal/cms/section';
 
     /**
-     * @param array|\ArrayAccess $data Class depdendencies.
+     * @param array $data Class depdendencies.
      */
-    public function __construct($data)
+    public function __construct(array $data)
     {
         parent::__construct($data);
 
@@ -68,8 +75,11 @@ class SectionRoute extends TemplateRoute
      * @param  ResponseInterface $response  A PSR-7 compatible Response instance.
      * @return ResponseInterface
      */
-    public function __invoke(Container $container, RequestInterface $request, ResponseInterface $response)
-    {
+    public function __invoke(
+        Container $container,
+        RequestInterface $request,
+        ResponseInterface $response
+    ) {
         $config = $this->config();
 
         $section = $this->loadSectionFromPath($container);
@@ -99,8 +109,9 @@ class SectionRoute extends TemplateRoute
     }
 
     /**
-     * @param Container $container Pimple DI container.
-     * @return \Charcoal\Cms\SectionInterface
+     * @todo   Add support for `@see setlocale()`; {@see GenericRoute::setLocale()}
+     * @param  Container $container Pimple DI container.
+     * @return SectionInterface
      */
     protected function loadSectionFromPath(Container $container)
     {
@@ -110,11 +121,9 @@ class SectionRoute extends TemplateRoute
 
             $this->section = $container['model/factory']->create($objType);
 
-            $translator = TranslationConfig::instance();
-
-            $langs = $translator->availableLanguages();
+            $langs = $container['translator']->availableLocales();
             $lang  = $this->section->loadFromL10n('slug', $this->path, $langs);
-            $translator->setCurrentLanguage($lang);
+            $container['translator']->setLocale($lang);
         }
 
         return $this->section;

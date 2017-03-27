@@ -2,23 +2,30 @@
 
 namespace Charcoal\Cms\Route;
 
-use \Pimple\Container;
+// From Pimple
+use Pimple\Container;
 
-// From PSR-7 (HTTP Messaging)
-use \Psr\Http\Message\RequestInterface;
-use \Psr\Http\Message\ResponseInterface;
+// From PSR-7
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+
+// From 'charcoal-translator'
+use Charcoal\Translator\TranslatorAwareTrait;
 
 // From 'charcoal-app'
-use \Charcoal\App\Route\TemplateRoute;
+use Charcoal\App\Route\TemplateRoute;
 
-// From `charcoal-translation`
-use \Charcoal\Translation\TranslationConfig;
+// From 'charcoal-cms'
+use Charcoal\Cms\EventInterface;
+use Charcoal\Object\RoutableInterface;
 
 /**
  * Event Route Handler
  */
 class EventRoute extends TemplateRoute
 {
+    use TranslatorAwareTrait;
+
     /**
      * URI path.
      *
@@ -29,7 +36,7 @@ class EventRoute extends TemplateRoute
     /**
      * The event object matching the URI path.
      *
-     * @var \Charcoal\Cms\EventInterface|\Charcoal\Object\RoutableInterface
+     * @var EventInterface|RoutableInterface
      */
     private $event;
 
@@ -41,9 +48,9 @@ class EventRoute extends TemplateRoute
     private $objType = 'charcoal/cms/event';
 
     /**
-     * @param array|\ArrayAccess $data Class depdendencies.
+     * @param array $data Class depdendencies.
      */
-    public function __construct($data)
+    public function __construct(array $data)
     {
         parent::__construct($data);
         $this->path = ltrim($data['path'], '/');
@@ -67,8 +74,11 @@ class EventRoute extends TemplateRoute
      * @param  ResponseInterface $response  A PSR-7 compatible Response instance.
      * @return ResponseInterface
      */
-    public function __invoke(Container $container, RequestInterface $request, ResponseInterface $response)
-    {
+    public function __invoke(
+        Container $container,
+        RequestInterface $request,
+        ResponseInterface $response
+    ) {
         $config = $this->config();
 
         $event = $this->loadEventFromPath($container);
@@ -97,8 +107,9 @@ class EventRoute extends TemplateRoute
     }
 
     /**
-     * @param Container $container Pimple DI container.
-     * @return \Charcoal\Cms\EventInterface
+     * @todo   Add support for `@see setlocale()`; {@see GenericRoute::setLocale()}
+     * @param  Container $container Pimple DI container.
+     * @return EventInterface
      */
     protected function loadEventFromPath(Container $container)
     {
@@ -107,12 +118,11 @@ class EventRoute extends TemplateRoute
             $objType = (isset($config['obj_type']) ? $config['obj_type'] : $this->objType);
 
             $this->event = $container['model/factory']->create($objType);
+            $this->setTranslator($container['translator']);
 
-            $translator = TranslationConfig::instance();
-
-            $langs = $translator->availableLanguages();
+            $langs = $container['translator']->availableLocales();
             $lang  = $this->event->loadFromL10n('slug', $this->path, $langs);
-            $translator->setCurrentLanguage($lang);
+            $container['translator']->setLocale($lang);
         }
 
         return $this->event;

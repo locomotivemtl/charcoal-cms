@@ -2,22 +2,32 @@
 
 namespace Charcoal\Cms;
 
-// Psr-7 dependencies
-use \DateTime;
-use \DateTimeInterface;
-use \InvalidArgumentException;
+use DateTime;
+use DateTimeInterface;
+use InvalidArgumentException;
 
-// Depedencies from `charcoal-translator`
-use \Charcoal\Translator\Translation;
+// From PSR-7
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
-// Dependencies from `charcoal-base`
-use \Charcoal\Object\Content;
-use \Charcoal\Object\CategorizableInterface;
-use \Charcoal\Object\CategorizableTrait;
-use \Charcoal\Object\PublishableInterface;
-use \Charcoal\Object\PublishableTrait;
-use \Charcoal\Object\RoutableInterface;
-use \Charcoal\Object\RoutableTrait;
+// From 'charcoal-object'
+use Charcoal\Object\Content;
+use Charcoal\Object\CategorizableInterface;
+use Charcoal\Object\CategorizableTrait;
+use Charcoal\Object\PublishableInterface;
+use Charcoal\Object\PublishableTrait;
+use Charcoal\Object\RoutableInterface;
+use Charcoal\Object\RoutableTrait;
+
+// From 'charcoal-translator'
+use Charcoal\Translator\Translation;
+
+// From 'charcoal-cms'
+use Charcoal\Cms\MetatagInterface;
+use Charcoal\Cms\NewsInterface;
+use Charcoal\Cms\SearchableInterface;
+use Charcoal\Cms\SearchableTrait;
+use Charcoal\Cms\TemplateableInterface;
 
 // Local dependencies
 use Charcoal\Cms\Support\Helpers\DateHelper;
@@ -55,37 +65,37 @@ abstract class AbstractNews extends Content implements
     protected $dateHelper;
 
     /**
-     * @var Translation $title
+     * @var Translation|string|null
      */
     private $title;
 
     /**
-     * @var Translation $title
+     * @var Translation|string|null
      */
     private $subtitle;
 
     /**
-     * @var Translation $title
+     * @var Translation|string|null
      */
     private $summary;
 
     /**
-     * @var Translation $content
+     * @var Translation|string|null
      */
     private $content;
 
     /**
-     * @var Translation $image
+     * @var Translation|string|null
      */
     private $image;
 
     /**
-     * @var DateTime $newsDate
+     * @var DateTimeInterface|null
      */
     private $newsDate;
 
     /**
-     * @var Translation $infoUrl
+     * @var Translation|string|null
      */
     private $infoUrl;
 
@@ -178,7 +188,7 @@ abstract class AbstractNews extends Content implements
 
     /**
      * @param mixed $title The news title (localized).
-     * @return NewsInterface
+     * @return self
      */
     public function setTitle($title)
     {
@@ -188,8 +198,8 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @param mixed $subtitle The news subtitle (localized).
-     * @return NewsInterface
+     * @param  mixed $subtitle The news subtitle (localized).
+     * @return self
      */
     public function setSubtitle($subtitle)
     {
@@ -200,7 +210,7 @@ abstract class AbstractNews extends Content implements
 
     /**
      * @param mixed $summary The news summary (localized).
-     * @return NewsInterface
+     * @return self
      */
     public function setSummary($summary)
     {
@@ -211,7 +221,7 @@ abstract class AbstractNews extends Content implements
 
     /**
      * @param mixed $content The news content (localized).
-     * @return NewsInterface
+     * @return self
      */
     public function setContent($content)
     {
@@ -222,7 +232,7 @@ abstract class AbstractNews extends Content implements
 
     /**
      * @param mixed $image The section main image (localized).
-     * @return NewsInterface
+     * @return self
      */
     public function setImage($image)
     {
@@ -233,7 +243,7 @@ abstract class AbstractNews extends Content implements
 
     /**
      * @param mixed $url The info URL (news source or where to find more information; localized).
-     * @return NewsInterface
+     * @return self
      */
     public function setInfoUrl($url)
     {
@@ -243,9 +253,9 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @param mixed $newsDate The news date.
+     * @param  string|DateTimeInterface $newsDate The news date.
      * @throws InvalidArgumentException If the timestamp is invalid.
-     * @return NewsInterface
+     * @return self
      */
     public function setNewsDate($newsDate)
     {
@@ -296,7 +306,7 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return Translation
+     * @return Translation|string|null
      */
     public function title()
     {
@@ -304,7 +314,7 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return Translation
+     * @return Translation|string|null
      */
     public function subtitle()
     {
@@ -312,7 +322,7 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return Translation
+     * @return Translation|string|null
      */
     public function summary()
     {
@@ -320,7 +330,7 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return Translation
+     * @return Translation|string|null
      */
     public function infoUrl()
     {
@@ -328,7 +338,7 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return DateTime|null
+     * @return DateTimeInterface|null
      */
     public function newsDate()
     {
@@ -336,7 +346,7 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return Translation
+     * @return Translation|string|null
      */
     public function content()
     {
@@ -344,7 +354,7 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return Translation
+     * @return Translation|string|null
      */
     public function image()
     {
@@ -352,7 +362,7 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return Translation
+     * @return Translation|string|null
      */
     public function defaultMetaTitle()
     {
@@ -360,23 +370,26 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return Translation
+     * @return Translation|string|null
      */
     public function defaultMetaDescription()
     {
-        $content = $this->content();
-
+        $content = $this->translator()->translation($this->content());
         if ($content instanceof Translation) {
+            $desc = [];
             foreach ($content->data() as $lang => $text) {
-                $content[$lang] = strip_tags($text);
+                $desc[$lang] = strip_tags($text);
+
             }
+
+            return $this->translator()->translation($desc);
         }
 
-        return $content;
+        return null;
     }
 
     /**
-     * @return Translation
+     * @return Translation|string|null
      */
     public function defaultMetaImage()
     {
@@ -447,6 +460,7 @@ abstract class AbstractNews extends Content implements
     {
         $this->verifyDates();
         $this->setSlug($this->generateSlug());
+        $this->generateDefaultMetaTags();
 
         return parent::preSave();
     }
@@ -461,6 +475,7 @@ abstract class AbstractNews extends Content implements
     {
         $this->verifyDates();
         $this->setSlug($this->generateSlug());
+        $this->generateDefaultMetaTags();
 
         return parent::preUpdate($properties);
     }
@@ -486,6 +501,20 @@ abstract class AbstractNews extends Content implements
         $this->generateObjectRoute($this->slug());
 
         return parent::postUpdate($properties);
+    }
+
+    /**
+     * GenericRoute checks if the route is active.
+     * Default in RoutableTrait.
+     *
+     * @return boolean
+     */
+    public function isActiveRoute()
+    {
+        return (
+            $this->active() &&
+            $this->isPublished()
+        );
     }
 }
 

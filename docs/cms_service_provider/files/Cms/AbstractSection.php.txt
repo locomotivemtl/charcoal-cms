@@ -2,41 +2,40 @@
 
 namespace Charcoal\Cms;
 
-use \InvalidArgumentException;
+use InvalidArgumentException;
 
-// Module `charcoal-core` dependencies
-use \Charcoal\Model\Collection;
+// From 'charcoal-core'
+use Charcoal\Model\Collection;
+use Charcoal\Loader\CollectionLoader;
 
-// Module `charcoal-translator` dependencies
-use \Charcoal\Translator\Translation;
+// From 'charcoal-object'
+use Charcoal\Object\Content;
+use Charcoal\Object\HierarchicalInterface;
+use Charcoal\Object\HierarchicalTrait;
+use Charcoal\Object\RoutableInterface;
+use Charcoal\Object\RoutableTrait;
 
-use \Charcoal\Loader\CollectionLoader;
+// From 'charcoal-translator'
+use Charcoal\Translator\Translation;
 
-// Module `charcoal-base` dependencies
-use \Charcoal\Object\Content;
-use \Charcoal\Object\HierarchicalInterface;
-use \Charcoal\Object\HierarchicalTrait;
-use \Charcoal\Object\RoutableInterface;
-use \Charcoal\Object\RoutableTrait;
-
-// Intra-module (`charcoal-cms`) dependencies
-use \Charcoal\Cms\MetatagInterface;
-use \Charcoal\Cms\SearchableInterface;
-use \Charcoal\Cms\SectionInterface;
-use \Charcoal\Cms\TemplateableInterface;
+// From 'charcoal-cms'
+use Charcoal\Cms\MetatagInterface;
+use Charcoal\Cms\SearchableInterface;
+use Charcoal\Cms\SectionInterface;
+use Charcoal\Cms\TemplateableInterface;
 
 /**
  * A Section is a unique, reachable page.
  *
  * ## Types of sections
- * There can be different types of ection. 4 exists in the CMS module:
+ * There can be different types of section. 4 exists in the CMS module:
  * - `blocks`
  * - `content`
  * - `empty`
  * - `external`
  *
  * ## External implementations
- * Sections imlpement the following _Interface_ / _Trait_:
+ * Sections implement the following _Interface_ / _Trait_:
  * - From the `Charcoal\Object` namespace (in `charcoal-base`)
  *   - `Hierarchical`
  *   - `Routable`
@@ -66,25 +65,27 @@ abstract class AbstractSection extends Content implements
     const DEFAULT_TYPE = self::TYPE_CONTENT;
 
     /**
-     * @var string $sectionType
+     * @var string
      */
     private $sectionType = self::DEFAULT_TYPE;
 
     /**
-     * @var Translation $title
+     * @var Translation|string|null
      */
     private $title;
+
     /**
-     * @var Translation $subtitle
+     * @var Translation|string|null
      */
     private $subtitle;
+
     /**
-     * @var Translation $content
+     * @var Translation|string|null
      */
     private $content;
 
     /**
-     * @var Translation $image
+     * @var Translation|string|null
      */
     private $image;
 
@@ -101,7 +102,7 @@ abstract class AbstractSection extends Content implements
     protected $keywords;
 
     /**
-     * @var Translation $summary
+     * @var Translation|string $summary
      */
     protected $summary;
 
@@ -192,9 +193,9 @@ abstract class AbstractSection extends Content implements
     /**
      * Set the section's type.
      *
-     * @param string $type The section type.
+     * @param  string $type The section type.
      * @throws InvalidArgumentException If the section type is not a string or not a valid section type.
-     * @return SectionInterface
+     * @return self
      */
     public function setSectionType($type)
     {
@@ -236,7 +237,7 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @param Translation|string $summary The summary.
+     * @param Translation|string|null $summary The summary.
      * @return self
      */
     public function setSummary($summary)
@@ -247,7 +248,7 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @param Translation|string $externalUrl The external url.
+     * @param Translation|string|null $externalUrl The external url.
      * @return self
      */
     public function setExternalUrl($externalUrl)
@@ -270,7 +271,7 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @param mixed $title The section title (localized).
+     * @param Translation|string|null $title The section title (localized).
      * @return self
      */
     public function setTitle($title)
@@ -281,7 +282,7 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @param mixed $subtitle The section subtitle (localized).
+     * @param Translation|string|null $subtitle The section subtitle (localized).
      * @return self
      */
     public function setSubtitle($subtitle)
@@ -292,7 +293,7 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @param mixed $content The section content (localized).
+     * @param Translation|string|null $content The section content (localized).
      * @return self
      */
     public function setContent($content)
@@ -328,7 +329,7 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @return Translation
+     * @return Translation|string|null
      */
     public function title()
     {
@@ -336,7 +337,7 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @return Translation
+     * @return Translation|string|null
      */
     public function subtitle()
     {
@@ -344,7 +345,7 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @return Translation
+     * @return Translation|string|null
      */
     public function content()
     {
@@ -352,7 +353,7 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @return Translation
+     * @return Translation|string|null
      */
     public function image()
     {
@@ -362,7 +363,7 @@ abstract class AbstractSection extends Content implements
     /**
      * Retrieve the menus this object belongs to.
      *
-     * @return string|Translation
+     * @return Translation|string|null
      */
     public function inMenu()
     {
@@ -380,7 +381,9 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @return Translation
+     * HierarchicalTrait > loadChildren
+     *
+     * @return Translation|string|null
      */
     public function summary()
     {
@@ -388,7 +391,7 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @return string
+     * @return Translation|string|null
      */
     public function externalUrl()
     {
@@ -410,8 +413,8 @@ abstract class AbstractSection extends Content implements
     /**
      * MetatagTrait > canonicalUrl
      *
-     * @return string
      * @todo
+     * @return string
      */
     public function canonicalUrl()
     {
@@ -419,7 +422,7 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @return Translation
+     * @return Translation|string|null
      */
     public function defaultMetaTitle()
     {
@@ -427,23 +430,25 @@ abstract class AbstractSection extends Content implements
     }
 
     /**
-     * @return Translation
+     * @return Translation|string|null
      */
     public function defaultMetaDescription()
     {
-        $content = $this->content();
-
+        $content = $this->translator()->translation($this->content());
         if ($content instanceof Translation) {
+            $desc = [];
             foreach ($content->data() as $lang => $text) {
-                $content[$lang] = strip_tags($text);
+                $desc[$lang] = strip_tags($text);
             }
+
+            return $this->translator()->translation($desc);
         }
 
-        return $content;
+        return null;
     }
 
     /**
-     * @return Translation
+     * @return Translation|string|null
      */
     public function defaultMetaImage()
     {
@@ -490,7 +495,6 @@ abstract class AbstractSection extends Content implements
 
         return $value;
     }
-
 
     // ==========================================================================
     // EVENTS

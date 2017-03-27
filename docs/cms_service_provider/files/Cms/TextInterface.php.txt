@@ -2,41 +2,44 @@
 
 namespace Charcoal\Cms;
 
+// From 'charcoal-translator'
+use Charcoal\Translator\Translation;
+
 /**
  *
  */
 interface TextInterface
 {
     /**
-     * @param mixed $title News title (localized).
-     * @return \Charcoal\Translator\Translation
+     * @param  mixed $title Text title (localized).
+     * @return self
      */
     public function setTitle($title);
 
     /**
-     * @return \Charcoal\Translator\Translation
+     * @return Translation|string|null
      */
     public function title();
 
     /**
-     * @param mixed $subtitle News subtitle (localized).
-     * @return NewsInterface Chainable
+     * @param mixed $subtitle Text subtitle (localized).
+     * @return self
      */
     public function setSubtitle($subtitle);
 
     /**
-     * @return \Charcoal\Translator\Translation
+     * @return Translation|string|null
      */
     public function subtitle();
 
     /**
-     * @param mixed $content News content (localized).
-     * @return NewsInterface Chainable
+     * @param  mixed $content Text content (localized).
+     * @return self
      */
     public function setContent($content);
 
     /**
-     * @return \Charcoal\Translator\Translation
+     * @return Translation|string|null
      */
     public function content();
 }

@@ -2,16 +2,21 @@
 
 namespace Charcoal\Cms;
 
-use \Charcoal\Object\Content;
-use \Charcoal\Object\CategorizableInterface;
-use \Charcoal\Object\CategorizableTrait;
-use \Charcoal\Object\PublishableInterface;
-use \Charcoal\Object\PublishableTrait;
+// From 'charcoal-object'
+use Charcoal\Object\Content;
+use Charcoal\Object\CategorizableInterface;
+use Charcoal\Object\CategorizableTrait;
+use Charcoal\Object\PublishableInterface;
+use Charcoal\Object\PublishableTrait;
 
-use \Charcoal\Cms\FaqInterface;
-use \Charcoal\Cms\MetatagInterface;
-use \Charcoal\Cms\SearchableInterface;
-use \Charcoal\Cms\Searchabletrait;
+// From 'charcoal-translator'
+use Charcoal\Translator\Translation;
+
+// From 'charcoal-cms'
+use Charcoal\Cms\FaqInterface;
+use Charcoal\Cms\MetatagInterface;
+use Charcoal\Cms\SearchableInterface;
+use Charcoal\Cms\Searchabletrait;
 
 /**
  * FAQ Entry.
@@ -27,19 +32,20 @@ abstract class AbstractFaq extends Content implements
     use SearchableTrait;
 
     /**
-     * The question, or "title", of this entry
-     * @var Translation $question
+     * The question, or "title", of this entry.
+     *
+     * @var Translation|string|null
      */
     private $question;
 
     /**
-     * @var Translation $answer
+     * @var Translation|string|null
      */
     private $answer;
 
     /**
-     * @param mixed $question The question (localized).
-     * @return FaqInterface Chainable
+     * @param  mixed $question The question (localized).
+     * @return self
      */
     public function setQuestion($question)
     {
@@ -48,7 +54,7 @@ abstract class AbstractFaq extends Content implements
     }
 
     /**
-     * @return Translation|null
+     * @return Translation|string|null
      */
     public function question()
     {
@@ -56,8 +62,8 @@ abstract class AbstractFaq extends Content implements
     }
 
     /**
-     * @param mixed $answer The answer (localized).
-     * @return FaqInterface Chainable
+     * @param  mixed $answer The answer (localized).
+     * @return self
      */
     public function setAnswer($answer)
     {
@@ -66,7 +72,7 @@ abstract class AbstractFaq extends Content implements
     }
 
     /**
-     * @return Translation|null
+     * @return Translation|string|null
      */
     public function answer()
     {
