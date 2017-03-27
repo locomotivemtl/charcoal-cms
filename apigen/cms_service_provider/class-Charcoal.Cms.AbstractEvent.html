@@ -71,6 +71,11 @@
 
 						</li>
 				<li>
+					<a href="namespace-Charcoal.Cms.Section.html">
+						Section					</a>
+
+						</li>
+				<li>
 					<a href="namespace-Charcoal.Cms.Service.html">
 						Service<span></span>
 					</a>
@@ -140,8 +145,10 @@
 				<li><a href="class-Charcoal.Cms.Config.html">Config</a></li>
 				<li><a href="class-Charcoal.Cms.Document.html">Document</a></li>
 				<li><a href="class-Charcoal.Cms.DocumentCategory.html">DocumentCategory</a></li>
+				<li><a href="class-Charcoal.Cms.EmptySection.html">EmptySection</a></li>
 				<li><a href="class-Charcoal.Cms.Event.html">Event</a></li>
 				<li><a href="class-Charcoal.Cms.EventCategory.html">EventCategory</a></li>
+				<li><a href="class-Charcoal.Cms.ExternalSection.html">ExternalSection</a></li>
 				<li><a href="class-Charcoal.Cms.Faq.html">Faq</a></li>
 				<li><a href="class-Charcoal.Cms.FaqCategory.html">FaqCategory</a></li>
 				<li><a href="class-Charcoal.Cms.Image.html">Image</a></li>
@@ -276,7 +283,7 @@ Charcoal\Object\Content
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Cms.html">Cms</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Cms.AbstractEvent.html#29-313" title="Go to source code">Charcoal/Cms/AbstractEvent.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Cms.AbstractEvent.html#34-336" title="Go to source code">Charcoal/Cms/AbstractEvent.php</a>
 		<br>
 	</div>
 
@@ -289,14 +296,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Cms.EventInterface.html">Charcoal\Cms\EventInterface</a></code>
+			<code><a href="class-Charcoal.Cms.AbstractEvent.html">Charcoal\Cms\AbstractEvent</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setTitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#83-92" title="Go to source code">setTitle</a>( <span>mixed <var>$title</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#88-97" title="Go to source code">setTitle</a>( <span>mixed <var>$title</var></span> )</code>
 
 		<div class="description short">
 			
@@ -314,7 +321,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.EventInterface.html">Charcoal\Cms\EventInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.AbstractEvent.html">Charcoal\Cms\AbstractEvent</a></code>
 				</div>
 
 
@@ -330,14 +337,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			Charcoal\Translator\Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_title">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#94-100" title="Go to source code">title</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#99-105" title="Go to source code">title</a>( )</code>
 
 		<div class="description short">
 			
@@ -350,7 +357,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					Charcoal\Translator\Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -366,14 +373,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Cms.EventInterface.html">Charcoal\Cms\EventInterface</a></code>
+			<code><a href="class-Charcoal.Cms.AbstractEvent.html">Charcoal\Cms\AbstractEvent</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSubtitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#102-111" title="Go to source code">setSubtitle</a>( <span>mixed <var>$subtitle</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#107-116" title="Go to source code">setSubtitle</a>( <span>mixed <var>$subtitle</var></span> )</code>
 
 		<div class="description short">
 			
@@ -391,7 +398,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.EventInterface.html">Charcoal\Cms\EventInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.AbstractEvent.html">Charcoal\Cms\AbstractEvent</a></code>
 				</div>
 
 
@@ -407,14 +414,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			Charcoal\Translator\Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_subtitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#113-119" title="Go to source code">subtitle</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#118-124" title="Go to source code">subtitle</a>( )</code>
 
 		<div class="description short">
 			
@@ -427,7 +434,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					Charcoal\Translator\Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -443,14 +450,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Cms.EventInterface.html">Charcoal\Cms\EventInterface</a></code>
+			<code><a href="class-Charcoal.Cms.AbstractEvent.html">Charcoal\Cms\AbstractEvent</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSummary">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#121-130" title="Go to source code">setSummary</a>( <span>mixed <var>$summary</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#126-135" title="Go to source code">setSummary</a>( <span>mixed <var>$summary</var></span> )</code>
 
 		<div class="description short">
 			
@@ -468,7 +475,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.EventInterface.html">Charcoal\Cms\EventInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.AbstractEvent.html">Charcoal\Cms\AbstractEvent</a></code>
 				</div>
 
 
@@ -482,14 +489,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			Charcoal\Translator\Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_summary">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#132-138" title="Go to source code">summary</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#137-143" title="Go to source code">summary</a>( )</code>
 
 		<div class="description short">
 			
@@ -502,7 +509,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					Charcoal\Translator\Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -516,14 +523,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Cms.EventInterface.html">Charcoal\Cms\EventInterface</a></code>
+			<code><a href="class-Charcoal.Cms.AbstractEvent.html">Charcoal\Cms\AbstractEvent</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setContent">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#140-149" title="Go to source code">setContent</a>( <span>mixed <var>$content</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#145-154" title="Go to source code">setContent</a>( <span>mixed <var>$content</var></span> )</code>
 
 		<div class="description short">
 			
@@ -541,7 +548,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.EventInterface.html">Charcoal\Cms\EventInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.AbstractEvent.html">Charcoal\Cms\AbstractEvent</a></code>
 				</div>
 
 
@@ -557,14 +564,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			Charcoal\Translator\Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_content">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#151-157" title="Go to source code">content</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#156-162" title="Go to source code">content</a>( )</code>
 
 		<div class="description short">
 			
@@ -577,7 +584,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					Charcoal\Translator\Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -593,14 +600,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Cms.EventInterface.html">Charcoal\Cms\EventInterface</a></code>
+			<code><a href="class-Charcoal.Cms.AbstractEvent.html">Charcoal\Cms\AbstractEvent</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setImage">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#159-168" title="Go to source code">setImage</a>( <span>mixed <var>$image</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#164-173" title="Go to source code">setImage</a>( <span>mixed <var>$image</var></span> )</code>
 
 		<div class="description short">
 			
@@ -618,7 +625,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.EventInterface.html">Charcoal\Cms\EventInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.AbstractEvent.html">Charcoal\Cms\AbstractEvent</a></code>
 				</div>
 
 
@@ -632,14 +639,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			Charcoal\Translator\Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_image">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#170-176" title="Go to source code">image</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#175-181" title="Go to source code">image</a>( )</code>
 
 		<div class="description short">
 			
@@ -652,7 +659,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					Charcoal\Translator\Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -666,14 +673,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Cms.EventInterface.html">Charcoal\Cms\EventInterface</a></code>
+			<code><a href="class-Charcoal.Cms.AbstractEvent.html">Charcoal\Cms\AbstractEvent</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setStartDate">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#178-201" title="Go to source code">setStartDate</a>( <span>string|DateTime <var>$startDate</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#183-206" title="Go to source code">setStartDate</a>( <span>string|DateTimeInterface <var>$startDate</var></span> )</code>
 
 		<div class="description short">
 			
@@ -691,7 +698,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.EventInterface.html">Charcoal\Cms\EventInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.AbstractEvent.html">Charcoal\Cms\AbstractEvent</a></code>
 				</div>
 
 				<h4>Throws</h4>
@@ -711,14 +718,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			DateTime|null
+			DateTimeInterface|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_startDate">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#203-209" title="Go to source code">startDate</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#208-214" title="Go to source code">startDate</a>( )</code>
 
 		<div class="description short">
 			
@@ -731,7 +738,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					DateTime|null
+					DateTimeInterface|null
 				</div>
 
 
@@ -747,14 +754,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Cms.EventInterface.html">Charcoal\Cms\EventInterface</a></code>
+			<code><a href="class-Charcoal.Cms.AbstractEvent.html">Charcoal\Cms\AbstractEvent</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setEndDate">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#211-234" title="Go to source code">setEndDate</a>( <span>string|DateTime <var>$endDate</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#216-239" title="Go to source code">setEndDate</a>( <span>string|DateTimeInterface <var>$endDate</var></span> )</code>
 
 		<div class="description short">
 			
@@ -772,7 +779,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.EventInterface.html">Charcoal\Cms\EventInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.AbstractEvent.html">Charcoal\Cms\AbstractEvent</a></code>
 				</div>
 
 				<h4>Throws</h4>
@@ -792,14 +799,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			DateTime|null
+			DateTimeInterface|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_endDate">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#236-242" title="Go to source code">endDate</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#241-247" title="Go to source code">endDate</a>( )</code>
 
 		<div class="description short">
 			
@@ -812,7 +819,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					DateTime|null
+					DateTimeInterface|null
 				</div>
 
 
@@ -835,7 +842,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_canonicalUrl">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#244-253" title="Go to source code">canonicalUrl</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#249-258" title="Go to source code">canonicalUrl</a>( )</code>
 
 		<div class="description short">
 			<p>MetatagTrait > canonical_url</p>
@@ -864,14 +871,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			Charcoal\Translator\Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_defaultMetaTitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#255-261" title="Go to source code">defaultMetaTitle</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#260-266" title="Go to source code">defaultMetaTitle</a>( )</code>
 
 		<div class="description short">
 			
@@ -884,7 +891,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					Charcoal\Translator\Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -900,14 +907,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			Charcoal\Translator\Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_defaultMetaDescription">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#263-277" title="Go to source code">defaultMetaDescription</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#268-284" title="Go to source code">defaultMetaDescription</a>( )</code>
 
 		<div class="description short">
 			
@@ -920,7 +927,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					Charcoal\Translator\Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -936,14 +943,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			Charcoal\Translator\Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_defaultMetaImage">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#279-285" title="Go to source code">defaultMetaImage</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#286-292" title="Go to source code">defaultMetaImage</a>( )</code>
 
 		<div class="description short">
 			
@@ -956,7 +963,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					Charcoal\Translator\Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -979,7 +986,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_preSave">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#287-297" title="Go to source code">preSave</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#294-305" title="Go to source code">preSave</a>( )</code>
 
 		<div class="description short">
 			
@@ -1013,7 +1020,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_preUpdate">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#299-312" title="Go to source code">preUpdate</a>( <span>array <var>$properties</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#307-321" title="Go to source code">preUpdate</a>( <span>array <var>$properties</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1028,6 +1035,42 @@ Charcoal\Object\Content
 					<dt><var>$properties</var></dt>
 					<dd>Optional properties to update.</dd>
 				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isActiveRoute" id="_isActiveRoute">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isActiveRoute">#</a>
+		<code><a href="source-class-Charcoal.Cms.AbstractEvent.html#323-335" title="Go to source code">isActiveRoute</a>( )</code>
+
+		<div class="description short">
+			<p>GenericRoute checks if the route is active.
+Default in RoutableTrait.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>GenericRoute checks if the route is active.
+Default in RoutableTrait.</p>
+
+
 
 				<h4>Returns</h4>
 				<div class="list">

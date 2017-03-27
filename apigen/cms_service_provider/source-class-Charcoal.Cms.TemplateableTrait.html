@@ -72,6 +72,11 @@
 
 						</li>
 				<li>
+					<a href="namespace-Charcoal.Cms.Section.html">
+						Section					</a>
+
+						</li>
+				<li>
 					<a href="namespace-Charcoal.Cms.Service.html">
 						Service<span></span>
 					</a>
@@ -147,8 +152,10 @@
 				<li><a href="class-Charcoal.Cms.Config.SectionConfig.html">Charcoal\Cms\Config\SectionConfig</a></li>
 				<li><a href="class-Charcoal.Cms.Document.html">Charcoal\Cms\Document</a></li>
 				<li><a href="class-Charcoal.Cms.DocumentCategory.html">Charcoal\Cms\DocumentCategory</a></li>
+				<li><a href="class-Charcoal.Cms.EmptySection.html">Charcoal\Cms\EmptySection</a></li>
 				<li><a href="class-Charcoal.Cms.Event.html">Charcoal\Cms\Event</a></li>
 				<li><a href="class-Charcoal.Cms.EventCategory.html">Charcoal\Cms\EventCategory</a></li>
+				<li><a href="class-Charcoal.Cms.ExternalSection.html">Charcoal\Cms\ExternalSection</a></li>
 				<li><a href="class-Charcoal.Cms.Faq.html">Charcoal\Cms\Faq</a></li>
 				<li><a href="class-Charcoal.Cms.FaqCategory.html">Charcoal\Cms\FaqCategory</a></li>
 				<li><a href="class-Charcoal.Cms.Image.html">Charcoal\Cms\Image</a></li>
@@ -160,6 +167,8 @@
 				<li><a href="class-Charcoal.Cms.Route.NewsRoute.html">Charcoal\Cms\Route\NewsRoute</a></li>
 				<li><a href="class-Charcoal.Cms.Route.SectionRoute.html">Charcoal\Cms\Route\SectionRoute</a></li>
 				<li><a href="class-Charcoal.Cms.Section.html">Charcoal\Cms\Section</a></li>
+				<li><a href="class-Charcoal.Cms.Section.BlocksSection.html">Charcoal\Cms\Section\BlocksSection</a></li>
+				<li><a href="class-Charcoal.Cms.Section.ContentSection.html">Charcoal\Cms\Section\ContentSection</a></li>
 				<li><a href="class-Charcoal.Cms.Service.Loader.AbstractLoader.html">Charcoal\Cms\Service\Loader\AbstractLoader</a></li>
 				<li><a href="class-Charcoal.Cms.Service.Loader.EventLoader.html">Charcoal\Cms\Service\Loader\EventLoader</a></li>
 				<li><a href="class-Charcoal.Cms.Service.Loader.NewsLoader.html">Charcoal\Cms\Service\Loader\NewsLoader</a></li>
@@ -275,7 +284,7 @@
 </span></span><span id="33" class="l"><a href="#33"> 33: </a><span class="php-comment">     * Set the renderable object's template identifier.
 </span></span><span id="34" class="l"><a href="#34"> 34: </a><span class="php-comment">     *
 </span></span><span id="35" class="l"><a href="#35"> 35: </a><span class="php-comment">     * @param  mixed $template The template ID.
-</span></span><span id="36" class="l"><a href="#36"> 36: </a><span class="php-comment">     * @return TemplateableInterface Chainable
+</span></span><span id="36" class="l"><a href="#36"> 36: </a><span class="php-comment">     * @return self
 </span></span><span id="37" class="l"><a href="#37"> 37: </a><span class="php-comment">     */</span>
 </span><span id="38" class="l"><a href="#38"> 38: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setTemplateIdent(<span class="php-var">$template</span>)
 </span><span id="39" class="l"><a href="#39"> 39: </a>    {
@@ -298,7 +307,7 @@
 </span></span><span id="56" class="l"><a href="#56"> 56: </a><span class="php-comment">     * Set the renderable object's template controller identifier.
 </span></span><span id="57" class="l"><a href="#57"> 57: </a><span class="php-comment">     *
 </span></span><span id="58" class="l"><a href="#58"> 58: </a><span class="php-comment">     * @param  mixed $ident The template controller identifier.
-</span></span><span id="59" class="l"><a href="#59"> 59: </a><span class="php-comment">     * @return TemplateableInterface Chainable
+</span></span><span id="59" class="l"><a href="#59"> 59: </a><span class="php-comment">     * @return self
 </span></span><span id="60" class="l"><a href="#60"> 60: </a><span class="php-comment">     */</span>
 </span><span id="61" class="l"><a href="#61"> 61: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setControllerIdent(<span class="php-var">$ident</span>)
 </span><span id="62" class="l"><a href="#62"> 62: </a>    {
@@ -321,7 +330,7 @@
 </span></span><span id="79" class="l"><a href="#79"> 79: </a><span class="php-comment">     * Customize the template's options.
 </span></span><span id="80" class="l"><a href="#80"> 80: </a><span class="php-comment">     *
 </span></span><span id="81" class="l"><a href="#81"> 81: </a><span class="php-comment">     * @param  mixed $options Template options.
-</span></span><span id="82" class="l"><a href="#82"> 82: </a><span class="php-comment">     * @return TemplateableInterface Chainable
+</span></span><span id="82" class="l"><a href="#82"> 82: </a><span class="php-comment">     * @return self
 </span></span><span id="83" class="l"><a href="#83"> 83: </a><span class="php-comment">     */</span>
 </span><span id="84" class="l"><a href="#84"> 84: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setTemplateOptions(<span class="php-var">$options</span>)
 </span><span id="85" class="l"><a href="#85"> 85: </a>    {
@@ -352,6 +361,6 @@
 </div>
 </div>
 <script src="resources/combined.js?05de1fc8e13e6c0a22074df5eebe21ba985830eb"></script>
-<script src="elementlist.js?7d6db3d1f396d3c5b5e2cdb20c6896850863c4c8"></script>
+<script src="elementlist.js?7d7b79399a55d33d0632b30993a6acfe6953a823"></script>
 </body>
 </html>

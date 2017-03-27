@@ -71,6 +71,11 @@
 
 						</li>
 				<li>
+					<a href="namespace-Charcoal.Cms.Section.html">
+						Section					</a>
+
+						</li>
+				<li>
 					<a href="namespace-Charcoal.Cms.Service.html">
 						Service<span></span>
 					</a>
@@ -140,8 +145,10 @@
 				<li><a href="class-Charcoal.Cms.Config.html">Config</a></li>
 				<li><a href="class-Charcoal.Cms.Document.html">Document</a></li>
 				<li><a href="class-Charcoal.Cms.DocumentCategory.html">DocumentCategory</a></li>
+				<li><a href="class-Charcoal.Cms.EmptySection.html">EmptySection</a></li>
 				<li><a href="class-Charcoal.Cms.Event.html">Event</a></li>
 				<li><a href="class-Charcoal.Cms.EventCategory.html">EventCategory</a></li>
+				<li><a href="class-Charcoal.Cms.ExternalSection.html">ExternalSection</a></li>
 				<li><a href="class-Charcoal.Cms.Faq.html">Faq</a></li>
 				<li><a href="class-Charcoal.Cms.FaqCategory.html">FaqCategory</a></li>
 				<li><a href="class-Charcoal.Cms.Image.html">Image</a></li>
@@ -220,7 +227,7 @@
 
 <h2>Types of sections</h2>
 
-<p>There can be different types of ection. 4 exists in the CMS module:
+<p>There can be different types of section. 4 exists in the CMS module:
 - <code>blocks</code>
 - <code>content</code>
 - <code>empty</code>
@@ -228,7 +235,7 @@
 
 <h2>External implementations</h2>
 
-<p>Sections imlpement the following <em>Interface</em> / <em>Trait</em>:
+<p>Sections implement the following <em>Interface</em> / <em>Trait</em>:
 - From the <code>Charcoal\Object</code> namespace (in <code>charcoal-base</code>) - <code>Hierarchical</code> - <code>Routable</code>
 - From the local <code>Charcoal\Cms</code> namespace - <code>Metatag</code> - <code>Searchable</code></p>
 	</div>
@@ -274,7 +281,11 @@ Charcoal\Object\Content
 
 	<div>
 		<h4>Direct known subclasses</h4>
-			<a href="class-Charcoal.Cms.Section.html">Charcoal\Cms\Section</a>
+			<a href="class-Charcoal.Cms.EmptySection.html">Charcoal\Cms\EmptySection</a>, 
+			<a href="class-Charcoal.Cms.ExternalSection.html">Charcoal\Cms\ExternalSection</a>, 
+			<a href="class-Charcoal.Cms.Section.html">Charcoal\Cms\Section</a>, 
+			<a href="class-Charcoal.Cms.Section.BlocksSection.html">Charcoal\Cms\Section\BlocksSection</a>, 
+			<a href="class-Charcoal.Cms.Section.ContentSection.html">Charcoal\Cms\Section\ContentSection</a>
 	</div>
 
 
@@ -288,7 +299,7 @@ Charcoal\Object\Content
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Cms.html">Cms</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Cms.AbstractSection.html#28-577" title="Go to source code">Charcoal/Cms/AbstractSection.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Cms.AbstractSection.html#27-581" title="Go to source code">Charcoal/Cms/AbstractSection.php</a>
 		<br>
 	</div>
 
@@ -308,7 +319,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#122-133" title="Go to source code">__construct</a>( <span>array <var>$data</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#123-134" title="Go to source code">__construct</a>( <span>array <var>$data</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			<p>Section constructor.</p>
@@ -343,7 +354,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isDeletable">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#139-147" title="Go to source code">isDeletable</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#140-148" title="Go to source code">isDeletable</a>( )</code>
 
 		<div class="description short">
 			<p>Determine if the object can be deleted.</p>
@@ -377,7 +388,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_hierarchicalLabel">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#149-157" title="Go to source code">hierarchicalLabel</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#150-158" title="Go to source code">hierarchicalLabel</a>( )</code>
 
 		<div class="description short">
 			<p>Retrieve the object's title.</p>
@@ -411,7 +422,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_loadChildren">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#159-186" title="Go to source code">loadChildren</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#160-187" title="Go to source code">loadChildren</a>( )</code>
 
 		<div class="description short">
 			<p>HierarchicalTrait > loadChildren</p>
@@ -438,14 +449,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Cms.SectionInterface.html">Charcoal\Cms\SectionInterface</a></code>
+			<code><a href="class-Charcoal.Cms.AbstractSection.html">Charcoal\Cms\AbstractSection</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSectionType">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#192-210" title="Go to source code">setSectionType</a>( <span>string <var>$type</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#193-211" title="Go to source code">setSectionType</a>( <span>string <var>$type</var></span> )</code>
 
 		<div class="description short">
 			<p>Set the section's type.</p>
@@ -463,7 +474,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.SectionInterface.html">Charcoal\Cms\SectionInterface</a></code>
+					<code><a href="class-Charcoal.Cms.AbstractSection.html">Charcoal\Cms\AbstractSection</a></code>
 				</div>
 
 				<h4>Throws</h4>
@@ -490,7 +501,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setInMenu">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#212-223" title="Go to source code">setInMenu</a>( <span>string|string[] <var>$menu</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#213-224" title="Go to source code">setInMenu</a>( <span>string|string[] <var>$menu</var></span> )</code>
 
 		<div class="description short">
 			<p>Set the menus this object belongs to.</p>
@@ -531,7 +542,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setKeywords">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#225-236" title="Go to source code">setKeywords</a>( <span>string|string[] <var>$keywords</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#226-237" title="Go to source code">setKeywords</a>( <span>string|string[] <var>$keywords</var></span> )</code>
 
 		<div class="description short">
 			<p>Set the object's keywords.</p>
@@ -572,7 +583,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSummary">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#238-247" title="Go to source code">setSummary</a>( <span>Charcoal\Translator\Translation|string <var>$summary</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#239-248" title="Go to source code">setSummary</a>( <span>Charcoal\Translator\Translation|string|null <var>$summary</var></span> )</code>
 
 		<div class="description short">
 			
@@ -613,7 +624,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setExternalUrl">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#249-258" title="Go to source code">setExternalUrl</a>( <span>Charcoal\Translator\Translation|string <var>$externalUrl</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#250-259" title="Go to source code">setExternalUrl</a>( <span>Charcoal\Translator\Translation|string|null <var>$externalUrl</var></span> )</code>
 
 		<div class="description short">
 			
@@ -654,7 +665,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setLocked">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#260-270" title="Go to source code">setLocked</a>( <span>boolean <var>$locked</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#261-271" title="Go to source code">setLocked</a>( <span>boolean <var>$locked</var></span> )</code>
 
 		<div class="description short">
 			<p>Section is locked when you can't change the URL</p>
@@ -695,7 +706,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setTitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#272-281" title="Go to source code">setTitle</a>( <span>mixed <var>$title</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#273-282" title="Go to source code">setTitle</a>( <span>Charcoal\Translator\Translation|string|null <var>$title</var></span> )</code>
 
 		<div class="description short">
 			
@@ -736,7 +747,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setSubtitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#283-292" title="Go to source code">setSubtitle</a>( <span>mixed <var>$subtitle</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#284-293" title="Go to source code">setSubtitle</a>( <span>Charcoal\Translator\Translation|string|null <var>$subtitle</var></span> )</code>
 
 		<div class="description short">
 			
@@ -777,7 +788,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setContent">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#294-303" title="Go to source code">setContent</a>( <span>mixed <var>$content</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#295-304" title="Go to source code">setContent</a>( <span>Charcoal\Translator\Translation|string|null <var>$content</var></span> )</code>
 
 		<div class="description short">
 			
@@ -818,7 +829,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setImage">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#305-314" title="Go to source code">setImage</a>( <span>mixed <var>$image</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#306-315" title="Go to source code">setImage</a>( <span>mixed <var>$image</var></span> )</code>
 
 		<div class="description short">
 			
@@ -859,7 +870,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_sectionType">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#320-328" title="Go to source code">sectionType</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#321-329" title="Go to source code">sectionType</a>( )</code>
 
 		<div class="description short">
 			<p>Retrieve the section's type.</p>
@@ -888,14 +899,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			Charcoal\Translator\Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_title">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#330-336" title="Go to source code">title</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#331-337" title="Go to source code">title</a>( )</code>
 
 		<div class="description short">
 			
@@ -908,7 +919,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					Charcoal\Translator\Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -924,14 +935,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			Charcoal\Translator\Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_subtitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#338-344" title="Go to source code">subtitle</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#339-345" title="Go to source code">subtitle</a>( )</code>
 
 		<div class="description short">
 			
@@ -944,7 +955,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					Charcoal\Translator\Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -960,14 +971,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			Charcoal\Translator\Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_content">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#346-352" title="Go to source code">content</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#347-353" title="Go to source code">content</a>( )</code>
 
 		<div class="description short">
 			
@@ -980,7 +991,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					Charcoal\Translator\Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -996,14 +1007,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			Charcoal\Translator\Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_image">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#354-360" title="Go to source code">image</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#355-361" title="Go to source code">image</a>( )</code>
 
 		<div class="description short">
 			
@@ -1016,7 +1027,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					Charcoal\Translator\Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -1032,14 +1043,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			string|Charcoal\Translator\Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_inMenu">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#362-370" title="Go to source code">inMenu</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#363-371" title="Go to source code">inMenu</a>( )</code>
 
 		<div class="description short">
 			<p>Retrieve the menus this object belongs to.</p>
@@ -1052,7 +1063,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					string|Charcoal\Translator\Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -1075,7 +1086,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_keywords">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#372-380" title="Go to source code">keywords</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#373-381" title="Go to source code">keywords</a>( )</code>
 
 		<div class="description short">
 			<p>Retrieve the object's keywords.</p>
@@ -1104,27 +1115,27 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			Charcoal\Translator\Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_summary">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#382-388" title="Go to source code">summary</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#383-391" title="Go to source code">summary</a>( )</code>
 
 		<div class="description short">
-			
+			<p>HierarchicalTrait > loadChildren</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>HierarchicalTrait > loadChildren</p>
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					Charcoal\Translator\Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -1140,14 +1151,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			string
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_externalUrl">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#390-396" title="Go to source code">externalUrl</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#393-399" title="Go to source code">externalUrl</a>( )</code>
 
 		<div class="description short">
 			
@@ -1160,7 +1171,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					string
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -1183,7 +1194,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_locked">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#398-404" title="Go to source code">locked</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#401-407" title="Go to source code">locked</a>( )</code>
 
 		<div class="description short">
 			
@@ -1219,7 +1230,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_canonicalUrl">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#410-419" title="Go to source code">canonicalUrl</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#413-422" title="Go to source code">canonicalUrl</a>( )</code>
 
 		<div class="description short">
 			<p>MetatagTrait > canonicalUrl</p>
@@ -1248,14 +1259,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			Charcoal\Translator\Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_defaultMetaTitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#421-427" title="Go to source code">defaultMetaTitle</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#424-430" title="Go to source code">defaultMetaTitle</a>( )</code>
 
 		<div class="description short">
 			
@@ -1268,7 +1279,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					Charcoal\Translator\Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -1284,14 +1295,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			Charcoal\Translator\Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_defaultMetaDescription">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#429-443" title="Go to source code">defaultMetaDescription</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#432-448" title="Go to source code">defaultMetaDescription</a>( )</code>
 
 		<div class="description short">
 			
@@ -1304,7 +1315,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					Charcoal\Translator\Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -1320,14 +1331,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			Charcoal\Translator\Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_defaultMetaImage">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#445-451" title="Go to source code">defaultMetaImage</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#450-456" title="Go to source code">defaultMetaImage</a>( )</code>
 
 		<div class="description short">
 			
@@ -1340,7 +1351,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					Charcoal\Translator\Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -1363,7 +1374,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_parseAsMultiple">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#457-492" title="Go to source code">parseAsMultiple</a>( <span>mixed <var>$value</var></span>, <span>string|PropertyInterface <var>$separator</var> = <span class="php-quote">','</span></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#462-497" title="Go to source code">parseAsMultiple</a>( <span>mixed <var>$value</var></span>, <span>string|PropertyInterface <var>$separator</var> = <span class="php-quote">','</span></span> )</code>
 
 		<div class="description short">
 			<p>Parse the property value as a "multiple" value type.</p>
@@ -1404,7 +1415,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_postSave">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#499-514" title="Go to source code">postSave</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#503-518" title="Go to source code">postSave</a>( )</code>
 
 		<div class="description short">
 			<p>Route generated on postSave in case
@@ -1442,7 +1453,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_postUpdate">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#516-529" title="Go to source code">postUpdate</a>( <span>array <var>$properties</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#520-533" title="Go to source code">postUpdate</a>( <span>array <var>$properties</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			<p>Check whatever before the update.</p>
@@ -1481,7 +1492,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_preSave">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#531-543" title="Go to source code">preSave</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#535-547" title="Go to source code">preSave</a>( )</code>
 
 		<div class="description short">
 			
@@ -1515,7 +1526,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_preUpdate">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#545-558" title="Go to source code">preUpdate</a>( <span>array <var>$properties</var> = <span class="php-keyword1">null</span></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#549-562" title="Go to source code">preUpdate</a>( <span>array <var>$properties</var> = <span class="php-keyword1">null</span></span> )</code>
 
 		<div class="description short">
 			
@@ -1554,7 +1565,7 @@ you only get once you have save</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_preDelete">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#560-576" title="Go to source code">preDelete</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractSection.html#564-580" title="Go to source code">preDelete</a>( )</code>
 
 		<div class="description short">
 			<p>Event called before <em>deleting</em> the object.</p>
@@ -1713,7 +1724,7 @@ you only get once you have save</p>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-Charcoal.Cms.AbstractSection.html#62" title="Go to source code"><b>TYPE_BLOCKS</b></a>
+				<a href="source-class-Charcoal.Cms.AbstractSection.html#61" title="Go to source code"><b>TYPE_BLOCKS</b></a>
 			</code>
 
 			<div class="description short">
@@ -1737,7 +1748,7 @@ you only get once you have save</p>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-Charcoal.Cms.AbstractSection.html#63" title="Go to source code"><b>TYPE_CONTENT</b></a>
+				<a href="source-class-Charcoal.Cms.AbstractSection.html#62" title="Go to source code"><b>TYPE_CONTENT</b></a>
 			</code>
 
 			<div class="description short">
@@ -1761,7 +1772,7 @@ you only get once you have save</p>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-Charcoal.Cms.AbstractSection.html#64" title="Go to source code"><b>TYPE_EMPTY</b></a>
+				<a href="source-class-Charcoal.Cms.AbstractSection.html#63" title="Go to source code"><b>TYPE_EMPTY</b></a>
 			</code>
 
 			<div class="description short">
@@ -1785,7 +1796,7 @@ you only get once you have save</p>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-Charcoal.Cms.AbstractSection.html#65" title="Go to source code"><b>TYPE_EXTERNAL</b></a>
+				<a href="source-class-Charcoal.Cms.AbstractSection.html#64" title="Go to source code"><b>TYPE_EXTERNAL</b></a>
 			</code>
 
 			<div class="description short">
@@ -1809,7 +1820,7 @@ you only get once you have save</p>
 		<td class="attributes"><code>string</code></td>
 		<td class="name">
 			<code>
-				<a href="source-class-Charcoal.Cms.AbstractSection.html#66" title="Go to source code"><b>DEFAULT_TYPE</b></a>
+				<a href="source-class-Charcoal.Cms.AbstractSection.html#65" title="Go to source code"><b>DEFAULT_TYPE</b></a>
 			</code>
 
 			<div class="description short">
@@ -1842,7 +1853,7 @@ you only get once you have save</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Charcoal.Cms.AbstractSection.html#91-96" title="Go to source code"><var>$inMenu</var></a>
+				<a href="source-class-Charcoal.Cms.AbstractSection.html#92-97" title="Go to source code"><var>$inMenu</var></a>
 
 			<div class="description short">
 				<p>The menus this object is shown in.</p>
@@ -1867,7 +1878,7 @@ you only get once you have save</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Charcoal.Cms.AbstractSection.html#98-101" title="Go to source code"><var>$keywords</var></a>
+				<a href="source-class-Charcoal.Cms.AbstractSection.html#99-102" title="Go to source code"><var>$keywords</var></a>
 
 			<div class="description short">
 				
@@ -1888,11 +1899,11 @@ you only get once you have save</p>
 	<tr data-order="summary" id="$summary">
 		<td class="attributes"><code>
 			protected  
-			Charcoal\Translator\Translation
+			Charcoal\Translator\Translation|string
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Charcoal.Cms.AbstractSection.html#103-106" title="Go to source code"><var>$summary</var></a>
+				<a href="source-class-Charcoal.Cms.AbstractSection.html#104-107" title="Go to source code"><var>$summary</var></a>
 
 			<div class="description short">
 				<p>$summary</p>
@@ -1917,7 +1928,7 @@ you only get once you have save</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Charcoal.Cms.AbstractSection.html#108-111" title="Go to source code"><var>$externalUrl</var></a>
+				<a href="source-class-Charcoal.Cms.AbstractSection.html#109-112" title="Go to source code"><var>$externalUrl</var></a>
 
 			<div class="description short">
 				<p>$externalUrl</p>
@@ -1942,7 +1953,7 @@ you only get once you have save</p>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Charcoal.Cms.AbstractSection.html#113-116" title="Go to source code"><var>$locked</var></a>
+				<a href="source-class-Charcoal.Cms.AbstractSection.html#114-117" title="Go to source code"><var>$locked</var></a>
 
 			<div class="description short">
 				<p>$locked</p>

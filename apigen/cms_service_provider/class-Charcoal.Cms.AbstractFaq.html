@@ -71,6 +71,11 @@
 
 						</li>
 				<li>
+					<a href="namespace-Charcoal.Cms.Section.html">
+						Section					</a>
+
+						</li>
+				<li>
 					<a href="namespace-Charcoal.Cms.Service.html">
 						Service<span></span>
 					</a>
@@ -140,8 +145,10 @@
 				<li><a href="class-Charcoal.Cms.Config.html">Config</a></li>
 				<li><a href="class-Charcoal.Cms.Document.html">Document</a></li>
 				<li><a href="class-Charcoal.Cms.DocumentCategory.html">DocumentCategory</a></li>
+				<li><a href="class-Charcoal.Cms.EmptySection.html">EmptySection</a></li>
 				<li><a href="class-Charcoal.Cms.Event.html">Event</a></li>
 				<li><a href="class-Charcoal.Cms.EventCategory.html">EventCategory</a></li>
+				<li><a href="class-Charcoal.Cms.ExternalSection.html">ExternalSection</a></li>
 				<li><a href="class-Charcoal.Cms.Faq.html">Faq</a></li>
 				<li><a href="class-Charcoal.Cms.FaqCategory.html">FaqCategory</a></li>
 				<li><a href="class-Charcoal.Cms.Image.html">Image</a></li>
@@ -266,7 +273,7 @@ Charcoal\Object\Content
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Cms.html">Cms</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Cms.AbstractFaq.html#16-75" title="Go to source code">Charcoal/Cms/AbstractFaq.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Cms.AbstractFaq.html#21-81" title="Go to source code">Charcoal/Cms/AbstractFaq.php</a>
 		<br>
 	</div>
 
@@ -279,14 +286,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Cms.FaqInterface.html">Charcoal\Cms\FaqInterface</a></code>
+			<code><a href="class-Charcoal.Cms.AbstractFaq.html">Charcoal\Cms\AbstractFaq</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setQuestion">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractFaq.html#40-48" title="Go to source code">setQuestion</a>( <span>mixed <var>$question</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractFaq.html#46-54" title="Go to source code">setQuestion</a>( <span>mixed <var>$question</var></span> )</code>
 
 		<div class="description short">
 			
@@ -304,7 +311,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.FaqInterface.html">Charcoal\Cms\FaqInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.AbstractFaq.html">Charcoal\Cms\AbstractFaq</a></code>
 				</div>
 
 
@@ -320,14 +327,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			Translation|null
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_question">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractFaq.html#50-56" title="Go to source code">question</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractFaq.html#56-62" title="Go to source code">question</a>( )</code>
 
 		<div class="description short">
 			
@@ -340,7 +347,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					Translation|null
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -356,14 +363,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Cms.FaqInterface.html">Charcoal\Cms\FaqInterface</a></code>
+			<code><a href="class-Charcoal.Cms.AbstractFaq.html">Charcoal\Cms\AbstractFaq</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setAnswer">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractFaq.html#58-66" title="Go to source code">setAnswer</a>( <span>mixed <var>$answer</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractFaq.html#64-72" title="Go to source code">setAnswer</a>( <span>mixed <var>$answer</var></span> )</code>
 
 		<div class="description short">
 			
@@ -381,7 +388,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.FaqInterface.html">Charcoal\Cms\FaqInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.AbstractFaq.html">Charcoal\Cms\AbstractFaq</a></code>
 				</div>
 
 
@@ -397,14 +404,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			Translation|null
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_answer">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractFaq.html#68-74" title="Go to source code">answer</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractFaq.html#74-80" title="Go to source code">answer</a>( )</code>
 
 		<div class="description short">
 			
@@ -417,7 +424,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					Translation|null
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 

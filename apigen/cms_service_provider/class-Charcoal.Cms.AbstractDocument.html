@@ -71,6 +71,11 @@
 
 						</li>
 				<li>
+					<a href="namespace-Charcoal.Cms.Section.html">
+						Section					</a>
+
+						</li>
+				<li>
 					<a href="namespace-Charcoal.Cms.Service.html">
 						Service<span></span>
 					</a>
@@ -140,8 +145,10 @@
 				<li><a href="class-Charcoal.Cms.Config.html">Config</a></li>
 				<li><a href="class-Charcoal.Cms.Document.html">Document</a></li>
 				<li><a href="class-Charcoal.Cms.DocumentCategory.html">DocumentCategory</a></li>
+				<li><a href="class-Charcoal.Cms.EmptySection.html">EmptySection</a></li>
 				<li><a href="class-Charcoal.Cms.Event.html">Event</a></li>
 				<li><a href="class-Charcoal.Cms.EventCategory.html">EventCategory</a></li>
+				<li><a href="class-Charcoal.Cms.ExternalSection.html">ExternalSection</a></li>
 				<li><a href="class-Charcoal.Cms.Faq.html">Faq</a></li>
 				<li><a href="class-Charcoal.Cms.FaqCategory.html">FaqCategory</a></li>
 				<li><a href="class-Charcoal.Cms.Image.html">Image</a></li>
@@ -264,7 +271,7 @@ Charcoal\Object\Content
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Cms.html">Cms</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Cms.AbstractDocument.html#13-166" title="Go to source code">Charcoal/Cms/AbstractDocument.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Cms.AbstractDocument.html#16-168" title="Go to source code">Charcoal/Cms/AbstractDocument.php</a>
 		<br>
 	</div>
 
@@ -277,14 +284,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Cms.DocumentInterface.html">Charcoal\Cms\DocumentInterface</a></code>
+			<code><a href="class-Charcoal.Cms.AbstractDocument.html">Charcoal\Cms\AbstractDocument</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setName">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#42-50" title="Go to source code">setName</a>( <span>mixed <var>$name</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#45-53" title="Go to source code">setName</a>( <span>mixed <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -302,7 +309,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.DocumentInterface.html">Charcoal\Cms\DocumentInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.AbstractDocument.html">Charcoal\Cms\AbstractDocument</a></code>
 				</div>
 
 
@@ -318,14 +325,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			string|Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_name">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#52-58" title="Go to source code">name</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#55-61" title="Go to source code">name</a>( )</code>
 
 		<div class="description short">
 			
@@ -338,7 +345,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					string|Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -354,14 +361,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Cms.DocumentInterface.html">Charcoal\Cms\DocumentInterface</a></code>
+			<code><a href="class-Charcoal.Cms.AbstractDocument.html">Charcoal\Cms\AbstractDocument</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setFile">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#60-68" title="Go to source code">setFile</a>( <span>string <var>$file</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#63-71" title="Go to source code">setFile</a>( <span>string <var>$file</var></span> )</code>
 
 		<div class="description short">
 			
@@ -379,7 +386,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.DocumentInterface.html">Charcoal\Cms\DocumentInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.AbstractDocument.html">Charcoal\Cms\AbstractDocument</a></code>
 				</div>
 
 
@@ -402,7 +409,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_file">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#70-76" title="Go to source code">file</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#73-79" title="Go to source code">file</a>( )</code>
 
 		<div class="description short">
 			
@@ -431,14 +438,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Cms.DocumentInterface.html">Charcoal\Cms\DocumentInterface</a></code>
+			<code><a href="class-Charcoal.Cms.AbstractDocument.html">Charcoal\Cms\AbstractDocument</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setBasePath">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#78-86" title="Go to source code">setBasePath</a>( <span>string <var>$path</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#81-89" title="Go to source code">setBasePath</a>( <span>string <var>$path</var></span> )</code>
 
 		<div class="description short">
 			
@@ -456,7 +463,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.DocumentInterface.html">Charcoal\Cms\DocumentInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.AbstractDocument.html">Charcoal\Cms\AbstractDocument</a></code>
 				</div>
 
 
@@ -477,7 +484,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_basePath">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#88-100" title="Go to source code">basePath</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#91-102" title="Go to source code">basePath</a>( )</code>
 
 		<div class="description short">
 			<p>Get the base path, with a trailing slash.</p>
@@ -504,14 +511,14 @@ Charcoal\Object\Content
 		<td class="attributes"><code>
 			 public 
 
-			<code><a href="class-Charcoal.Cms.DocumentInterface.html">Charcoal\Cms\DocumentInterface</a></code>
+			<code><a href="class-Charcoal.Cms.AbstractDocument.html">Charcoal\Cms\AbstractDocument</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setBaseUrl">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#102-110" title="Go to source code">setBaseUrl</a>( <span>string <var>$url</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#104-112" title="Go to source code">setBaseUrl</a>( <span>string <var>$url</var></span> )</code>
 
 		<div class="description short">
 			
@@ -529,7 +536,7 @@ Charcoal\Object\Content
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.DocumentInterface.html">Charcoal\Cms\DocumentInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.AbstractDocument.html">Charcoal\Cms\AbstractDocument</a></code>
 				</div>
 
 
@@ -550,7 +557,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_baseUrl">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#112-120" title="Go to source code">baseUrl</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#114-122" title="Go to source code">baseUrl</a>( )</code>
 
 		<div class="description short">
 			<p>Get the base url, with a trailing slash.</p>
@@ -584,7 +591,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_path">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#122-128" title="Go to source code">path</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#124-130" title="Go to source code">path</a>( )</code>
 
 		<div class="description short">
 			
@@ -620,7 +627,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_url">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#130-136" title="Go to source code">url</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#132-138" title="Go to source code">url</a>( )</code>
 
 		<div class="description short">
 			
@@ -656,7 +663,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_mimetype">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#138-145" title="Go to source code">mimetype</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#140-147" title="Go to source code">mimetype</a>( )</code>
 
 		<div class="description short">
 			
@@ -692,7 +699,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_filename">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#147-155" title="Go to source code">filename</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#149-157" title="Go to source code">filename</a>( )</code>
 
 		<div class="description short">
 			<p>Get the fiqlename (basename; without any path segment).</p>
@@ -728,7 +735,7 @@ Charcoal\Object\Content
 
 		<td class="name"><div>
 		<a class="anchor" href="#_filesize">#</a>
-		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#157-165" title="Go to source code">filesize</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.AbstractDocument.html#159-167" title="Go to source code">filesize</a>( )</code>
 
 		<div class="description short">
 			<p>Get the document's file size, in bytes.</p>

@@ -71,6 +71,11 @@
 
 						</li>
 				<li>
+					<a href="namespace-Charcoal.Cms.Section.html">
+						Section					</a>
+
+						</li>
+				<li>
 					<a href="namespace-Charcoal.Cms.Service.html">
 						Service<span></span>
 					</a>
@@ -140,8 +145,10 @@
 				<li><a href="class-Charcoal.Cms.Config.html">Config</a></li>
 				<li><a href="class-Charcoal.Cms.Document.html">Document</a></li>
 				<li><a href="class-Charcoal.Cms.DocumentCategory.html">DocumentCategory</a></li>
+				<li><a href="class-Charcoal.Cms.EmptySection.html">EmptySection</a></li>
 				<li><a href="class-Charcoal.Cms.Event.html">Event</a></li>
 				<li><a href="class-Charcoal.Cms.EventCategory.html">EventCategory</a></li>
+				<li><a href="class-Charcoal.Cms.ExternalSection.html">ExternalSection</a></li>
 				<li><a href="class-Charcoal.Cms.Faq.html">Faq</a></li>
 				<li><a href="class-Charcoal.Cms.FaqCategory.html">FaqCategory</a></li>
 				<li><a href="class-Charcoal.Cms.Image.html">Image</a></li>
@@ -229,9 +236,13 @@
 
 	<div>
 		<h4>Indirect known implementers</h4>
+			<a href="class-Charcoal.Cms.EmptySection.html">Charcoal\Cms\EmptySection</a>, 
 			<a href="class-Charcoal.Cms.Event.html">Charcoal\Cms\Event</a>, 
+			<a href="class-Charcoal.Cms.ExternalSection.html">Charcoal\Cms\ExternalSection</a>, 
 			<a href="class-Charcoal.Cms.News.html">Charcoal\Cms\News</a>, 
-			<a href="class-Charcoal.Cms.Section.html">Charcoal\Cms\Section</a>
+			<a href="class-Charcoal.Cms.Section.html">Charcoal\Cms\Section</a>, 
+			<a href="class-Charcoal.Cms.Section.BlocksSection.html">Charcoal\Cms\Section\BlocksSection</a>, 
+			<a href="class-Charcoal.Cms.Section.ContentSection.html">Charcoal\Cms\Section\ContentSection</a>
 	</div>
 
 
@@ -242,7 +253,7 @@
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Cms.html">Cms</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Cms.MetatagInterface.html#5-171" title="Go to source code">Charcoal/Cms/MetatagInterface.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Cms.MetatagInterface.html#8-174" title="Go to source code">Charcoal/Cms/MetatagInterface.php</a>
 		<br>
 	</div>
 
@@ -262,7 +273,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_canonicalUrl">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#10-13" title="Go to source code">canonicalUrl</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#13-16" title="Go to source code">canonicalUrl</a>( )</code>
 
 		<div class="description short">
 			
@@ -289,14 +300,14 @@
 		<td class="attributes"><code>
 			 public 
 
-			Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_defaultMetaTitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#15-18" title="Go to source code">defaultMetaTitle</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#18-21" title="Go to source code">defaultMetaTitle</a>( )</code>
 
 		<div class="description short">
 			
@@ -309,7 +320,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -323,14 +334,14 @@
 		<td class="attributes"><code>
 			 public 
 
-			Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_defaultMetaDescription">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#20-23" title="Go to source code">defaultMetaDescription</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#23-26" title="Go to source code">defaultMetaDescription</a>( )</code>
 
 		<div class="description short">
 			
@@ -343,7 +354,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -357,14 +368,14 @@
 		<td class="attributes"><code>
 			 public 
 
-			Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_defaultMetaImage">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#25-28" title="Go to source code">defaultMetaImage</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#28-31" title="Go to source code">defaultMetaImage</a>( )</code>
 
 		<div class="description short">
 			
@@ -377,7 +388,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -398,7 +409,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setMetaTitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#30-34" title="Go to source code">setMetaTitle</a>( <span>mixed <var>$title</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#33-37" title="Go to source code">setMetaTitle</a>( <span>mixed <var>$title</var></span> )</code>
 
 		<div class="description short">
 			
@@ -416,7 +427,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.MetatagInterface.html">Charcoal\Cms\MetatagInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.MetatagInterface.html">Charcoal\Cms\MetatagInterface</a></code>
 				</div>
 
 
@@ -430,14 +441,14 @@
 		<td class="attributes"><code>
 			 public 
 
-			Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_metaTitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#36-39" title="Go to source code">metaTitle</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#39-42" title="Go to source code">metaTitle</a>( )</code>
 
 		<div class="description short">
 			
@@ -450,7 +461,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -471,7 +482,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setMetaDescription">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#41-45" title="Go to source code">setMetaDescription</a>( <span>mixed <var>$description</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#44-48" title="Go to source code">setMetaDescription</a>( <span>mixed <var>$description</var></span> )</code>
 
 		<div class="description short">
 			
@@ -489,7 +500,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.MetatagInterface.html">Charcoal\Cms\MetatagInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.MetatagInterface.html">Charcoal\Cms\MetatagInterface</a></code>
 				</div>
 
 
@@ -503,14 +514,14 @@
 		<td class="attributes"><code>
 			 public 
 
-			Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_metaDescription">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#47-50" title="Go to source code">metaDescription</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#50-53" title="Go to source code">metaDescription</a>( )</code>
 
 		<div class="description short">
 			
@@ -523,7 +534,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -537,14 +548,14 @@
 		<td class="attributes"><code>
 			 public 
 
-			MetatageInterface
+			<code><a href="class-Charcoal.Cms.MetatagInterface.html">Charcoal\Cms\MetatagInterface</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setMetaImage">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#52-56" title="Go to source code">setMetaImage</a>( <span>mixed <var>$image</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#55-59" title="Go to source code">setMetaImage</a>( <span>mixed <var>$image</var></span> )</code>
 
 		<div class="description short">
 			
@@ -562,7 +573,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					MetatageInterface<br>Chainable
+					<code><a href="class-Charcoal.Cms.MetatagInterface.html">Charcoal\Cms\MetatagInterface</a></code>
 				</div>
 
 
@@ -576,14 +587,14 @@
 		<td class="attributes"><code>
 			 public 
 
-			Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_metaImage">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#58-61" title="Go to source code">metaImage</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#61-64" title="Go to source code">metaImage</a>( )</code>
 
 		<div class="description short">
 			
@@ -596,7 +607,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -617,7 +628,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setMetaAuthor">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#63-67" title="Go to source code">setMetaAuthor</a>( <span>mixed <var>$author</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#66-70" title="Go to source code">setMetaAuthor</a>( <span>mixed <var>$author</var></span> )</code>
 
 		<div class="description short">
 			
@@ -635,7 +646,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.MetatagInterface.html">Charcoal\Cms\MetatagInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.MetatagInterface.html">Charcoal\Cms\MetatagInterface</a></code>
 				</div>
 
 
@@ -649,14 +660,14 @@
 		<td class="attributes"><code>
 			 public 
 
-			Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_metaAuthor">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#69-72" title="Go to source code">metaAuthor</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#72-75" title="Go to source code">metaAuthor</a>( )</code>
 
 		<div class="description short">
 			
@@ -669,7 +680,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -690,7 +701,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_metaTags">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#74-77" title="Go to source code">metaTags</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#77-80" title="Go to source code">metaTags</a>( )</code>
 
 		<div class="description short">
 			
@@ -724,7 +735,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setFacebookAppId">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#79-83" title="Go to source code">setFacebookAppId</a>( <span>string <var>$appId</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#82-86" title="Go to source code">setFacebookAppId</a>( <span>string <var>$appId</var></span> )</code>
 
 		<div class="description short">
 			
@@ -742,7 +753,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.MetatagInterface.html">Charcoal\Cms\MetatagInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.MetatagInterface.html">Charcoal\Cms\MetatagInterface</a></code>
 				</div>
 
 
@@ -763,7 +774,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_facebookAppId">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#85-88" title="Go to source code">facebookAppId</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#88-91" title="Go to source code">facebookAppId</a>( )</code>
 
 		<div class="description short">
 			
@@ -797,7 +808,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setOpengraphTitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#90-94" title="Go to source code">setOpengraphTitle</a>( <span>mixed <var>$title</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#93-97" title="Go to source code">setOpengraphTitle</a>( <span>mixed <var>$title</var></span> )</code>
 
 		<div class="description short">
 			
@@ -815,7 +826,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.MetatagInterface.html">Charcoal\Cms\MetatagInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.MetatagInterface.html">Charcoal\Cms\MetatagInterface</a></code>
 				</div>
 
 
@@ -829,14 +840,14 @@
 		<td class="attributes"><code>
 			 public 
 
-			Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_opengraphTitle">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#96-99" title="Go to source code">opengraphTitle</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#99-102" title="Go to source code">opengraphTitle</a>( )</code>
 
 		<div class="description short">
 			
@@ -849,7 +860,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -870,7 +881,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setOpengraphSiteName">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#101-105" title="Go to source code">setOpengraphSiteName</a>( <span>mixed <var>$siteName</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#104-108" title="Go to source code">setOpengraphSiteName</a>( <span>mixed <var>$siteName</var></span> )</code>
 
 		<div class="description short">
 			
@@ -888,7 +899,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.MetatagInterface.html">Charcoal\Cms\MetatagInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.MetatagInterface.html">Charcoal\Cms\MetatagInterface</a></code>
 				</div>
 
 
@@ -902,14 +913,14 @@
 		<td class="attributes"><code>
 			 public 
 
-			Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_opengraphSiteName">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#107-110" title="Go to source code">opengraphSiteName</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#110-113" title="Go to source code">opengraphSiteName</a>( )</code>
 
 		<div class="description short">
 			
@@ -922,7 +933,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -943,7 +954,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setOpengraphDescription">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#112-116" title="Go to source code">setOpengraphDescription</a>( <span>mixed <var>$description</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#115-119" title="Go to source code">setOpengraphDescription</a>( <span>mixed <var>$description</var></span> )</code>
 
 		<div class="description short">
 			
@@ -961,7 +972,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.MetatagInterface.html">Charcoal\Cms\MetatagInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.MetatagInterface.html">Charcoal\Cms\MetatagInterface</a></code>
 				</div>
 
 
@@ -975,14 +986,14 @@
 		<td class="attributes"><code>
 			 public 
 
-			Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_opengraphDescription">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#118-121" title="Go to source code">opengraphDescription</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#121-124" title="Go to source code">opengraphDescription</a>( )</code>
 
 		<div class="description short">
 			
@@ -995,7 +1006,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -1016,7 +1027,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setOpengraphType">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#123-127" title="Go to source code">setOpengraphType</a>( <span>string <var>$type</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#126-130" title="Go to source code">setOpengraphType</a>( <span>string <var>$type</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1034,7 +1045,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.MetatagInterface.html">Charcoal\Cms\MetatagInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.MetatagInterface.html">Charcoal\Cms\MetatagInterface</a></code>
 				</div>
 
 
@@ -1055,7 +1066,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_opengraphType">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#129-132" title="Go to source code">opengraphType</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#132-135" title="Go to source code">opengraphType</a>( )</code>
 
 		<div class="description short">
 			
@@ -1089,7 +1100,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setOpengraphImage">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#134-138" title="Go to source code">setOpengraphImage</a>( <span>mixed <var>$image</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#137-141" title="Go to source code">setOpengraphImage</a>( <span>mixed <var>$image</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1107,7 +1118,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.MetatagInterface.html">Charcoal\Cms\MetatagInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.MetatagInterface.html">Charcoal\Cms\MetatagInterface</a></code>
 				</div>
 
 
@@ -1121,14 +1132,14 @@
 		<td class="attributes"><code>
 			 public 
 
-			Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_opengraphImage">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#140-143" title="Go to source code">opengraphImage</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#143-146" title="Go to source code">opengraphImage</a>( )</code>
 
 		<div class="description short">
 			
@@ -1141,7 +1152,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -1162,7 +1173,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setOpengraphAuthor">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#145-149" title="Go to source code">setOpengraphAuthor</a>( <span>mixed <var>$author</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#148-152" title="Go to source code">setOpengraphAuthor</a>( <span>mixed <var>$author</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1180,7 +1191,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.MetatagInterface.html">Charcoal\Cms\MetatagInterface</a></code><br>Chainable
+					<code><a href="class-Charcoal.Cms.MetatagInterface.html">Charcoal\Cms\MetatagInterface</a></code>
 				</div>
 
 
@@ -1194,14 +1205,14 @@
 		<td class="attributes"><code>
 			 public 
 
-			Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_opengraphAuthor">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#151-154" title="Go to source code">opengraphAuthor</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#154-157" title="Go to source code">opengraphAuthor</a>( )</code>
 
 		<div class="description short">
 			
@@ -1214,7 +1225,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -1235,7 +1246,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setOpengraphPulisher">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#156-160" title="Go to source code">setOpengraphPulisher</a>( <span>mixed <var>$publisher</var></span> )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#159-163" title="Go to source code">setOpengraphPulisher</a>( <span>mixed <var>$publisher</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1267,14 +1278,14 @@
 		<td class="attributes"><code>
 			 public 
 
-			Translation
+			Charcoal\Translator\Translation|string|null
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_opengraphPublisher">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#162-165" title="Go to source code">opengraphPublisher</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#165-168" title="Go to source code">opengraphPublisher</a>( )</code>
 
 		<div class="description short">
 			
@@ -1287,7 +1298,7 @@
 
 				<h4>Returns</h4>
 				<div class="list">
-					Translation
+					Charcoal\Translator\Translation|string|null
 				</div>
 
 
@@ -1308,7 +1319,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_opengraphTags">#</a>
-		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#167-170" title="Go to source code">opengraphTags</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.MetatagInterface.html#170-173" title="Go to source code">opengraphTags</a>( )</code>
 
 		<div class="description short">
 			
