@@ -94,6 +94,7 @@ class CmsServiceProvider implements ServiceProviderInterface
 
         $this->registerSectionServices($container);
         $this->registerNewsServices($container);
+        $this->registerEventServices($container);
     }
 
     /**
