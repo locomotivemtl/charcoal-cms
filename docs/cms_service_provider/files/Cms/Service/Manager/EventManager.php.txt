@@ -70,9 +70,6 @@ class EventManager extends AbstractManager
     /** @var object $objType The event object model. */
     private $objType;
 
-    /** @var object $adminConfig The admin config object model. */
-    private $adminConfig;
-
     /** @var string $featIdent The config ident for featured events. */
     private $featIdent;
 
@@ -572,14 +569,6 @@ class EventManager extends AbstractManager
     /**
      * @return mixed
      */
-    public function adminConfig()
-    {
-        return $this->adminConfig;
-    }
-
-    /**
-     * @return mixed
-     */
     public function featIdent()
     {
         return $this->featIdent;
@@ -695,17 +684,6 @@ class EventManager extends AbstractManager
     public function setObjType($objType)
     {
         $this->objType = $objType;
-
-        return $this;
-    }
-
-    /**
-     * @param mixed $adminConfig The admin configuration.
-     * @return self
-     */
-    public function setAdminConfig($adminConfig)
-    {
-        $this->adminConfig = $adminConfig;
 
         return $this;
     }

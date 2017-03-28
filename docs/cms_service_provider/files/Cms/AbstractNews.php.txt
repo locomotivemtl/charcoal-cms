@@ -128,7 +128,6 @@ abstract class AbstractNews extends Content implements
     public function setDependencies(Container $container)
     {
         parent::setDependencies($container);
-        $this->config = $container['cms/config']->get('news_config');
         $this->dateHelper = $container['date/helper'];
     }
 
@@ -159,15 +158,6 @@ abstract class AbstractNews extends Content implements
 
         if (!$this->publishDate()) {
             $this->setPublishDate('now');
-        }
-
-        if (!$this->expiryDate()) {
-            if (isset($this->config['default_expiry'])) {
-                $expiry_length = date_interval_create_from_date_string($this->config['default_expiry']);
-                $date = clone $this->newsDate();
-                date_add($date, $expiry_length);
-                $this->setExpiryDate($date);
-            }
         }
     }
 
