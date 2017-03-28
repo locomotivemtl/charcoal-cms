@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Trait Charcoal\Cms\Support\Traits\NewsManagerAwareTrait</title>
+	<title>Trait Charcoal\Cms\Support\Traits\EventManagerAwareTrait</title>
 
 	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
 
@@ -137,8 +137,8 @@
 			<h3>Traits</h3>
 			<ul>
 				<li><a href="class-Charcoal.Cms.Support.Traits.DateHelperAwareTrait.html">DateHelperAwareTrait</a></li>
-				<li><a href="class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html">EventManagerAwareTrait</a></li>
-				<li class="active"><a href="class-Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html">NewsManagerAwareTrait</a></li>
+				<li class="active"><a href="class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html">EventManagerAwareTrait</a></li>
+				<li><a href="class-Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html">NewsManagerAwareTrait</a></li>
 				<li><a href="class-Charcoal.Cms.Support.Traits.SectionLoaderAwareTrait.html">SectionLoaderAwareTrait</a></li>
 			</ul>
 
@@ -176,7 +176,7 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Trait NewsManagerAwareTrait</h1>
+	<h1>Trait EventManagerAwareTrait</h1>
 
 
 
@@ -194,7 +194,7 @@
 		<b>Namespace:</b> <a href="namespace-Charcoal.html">Charcoal</a>\<a href="namespace-Charcoal.Cms.html">Cms</a>\<a href="namespace-Charcoal.Cms.Support.html">Support</a>\<a href="namespace-Charcoal.Cms.Support.Traits.html">Traits</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html#15-299" title="Go to source code">Charcoal/Cms/Support/Traits/NewsManagerAwareTrait.php</a>
+			<b>Located at</b> <a href="source-class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html#10-346" title="Go to source code">Charcoal/Cms/Support/Traits/EventManagerAwareTrait.php</a>
 		<br>
 	</div>
 
@@ -202,7 +202,7 @@
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="newsList" id="_newsList">
+	<tr data-order="eventsList" id="_eventsList">
 
 		<td class="attributes"><code>
 			 public 
@@ -213,16 +213,52 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_newsList">#</a>
-		<code><a href="source-class-Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html#32-43" title="Go to source code">newsList</a>( )</code>
+		<a class="anchor" href="#_eventsList">#</a>
+		<code><a href="source-class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html#27-38" title="Go to source code">eventsList</a>( )</code>
 
 		<div class="description short">
-			<p>Formatted news list
+			<p>Formatted event list
+Return the entries for the current page</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Formatted event list
+Return the entries for the current page</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					Generator|
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="eventArchiveList" id="_eventArchiveList">
+
+		<td class="attributes"><code>
+			 public 
+
+			Generator|
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_eventArchiveList">#</a>
+		<code><a href="source-class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html#41-52" title="Go to source code">eventArchiveList</a>( )</code>
+
+		<div class="description short">
+			<p>Formatted event archive list
 Returns the entries for the current page.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Formatted news list
+			<p>Formatted event archive list
 Returns the entries for the current page.</p>
 
 
@@ -238,43 +274,7 @@ Returns the entries for the current page.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="newsArchiveList" id="_newsArchiveList">
-
-		<td class="attributes"><code>
-			 public 
-
-			Generator|
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_newsArchiveList">#</a>
-		<code><a href="source-class-Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html#45-56" title="Go to source code">newsArchiveList</a>( )</code>
-
-		<div class="description short">
-			<p>Formatted news archive list
-Returns the entries for the current page.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Formatted news archive list
-Returns the entries for the current page.</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					Generator|
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="currentNews" id="_currentNews">
+	<tr data-order="currentEvent" id="_currentEvent">
 
 		<td class="attributes"><code>
 			 public 
@@ -285,21 +285,21 @@ Returns the entries for the current page.</p>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_currentNews">#</a>
-		<code><a href="source-class-Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html#58-77" title="Go to source code">currentNews</a>( )</code>
+		<a class="anchor" href="#_currentEvent">#</a>
+		<code><a href="source-class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html#54-73" title="Go to source code">currentEvent</a>( )</code>
 
 		<div class="description short">
-			<p>Current news.</p>
+			<p>Current event.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Current news.</p>
+			<p>Current event.</p>
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					array<br>The properties of the current news
+					array<br>The properties of the current event.
 				</div>
 
 
@@ -308,19 +308,19 @@ Returns the entries for the current page.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="featNews" id="_featNews">
+	<tr data-order="featEvents" id="_featEvents">
 
 		<td class="attributes"><code>
 			 public 
 
-			Generator
+			mixed
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_featNews">#</a>
-		<code><a href="source-class-Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html#79-93" title="Go to source code">featNews</a>( )</code>
+		<a class="anchor" href="#_featEvents">#</a>
+		<code><a href="source-class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html#75-91" title="Go to source code">featEvents</a>( )</code>
 
 		<div class="description short">
 			
@@ -333,7 +333,7 @@ Returns the entries for the current page.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					Generator
+					mixed
 				</div>
 
 
@@ -342,41 +342,7 @@ Returns the entries for the current page.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="nextNews" id="_nextNews">
-
-		<td class="attributes"><code>
-			 public 
-
-			array
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_nextNews">#</a>
-		<code><a href="source-class-Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html#95-108" title="Go to source code">nextNews</a>( )</code>
-
-		<div class="description short">
-			<p>Next news in list.</p>
-		</div>
-
-		<div class="description detailed hidden">
-			<p>Next news in list.</p>
-
-
-
-				<h4>Returns</h4>
-				<div class="list">
-					array<br>The next news properties.
-				</div>
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="prevNews" id="_prevNews">
+	<tr data-order="nextEvent" id="_nextEvent">
 
 		<td class="attributes"><code>
 			 public 
@@ -387,21 +353,21 @@ Returns the entries for the current page.</p>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_prevNews">#</a>
-		<code><a href="source-class-Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html#110-123" title="Go to source code">prevNews</a>( )</code>
+		<a class="anchor" href="#_nextEvent">#</a>
+		<code><a href="source-class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html#93-106" title="Go to source code">nextEvent</a>( )</code>
 
 		<div class="description short">
-			<p>Next news in list.</p>
+			<p>Next event in list.</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Next news in list.</p>
+			<p>Next event in list.</p>
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					array<br>The next news properties.
+					array<br>The next event properties.
 				</div>
 
 
@@ -410,7 +376,41 @@ Returns the entries for the current page.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="numNews" id="_numNews">
+	<tr data-order="prevEvent" id="_prevEvent">
+
+		<td class="attributes"><code>
+			 public 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_prevEvent">#</a>
+		<code><a href="source-class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html#108-121" title="Go to source code">prevEvent</a>( )</code>
+
+		<div class="description short">
+			<p>Next event in list.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Next event in list.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					array<br>The next event properties.
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="numEvent" id="_numEvent">
 
 		<td class="attributes"><code>
 			 public 
@@ -421,21 +421,21 @@ Returns the entries for the current page.</p>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_numNews">#</a>
-		<code><a href="source-class-Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html#125-132" title="Go to source code">numNews</a>( )</code>
+		<a class="anchor" href="#_numEvent">#</a>
+		<code><a href="source-class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html#123-130" title="Go to source code">numEvent</a>( )</code>
 
 		<div class="description short">
-			<p>Amount of news (total)</p>
+			<p>Amount of events (total)</p>
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Amount of news (total)</p>
+			<p>Amount of events (total)</p>
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					integer<br>How many news?
+					integer<br>How many events?
 				</div>
 
 
@@ -444,7 +444,7 @@ Returns the entries for the current page.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="numNewsPages" id="_numNewsPages">
+	<tr data-order="numEventPages" id="_numEventPages">
 
 		<td class="attributes"><code>
 			 public 
@@ -455,8 +455,8 @@ Returns the entries for the current page.</p>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_numNewsPages">#</a>
-		<code><a href="source-class-Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html#134-140" title="Go to source code">numNewsPages</a>( )</code>
+		<a class="anchor" href="#_numEventPages">#</a>
+		<code><a href="source-class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html#132-138" title="Go to source code">numEventPages</a>( )</code>
 
 		<div class="description short">
 			
@@ -478,7 +478,7 @@ Returns the entries for the current page.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="newsHasPager" id="_newsHasPager">
+	<tr data-order="eventHasPager" id="_eventHasPager">
 
 		<td class="attributes"><code>
 			 public 
@@ -489,8 +489,8 @@ Returns the entries for the current page.</p>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_newsHasPager">#</a>
-		<code><a href="source-class-Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html#142-148" title="Go to source code">newsHasPager</a>( )</code>
+		<a class="anchor" href="#_eventHasPager">#</a>
+		<code><a href="source-class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html#140-146" title="Go to source code">eventHasPager</a>( )</code>
 
 		<div class="description short">
 			
@@ -512,7 +512,7 @@ Returns the entries for the current page.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="newsCategoryList" id="_newsCategoryList">
+	<tr data-order="eventCategoryList" id="_eventCategoryList">
 
 		<td class="attributes"><code>
 			 public 
@@ -523,8 +523,8 @@ Returns the entries for the current page.</p>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_newsCategoryList">#</a>
-		<code><a href="source-class-Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html#150-159" title="Go to source code">newsCategoryList</a>( )</code>
+		<a class="anchor" href="#_eventCategoryList">#</a>
+		<code><a href="source-class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html#148-157" title="Go to source code">eventCategoryList</a>( )</code>
 
 		<div class="description short">
 			
@@ -546,10 +546,10 @@ Returns the entries for the current page.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="newsCategory" id="_newsCategory">
+	<tr data-order="eventCategory" id="_eventCategory">
 
 		<td class="attributes"><code>
-			 public 
+			 protected 
 
 			Charcoal\Object\CategoryInterface
 			
@@ -557,8 +557,8 @@ Returns the entries for the current page.</p>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_newsCategory">#</a>
-		<code><a href="source-class-Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html#161-170" title="Go to source code">newsCategory</a>( <span><code><a href="class-Charcoal.Cms.NewsInterface.html">Charcoal\Cms\NewsInterface</a></code> <var>$news</var></span> )</code>
+		<a class="anchor" href="#_eventCategory">#</a>
+		<code><a href="source-class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html#159-168" title="Go to source code">eventCategory</a>( <span><code><a href="class-Charcoal.Cms.EventInterface.html">Charcoal\Cms\EventInterface</a></code> <var>$event</var></span> )</code>
 
 		<div class="description short">
 			
@@ -570,8 +570,8 @@ Returns the entries for the current page.</p>
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$news</var></dt>
-					<dd>Charcoal\Cms\NewsInterface.</dd>
+					<dt><var>$event</var></dt>
+					<dd>Charcoal\Cms\EventInterface.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -585,7 +585,7 @@ Returns the entries for the current page.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="getNewsDateFormat" id="_getNewsDateFormat">
+	<tr data-order="getEventStartDateFormat" id="_getEventStartDateFormat">
 
 		<td class="attributes"><code>
 			 protected 
@@ -596,8 +596,8 @@ Returns the entries for the current page.</p>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_getNewsDateFormat">#</a>
-		<code><a href="source-class-Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html#176-185" title="Go to source code">getNewsDateFormat</a>( <span><code><a href="class-Charcoal.Cms.NewsInterface.html">Charcoal\Cms\NewsInterface</a></code> <var>$news</var></span> )</code>
+		<a class="anchor" href="#_getEventStartDateFormat">#</a>
+		<code><a href="source-class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html#174-183" title="Go to source code">getEventStartDateFormat</a>( <span><code><a href="class-Charcoal.Cms.EventInterface.html">Charcoal\Cms\EventInterface</a></code> <var>$event</var></span> )</code>
 
 		<div class="description short">
 			
@@ -609,8 +609,8 @@ Returns the entries for the current page.</p>
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$news</var></dt>
-					<dd>Charcoal\Cms\NewsInterface.</dd>
+					<dt><var>$event</var></dt>
+					<dd>Charcoal\Cms\EventInterface.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -624,37 +624,37 @@ Returns the entries for the current page.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="newsFormatShort" id="_newsFormatShort">
+	<tr data-order="getEventEndDateFormat" id="_getEventEndDateFormat">
 
 		<td class="attributes"><code>
 			 protected 
 
-			array
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_newsFormatShort">#</a>
-		<code><a href="source-class-Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html#187-202" title="Go to source code">newsFormatShort</a>( <span><code><a href="class-Charcoal.Cms.NewsInterface.html">Charcoal\Cms\NewsInterface</a></code> <var>$news</var></span> )</code>
+		<a class="anchor" href="#_getEventEndDateFormat">#</a>
+		<code><a href="source-class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html#185-194" title="Go to source code">getEventEndDateFormat</a>( <span><code><a href="class-Charcoal.Cms.EventInterface.html">Charcoal\Cms\EventInterface</a></code> <var>$event</var></span> )</code>
 
 		<div class="description short">
-			<p>Formatting expected in templates</p>
+			
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Formatting expected in templates</p>
+			
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$news</var></dt>
-					<dd>A single news.</dd>
+					<dt><var>$event</var></dt>
+					<dd>Charcoal\Cms\EventInterface.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					array<br>The needed news properties.
+					string
 				</div>
 
 
@@ -663,37 +663,37 @@ Returns the entries for the current page.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="newsFormatNav" id="_newsFormatNav">
+	<tr data-order="getEventDateFormat" id="_getEventDateFormat">
 
 		<td class="attributes"><code>
 			 protected 
 
-			array
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_newsFormatNav">#</a>
-		<code><a href="source-class-Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html#204-218" title="Go to source code">newsFormatNav</a>( <span><code><a href="class-Charcoal.Cms.NewsInterface.html">Charcoal\Cms\NewsInterface</a></code> <var>$news</var></span> )</code>
+		<a class="anchor" href="#_getEventDateFormat">#</a>
+		<code><a href="source-class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html#196-206" title="Go to source code">getEventDateFormat</a>( <span><code><a href="class-Charcoal.Cms.EventInterface.html">Charcoal\Cms\EventInterface</a></code> <var>$event</var></span> )</code>
 
 		<div class="description short">
-			<p>Formatting expected in templates</p>
+			
 		</div>
 
 		<div class="description detailed hidden">
-			<p>Formatting expected in templates</p>
+			
 
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$news</var></dt>
-					<dd>A single news.</dd>
+					<dt><var>$event</var></dt>
+					<dd>Charcoal\Cms\EventInterface.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					array<br>The needed news properties.
+					string
 				</div>
 
 
@@ -702,19 +702,19 @@ Returns the entries for the current page.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="newsFormatFull" id="_newsFormatFull">
+	<tr data-order="getEventTimeFormat" id="_getEventTimeFormat">
 
 		<td class="attributes"><code>
 			 protected 
 
-			array
+			string
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_newsFormatFull">#</a>
-		<code><a href="source-class-Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html#220-248" title="Go to source code">newsFormatFull</a>( <span><code><a href="class-Charcoal.Cms.NewsInterface.html">Charcoal\Cms\NewsInterface</a></code> <var>$news</var></span> )</code>
+		<a class="anchor" href="#_getEventTimeFormat">#</a>
+		<code><a href="source-class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html#208-226" title="Go to source code">getEventTimeFormat</a>( <span><code><a href="class-Charcoal.Cms.EventInterface.html">Charcoal\Cms\EventInterface</a></code> <var>$event</var></span> )</code>
 
 		<div class="description short">
 			
@@ -726,8 +726,125 @@ Returns the entries for the current page.</p>
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$news</var></dt>
-					<dd>The current news.</dd>
+					<dt><var>$event</var></dt>
+					<dd>Charcoal\Cms\EventInterface.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="eventFormatShort" id="_eventFormatShort">
+
+		<td class="attributes"><code>
+			 protected 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_eventFormatShort">#</a>
+		<code><a href="source-class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html#228-244" title="Go to source code">eventFormatShort</a>( <span><code><a href="class-Charcoal.Cms.EventInterface.html">Charcoal\Cms\EventInterface</a></code> <var>$event</var></span> )</code>
+
+		<div class="description short">
+			<p>Formatting expected in templates</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Formatting expected in templates</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$event</var></dt>
+					<dd>Charcoal\Cms\EventInterface.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array<br>The needed event properties.
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="eventFormatNav" id="_eventFormatNav">
+
+		<td class="attributes"><code>
+			 protected 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_eventFormatNav">#</a>
+		<code><a href="source-class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html#246-261" title="Go to source code">eventFormatNav</a>( <span><code><a href="class-Charcoal.Cms.EventInterface.html">Charcoal\Cms\EventInterface</a></code> <var>$event</var></span> )</code>
+
+		<div class="description short">
+			<p>Formatting expected in templates</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Formatting expected in templates</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$event</var></dt>
+					<dd>Charcoal\Cms\EventInterface.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array<br>The needed event properties.
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="eventFormatFull" id="_eventFormatFull">
+
+		<td class="attributes"><code>
+			 protected 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_eventFormatFull">#</a>
+		<code><a href="source-class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html#263-295" title="Go to source code">eventFormatFull</a>( <span><code><a href="class-Charcoal.Cms.EventInterface.html">Charcoal\Cms\EventInterface</a></code> <var>$event</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$event</var></dt>
+					<dd>The current event.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -741,7 +858,7 @@ Returns the entries for the current page.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="newsFormatCategory" id="_newsFormatCategory">
+	<tr data-order="eventFormatCategory" id="_eventFormatCategory">
 
 		<td class="attributes"><code>
 			 protected 
@@ -752,8 +869,8 @@ Returns the entries for the current page.</p>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_newsFormatCategory">#</a>
-		<code><a href="source-class-Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html#250-260" title="Go to source code">newsFormatCategory</a>( <span>Charcoal\Object\CategoryInterface <var>$category</var></span> )</code>
+		<a class="anchor" href="#_eventFormatCategory">#</a>
+		<code><a href="source-class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html#297-307" title="Go to source code">eventFormatCategory</a>( <span>Charcoal\Object\CategoryInterface <var>$category</var></span> )</code>
 
 		<div class="description short">
 			
@@ -780,19 +897,19 @@ Returns the entries for the current page.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="newsManager" id="_newsManager">
+	<tr data-order="eventManager" id="_eventManager">
 
 		<td class="attributes"><code>
 			 protected 
 
-			<code><a href="class-Charcoal.Cms.Service.Manager.NewsManager.html">Charcoal\Cms\Service\Manager\NewsManager</a></code>
+			<code><a href="class-Charcoal.Cms.Service.Manager.EventManager.html">Charcoal\Cms\Service\Manager\EventManager</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_newsManager">#</a>
-		<code><a href="source-class-Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html#266-281" title="Go to source code">newsManager</a>( )</code>
+		<a class="anchor" href="#_eventManager">#</a>
+		<code><a href="source-class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html#313-328" title="Go to source code">eventManager</a>( )</code>
 
 		<div class="description short">
 			
@@ -805,7 +922,7 @@ Returns the entries for the current page.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.Service.Manager.NewsManager.html">Charcoal\Cms\Service\Manager\NewsManager</a></code>
+					<code><a href="class-Charcoal.Cms.Service.Manager.EventManager.html">Charcoal\Cms\Service\Manager\EventManager</a></code>
 				</div>
 
 				<h4>Throws</h4>
@@ -818,19 +935,19 @@ Returns the entries for the current page.</p>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="setNewsManager" id="_setNewsManager">
+	<tr data-order="setEventManager" id="_setEventManager">
 
 		<td class="attributes"><code>
 			 protected 
 
-			<code><a href="class-Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html">Charcoal\Cms\Support\Traits\NewsManagerAwareTrait</a></code>
+			<code><a href="class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html">Charcoal\Cms\Support\Traits\EventManagerAwareTrait</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_setNewsManager">#</a>
-		<code><a href="source-class-Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html#283-292" title="Go to source code">setNewsManager</a>( <span><code><a href="class-Charcoal.Cms.Service.Manager.NewsManager.html">Charcoal\Cms\Service\Manager\NewsManager</a></code> <var>$newsManager</var></span> )</code>
+		<a class="anchor" href="#_setEventManager">#</a>
+		<code><a href="source-class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html#330-339" title="Go to source code">setEventManager</a>( <span><code><a href="class-Charcoal.Cms.Service.Manager.EventManager.html">Charcoal\Cms\Service\Manager\EventManager</a></code> <var>$eventManager</var></span> )</code>
 
 		<div class="description short">
 			
@@ -842,13 +959,13 @@ Returns the entries for the current page.</p>
 
 				<h4>Parameters</h4>
 				<div class="list"><dl>
-					<dt><var>$newsManager</var></dt>
-					<dd>The news Manager class.</dd>
+					<dt><var>$eventManager</var></dt>
+					<dd>The event Manager class.</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><a href="class-Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html">Charcoal\Cms\Support\Traits\NewsManagerAwareTrait</a></code>
+					<code><a href="class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html">Charcoal\Cms\Support\Traits\EventManagerAwareTrait</a></code>
 				</div>
 
 
@@ -869,7 +986,7 @@ Returns the entries for the current page.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_dateHelper">#</a>
-		<code><a href="source-class-Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html#294-298" title="Go to source code">dateHelper</a>( )</code>
+		<code><a href="source-class-Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html#341-345" title="Go to source code">dateHelper</a>( )</code>
 
 		<div class="description short">
 			<p>dateHelperAwareTrait dependency</p>
