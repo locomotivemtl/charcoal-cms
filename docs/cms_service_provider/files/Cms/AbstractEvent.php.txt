@@ -86,6 +86,55 @@ abstract class AbstractEvent extends Content implements
     private $endDate;
 
     /**
+     * @var array
+     */
+    protected $keywords;
+
+    // ==========================================================================
+    // INIT
+    // ==========================================================================
+
+    /**
+     * Section constructor.
+     * @param array $data The data.
+     */
+    public function __construct(array $data = null)
+    {
+        parent::__construct($data);
+
+        if (is_callable([ $this, 'defaultData' ])) {
+            $this->setData($this->defaultData());
+        }
+    }
+
+    // ==========================================================================
+    // FUNCTIONS
+    // ==========================================================================
+
+    /**
+     * Some dates cannot be null
+     * @return void
+     */
+    public function verifyDates()
+    {
+        if (!$this->startDate()) {
+            $this->setStartDate('now');
+        }
+
+        if (!$this->endDate()) {
+            $this->setEndDate($this->startDate());
+        }
+
+        if (!$this->publishDate()) {
+            $this->setPublishDate('now');
+        }
+    }
+
+    // ==========================================================================
+    // SETTERS and GETTERS
+    // ==========================================================================
+
+    /**
      * @param  mixed $title The event title (localized).
      * @return self
      */
@@ -246,6 +295,10 @@ abstract class AbstractEvent extends Content implements
         return $this->endDate;
     }
 
+    // ==========================================================================
+    // META TAGS
+    // ==========================================================================
+
     /**
      * MetatagTrait > canonical_url
      *
@@ -292,12 +345,27 @@ abstract class AbstractEvent extends Content implements
     }
 
     /**
+     * Retrieve the object's keywords.
+     *
+     * @return string[]
+     */
+    public function keywords()
+    {
+        return $this->keywords;
+    }
+
+    // ==========================================================================
+    // EVENTS
+    // ==========================================================================
+
+    /**
      * {@inheritdoc}
      *
      * @return boolean
      */
     public function preSave()
     {
+        $this->verifyDates();
         $this->setSlug($this->generateSlug());
         $this->generateDefaultMetaTags();
 
@@ -312,12 +380,34 @@ abstract class AbstractEvent extends Content implements
      */
     public function preUpdate(array $properties = null)
     {
-        if (!$this->slug) {
-            $this->setSlug($this->generateSlug());
-        }
+        $this->verifyDates();
+        $this->setSlug($this->generateSlug());
         $this->generateDefaultMetaTags();
 
         return parent::preUpdate($properties);
+    }
+
+    /**
+     * @return boolean Parent postSave().
+     */
+    public function postSave()
+    {
+        // RoutableTrait
+        $this->generateObjectRoute($this->slug());
+
+        return parent::postSave();
+    }
+
+    /**
+     * @param array|null $properties Properties.
+     * @return boolean
+     */
+    public function postUpdate(array $properties = null)
+    {
+        // RoutableTrait
+        $this->generateObjectRoute($this->slug());
+
+        return parent::postUpdate($properties);
     }
 
     /**

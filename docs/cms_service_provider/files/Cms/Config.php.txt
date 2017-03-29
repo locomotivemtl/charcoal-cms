@@ -31,6 +31,23 @@ class Config extends Content
     protected $defaultMetaUrl;
 
     // ==========================================================================
+    // INIT
+    // ==========================================================================
+
+    /**
+     * Section constructor.
+     * @param array $data The data.
+     */
+    public function __construct(array $data = null)
+    {
+        parent::__construct($data);
+
+        if (is_callable([$this, 'defaultData'])) {
+            $this->setData($this->defaultData());
+        }
+    }
+
+    // ==========================================================================
     // SETTERS
     // ==========================================================================
 
