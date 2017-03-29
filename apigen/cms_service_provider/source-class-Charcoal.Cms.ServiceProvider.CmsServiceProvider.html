@@ -463,29 +463,32 @@
 </span><span id="210" class="l"><a href="#210">210: </a>            <span class="php-var">$objType</span> = <span class="php-var">$eventConfig</span>-&gt;get(<span class="php-quote">'obj_type'</span>);
 </span><span id="211" class="l"><a href="#211">211: </a>            <span class="php-var">$eventLoader</span>-&gt;setObjType(<span class="php-var">$objType</span>);
 </span><span id="212" class="l"><a href="#212">212: </a>
-</span><span id="213" class="l"><a href="#213">213: </a>            <span class="php-keyword1">return</span> <span class="php-var">$eventLoader</span>;
-</span><span id="214" class="l"><a href="#214">214: </a>        };
+</span><span id="213" class="l"><a href="#213">213: </a>            <span class="php-var">$lifespan</span> = <span class="php-var">$eventConfig</span>-&gt;get(<span class="php-quote">'lifespan'</span>);
+</span><span id="214" class="l"><a href="#214">214: </a>            <span class="php-var">$eventLoader</span>-&gt;setLifespan(<span class="php-var">$lifespan</span>);
 </span><span id="215" class="l"><a href="#215">215: </a>
-</span><span id="216" class="l"><a href="#216">216: </a>        <span class="php-comment">/**
-</span></span><span id="217" class="l"><a href="#217">217: </a><span class="php-comment">         * @param Container $container
-</span></span><span id="218" class="l"><a href="#218">218: </a><span class="php-comment">         * @return EventManager
-</span></span><span id="219" class="l"><a href="#219">219: </a><span class="php-comment">         */</span>
-</span><span id="220" class="l"><a href="#220">220: </a>        <span class="php-var">$container</span>[<span class="php-quote">'cms/event/manager'</span>] = <span class="php-keyword1">function</span> (Container <span class="php-var">$container</span>) {
-</span><span id="221" class="l"><a href="#221">221: </a>
-</span><span id="222" class="l"><a href="#222">222: </a>            <span class="php-var">$eventManager</span> = <span class="php-keyword1">new</span> EventManager([
-</span><span id="223" class="l"><a href="#223">223: </a>                <span class="php-quote">'loader'</span>       =&gt; <span class="php-var">$container</span>[<span class="php-quote">'model/collection/loader'</span>],
-</span><span id="224" class="l"><a href="#224">224: </a>                <span class="php-quote">'factory'</span>      =&gt; <span class="php-var">$container</span>[<span class="php-quote">'model/factory'</span>],
-</span><span id="225" class="l"><a href="#225">225: </a>                <span class="php-quote">'event/loader'</span> =&gt; <span class="php-var">$container</span>[<span class="php-quote">'cms/event/loader'</span>],
-</span><span id="226" class="l"><a href="#226">226: </a>                <span class="php-quote">'cache'</span>        =&gt; <span class="php-var">$container</span>[<span class="php-quote">'cache'</span>],
-</span><span id="227" class="l"><a href="#227">227: </a>                <span class="php-quote">'cms/config'</span>   =&gt; <span class="php-var">$container</span>[<span class="php-quote">'cms/config'</span>],
-</span><span id="228" class="l"><a href="#228">228: </a>                <span class="php-quote">'translator'</span>   =&gt; <span class="php-var">$container</span>[<span class="php-quote">'translator'</span>]
-</span><span id="229" class="l"><a href="#229">229: </a>            ]);
-</span><span id="230" class="l"><a href="#230">230: </a>
-</span><span id="231" class="l"><a href="#231">231: </a>            <span class="php-keyword1">return</span> <span class="php-var">$eventManager</span>;
-</span><span id="232" class="l"><a href="#232">232: </a>        };
-</span><span id="233" class="l"><a href="#233">233: </a>    }
-</span><span id="234" class="l"><a href="#234">234: </a>}
-</span><span id="235" class="l"><a href="#235">235: </a></span></code></pre>
+</span><span id="216" class="l"><a href="#216">216: </a>            <span class="php-keyword1">return</span> <span class="php-var">$eventLoader</span>;
+</span><span id="217" class="l"><a href="#217">217: </a>        };
+</span><span id="218" class="l"><a href="#218">218: </a>
+</span><span id="219" class="l"><a href="#219">219: </a>        <span class="php-comment">/**
+</span></span><span id="220" class="l"><a href="#220">220: </a><span class="php-comment">         * @param Container $container
+</span></span><span id="221" class="l"><a href="#221">221: </a><span class="php-comment">         * @return EventManager
+</span></span><span id="222" class="l"><a href="#222">222: </a><span class="php-comment">         */</span>
+</span><span id="223" class="l"><a href="#223">223: </a>        <span class="php-var">$container</span>[<span class="php-quote">'cms/event/manager'</span>] = <span class="php-keyword1">function</span> (Container <span class="php-var">$container</span>) {
+</span><span id="224" class="l"><a href="#224">224: </a>
+</span><span id="225" class="l"><a href="#225">225: </a>            <span class="php-var">$eventManager</span> = <span class="php-keyword1">new</span> EventManager([
+</span><span id="226" class="l"><a href="#226">226: </a>                <span class="php-quote">'loader'</span>       =&gt; <span class="php-var">$container</span>[<span class="php-quote">'model/collection/loader'</span>],
+</span><span id="227" class="l"><a href="#227">227: </a>                <span class="php-quote">'factory'</span>      =&gt; <span class="php-var">$container</span>[<span class="php-quote">'model/factory'</span>],
+</span><span id="228" class="l"><a href="#228">228: </a>                <span class="php-quote">'event/loader'</span> =&gt; <span class="php-var">$container</span>[<span class="php-quote">'cms/event/loader'</span>],
+</span><span id="229" class="l"><a href="#229">229: </a>                <span class="php-quote">'cache'</span>        =&gt; <span class="php-var">$container</span>[<span class="php-quote">'cache'</span>],
+</span><span id="230" class="l"><a href="#230">230: </a>                <span class="php-quote">'cms/config'</span>   =&gt; <span class="php-var">$container</span>[<span class="php-quote">'cms/config'</span>],
+</span><span id="231" class="l"><a href="#231">231: </a>                <span class="php-quote">'translator'</span>   =&gt; <span class="php-var">$container</span>[<span class="php-quote">'translator'</span>]
+</span><span id="232" class="l"><a href="#232">232: </a>            ]);
+</span><span id="233" class="l"><a href="#233">233: </a>
+</span><span id="234" class="l"><a href="#234">234: </a>            <span class="php-keyword1">return</span> <span class="php-var">$eventManager</span>;
+</span><span id="235" class="l"><a href="#235">235: </a>        };
+</span><span id="236" class="l"><a href="#236">236: </a>    }
+</span><span id="237" class="l"><a href="#237">237: </a>}
+</span><span id="238" class="l"><a href="#238">238: </a></span></code></pre>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
