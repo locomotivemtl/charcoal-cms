@@ -105,6 +105,10 @@
             "description": {
                 "en": "The \"display\" date of this news.",
                 "fr": "La date affichée de la nouvelle."
+            },
+            "notes": {
+                "en": "Will be set to the current date if blank.",
+                "fr": "La date actuelle sera utilisée si laissé vide."
             }
         },
         "info_url": {

@@ -262,17 +262,6 @@ abstract class AbstractNews extends Content implements
     // ==========================================================================
 
     /**
-     * MetatagTrait > canonical_url
-     *
-     * @return string
-     * @todo
-     */
-    public function canonicalUrl()
-    {
-        return '';
-    }
-
-    /**
      * @return Translation|string|null
      */
     public function title()
@@ -326,6 +315,21 @@ abstract class AbstractNews extends Content implements
     public function image()
     {
         return $this->image;
+    }
+
+    // ==========================================================================
+    // META TAGS
+    // ==========================================================================
+
+    /**
+     * MetatagTrait > canonical_url
+     *
+     * @return string
+     * @todo
+     */
+    public function canonicalUrl()
+    {
+        return '';
     }
 
     /**
