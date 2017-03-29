@@ -55,16 +55,6 @@ abstract class AbstractNews extends Content implements
     use TemplateableTrait;
 
     /**
-     * @var array $config The news config.
-     */
-    protected $config;
-
-    /**
-     * @var DateHelper $dateHelper The date helper provider.
-     */
-    protected $dateHelper;
-
-    /**
      * @var Translation|string|null
      */
     private $title;
@@ -121,16 +111,6 @@ abstract class AbstractNews extends Content implements
         }
     }
 
-    /**
-     * @param Container $container Pimple/Container.
-     * @return void
-     */
-    public function setDependencies(Container $container)
-    {
-        parent::setDependencies($container);
-        $this->dateHelper = $container['date/helper'];
-    }
-
     // ==========================================================================
     // FUNCTIONS
     // ==========================================================================
@@ -166,10 +146,7 @@ abstract class AbstractNews extends Content implements
      */
     public function adminDateFilter()
     {
-        return $this->dateHelper->formatDate(
-            $this->newsDate(),
-            'admin'
-        );
+        return $this->newsDate();
     }
 
     // ==========================================================================
@@ -369,7 +346,6 @@ abstract class AbstractNews extends Content implements
             $desc = [];
             foreach ($content->data() as $lang => $text) {
                 $desc[$lang] = strip_tags($text);
-
             }
 
             return $this->translator()->translation($desc);
