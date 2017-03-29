@@ -37,7 +37,6 @@ trait EventManagerAwareTrait
         }
     }
 
-
     /**
      * Formatted event archive list
      * Returns the entries for the current page.
@@ -233,13 +232,13 @@ trait EventManagerAwareTrait
     protected function eventFormatShort(EventInterface $event)
     {
         return [
-            'title'         => (string)$event->title(),
-            'url'           => (string)$event->url(),
-            'startDate'     => $this->getEventStartDateFormat($event),
-            'endDate'       => $this->getEventEndDateFormat($event),
-            'displayDate'   => $this->getEventDateFormat($event),
-            'time'          => $this->getEventTimeFormat($event),
-            'active'        => ($this->currentEvent() && ($this->currentEvent()['id'] == $event->id()))
+            'title'     => (string)$event->title(),
+            'url'       => (string)$event->url(),
+            'startDate' => $this->getEventStartDateFormat($event),
+            'endDate'   => $this->getEventEndDateFormat($event),
+            'date'      => $this->getEventDateFormat($event),
+            'time'      => $this->getEventTimeFormat($event),
+            'active'    => ($this->currentEvent() && ($this->currentEvent()['id'] == $event->id()))
         ];
     }
 
@@ -267,8 +266,8 @@ trait EventManagerAwareTrait
     protected function eventFormatFull(EventInterface $event)
     {
         $contentBlocks = $event->attachments('content');
-        $gallery       = $event->attachments('image-gallery');
-        $documents     = $event->attachments('document');
+        $gallery = $event->attachments('image-gallery');
+        $documents = $event->attachments('document');
 
         return [
             'id'               => $event->id(),
@@ -278,7 +277,7 @@ trait EventManagerAwareTrait
             'image'            => $event->image(),
             'startDate'        => $this->getEventStartDateFormat($event),
             'endDate'          => $this->getEventEndDateFormat($event),
-            'displayDate'      => $this->getEventDateFormat($event),
+            'date'             => $this->getEventDateFormat($event),
             'time'             => $this->getEventTimeFormat($event),
             'contentBlocks'    => $contentBlocks,
             'hasContentBlocks' => !!(count($contentBlocks)),
