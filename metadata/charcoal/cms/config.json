@@ -1,4 +1,9 @@
 {
+    "default_data": {
+        "main_menu": "options",
+        "side_menu": "options"
+    },
+
     "properties": {
         "id": {
             "type": "id"
@@ -13,7 +18,7 @@
                 "properties": {
                     "facebook": {
                         "type": "string",
-                        "input_prefix": "http://facebook.com/",
+                        "input_prefix": "https://facebook.com/",
                         "label": {
                             "fr": "Page facebook",
                             "en": "Facebook page"
@@ -117,7 +122,7 @@
 
     "admin": {
         "lists": {
-            "default": {
+            "cms.default": {
                 "label": {
                     "en": "Configs",
                     "fr": "Configs"
@@ -132,7 +137,7 @@
                             "fr": "Nouvel config"
                         },
                         "ident": "create",
-                        "url": "object/edit?obj_type=charcoal/cms/config"
+                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{objType}}"
                     }
                 ],
                 "orders": {
@@ -143,10 +148,9 @@
                 }
             }
         },
-        "default_list": "default",
 
         "forms": {
-            "default": {
+            "cms.default": {
                 "label": "Configuration",
                 "groups": {
                     "cms.general": {
@@ -176,7 +180,6 @@
                 }
             }
         },
-        "default_form": "default",
 
         "form_groups": {
             "cms.general": {
@@ -260,15 +263,9 @@
                 "widgets": {
                     "form": {
                         "type": "charcoal/admin/widget/objectForm",
-                        "form_ident": "default",
-                        "obj_type": "charcoal/cms/config",
+                        "form_ident": "cms.default",
                         "request": "main_menu=configuration",
                         "group_display_mode": "tab"
-                    }
-                },
-                "sidemenu": {
-                    "widget_options": {
-                        "ident": "options"
                     }
                 }
             },
@@ -281,14 +278,8 @@
                 "widgets": {
                     "table": {
                         "type": "charcoal/admin/widget/table",
-                        "collection_ident": "default",
-                        "obj_type": "charcoal/cms/config",
+                        "collection_ident": "cms.default",
                         "sortable": true
-                    }
-                },
-                "sidemenu": {
-                    "widget_options": {
-                        "ident": "options"
                     }
                 }
             }
