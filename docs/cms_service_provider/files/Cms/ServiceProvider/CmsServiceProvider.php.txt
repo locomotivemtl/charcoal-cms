@@ -210,6 +210,9 @@ class CmsServiceProvider implements ServiceProviderInterface
             $objType = $eventConfig->get('obj_type');
             $eventLoader->setObjType($objType);
 
+            $lifespan = $eventConfig->get('lifespan');
+            $eventLoader->setLifespan($lifespan);
+
             return $eventLoader;
         };
 
