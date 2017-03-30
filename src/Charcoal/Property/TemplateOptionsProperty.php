@@ -10,10 +10,7 @@ use Charcoal\Property\StructureProperty;
 use Charcoal\Property\TemplateProperty;
 
 /**
- * Object Property holds a reference to an external object.
- *
- * The object property implements the full `SelectablePropertyInterface` without using
- * its accompanying trait. (`set_choices`, `add_choice`, `choices`, `has_choice`, `choice`).
+ * Template Options Property
  */
 class TemplateOptionsProperty extends StructureProperty
 {
