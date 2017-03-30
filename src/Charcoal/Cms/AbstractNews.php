@@ -146,7 +146,7 @@ abstract class AbstractNews extends Content implements
      */
     public function adminDateFilter()
     {
-        return $this->newsDate();
+        return $this->newsDate()->format('Y-m-d');
     }
 
     // ==========================================================================
