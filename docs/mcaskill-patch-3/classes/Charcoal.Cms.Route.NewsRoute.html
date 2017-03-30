@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Charcoal.html">\Charcoal</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">316</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">7</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1879481374"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1879481374" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-111573826"></a>
+                                <a href="../namespaces/Charcoal.html" style="margin-left: 30px; padding-left: 0">Charcoal</a>
+            </div>
+            <div id="namespace-111573826" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-22863784"></a>
+                                <a href="../namespaces/Charcoal.Cms.html" style="margin-left: 30px; padding-left: 0">Cms</a>
+            </div>
+            <div id="namespace-22863784" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-132714591"></a>
+                                <a href="../namespaces/Charcoal.Cms.Route.html" style="margin-left: 30px; padding-left: 0">Route</a>
+            </div>
+            <div id="namespace-132714591" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Charcoal.Cms.Route.EventRoute.html">EventRoute</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Route.NewsRoute.html">NewsRoute</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Route.SectionRoute.html">SectionRoute</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1608226620"></a>
+                                <a href="../namespaces/Charcoal.Cms.Section.html" style="margin-left: 30px; padding-left: 0">Section</a>
+            </div>
+            <div id="namespace-1608226620" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Charcoal.Cms.Section.BlocksSection.html">BlocksSection</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Section.ContentSection.html">ContentSection</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.DocumentInterface.html">DocumentInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.EventInterface.html">EventInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.FaqInterface.html">FaqInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.ImageInterface.html">ImageInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.MetatagInterface.html">MetatagInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.NewsInterface.html">NewsInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.SearchableInterface.html">SearchableInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.SectionInterface.html">SectionInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.TemplateableInterface.html">TemplateableInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.TextInterface.html">TextInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.VideoInterface.html">VideoInterface</a></li>
+                                                                            <li class="trait"><a href="../classes/Charcoal.Cms.MetatagTrait.html">MetatagTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Cms.SearchableTrait.html">SearchableTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Cms.TemplateableTrait.html">TemplateableTrait</a></li>
+                                                                            <li class="class"><a href="../classes/Charcoal.Cms.AbstractDocument.html">AbstractDocument</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.AbstractEvent.html">AbstractEvent</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.AbstractFaq.html">AbstractFaq</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.AbstractImage.html">AbstractImage</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.AbstractNews.html">AbstractNews</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.AbstractSection.html">AbstractSection</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.AbstractText.html">AbstractText</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.AbstractVideo.html">AbstractVideo</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Document.html">Document</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.DocumentCategory.html">DocumentCategory</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.EmptySection.html">EmptySection</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Event.html">Event</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.EventCategory.html">EventCategory</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.ExternalSection.html">ExternalSection</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Faq.html">Faq</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.FaqCategory.html">FaqCategory</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Image.html">Image</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.ImageCategory.html">ImageCategory</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.News.html">News</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.NewsCategory.html">NewsCategory</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Section.html">Section</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Tag.html">Tag</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Text.html">Text</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.TextCategory.html">TextCategory</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Video.html">Video</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.VideoCategory.html">VideoCategory</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1758047429"></a>
+                                <a href="../namespaces/Charcoal.Property.html" style="margin-left: 30px; padding-left: 0">Property</a>
+            </div>
+            <div id="namespace-1758047429" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Charcoal.Property.TemplateOptionsProperty.html">TemplateOptionsProperty</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Property.TemplateProperty.html">TemplateProperty</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Charcoal.Cms.Route.html">\Charcoal\Cms\Route</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Charcoal\Cms\Route</small>NewsRoute</h1>
+                    <p><em>News Route Handler</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Charcoal.Cms.Route.NewsRoute.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Route.NewsRoute.html#method_pathResolvable" class="">pathResolvable()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Route.NewsRoute.html#method___invoke" class="">__invoke()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/Charcoal.Cms.Route.NewsRoute.html#method_loadNewsFromPath" class="">loadNewsFromPath()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Charcoal.Cms.Route.NewsRoute.html#property_path" class="">$path</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Route.NewsRoute.html#property_news" class="">$news</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Route.NewsRoute.html#property_objType" class="">$objType</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Cms.Route.NewsRoute.html"><div class="path-wrapper">Cms/Route/NewsRoute.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper">\Charcoal\App\Route\TemplateRoute</div>
+                                                                                                    <div class="namespace-wrapper">\Charcoal\Cms\Route\NewsRoute</div>
+                            </dd>
+
+                        
+                                                                                    <dt>Uses traits</dt>
+                                                        <dd>
+                                                                    <div class="namespace-wrapper">\Charcoal\Translator\TranslatorAwareTrait</div>
+                                                            </dd>
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_path" name="property_path" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$path</h3>
+                <pre class="signature">$path : string</pre>
+                <p><em>URI path.</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_news" name="property_news" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$news</h3>
+                <pre class="signature">$news : \Charcoal\Cms\NewsInterface|\Charcoal\Object\RoutableInterface</pre>
+                <p><em>The news entry matching the URI path.</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Charcoal.Cms.NewsInterface.html">\Charcoal\Cms\NewsInterface</a>|\Charcoal\Object\RoutableInterface
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_objType" name="property_objType" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$objType</h3>
+                <pre class="signature">$objType : string</pre>
+                <p><em>The news entry model.</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(array  <span class="argument">$data</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data </td>
+                                <td><p>Class depdendencies.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_pathResolvable" name="method_pathResolvable" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">pathResolvable()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">pathResolvable(\Pimple\Container  <span class="argument">$container</span>) : boolean</pre>
+                <p><em>Determine if the URI path resolves to an object.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Pimple\Container</td>
+                                <td>$container </td>
+                                <td><p>A DI (Pimple) container.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___invoke" name="method___invoke" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__invoke()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__invoke(\Pimple\Container  <span class="argument">$container</span>, \Psr\Http\Message\RequestInterface  <span class="argument">$request</span>, \Psr\Http\Message\ResponseInterface  <span class="argument">$response</span>) : \Psr\Http\Message\ResponseInterface</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Pimple\Container</td>
+                                <td>$container </td>
+                                <td><p>A DI (Pimple) container.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Psr\Http\Message\RequestInterface</td>
+                                <td>$request </td>
+                                <td><p>A PSR-7 compatible Request instance.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Psr\Http\Message\ResponseInterface</td>
+                                <td>$response </td>
+                                <td><p>A PSR-7 compatible Response instance.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Psr\Http\Message\ResponseInterface
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_loadNewsFromPath" name="method_loadNewsFromPath" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">loadNewsFromPath()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">loadNewsFromPath(\Pimple\Container  <span class="argument">$container</span>) : \Charcoal\Cms\NewsInterface</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Pimple\Container</td>
+                                <td>$container </td>
+                                <td><p>Pimple DI container.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.Cms.NewsInterface.html">\Charcoal\Cms\NewsInterface</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                                                            <p>Add support for <code>@see setlocale()</code>; {@see GenericRoute::setLocale()}</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">NewsRoute.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Cms/Route/NewsRoute.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Charcoal.html">\Charcoal</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on March 30th, 2017 at 21:48.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
