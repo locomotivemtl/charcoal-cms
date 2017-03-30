@@ -83,7 +83,9 @@ trait TemplateableTrait
      */
     public function setTemplateOptions($options)
     {
-        if (is_string($options)) {
+        if (is_numeric($options)) {
+            $options = null;
+        } elseif (is_string($options)) {
             $options = json_decode($options, true);
         }
 
@@ -95,7 +97,7 @@ trait TemplateableTrait
     /**
      * Retrieve the template's customized options.
      *
-     * @return array
+     * @return mixed
      */
     public function templateOptions()
     {

@@ -11,12 +11,16 @@
 >
 	<testsuites>
 		<testsuite name="Charcoal CMS Test Suite">
-			<directory>Charcoal/Cms/</directory>
+            <directory>Charcoal/Admin/</directory>
+            <directory>Charcoal/Cms/</directory>
+			<directory>Charcoal/Property/</directory>
 		</testsuite>
 	</testsuites>
     <filter>
     <whitelist>
+        <directory suffix=".php">../src/Charcoal/Admin</directory>
         <directory suffix=".php">../src/Charcoal/Cms</directory>
+        <directory suffix=".php">../src/Charcoal/Property</directory>
     </whitelist>
     </filter>
 	<logging>

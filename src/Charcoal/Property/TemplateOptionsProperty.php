@@ -5,7 +5,6 @@ namespace Charcoal\Property;
 use InvalidArgumentException;
 
 // From 'charcoal-property'
-use Charcoal\Property\PropertyInterface;
 use Charcoal\Property\StructureProperty;
 use Charcoal\Property\TemplateProperty;
 
@@ -35,14 +34,10 @@ class TemplateOptionsProperty extends StructureProperty
     public function addStructureInterface($interface)
     {
         if ($interface instanceof TemplateProperty) {
-            $choice = $interface->choice($interface->val());
-            if (isset($choice['controller'])) {
-                $interface = $choice['controller'];
-            } elseif (isset($choice['template'])) {
-                $interface = $choice['template'];
-            } else {
+            $interface = (string)$interface;
+            if (empty($interface)) {
                 throw new InvalidArgumentException(
-                    'Template structure interface invalid'
+                    'Invalid template structure interface'
                 );
             }
         }
