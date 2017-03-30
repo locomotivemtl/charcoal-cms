@@ -130,6 +130,23 @@ abstract class AbstractEvent extends Content implements
         }
     }
 
+    /**
+     * @return string The date filtered for admin dual select input and others.
+     */
+    public function adminDateFilter()
+    {
+        $start = $this->startDate()->format('Y-m-d');
+        $end = $this->endDate()->format('Y-m-d');
+
+        if ($start === $end) {
+            $date = $start;
+        } else {
+            $date = $start.' - '.$end;
+        }
+
+        return $date;
+    }
+
     // ==========================================================================
     // SETTERS and GETTERS
     // ==========================================================================
