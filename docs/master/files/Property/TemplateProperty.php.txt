@@ -10,15 +10,13 @@ use InvalidArgumentException;
 // From Pimple
 use Pimple\Container;
 
-// From 'charcoal-cms'
+// From 'charcoal-property'
+use Charcoal\Property\AbstractProperty;
 use Charcoal\Property\SelectablePropertyInterface;
 use Charcoal\Property\SelectablePropertyTrait;
 
 /**
- * Object Property holds a reference to an external object.
- *
- * The object property implements the full `SelectablePropertyInterface` without using
- * its accompanying trait. (`set_choices`, `add_choice`, `choices`, `has_choice`, `choice`).
+ * Template Selector Property
  */
 class TemplateProperty extends AbstractProperty implements SelectablePropertyInterface
 {
