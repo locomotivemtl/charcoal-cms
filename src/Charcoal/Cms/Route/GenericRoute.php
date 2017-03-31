@@ -205,10 +205,10 @@ class GenericRoute extends TemplateRoute
     {
         $config = $this->config();
 
-        $objectRoute   = $this->loadObjectRouteFromPath();
+        $objectRoute = $this->loadObjectRouteFromPath();
         $contextObject = $this->loadContextObject();
-        $translator    = $this->translator();
-        $currentLang   = $objectRoute->lang();
+        $translator = $this->translator();
+        $currentLang = $objectRoute->lang();
 
         // Set language according to the route's language
         $this->setLocale($currentLang);
@@ -277,6 +277,12 @@ class GenericRoute extends TemplateRoute
         if (isset($templateOptions) && $templateOptions) {
             // Not sure what this was about?
             $config['template_data'] = array_merge($config['template_data'], $templateOptions);
+        }
+
+        // Merge Route options from object-route
+        $routeOptions = $objectRoute->routeOptions();
+        if ($routeOptions && count($routeOptions)) {
+            $config['template_data'] = array_merge($config['template_data'], $routeOptions);
         }
 
         $this->setConfig($config);
@@ -477,8 +483,8 @@ class GenericRoute extends TemplateRoute
         $translator = $this->translator();
         $translator->setLocale($langCode);
 
-        $available  = $translator->locales();
-        $fallbacks  = $translator->getFallbackLocales();
+        $available = $translator->locales();
+        $fallbacks = $translator->getFallbackLocales();
 
         array_unshift($fallbacks, $langCode);
         array_unique($fallbacks);
