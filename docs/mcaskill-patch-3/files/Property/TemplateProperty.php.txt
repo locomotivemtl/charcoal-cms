@@ -92,7 +92,57 @@ class TemplateProperty extends AbstractProperty implements SelectablePropertyInt
     }
 
     /**
-     * Retrieve the selected template's fully-qualified class name.
+     * @param  mixed $val     The value to to convert for display.
+     * @param  array $options Optional display options.
+     * @return string
+     */
+    public function displayVal($val, array $options = [])
+    {
+        if ($val === null || $val === '') {
+            return '';
+        }
+
+        /** Parse multilingual values */
+        if ($this->l10n()) {
+            $propertyValue = $this->l10nVal($val, $options);
+            if ($propertyValue === null) {
+                return '';
+            }
+        } elseif ($val instanceof Translation) {
+            $propertyValue = (string)$val;
+        } else {
+            $propertyValue = $val;
+        }
+
+        $separator = $this->multipleSeparator();
+
+        /** Parse multiple values / ensure they are of array type. */
+        if ($this->multiple()) {
+            if (!is_array($propertyValue)) {
+                $propertyValue = explode($separator, $propertyValue);
+            }
+
+            if ($separator === ',') {
+                $separator = ', ';
+            }
+        }
+
+        if (is_array($propertyValue)) {
+            foreach ($propertyValue as &$value) {
+                if (is_string($value)) {
+                    $value = (string)$this->choiceLabel($value);
+                }
+            }
+            $propertyValue = implode($separator, $propertyValue);
+        } elseif (is_string($propertyValue)) {
+            $propertyValue = (string)$this->choiceLabel($propertyValue);
+        }
+
+        return $propertyValue;
+    }
+
+    /**
+     * Retrieve the selected template's FQCN.
      *
      * @return string|null
      */
