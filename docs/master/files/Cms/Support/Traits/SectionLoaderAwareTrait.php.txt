@@ -172,7 +172,7 @@ trait SectionLoaderAwareTrait
      */
     protected function formatSection(SectionInterface $section)
     {
-        $contentBlocks = $section->attachments('content');
+        $contentBlocks = $section->attachments('content-blocks');
         $gallery = $section->attachments('image-gallery');
         $documents = $section->attachments('document');
 
