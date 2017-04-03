@@ -13,9 +13,28 @@ use Charcoal\Cms\News;
 /**
  * News Category
  */
-final class NewsCategory extends Content implements CategoryInterface
+class NewsCategory extends Content implements CategoryInterface
 {
     use CategoryTrait;
+
+    /**
+     * Translatable
+     * @var string[] $name
+     */
+    protected $name;
+
+    /**
+     * Section constructor.
+     * @param array $data Init data.
+     */
+    public function __construct(array $data = null)
+    {
+        parent::__construct($data);
+
+        if (is_callable([ $this, 'defaultData' ])) {
+            $this->setData($this->defaultData());
+        }
+    }
 
     /**
      * CategoryTrait > itemType()
@@ -33,6 +52,25 @@ final class NewsCategory extends Content implements CategoryInterface
     public function loadCategoryItems()
     {
         return [];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function name()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name The category name.
+     * @return self
+     */
+    public function setName($name)
+    {
+        $this->name = $this->translator()->translation($name);
+
+        return $this;
     }
 }
 
