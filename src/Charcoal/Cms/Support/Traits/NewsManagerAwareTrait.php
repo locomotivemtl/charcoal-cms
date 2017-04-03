@@ -223,7 +223,7 @@ trait NewsManagerAwareTrait
      */
     protected function newsFormatFull(NewsInterface $news)
     {
-        $contentBlocks = $news->attachments('content');
+        $contentBlocks = $news->attachments('content-blocks');
         $gallery = $news->attachments('image-gallery');
         $documents = $news->attachments('document');
 
