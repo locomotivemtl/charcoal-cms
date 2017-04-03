@@ -30,7 +30,7 @@
         "locomotivemtl/charcoal-factory": "~0.4",
         "locomotivemtl/charcoal-object": "~0.1",
         "locomotivemtl/charcoal-translator": "~0.1",
-        "beneroch/charcoal-attachment": "dev-master"
+        "beneroch/charcoal-attachment": "~0.2"
     },
     "require-dev": {
         "psr/log": "^1.0",
