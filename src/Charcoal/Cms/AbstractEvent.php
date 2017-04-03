@@ -27,6 +27,10 @@ use Charcoal\Cms\MetatagInterface;
 use Charcoal\Cms\SearchableInterface;
 use Charcoal\Cms\TemplateableInterface;
 
+use Charcoal\Cms\MetatagTrait;
+use Charcoal\Cms\SearchableTrait;
+use Charcoal\Cms\TemplateableTrait;
+
 /**
  *
  */
@@ -80,6 +84,72 @@ abstract class AbstractEvent extends Content implements
      * @var DateTimeInterface|null
      */
     private $endDate;
+
+    /**
+     * @var array
+     */
+    protected $keywords;
+
+    // ==========================================================================
+    // INIT
+    // ==========================================================================
+
+    /**
+     * Section constructor.
+     * @param array $data The data.
+     */
+    public function __construct(array $data = null)
+    {
+        parent::__construct($data);
+
+        if (is_callable([ $this, 'defaultData' ])) {
+            $this->setData($this->defaultData());
+        }
+    }
+
+    // ==========================================================================
+    // FUNCTIONS
+    // ==========================================================================
+
+    /**
+     * Some dates cannot be null
+     * @return void
+     */
+    public function verifyDates()
+    {
+        if (!$this->startDate()) {
+            $this->setStartDate('now');
+        }
+
+        if (!$this->endDate()) {
+            $this->setEndDate($this->startDate());
+        }
+
+        if (!$this->publishDate()) {
+            $this->setPublishDate('now');
+        }
+    }
+
+    /**
+     * @return string The date filtered for admin dual select input and others.
+     */
+    public function adminDateFilter()
+    {
+        $start = $this->startDate()->format('Y-m-d');
+        $end = $this->endDate()->format('Y-m-d');
+
+        if ($start === $end) {
+            $date = $start;
+        } else {
+            $date = $start.' - '.$end;
+        }
+
+        return $date;
+    }
+
+    // ==========================================================================
+    // SETTERS and GETTERS
+    // ==========================================================================
 
     /**
      * @param  mixed $title The event title (localized).
@@ -242,6 +312,10 @@ abstract class AbstractEvent extends Content implements
         return $this->endDate;
     }
 
+    // ==========================================================================
+    // META TAGS
+    // ==========================================================================
+
     /**
      * MetatagTrait > canonical_url
      *
@@ -288,12 +362,27 @@ abstract class AbstractEvent extends Content implements
     }
 
     /**
+     * Retrieve the object's keywords.
+     *
+     * @return string[]
+     */
+    public function keywords()
+    {
+        return $this->keywords;
+    }
+
+    // ==========================================================================
+    // EVENTS
+    // ==========================================================================
+
+    /**
      * {@inheritdoc}
      *
      * @return boolean
      */
     public function preSave()
     {
+        $this->verifyDates();
         $this->setSlug($this->generateSlug());
         $this->generateDefaultMetaTags();
 
@@ -308,12 +397,34 @@ abstract class AbstractEvent extends Content implements
      */
     public function preUpdate(array $properties = null)
     {
-        if (!$this->slug) {
-            $this->setSlug($this->generateSlug());
-        }
+        $this->verifyDates();
+        $this->setSlug($this->generateSlug());
         $this->generateDefaultMetaTags();
 
         return parent::preUpdate($properties);
+    }
+
+    /**
+     * @return boolean Parent postSave().
+     */
+    public function postSave()
+    {
+        // RoutableTrait
+        $this->generateObjectRoute($this->slug());
+
+        return parent::postSave();
+    }
+
+    /**
+     * @param array|null $properties Properties.
+     * @return boolean
+     */
+    public function postUpdate(array $properties = null)
+    {
+        // RoutableTrait
+        $this->generateObjectRoute($this->slug());
+
+        return parent::postUpdate($properties);
     }
 
     /**

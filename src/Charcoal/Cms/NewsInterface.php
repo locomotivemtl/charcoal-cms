@@ -2,6 +2,8 @@
 
 namespace Charcoal\Cms;
 
+use Charcoal\Translator\Translation;
+
 /**
  *
  */

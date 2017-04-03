@@ -78,12 +78,6 @@ class SectionTest extends \PHPUnit_Framework_TestCase
         $this->obj->setSectionType(false);
     }
 
-    public function testSetSectionTypeInvalidType()
-    {
-        $this->setExpectedException('\InvalidArgumentException');
-        $this->obj->setSectionType('FooBarFoo');
-    }
-
     public function testSetTitle()
     {
         $this->assertEquals('', (string)$this->obj->title());

@@ -3,6 +3,53 @@
         "ident": "charcoal/cms/event"
     },
 
+    "routable": {
+        "editable": true,
+        "pattern": {
+            "fr": "{{ title }}",
+            "en": "{{ title }}"
+        },
+        "prefix": {
+            "fr": "/fr/evenements/",
+            "en": "/en/events/"
+        }
+    },
+
+    "default_data": {
+        "main_menu": "content",
+        "side_menu": "content"
+    },
+
+    "sources": {
+        "default": {
+            "table": "cms_events"
+        }
+    },
+    "default_source": "default",
+
+    "labels": {
+        "name": {
+            "fr": "Événements",
+            "en": "Event"
+        },
+        "singular_name": {
+            "fr": "Événement",
+            "en": "Event"
+        },
+        "edit_item": {
+            "fr": "Modifier l'événement",
+            "en": "Edit event"
+        },
+        "all_items": {
+            "fr": "Tous les événements",
+            "en": "All Events"
+        },
+        "menu_items": {
+            "fr": "Événements",
+            "en": "Events"
+        }
+    },
+
     "properties": {
         "id": {
             "type": "id"
@@ -47,14 +94,252 @@
             "upload_path": "uploads/events/"
         },
         "start_date": {
-            "type": "date-time"
+            "type": "date-time",
+            "label": {
+                "fr": "Date de début",
+                "en": "Start date"
+            },
+            "notes": {
+                "en": "Will be set to the start date if blank.",
+                "fr": "La date actuelle sera utilisée si laissé vide."
+            }
         },
         "end_date": {
-            "type": "date-time"
+            "type": "date-time",
+            "label": {
+                "fr": "Date de fin",
+                "en": "End date"
+            },
+            "notes": {
+                "en": "Will be set to the current if blank.",
+                "fr": "La date de début sera utilisée si laissé vide."
+            }
         },
         "info_url": {
           "type": "url",
           "l10n": true
+        },
+        "keywords": {
+            "type": "object",
+            "obj_type": "charcoal/cms/tag",
+            "input_type": "charcoal/admin/property/input/selectize/tags",
+            "multiple": true,
+            "label": {
+                "fr": "Mots-clés",
+                "en": "Keywords"
+            },
+            "description": {
+                "fr": "Les mots-clés permettent d'optimiser la recherche",
+                "en": "Key-words optimises research"
+            }
         }
+    },
+
+    "admin": {
+        "lists": {
+            "cms.default": {
+                "properties": [
+                    "title",
+                    "start_date",
+                    "end_date",
+                    "publish_date"
+                ],
+                "list_actions": [
+                    {
+                        "ident": "create",
+                        "priority": 10,
+                        "label": {
+                            "en": "New event",
+                            "fr": "Nouvel événement"
+                        },
+                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}"
+                    }
+                ],
+                "object_actions": {
+                    "edit": {
+                        "label": {
+                            "en": "Modify",
+                            "fr": "Modifier"
+                        },
+                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&obj_id={{id}}",
+                        "priority": 1,
+                        "split_button": true,
+                        "actions": {
+                            "goto": {
+                                "label": {
+                                    "en": "Go to event",
+                                    "fr": "Voir l'événement"
+                                },
+                                "url": "{{baseUrl}}{{url}}",
+                                "target": "_blank",
+                                "priority": 2
+                            },
+                            "clone": {
+                                "label": {
+                                    "en": "Clone",
+                                    "fr": "Cloner"
+                                },
+                                "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&clone_id={{id}}",
+                                "priority": 3
+                            },
+                            "delete": {
+                                "label": {
+                                    "en": "Delete",
+                                    "fr": "Supprimer"
+                                },
+                                "priority": 4
+                            }
+                        }
+                    }
+                },
+                "orders": [
+                    {
+                        "property": "start_date",
+                        "mode": "desc"
+                    }
+                ]
+            }
+        },
+
+        "forms": {},
+
+        "form_groups": {
+            "cms.info": {
+                "title": "Info",
+                "show_title": false,
+                "show_header": false,
+                "icon": "info",
+                "properties": [
+                    "title",
+                    "summary",
+                    "content",
+                    "image"
+                ]
+            },
+            "cms.gallery": {
+                "title": {
+                    "fr": "Galerie d'images",
+                    "en": "Gallery"
+                },
+                "show_title": false,
+                "show_header": false,
+                "icon": "photo",
+                "template": "charcoal/admin/widget/form-group/attachment",
+                "type": "charcoal/admin/widget/form-group/attachment",
+                "group": "image-gallery",
+                "attachable_objects": {
+                    "charcoal/attachment/object/image": {
+                        "label": {
+                            "fr": "Image",
+                            "en": "Image"
+                        }
+                    }
+                }
+            },
+            "cms.resources": {
+                "title": {
+                    "en": "Documents",
+                    "fr": "Ressources"
+                },
+                "show_title": false,
+                "show_header": false,
+                "icon": "paperclip",
+                "template": "charcoal/admin/widget/form-group/attachment",
+                "type": "charcoal/admin/widget/form-group/attachment",
+                "group": "document",
+                "attachable_objects": {
+                    "charcoal/attachment/object/file": {
+                        "label": {
+                            "fr": "Document",
+                            "en": "Document"
+                        }
+                    },
+                    "charcoal/attachment/object/link": {
+                        "label": {
+                            "fr": "Lien",
+                            "en": "Link"
+                        }
+                    }
+                }
+            },
+            "cms.meta": {
+                "show_title": false,
+                "show_header": false,
+                "icon": "tags",
+                "title": {
+                    "fr": "Description méta",
+                    "en": "Meta tags"
+                },
+                "properties": [
+                    "meta_title",
+                    "meta_description",
+                    "meta_image",
+                    "keywords"
+                ]
+            },
+            "cms.advanced": {
+                "title": "Options",
+                "show_title": false,
+                "show_header": false,
+                "icon": "cog",
+                "properties": [
+                    "category",
+                    "start_date",
+                    "end_date",
+                    "publish_date",
+                    "slug",
+                    "active"
+                ],
+                "priority": 600
+            },
+            "cms.revisions": {
+                "title": {
+                    "fr": "Révisions",
+                    "en": "Revisions"
+                },
+                "show_title": false,
+                "show_header": false,
+                "icon": "floppy-o",
+                "template": "charcoal/admin/widget/form-group/object-revisions",
+                "type": "charcoal/admin/widget/form-group/object-revisions"
+            }
+        },
+        "dashboards": {
+            "cms.edit": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1]},
+                        {"columns": [1]},
+                        {"columns": [1]},
+                        {"columns": [1]}
+                    ]
+                },
+                "widgets": {
+                    "form": {
+                        "priority": 10,
+                        "type": "charcoal/admin/widget/objectForm",
+                        "form_ident": "cms.default",
+                        "group_display_mode": "tab"
+                    }
+                }
+            },
+            "cms.table": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1]}
+                    ]
+                },
+                "widgets": {
+                    "table": {
+                        "type": "charcoal/support/admin/widget/table",
+                        "collection_ident": "cms.default",
+                        "data_sources": ["request"]
+                    }
+                }
+            }
+        },
+        "default_create_dashboard": "cms.edit",
+        "default_edit_dashboard": "cms.edit",
+        "default_collection_dashboard": "cms.table"
     }
 }

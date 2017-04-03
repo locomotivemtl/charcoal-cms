@@ -1,0 +1,54 @@
+{
+    "admin": {
+        "form_groups": {
+            "cms.content-blocks": {
+                "title": {
+                    "en": "Content",
+                    "fr": "Contenus"
+                },
+                "show_title": false,
+                "show_header": false,
+                "icon": "edit",
+                "type": "charcoal/admin/widget/form-group/attachment",
+                "template": "charcoal/admin/widget/form-group/attachment",
+                "group": "cms.content-blocks",
+                "attachment_heading": "{{ ident }}",
+                "show_attachment_heading": false,
+                "show_attachment_preview": true,
+                "attachable_objects": "cms.content-blocks"
+            },
+            "cms.gallery": {
+                "title": {
+                    "en": "Gallery",
+                    "fr": "gallery"
+                },
+                "show_title": false,
+                "show_header": false,
+                "icon": "edit",
+                "type": "charcoal/admin/widget/form-group/attachment",
+                "template": "charcoal/admin/widget/form-group/attachment",
+                "group": "cms.gallery",
+                "attachment_heading": "{{ ident }}",
+                "show_attachment_heading": false,
+                "show_attachment_preview": true,
+                "attachable_objects": "cms.gallery"
+            },
+            "cms.resources": {
+                "title": {
+                    "en": "Resources",
+                    "fr": "Ressources"
+                },
+                "show_title": false,
+                "show_header": false,
+                "icon": "edit",
+                "type": "charcoal/admin/widget/form-group/attachment",
+                "template": "charcoal/admin/widget/form-group/attachment",
+                "group": "cms.resources",
+                "attachment_heading": "{{ ident }}",
+                "show_attachment_heading": false,
+                "show_attachment_preview": true,
+                "attachable_objects": "cms.resources"
+            }
+        }
+    }
+}

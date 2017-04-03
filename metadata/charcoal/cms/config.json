@@ -1,0 +1,291 @@
+{
+    "default_data": {
+        "main_menu": "options",
+        "side_menu": "options"
+    },
+
+    "properties": {
+        "id": {
+            "type": "id"
+        },
+        "social_medias": {
+            "type": "structure",
+            "label": {
+                "en": "Social medias",
+                "fr": "Médias sociaux"
+            },
+            "structure_metadata": {
+                "properties": {
+                    "facebook": {
+                        "type": "string",
+                        "input_prefix": "https://facebook.com/",
+                        "label": {
+                            "fr": "Page facebook",
+                            "en": "Facebook page"
+                        }
+                    },
+                    "twitter": {
+                        "type": "string",
+                        "input_prefix": "https://twitter.com/",
+                        "label": {
+                            "fr": "Page twitter",
+                            "en": "Twitter page"
+                        }
+                    },
+                    "instagram": {
+                        "type": "string",
+                        "input_prefix": "https://www.instagram.com/",
+                        "label": {
+                            "fr": "Page instagram",
+                            "en": "Instagram page"
+                        }
+                    }
+                }
+            }
+        },
+        "default_from_email": {
+            "type": "string",
+            "l10n": false,
+            "label": {
+                "en": "Default from email",
+                "fr": "Email de retour par défaut"
+            },
+            "description": {
+                "en": "The default sending email for contact confirmations",
+                "fr": "Le courriel émetteur lors d'un envoie de confirmation"
+            }
+        },
+        "default_meta_title": {
+            "type": "string",
+            "l10n": true,
+            "label": {
+                "en": "Default meta title",
+                "fr": "Titre méta par default"
+            },
+            "description": {
+                "en": "The meta tags are used when sharing a page on social medias and to facilitate indexing",
+                "fr": "Les étiquettes méta sont utilisées lors du partage sur les résaux sociaux et pour faciliter le référencement"
+            }
+        },
+        "default_meta_description": {
+            "type": "string",
+            "l10n": true,
+            "label": {
+                "en": "Default meta description",
+                "fr": "Description méta par default"
+            },
+            "description": {
+                "en": "The meta tags are used when sharing a page on social medias and to facilitate indexing",
+                "fr": "Les étiquettes méta sont utilisées lors du partage sur les résaux sociaux et pour faciliter le référencement"
+            }
+        },
+        "default_meta_image": {
+            "type": "image",
+            "label": {
+                "en": "Default meta image",
+                "fr": "Image méta par default"
+            },
+            "upload_path": "uploads/options/config/",
+            "public_access": true,
+            "view_options": {
+                "charcoal/admin/property/display/image": {
+                    "height": 50
+                }
+            },
+            "description": {
+                "en": "The meta tags are used when sharing a page on social medias and to facilitate indexing",
+                "fr": "Les étiquettes méta sont utilisées lors du partage sur les résaux sociaux et pour faciliter le référencement"
+            }
+        },
+        "default_meta_url": {
+            "type": "string",
+            "l10n": true,
+            "label": {
+                "en": "Default meta url",
+                "fr": "Url méta par default"
+            },
+            "description": {
+                "en": "The meta tags are used when sharing a page on social medias and to facilitate indexing",
+                "fr": "Les étiquettes méta sont utilisées lors du partage sur les résaux sociaux et pour faciliter le référencement"
+            }
+        }
+    },
+    "key": "id",
+
+    "sources": {
+        "default": {
+            "type": "database",
+            "table": "cms_config"
+        }
+    },
+    "default_source": "default",
+
+    "admin": {
+        "lists": {
+            "cms.default": {
+                "label": {
+                    "en": "Configs",
+                    "fr": "Configs"
+                },
+                "properties": [
+                    ""
+                ],
+                "list_actions": [
+                    {
+                        "label": {
+                            "en": "New config",
+                            "fr": "Nouvel config"
+                        },
+                        "ident": "create",
+                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{objType}}"
+                    }
+                ],
+                "orders": {
+                    "position": {
+                        "property": "position",
+                        "mode": "asc"
+                    }
+                }
+            }
+        },
+
+        "forms": {
+            "cms.default": {
+                "label": "Configuration",
+                "groups": {
+                    "cms.general": {
+                        "priority": 100
+                    },
+                    "cms.sharer": {
+                        "priority": 300
+                    },
+                    "cms.meta": {
+                        "priority": 400
+                    },
+                    "cms.revisions": {
+                        "priority": 8000
+                    }
+                },
+                "sidebars": {
+                    "action": {
+                        "permissions": {
+                            "footer": [
+                                "dev-footer"
+                            ]
+                        },
+                        "title": "Actions",
+                        "properties": [],
+                        "actions": {}
+                    }
+                }
+            }
+        },
+
+        "form_groups": {
+            "cms.general": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1]},
+                        {"columns": [1]},
+                        {"columns": [1, 1]}
+                    ]
+                },
+                "title": {
+                    "en": "General",
+                    "fr": "Général"
+                },
+                "show_title": false,
+                "icon": "wrench",
+                "properties": [
+                    "default_from_email"
+                ]
+            },
+            "cms.sharer": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1, 1]},
+                        {"columns": [1, 1]},
+                        {"columns": [1, 1]},
+                        {"columns": [1, 1]},
+                        {"columns": [1, 1]}
+                    ]
+                },
+                "title": {
+                    "en": "Social media",
+                    "fr": "Média sociaux"
+                },
+                "show_title": false,
+                "icon": "share-square",
+                "template": "charcoal/admin/widget/form-group/structure",
+                "type": "charcoal/admin/widget/form-group/structure",
+                "storage_property": "social_medias"
+            },
+            "cms.meta": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1, 1]},
+                        {"columns": [1, 1]}
+                    ]
+                },
+                "title": {
+                    "en": "Meta tags",
+                    "fr": "Tags Méta"
+                },
+                "show_title": false,
+                "icon": "tag",
+                "properties": [
+                    "default_meta_title",
+                    "default_meta_description",
+                    "default_meta_url",
+                    "default_meta_image"
+                ]
+            },
+            "cms.revisions": {
+                "title": {
+                    "fr": "Révisions",
+                    "en": "Revisions"
+                },
+                "show_title": false,
+                "show_header": false,
+                "icon": "floppy-o",
+                "template": "charcoal/admin/widget/form-group/object-revisions",
+                "type": "charcoal/admin/widget/form-group/object-revisions"
+            }
+        },
+
+        "dashboards": {
+            "admin.edit": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1]}
+                    ]
+                },
+                "widgets": {
+                    "form": {
+                        "type": "charcoal/admin/widget/objectForm",
+                        "form_ident": "cms.default",
+                        "request": "main_menu=configuration",
+                        "group_display_mode": "tab"
+                    }
+                }
+            },
+            "admin.table": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1]}
+                    ]
+                },
+                "widgets": {
+                    "table": {
+                        "type": "charcoal/admin/widget/table",
+                        "collection_ident": "cms.default",
+                        "sortable": true
+                    }
+                }
+            }
+        },
+        "default_create_dashboard": "admin.edit",
+        "default_edit_dashboard": "admin.edit",
+        "default_collection_dashboard": "admin.table"
+    }
+}

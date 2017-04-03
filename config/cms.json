@@ -1,0 +1,218 @@
+{
+    "section": {
+        "obj_type": "cms/section"
+    },
+    "news": {
+        "num_per_page": 0,
+        "entry_cycle": false,
+        "default_expiry": "10 years",
+        "median": "now",
+        "obj_type": "Cms\\News\\ContentNews",
+        "category": "Cms\\NewsCategory",
+        "config_feat_ident": "homeNews",
+        "thumbnail": {
+            "resize": {
+                "width": 1000
+            }
+        }
+    },
+    "event": {
+        "num_per_page": 0,
+        "entry_cycle": false,
+        "lifespan": "now",
+        "obj_type": "Cms\\Event",
+        "category": "Cms\\EventCategory",
+        "config_feat_ident": "homeEvents",
+        "thumbnail": {
+            "resize": {
+                "width": 1000
+            }
+        }
+    },
+    "date_formats": {
+        "default": {
+            "single": {
+                "content": {
+                    "en": "%s",
+                    "fr": "%s"
+                },
+                "formats": {
+                    "from": {
+                        "en": "%b the %d",
+                        "fr": "%d %b"
+                    }
+                }
+            },
+            "different_day": {
+                "content": {
+                    "en": "from %s to %s",
+                    "fr": "du %s au %s"
+                },
+                "formats": {
+                    "from": {
+                        "en": "%d %b",
+                        "fr": "%d"
+                    },
+                    "to": {
+                        "en": "%d",
+                        "fr": "%d %b"
+                    }
+                }
+            },
+            "different_month": {
+                "content": {
+                    "en": "from %s to %s",
+                    "fr": "du %s au %s"
+                },
+                "formats": {
+                    "from": {
+                        "en": "%b %d",
+                        "fr": "%d %b"
+                    },
+                    "to": {
+                        "en": "%b %d",
+                        "fr": "%d %b"
+                    }
+                }
+            },
+            "different_year": {
+                "content": {
+                    "en": "from %s to %s",
+                    "fr": "du %s au %s"
+                },
+                "formats": {
+                    "from": {
+                        "en": "%b %d %Y",
+                        "fr": "%d %b %Y"
+                    },
+                    "to": {
+                        "en": "%b %d %Y",
+                        "fr": "%d %b %Y"
+                    }
+                }
+            }
+        },
+        "admin": {
+            "single": {
+                "content": {
+                    "en": "%s",
+                    "fr": "le %s"
+                },
+                "formats": {
+                    "from": {
+                        "en": "%b the %d %Y",
+                        "fr": "%d %b %Y"
+                    }
+                }
+            },
+            "different_day": {
+                "content": {
+                    "en": "from %s to %s",
+                    "fr": "du %s au %s"
+                },
+                "formats": {
+                    "from": {
+                        "en": "%d %b",
+                        "fr": "%d"
+                    },
+                    "to": {
+                        "en": "%d",
+                        "fr": "%d %b"
+                    }
+                }
+            },
+            "different_month": {
+                "content": {
+                    "en": "from %s to %s",
+                    "fr": "du %s au %s"
+                },
+                "formats": {
+                    "from": {
+                        "en": "%b %d",
+                        "fr": "%d %b"
+                    },
+                    "to": {
+                        "en": "%b %d",
+                        "fr": "%d %b"
+                    }
+                }
+            },
+            "different_year": {
+                "content": {
+                    "en": "from %s to %s",
+                    "fr": "du %s au %s"
+                },
+                "formats": {
+                    "from": {
+                        "en": "%b %d %y",
+                        "fr": "%d %b %y"
+                    },
+                    "to": {
+                        "en": "%b %d %y",
+                        "fr": "%d %b %y"
+                    }
+                }
+            }
+        }
+    },
+    "time_formats": {
+        "default": {
+            "single": {
+                "content": {
+                    "en": "%s",
+                    "fr": "%s"
+                },
+                "formats": {
+                    "from": {
+                        "en": "%k : %M",
+                        "fr": "%kh%M"
+                    }
+                }
+            },
+            "single_round": {
+                "content": {
+                    "en": "%s",
+                    "fr": "%s"
+                },
+                "formats": {
+                    "from": {
+                        "en": "%k",
+                        "fr": "%kh"
+                    }
+                }
+            },
+            "different_time": {
+                "content": {
+                    "en": "%s - %s",
+                    "fr": "%s à %s"
+                },
+                "formats": {
+                    "from": {
+                        "en": "%k : %M",
+                        "fr": "%kh%M"
+                    },
+                    "to": {
+                        "en": "%k : %M",
+                        "fr": "%kh%M"
+                    }
+                }
+            },
+            "different_time_round": {
+                "content": {
+                    "en": "%s - %s",
+                    "fr": "%s à %s"
+                },
+                "formats": {
+                    "from": {
+                        "en": "%k",
+                        "fr": "%kh"
+                    },
+                    "to": {
+                        "en": "%k",
+                        "fr": "%kh"
+                    }
+                }
+            }
+        }
+    }
+}

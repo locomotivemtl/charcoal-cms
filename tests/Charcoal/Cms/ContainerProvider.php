@@ -3,6 +3,8 @@
 namespace Charcoal\Tests\Cms;
 
 use PDO;
+use Charcoal\Cms\Config\CmsConfig;
+use Charcoal\Cms\Support\Helpers\DateHelper;
 
 // From PSR-3
 use Psr\Log\NullLogger;
@@ -39,6 +41,8 @@ class ContainerProvider
     public function registerBaseServices(Container $container)
     {
         $this->registerConfig($container);
+        $this->registerCmsConfig($container);
+        $this->registerDateHelper($container);
         $this->registerPdo($container);
         $this->registerLogger($container);
         $this->registerCache($container);
@@ -51,11 +55,29 @@ class ContainerProvider
         };
     }
 
+    public function registerCmsConfig(Container $container)
+    {
+        $container['cms/config'] = function (Container $container) {
+            return new CmsConfig();
+        };
+    }
+
+    public function registerDateHelper(Container $container)
+    {
+        $container['date/helper'] = function (Container $container) {
+            return new DateHelper([
+                'date_formats' => '',
+                'time_formats' => ''
+            ]);
+        };
+    }
+
     public function registerPdo(Container $container)
     {
         $container['database'] = function (Container $container) {
             $pdo = new PDO('sqlite::memory:');
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
             return $pdo;
         };
     }
@@ -97,11 +119,11 @@ class ContainerProvider
             return new MetadataLoader([
                 'logger'    => $container['logger'],
                 'base_path' => realpath(__DIR__.'/../../../'),
-                    'paths' => [
-                        'metadata',
-                        'vendor/locomotivemtl/charcoal-object/metadata'
-                    ],
-                'cache'  => $container['cache']
+                'paths'     => [
+                    'metadata',
+                    'vendor/locomotivemtl/charcoal-object/metadata'
+                ],
+                'cache'     => $container['cache']
             ]);
         };
     }
@@ -110,14 +132,14 @@ class ContainerProvider
     {
         $container['source/factory'] = function ($container) {
             return new Factory([
-                'map' => [
+                'map'       => [
                     'database' => DatabaseSource::class
                 ],
-                'arguments'  => [[
+                'arguments' => [ [
                     'logger' => $container['logger'],
                     'cache'  => $container['cache'],
                     'pdo'    => $container['database']
-                ]]
+                ] ]
             ]);
         };
     }
@@ -126,13 +148,13 @@ class ContainerProvider
     {
         $container['model/factory'] = function ($container) {
             return new Factory([
-                'arguments' => [[
-                    'container'         => $container,
-                    'logger'            => $container['logger'],
-                    'metadata_loader'   => $container['metadata/loader'],
-                    'source_factory'    => $container['source/factory'],
-                    'property_factory'  => $container['property/factory']
-                ]]
+                'arguments' => [ [
+                    'container'        => $container,
+                    'logger'           => $container['logger'],
+                    'metadata_loader'  => $container['metadata/loader'],
+                    'source_factory'   => $container['source/factory'],
+                    'property_factory' => $container['property/factory']
+                ] ]
             ]);
         };
     }
@@ -145,7 +167,7 @@ class ContainerProvider
                     'prefix' => '\\Charcoal\\Property\\',
                     'suffix' => 'Property'
                 ],
-                'arguments' => [[
+                'arguments'      => [[
                     'container'  => $container,
                     'database'   => $container['database'],
                     'logger'     => $container['logger'],
@@ -172,10 +194,10 @@ class ContainerProvider
                 'resolver_options' => [
                     'suffix' => 'Template'
                 ],
-                'arguments'  => [[
+                'arguments'        => [ [
                     'container' => $container,
                     'logger'    => $container['logger']
-                ]]
+                ] ]
             ]);
         };
     }

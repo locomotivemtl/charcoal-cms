@@ -35,27 +35,9 @@
         "forms": {
             "default": {
                 "groups": {
-                    "info": {
-                        "title": {
-                            "en": "Informations",
-                            "fr": "Informations"
-                        },
-                        "properties": [
-                            "news_date",
-                            "publish_status"
-                        ]
-                    },
-                    "content": {
-                        "title": {
-                            "en": "Content",
-                            "fr": "Contenu"
-                        },
-                        "properties": [
-                            "title",
-                            "subtitle",
-                            "content"
-                        ]
-                    }
+                    "cms.info": {},
+                    "cms.advanced": {},
+                    "cms.meta": {}
                 },
                 "sidebars": {
                     "default": {}
