@@ -205,10 +205,9 @@ class GenericRoute extends TemplateRoute
     {
         $config = $this->config();
 
-        $objectRoute = $this->loadObjectRouteFromPath();
+        $objectRoute   = $this->loadObjectRouteFromPath();
         $contextObject = $this->loadContextObject();
-        $translator = $this->translator();
-        $currentLang = $objectRoute->lang();
+        $currentLang   = $objectRoute->lang();
 
         // Set language according to the route's language
         $this->setLocale($currentLang);
