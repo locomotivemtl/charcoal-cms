@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Charcoal.html">\Charcoal</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">619</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">9</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-2010826659"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-2010826659" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1676886512"></a>
+                                <a href="../namespaces/Charcoal.html" style="margin-left: 30px; padding-left: 0">Charcoal</a>
+            </div>
+            <div id="namespace-1676886512" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1392960876"></a>
+                                <a href="../namespaces/Charcoal.Admin.html" style="margin-left: 30px; padding-left: 0">Admin</a>
+            </div>
+            <div id="namespace-1392960876" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2128859171"></a>
+                                <a href="../namespaces/Charcoal.Admin.Widget.html" style="margin-left: 30px; padding-left: 0">Widget</a>
+            </div>
+            <div id="namespace-2128859171" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-884230619"></a>
+                                <a href="../namespaces/Charcoal.Admin.Widget.Cms.html" style="margin-left: 30px; padding-left: 0">Cms</a>
+            </div>
+            <div id="namespace-884230619" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/Charcoal.Admin.Widget.Cms.SectionTableTrait.html">SectionTableTrait</a></li>
+                                                                            <li class="class"><a href="../classes/Charcoal.Admin.Widget.Cms.HierarchicalSectionTableWidget.html">HierarchicalSectionTableWidget</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Admin.Widget.Cms.SectionTableWidget.html">SectionTableWidget</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2000885298"></a>
+                                <a href="../namespaces/Charcoal.Cms.html" style="margin-left: 30px; padding-left: 0">Cms</a>
+            </div>
+            <div id="namespace-2000885298" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2146765001"></a>
+                                <a href="../namespaces/Charcoal.Cms.Config.html" style="margin-left: 30px; padding-left: 0">Config</a>
+            </div>
+            <div id="namespace-2146765001" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Charcoal.Cms.Config.CmsConfig.html">CmsConfig</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Config.EventConfig.html">EventConfig</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Config.NewsConfig.html">NewsConfig</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Config.SectionConfig.html">SectionConfig</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-515420623"></a>
+                                <a href="../namespaces/Charcoal.Cms.Mixin.html" style="margin-left: 30px; padding-left: 0">Mixin</a>
+            </div>
+            <div id="namespace-515420623" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1047651808"></a>
+                                <a href="../namespaces/Charcoal.Cms.Mixin.Traits.html" style="margin-left: 30px; padding-left: 0">Traits</a>
+            </div>
+            <div id="namespace-1047651808" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html">HasContentBlocksTrait</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.Mixin.HasContentBlocksInterface.html">HasContentBlocksInterface</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-510916391"></a>
+                                <a href="../namespaces/Charcoal.Cms.Route.html" style="margin-left: 30px; padding-left: 0">Route</a>
+            </div>
+            <div id="namespace-510916391" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Charcoal.Cms.Route.EventRoute.html">EventRoute</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Route.NewsRoute.html">NewsRoute</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Route.SectionRoute.html">SectionRoute</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1466079520"></a>
+                                <a href="../namespaces/Charcoal.Cms.Section.html" style="margin-left: 30px; padding-left: 0">Section</a>
+            </div>
+            <div id="namespace-1466079520" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Charcoal.Cms.Section.BlocksSection.html">BlocksSection</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Section.ContentSection.html">ContentSection</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-622198768"></a>
+                                <a href="../namespaces/Charcoal.Cms.Service.html" style="margin-left: 30px; padding-left: 0">Service</a>
+            </div>
+            <div id="namespace-622198768" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-824088946"></a>
+                                <a href="../namespaces/Charcoal.Cms.Service.Loader.html" style="margin-left: 30px; padding-left: 0">Loader</a>
+            </div>
+            <div id="namespace-824088946" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Charcoal.Cms.Service.Loader.AbstractLoader.html">AbstractLoader</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Service.Loader.EventLoader.html">EventLoader</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Service.Loader.NewsLoader.html">NewsLoader</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Service.Loader.SectionLoader.html">SectionLoader</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-190386012"></a>
+                                <a href="../namespaces/Charcoal.Cms.Service.Manager.html" style="margin-left: 30px; padding-left: 0">Manager</a>
+            </div>
+            <div id="namespace-190386012" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Charcoal.Cms.Service.Manager.AbstractManager.html">AbstractManager</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html">EventManager</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Service.Manager.NewsManager.html">NewsManager</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1114218845"></a>
+                                <a href="../namespaces/Charcoal.Cms.ServiceProvider.html" style="margin-left: 30px; padding-left: 0">ServiceProvider</a>
+            </div>
+            <div id="namespace-1114218845" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Charcoal.Cms.ServiceProvider.CmsServiceProvider.html">CmsServiceProvider</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1455925028"></a>
+                                <a href="../namespaces/Charcoal.Cms.Support.html" style="margin-left: 30px; padding-left: 0">Support</a>
+            </div>
+            <div id="namespace-1455925028" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-739228266"></a>
+                                <a href="../namespaces/Charcoal.Cms.Support.Helpers.html" style="margin-left: 30px; padding-left: 0">Helpers</a>
+            </div>
+            <div id="namespace-739228266" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Charcoal.Cms.Support.Helpers.DateHelper.html">DateHelper</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1809997977"></a>
+                                <a href="../namespaces/Charcoal.Cms.Support.Interfaces.html" style="margin-left: 30px; padding-left: 0">Interfaces</a>
+            </div>
+            <div id="namespace-1809997977" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.Support.Interfaces.EventManagerAwareInterface.html">EventManagerAwareInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.Support.Interfaces.NewsManagerAwareInterface.html">NewsManagerAwareInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.Support.Interfaces.SectionLoaderAwareInterface.html">SectionLoaderAwareInterface</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1235476025"></a>
+                                <a href="../namespaces/Charcoal.Cms.Support.Traits.html" style="margin-left: 30px; padding-left: 0">Traits</a>
+            </div>
+            <div id="namespace-1235476025" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/Charcoal.Cms.Support.Traits.DateHelperAwareTrait.html">DateHelperAwareTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html">EventManagerAwareTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html">NewsManagerAwareTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Cms.Support.Traits.SectionLoaderAwareTrait.html">SectionLoaderAwareTrait</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.DocumentInterface.html">DocumentInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.EventInterface.html">EventInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.FaqInterface.html">FaqInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.ImageInterface.html">ImageInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.MetatagInterface.html">MetatagInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.NewsInterface.html">NewsInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.SearchableInterface.html">SearchableInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.SectionInterface.html">SectionInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.TemplateableInterface.html">TemplateableInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.TextInterface.html">TextInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.VideoInterface.html">VideoInterface</a></li>
+                                                                            <li class="trait"><a href="../classes/Charcoal.Cms.MetatagTrait.html">MetatagTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Cms.SearchableTrait.html">SearchableTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Cms.TemplateableTrait.html">TemplateableTrait</a></li>
+                                                                            <li class="class"><a href="../classes/Charcoal.Cms.AbstractDocument.html">AbstractDocument</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.AbstractEvent.html">AbstractEvent</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.AbstractFaq.html">AbstractFaq</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.AbstractImage.html">AbstractImage</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.AbstractNews.html">AbstractNews</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.AbstractSection.html">AbstractSection</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.AbstractText.html">AbstractText</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.AbstractVideo.html">AbstractVideo</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Config.html">Config</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Document.html">Document</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.DocumentCategory.html">DocumentCategory</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.EmptySection.html">EmptySection</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Event.html">Event</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.EventCategory.html">EventCategory</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.ExternalSection.html">ExternalSection</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Faq.html">Faq</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.FaqCategory.html">FaqCategory</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Image.html">Image</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.ImageCategory.html">ImageCategory</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.News.html">News</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.NewsCategory.html">NewsCategory</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Section.html">Section</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Tag.html">Tag</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Text.html">Text</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.TextCategory.html">TextCategory</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Video.html">Video</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.VideoCategory.html">VideoCategory</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-94802589"></a>
+                                <a href="../namespaces/Charcoal.Property.html" style="margin-left: 30px; padding-left: 0">Property</a>
+            </div>
+            <div id="namespace-94802589" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Charcoal.Property.TemplateOptionsProperty.html">TemplateOptionsProperty</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Property.TemplateProperty.html">TemplateProperty</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Charcoal.Cms.ServiceProvider.html">\Charcoal\Cms\ServiceProvider</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Charcoal\Cms\ServiceProvider</small>CmsServiceProvider</h1>
+                    <p><em>Cms Service Provider</em></p>
+                    <p>Provide the following service to container:</p>
+<ul>
+<li><code>cms/section/factory</code></li>
+</ul>
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Charcoal.Cms.ServiceProvider.CmsServiceProvider.html#method_register" class="">register()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <a href="../classes/Charcoal.Cms.ServiceProvider.CmsServiceProvider.html#method_registerSectionServices" class="">registerSectionServices()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.ServiceProvider.CmsServiceProvider.html#method_registerNewsServices" class="">registerNewsServices()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.ServiceProvider.CmsServiceProvider.html#method_registerEventServices" class="">registerEventServices()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Cms.ServiceProvider.CmsServiceProvider.html"><div class="path-wrapper">Cms/ServiceProvider/CmsServiceProvider.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Charcoal\Cms\ServiceProvider\CmsServiceProvider</div>
+                            </dd>
+
+                                                                            <dt>Implements</dt>
+                                                        <dd><a href=""><div class="namespace-wrapper"></div></a></dd>
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                        
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_register" name="method_register" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">register()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">register(\Pimple\Container  <span class="argument">$container</span>) : void</pre>
+                <p><em>Registers services on the given container.</em></p>
+                <p>This method should only be used to configure services and parameters.
+It should not get services.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Pimple\Container</td>
+                                <td>$container </td>
+                                <td><p>A container instance.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_registerSectionServices" name="method_registerSectionServices" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">registerSectionServices()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">registerSectionServices(\Pimple\Container  <span class="argument">$container</span>) : void</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Pimple\Container</td>
+                                <td>$container </td>
+                                <td><p>Pimple DI Container.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_registerNewsServices" name="method_registerNewsServices" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">registerNewsServices()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">registerNewsServices(\Pimple\Container  <span class="argument">$container</span>) : void</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Pimple\Container</td>
+                                <td>$container </td>
+                                <td><p>Pimple DI Container.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_registerEventServices" name="method_registerEventServices" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">registerEventServices()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">registerEventServices(\Pimple\Container  <span class="argument">$container</span>) : void</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Pimple\Container</td>
+                                <td>$container </td>
+                                <td><p>Pimple DI Container.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">CmsServiceProvider.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Cms/ServiceProvider/CmsServiceProvider.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Charcoal.html">\Charcoal</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on April 7th, 2017 at 14:45.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
