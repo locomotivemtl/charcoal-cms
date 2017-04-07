@@ -28,7 +28,7 @@
         "locomotivemtl/charcoal-app": "~0.4",
         "locomotivemtl/charcoal-core": "~0.2",
         "locomotivemtl/charcoal-factory": "~0.4",
-        "locomotivemtl/charcoal-object": "~0.1",
+        "locomotivemtl/charcoal-object": "~0.2",
         "locomotivemtl/charcoal-translator": "~0.1",
         "beneroch/charcoal-attachment": "~0.2"
     },
