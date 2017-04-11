@@ -33,8 +33,8 @@ class NewsManager extends AbstractManager
     /** @var integer $numPerPage News by page. */
     protected $numPerPage = 0;
 
-    /** @var integer $numPage How many pages. */
-    protected $numPage;
+    /** @var integer $numPages How many pages. */
+    protected $numPages;
 
     /** @var boolean $pageCycle Does the pager can cycle indefinitely. */
     protected $entryCycle = false;
@@ -118,6 +118,19 @@ class NewsManager extends AbstractManager
                 return $this->entries[$cat][$page];
             }
         }
+
+        $loader = $this->entriesLoader();
+
+        $this->entries[$cat][$page] = $loader->load();
+
+        return $this->entries[$cat][$page];
+    }
+
+    /**
+     * @return \Charcoal\Loader\CollectionLoader
+     */
+    public function entriesLoader()
+    {
         $loader = $this->loader()->upcoming();
         $loader->addOrder('news_date', 'desc');
 
@@ -127,12 +140,11 @@ class NewsManager extends AbstractManager
         if ($this->numPerPage()) {
             $loader->setPage($this->page());
 
-            $numPerPage = $this->page() ? $this->numPerPage() : 0;
+            $numPerPage = !!($this->page()) ? $this->numPerPage() : 0;
             $loader->setNumPerPage($numPerPage);
         }
-        $this->entries[$cat][$page] = $loader->load();
 
-        return $this->entries[$cat][$page];
+        return $loader;
     }
 
     /**
@@ -401,25 +413,7 @@ class NewsManager extends AbstractManager
      */
     public function numPages()
     {
-        if ($this->numPage) {
-            $this->numPage;
-        };
-
-        $page = $this->page();
-        $this->setPage(0);
-
-        $entries = $this->entries();
-        $count = count($entries);
-
-        $this->setPage($page);
-
-        if ($this->numPerPage()) {
-            $this->numPage = ceil($count / $this->numPerPage());
-        } else {
-            $this->numPage = 1;
-        }
-
-        return $this->numPage;
+        return ceil($this->entriesLoader()->loadCount() / $this->numPerPage());
     }
 
     /**
