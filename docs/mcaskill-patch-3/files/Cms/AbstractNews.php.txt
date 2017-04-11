@@ -29,6 +29,12 @@ use Charcoal\Cms\SearchableInterface;
 use Charcoal\Cms\SearchableTrait;
 use Charcoal\Cms\TemplateableInterface;
 
+// Local dependencies
+use Charcoal\Cms\Support\Helpers\DateHelper;
+
+// Pimple dependencies
+use Pimple\Container;
+
 /**
  * News
  */
@@ -84,7 +90,71 @@ abstract class AbstractNews extends Content implements
     private $infoUrl;
 
     /**
-     * @param  mixed $title The news title (localized).
+     * @var array
+     */
+    protected $keywords;
+
+    // ==========================================================================
+    // INIT
+    // ==========================================================================
+
+    /**
+     * Section constructor.
+     * @param array $data The data.
+     */
+    public function __construct(array $data = null)
+    {
+        parent::__construct($data);
+
+        if (is_callable([ $this, 'defaultData' ])) {
+            $this->setData($this->defaultData());
+        }
+    }
+
+    // ==========================================================================
+    // FUNCTIONS
+    // ==========================================================================
+
+    /**
+     * In the datetime attribute of the <time> tag
+     * @return string The datetime attribute formatted.
+     */
+    public function dateTimeDate()
+    {
+        $newsDate = $this->newsDate();
+
+        return $newsDate->format('Y-m-d H:i:s');
+    }
+
+    /**
+     * Some dates cannot be null
+     * @return void
+     */
+    public function verifyDates()
+    {
+        if (!$this->newsDate()) {
+            $this->setNewsDate('now');
+        }
+
+        if (!$this->publishDate()) {
+            $this->setPublishDate('now');
+        }
+    }
+
+    /**
+     * @return string The date filtered for admin dual select input and others.
+     */
+    public function adminDateFilter()
+    {
+        return $this->newsDate()->format('Y-m-d');
+    }
+
+    // ==========================================================================
+    // SETTERS
+    // ==========================================================================
+
+    /**
+     * @param mixed $title The news title (localized).
      * @return self
      */
     public function setTitle($title)
@@ -92,14 +162,6 @@ abstract class AbstractNews extends Content implements
         $this->title = $this->translator()->translation($title);
 
         return $this;
-    }
-
-    /**
-     * @return Translation|string|null
-     */
-    public function title()
-    {
-        return $this->title;
     }
 
     /**
@@ -114,15 +176,7 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return Translation|string|null
-     */
-    public function subtitle()
-    {
-        return $this->subtitle;
-    }
-
-    /**
-     * @param  mixed $summary The news summary (localized).
+     * @param mixed $summary The news summary (localized).
      * @return self
      */
     public function setSummary($summary)
@@ -133,15 +187,7 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return Translation|string|null
-     */
-    public function summary()
-    {
-        return $this->summary;
-    }
-
-    /**
-     * @param  mixed $content The news content (localized).
+     * @param mixed $content The news content (localized).
      * @return self
      */
     public function setContent($content)
@@ -152,15 +198,7 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return Translation|string|null
-     */
-    public function content()
-    {
-        return $this->content;
-    }
-
-    /**
-     * @param  mixed $image The section main image (localized).
+     * @param mixed $image The section main image (localized).
      * @return self
      */
     public function setImage($image)
@@ -171,11 +209,14 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return Translation|string|null
+     * @param mixed $url The info URL (news source or where to find more information; localized).
+     * @return self
      */
-    public function image()
+    public function setInfoUrl($url)
     {
-        return $this->image;
+        $this->infoUrl = $this->translator()->translation($url);
+
+        return $this;
     }
 
     /**
@@ -204,22 +245,44 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @return DateTimeInterface|null
+     * Set the object's keywords.
+     *
+     * @param  string|string[] $keywords One or more entries.
+     * @return self
      */
-    public function newsDate()
+    public function setKeywords($keywords)
     {
-        return $this->newsDate;
+        $this->keywords = $this->parseAsMultiple($keywords);
+
+        return $this;
+    }
+
+    // ==========================================================================
+    // GETTERS
+    // ==========================================================================
+
+    /**
+     * @return Translation|string|null
+     */
+    public function title()
+    {
+        return $this->title;
     }
 
     /**
-     * @param  mixed $url The info URL (news source or where to find more information; localized).
-     * @return self
+     * @return Translation|string|null
      */
-    public function setInfoUrl($url)
+    public function subtitle()
     {
-        $this->infoUrl = $this->translator()->translation($url);
+        return $this->subtitle;
+    }
 
-        return $this;
+    /**
+     * @return Translation|string|null
+     */
+    public function summary()
+    {
+        return $this->summary;
     }
 
     /**
@@ -231,10 +294,38 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
+     * @return DateTimeInterface|null
+     */
+    public function newsDate()
+    {
+        return $this->newsDate;
+    }
+
+    /**
+     * @return Translation|string|null
+     */
+    public function content()
+    {
+        return $this->content;
+    }
+
+    /**
+     * @return Translation|string|null
+     */
+    public function image()
+    {
+        return $this->image;
+    }
+
+    // ==========================================================================
+    // META TAGS
+    // ==========================================================================
+
+    /**
      * MetatagTrait > canonical_url
      *
-     * @todo
      * @return string
+     * @todo
      */
     public function canonicalUrl()
     {
@@ -266,6 +357,7 @@ abstract class AbstractNews extends Content implements
 
         return null;
     }
+
     /**
      * @return Translation|string|null
      */
@@ -275,12 +367,68 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
+     * Retrieve the object's keywords.
+     *
+     * @return string[]
+     */
+    public function keywords()
+    {
+        return $this->keywords;
+    }
+
+    // ==========================================================================
+    // Utils
+    // ==========================================================================
+
+    /**
+     * Parse the property value as a "multiple" value type.
+     *
+     * @param  mixed                    $value     The value being converted to an array.
+     * @param  string|PropertyInterface $separator The boundary string.
+     * @return array
+     */
+    public function parseAsMultiple($value, $separator = ',')
+    {
+        if (!isset($value) ||
+            (is_string($value) && !strlen(trim($value))) ||
+            (is_array($value) && !count(array_filter($value, 'strlen')))
+        ) {
+            return [];
+        }
+
+        /**
+         * This property is marked as "multiple".
+         * Manually handling the resolution to array
+         * until the property itself manages this.
+         */
+        if (is_string($value)) {
+            return explode($separator, $value);
+        }
+
+        /**
+         * If the parameter isn't an array yet,
+         * means we might be dealing with an integer,
+         * an empty string, or an object.
+         */
+        if (!is_array($value)) {
+            return [ $value ];
+        }
+
+        return $value;
+    }
+
+    // ==========================================================================
+    // EVENTS
+    // ==========================================================================
+
+    /**
      * {@inheritdoc}
      *
      * @return boolean
      */
     public function preSave()
     {
+        $this->verifyDates();
         $this->setSlug($this->generateSlug());
         $this->generateDefaultMetaTags();
 
@@ -295,10 +443,34 @@ abstract class AbstractNews extends Content implements
      */
     public function preUpdate(array $properties = null)
     {
+        $this->verifyDates();
         $this->setSlug($this->generateSlug());
         $this->generateDefaultMetaTags();
 
         return parent::preUpdate($properties);
+    }
+
+    /**
+     * @return boolean Parent postSave().
+     */
+    public function postSave()
+    {
+        // RoutableTrait
+        $this->generateObjectRoute($this->slug());
+
+        return parent::postSave();
+    }
+
+    /**
+     * @param array|null $properties Properties.
+     * @return boolean
+     */
+    public function postUpdate(array $properties = null)
+    {
+        // RoutableTrait
+        $this->generateObjectRoute($this->slug());
+
+        return parent::postUpdate($properties);
     }
 
     /**
