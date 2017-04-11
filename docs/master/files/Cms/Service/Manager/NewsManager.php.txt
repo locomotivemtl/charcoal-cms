@@ -126,7 +126,9 @@ class NewsManager extends AbstractManager
         }
         if ($this->numPerPage()) {
             $loader->setPage($this->page());
-            $loader->setNumPerPage($this->numPerPage());
+
+            $numPerPage = $this->page() ? $this->numPerPage() : 0;
+            $loader->setNumPerPage($numPerPage);
         }
         $this->entries[$cat][$page] = $loader->load();
 
@@ -190,6 +192,7 @@ class NewsManager extends AbstractManager
         $category = $this->modelFactory()->create($this->categoryItemType());
 
         $this->categoryItem[$id] = $category->load($id);
+
         return $this->categoryItem[$id];
     }
 
@@ -402,8 +405,13 @@ class NewsManager extends AbstractManager
             $this->numPage;
         };
 
+        $page = $this->page();
+        $this->setPage(0);
+
         $entries = $this->entries();
         $count = count($entries);
+
+        $this->setPage($page);
 
         if ($this->numPerPage()) {
             $this->numPage = ceil($count / $this->numPerPage());
