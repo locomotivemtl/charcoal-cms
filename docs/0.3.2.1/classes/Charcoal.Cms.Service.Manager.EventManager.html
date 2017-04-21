@@ -1,0 +1,2963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Charcoal.html">\Charcoal</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">620</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">9</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-123837568"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-123837568" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-364744374"></a>
+                                <a href="../namespaces/Charcoal.html" style="margin-left: 30px; padding-left: 0">Charcoal</a>
+            </div>
+            <div id="namespace-364744374" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2065295492"></a>
+                                <a href="../namespaces/Charcoal.Admin.html" style="margin-left: 30px; padding-left: 0">Admin</a>
+            </div>
+            <div id="namespace-2065295492" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1319858651"></a>
+                                <a href="../namespaces/Charcoal.Admin.Widget.html" style="margin-left: 30px; padding-left: 0">Widget</a>
+            </div>
+            <div id="namespace-1319858651" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-779405985"></a>
+                                <a href="../namespaces/Charcoal.Admin.Widget.Cms.html" style="margin-left: 30px; padding-left: 0">Cms</a>
+            </div>
+            <div id="namespace-779405985" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/Charcoal.Admin.Widget.Cms.SectionTableTrait.html">SectionTableTrait</a></li>
+                                                                            <li class="class"><a href="../classes/Charcoal.Admin.Widget.Cms.HierarchicalSectionTableWidget.html">HierarchicalSectionTableWidget</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Admin.Widget.Cms.SectionTableWidget.html">SectionTableWidget</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1382948786"></a>
+                                <a href="../namespaces/Charcoal.Cms.html" style="margin-left: 30px; padding-left: 0">Cms</a>
+            </div>
+            <div id="namespace-1382948786" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-261722852"></a>
+                                <a href="../namespaces/Charcoal.Cms.Config.html" style="margin-left: 30px; padding-left: 0">Config</a>
+            </div>
+            <div id="namespace-261722852" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Charcoal.Cms.Config.CmsConfig.html">CmsConfig</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Config.EventConfig.html">EventConfig</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Config.NewsConfig.html">NewsConfig</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Config.SectionConfig.html">SectionConfig</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-269239177"></a>
+                                <a href="../namespaces/Charcoal.Cms.Mixin.html" style="margin-left: 30px; padding-left: 0">Mixin</a>
+            </div>
+            <div id="namespace-269239177" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-420507679"></a>
+                                <a href="../namespaces/Charcoal.Cms.Mixin.Traits.html" style="margin-left: 30px; padding-left: 0">Traits</a>
+            </div>
+            <div id="namespace-420507679" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html">HasContentBlocksTrait</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.Mixin.HasContentBlocksInterface.html">HasContentBlocksInterface</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1246997927"></a>
+                                <a href="../namespaces/Charcoal.Cms.Route.html" style="margin-left: 30px; padding-left: 0">Route</a>
+            </div>
+            <div id="namespace-1246997927" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Charcoal.Cms.Route.EventRoute.html">EventRoute</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Route.NewsRoute.html">NewsRoute</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Route.SectionRoute.html">SectionRoute</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-950309865"></a>
+                                <a href="../namespaces/Charcoal.Cms.Section.html" style="margin-left: 30px; padding-left: 0">Section</a>
+            </div>
+            <div id="namespace-950309865" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Charcoal.Cms.Section.BlocksSection.html">BlocksSection</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Section.ContentSection.html">ContentSection</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-259854823"></a>
+                                <a href="../namespaces/Charcoal.Cms.Service.html" style="margin-left: 30px; padding-left: 0">Service</a>
+            </div>
+            <div id="namespace-259854823" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2018043460"></a>
+                                <a href="../namespaces/Charcoal.Cms.Service.Loader.html" style="margin-left: 30px; padding-left: 0">Loader</a>
+            </div>
+            <div id="namespace-2018043460" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Charcoal.Cms.Service.Loader.AbstractLoader.html">AbstractLoader</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Service.Loader.EventLoader.html">EventLoader</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Service.Loader.NewsLoader.html">NewsLoader</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Service.Loader.SectionLoader.html">SectionLoader</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2043163689"></a>
+                                <a href="../namespaces/Charcoal.Cms.Service.Manager.html" style="margin-left: 30px; padding-left: 0">Manager</a>
+            </div>
+            <div id="namespace-2043163689" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Charcoal.Cms.Service.Manager.AbstractManager.html">AbstractManager</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html">EventManager</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Service.Manager.NewsManager.html">NewsManager</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-358062989"></a>
+                                <a href="../namespaces/Charcoal.Cms.ServiceProvider.html" style="margin-left: 30px; padding-left: 0">ServiceProvider</a>
+            </div>
+            <div id="namespace-358062989" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Charcoal.Cms.ServiceProvider.CmsServiceProvider.html">CmsServiceProvider</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1859510125"></a>
+                                <a href="../namespaces/Charcoal.Cms.Support.html" style="margin-left: 30px; padding-left: 0">Support</a>
+            </div>
+            <div id="namespace-1859510125" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-592582285"></a>
+                                <a href="../namespaces/Charcoal.Cms.Support.Helpers.html" style="margin-left: 30px; padding-left: 0">Helpers</a>
+            </div>
+            <div id="namespace-592582285" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Charcoal.Cms.Support.Helpers.DateHelper.html">DateHelper</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2100973184"></a>
+                                <a href="../namespaces/Charcoal.Cms.Support.Interfaces.html" style="margin-left: 30px; padding-left: 0">Interfaces</a>
+            </div>
+            <div id="namespace-2100973184" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.Support.Interfaces.EventManagerAwareInterface.html">EventManagerAwareInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.Support.Interfaces.NewsManagerAwareInterface.html">NewsManagerAwareInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.Support.Interfaces.SectionLoaderAwareInterface.html">SectionLoaderAwareInterface</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2035542345"></a>
+                                <a href="../namespaces/Charcoal.Cms.Support.Traits.html" style="margin-left: 30px; padding-left: 0">Traits</a>
+            </div>
+            <div id="namespace-2035542345" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/Charcoal.Cms.Support.Traits.DateHelperAwareTrait.html">DateHelperAwareTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Cms.Support.Traits.EventManagerAwareTrait.html">EventManagerAwareTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Cms.Support.Traits.NewsManagerAwareTrait.html">NewsManagerAwareTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Cms.Support.Traits.SectionLoaderAwareTrait.html">SectionLoaderAwareTrait</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.DocumentInterface.html">DocumentInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.EventInterface.html">EventInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.FaqInterface.html">FaqInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.ImageInterface.html">ImageInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.MetatagInterface.html">MetatagInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.NewsInterface.html">NewsInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.SearchableInterface.html">SearchableInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.SectionInterface.html">SectionInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.TemplateableInterface.html">TemplateableInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.TextInterface.html">TextInterface</a></li>
+                                                    <li class="interface"><a href="../classes/Charcoal.Cms.VideoInterface.html">VideoInterface</a></li>
+                                                                            <li class="trait"><a href="../classes/Charcoal.Cms.MetatagTrait.html">MetatagTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Cms.SearchableTrait.html">SearchableTrait</a></li>
+                                                    <li class="trait"><a href="../classes/Charcoal.Cms.TemplateableTrait.html">TemplateableTrait</a></li>
+                                                                            <li class="class"><a href="../classes/Charcoal.Cms.AbstractDocument.html">AbstractDocument</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.AbstractEvent.html">AbstractEvent</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.AbstractFaq.html">AbstractFaq</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.AbstractImage.html">AbstractImage</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.AbstractNews.html">AbstractNews</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.AbstractSection.html">AbstractSection</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.AbstractText.html">AbstractText</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.AbstractVideo.html">AbstractVideo</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Config.html">Config</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Document.html">Document</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.DocumentCategory.html">DocumentCategory</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.EmptySection.html">EmptySection</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Event.html">Event</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.EventCategory.html">EventCategory</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.ExternalSection.html">ExternalSection</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Faq.html">Faq</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.FaqCategory.html">FaqCategory</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Image.html">Image</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.ImageCategory.html">ImageCategory</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.News.html">News</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.NewsCategory.html">NewsCategory</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Section.html">Section</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Tag.html">Tag</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Text.html">Text</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.TextCategory.html">TextCategory</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.Video.html">Video</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Cms.VideoCategory.html">VideoCategory</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-64526456"></a>
+                                <a href="../namespaces/Charcoal.Property.html" style="margin-left: 30px; padding-left: 0">Property</a>
+            </div>
+            <div id="namespace-64526456" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Charcoal.Property.TemplateOptionsProperty.html">TemplateOptionsProperty</a></li>
+                                                    <li class="class"><a href="../classes/Charcoal.Property.TemplateProperty.html">TemplateProperty</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Charcoal.Cms.Service.Manager.html">\Charcoal\Cms\Service\Manager</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Charcoal\Cms\Service\Manager</small>EventManager</h1>
+                    <p><em>Event manager</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.AbstractManager.html#method_modelFactory" class="">modelFactory()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.AbstractManager.html#method_collectionLoader" class="">collectionLoader()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.AbstractManager.html#method_setAdminConfig" class="">setAdminConfig()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.AbstractManager.html#method_adminConfig" class="">adminConfig()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_entries" class="">entries()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_entry" class="">entry()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_all" class="">all()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_loadCategoryItems" class="">loadCategoryItems()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_categoryItem" class="">categoryItem()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_featList" class="">featList()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_archive" class="">archive()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_latest" class="">latest()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_prev" class="">prev()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_next" class="">next()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_currentPage" class="">currentPage()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_getEventsByDate" class="">getEventsByDate()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_currentEvent" class="">currentEvent()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_numPerPage" class="">numPerPage()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_entryCycle" class="">entryCycle()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_numEvent" class="">numEvent()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_numPages" class="">numPages()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_hasPager" class="">hasPager()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_page" class="">page()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_category" class="">category()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_objType" class="">objType()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_featIdent" class="">featIdent()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_loader" class="">loader()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_date" class="">date()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_year" class="">year()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_month" class="">month()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_day" class="">day()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_setCurrentEvent" class="">setCurrentEvent()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_setNumPerPage" class="">setNumPerPage()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_setEntryCycle" class="">setEntryCycle()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_setPage" class="">setPage()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_setCategory" class="">setCategory()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_setObjType" class="">setObjType()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_setFeatIdent" class="">setFeatIdent()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_setLoader" class="">setLoader()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_setDate" class="">setDate()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_setYear" class="">setYear()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_setMonth" class="">setMonth()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_setDay" class="">setDay()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_setPrevNext" class="">setPrevNext()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#method_mapEvents" class="">mapEvents()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.AbstractManager.html#method_setModelFactory" class="">setModelFactory()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.AbstractManager.html#method_setCollectionLoader" class="">setCollectionLoader()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.AbstractManager.html#property_modelFactory" class="">$modelFactory</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.AbstractManager.html#property_collectionLoader" class="">$collectionLoader</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.AbstractManager.html#property_adminConfig" class="">$adminConfig</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#property_currentEvent" class="">$currentEvent</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#property_currentPage" class="">$currentPage</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#property_numPerPage" class="">$numPerPage</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#property_numPage" class="">$numPage</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#property_entryCycle" class="">$entryCycle</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#property_nextEvent" class="">$nextEvent</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#property_prevEvent" class="">$prevEvent</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#property_page" class="">$page</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#property_category" class="">$category</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#property_all" class="">$all</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#property_entries" class="">$entries</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#property_archive" class="">$archive</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#property_entry" class="">$entry</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#property_objType" class="">$objType</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#property_featIdent" class="">$featIdent</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#property_featList" class="">$featList</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#property_loader" class="">$loader</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#property_mapEvents" class="">$mapEvents</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#property_date" class="">$date</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#property_year" class="">$year</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#property_month" class="">$month</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html#property_day" class="">$day</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Cms.Service.Manager.EventManager.html"><div class="path-wrapper">Cms/Service/Manager/EventManager.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper"><a href="../classes/Charcoal.Cms.Service.Manager.AbstractManager.html">\Charcoal\Cms\Service\Manager\AbstractManager</a></div>
+                                                                                                    <div class="namespace-wrapper">\Charcoal\Cms\Service\Manager\EventManager</div>
+                            </dd>
+
+                        
+                                                                                    <dt>Uses traits</dt>
+                                                        <dd>
+                                                                    <div class="namespace-wrapper">\Charcoal\Object\CategoryTrait</div>
+                                                            </dd>
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_modelFactory" name="property_modelFactory" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$modelFactory</h3>
+                <pre class="signature">$modelFactory : \Charcoal\Factory\FactoryInterface</pre>
+                <p><em>Store the factory instance for the current class.</em></p>
+                
+
+                                <h4>Type</h4>
+                \Charcoal\Factory\FactoryInterface
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Cms.Service.Manager.AbstractManager.html"><div class="path-wrapper">\Charcoal\Cms\Service\Manager\AbstractManager</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_collectionLoader" name="property_collectionLoader" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$collectionLoader</h3>
+                <pre class="signature">$collectionLoader : \Charcoal\Loader\CollectionLoader</pre>
+                <p><em>Store the collection loader for the current class.</em></p>
+                
+
+                                <h4>Type</h4>
+                \Charcoal\Loader\CollectionLoader
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Cms.Service.Manager.AbstractManager.html"><div class="path-wrapper">\Charcoal\Cms\Service\Manager\AbstractManager</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_adminConfig" name="property_adminConfig" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$adminConfig</h3>
+                <pre class="signature">$adminConfig : object</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                object
+                &mdash; The admin config object model.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Cms.Service.Manager.AbstractManager.html"><div class="path-wrapper">\Charcoal\Cms\Service\Manager\AbstractManager</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_currentEvent" name="property_currentEvent" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$currentEvent</h3>
+                <pre class="signature">$currentEvent : \Charcoal\Cms\EventInterface</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Charcoal.Cms.EventInterface.html">\Charcoal\Cms\EventInterface</a>
+                &mdash; The current event.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_currentPage" name="property_currentPage" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$currentPage</h3>
+                <pre class="signature">$currentPage : integer</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                integer
+                &mdash; The current Page.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_numPerPage" name="property_numPerPage" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$numPerPage</h3>
+                <pre class="signature">$numPerPage : integer</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                integer
+                &mdash; Events by page.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_numPage" name="property_numPage" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$numPage</h3>
+                <pre class="signature">$numPage : integer</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                integer
+                &mdash; How many pages.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_entryCycle" name="property_entryCycle" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$entryCycle</h3>
+                <pre class="signature">$entryCycle : boolean</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                boolean
+                &mdash; Does the pager can cycle indefinitely.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_nextEvent" name="property_nextEvent" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$nextEvent</h3>
+                <pre class="signature">$nextEvent : \Charcoal\Cms\EventInterface</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Charcoal.Cms.EventInterface.html">\Charcoal\Cms\EventInterface</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_prevEvent" name="property_prevEvent" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$prevEvent</h3>
+                <pre class="signature">$prevEvent : \Charcoal\Cms\EventInterface</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Charcoal.Cms.EventInterface.html">\Charcoal\Cms\EventInterface</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_page" name="property_page" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$page</h3>
+                <pre class="signature">$page : integer</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                integer
+                &mdash; The page number.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_category" name="property_category" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$category</h3>
+                <pre class="signature">$category : integer</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                integer
+                &mdash; Id for category.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_all" name="property_all" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$all</h3>
+                <pre class="signature">$all : array&lt;mixed,\Charcoal\Cms\EventInterface&gt;</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                array&lt;mixed,<a href="../classes/Charcoal.Cms.EventInterface.html">\Charcoal\Cms\EventInterface</a>&gt;
+                &mdash; All the events.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_entries" name="property_entries" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$entries</h3>
+                <pre class="signature">$entries : array&lt;mixed,\Charcoal\Cms\EventInterface&gt;</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                array&lt;mixed,<a href="../classes/Charcoal.Cms.EventInterface.html">\Charcoal\Cms\EventInterface</a>&gt;
+                &mdash; The event collection.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_archive" name="property_archive" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$archive</h3>
+                <pre class="signature">$archive : array&lt;mixed,\Charcoal\Cms\EventInterface&gt;</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                array&lt;mixed,<a href="../classes/Charcoal.Cms.EventInterface.html">\Charcoal\Cms\EventInterface</a>&gt;
+                &mdash; The archive events collection.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_entry" name="property_entry" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$entry</h3>
+                <pre class="signature">$entry : \Charcoal\Cms\EventInterface</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Charcoal.Cms.EventInterface.html">\Charcoal\Cms\EventInterface</a>
+                &mdash; An event.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_objType" name="property_objType" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$objType</h3>
+                <pre class="signature">$objType : object</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                object
+                &mdash; The event object model.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_featIdent" name="property_featIdent" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$featIdent</h3>
+                <pre class="signature">$featIdent : string</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                &mdash; The config ident for featured events.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_featList" name="property_featList" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$featList</h3>
+                <pre class="signature">$featList : array&lt;mixed,\Charcoal\Cms\EventInterface&gt;</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                array&lt;mixed,<a href="../classes/Charcoal.Cms.EventInterface.html">\Charcoal\Cms\EventInterface</a>&gt;
+                &mdash; The config ident for featured events.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_loader" name="property_loader" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$loader</h3>
+                <pre class="signature">$loader : \Charcoal\Cms\Service\Loader\EventLoader</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/Charcoal.Cms.Service.Loader.EventLoader.html">\Charcoal\Cms\Service\Loader\EventLoader</a>
+                &mdash; The event loader provider.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_mapEvents" name="property_mapEvents" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$mapEvents</h3>
+                <pre class="signature">$mapEvents : array</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                &mdash; The events mapped per [year][month][date].                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_date" name="property_date" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$date</h3>
+                <pre class="signature">$date : \Charcoal\Cms\Service\Manager\datetime</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                \Charcoal\Cms\Service\Manager\datetime
+                &mdash; Datetime filter                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_year" name="property_year" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$year</h3>
+                <pre class="signature">$year : mixed</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                mixed
+                &mdash; Year filter.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_month" name="property_month" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$month</h3>
+                <pre class="signature">$month : mixed</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                mixed
+                &mdash; Month filter.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_day" name="property_day" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$day</h3>
+                <pre class="signature">$day : mixed</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                mixed
+                &mdash; Day filter.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(array  <span class="argument">$data</span>) </pre>
+                <p><em>EventManager constructor.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data </td>
+                                <td><p>The Data.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Exception</dt>
+                            <dd><p>When $data index is not set.</p></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_modelFactory" name="method_modelFactory" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">modelFactory()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">modelFactory() : \Charcoal\Factory\FactoryInterface</pre>
+                <p><em>Retrieve the object model factory.</em></p>
+                
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\RuntimeException</dt>
+                            <dd><p>If the model factory was not previously set.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    \Charcoal\Factory\FactoryInterface
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Cms.Service.Manager.AbstractManager.html"><div class="path-wrapper">\Charcoal\Cms\Service\Manager\AbstractManager</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_collectionLoader" name="method_collectionLoader" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">collectionLoader()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">collectionLoader() : \Charcoal\Loader\CollectionLoader</pre>
+                <p><em>Retrieve the model collection loader.</em></p>
+                
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\RuntimeException</dt>
+                            <dd><p>If the collection loader was not previously set.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    \Charcoal\Loader\CollectionLoader
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Cms.Service.Manager.AbstractManager.html"><div class="path-wrapper">\Charcoal\Cms\Service\Manager\AbstractManager</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setAdminConfig" name="method_setAdminConfig" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setAdminConfig()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setAdminConfig(mixed  <span class="argument">$adminConfig</span>) : self</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$adminConfig </td>
+                                <td><p>The admin configuration.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    self
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Cms.Service.Manager.AbstractManager.html"><div class="path-wrapper">\Charcoal\Cms\Service\Manager\AbstractManager</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_adminConfig" name="method_adminConfig" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">adminConfig()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">adminConfig() : mixed</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Cms.Service.Manager.AbstractManager.html"><div class="path-wrapper">\Charcoal\Cms\Service\Manager\AbstractManager</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_entries" name="method_entries" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">entries()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">entries() : mixed</pre>
+                <p><em>To be displayed events list.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                            &mdash; <p>The event collection.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_entry" name="method_entry" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">entry()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">entry(integer|null  <span class="argument">$id = null</span>) : mixed</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer|null</td>
+                                <td>$id </td>
+                                <td><p>The event id.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_all" name="method_all" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">all()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">all() : array&lt;mixed,\Charcoal\Cms\EventInterface&gt;|\Charcoal\Model\Collection</pre>
+                <p><em>All available events</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array&lt;mixed,<a href="../classes/Charcoal.Cms.EventInterface.html">\Charcoal\Cms\EventInterface</a>&gt;|\Charcoal\Model\Collection
+                                            &mdash; <p>The events collection</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_loadCategoryItems" name="method_loadCategoryItems" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">loadCategoryItems()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">loadCategoryItems() : array&lt;mixed,\Charcoal\Object\CategoryInterface&gt;|\Charcoal\Model\Collection</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array&lt;mixed,\Charcoal\Object\CategoryInterface&gt;|\Charcoal\Model\Collection
+                                            &mdash; <p>The category collection.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_categoryItem" name="method_categoryItem" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">categoryItem()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">categoryItem(integer  <span class="argument">$id</span>) : \Charcoal\Object\CategoryInterface|\Charcoal\Cms\EventCategory</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$id </td>
+                                <td><p>The category id.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Charcoal\Object\CategoryInterface|<a href="../classes/Charcoal.Cms.EventCategory.html">\Charcoal\Cms\EventCategory</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_featList" name="method_featList" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">featList()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">featList(array  <span class="argument">$options = array()</span>) : mixed</pre>
+                <p><em>Get featured events from config objects with custom filters as options.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$options </td>
+                                <td><p>The options for the collection loader.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Exception</dt>
+                            <dd><p>When featured news ident is not valid.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_archive" name="method_archive" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">archive()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">archive() : array&lt;mixed,\Charcoal\Cms\EventInterface&gt;|\Charcoal\Model\Collection</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array&lt;mixed,<a href="../classes/Charcoal.Cms.EventInterface.html">\Charcoal\Cms\EventInterface</a>&gt;|\Charcoal\Model\Collection
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_latest" name="method_latest" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">latest()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">latest() : \Charcoal\Cms\EventInterface|array</pre>
+                <p><em>Get the latest event.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.Cms.EventInterface.html">\Charcoal\Cms\EventInterface</a>|array
+                                            &mdash; <p>The latest event.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_prev" name="method_prev" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">prev()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">prev() : mixed</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                            &mdash; <p>The previous event</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_next" name="method_next" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">next()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">next() : mixed</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                            &mdash; <p>The next event</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_currentPage" name="method_currentPage" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">currentPage()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">currentPage() : float|integer</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    float|integer
+                                            &mdash; <p>The current event index page ident.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getEventsByDate" name="method_getEventsByDate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getEventsByDate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getEventsByDate(mixed  <span class="argument">$date</span>) : array</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$date </td>
+                                <td><p>The date from which to load.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_currentEvent" name="method_currentEvent" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">currentEvent()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">currentEvent() : mixed</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_numPerPage" name="method_numPerPage" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">numPerPage()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">numPerPage() : integer</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_entryCycle" name="method_entryCycle" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">entryCycle()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">entryCycle() : boolean</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_numEvent" name="method_numEvent" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">numEvent()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">numEvent() : integer</pre>
+                <p><em>Amount of event (total)</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>How many event?</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_numPages" name="method_numPages" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">numPages()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">numPages() : float</pre>
+                <p><em>The total amount of pages.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    float
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hasPager" name="method_hasPager" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">hasPager()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">hasPager() : boolean</pre>
+                <p><em>Is there a pager.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_page" name="method_page" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">page()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">page() : integer</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_category" name="method_category" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">category()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">category() : integer</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_objType" name="method_objType" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">objType()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">objType() : mixed</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_featIdent" name="method_featIdent" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">featIdent()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">featIdent() : mixed</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_loader" name="method_loader" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">loader()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">loader() : \Charcoal\Cms\Service\Loader\EventLoader</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.Cms.Service.Loader.EventLoader.html">\Charcoal\Cms\Service\Loader\EventLoader</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_date" name="method_date" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">date()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">date() : mixed</pre>
+                <p><em>Datetime object OR null.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                            &mdash; <p>Datetime or null.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_year" name="method_year" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">year()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">year() : integer</pre>
+                <p><em>Full year</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>Full year.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_month" name="method_month" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">month()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">month() : mixed</pre>
+                <p><em>Month</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                            &mdash; <p>month.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_day" name="method_day" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">day()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">day() : mixed</pre>
+                <p><em>Day</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                            &mdash; <p>day.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setCurrentEvent" name="method_setCurrentEvent" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setCurrentEvent()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setCurrentEvent(mixed  <span class="argument">$currentEvent</span>) : self</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$currentEvent </td>
+                                <td><p>The current event context.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    self
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setNumPerPage" name="method_setNumPerPage" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setNumPerPage()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setNumPerPage(integer  <span class="argument">$numPerPage</span>) : self</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$numPerPage </td>
+                                <td><p>The number of event per page.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    self
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setEntryCycle" name="method_setEntryCycle" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setEntryCycle()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setEntryCycle(boolean  <span class="argument">$entryCycle</span>) : self</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$entryCycle </td>
+                                <td><p>Next and Prev cycles indefinitely.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    self
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setPage" name="method_setPage" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setPage()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setPage(integer  <span class="argument">$page</span>) : self</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$page </td>
+                                <td><p>The page number to load.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    self
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setCategory" name="method_setCategory" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setCategory()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setCategory(integer  <span class="argument">$category</span>) : self</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$category </td>
+                                <td><p>The current entry category.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    self
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setObjType" name="method_setObjType" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setObjType()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setObjType(mixed  <span class="argument">$objType</span>) : self</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$objType </td>
+                                <td><p>The object type.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    self
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setFeatIdent" name="method_setFeatIdent" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setFeatIdent()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setFeatIdent(mixed  <span class="argument">$featIdent</span>) : self</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$featIdent </td>
+                                <td><p>The featured list ident.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    self
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setLoader" name="method_setLoader" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setLoader()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setLoader(\Charcoal\Cms\Service\Loader\EventLoader|null  <span class="argument">$loader</span>) : self</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Charcoal.Cms.Service.Loader.EventLoader.html">\Charcoal\Cms\Service\Loader\EventLoader</a>|null</td>
+                                <td>$loader </td>
+                                <td><p>The event loader provider.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    self
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setDate" name="method_setDate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setDate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setDate(\DateTime  <span class="argument">$date</span>) : self</pre>
+                <p><em>Set date filter.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\DateTime</td>
+                                <td>$date </td>
+                                <td><p>Date filter.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    self
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setYear" name="method_setYear" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setYear()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setYear(mixed  <span class="argument">$year</span>) : \Charcoal\Cms\Service\Manager\EventManager</pre>
+                <p><em>Full year.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$year </td>
+                                <td><p>Full year.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Exception</dt>
+                            <dd><p>If argument is not scalar.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html">\Charcoal\Cms\Service\Manager\EventManager</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setMonth" name="method_setMonth" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setMonth()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setMonth(mixed  <span class="argument">$month</span>) : \Charcoal\Cms\Service\Manager\EventManager</pre>
+                <p><em>Month.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$month </td>
+                                <td><p>Specific month.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Exception</dt>
+                            <dd><p>If argument is not scalar.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html">\Charcoal\Cms\Service\Manager\EventManager</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setDay" name="method_setDay" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setDay()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setDay(mixed  <span class="argument">$day</span>) : \Charcoal\Cms\Service\Manager\EventManager</pre>
+                <p><em>Day.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$day </td>
+                                <td><p>Specific day.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Exception</dt>
+                            <dd><p>If argument is not scalar.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Charcoal.Cms.Service.Manager.EventManager.html">\Charcoal\Cms\Service\Manager\EventManager</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setPrevNext" name="method_setPrevNext" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setPrevNext()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setPrevNext() : $this</pre>
+                <p><em>Set the Prev and Next event</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    $this
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_mapEvents" name="method_mapEvents" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">mapEvents()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">mapEvents() : array</pre>
+                <p><em>Mapping between events and dates</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>The array containing events stored as [$year][$month][$day][event]</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setModelFactory" name="method_setModelFactory" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">setModelFactory()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setModelFactory(\Charcoal\Factory\FactoryInterface  <span class="argument">$factory</span>) : self</pre>
+                <p><em>Set an object model factory.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Charcoal\Factory\FactoryInterface</td>
+                                <td>$factory </td>
+                                <td><p>The model factory, to create objects.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    self
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Cms.Service.Manager.AbstractManager.html"><div class="path-wrapper">\Charcoal\Cms\Service\Manager\AbstractManager</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setCollectionLoader" name="method_setCollectionLoader" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">setCollectionLoader()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setCollectionLoader(\Charcoal\Loader\CollectionLoader  <span class="argument">$loader</span>) : self</pre>
+                <p><em>Set a model collection loader.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Charcoal\Loader\CollectionLoader</td>
+                                <td>$loader </td>
+                                <td><p>The collection loader.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    self
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Charcoal.Cms.Service.Manager.AbstractManager.html"><div class="path-wrapper">\Charcoal\Cms\Service\Manager\AbstractManager</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">EventManager.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Cms/Service/Manager/EventManager.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Charcoal.html">\Charcoal</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on April 21st, 2017 at 21:44.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
