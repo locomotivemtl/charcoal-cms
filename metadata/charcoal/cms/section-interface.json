@@ -615,7 +615,17 @@
                         },
                         "url": "object/edit?main_menu={{main_menu}}&obj_type={{master.sectionType}}&obj_id={{master.id}}&tab_ident=cms.table",
                         "type": "default",
-                        "condition": "{{master}}"
+                        "condition": "{{master}}",
+                        "priority": 1
+                    },
+                    "goto": {
+                        "label": {
+                            "en": "Go to page",
+                            "fr": "Voir la page"
+                        },
+                        "url": "{{baseUrl}}{{url}}",
+                        "target": "_blank",
+                        "priority": 2
                     }
                 }
             }
