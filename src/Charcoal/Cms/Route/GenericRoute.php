@@ -415,11 +415,16 @@ class GenericRoute extends TemplateRoute
             ->addFilter('active', true)
             ->addFilter('route_obj_type', $route->routeObjType())
             ->addFilter('route_obj_id', $route->routeObjId())
-            ->addFilter('route_options', '', ['operator' => 'IS NULL'])
             ->addFilter('lang', $route->lang())
             ->addOrder('creation_date', 'desc')
             ->setPage(1)
             ->setNumPerPage(1);
+
+        if ($route->routeOptionsIdent()) {
+            $loader->addFilter('route_options_ident', $route->routeOptionsIdent());
+        } else {
+            $loader->addFilter('route_options_ident', '', ['operator' => 'IS NULL']);
+        }
 
         $collection = $loader->load();
         $routes = $collection->objects();
