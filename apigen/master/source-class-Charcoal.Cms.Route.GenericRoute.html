@@ -668,169 +668,174 @@
 </span><span id="415" class="l"><a href="#415">415: </a>            -&gt;addFilter(<span class="php-quote">'active'</span>, <span class="php-keyword1">true</span>)
 </span><span id="416" class="l"><a href="#416">416: </a>            -&gt;addFilter(<span class="php-quote">'route_obj_type'</span>, <span class="php-var">$route</span>-&gt;routeObjType())
 </span><span id="417" class="l"><a href="#417">417: </a>            -&gt;addFilter(<span class="php-quote">'route_obj_id'</span>, <span class="php-var">$route</span>-&gt;routeObjId())
-</span><span id="418" class="l"><a href="#418">418: </a>            -&gt;addFilter(<span class="php-quote">'route_options'</span>, <span class="php-quote">''</span>, [<span class="php-quote">'operator'</span> =&gt; <span class="php-quote">'IS NULL'</span>])
-</span><span id="419" class="l"><a href="#419">419: </a>            -&gt;addFilter(<span class="php-quote">'lang'</span>, <span class="php-var">$route</span>-&gt;lang())
-</span><span id="420" class="l"><a href="#420">420: </a>            -&gt;addOrder(<span class="php-quote">'creation_date'</span>, <span class="php-quote">'desc'</span>)
-</span><span id="421" class="l"><a href="#421">421: </a>            -&gt;setPage(<span class="php-num">1</span>)
-</span><span id="422" class="l"><a href="#422">422: </a>            -&gt;setNumPerPage(<span class="php-num">1</span>);
-</span><span id="423" class="l"><a href="#423">423: </a>
-</span><span id="424" class="l"><a href="#424">424: </a>        <span class="php-var">$collection</span> = <span class="php-var">$loader</span>-&gt;load();
-</span><span id="425" class="l"><a href="#425">425: </a>        <span class="php-var">$routes</span> = <span class="php-var">$collection</span>-&gt;objects();
-</span><span id="426" class="l"><a href="#426">426: </a>
-</span><span id="427" class="l"><a href="#427">427: </a>        <span class="php-var">$latestRoute</span> = <span class="php-var">$routes</span>[<span class="php-num">0</span>];
+</span><span id="418" class="l"><a href="#418">418: </a>            -&gt;addFilter(<span class="php-quote">'lang'</span>, <span class="php-var">$route</span>-&gt;lang())
+</span><span id="419" class="l"><a href="#419">419: </a>            -&gt;addOrder(<span class="php-quote">'creation_date'</span>, <span class="php-quote">'desc'</span>)
+</span><span id="420" class="l"><a href="#420">420: </a>            -&gt;setPage(<span class="php-num">1</span>)
+</span><span id="421" class="l"><a href="#421">421: </a>            -&gt;setNumPerPage(<span class="php-num">1</span>);
+</span><span id="422" class="l"><a href="#422">422: </a>
+</span><span id="423" class="l"><a href="#423">423: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$route</span>-&gt;routeOptionsIdent()) {
+</span><span id="424" class="l"><a href="#424">424: </a>            <span class="php-var">$loader</span>-&gt;addFilter(<span class="php-quote">'route_options_ident'</span>, <span class="php-var">$route</span>-&gt;routeOptionsIdent());
+</span><span id="425" class="l"><a href="#425">425: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="426" class="l"><a href="#426">426: </a>            <span class="php-var">$loader</span>-&gt;addFilter(<span class="php-quote">'route_options_ident'</span>, <span class="php-quote">''</span>, [<span class="php-quote">'operator'</span> =&gt; <span class="php-quote">'IS NULL'</span>]);
+</span><span id="427" class="l"><a href="#427">427: </a>        }
 </span><span id="428" class="l"><a href="#428">428: </a>
-</span><span id="429" class="l"><a href="#429">429: </a>        <span class="php-keyword1">return</span> <span class="php-var">$latestRoute</span>;
-</span><span id="430" class="l"><a href="#430">430: </a>    }
+</span><span id="429" class="l"><a href="#429">429: </a>        <span class="php-var">$collection</span> = <span class="php-var">$loader</span>-&gt;load();
+</span><span id="430" class="l"><a href="#430">430: </a>        <span class="php-var">$routes</span> = <span class="php-var">$collection</span>-&gt;objects();
 </span><span id="431" class="l"><a href="#431">431: </a>
-</span><span id="432" class="l"><a href="#432">432: </a>    <span class="php-comment">/**
-</span></span><span id="433" class="l"><a href="#433">433: </a><span class="php-comment">     * SETTERS
-</span></span><span id="434" class="l"><a href="#434">434: </a><span class="php-comment">     */</span>
-</span><span id="435" class="l"><a href="#435">435: </a>
-</span><span id="436" class="l"><a href="#436">436: </a>    <span class="php-comment">/**
-</span></span><span id="437" class="l"><a href="#437">437: </a><span class="php-comment">     * Set the specified URI path.
-</span></span><span id="438" class="l"><a href="#438">438: </a><span class="php-comment">     *
-</span></span><span id="439" class="l"><a href="#439">439: </a><span class="php-comment">     * @param string $path The path to use for route resolution.
-</span></span><span id="440" class="l"><a href="#440">440: </a><span class="php-comment">     * @return self
-</span></span><span id="441" class="l"><a href="#441">441: </a><span class="php-comment">     */</span>
-</span><span id="442" class="l"><a href="#442">442: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> setPath(<span class="php-var">$path</span>)
-</span><span id="443" class="l"><a href="#443">443: </a>    {
-</span><span id="444" class="l"><a href="#444">444: </a>        <span class="php-var">$this</span>-&gt;path = <span class="php-var">$path</span>;
-</span><span id="445" class="l"><a href="#445">445: </a>
-</span><span id="446" class="l"><a href="#446">446: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
-</span><span id="447" class="l"><a href="#447">447: </a>    }
-</span><span id="448" class="l"><a href="#448">448: </a>
-</span><span id="449" class="l"><a href="#449">449: </a>    <span class="php-comment">/**
-</span></span><span id="450" class="l"><a href="#450">450: </a><span class="php-comment">     * Set an object model factory.
-</span></span><span id="451" class="l"><a href="#451">451: </a><span class="php-comment">     *
-</span></span><span id="452" class="l"><a href="#452">452: </a><span class="php-comment">     * @param FactoryInterface $factory The model factory, to create objects.
-</span></span><span id="453" class="l"><a href="#453">453: </a><span class="php-comment">     * @return self
-</span></span><span id="454" class="l"><a href="#454">454: </a><span class="php-comment">     */</span>
-</span><span id="455" class="l"><a href="#455">455: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> setModelFactory(FactoryInterface <span class="php-var">$factory</span>)
-</span><span id="456" class="l"><a href="#456">456: </a>    {
-</span><span id="457" class="l"><a href="#457">457: </a>        <span class="php-var">$this</span>-&gt;modelFactory = <span class="php-var">$factory</span>;
-</span><span id="458" class="l"><a href="#458">458: </a>
-</span><span id="459" class="l"><a href="#459">459: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
-</span><span id="460" class="l"><a href="#460">460: </a>    }
-</span><span id="461" class="l"><a href="#461">461: </a>
-</span><span id="462" class="l"><a href="#462">462: </a>    <span class="php-comment">/**
-</span></span><span id="463" class="l"><a href="#463">463: </a><span class="php-comment">     * Set a model collection loader.
-</span></span><span id="464" class="l"><a href="#464">464: </a><span class="php-comment">     *
-</span></span><span id="465" class="l"><a href="#465">465: </a><span class="php-comment">     * @param CollectionLoader $loader The collection loader.
-</span></span><span id="466" class="l"><a href="#466">466: </a><span class="php-comment">     * @return self
-</span></span><span id="467" class="l"><a href="#467">467: </a><span class="php-comment">     */</span>
-</span><span id="468" class="l"><a href="#468">468: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setCollectionLoader(CollectionLoader <span class="php-var">$loader</span>)
-</span><span id="469" class="l"><a href="#469">469: </a>    {
-</span><span id="470" class="l"><a href="#470">470: </a>        <span class="php-var">$this</span>-&gt;collectionLoader = <span class="php-var">$loader</span>;
-</span><span id="471" class="l"><a href="#471">471: </a>
-</span><span id="472" class="l"><a href="#472">472: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
-</span><span id="473" class="l"><a href="#473">473: </a>    }
-</span><span id="474" class="l"><a href="#474">474: </a>
-</span><span id="475" class="l"><a href="#475">475: </a>    <span class="php-comment">/**
-</span></span><span id="476" class="l"><a href="#476">476: </a><span class="php-comment">     * Sets the environment's current locale.
-</span></span><span id="477" class="l"><a href="#477">477: </a><span class="php-comment">     *
-</span></span><span id="478" class="l"><a href="#478">478: </a><span class="php-comment">     * @param  string $langCode The locale's language code.
-</span></span><span id="479" class="l"><a href="#479">479: </a><span class="php-comment">     * @return void
-</span></span><span id="480" class="l"><a href="#480">480: </a><span class="php-comment">     */</span>
-</span><span id="481" class="l"><a href="#481">481: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <span class="php-keyword2">setLocale</span>(<span class="php-var">$langCode</span>)
-</span><span id="482" class="l"><a href="#482">482: </a>    {
-</span><span id="483" class="l"><a href="#483">483: </a>        <span class="php-var">$translator</span> = <span class="php-var">$this</span>-&gt;translator();
-</span><span id="484" class="l"><a href="#484">484: </a>        <span class="php-var">$translator</span>-&gt;<span class="php-keyword2">setLocale</span>(<span class="php-var">$langCode</span>);
-</span><span id="485" class="l"><a href="#485">485: </a>
-</span><span id="486" class="l"><a href="#486">486: </a>        <span class="php-var">$available</span> = <span class="php-var">$translator</span>-&gt;locales();
-</span><span id="487" class="l"><a href="#487">487: </a>        <span class="php-var">$fallbacks</span> = <span class="php-var">$translator</span>-&gt;getFallbackLocales();
-</span><span id="488" class="l"><a href="#488">488: </a>
-</span><span id="489" class="l"><a href="#489">489: </a>        <span class="php-keyword2">array_unshift</span>(<span class="php-var">$fallbacks</span>, <span class="php-var">$langCode</span>);
-</span><span id="490" class="l"><a href="#490">490: </a>        <span class="php-keyword2">array_unique</span>(<span class="php-var">$fallbacks</span>);
-</span><span id="491" class="l"><a href="#491">491: </a>
-</span><span id="492" class="l"><a href="#492">492: </a>        <span class="php-var">$locales</span> = [];
-</span><span id="493" class="l"><a href="#493">493: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$fallbacks</span> <span class="php-keyword1">as</span> <span class="php-var">$code</span>) {
-</span><span id="494" class="l"><a href="#494">494: </a>            <span class="php-keyword1">if</span> (<span class="php-keyword1">isset</span>(<span class="php-var">$available</span>[<span class="php-var">$code</span>])) {
-</span><span id="495" class="l"><a href="#495">495: </a>                <span class="php-var">$locale</span> = (<span class="php-keyword1">array</span>)<span class="php-var">$available</span>[<span class="php-var">$code</span>][<span class="php-quote">'locale'</span>];
-</span><span id="496" class="l"><a href="#496">496: </a>                <span class="php-keyword2">array_push</span>(<span class="php-var">$locales</span>, ...<span class="php-var">$locale</span>);
-</span><span id="497" class="l"><a href="#497">497: </a>            }
-</span><span id="498" class="l"><a href="#498">498: </a>        }
-</span><span id="499" class="l"><a href="#499">499: </a>
-</span><span id="500" class="l"><a href="#500">500: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$locales</span>) {
-</span><span id="501" class="l"><a href="#501">501: </a>            <span class="php-keyword2">setlocale</span>(LC_ALL, ...<span class="php-var">$locales</span>);
-</span><span id="502" class="l"><a href="#502">502: </a>        }
-</span><span id="503" class="l"><a href="#503">503: </a>    }
+</span><span id="432" class="l"><a href="#432">432: </a>        <span class="php-var">$latestRoute</span> = <span class="php-var">$routes</span>[<span class="php-num">0</span>];
+</span><span id="433" class="l"><a href="#433">433: </a>
+</span><span id="434" class="l"><a href="#434">434: </a>        <span class="php-keyword1">return</span> <span class="php-var">$latestRoute</span>;
+</span><span id="435" class="l"><a href="#435">435: </a>    }
+</span><span id="436" class="l"><a href="#436">436: </a>
+</span><span id="437" class="l"><a href="#437">437: </a>    <span class="php-comment">/**
+</span></span><span id="438" class="l"><a href="#438">438: </a><span class="php-comment">     * SETTERS
+</span></span><span id="439" class="l"><a href="#439">439: </a><span class="php-comment">     */</span>
+</span><span id="440" class="l"><a href="#440">440: </a>
+</span><span id="441" class="l"><a href="#441">441: </a>    <span class="php-comment">/**
+</span></span><span id="442" class="l"><a href="#442">442: </a><span class="php-comment">     * Set the specified URI path.
+</span></span><span id="443" class="l"><a href="#443">443: </a><span class="php-comment">     *
+</span></span><span id="444" class="l"><a href="#444">444: </a><span class="php-comment">     * @param string $path The path to use for route resolution.
+</span></span><span id="445" class="l"><a href="#445">445: </a><span class="php-comment">     * @return self
+</span></span><span id="446" class="l"><a href="#446">446: </a><span class="php-comment">     */</span>
+</span><span id="447" class="l"><a href="#447">447: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> setPath(<span class="php-var">$path</span>)
+</span><span id="448" class="l"><a href="#448">448: </a>    {
+</span><span id="449" class="l"><a href="#449">449: </a>        <span class="php-var">$this</span>-&gt;path = <span class="php-var">$path</span>;
+</span><span id="450" class="l"><a href="#450">450: </a>
+</span><span id="451" class="l"><a href="#451">451: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
+</span><span id="452" class="l"><a href="#452">452: </a>    }
+</span><span id="453" class="l"><a href="#453">453: </a>
+</span><span id="454" class="l"><a href="#454">454: </a>    <span class="php-comment">/**
+</span></span><span id="455" class="l"><a href="#455">455: </a><span class="php-comment">     * Set an object model factory.
+</span></span><span id="456" class="l"><a href="#456">456: </a><span class="php-comment">     *
+</span></span><span id="457" class="l"><a href="#457">457: </a><span class="php-comment">     * @param FactoryInterface $factory The model factory, to create objects.
+</span></span><span id="458" class="l"><a href="#458">458: </a><span class="php-comment">     * @return self
+</span></span><span id="459" class="l"><a href="#459">459: </a><span class="php-comment">     */</span>
+</span><span id="460" class="l"><a href="#460">460: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> setModelFactory(FactoryInterface <span class="php-var">$factory</span>)
+</span><span id="461" class="l"><a href="#461">461: </a>    {
+</span><span id="462" class="l"><a href="#462">462: </a>        <span class="php-var">$this</span>-&gt;modelFactory = <span class="php-var">$factory</span>;
+</span><span id="463" class="l"><a href="#463">463: </a>
+</span><span id="464" class="l"><a href="#464">464: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
+</span><span id="465" class="l"><a href="#465">465: </a>    }
+</span><span id="466" class="l"><a href="#466">466: </a>
+</span><span id="467" class="l"><a href="#467">467: </a>    <span class="php-comment">/**
+</span></span><span id="468" class="l"><a href="#468">468: </a><span class="php-comment">     * Set a model collection loader.
+</span></span><span id="469" class="l"><a href="#469">469: </a><span class="php-comment">     *
+</span></span><span id="470" class="l"><a href="#470">470: </a><span class="php-comment">     * @param CollectionLoader $loader The collection loader.
+</span></span><span id="471" class="l"><a href="#471">471: </a><span class="php-comment">     * @return self
+</span></span><span id="472" class="l"><a href="#472">472: </a><span class="php-comment">     */</span>
+</span><span id="473" class="l"><a href="#473">473: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> setCollectionLoader(CollectionLoader <span class="php-var">$loader</span>)
+</span><span id="474" class="l"><a href="#474">474: </a>    {
+</span><span id="475" class="l"><a href="#475">475: </a>        <span class="php-var">$this</span>-&gt;collectionLoader = <span class="php-var">$loader</span>;
+</span><span id="476" class="l"><a href="#476">476: </a>
+</span><span id="477" class="l"><a href="#477">477: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
+</span><span id="478" class="l"><a href="#478">478: </a>    }
+</span><span id="479" class="l"><a href="#479">479: </a>
+</span><span id="480" class="l"><a href="#480">480: </a>    <span class="php-comment">/**
+</span></span><span id="481" class="l"><a href="#481">481: </a><span class="php-comment">     * Sets the environment's current locale.
+</span></span><span id="482" class="l"><a href="#482">482: </a><span class="php-comment">     *
+</span></span><span id="483" class="l"><a href="#483">483: </a><span class="php-comment">     * @param  string $langCode The locale's language code.
+</span></span><span id="484" class="l"><a href="#484">484: </a><span class="php-comment">     * @return void
+</span></span><span id="485" class="l"><a href="#485">485: </a><span class="php-comment">     */</span>
+</span><span id="486" class="l"><a href="#486">486: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> <span class="php-keyword2">setLocale</span>(<span class="php-var">$langCode</span>)
+</span><span id="487" class="l"><a href="#487">487: </a>    {
+</span><span id="488" class="l"><a href="#488">488: </a>        <span class="php-var">$translator</span> = <span class="php-var">$this</span>-&gt;translator();
+</span><span id="489" class="l"><a href="#489">489: </a>        <span class="php-var">$translator</span>-&gt;<span class="php-keyword2">setLocale</span>(<span class="php-var">$langCode</span>);
+</span><span id="490" class="l"><a href="#490">490: </a>
+</span><span id="491" class="l"><a href="#491">491: </a>        <span class="php-var">$available</span> = <span class="php-var">$translator</span>-&gt;locales();
+</span><span id="492" class="l"><a href="#492">492: </a>        <span class="php-var">$fallbacks</span> = <span class="php-var">$translator</span>-&gt;getFallbackLocales();
+</span><span id="493" class="l"><a href="#493">493: </a>
+</span><span id="494" class="l"><a href="#494">494: </a>        <span class="php-keyword2">array_unshift</span>(<span class="php-var">$fallbacks</span>, <span class="php-var">$langCode</span>);
+</span><span id="495" class="l"><a href="#495">495: </a>        <span class="php-keyword2">array_unique</span>(<span class="php-var">$fallbacks</span>);
+</span><span id="496" class="l"><a href="#496">496: </a>
+</span><span id="497" class="l"><a href="#497">497: </a>        <span class="php-var">$locales</span> = [];
+</span><span id="498" class="l"><a href="#498">498: </a>        <span class="php-keyword1">foreach</span> (<span class="php-var">$fallbacks</span> <span class="php-keyword1">as</span> <span class="php-var">$code</span>) {
+</span><span id="499" class="l"><a href="#499">499: </a>            <span class="php-keyword1">if</span> (<span class="php-keyword1">isset</span>(<span class="php-var">$available</span>[<span class="php-var">$code</span>])) {
+</span><span id="500" class="l"><a href="#500">500: </a>                <span class="php-var">$locale</span> = (<span class="php-keyword1">array</span>)<span class="php-var">$available</span>[<span class="php-var">$code</span>][<span class="php-quote">'locale'</span>];
+</span><span id="501" class="l"><a href="#501">501: </a>                <span class="php-keyword2">array_push</span>(<span class="php-var">$locales</span>, ...<span class="php-var">$locale</span>);
+</span><span id="502" class="l"><a href="#502">502: </a>            }
+</span><span id="503" class="l"><a href="#503">503: </a>        }
 </span><span id="504" class="l"><a href="#504">504: </a>
-</span><span id="505" class="l"><a href="#505">505: </a>    <span class="php-comment">/**
-</span></span><span id="506" class="l"><a href="#506">506: </a><span class="php-comment">     * GETTERS
-</span></span><span id="507" class="l"><a href="#507">507: </a><span class="php-comment">     */</span>
-</span><span id="508" class="l"><a href="#508">508: </a>
-</span><span id="509" class="l"><a href="#509">509: </a>    <span class="php-comment">/**
-</span></span><span id="510" class="l"><a href="#510">510: </a><span class="php-comment">     * Retrieve the URI path.
-</span></span><span id="511" class="l"><a href="#511">511: </a><span class="php-comment">     *
-</span></span><span id="512" class="l"><a href="#512">512: </a><span class="php-comment">     * @return string
-</span></span><span id="513" class="l"><a href="#513">513: </a><span class="php-comment">     */</span>
-</span><span id="514" class="l"><a href="#514">514: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> path()
-</span><span id="515" class="l"><a href="#515">515: </a>    {
-</span><span id="516" class="l"><a href="#516">516: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;path;
-</span><span id="517" class="l"><a href="#517">517: </a>    }
-</span><span id="518" class="l"><a href="#518">518: </a>
-</span><span id="519" class="l"><a href="#519">519: </a>    <span class="php-comment">/**
-</span></span><span id="520" class="l"><a href="#520">520: </a><span class="php-comment">     * Retrieve the object model factory.
-</span></span><span id="521" class="l"><a href="#521">521: </a><span class="php-comment">     *
-</span></span><span id="522" class="l"><a href="#522">522: </a><span class="php-comment">     * @throws RuntimeException If the model factory was not previously set.
-</span></span><span id="523" class="l"><a href="#523">523: </a><span class="php-comment">     * @return FactoryInterface
-</span></span><span id="524" class="l"><a href="#524">524: </a><span class="php-comment">     */</span>
-</span><span id="525" class="l"><a href="#525">525: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> modelFactory()
-</span><span id="526" class="l"><a href="#526">526: </a>    {
-</span><span id="527" class="l"><a href="#527">527: </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;modelFactory)) {
-</span><span id="528" class="l"><a href="#528">528: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> RuntimeException(
-</span><span id="529" class="l"><a href="#529">529: </a>                <span class="php-keyword2">sprintf</span>(<span class="php-quote">'Model Factory is not defined for &quot;%s&quot;'</span>, <span class="php-keyword2">get_class</span>(<span class="php-var">$this</span>))
-</span><span id="530" class="l"><a href="#530">530: </a>            );
-</span><span id="531" class="l"><a href="#531">531: </a>        }
-</span><span id="532" class="l"><a href="#532">532: </a>
-</span><span id="533" class="l"><a href="#533">533: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;modelFactory;
-</span><span id="534" class="l"><a href="#534">534: </a>    }
-</span><span id="535" class="l"><a href="#535">535: </a>
-</span><span id="536" class="l"><a href="#536">536: </a>    <span class="php-comment">/**
-</span></span><span id="537" class="l"><a href="#537">537: </a><span class="php-comment">     * Retrieve the model collection loader.
-</span></span><span id="538" class="l"><a href="#538">538: </a><span class="php-comment">     *
-</span></span><span id="539" class="l"><a href="#539">539: </a><span class="php-comment">     * @throws RuntimeException If the collection loader was not previously set.
-</span></span><span id="540" class="l"><a href="#540">540: </a><span class="php-comment">     * @return CollectionLoader
-</span></span><span id="541" class="l"><a href="#541">541: </a><span class="php-comment">     */</span>
-</span><span id="542" class="l"><a href="#542">542: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> collectionLoader()
-</span><span id="543" class="l"><a href="#543">543: </a>    {
-</span><span id="544" class="l"><a href="#544">544: </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;collectionLoader)) {
-</span><span id="545" class="l"><a href="#545">545: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> RuntimeException(
-</span><span id="546" class="l"><a href="#546">546: </a>                <span class="php-keyword2">sprintf</span>(<span class="php-quote">'Collection Loader is not defined for &quot;%s&quot;'</span>, <span class="php-keyword2">get_class</span>(<span class="php-var">$this</span>))
-</span><span id="547" class="l"><a href="#547">547: </a>            );
-</span><span id="548" class="l"><a href="#548">548: </a>        }
-</span><span id="549" class="l"><a href="#549">549: </a>
-</span><span id="550" class="l"><a href="#550">550: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;collectionLoader;
-</span><span id="551" class="l"><a href="#551">551: </a>    }
-</span><span id="552" class="l"><a href="#552">552: </a>
-</span><span id="553" class="l"><a href="#553">553: </a>    <span class="php-comment">/**
-</span></span><span id="554" class="l"><a href="#554">554: </a><span class="php-comment">     * @return boolean
-</span></span><span id="555" class="l"><a href="#555">555: </a><span class="php-comment">     */</span>
-</span><span id="556" class="l"><a href="#556">556: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> cacheEnabled()
-</span><span id="557" class="l"><a href="#557">557: </a>    {
-</span><span id="558" class="l"><a href="#558">558: </a>        <span class="php-var">$obj</span> = <span class="php-var">$this</span>-&gt;loadContextObject();
-</span><span id="559" class="l"><a href="#559">559: </a>        <span class="php-keyword1">return</span> <span class="php-var">$obj</span>[<span class="php-quote">'cache'</span>] ?: <span class="php-keyword1">false</span>;
-</span><span id="560" class="l"><a href="#560">560: </a>    }
-</span><span id="561" class="l"><a href="#561">561: </a>
-</span><span id="562" class="l"><a href="#562">562: </a>    <span class="php-comment">/**
-</span></span><span id="563" class="l"><a href="#563">563: </a><span class="php-comment">     * @return integer
-</span></span><span id="564" class="l"><a href="#564">564: </a><span class="php-comment">     */</span>
-</span><span id="565" class="l"><a href="#565">565: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> cacheTtl()
-</span><span id="566" class="l"><a href="#566">566: </a>    {
-</span><span id="567" class="l"><a href="#567">567: </a>        <span class="php-var">$obj</span> = <span class="php-var">$this</span>-&gt;loadContextObject();
-</span><span id="568" class="l"><a href="#568">568: </a>        <span class="php-keyword1">return</span> <span class="php-var">$obj</span>[<span class="php-quote">'cache_ttl'</span>] ?: <span class="php-num">0</span>;
-</span><span id="569" class="l"><a href="#569">569: </a>    }
-</span><span id="570" class="l"><a href="#570">570: </a>
-</span><span id="571" class="l"><a href="#571">571: </a>    <span class="php-comment">/**
-</span></span><span id="572" class="l"><a href="#572">572: </a><span class="php-comment">     * @return string
-</span></span><span id="573" class="l"><a href="#573">573: </a><span class="php-comment">     */</span>
-</span><span id="574" class="l"><a href="#574">574: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> cacheIdent()
-</span><span id="575" class="l"><a href="#575">575: </a>    {
-</span><span id="576" class="l"><a href="#576">576: </a>        <span class="php-var">$obj</span> = <span class="php-var">$this</span>-&gt;loadContextObject();
-</span><span id="577" class="l"><a href="#577">577: </a>        <span class="php-keyword1">return</span> <span class="php-var">$obj</span>-&gt;objType().<span class="php-quote">'.'</span>.<span class="php-var">$obj</span>-&gt;id();
-</span><span id="578" class="l"><a href="#578">578: </a>    }
-</span><span id="579" class="l"><a href="#579">579: </a>}
-</span><span id="580" class="l"><a href="#580">580: </a></span></code></pre>
+</span><span id="505" class="l"><a href="#505">505: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$locales</span>) {
+</span><span id="506" class="l"><a href="#506">506: </a>            <span class="php-keyword2">setlocale</span>(LC_ALL, ...<span class="php-var">$locales</span>);
+</span><span id="507" class="l"><a href="#507">507: </a>        }
+</span><span id="508" class="l"><a href="#508">508: </a>    }
+</span><span id="509" class="l"><a href="#509">509: </a>
+</span><span id="510" class="l"><a href="#510">510: </a>    <span class="php-comment">/**
+</span></span><span id="511" class="l"><a href="#511">511: </a><span class="php-comment">     * GETTERS
+</span></span><span id="512" class="l"><a href="#512">512: </a><span class="php-comment">     */</span>
+</span><span id="513" class="l"><a href="#513">513: </a>
+</span><span id="514" class="l"><a href="#514">514: </a>    <span class="php-comment">/**
+</span></span><span id="515" class="l"><a href="#515">515: </a><span class="php-comment">     * Retrieve the URI path.
+</span></span><span id="516" class="l"><a href="#516">516: </a><span class="php-comment">     *
+</span></span><span id="517" class="l"><a href="#517">517: </a><span class="php-comment">     * @return string
+</span></span><span id="518" class="l"><a href="#518">518: </a><span class="php-comment">     */</span>
+</span><span id="519" class="l"><a href="#519">519: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> path()
+</span><span id="520" class="l"><a href="#520">520: </a>    {
+</span><span id="521" class="l"><a href="#521">521: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;path;
+</span><span id="522" class="l"><a href="#522">522: </a>    }
+</span><span id="523" class="l"><a href="#523">523: </a>
+</span><span id="524" class="l"><a href="#524">524: </a>    <span class="php-comment">/**
+</span></span><span id="525" class="l"><a href="#525">525: </a><span class="php-comment">     * Retrieve the object model factory.
+</span></span><span id="526" class="l"><a href="#526">526: </a><span class="php-comment">     *
+</span></span><span id="527" class="l"><a href="#527">527: </a><span class="php-comment">     * @throws RuntimeException If the model factory was not previously set.
+</span></span><span id="528" class="l"><a href="#528">528: </a><span class="php-comment">     * @return FactoryInterface
+</span></span><span id="529" class="l"><a href="#529">529: </a><span class="php-comment">     */</span>
+</span><span id="530" class="l"><a href="#530">530: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> modelFactory()
+</span><span id="531" class="l"><a href="#531">531: </a>    {
+</span><span id="532" class="l"><a href="#532">532: </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;modelFactory)) {
+</span><span id="533" class="l"><a href="#533">533: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> RuntimeException(
+</span><span id="534" class="l"><a href="#534">534: </a>                <span class="php-keyword2">sprintf</span>(<span class="php-quote">'Model Factory is not defined for &quot;%s&quot;'</span>, <span class="php-keyword2">get_class</span>(<span class="php-var">$this</span>))
+</span><span id="535" class="l"><a href="#535">535: </a>            );
+</span><span id="536" class="l"><a href="#536">536: </a>        }
+</span><span id="537" class="l"><a href="#537">537: </a>
+</span><span id="538" class="l"><a href="#538">538: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;modelFactory;
+</span><span id="539" class="l"><a href="#539">539: </a>    }
+</span><span id="540" class="l"><a href="#540">540: </a>
+</span><span id="541" class="l"><a href="#541">541: </a>    <span class="php-comment">/**
+</span></span><span id="542" class="l"><a href="#542">542: </a><span class="php-comment">     * Retrieve the model collection loader.
+</span></span><span id="543" class="l"><a href="#543">543: </a><span class="php-comment">     *
+</span></span><span id="544" class="l"><a href="#544">544: </a><span class="php-comment">     * @throws RuntimeException If the collection loader was not previously set.
+</span></span><span id="545" class="l"><a href="#545">545: </a><span class="php-comment">     * @return CollectionLoader
+</span></span><span id="546" class="l"><a href="#546">546: </a><span class="php-comment">     */</span>
+</span><span id="547" class="l"><a href="#547">547: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> collectionLoader()
+</span><span id="548" class="l"><a href="#548">548: </a>    {
+</span><span id="549" class="l"><a href="#549">549: </a>        <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;collectionLoader)) {
+</span><span id="550" class="l"><a href="#550">550: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> RuntimeException(
+</span><span id="551" class="l"><a href="#551">551: </a>                <span class="php-keyword2">sprintf</span>(<span class="php-quote">'Collection Loader is not defined for &quot;%s&quot;'</span>, <span class="php-keyword2">get_class</span>(<span class="php-var">$this</span>))
+</span><span id="552" class="l"><a href="#552">552: </a>            );
+</span><span id="553" class="l"><a href="#553">553: </a>        }
+</span><span id="554" class="l"><a href="#554">554: </a>
+</span><span id="555" class="l"><a href="#555">555: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;collectionLoader;
+</span><span id="556" class="l"><a href="#556">556: </a>    }
+</span><span id="557" class="l"><a href="#557">557: </a>
+</span><span id="558" class="l"><a href="#558">558: </a>    <span class="php-comment">/**
+</span></span><span id="559" class="l"><a href="#559">559: </a><span class="php-comment">     * @return boolean
+</span></span><span id="560" class="l"><a href="#560">560: </a><span class="php-comment">     */</span>
+</span><span id="561" class="l"><a href="#561">561: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> cacheEnabled()
+</span><span id="562" class="l"><a href="#562">562: </a>    {
+</span><span id="563" class="l"><a href="#563">563: </a>        <span class="php-var">$obj</span> = <span class="php-var">$this</span>-&gt;loadContextObject();
+</span><span id="564" class="l"><a href="#564">564: </a>        <span class="php-keyword1">return</span> <span class="php-var">$obj</span>[<span class="php-quote">'cache'</span>] ?: <span class="php-keyword1">false</span>;
+</span><span id="565" class="l"><a href="#565">565: </a>    }
+</span><span id="566" class="l"><a href="#566">566: </a>
+</span><span id="567" class="l"><a href="#567">567: </a>    <span class="php-comment">/**
+</span></span><span id="568" class="l"><a href="#568">568: </a><span class="php-comment">     * @return integer
+</span></span><span id="569" class="l"><a href="#569">569: </a><span class="php-comment">     */</span>
+</span><span id="570" class="l"><a href="#570">570: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> cacheTtl()
+</span><span id="571" class="l"><a href="#571">571: </a>    {
+</span><span id="572" class="l"><a href="#572">572: </a>        <span class="php-var">$obj</span> = <span class="php-var">$this</span>-&gt;loadContextObject();
+</span><span id="573" class="l"><a href="#573">573: </a>        <span class="php-keyword1">return</span> <span class="php-var">$obj</span>[<span class="php-quote">'cache_ttl'</span>] ?: <span class="php-num">0</span>;
+</span><span id="574" class="l"><a href="#574">574: </a>    }
+</span><span id="575" class="l"><a href="#575">575: </a>
+</span><span id="576" class="l"><a href="#576">576: </a>    <span class="php-comment">/**
+</span></span><span id="577" class="l"><a href="#577">577: </a><span class="php-comment">     * @return string
+</span></span><span id="578" class="l"><a href="#578">578: </a><span class="php-comment">     */</span>
+</span><span id="579" class="l"><a href="#579">579: </a>    <span class="php-keyword1">protected</span> <span class="php-keyword1">function</span> cacheIdent()
+</span><span id="580" class="l"><a href="#580">580: </a>    {
+</span><span id="581" class="l"><a href="#581">581: </a>        <span class="php-var">$obj</span> = <span class="php-var">$this</span>-&gt;loadContextObject();
+</span><span id="582" class="l"><a href="#582">582: </a>        <span class="php-keyword1">return</span> <span class="php-var">$obj</span>-&gt;objType().<span class="php-quote">'.'</span>.<span class="php-var">$obj</span>-&gt;id();
+</span><span id="583" class="l"><a href="#583">583: </a>    }
+</span><span id="584" class="l"><a href="#584">584: </a>}
+</span><span id="585" class="l"><a href="#585">585: </a></span></code></pre>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
