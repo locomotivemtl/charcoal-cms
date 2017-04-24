@@ -21,54 +21,54 @@
     <script src="../js/jquery.smooth-scroll.js"></script>
     <script src="../js/prism.min.js"></script>
     <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
-        <script type="text/javascript">
-        function loadExternalCodeSnippets() {
-            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
-                var src = pre.getAttribute('data-src');
-                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-                var language = 'php';
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
 
-                var code = document.createElement('code');
-                code.className = 'language-' + language;
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
 
-                pre.textContent = '';
+            pre.textContent = '';
 
-                code.textContent = 'Loading…';
+            code.textContent = 'Loading…';
 
-                pre.appendChild(code);
+            pre.appendChild(code);
 
-                var xhr = new XMLHttpRequest();
+            var xhr = new XMLHttpRequest();
 
-                xhr.open('GET', src, true);
+            xhr.open('GET', src, true);
 
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == 4) {
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
 
-                        if (xhr.status < 400 && xhr.responseText) {
-                            code.textContent = xhr.responseText;
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
 
-                            Prism.highlightElement(code);
-                        }
-                        else if (xhr.status >= 400) {
-                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
-                        }
-                        else {
-                            code.textContent = '✖ Error: File does not exist or is empty';
-                        }
+                        Prism.highlightElement(code);
                     }
-                };
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
 
-                xhr.send(null);
-            });
-        }
-
-        $(document).ready(function(){
-            loadExternalCodeSnippets();
+            xhr.send(null);
         });
-        $('#source-view').on('shown', function () {
-            loadExternalCodeSnippets();
-        })
-    </script>
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
 
     <link rel="shortcut icon" href="../images/favicon.ico"/>
     <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
@@ -144,46 +144,46 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-2062874849"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1984146111"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-2062874849" class="accordion-body collapse in">
+            <div id="namespace-1984146111" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-527341508"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1291078472"></a>
                                 <a href="../namespaces/Charcoal.html" style="margin-left: 30px; padding-left: 0">Charcoal</a>
             </div>
-            <div id="namespace-527341508" class="accordion-body collapse ">
+            <div id="namespace-1291078472" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-730942806"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1392732255"></a>
                                 <a href="../namespaces/Charcoal.Admin.html" style="margin-left: 30px; padding-left: 0">Admin</a>
             </div>
-            <div id="namespace-730942806" class="accordion-body collapse ">
+            <div id="namespace-1392732255" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-617631729"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1751453374"></a>
                                 <a href="../namespaces/Charcoal.Admin.Widget.html" style="margin-left: 30px; padding-left: 0">Widget</a>
             </div>
-            <div id="namespace-617631729" class="accordion-body collapse ">
+            <div id="namespace-1751453374" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-665468367"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1758428874"></a>
                                 <a href="../namespaces/Charcoal.Admin.Widget.Cms.html" style="margin-left: 30px; padding-left: 0">Cms</a>
             </div>
-            <div id="namespace-665468367" class="accordion-body collapse ">
+            <div id="namespace-1758428874" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -216,19 +216,19 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1170979882"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-923000546"></a>
                                 <a href="../namespaces/Charcoal.Cms.html" style="margin-left: 30px; padding-left: 0">Cms</a>
             </div>
-            <div id="namespace-1170979882" class="accordion-body collapse ">
+            <div id="namespace-923000546" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-138848626"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-556326083"></a>
                                 <a href="../namespaces/Charcoal.Cms.Config.html" style="margin-left: 30px; padding-left: 0">Config</a>
             </div>
-            <div id="namespace-138848626" class="accordion-body collapse ">
+            <div id="namespace-556326083" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -246,19 +246,19 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-420311830"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2014045427"></a>
                                 <a href="../namespaces/Charcoal.Cms.Mixin.html" style="margin-left: 30px; padding-left: 0">Mixin</a>
             </div>
-            <div id="namespace-420311830" class="accordion-body collapse ">
+            <div id="namespace-2014045427" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1020244158"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1953324978"></a>
                                 <a href="../namespaces/Charcoal.Cms.Mixin.Traits.html" style="margin-left: 30px; padding-left: 0">Traits</a>
             </div>
-            <div id="namespace-1020244158" class="accordion-body collapse ">
+            <div id="namespace-1953324978" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -282,10 +282,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1166994251"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-708101346"></a>
                                 <a href="../namespaces/Charcoal.Cms.Route.html" style="margin-left: 30px; padding-left: 0">Route</a>
             </div>
-            <div id="namespace-1166994251" class="accordion-body collapse ">
+            <div id="namespace-708101346" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -302,10 +302,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-615864510"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1692022859"></a>
                                 <a href="../namespaces/Charcoal.Cms.Section.html" style="margin-left: 30px; padding-left: 0">Section</a>
             </div>
-            <div id="namespace-615864510" class="accordion-body collapse ">
+            <div id="namespace-1692022859" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -321,19 +321,19 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2138583256"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-327840344"></a>
                                 <a href="../namespaces/Charcoal.Cms.Service.html" style="margin-left: 30px; padding-left: 0">Service</a>
             </div>
-            <div id="namespace-2138583256" class="accordion-body collapse ">
+            <div id="namespace-327840344" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1307722388"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-40078447"></a>
                                 <a href="../namespaces/Charcoal.Cms.Service.Loader.html" style="margin-left: 30px; padding-left: 0">Loader</a>
             </div>
-            <div id="namespace-1307722388" class="accordion-body collapse ">
+            <div id="namespace-40078447" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -351,10 +351,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-550172076"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-610976895"></a>
                                 <a href="../namespaces/Charcoal.Cms.Service.Manager.html" style="margin-left: 30px; padding-left: 0">Manager</a>
             </div>
-            <div id="namespace-550172076" class="accordion-body collapse ">
+            <div id="namespace-610976895" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -379,10 +379,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1140086391"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-692494108"></a>
                                 <a href="../namespaces/Charcoal.Cms.ServiceProvider.html" style="margin-left: 30px; padding-left: 0">ServiceProvider</a>
             </div>
-            <div id="namespace-1140086391" class="accordion-body collapse ">
+            <div id="namespace-692494108" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -397,19 +397,19 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1059391144"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2093356414"></a>
                                 <a href="../namespaces/Charcoal.Cms.Support.html" style="margin-left: 30px; padding-left: 0">Support</a>
             </div>
-            <div id="namespace-1059391144" class="accordion-body collapse ">
+            <div id="namespace-2093356414" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1634475390"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1988509971"></a>
                                 <a href="../namespaces/Charcoal.Cms.Support.Helpers.html" style="margin-left: 30px; padding-left: 0">Helpers</a>
             </div>
-            <div id="namespace-1634475390" class="accordion-body collapse ">
+            <div id="namespace-1988509971" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -424,10 +424,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1850006123"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1433527154"></a>
                                 <a href="../namespaces/Charcoal.Cms.Support.Interfaces.html" style="margin-left: 30px; padding-left: 0">Interfaces</a>
             </div>
-            <div id="namespace-1850006123" class="accordion-body collapse ">
+            <div id="namespace-1433527154" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -444,10 +444,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2096154769"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-28595502"></a>
                                 <a href="../namespaces/Charcoal.Cms.Support.Traits.html" style="margin-left: 30px; padding-left: 0">Traits</a>
             </div>
-            <div id="namespace-2096154769" class="accordion-body collapse ">
+            <div id="namespace-28595502" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -522,10 +522,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1800959082"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-366883309"></a>
                                 <a href="../namespaces/Charcoal.Property.html" style="margin-left: 30px; padding-left: 0">Property</a>
             </div>
-            <div id="namespace-1800959082" class="accordion-body collapse ">
+            <div id="namespace-366883309" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -559,53 +559,368 @@
     <section class="row-fluid">
         <div class="span10 offset2">
             <div class="row-fluid">
-                <div class="span8 content file">
+                <div class="span8 content class">
                     <nav>
-                                                                    </nav>
-
+                                                <a href="../namespaces/Charcoal.Cms.Mixin.Traits.html">\Charcoal\Cms\Mixin\Traits</a> <i class="icon-level-up"></i>
+                                            </nav>
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
-                    <h1><small>Cms</small>NewsCategory.php</h1>
-                    <p><em></em></p>
-                    
 
+                    <h1><small>\Charcoal\Cms\Mixin\Traits</small>HasContentBlocksTrait</h1>
+                    <p><em>An implementation, as Trait, of the `HasContentBlocksInterface`.</em></p>
                     
                     
-                                        <h2>Classes</h2>
-                    <table class="table table-hover">
-                                            <tr>
-                            <td><a href="../classes/Charcoal.Cms.NewsCategory.html">NewsCategory</a></td>
-                            <td><em>News Category</em></td>
-                        </tr>
-                                        </table>
-                                    </div>
-
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html#method_contentBlocks" class="">contentBlocks()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html#method_hasContentBlocks" class="">hasContentBlocks()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html#method_numContentBlocks" class="">numContentBlocks()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html#method_defaultMetaDescription" class="">defaultMetaDescription()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html#method_attachments" class="">attachments()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <a href="../classes/Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html#method_metaDescFromAttachments" class="">metaDescFromAttachments()</a><br />
+                                                                    <a href="../classes/Charcoal.Cms.Mixin.Traits.HasContentBlocksTrait.html#method_ellipsis" class="">ellipsis()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
                 <aside class="span4 detailsbar">
+                                        
+                    
                     <dl>
-                                                    <dt>Package</dt>
-                            <dd><div class="namespace-wrapper">\Default</div></dd>
+                        <dt>File</dt>
+                            <dd><a href="../files/Cms.Mixin.Traits.HasContentBlocksTrait.html"><div class="path-wrapper">Cms/Mixin/Traits/HasContentBlocksTrait.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Charcoal\Cms\Mixin\Traits\HasContentBlocksTrait</div>
+                            </dd>
+
                         
                         
-                    </dl>
+                        
+                        
+                                                                        </dl>
                     <h2>Tags</h2>
                     <table class="table table-condensed">
-                                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                                            </table>
-
+                                            <tr>
+                            <th>
+                                uses
+                            </th>
+                            <td>
+                                                                    
+                                                            </td>
+                        </tr>
+                                        </table>
                 </aside>
             </div>
 
-            
-            
+                        
+                        
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_contentBlocks" name="method_contentBlocks" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">contentBlocks()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">contentBlocks() : \Charcoal\Cms\Mixin\Traits\Collection|array&lt;mixed,\Charcoal\Cms\Mixin\Traits\Attachment&gt;</pre>
+                <p><em>Retrieve this object&#039;s content blocks.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Charcoal\Cms\Mixin\Traits\Collection|array&lt;mixed,\Charcoal\Cms\Mixin\Traits\Attachment&gt;
+                                    				
+                            </article>
         </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Cms.Mixin.Traits.HasContentBlocksTrait.html"><div class="path-wrapper">Cms/Mixin/Traits/HasContentBlocksTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_hasContentBlocks" name="method_hasContentBlocks" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">hasContentBlocks()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">hasContentBlocks() : boolean</pre>
+                <p><em>Determine if this object has any content blocks.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Cms.Mixin.Traits.HasContentBlocksTrait.html"><div class="path-wrapper">Cms/Mixin/Traits/HasContentBlocksTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_numContentBlocks" name="method_numContentBlocks" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">numContentBlocks()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">numContentBlocks() : integer</pre>
+                <p><em>Count the number of content blocks associated to this object.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Cms.Mixin.Traits.HasContentBlocksTrait.html"><div class="path-wrapper">Cms/Mixin/Traits/HasContentBlocksTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_defaultMetaDescription" name="method_defaultMetaDescription" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">defaultMetaDescription()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">defaultMetaDescription() : \Charcoal\Translator\Translation</pre>
+                <p><em></em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Charcoal\Translator\Translation
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Cms.Mixin.Traits.HasContentBlocksTrait.html"><div class="path-wrapper">Cms/Mixin/Traits/HasContentBlocksTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_attachments" name="method_attachments" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">attachments()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">attachments(string|null  <span class="argument">$group = null</span>, string|null  <span class="argument">$type = null</span>, callable|null  <span class="argument">$callback = null</span>) : \Charcoal\Cms\Mixin\Traits\Collection|array&lt;mixed,\Charcoal\Cms\Mixin\Traits\Attachment&gt;</pre>
+                <p><em>Retrieve the objects associated to the current object.</em></p>
+                <p>As defined in Charcoal\Attachment\Traits\AttachmentAwareTrait.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|null</td>
+                                <td>$group </td>
+                                <td><p>Filter the attachments by a group identifier.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string|null</td>
+                                <td>$type </td>
+                                <td><p>Filter the attachments by type.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>callable|null</td>
+                                <td>$callback </td>
+                                <td><p>Optional routine to apply to every attachment.</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\Charcoal\Cms\Mixin\Traits\InvalidArgumentException</dt>
+                            <dd><p>If the $group or $type is invalid.</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    \Charcoal\Cms\Mixin\Traits\Collection|array&lt;mixed,\Charcoal\Cms\Mixin\Traits\Attachment&gt;
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Cms.Mixin.Traits.HasContentBlocksTrait.html"><div class="path-wrapper">Cms/Mixin/Traits/HasContentBlocksTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_metaDescFromAttachments" name="method_metaDescFromAttachments" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">metaDescFromAttachments()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">metaDescFromAttachments() : \Charcoal\Translator\Translation|null|string|array&lt;mixed,\string&gt;</pre>
+                <p><em>Gets the content excerpt from attachments if a text attachment is found, otherwise
+it return null.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \Charcoal\Translator\Translation|null|string|array&lt;mixed,\string&gt;
+                                            &mdash; <p>The content from attachment</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Cms.Mixin.Traits.HasContentBlocksTrait.html"><div class="path-wrapper">Cms/Mixin/Traits/HasContentBlocksTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_ellipsis" name="method_ellipsis" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">ellipsis()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">ellipsis(string|\Charcoal\Translator\Translation  <span class="argument">$content</span>, integer  <span class="argument">$length = 200</span>) : string|\Charcoal\Translator\Translation</pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|\Charcoal\Translator\Translation</td>
+                                <td>$content </td>
+                                <td><p>The content to shorten.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$length </td>
+                                <td><p>The length to shorten to. Default : 200.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string|\Charcoal\Translator\Translation
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href="../files/Cms.Mixin.Traits.HasContentBlocksTrait.html"><div class="path-wrapper">Cms/Mixin/Traits/HasContentBlocksTrait.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
     </section>
 
     <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="source-view-label"></h3>
+            <h3 id="source-view-label">HasContentBlocksTrait.php</h3>
         </div>
         <div class="modal-body">
-            <pre data-src="../files/Cms/NewsCategory.php.txt" class="language-php line-numbers"></pre>
+            <pre data-src="../files/Cms/Mixin/Traits/HasContentBlocksTrait.php.txt" class="language-php line-numbers"></pre>
         </div>
     </div>
 
