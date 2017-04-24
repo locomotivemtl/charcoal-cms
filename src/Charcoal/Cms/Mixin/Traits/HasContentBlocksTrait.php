@@ -118,5 +118,5 @@ trait HasContentBlocksTrait
      * @throws InvalidArgumentException If the $group or $type is invalid.
      * @return Collection|Attachment[]
      */
-    public function attachments($group = null, $type = null, callable $callback = null)
+    public function attachments($group = null, $type = null, callable $callback = null);
 }
