@@ -527,7 +527,8 @@
                 "show_title": false,
                 "show_header": false,
                 "icon": "code",
-                "permissions": ["section_dev"],
+                "tabCssClasses": "pull-right",
+                "permissions": ["dev_tab"],
                 "properties": [
                     "template_ident",
                     "section_type",
