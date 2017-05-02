@@ -492,18 +492,25 @@ class GenericRoute extends TemplateRoute
         $fallbacks = $translator->getFallbackLocales();
 
         array_unshift($fallbacks, $langCode);
-        array_unique($fallbacks);
+        $fallbacks = array_unique($fallbacks);
 
         $locales = [];
         foreach ($fallbacks as $code) {
             if (isset($available[$code])) {
-                $locale = (array)$available[$code]['locale'];
-                array_push($locales, ...$locale);
+                $locale = $available[$code];
+                if (isset($locale['locales'])) {
+                    $choices = (array)$locale['locales'];
+                    array_push($locales, ...$choices);
+                } elseif (isset($locale['locale'])) {
+                    array_push($locales, $locale['locale']);
+                }
             }
         }
 
+        $locales = array_unique($locales);
+
         if ($locales) {
-            setlocale(LC_ALL, ...$locales);
+            setlocale(LC_ALL, $locales);
         }
     }
 
