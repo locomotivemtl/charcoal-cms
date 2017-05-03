@@ -5,10 +5,17 @@ namespace Charcoal\Cms;
 // dependencies from `charcoal-base`
 use Charcoal\Object\Content;
 
+// dependencies from `charcoal-property`
+use Charcoal\Property\Structure\StructureMetadata;
+
+// local dependencies
+use Charcoal\Cms\ConfigInterface;
+
 /**
  * Class Config
  */
-class Config extends Content
+class Config extends Content implements
+    ConfigInterface
 {
     /**
      * @var string $defaultMetaTitle
