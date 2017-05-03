@@ -8,7 +8,7 @@ use InvalidArgumentException;
 use Charcoal\Model\ModelInterface;
 
 // From 'charcoal-cms'
-use Charcoal\Admin\Widget\PivotWidget;
+use Charcoal\Admin\Widget\Relation\PivotWidget;
 use Charcoal\Relation\Interfaces\PivotableInterface;
 use Charcoal\Relation\Pivot;
 

@@ -198,7 +198,7 @@ class PivotWidget extends AdminWidget implements
     /**
      * Retrieve the widget's title.
      *
-     * @return TranslationString|string[]
+     * @return Translation|string[]
      */
     public function title()
     {
@@ -213,11 +213,7 @@ class PivotWidget extends AdminWidget implements
      */
     public function setTitle($title)
     {
-        if (TranslationString::isTranslatable($title)) {
-            $this->title = new TranslationString($title);
-        } else {
-            $this->title = null;
-        }
+        $this->title = $this->translator()->translation($title);
 
         return $this;
     }
@@ -352,11 +348,7 @@ class PivotWidget extends AdminWidget implements
             );
         }
 
-        if (TranslationString::isTranslatable($label)) {
-            $label = new TranslationString($label);
-        }
-
-        return $label;
+        return $this->translator()->translation($label);
     }
 
     /**
