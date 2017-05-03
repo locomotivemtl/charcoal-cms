@@ -1,0 +1,31 @@
+{{!--
+
+    Pivot Widget
+    ============
+
+    @see `charcoal/admin/widget/table`
+
+    This widget expects to be in a context (model) of type `\Charcoal\Admin\Widget\Table`.
+
+--}}
+
+<div id="{{ widgetId }}" class="c-attachments">
+    {{^ hasObj }}
+    {{> charcoal/admin/widget/relation/unsaved }}
+    {{/ hasObj }}
+    {{# hasObj }}
+    <header class="c-attachments_header">
+        {{> charcoal/admin/widget/relation/header }}
+    </header>
+
+    {{> charcoal/admin/widget/relation/list }}
+
+    <div class="js-pivot-template hidden">
+        <a class="thumbnail js-pivot" href="#" data-id="{{ id }}" data-type="{{ objType }}"></a>
+    </div>
+    {{/ hasObj }}
+</div>
+
+{{# hasObj }}
+{{> charcoal/admin/widget/relation/js }}
+{{/ hasObj }}

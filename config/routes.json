@@ -1,0 +1,17 @@
+{
+    "admin": {
+        "routes": {
+            "actions": {
+                "relation/sync": {
+                    "ident": "charcoal/admin/action/relation/sync"
+                },
+                "relation/link": {
+                    "ident": "charcoal/admin/action/relation/link"
+                },
+                "relation/unlink": {
+                    "ident": "charcoal/admin/action/relation/unlink"
+                }
+            }
+        }
+    }
+}

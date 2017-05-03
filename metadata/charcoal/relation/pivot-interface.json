@@ -1,0 +1,56 @@
+{
+    "properties": {
+        "id": {
+            "type": "id",
+            "mode": "uniqid",
+            "label": "ID"
+        },
+        "active": {
+            "type": "boolean",
+            "label": {
+                "en": "Active",
+                "fr": "Actif"
+            }
+        },
+        "position": {
+            "type": "number",
+            "label": "Position"
+        },
+        "source_object_type": {
+            "type": "string",
+            "label": {
+                "en": "Source Object Type",
+                "fr": "Type de l'objet source"
+            }
+        },
+        "source_object_id": {
+            "type": "string",
+            "label": {
+                "en": "Source Object ID",
+                "fr": "ID de l'objet source"
+            }
+        },
+        "target_object_type": {
+            "type": "string",
+            "label": {
+                "en": "Target Object Type",
+                "fr": "Type de l'object ciblé"
+            }
+        },
+        "target_object_id": {
+            "type": "string",
+            "label": {
+                "en": "Target Object ID",
+                "fr": "ID de l'object ciblé"
+            }
+        }
+    },
+
+    "sources": {
+        "default": {
+            "type": "database",
+            "table": "charcoal_pivots"
+        }
+    },
+    "default_source": "default"
+}

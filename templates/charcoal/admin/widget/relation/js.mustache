@@ -1,0 +1,30 @@
+{{!--
+
+    Pivot Widget \ JS Component
+    ===========================
+
+    @used-by `charcoal/admin/widget/relation/pivot`
+
+--}}
+
+{{# addJsRequirement }}
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+{{/ addJsRequirement }}
+
+{{# addJs }}
+<script>
+{{!
+    @see Charcoal.Admin.Widget_Pivot
+}}
+Charcoal.Admin.manager().add_widget({
+    id: '{{ widgetId }}',
+    type: 'charcoal/admin/widget/pivot',
+    data: {
+        obj_type: '{{ objType }}',
+        obj_id: '{{ objId }}',
+        target_object_type: '{{ targetObjectType }}'
+    },
+    widget_options: {{& widgetOptions }}
+});
+</script>
+{{/ addJs }}
