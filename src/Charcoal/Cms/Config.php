@@ -37,6 +37,16 @@ class Config extends Content implements
      */
     protected $defaultMetaUrl;
 
+    /**
+     * @var StructureMetadata|array|mixed
+     */
+    protected $socialMedias;
+
+    /**
+     * @var string
+     */
+    protected $defaultFromEmail;
+
     // ==========================================================================
     // INIT
     // ==========================================================================
@@ -102,6 +112,28 @@ class Config extends Content implements
         return $this;
     }
 
+    /**
+     * @param array|StructureMetadata|mixed $socialMedias The social media array.
+     * @return self
+     */
+    public function setSocialMedias($socialMedias)
+    {
+        $this->socialMedias = $socialMedias;
+
+        return $this;
+    }
+
+    /**
+     * @param string $defaultFromEmail The default email to send from.
+     * @return self
+     */
+    public function setDefaultFromEmail($defaultFromEmail)
+    {
+        $this->defaultFromEmail = $defaultFromEmail;
+
+        return $this;
+    }
+
     // ==========================================================================
     // GETTERS
     // ==========================================================================
@@ -136,5 +168,21 @@ class Config extends Content implements
     public function defaultMetaUrl()
     {
         return $this->defaultMetaUrl;
+    }
+
+    /**
+     * @return array|StructureMetadata|mixed
+     */
+    public function socialMedias()
+    {
+        return $this->socialMedias;
+    }
+
+    /**
+     * @return string
+     */
+    public function defaultFromEmail()
+    {
+        return $this->defaultFromEmail;
     }
 }
