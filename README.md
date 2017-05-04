@@ -172,6 +172,7 @@ A **source** model has one or many relationships with a **target** model. These 
 ## Models
 
 The `Pivot` Model extends `AbstractModel` and implements some new properties:
+
     - `source_object_id`
     - `source_object_type`
     - `target_object_id`
@@ -206,7 +207,6 @@ In your **source** model metadata, add the widget configuration in the default f
 "forms": {
     "default": {
         "groups": {
-            "[...]",
             "target_object_pivot_group": {
                 "priority": 10,
                 "show_header": false,
@@ -214,8 +214,7 @@ In your **source** model metadata, add the widget configuration in the default f
                 "type": "charcoal/admin/widget/relation/form-group/pivot",
                 "template": "charcoal/admin/widget/relation/form-group/pivot",
                 "target_object_type": "my/namespace/target-object-type"
-            },
-            "[...]"
+            }
         }
     }
 }
