@@ -12,6 +12,9 @@ use Pimple\Container;
 // From 'bobthecow/mustache.php'
 use Mustache_LambdaHelper as LambdaHelper;
 
+// From 'charcoal-config'
+use Charcoal\Config\ConfigurableInterface;
+
 // From 'charcoal-factory'
 use Charcoal\Factory\FactoryInterface;
 
@@ -20,22 +23,20 @@ use Charcoal\Admin\AdminWidget;
 use Charcoal\Admin\Ui\ObjectContainerInterface;
 use Charcoal\Admin\Ui\ObjectContainerTrait;
 
+// From 'charcoal-cms'
+use Charcoal\Relation\Traits\ConfigurablePivotTrait;
+
 /**
  * The Widget for displaying Pivots.
  */
 class PivotWidget extends AdminWidget implements
+    ConfigurableInterface,
     ObjectContainerInterface
 {
+    use ConfigurablePivotTrait;
     use ObjectContainerTrait {
         ObjectContainerTrait::createOrLoadObj as createOrCloneOrLoadObj;
     }
-
-    /**
-     * Store the factory instance for the current class.
-     *
-     * @var FactoryInterface
-     */
-    private $widgetFactory;
 
     /**
      * The widget's title.
@@ -57,6 +58,27 @@ class PivotWidget extends AdminWidget implements
      * @var string
      */
     protected $targetObjectType;
+
+    /**
+     * The pivot target object types.
+     *
+     * @var array
+     */
+    protected $targetObjectTypes;
+
+    /**
+     * Track the state of data merging.
+     *
+     * @var boolean
+     */
+    private $isMergingData = false;
+
+    /**
+     * Store the factory instance for the current class.
+     *
+     * @var FactoryInterface
+     */
+    private $widgetFactory;
 
     /**
      * Inject dependencies from a DI Container.
@@ -149,6 +171,127 @@ class PivotWidget extends AdminWidget implements
     }
 
     /**
+     * Retrieve the widget's pivot target object types.
+     *
+     * @return array
+     */
+    public function targetObjectTypes()
+    {
+        return $this->targetObjectTypes;
+    }
+
+    /**
+     * Set the widget's available object types.
+     *
+     * Use the object ident as a key to which you can add filters, label and orders.
+     *
+     * @param  array        $objectTypes A list of available object types.
+     * @return self|boolean
+     */
+    public function setTargetObjectTypes($objectTypes)
+    {
+        if (!$this->isMergingData) {
+            $objectTypes = $this->mergePresetTargetObjectTypes($objectTypes);
+        }
+
+        if (empty($objectTypes) || is_string($objectTypes)) {
+            return false;
+        }
+
+        $out = [];
+        foreach ($objectTypes as $type => $metadata) {
+            $label      = '';
+            $filters    = [];
+            $orders     = [];
+            $numPerPage = 0;
+            $page       = 1;
+            $options    = [ 'label', 'filters', 'orders', 'num_per_page', 'page' ];
+            $data       = array_diff_key($metadata, $options);
+
+            // Disable a linked model
+            if (isset($metadata['active']) && !$metadata['active']) {
+                continue;
+            }
+
+            // Useful for replacing a pre-defined object type
+            if (isset($metadata['object_type'])) {
+                $type = $metadata['object_type'];
+            } else {
+                $metadata['object_type'] = $type;
+            }
+
+            // Useful for linking a pre-existing object
+            $objId = (isset($metadata['obj_id']) ? $metadata['obj_id'] : null);
+
+            if (isset($metadata['label'])) {
+                $label = $this->translator()->translation($metadata['label']);
+            }
+
+            if (isset($metadata['filters'])) {
+                $filters = $metadata['filters'];
+            }
+
+            if (isset($metadata['orders'])) {
+                $orders = $metadata['orders'];
+            }
+
+            if (isset($metadata['num_per_page'])) {
+                $numPerPage = $metadata['num_per_page'];
+            }
+
+            if (isset($metadata['page'])) {
+                $page = $metadata['page'];
+            }
+
+            $out[$type] = [
+                'objId'     => $objId,
+                'label'      => $label,
+                'filters'    => $filters,
+                'orders'     => $orders,
+                'page'       => $page,
+                'numPerPage' => $numPerPage,
+                'data'       => $data
+            ];
+        }
+
+        $this->targetObjectTypes = $out;
+
+        return $this;
+    }
+
+    /**
+     * Formatted object types for use in templates.
+     *
+     * @return array
+     */
+    public function objectTypes()
+    {
+        $targetObjectTypes = $this->targetObjectTypes();
+
+        $out = [];
+
+        if (!$targetObjectTypes) {
+            return $out;
+        }
+
+        $i = 0;
+        foreach ($targetObjectTypes as $type => $metadata) {
+            $i++;
+            $label = $metadata['label'];
+
+            $out[] = [
+                'id'     => (isset($metadata['object_id']) ? $metadata['object_id'] : null),
+                'ident'  => $this->createIdent($type),
+                'label'  => $label,
+                'val'    => $type,
+                'active' => ($i == 1)
+            ];
+        }
+
+        return $out;
+    }
+
+    /**
      * Set the widget's data.
      *
      * @param array|Traversable $data The widget data.
@@ -156,6 +299,7 @@ class PivotWidget extends AdminWidget implements
      */
     public function setData(array $data)
     {
+        $this->isMergingData = true;
         /**
          * @todo Kinda hacky, but works with the concept of form.
          *     Should work embeded in a form group or in a dashboard.
@@ -163,6 +307,13 @@ class PivotWidget extends AdminWidget implements
         $data = array_merge($_GET, $data);
 
         parent::setData($data);
+
+        /** Merge any available presets */
+        $data = $this->mergePresets($data);
+
+        parent::setData($data);
+
+        $this->isMergingData = false;
 
         return $this;
     }
@@ -376,5 +527,65 @@ class PivotWidget extends AdminWidget implements
     public function hasObj()
     {
         return !!($this->obj()->id());
+    }
+
+    /**
+     * Generate an HTML-friendly identifier.
+     *
+     * @param  string $string A dirty string to filter.
+     * @return string
+     */
+    public function createIdent($string)
+    {
+        return preg_replace('~/~', '-', $string);
+    }
+
+    /**
+     * Parse the given data and recursively merge presets from pivot config.
+     *
+     * @param  array $data The widget data.
+     * @return array Returns the merged widget data.
+     */
+    protected function mergePresets(array $data)
+    {
+        if (isset($data['target_object_types'])) {
+            $data['target_object_types'] = $this->mergePresetTargetObjectTypes($data['target_object_types']);
+        }
+
+        if (isset($data['preset'])) {
+            $data = $this->mergePresetWidget($data);
+        }
+
+        return $data;
+    }
+
+    /**
+     * Parse the given data and merge the widget preset.
+     *
+     * @param  array $data The widget data.
+     * @return array Returns the merged widget data.
+     */
+    private function mergePresetWidget(array $data)
+    {
+        if (!isset($data['preset']) || !is_string($data['preset'])) {
+            return $data;
+        }
+
+        $widgetIdent = $data['preset'];
+        if ($this->hasObj()) {
+            $widgetIdent = $this->obj()->render($widgetIdent);
+        }
+
+        $presetWidgets = $this->config('widgets');
+        if (!isset($presetWidgets[$widgetIdent])) {
+            return $data;
+        }
+
+        $widgetData = $presetWidgets[$widgetIdent];
+        if (isset($widgetData['target_object_types'])) {
+            $widgetData['target_object_types'] = $this->mergePresetTargetObjectTypes($widgetData['target_object_types']);
+        }
+
+        return array_replace_recursive($widgetData, $data);
     }
 }
