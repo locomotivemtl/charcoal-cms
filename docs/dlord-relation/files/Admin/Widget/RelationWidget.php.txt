@@ -50,14 +50,7 @@ class RelationWidget extends AdminWidget implements
      *
      * @var string
      */
-    protected $sourceObjectType;
-
-    /**
-     * The Pivot target object type.
-     *
-     * @var string
-     */
-    protected $targetObjectType;
+    // protected $sourceObjectType;
 
     /**
      * The Pivot target object types.
@@ -65,6 +58,13 @@ class RelationWidget extends AdminWidget implements
      * @var array
      */
     protected $targetObjectTypes;
+
+    /**
+     * The Pivot grouping ident.
+     *
+     * @var string
+     */
+    protected $group;
 
     /**
      * Track the state of data merging.
@@ -79,6 +79,13 @@ class RelationWidget extends AdminWidget implements
      * @var FactoryInterface
      */
     private $widgetFactory;
+
+    /**
+     * Label for the relation dialog.
+     *
+     * @var \Charcoal\Translator\Translation|string|null
+     */
+    private $dialogTitle;
 
     /**
      * Inject dependencies from a DI Container.
@@ -124,48 +131,48 @@ class RelationWidget extends AdminWidget implements
         return $this;
     }
 
+    // /**
+    //  * Retrieve the widget's Pivot source object type.
+    //  *
+    //  * @return string
+    //  */
+    // public function sourceObjectType()
+    // {
+    //     return $this->sourceObjectType;
+    // }
+
+    // *
+    //  * Set the widget's Pivot source object type.
+    //  *
+    //  * @param string $type The object type.
+    //  * @return self
+
+    // public function setSourceObjectType($type)
+    // {
+    //     $this->sourceObjectType = $type;
+
+    //     return $this;
+    // }
+
     /**
-     * Retrieve the widget's Pivot source object type.
+     * Retrieve the widget's Pivot grouping.
      *
      * @return string
      */
-    public function sourceObjectType()
+    public function group()
     {
-        return $this->sourceObjectType;
+        return $this->group;
     }
 
     /**
-     * Set the widget's Pivot source object type.
+     * Set the widget's Pivot grouping.
      *
-     * @param string $type The object type.
+     * @param string $group The object group.
      * @return self
      */
-    public function setSourceObjectType($type)
+    public function setGroup($group)
     {
-        $this->sourceObjectType = $type;
-
-        return $this;
-    }
-
-    /**
-     * Retrieve the widget's Pivot target object type.
-     *
-     * @return string
-     */
-    public function targetObjectType()
-    {
-        return $this->targetObjectType;
-    }
-
-    /**
-     * Set the widget's Pivot target object type.
-     *
-     * @param string $type The object type.
-     * @return self
-     */
-    public function setTargetObjectType($type)
-    {
-        $this->targetObjectType = $type;
+        $this->group = $group;
 
         return $this;
     }
@@ -370,6 +377,43 @@ class RelationWidget extends AdminWidget implements
     }
 
     /**
+     * Retrieve the title for the relation dialog.
+     *
+     * @return \Charcoal\Translator\Translation|string|null
+     */
+    public function dialogTitle()
+    {
+        if ($this->dialogTitle === null) {
+            $this->setDialogTitle($this->defaultDialogTitle());
+        }
+
+        return $this->dialogTitle;
+    }
+
+    /**
+     * Set the title for the relation dialog.
+     *
+     * @param  string|string[] $title The dialog title.
+     * @return self
+     */
+    public function relationlogTitle($title)
+    {
+        $this->dialogTitle = $this->translator()->translation($title);
+
+        return $this;
+    }
+
+    /**
+     * Retrieve the default title for the relation dialog.
+     *
+     * @return \Charcoal\Translator\Translation|string|null
+     */
+    protected function defaultDialogTitle()
+    {
+        return $this->translator()->translation('Link an object');
+    }
+
+    /**
      * Create or load the object.
      *
      * @return ModelInterface
@@ -392,7 +436,7 @@ class RelationWidget extends AdminWidget implements
      */
     public function relations()
     {
-        $relations = $this->obj()->pivots($this->targetObjectType());
+        $relations = $this->obj()->pivots($this->group());
 
         foreach ($relations as $relation) {
             yield $relation;
@@ -484,25 +528,6 @@ class RelationWidget extends AdminWidget implements
     }
 
     /**
-     * Retrieve the widget's Pivot target object type label.
-     *
-     * @return string
-     */
-    public function dialogTitle()
-    {
-        $targetObjectProto = $this->modelFactory()->create($this->targetObjectType());
-        $label = $targetObjectProto->metadata()->get('labels.create_item');
-
-        if (empty($label)) {
-            throw new RuntimeException(
-                sprintf('create_item label is not defined for "%s"', get_class($targetObjectProto))
-            );
-        }
-
-        return $this->translator()->translation($label);
-    }
-
-    /**
      * Retrieve the current widget's options as a JSON object.
      *
      * @return string A JSON string.
@@ -513,7 +538,7 @@ class RelationWidget extends AdminWidget implements
             'title' => $this->title(),
             'obj_type' => $this->obj()->objType(),
             'obj_id' => $this->obj()->id(),
-            'target_object_type' => $this->targetObjectType()
+            'group' => $this->group()
         ];
 
         return json_encode($options, true);

@@ -2,6 +2,8 @@
 
 namespace Charcoal\Relation;
 
+use InvalidArgumentException;
+
 // From 'charcoal-core'
 use Charcoal\Model\AbstractModel;
 
@@ -54,6 +56,13 @@ class Pivot extends AbstractModel implements
      * @var integer
      */
     protected $position = 0;
+
+    /**
+     * The relationship's group ID.
+     *
+     * @var string
+     */
+    protected $group;
 
     /**
      * Retrieve the source object type.
@@ -202,6 +211,36 @@ class Pivot extends AbstractModel implements
         }
 
         $this->position = (int)$position;
+
+        return $this;
+    }
+
+    /**
+     * Retrieve the relationship's group ID.
+     *
+     * @return mixed
+     */
+    public function group()
+    {
+        return $this->group;
+    }
+
+    /**
+     * Set the relationship's group ID.
+     *
+     * @param  mixed $id The group ID describing the relationship.
+     * @throws InvalidArgumentException If provided argument is not a string.
+     * @return self
+     */
+    public function setGroup($id)
+    {
+        if (!is_string($id)) {
+            throw new InvalidArgumentException(
+                'Grouping ID must be a string.'
+            );
+        }
+
+        $this->group = $id;
 
         return $this;
     }

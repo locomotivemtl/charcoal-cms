@@ -37,24 +37,13 @@ class UnlinkAction extends AdminAction
     {
         $params = $request->getParams();
 
-        if (
-            !isset($params['pivot_id'])
-        ) {
+        if (!isset($params['pivot_id'])) {
             $this->setSuccess(false);
 
             return $response;
         }
 
         $pivotId = $params['pivot_id'];
-
-        // Try loading the object
-        try {
-            $obj = $this->modelFactory()->create($sourceObjType)->load($sourceObjId);
-        } catch (Exception $e) {
-            $this->setSuccess(false);
-
-            return $response;
-        }
 
         $pivotProto = $this->modelFactory()->create(Pivot::class);
         if (!$pivotProto->source()->tableExists()) {
@@ -69,7 +58,9 @@ class UnlinkAction extends AdminAction
             ->setModel($pivotProto)
             ->load($pivotId);
 
-        $pivotModel->delete();
+        if ($pivotModel->id()) {
+            $pivotModel->delete();
+        }
 
         $this->setSuccess(true);
 
