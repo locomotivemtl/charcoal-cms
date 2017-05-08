@@ -8,7 +8,7 @@ use InvalidArgumentException;
 use Charcoal\Model\ModelInterface;
 
 // From 'charcoal-cms'
-use Charcoal\Admin\Widget\Relation\PivotWidget;
+use Charcoal\Admin\Widget\RelationWidget;
 use Charcoal\Relation\Interfaces\PivotableInterface;
 use Charcoal\Relation\Pivot;
 
@@ -43,11 +43,11 @@ trait PivotAwareTrait
     protected $pivots = [];
 
     /**
-     * Store the widget instance currently displaying pivots.
+     * Store the widget instance currently displaying relations.
      *
-     * @var PivotWidget
+     * @var RelationWidget
      */
-    protected $pivotWidget;
+    protected $relationWidget;
 
     /**
      * Retrieve the objects associated to the current object.
@@ -181,24 +181,24 @@ trait PivotAwareTrait
     }
 
     /**
-     * Retrieve the pivot widget.
+     * Retrieve the relation widget.
      *
-     * @return PivotWidget
+     * @return RelationWidget
      */
-    protected function pivotWidget()
+    protected function relationWidget()
     {
-        return $this->pivotWidget;
+        return $this->relationWidget;
     }
 
     /**
-     * Set the pivot widget.
+     * Set the relation widget.
      *
-     * @param  PivotWidget $widget The widget displaying pivots.
+     * @param  RelationWidget $widget The widget displaying pivots.
      * @return string
      */
-    protected function setPivotWidget(PivotWidget $widget)
+    protected function setRelationWidget(RelationWidget $widget)
     {
-        $this->pivotWidget = $widget;
+        $this->relationWidget = $widget;
 
         return $this;
     }

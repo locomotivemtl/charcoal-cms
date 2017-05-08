@@ -18,6 +18,9 @@
         },
         "source_object_type": {
             "type": "string",
+            "hidden": true,
+            "required": true,
+            "allow_null": false,
             "label": {
                 "en": "Source Object Type",
                 "fr": "Type de l'objet source"
@@ -25,6 +28,9 @@
         },
         "source_object_id": {
             "type": "string",
+            "hidden": true,
+            "required": true,
+            "allow_null": false,
             "label": {
                 "en": "Source Object ID",
                 "fr": "ID de l'objet source"
@@ -32,6 +38,9 @@
         },
         "target_object_type": {
             "type": "string",
+            "hidden": true,
+            "required": true,
+            "allow_null": false,
             "label": {
                 "en": "Target Object Type",
                 "fr": "Type de l'object ciblé"
@@ -39,9 +48,25 @@
         },
         "target_object_id": {
             "type": "string",
+            "input_type": "charcoal/admin/property/input/selectize/relation",
+            "required": true,
+            "allow_null": false,
             "label": {
                 "en": "Target Object ID",
                 "fr": "ID de l'object ciblé"
+            },
+
+            "multiple": false,
+
+            "pattern": "title",
+            "selectize_options": {
+                "plugins": {
+                    "btn_remove": {}
+                }
+            },
+            "form_ident": {
+                "create": "quick.create",
+                "update": "quick.update"
             }
         }
     },
@@ -52,5 +77,107 @@
             "table": "charcoal_pivots"
         }
     },
-    "default_source": "default"
+    "default_source": "default",
+
+    "admin": {
+        "lists": {
+            "default": {}
+        },
+        "default_list": "default",
+
+        "forms": {
+            "relation.create": {
+                "groups": {
+                    "basic": {}
+                },
+                "sidebars": {
+                    "default": {}
+                }
+            },
+            "relation.edit": {
+                "groups": {
+                    "basic": {}
+                },
+                "sidebars": {
+                    "default": {}
+                }
+            }
+        },
+        "default_form": "relation.edit",
+        "default_quick_form": "relation.edit",
+
+        "form_groups": {
+            "basic": {
+                "group_display_mode": false,
+                "priority": 10,
+                "show_title": false,
+                "show_header": false,
+                "title": "Relation",
+                "properties": [
+                    "source_object_type",
+                    "source_object_id",
+                    "target_object_type",
+                    "target_object_id"
+                ],
+                "layout": {
+                    "structure": [
+                        { "columns": [ 1 ] },
+                        { "columns": [ 1, 1 ] },
+                        { "columns": [ 1, 1 ] }
+                    ]
+                }
+            }
+        },
+
+        "dashboards": {
+            "admin.create": {
+                "widgets": {
+                    "form": {
+                        "type": "charcoal/admin/widget/objectForm",
+                        "group_display_mode": "tab",
+                        "form_ident": "relation.create",
+                        "permissions": [ "object/create" ]
+                    }
+                },
+                "layout": {
+                    "structure": [
+                        { "columns": [ 1 ] }
+                    ]
+                }
+            },
+            "admin.edit": {
+                "widgets": {
+                    "form": {
+                        "type": "charcoal/admin/widget/objectForm",
+                        "group_display_mode": "tab",
+                        "form_ident": "{{ formIdent }}",
+                        "permissions": [ "object/edit" ]
+                    }
+                },
+                "layout": {
+                    "structure": [
+                        { "columns": [ 1 ] }
+                    ]
+                }
+            },
+            "admin.table": {
+                "widgets": {
+                    "list": {
+                        "type": "charcoal/support/admin/widget/table",
+                        "collection_ident": "default",
+                        "data_sources": [ "request" ],
+                        "sortable": true
+                    }
+                },
+                "layout": {
+                    "structure": [
+                        { "columns": [ 1 ] }
+                    ]
+                }
+            }
+        },
+        "default_create_dashboard": "admin.create",
+        "default_edit_dashboard": "admin.edit",
+        "default_collection_dashboard": "admin.table"
+    }
 }

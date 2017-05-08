@@ -14,17 +14,17 @@ use Charcoal\Model\ModelInterface;
 use Charcoal\Admin\Ui\ObjectContainerInterface;
 
 // From 'charcoal-cms'
-use Charcoal\Relation\PivotConfig;
+use Charcoal\Relation\RelationConfig;
 
 /**
- * Configurable Pivots Trait
+ * Configurable Relation Trait
  *
 * An implementation, as Trait, of the {@see \Charcoal\Config\ConfigurableInterface}.
 */
-trait ConfigurablePivotTrait
+trait ConfigurableRelationTrait
 {
     /**
-     * The pivot configset.
+     * The relation configset.
      *
      * @var ConfigInterface
      */
@@ -75,18 +75,18 @@ trait ConfigurablePivotTrait
     }
 
     /**
-     * Retrieve a new PivotConfig instance for the class.
+     * Retrieve a new RelationConfig instance for the class.
      *
      * @param  array|null $data Optional data to pass to the new configset.
      * @return ConfigInterface
      */
     protected function createConfig($data = null)
     {
-        return new PivotConfig($data);
+        return new RelationConfig($data);
     }
 
     /**
-     * Parse the given data and recursively merge presets from pivot config.
+     * Parse the given data and recursively merge presets from relation config.
      *
      * @param  array $data The widget data.
      * @return array Returns the merged widget data.

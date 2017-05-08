@@ -1,13 +1,13 @@
 <div class="btn-toolbar" role="toolbar">
-    <div class="btn-group js-pivot-manager" role="group">
+    <div class="btn-group js-relation-manager" role="group">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
             <span class="btn-label">{{# _t }}Add{{/ _t }}</span>
             <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu js-pivot-manager">
+        <ul class="dropdown-menu js-relation-manager">
             {{# objectTypes }}
             <li>
-                <a href="{{ baseUrl }}admin/object/edit?obj_type={{ val }}{{# id }}&obj_id={{ . }}{{/ id }}" data-type="{{ val }}"{{# id }} data-id="{{ . }}"{{/ id }} data-title="{{ label }}" class="js-add-attachment" target="_blank">
+                <a href="{{ baseUrl }}admin/object/edit?obj_type={{ val }}{{# id }}&obj_id={{ . }}{{/ id }}" data-type="{{ val }}" data-title="{{ label }}" class="js-add-relation" target="_blank">
                     <span class="glyphicon {{ glyphicon }}"></span>
                     <span class="glyphicon-class">{{ label }}</span>
                 </a>

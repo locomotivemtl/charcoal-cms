@@ -1,6 +1,6 @@
 <?php
 
-namespace Charcoal\Admin\Widget\Relation;
+namespace Charcoal\Admin\Widget;
 
 use ArrayIterator;
 use RuntimeException;
@@ -24,16 +24,16 @@ use Charcoal\Admin\Ui\ObjectContainerInterface;
 use Charcoal\Admin\Ui\ObjectContainerTrait;
 
 // From 'charcoal-cms'
-use Charcoal\Relation\Traits\ConfigurablePivotTrait;
+use Charcoal\Relation\Traits\ConfigurableRelationTrait;
 
 /**
- * The Widget for displaying Pivots.
+ * The widget for displaying relations as Pivots.
  */
-class PivotWidget extends AdminWidget implements
+class RelationWidget extends AdminWidget implements
     ConfigurableInterface,
     ObjectContainerInterface
 {
-    use ConfigurablePivotTrait;
+    use ConfigurableRelationTrait;
     use ObjectContainerTrait {
         ObjectContainerTrait::createOrLoadObj as createOrCloneOrLoadObj;
     }
@@ -53,14 +53,14 @@ class PivotWidget extends AdminWidget implements
     protected $sourceObjectType;
 
     /**
-     * The pivot target object type.
+     * The Pivot target object type.
      *
      * @var string
      */
     protected $targetObjectType;
 
     /**
-     * The pivot target object types.
+     * The Pivot target object types.
      *
      * @var array
      */
@@ -125,7 +125,7 @@ class PivotWidget extends AdminWidget implements
     }
 
     /**
-     * Retrieve the widget's pivot source object type.
+     * Retrieve the widget's Pivot source object type.
      *
      * @return string
      */
@@ -135,7 +135,7 @@ class PivotWidget extends AdminWidget implements
     }
 
     /**
-     * Set the widget's pivot source object type.
+     * Set the widget's Pivot source object type.
      *
      * @param string $type The object type.
      * @return self
@@ -148,7 +148,7 @@ class PivotWidget extends AdminWidget implements
     }
 
     /**
-     * Retrieve the widget's pivot target object type.
+     * Retrieve the widget's Pivot target object type.
      *
      * @return string
      */
@@ -158,7 +158,7 @@ class PivotWidget extends AdminWidget implements
     }
 
     /**
-     * Set the widget's pivot target object type.
+     * Set the widget's Pivot target object type.
      *
      * @param string $type The object type.
      * @return self
@@ -171,7 +171,7 @@ class PivotWidget extends AdminWidget implements
     }
 
     /**
-     * Retrieve the widget's pivot target object types.
+     * Retrieve the widget's Pivot target object types.
      *
      * @return array
      */
@@ -319,7 +319,7 @@ class PivotWidget extends AdminWidget implements
     }
 
     /**
-     * Set the current page listing of pivots.
+     * Set the current page listing of relations.
      *
      * @param integer $page The current page. Start at 0.
      * @throws InvalidArgumentException If the parameter is not numeric or < 0.
@@ -379,34 +379,34 @@ class PivotWidget extends AdminWidget implements
         $obj = $this->createOrCloneOrLoadObj();
 
         $obj->setData([
-            'pivot_widget' => $this
+            'relation_widget' => $this
         ]);
 
         return $obj;
     }
 
     /**
-     * Pivots by object type.
+     * Relations by object type.
      *
      * @return Collection
      */
-    public function pivots()
+    public function relations()
     {
-        $pivots = $this->obj()->pivots($this->targetObjectType());
+        $relations = $this->obj()->pivots($this->targetObjectType());
 
-        foreach ($pivots as $pivot) {
-            yield $pivot;
+        foreach ($relations as $relation) {
+            yield $relation;
         }
     }
 
     /**
-     * Determine the number of pivots.
+     * Determine the number of relations.
      *
      * @return boolean
      */
-    public function hasPivots()
+    public function hasRelations()
     {
-        return count(iterator_to_array($this->pivots()));
+        return count(iterator_to_array($this->relations()));
     }
 
     /**
@@ -456,7 +456,7 @@ class PivotWidget extends AdminWidget implements
     }
 
     /**
-     * Set how many pivots are displayed per page.
+     * Set how many relations are displayed per page.
      *
      * @param integer $num The number of results to retrieve, per page.
      * @throws InvalidArgumentException If the parameter is not numeric or < 0.
@@ -484,7 +484,7 @@ class PivotWidget extends AdminWidget implements
     }
 
     /**
-     * Retrieve the widget's pivot target object type label.
+     * Retrieve the widget's Pivot target object type label.
      *
      * @return string
      */
@@ -541,7 +541,7 @@ class PivotWidget extends AdminWidget implements
     }
 
     /**
-     * Parse the given data and recursively merge presets from pivot config.
+     * Parse the given data and recursively merge presets from RelationConfig.
      *
      * @param  array $data The widget data.
      * @return array Returns the merged widget data.

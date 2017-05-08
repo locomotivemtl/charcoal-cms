@@ -1,22 +1,22 @@
 {{!--
 
-    Pivot Widget \ Single Object
-    ============================
+    Relation Widget \ Single Object
+    ===============================
 
     @used-by `charcoal/admin/widget/relation/list`
 
 --}}
-<article class="panel panel-default js-pivot"
+<article class="panel panel-default js-relation"
     id="{{ widgetId }}_{{ id }}"
     data-id="{{ id }}"
     data-type="{{ objType }}">
     <header draggable="true" id="{{ widgetId }}_heading_{{ id }}" class="panel-heading">
         <h4 class="panel-title">
             <span class="panel-title-icon glyphicon glyphicon-modal-window"></span>
-            <a href="object/edit?obj_type={{ objType }}&obj_id={{ id }}">{{& pivotLabel }}</a>
+            <a href="object/edit?obj_type={{ objType }}&obj_id={{ id }}">{{& relationLabel }}</a>
         </h4>
     </header>
-    <aside class="panel-actions btn-toolbar js-pivot-actions" role="toolbar">
+    <aside class="panel-actions btn-toolbar js-relation-actions" role="toolbar">
         {{> charcoal/admin/widget/relation/actions }}
     </aside>
 </article>

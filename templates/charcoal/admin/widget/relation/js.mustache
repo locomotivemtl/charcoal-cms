@@ -1,9 +1,9 @@
 {{!--
 
-    Pivot Widget \ JS Component
-    ===========================
+    Relation Widget \ JS Component
+    ==============================
 
-    @used-by `charcoal/admin/widget/relation/pivot`
+    @used-by `charcoal/admin/widget/relation`
 
 --}}
 
@@ -14,11 +14,11 @@
 {{# addJs }}
 <script>
 {{!
-    @see Charcoal.Admin.Widget_Pivot
+    @see Charcoal.Admin.Widget_Relation
 }}
 Charcoal.Admin.manager().add_widget({
     id: '{{ widgetId }}',
-    type: 'charcoal/admin/widget/pivot',
+    type: 'charcoal/admin/widget/relation',
     data: {
         obj_type: '{{ objType }}',
         obj_id: '{{ objId }}',
