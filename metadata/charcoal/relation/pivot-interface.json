@@ -16,6 +16,16 @@
             "type": "number",
             "label": "Position"
         },
+        "group": {
+            "type": "string",
+            "hidden": true,
+            "required": true,
+            "allow_null": false,
+            "label": {
+                "en": "Group",
+                "fr": "Groupe"
+            }
+        },
         "source_object_type": {
             "type": "string",
             "hidden": true,
@@ -32,8 +42,8 @@
             "required": true,
             "allow_null": false,
             "label": {
-                "en": "Source Object ID",
-                "fr": "ID de l'objet source"
+                "en": "Source Object",
+                "fr": "Objet source"
             }
         },
         "target_object_type": {
@@ -52,17 +62,19 @@
             "required": true,
             "allow_null": false,
             "label": {
-                "en": "Target Object ID",
-                "fr": "ID de l'object ciblé"
+                "en": "Target Object",
+                "fr": "Object ciblé"
             },
 
             "multiple": false,
 
             "pattern": "title",
             "selectize_options": {
+                "create": false,
                 "plugins": {
                     "btn_remove": {}
-                }
+                },
+                "maxItems": 1
             },
             "form_ident": {
                 "create": "quick.create",
@@ -117,7 +129,8 @@
                     "source_object_type",
                     "source_object_id",
                     "target_object_type",
-                    "target_object_id"
+                    "target_object_id",
+                    "group"
                 ],
                 "layout": {
                     "structure": [

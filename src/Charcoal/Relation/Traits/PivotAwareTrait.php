@@ -52,16 +52,18 @@ trait PivotAwareTrait
     /**
      * Retrieve the objects associated to the current object.
      *
-     * @param  string|null $targetObjectType Filter the pivots by an object type identifier.
-     * @throws InvalidArgumentException If the $targetObjectType is invalid.
+     * @param  string|null $group Filter the pivots by a grouping identifier.
+     * @throws InvalidArgumentException If the $group is invalid.
      * @return Collection|Pivot[]
      */
-    public function pivots($targetObjectType = null)
+    public function pivots($group = null)
     {
-        if ($targetObjectType === null) {
-            throw new InvalidArgumentException('The $targetObjectType must be a objType.');
-        } elseif (!is_string($targetObjectType)) {
-            throw new InvalidArgumentException('The $targetObjectType must be a string.');
+        error_log('TODO FIX THIS');
+        return [];
+        if ($group === null) {
+            throw new InvalidArgumentException('The relation grouping must be set.');
+        } elseif (!is_string($group)) {
+            throw new InvalidArgumentException('The relation grouping must be a string.');
         }
 
         $sourceObjectType = $this->objType();
@@ -70,7 +72,7 @@ trait PivotAwareTrait
         $pivotProto = $this->modelFactory()->get(Pivot::class);
         $pivotTable = $pivotProto->source()->table();
 
-        $targetObjProto = $this->modelFactory()->get($targetObjectType);
+        $targetObjProto = $this->modelFactory()->get($group);
         $targetObjTable = $targetObjProto->source()->table();
 
         if (!$targetObjProto->source()->tableExists() || !$pivotProto->source()->tableExists()) {
@@ -95,7 +97,7 @@ trait PivotAwareTrait
             AND
                 pivot_obj.source_object_id = "'.$sourceObjectId.'"
             AND
-                pivot_obj.target_object_type = "'.$targetObjectType.'"
+                pivot_obj.group = "'.$group.'"
 
             ORDER BY pivot_obj.position';
 
@@ -104,9 +106,9 @@ trait PivotAwareTrait
 
         $collection = $loader->loadFromQuery($query);
 
-        $this->pivots[$targetObjectType] = $collection;
+        $this->pivots[$group] = $collection;
 
-        return $this->pivots[$targetObjectType];
+        return $this->pivots[$group];
     }
 
     /**

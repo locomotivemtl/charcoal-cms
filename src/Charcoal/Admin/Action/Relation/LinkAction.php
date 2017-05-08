@@ -18,7 +18,8 @@ use Charcoal\Admin\AdminAction;
 use Charcoal\Loader\CollectionLoader;
 
 // From 'charcoal-cms'
-use Charcoal\Relation\Pivot
+use Charcoal\Relation\Interfaces\PivotAwareInterface;
+use Charcoal\Relation\Pivot;
 
 /**
  * Associate two objects using a Pivot.
@@ -41,19 +42,20 @@ class LinkAction extends AdminAction
             !isset($params['pivots']) ||
             !isset($params['obj_id']) ||
             !isset($params['obj_type']) ||
-            !isset($params['target_object_type'])
+            !isset($params['group'])
         ) {
             $this->addFeedback('error', 'Invalid parameters for Pivot.');
             $this->setSuccess(false);
+
             return $response;
         }
 
-        $pivots = $params['pivots'];
-        $sourceObjId = $params['obj_id'];
+        $pivots        = $params['pivots'];
+        $sourceObjId   = $params['obj_id'];
         $sourceObjType = $params['obj_type'];
-        $targetObjType = $params['target_object_type'];
+        $group         = $params['group'];
 
-        // Need more pivots...
+        // Needs more pivots
         if (!count($pivots)) {
             $this->setSuccess(false);
 
@@ -82,7 +84,7 @@ class LinkAction extends AdminAction
             ->setModel($pivotProto)
             ->addFilter('source_object_type', $sourceObjType)
             ->addFilter('source_object_id', $sourceObjId)
-            ->addFilter('target_object_type', $targetObjType)
+            ->addFilter('group', $group)
             ->addOrder('position', 'asc');
 
         $existingPivots = $loader->load();
@@ -94,6 +96,7 @@ class LinkAction extends AdminAction
         $count = count($pivots);
         $i = 0;
         for (; $i < $count; $i++) {
+            $targetObjType = $pivots[$i]['target_object_type'];
             $targetObjId = $pivots[$i]['target_object_id'];
             $position = $pivots[$i]['position'];
 
@@ -103,12 +106,19 @@ class LinkAction extends AdminAction
                 ->setSourceObjectId($sourceObjId)
                 ->setTargetObjectType($targetObjType)
                 ->setTargetObjectId($targetObjId)
+                ->setGroup($group)
                 ->setPosition($position);
 
             $pivotModel->save();
 
-            $targetObjModel = $this->modelFactory()->create($targetObjType)->load($targetObjId);
-            $targetObjModel->postPivotSave();
+            $targetObjModel = $this->modelFactory()->create($targetObjType);
+
+            if ($targetObjModel instanceof PivotAwareInterface) {
+                var_dump($targetObjModel);
+                var_dump("shit");
+                die();
+                $targetObjModel->load($targetObjId)->postPivotSave();
+            }
         }
 
         $this->setSuccess(true);
