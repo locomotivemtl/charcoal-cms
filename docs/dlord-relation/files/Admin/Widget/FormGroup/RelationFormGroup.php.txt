@@ -1,6 +1,6 @@
 <?php
 
-namespace Charcoal\Admin\Widget\Relation\FormGroup;
+namespace Charcoal\Admin\Widget\FormGroup;
 
 // From 'charcoal-ui'
 use Charcoal\Ui\FormGroup\FormGroupInterface;
@@ -9,12 +9,12 @@ use Charcoal\Ui\UiItemInterface;
 use Charcoal\Ui\UiItemTrait;
 
 // From 'charcoal-cms'
-use Charcoal\Admin\Widget\Relation\PivotWidget;
+use Charcoal\Admin\Widget\RelationWidget;
 
 /**
- * Pivot Widget, as form group.
+ * Relation Widget, as form group.
  */
-class PivotFormGroup extends PivotWidget implements
+class RelationFormGroup extends RelationWidget implements
     FormGroupInterface,
     UiItemInterface
 {

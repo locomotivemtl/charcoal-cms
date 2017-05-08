@@ -8,9 +8,9 @@ use InvalidArgumentException;
 use Charcoal\Config\AbstractConfig;
 
 /**
- * Pivot Configset
+ * Relation Configset
  */
-class PivotConfig extends AbstractConfig
+class RelationConfig extends AbstractConfig
 {
     /**
      * Available target object types.
@@ -20,10 +20,10 @@ class PivotConfig extends AbstractConfig
     private $targetObjectTypes = [];
 
     /**
-     * Set pivot settings in a specific order.
+     * Set relation settings in a specific order.
      *
      * @param  array $data New config values.
-     * @return PivotConfig Chainable
+     * @return RelationConfig Chainable
      */
     public function setData(array $data)
     {
@@ -51,7 +51,7 @@ class PivotConfig extends AbstractConfig
      *
      * @param  array $targetObjectTypes One or more object types.
      * @throws InvalidArgumentException If the object type or structure is invalid.
-     * @return PivotConfig Chainable
+     * @return RelationConfig Chainable
      */
     public function setTargetObjectTypes(array $targetObjectTypes)
     {
