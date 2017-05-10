@@ -224,7 +224,7 @@ trait PivotAwareTrait
             END CASE'.
         implode('', $joins).'
         ORDER BY pivot_obj.position';
-        */ß
+        */
 
         $this->pivots[$group] = $collection;
 
