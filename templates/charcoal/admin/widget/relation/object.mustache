@@ -14,7 +14,7 @@
     <header draggable="true" id="{{ widgetId }}_heading_{{ id }}" class="panel-heading">
         <h4 class="panel-title">
             <span class="panel-title-icon glyphicon glyphicon-modal-window"></span>
-            <a href="object/edit?main_menu={{ main_menu }}&obj_type={{ objType }}&obj_id={{ id }}">{{& heading }}{{^ active }}&mdash; <span class="small">{{# _t }}Disabled{{/ _t }}</span>{{/ active }}</a>
+            <a href="object/edit?main_menu={{ main_menu }}&obj_type={{ objType }}&obj_id={{ id }}">{{& pivotHeading }}{{^ active }}&mdash; <span class="small">{{# _t }}Disabled{{/ _t }}</span>{{/ active }}</a>
         </h4>
     </header>
     <aside class="panel-actions panel-actions-float btn-toolbar js-relation-actions" role="toolbar">

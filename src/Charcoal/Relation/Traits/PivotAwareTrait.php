@@ -97,7 +97,8 @@ trait PivotAwareTrait
         }
 
         $widget = $this->relationWidget();
-        $targetObjectTypes = $widget->targetObjectTypes();
+
+        $targetObjectTypes = $this->targetObjectTypes($group);
 
         if (!is_array($targetObjectTypes) || empty($targetObjectTypes)) {
             throw new RuntimeException('No target object types are set for this object.');
@@ -157,47 +158,6 @@ trait PivotAwareTrait
 
             $loader = $this->collectionLoader();
             $loader->setModel($targetObjectProto);
-
-            if ($widget instanceof RelationWidget) {
-                $callable = function ($targetObject) use ($pivotProto, $metadata, $callback) {
-                    // Set the pivotObjType for Pivot access within the mixed object type list
-                    $targetObject->pivotObjType = $pivotProto->objType();
-
-                    if (isset($metadata['data'])) {
-                        if ($targetObject instanceof PivotableInterface) {
-                            $heading = $targetObject->pivotHeading();
-                        } elseif (isset($metadata['label'])) {
-                            $heading = $targetObject->render((string)$metadata['label'].' #'.$targetObject->id());
-                        }
-
-                        if (!$heading) {
-                            $heading = $this->translator()->translation('{{ objType }} #{{ id }}', [
-                                '{{ objType }}' => $targetObject->objType(),
-                                '{{ id }}'      => $targetObject->id()
-                            ]);
-                        }
-
-                        $metadata['data']['heading'] = $heading;
-
-                        $targetObject->setData($metadata['data']);
-                    }
-
-                    if ($callback !== null) {
-                        call_user_func_array($callback, [ &$targetObject ]);
-                    }
-                };
-            } else {
-                $callable = function ($targetObject) use ($pivotProto, $callback) {
-                    // Set the pivotObjType for Pivot access within the mixed object type list
-                    $targetObject->pivotObjType = $pivotProto->objType();
-
-                    if ($callback !== null) {
-                        call_user_func_array($callback, [ &$targetObject ]);
-                    }
-                };
-            }
-
-            $loader->setCallback($callable->bindTo($this));
 
             $targetCollection = $loader->loadFromQuery($query);
             $collection->merge($targetCollection);
@@ -300,6 +260,17 @@ trait PivotAwareTrait
         $this->relationWidget = $widget;
 
         return $this;
+    }
+
+    /**
+     * Retrieve the target object types.
+     *
+     * @param  string $group The pivot group ident.
+     * @return array
+     */
+    public function targetObjectTypes($group = 'generic')
+    {
+        return $this->metadata()->get('relation.'.$group.'.target_object_types');
     }
 
     /**

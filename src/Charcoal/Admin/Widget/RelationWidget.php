@@ -24,6 +24,7 @@ use Charcoal\Admin\Ui\ObjectContainerInterface;
 use Charcoal\Admin\Ui\ObjectContainerTrait;
 
 // From 'charcoal-cms'
+use Charcoal\Relation\Pivot;
 use Charcoal\Relation\Traits\ConfigurableRelationTrait;
 
 /**
@@ -79,6 +80,13 @@ class RelationWidget extends AdminWidget implements
      * @var \Charcoal\Translator\Translation|string|null
      */
     private $dialogTitle;
+
+    /**
+     * Store a Pivot model.
+     *
+     * @var ModelInterface
+     */
+    private $pivotObjProto;
 
     /**
      * Inject dependencies from a DI Container.
@@ -154,19 +162,42 @@ class RelationWidget extends AdminWidget implements
      */
     public function targetObjectTypes()
     {
-        return $this->targetObjectTypes;
+        return $this->obj()->targetObjectTypes($this->group());
     }
 
     /**
-     * Set the widget's available object types.
+     * Retrieve a hollow Pivot Model.
      *
-     * Use the object ident as a key to which you can add filters, label and orders.
-     *
-     * @param  array $objectTypes A list of available object types.
-     * @return self|boolean
+     * @return ModelInterface
      */
-    public function setTargetObjectTypes(array $objectTypes)
+    public function pivotObjProto()
     {
+        if ($this->pivotObjProto === null) {
+            $this->pivotObjProto = $this->modelFactory()->get(Pivot::class);
+        }
+
+        return $this->pivotObjProto;
+    }
+
+    /**
+     * Retrieve the Pivot object type.
+     *
+     * @return string
+     */
+    public function pivotObjType()
+    {
+        return $this->pivotObjProto()->objType();
+    }
+
+    /**
+     * Parse the target object type metadata.
+     *
+     * @return array
+     */
+    private function parsedTargetObjectTypes()
+    {
+        $objectTypes = $this->targetObjectTypes();
+
         if (!$this->isMergingData) {
             $objectTypes = $this->mergePresetTargetObjectTypes($objectTypes);
         }
@@ -178,7 +209,6 @@ class RelationWidget extends AdminWidget implements
         $out = [];
         foreach ($objectTypes as $type => $metadata) {
             $label      = '';
-            $heading    = '';
             $filters    = [];
             $orders     = [];
             $numPerPage = 0;
@@ -232,9 +262,7 @@ class RelationWidget extends AdminWidget implements
             ];
         }
 
-        $this->targetObjectTypes = $out;
-
-        return $this;
+        return $out;
     }
 
     /**
@@ -244,7 +272,7 @@ class RelationWidget extends AdminWidget implements
      */
     public function objectTypes()
     {
-        $targetObjectTypes = $this->targetObjectTypes();
+        $targetObjectTypes = $this->parsedTargetObjectTypes();
 
         $out = [];
 
