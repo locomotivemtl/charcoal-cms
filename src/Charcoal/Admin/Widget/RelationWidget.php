@@ -131,29 +131,6 @@ class RelationWidget extends AdminWidget implements
         return $this;
     }
 
-    // /**
-    //  * Retrieve the widget's Pivot source object type.
-    //  *
-    //  * @return string
-    //  */
-    // public function sourceObjectType()
-    // {
-    //     return $this->sourceObjectType;
-    // }
-
-    // *
-    //  * Set the widget's Pivot source object type.
-    //  *
-    //  * @param string $type The object type.
-    //  * @return self
-
-    // public function setSourceObjectType($type)
-    // {
-    //     $this->sourceObjectType = $type;
-
-    //     return $this;
-    // }
-
     /**
      * Retrieve the widget's Pivot grouping.
      *
@@ -535,10 +512,11 @@ class RelationWidget extends AdminWidget implements
     public function widgetOptions()
     {
         $options = [
-            'title' => $this->title(),
-            'obj_type' => $this->obj()->objType(),
-            'obj_id' => $this->obj()->id(),
-            'group' => $this->group()
+            'target_object_types' => $this->targetObjectTypes(),
+            'title'               => $this->title(),
+            'obj_type'            => $this->obj()->objType(),
+            'obj_id'              => $this->obj()->id(),
+            'group'               => $this->group()
         ];
 
         return json_encode($options, true);

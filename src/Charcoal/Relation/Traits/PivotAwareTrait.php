@@ -3,8 +3,10 @@
 namespace Charcoal\Relation\Traits;
 
 use InvalidArgumentException;
+use RuntimeException;
 
 // From 'charcoal-core'
+use Charcoal\Model\Collection;
 use Charcoal\Model\ModelInterface;
 
 // From 'charcoal-cms'
@@ -52,18 +54,33 @@ trait PivotAwareTrait
     /**
      * Retrieve the objects associated to the current object.
      *
-     * @param  string|null $group Filter the pivots by a grouping identifier.
-     * @throws InvalidArgumentException If the $group is invalid.
-     * @return Collection|Pivot[]
+     * @param  string|null   $group    Filter the pivots by a group identifier.
+     * @param  string|null   $type     Filter the pivots by type.
+     * @param  callable|null $callback Optional routine to apply to every object.
+     * @throws InvalidArgumentException If the $group or $type is invalid.
+     * @return Collection[]
      */
-    public function pivots($group = null)
+    public function pivots($group = null, $type = null, callable $callback = null)
     {
-        error_log('TODO FIX THIS');
-        return [];
         if ($group === null) {
-            throw new InvalidArgumentException('The relation grouping must be set.');
+            $group = 0;
         } elseif (!is_string($group)) {
-            throw new InvalidArgumentException('The relation grouping must be a string.');
+            throw new InvalidArgumentException('The $group must be a string.');
+        }
+
+        if ($type === null) {
+            $type = 0;
+        } else {
+            if (!is_string($type)) {
+                throw new InvalidArgumentException('The $type must be a string.');
+            }
+
+            $type = preg_replace('/([a-z])([A-Z])/', '$1-$2', $type);
+            $type = strtolower(str_replace('\\', '/', $type));
+        }
+
+        if (isset($this->pivots[$group][$type])) {
+            return $this->pivots[$group][$type];
         }
 
         $sourceObjectType = $this->objType();
@@ -72,39 +89,142 @@ trait PivotAwareTrait
         $pivotProto = $this->modelFactory()->get(Pivot::class);
         $pivotTable = $pivotProto->source()->table();
 
-        $targetObjProto = $this->modelFactory()->get($group);
-        $targetObjTable = $targetObjProto->source()->table();
-
-        if (!$targetObjProto->source()->tableExists() || !$pivotProto->source()->tableExists()) {
+        if (!$pivotProto->source()->tableExists()) {
             return [];
         }
 
-        $query = '
-            SELECT
-                target_obj.*,
-                pivot_obj.target_object_id AS target_object_id,
-                pivot_obj.position AS position
-            FROM
-                `'.$targetObjTable.'` AS target_obj
+        $widget = $this->relationWidget();
+        // var_dump($widget);
+        // die();
+        $targetObjectTypes = $widget->targetObjectTypes();
+
+        if (!is_array($targetObjectTypes) || empty($targetObjectTypes)) {
+            throw new RuntimeException('No target object types are set for this object.');
+        }
+
+        $cases = [];
+        $joins = [];
+        $collection = new Collection;
+        foreach ($targetObjectTypes as $targetObjectType => $metadata) {
+            $parts = explode('/', str_replace('-', '_', $targetObjectType));
+            $targetObjectIdent = end($parts).'_obj';
+
+            $targetObjectProto = $this->modelFactory()->get($targetObjectType);
+            $targetObjectTable = $targetObjectProto->source()->table();
+
+            if (!$targetObjectProto->source()->tableExists()) {
+                continue;
+            }
+
+            $query = '
+                SELECT
+                    target_obj.*
+                FROM
+                    `'.$targetObjectTable.'` AS target_obj
+                LEFT JOIN
+                    `'.$pivotTable.'` AS pivot_obj
+                ON
+                    pivot_obj.target_object_id = target_obj.id
+                WHERE
+                    1 = 1';
+
+            // Disable `active` check in admin
+            if (!$widget instanceof RelationWidget) {
+                $query .= '
+                AND
+                    target_obj.active = 1';
+            }
+
+            $query .= '
+                AND
+                    pivot_obj.source_object_type = "'.$sourceObjectType.'"
+                AND
+                    pivot_obj.source_object_id = "'.$sourceObjectId.'"
+                AND
+                    pivot_obj.target_object_type = "'.$targetObjectType.'"';
+
+            if ($group) {
+                $query .= '
+                AND
+                    pivot_obj.group = "'.$group.'"';
+            }
+
+            $query .= '
+                ORDER BY pivot_obj.position';
+
+            $loader = $this->collectionLoader();
+            $loader->setModel($targetObjectProto);
+
+            if ($widget instanceof RelationWidget) {
+                $callable = function ($targetObject) use ($targetObjectTypes, $metadata, $widget, $callback) {
+
+                    if (isset($metadata['data'])) {
+                        if (isset($metadata['data']['heading'])) {
+                            $heading = $targetObject->render((string)$this->translator()->translation($metadata['data']['heading']));
+                        } else if (isset($metadata['label'])) {
+                            $heading = $targetObject->render((string)$metadata['label'] . ' #'.$targetObject->id());
+                        }
+
+                        if (!$heading) {
+                            $heading = $this->translator()->translation('{{ objType }} #{{ id }}', [
+                                '{{ objType }}' => $targetObject->objType(),
+                                '{{ id }}'      => $targetObject->id()
+                            ]);
+                        }
+
+                        $metadata['data']['heading'] = $heading;
+
+                        $targetObject->setData($metadata['data']);
+                    }
+
+                    if ($callback !== null) {
+                        call_user_func_array($callback, [ &$targetObject ]);
+                    }
+                };
+            } else {
+                $callable = function ($targetObject) use ($callback) {
+                    if ($callback !== null) {
+                        call_user_func_array($callback, [ &$targetObject ]);
+                    }
+                };
+            }
+
+            $loader->setCallback($callable->bindTo($this));
+
+            $targetCollection = $loader->loadFromQuery($query);
+            $collection->merge($targetCollection);
+
+            /*
+            $cases[] = '
+                WHEN (pivot_obj.target_object_type = "'.$targetObjectType.'") THEN '.$targetObjectIdent.'.*
+            ';
+            $joins[] = '
             LEFT JOIN
-                `'.$pivotTable.'` AS pivot_obj
-            ON
-                pivot_obj.target_object_id = target_obj.id
-            WHERE
-                target_obj.active = 1
-            AND
-                pivot_obj.source_object_type = "'.$sourceObjectType.'"
-            AND
-                pivot_obj.source_object_id = "'.$sourceObjectId.'"
-            AND
-                pivot_obj.group = "'.$group.'"
+                    `'.$targetObjectTable.'` AS '.$targetObjectIdent.'
+                ON
+                    pivot_obj.target_object_id = '.$targetObjectIdent.'.id
+                AND
+                    pivot_obj.target_object_type = "'.$targetObjectType.'"
+                AND
+                    pivot_obj.source_object_id = "'.$sourceObjectId.'"
+                AND
+                    pivot_obj.source_object_type = "'.$sourceObjectType.'"
+                AND
+                    pivot_obj.group = "home-wall"
+                AND
+                    '.$targetObjectIdent.'.active = "1"
+            ';
+            */
+        }
 
-            ORDER BY pivot_obj.position';
-
-        $loader = $this->collectionLoader();
-        $loader->setModel($targetObjProto);
-
-        $collection = $loader->loadFromQuery($query);
+        /*
+        $query = '
+        SELECT
+            CASE '.implode('', $cases).'
+            END CASE'.
+        implode('', $joins).'
+        ORDER BY pivot_obj.position';
+        */ß
 
         $this->pivots[$group] = $collection;
 

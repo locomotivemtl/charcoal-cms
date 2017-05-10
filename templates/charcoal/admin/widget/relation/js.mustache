@@ -11,6 +11,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 {{/ addJsRequirement }}
 
+{{# addJsRequirement }}
+<script rel="l10n">
+    {{> charcoal/admin/l10n/relation.js }}
+</script>
+{{/ addJsRequirement }}
+
 {{# addJs }}
 <script>
 {{!
@@ -20,9 +26,9 @@ Charcoal.Admin.manager().add_widget({
     id: '{{ widgetId }}',
     type: 'charcoal/admin/widget/relation',
     data: {
-        obj_type: '{{ objType }}',
-        obj_id: '{{ objId }}',
-        group: '{{ group }}'
+        obj_type : '{{ objType }}',
+        obj_id   : '{{ objId }}',
+        group    : '{{ group }}'
     },
     widget_options: {{& widgetOptions }}
 });
