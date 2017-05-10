@@ -13,4 +13,11 @@ interface PivotableInterface
      * @return string
      */
     public function belongsTo();
+
+    /**
+     * Retrieve the object's pivot list heading.
+     *
+     * @return string
+     */
+    public function pivotHeading();
 }

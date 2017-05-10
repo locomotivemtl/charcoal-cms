@@ -6,13 +6,15 @@ use InvalidArgumentException;
 use RuntimeException;
 
 // From 'charcoal-core'
-use Charcoal\Model\Collection;
 use Charcoal\Model\ModelInterface;
 
 // From 'charcoal-cms'
 use Charcoal\Admin\Widget\RelationWidget;
 use Charcoal\Relation\Interfaces\PivotableInterface;
 use Charcoal\Relation\Pivot;
+
+// From 'mcaskill/charcoal-support'
+use Charcoal\Support\Model\Collection;
 
 /**
  * Provides support for pivots on objects.
@@ -94,8 +96,6 @@ trait PivotAwareTrait
         }
 
         $widget = $this->relationWidget();
-        // var_dump($widget);
-        // die();
         $targetObjectTypes = $widget->targetObjectTypes();
 
         if (!is_array($targetObjectTypes) || empty($targetObjectTypes)) {
@@ -118,7 +118,9 @@ trait PivotAwareTrait
 
             $query = '
                 SELECT
-                    target_obj.*
+                    target_obj.*,
+                    pivot_obj.id as pivotObjId,
+                    pivot_obj.position as position
                 FROM
                     `'.$targetObjectTable.'` AS target_obj
                 LEFT JOIN
@@ -156,11 +158,13 @@ trait PivotAwareTrait
             $loader->setModel($targetObjectProto);
 
             if ($widget instanceof RelationWidget) {
-                $callable = function ($targetObject) use ($targetObjectTypes, $metadata, $widget, $callback) {
+                $callable = function ($targetObject) use ($pivotProto, $metadata, $callback) {
+                    // Set the pivotObjType for Pivot access within the mixed object type list
+                    $targetObject->pivotObjType = $pivotProto->objType();
 
                     if (isset($metadata['data'])) {
-                        if (isset($metadata['data']['heading'])) {
-                            $heading = $targetObject->render((string)$this->translator()->translation($metadata['data']['heading']));
+                        if ($targetObject instanceof PivotableInterface) {
+                            $heading = $targetObject->pivotHeading();
                         } else if (isset($metadata['label'])) {
                             $heading = $targetObject->render((string)$metadata['label'] . ' #'.$targetObject->id());
                         }
@@ -182,7 +186,10 @@ trait PivotAwareTrait
                     }
                 };
             } else {
-                $callable = function ($targetObject) use ($callback) {
+                $callable = function ($targetObject) use ($pivotProto, $callback) {
+                    // Set the pivotObjType for Pivot access within the mixed object type list
+                    $targetObject->pivotObjType = $pivotProto->objType();
+
                     if ($callback !== null) {
                         call_user_func_array($callback, [ &$targetObject ]);
                     }
@@ -226,7 +233,7 @@ trait PivotAwareTrait
         ORDER BY pivot_obj.position';
         */
 
-        $this->pivots[$group] = $collection;
+        $this->pivots[$group] = $collection->sortBy('position');
 
         return $this->pivots[$group];
     }

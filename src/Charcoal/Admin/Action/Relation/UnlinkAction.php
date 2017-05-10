@@ -50,13 +50,7 @@ class UnlinkAction extends AdminAction
             $pivotProto->source()->createTable();
         }
 
-        $loader = new CollectionLoader([
-            'logger'  => $this->logger,
-            'factory' => $this->modelFactory()
-        ]);
-        $pivotModel = $loader
-            ->setModel($pivotProto)
-            ->load($pivotId);
+        $pivotModel = $pivotProto->load($pivotId);
 
         if ($pivotModel->id()) {
             $pivotModel->delete();

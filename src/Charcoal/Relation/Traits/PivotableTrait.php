@@ -94,6 +94,32 @@ trait PivotableTrait
     }
 
     /**
+     * Retrieve the pivot's target object heading template.
+     *
+     * To be extended on objects that use PivotableTrait.
+     *
+     * @return Translation|string|null
+     */
+    public function pivotHeading()
+    {
+        return $this->defaultPivotHeading();
+    }
+
+    /**
+     * Retrieve the default pivot target object heading template.
+     *
+     * @return Translation|string|null
+     */
+    protected function defaultPivotHeading()
+    {
+        return $this->translator()->translation('{{ objType }} #{{ id }}', [
+            '{{ objType }}' => $this->objType(),
+            '{{ id }}'      => $this->id()
+        ]);
+
+    }
+
+    /**
      * Retrieve the object's type identifier.
      *
      * @return string

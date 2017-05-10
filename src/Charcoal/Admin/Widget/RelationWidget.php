@@ -185,12 +185,13 @@ class RelationWidget extends AdminWidget implements
         $out = [];
         foreach ($objectTypes as $type => $metadata) {
             $label      = '';
+            $heading    = '';
             $filters    = [];
             $orders     = [];
             $numPerPage = 0;
             $page       = 1;
-            $options    = [ 'label', 'filters', 'orders', 'num_per_page', 'page' ];
-            $data       = array_diff_key($metadata, $options);
+            $options    = [ 'label', 'heading', 'filters', 'orders', 'num_per_page', 'page' ];
+            $data       = isset($metadata['data']) ? $metadata['data'] : array_diff_key($metadata, $options);
 
             // Disable a linked model
             if (isset($metadata['active']) && !$metadata['active']) {
@@ -228,7 +229,7 @@ class RelationWidget extends AdminWidget implements
             }
 
             $out[$type] = [
-                'objId'     => $objId,
+                'objId'      => $objId,
                 'label'      => $label,
                 'filters'    => $filters,
                 'orders'     => $orders,
