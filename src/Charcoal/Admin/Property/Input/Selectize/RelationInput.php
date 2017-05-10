@@ -51,7 +51,10 @@ class RelationInput extends SelectizeInput
         $param = isset($_GET['target_object_type']) ? $_GET['target_object_type'] : false;
 
         // Resolving through formData should be the most common occurence for this property input
-        if (isset($formData['target_object_type']) && is_string($formData['target_object_type']) && !empty($formData['target_object_type'])) {
+        if (isset($formData['target_object_type']) &&
+            is_string($formData['target_object_type']) &&
+            !empty($formData['target_object_type'])
+        ) {
             $this->targetObjectType = $formData['target_object_type'];
             $resolved = true;
         // Resolve through URL params

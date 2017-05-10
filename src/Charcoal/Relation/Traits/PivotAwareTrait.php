@@ -59,7 +59,8 @@ trait PivotAwareTrait
      * @param  string|null   $group    Filter the pivots by a group identifier.
      * @param  string|null   $type     Filter the pivots by type.
      * @param  callable|null $callback Optional routine to apply to every object.
-     * @throws InvalidArgumentException If the $group or $type is invalid.
+     * @throws InvalidArgumentException If the $group is invalid.
+     * @throws InvalidArgumentException If the $type is invalid.
      * @return Collection[]
      */
     public function pivots($group = null, $type = null, callable $callback = null)
@@ -200,38 +201,7 @@ trait PivotAwareTrait
 
             $targetCollection = $loader->loadFromQuery($query);
             $collection->merge($targetCollection);
-
-            /*
-            $cases[] = '
-                WHEN (pivot_obj.target_object_type = "'.$targetObjectType.'") THEN '.$targetObjectIdent.'.*
-            ';
-            $joins[] = '
-            LEFT JOIN
-                    `'.$targetObjectTable.'` AS '.$targetObjectIdent.'
-                ON
-                    pivot_obj.target_object_id = '.$targetObjectIdent.'.id
-                AND
-                    pivot_obj.target_object_type = "'.$targetObjectType.'"
-                AND
-                    pivot_obj.source_object_id = "'.$sourceObjectId.'"
-                AND
-                    pivot_obj.source_object_type = "'.$sourceObjectType.'"
-                AND
-                    pivot_obj.group = "home-wall"
-                AND
-                    '.$targetObjectIdent.'.active = "1"
-            ';
-            */
         }
-
-        /*
-        $query = '
-        SELECT
-            CASE '.implode('', $cases).'
-            END CASE'.
-        implode('', $joins).'
-        ORDER BY pivot_obj.position';
-        */
 
         $this->pivots[$group] = $collection->sortBy('position');
 
@@ -337,14 +307,14 @@ trait PivotAwareTrait
      *
      * @return string
      */
-    abstract function objType();
+    abstract public function objType();
 
     /**
      * Retrieve the object's unique ID.
      *
      * @return mixed
      */
-    abstract function id();
+    abstract public function id();
 
     /**
      * Retrieve the object model factory.

@@ -46,13 +46,6 @@ class RelationWidget extends AdminWidget implements
     private $title;
 
     /**
-     * The object type identifier.
-     *
-     * @var string
-     */
-    // protected $sourceObjectType;
-
-    /**
      * The Pivot target object types.
      *
      * @var array
@@ -104,7 +97,7 @@ class RelationWidget extends AdminWidget implements
     /**
      * Retrieve the widget factory.
      *
-     * @throws Exception If the widget factory was not previously set.
+     * @throws RuntimeException If the widget factory was not previously set.
      * @return FactoryInterface
      */
     public function widgetFactory()
@@ -172,7 +165,7 @@ class RelationWidget extends AdminWidget implements
      * @param  array $objectTypes A list of available object types.
      * @return self|boolean
      */
-    public function setTargetObjectTypes($objectTypes)
+    public function setTargetObjectTypes(array $objectTypes)
     {
         if (!$this->isMergingData) {
             $objectTypes = $this->mergePresetTargetObjectTypes($objectTypes);
@@ -442,7 +435,10 @@ class RelationWidget extends AdminWidget implements
 
         if ($search === null) {
             $attr = [ 'href', 'link', 'url', 'src' ];
-            $uri  = [ '../', './', '/', 'data', 'fax', 'file', 'ftp', 'geo', 'http', 'mailto', 'sip', 'tag', 'tel', 'urn' ];
+            $uri  = [
+                '../', './', '/', 'data', 'fax', 'file', 'ftp', 'geo',
+                'http', 'mailto', 'sip', 'tag', 'tel', 'urn'
+            ];
 
             $search = sprintf(
                 '(?<=%1$s=["\'])(?!%2$s)(\S+)(?=["\'])',
@@ -587,7 +583,8 @@ class RelationWidget extends AdminWidget implements
 
         $widgetData = $presetWidgets[$widgetIdent];
         if (isset($widgetData['target_object_types'])) {
-            $widgetData['target_object_types'] = $this->mergePresetTargetObjectTypes($widgetData['target_object_types']);
+            $widgetData['target_object_types'] =
+                $this->mergePresetTargetObjectTypes($widgetData['target_object_types']);
         }
 
         return array_replace_recursive($widgetData, $data);
