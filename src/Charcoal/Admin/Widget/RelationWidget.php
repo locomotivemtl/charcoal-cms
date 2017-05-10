@@ -169,7 +169,7 @@ class RelationWidget extends AdminWidget implements
      *
      * Use the object ident as a key to which you can add filters, label and orders.
      *
-     * @param  array        $objectTypes A list of available object types.
+     * @param  array $objectTypes A list of available object types.
      * @return self|boolean
      */
     public function setTargetObjectTypes($objectTypes)

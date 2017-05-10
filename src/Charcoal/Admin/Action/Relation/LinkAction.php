@@ -18,7 +18,7 @@ use Charcoal\Admin\AdminAction;
 use Charcoal\Loader\CollectionLoader;
 
 // From 'charcoal-cms'
-use Charcoal\Relation\Interfaces\PivotAwareInterface;
+use Charcoal\Relation\Interfaces\PivotableInterface;
 use Charcoal\Relation\Pivot;
 
 /**
@@ -38,8 +38,7 @@ class LinkAction extends AdminAction
     {
         $params = $request->getParams();
 
-        if (
-            !isset($params['pivots']) ||
+        if (!isset($params['pivots']) ||
             !isset($params['obj_id']) ||
             !isset($params['obj_type']) ||
             !isset($params['group'])
@@ -113,10 +112,7 @@ class LinkAction extends AdminAction
 
             $targetObjModel = $this->modelFactory()->create($targetObjType);
 
-            if ($targetObjModel instanceof PivotAwareInterface) {
-                var_dump($targetObjModel);
-                var_dump("shit");
-                die();
+            if ($targetObjModel instanceof PivotableInterface) {
                 $targetObjModel->load($targetObjId)->postPivotSave();
             }
         }

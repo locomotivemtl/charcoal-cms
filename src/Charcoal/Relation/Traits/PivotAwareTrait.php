@@ -165,8 +165,8 @@ trait PivotAwareTrait
                     if (isset($metadata['data'])) {
                         if ($targetObject instanceof PivotableInterface) {
                             $heading = $targetObject->pivotHeading();
-                        } else if (isset($metadata['label'])) {
-                            $heading = $targetObject->render((string)$metadata['label'] . ' #'.$targetObject->id());
+                        } elseif (isset($metadata['label'])) {
+                            $heading = $targetObject->render((string)$metadata['label'].' #'.$targetObject->id());
                         }
 
                         if (!$heading) {

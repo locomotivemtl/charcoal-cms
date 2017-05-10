@@ -55,7 +55,7 @@ class RelationInput extends SelectizeInput
             $this->targetObjectType = $formData['target_object_type'];
             $resolved = true;
         // Resolve through URL params
-        } else if (is_string($param) && !empty($param)) {
+        } elseif (is_string($param) && !empty($param)) {
             $this->targetObjectType = $param;
             $resolved = true;
         }

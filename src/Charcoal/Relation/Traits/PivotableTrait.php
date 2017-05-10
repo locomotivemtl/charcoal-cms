@@ -116,7 +116,6 @@ trait PivotableTrait
             '{{ objType }}' => $this->objType(),
             '{{ id }}'      => $this->id()
         ]);
-
     }
 
     /**
