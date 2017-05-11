@@ -163,9 +163,9 @@ trait PivotAwareTrait
             $collection->merge($targetCollection);
         }
 
-        $this->pivots[$group] = $collection->sortBy('position');
+        $this->pivots[$group][$type] = $collection->sortBy('position');
 
-        return $this->pivots[$group];
+        return $this->pivots[$group][$type];
     }
 
     /**
