@@ -68,7 +68,9 @@
 
             "multiple": false,
 
-            "pattern": "title",
+            "choice_obj_map": {
+                "label": "title"
+            },
             "selectize_options": {
                 "create": false,
                 "plugins": {
