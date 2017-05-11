@@ -54,6 +54,13 @@ trait PivotAwareTrait
     protected $relationWidget;
 
     /**
+     * Available target object types.
+     *
+     * @var array
+     */
+    protected $targetObjectTypes = [];
+
+    /**
      * Retrieve the objects associated to the current object.
      *
      * @param  string|null   $group    Filter the pivots by a group identifier.
@@ -114,7 +121,7 @@ trait PivotAwareTrait
             $targetObjectProto = $this->modelFactory()->get($targetObjectType);
             $targetObjectTable = $targetObjectProto->source()->table();
 
-            if (!$targetObjectProto->source()->tableExists()) {
+            if (!$targetObjectProto->source()->tableExists() || !$targetObjectProto instanceof PivotableInterface) {
                 continue;
             }
 
@@ -270,7 +277,11 @@ trait PivotAwareTrait
      */
     public function targetObjectTypes($group = 'generic')
     {
-        return $this->metadata()->get('relation.'.$group.'.target_object_types');
+        if (!isset($this->targetObjectTypes[$group])) {
+            $this->targetObjectTypes[$group] = $this->metadata()->get('relation.'.$group.'.target_object_types');
+        }
+
+        return $this->targetObjectTypes[$group];
     }
 
     /**

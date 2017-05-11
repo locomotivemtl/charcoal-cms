@@ -119,6 +119,30 @@ trait PivotableTrait
     }
 
     /**
+     * Remove all pivots linked to a specific object.
+     *
+     * @return boolean
+     */
+    public function removePivots()
+    {
+        $pivotProto = $this->modelFactory()->get(Pivot::class);
+
+        $loader = $this->collectionLoader();
+        $loader
+            ->setModel($pivotProto)
+            ->addFilter('target_object_type', $this->objType())
+            ->addFilter('target_object_id', $this->id());
+
+        $collection = $loader->load();
+
+        foreach ($collection as $obj) {
+            $obj->delete();
+        }
+
+        return true;
+    }
+
+    /**
      * Retrieve the object's type identifier.
      *
      * @return string
