@@ -20,4 +20,11 @@ interface PivotableInterface
      * @return string
      */
     public function pivotHeading();
+
+    /**
+     * Retrieve the pivot's target object glyphicon identifier.
+     *
+     * @return string
+     */
+    public function pivotGlyphicon();
 }

@@ -119,6 +119,28 @@ trait PivotableTrait
     }
 
     /**
+     * Retrieve the pivot's target object glyphicon identifier.
+     *
+     * To be extended on objects that use PivotableTrait.
+     *
+     * @return string
+     */
+    public function pivotGlyphicon()
+    {
+        return $this->defaultPivotGlyphicon();
+    }
+
+    /**
+     * Retrieve the default pivot target object Glyphicon template.
+     *
+     * @return string
+     */
+    protected function defaultPivotGlyphicon()
+    {
+        return 'modal-window';
+    }
+
+    /**
      * Remove all pivots linked to a specific object.
      *
      * @return boolean
