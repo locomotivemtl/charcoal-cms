@@ -20,6 +20,13 @@ class RelationInput extends SelectizeInput
     private $targetObjectType;
 
     /**
+     * Check used to parse multi Choice map against the obj properties.
+     *
+     * @var boolean
+     */
+    protected $isChoiceObjMapFinalized = false;
+
+    /**
      * Retrieve the target object type to build the choices from.
      *
      * @throws InvalidArgumentException If the target object type was not previously set.
@@ -64,5 +71,38 @@ class RelationInput extends SelectizeInput
         }
 
         return $resolved;
+    }
+
+    /**
+     * Retrieve the object-to-choice data map.
+     *
+     * @return array Returns a data map to abide.
+     */
+    public function choiceObjMap()
+    {
+        if ($this->choiceObjMap === null) {
+            $map = $this->defaultChoiceObjMap();
+
+            $model = $this->modelFactory()->get($this->targetObjectType());
+            $objProperties = $model->properties();
+
+            if ($objProperties instanceof \Iterator) {
+                $objProperties = iterator_to_array($objProperties);
+            }
+
+            foreach ($map as &$mapProp) {
+                $props = explode(':', $mapProp);
+                foreach ($props as $p) {
+                    if (isset($objProperties[$p])) {
+                        $mapProp = $p;
+                        break;
+                    }
+                }
+            }
+
+            $this->choiceObjMap = $map;
+        }
+
+        return $this->choiceObjMap;
     }
 }
