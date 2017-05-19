@@ -140,6 +140,7 @@ class SectionLoader extends AbstractLoader
         $q = 'SELECT * FROM `'.$proto->source()->table().'`
             WHERE active=1 AND ( '
             . implode(' OR ', $filters) . ' )
+            AND `route_options_ident` IS NULL
             ORDER BY creation_date ASC';
 
         $objectRoutes = $loader->loadFromQuery($q);
