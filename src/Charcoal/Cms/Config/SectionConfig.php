@@ -42,7 +42,9 @@ class SectionConfig extends AbstractConfig
 
     /**
      * Set the available section types
-     * @param mixed $sectionTypes Section types.
+     *
+     * @param  mixed $sectionTypes Section types.
+     * @return SectionConfig
      */
     public function setSectionTypes($sectionTypes)
     {

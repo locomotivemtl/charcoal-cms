@@ -2,11 +2,17 @@
 
 namespace Charcoal\Cms\Service\Loader;
 
-use Charcoal\Loader\CollectionLoader;
-use Charcoal\Object\ObjectRoute;
 use Exception;
 
-use \Charcoal\Translator\TranslatorAwareTrait;
+// From 'charcoal-core'
+use Charcoal\Loader\CollectionLoader;
+
+// From 'charcoal-object'
+use Charcoal\Object\ObjectRoute;
+
+// From 'charcoal-translator'
+use Charcoal\Translator\TranslatorAwareTrait;
+
 /**
  * Section Loader
  */
@@ -21,6 +27,13 @@ class SectionLoader extends AbstractLoader
      * @var integer $baseSection The id of the base section.
      */
     protected $baseSection;
+
+    /**
+     * Available section types.
+     *
+     * @var array
+     */
+    protected $sectionTypes = [];
 
     /**
      * The cache of snake-cased words.
@@ -124,7 +137,7 @@ class SectionLoader extends AbstractLoader
         $proto = $this->modelFactory()->get(ObjectRoute::class);
 
         $sectionTypes = $this->sectionTypes();
-        if (!$sectionTypes) {
+        if (empty($sectionTypes)) {
             $sectionTypes = [
                 'base' => $this->objType()
             ];
@@ -138,8 +151,7 @@ class SectionLoader extends AbstractLoader
             $filters[] = 'route_obj_type = \''.$val.'\'';
         }
         $q = 'SELECT * FROM `'.$proto->source()->table().'`
-            WHERE active=1 AND ( '
-            . implode(' OR ', $filters) . ' )
+            WHERE active = 1 AND ('.implode(' OR ', $filters).')
             AND `route_options_ident` IS NULL
             ORDER BY creation_date ASC';
 
@@ -264,10 +276,10 @@ class SectionLoader extends AbstractLoader
     }
 
     /**
-     * @param array $sectionTypes Section types array | null.
+     * @param  array $sectionTypes Available section types.
      * @return self
      */
-    public function setSectionTypes($sectionTypes)
+    public function setSectionTypes(array $sectionTypes)
     {
         $this->sectionTypes = $sectionTypes;
 

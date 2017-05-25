@@ -340,7 +340,7 @@ class NewsManager extends AbstractManager
     }
 
     /**
-     * @return float|int The current news index page ident.
+     * @return float|integer The current news index page ident.
      */
     public function currentPage()
     {

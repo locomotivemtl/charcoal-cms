@@ -422,7 +422,7 @@ class EventManager extends AbstractManager
     }
 
     /**
-     * @return float|int The current event index page ident.
+     * @return float|integer The current event index page ident.
      */
     public function currentPage()
     {

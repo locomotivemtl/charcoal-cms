@@ -195,10 +195,12 @@ class DateHelper
         $content = $this->translator()->translation($case['content']);
 
         $formats['from'] = $this->translator()->translation($case['formats']['from']);
-        $formats['to'] = isset($case['formats']['to']) ? $this->translator()->translation($case['formats']['to']) : null;
+        $formats['to']   = isset($case['formats']['to'])
+                           ? $this->translator()->translation($case['formats']['to'])
+                           : null;
 
         $formats['from'] = $this->crossPlatformFormat((string)$formats['from']);
-        $formats['to'] = $this->crossPlatformFormat((string)$formats['to']);
+        $formats['to']   = $this->crossPlatformFormat((string)$formats['to']);
 
         if (!$this->to || !$formats['to']) {
             return sprintf(

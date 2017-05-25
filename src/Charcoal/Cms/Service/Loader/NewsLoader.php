@@ -2,11 +2,13 @@
 
 namespace Charcoal\Cms\Service\Loader;
 
-// dependencies from `charcoal-core`
+use DateTime;
+
+// From `charcoal-core`
 use Charcoal\Loader\CollectionLoader;
 
-// PHP dependencies
-use DateTime;
+// From 'charcoal-cms'
+use Charcoal\Cms\NewsInterface;
 
 /**
  * News Loader
@@ -35,6 +37,9 @@ class NewsLoader extends AbstractLoader
         return $loader;
     }
 
+    /**
+     * @return NewsInterface
+     */
     public function newsProto()
     {
         return $this->modelFactory()->get($this->objType());

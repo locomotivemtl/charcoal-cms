@@ -2,21 +2,18 @@
 
 namespace Charcoal\Cms\Section;
 
-// From 'charcoal-cms'
-use Charcoal\Cms\AbstractSection;
+use RuntimeException;
 
-// Parent namespace dependencies
-use Charcoal\Cms\Mixin\BlocksSectionInterface;
-use Charcoal\Cms\Mixin\Traits\BlocksSectionTrait;
-
-// dependencies from `charcoal-core`
-use Charcoal\Loader\CollectionLoader;
-
-// dependencies from `pimple`
+// From Pimple
 use Pimple\Container;
 
-// dependencies from Psr-7
-use \RuntimeException;
+// From `charcoal-core`
+use Charcoal\Loader\CollectionLoader;
+
+// From 'charcoal-cms'
+use Charcoal\Cms\AbstractSection;
+use Charcoal\Cms\Mixin\BlocksSectionInterface;
+use Charcoal\Cms\Mixin\Traits\BlocksSectionTrait;
 
 /**
  * Blocks-content section
@@ -25,7 +22,8 @@ class BlocksSection extends AbstractSection implements
     BlocksSectionInterface
 {
     use BlocksSectionTrait;
-/**
+
+    /**
      * @var Collection $blocks
      */
     private $blocks;
