@@ -16,7 +16,7 @@ use Charcoal\Translator\Translation;
 use Charcoal\Cms\FaqInterface;
 use Charcoal\Cms\MetatagInterface;
 use Charcoal\Cms\SearchableInterface;
-use Charcoal\Cms\Searchabletrait;
+use Charcoal\Cms\SearchableTrait;
 
 /**
  * FAQ Entry.
