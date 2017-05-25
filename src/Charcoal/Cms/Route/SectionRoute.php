@@ -66,7 +66,7 @@ class SectionRoute extends TemplateRoute
     public function pathResolvable(Container $container)
     {
         $section = $this->loadSectionFromPath($container);
-        return !!$section->id();
+        return ($section instanceof SectionInterface) && $section->id();
     }
 
     /**
@@ -83,6 +83,10 @@ class SectionRoute extends TemplateRoute
         $config = $this->config();
 
         $section = $this->loadSectionFromPath($container);
+
+        if (!$section) {
+            return $response->withStatus(404);
+        }
 
         $templateIdent      = (string)$section->templateIdent();
         $templateController = (string)$section->templateIdent();
@@ -111,19 +115,22 @@ class SectionRoute extends TemplateRoute
     /**
      * @todo   Add support for `@see setlocale()`; {@see GenericRoute::setLocale()}
      * @param  Container $container Pimple DI container.
-     * @return SectionInterface
+     * @return SectionInterface|null
      */
     protected function loadSectionFromPath(Container $container)
     {
         if (!$this->section) {
-            $config  = $this->config();
-            $objType = (isset($config['obj_type']) ? $config['obj_type'] : $this->objType);
-
-            $this->section = $container['model/factory']->create($objType);
+            $config = $this->config();
+            $type   = (isset($config['obj_type']) ? $config['obj_type'] : $this->objType);
+            $model  = $container['model/factory']->create($type);
 
             $langs = $container['translator']->availableLocales();
-            $lang  = $this->section->loadFromL10n('slug', $this->path, $langs);
+            $lang  = $model->loadFromL10n('slug', $this->path, $langs);
             $container['translator']->setLocale($lang);
+
+            if ($model->id()) {
+                $this->section = $model;
+            }
         }
 
         return $this->section;

@@ -28,8 +28,10 @@ class EventCategoryTest extends \PHPUnit_Framework_TestCase
         $container = $this->getContainer();
 
         $this->obj = new EventCategory([
-            'container' => $container,
-            'logger'    => $container['logger']
+            'container'        => $container,
+            'logger'           => $container['logger'],
+            'metadata_loader'  => $container['metadata/loader'],
+            'property_factory' => $container['property/factory']
         ]);
     }
 

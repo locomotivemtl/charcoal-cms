@@ -10,8 +10,8 @@
             "en": "{{ title }}"
         },
         "prefix": {
-            "fr": "/fr/evenements/",
-            "en": "/en/events/"
+            "fr": "fr/evenements/",
+            "en": "en/events/"
         }
     },
 

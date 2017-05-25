@@ -10,12 +10,13 @@
             "en": "{{ title }}"
         },
         "prefix": {
-            "fr": "/fr/actualites/",
-            "en": "/en/news/"
+            "fr": "fr/actualites/",
+            "en": "en/news/"
         }
     },
 
     "default_data": {
+        "template_ident": "generic",
         "main_menu": "content",
         "side_menu": "content"
     },

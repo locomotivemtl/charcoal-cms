@@ -38,7 +38,9 @@
         "mockery/mockery": "^0.9.6",
         "squizlabs/php_codesniffer": "^2.4",
         "satooshi/php-coveralls": "~1.0.1",
-        "cache/void-adapter": "^0.3.0"
+        "cache/void-adapter": "^0.3.0",
+        "tedivm/stash": "~0.14",
+        "mustache/mustache": "^2.11"
     },
     "autoload": {
         "psr-4": {

@@ -65,7 +65,7 @@ class NewsRoute extends TemplateRoute
     public function pathResolvable(Container $container)
     {
         $news = $this->loadNewsFromPath($container);
-        return !!$news->id();
+        return ($news instanceof NewsInterface) && $news->id();
     }
 
     /**
@@ -82,6 +82,10 @@ class NewsRoute extends TemplateRoute
         $config = $this->config();
 
         $news = $this->loadNewsFromPath($container);
+
+        if (!$news) {
+            return $response->withStatus(404);
+        }
 
         $templateIdent      = $news->templateIdent();
         $templateController = $news->templateIdent();
@@ -109,19 +113,22 @@ class NewsRoute extends TemplateRoute
     /**
      * @todo   Add support for `@see setlocale()`; {@see GenericRoute::setLocale()}
      * @param  Container $container Pimple DI container.
-     * @return NewsInterface
+     * @return NewsInterface|null
      */
     protected function loadNewsFromPath(Container $container)
     {
         if (!$this->news) {
             $config  = $this->config();
-            $objType = (isset($config['obj_type']) ? $config['obj_type'] : $this->objType);
-
-            $this->news = $container['model/factory']->create($objType);
+            $type   = (isset($config['obj_type']) ? $config['obj_type'] : $this->objType);
+            $model  = $container['model/factory']->create($type);
 
             $langs = $container['translator']->availableLocales();
-            $lang  = $this->news->loadFromL10n('slug', $this->path, $langs);
+            $lang  = $model->loadFromL10n('slug', $this->path, $langs);
             $container['translator']->setLocale($lang);
+
+            if ($model->id()) {
+                $this->news = $model;
+            }
         }
 
         return $this->news;

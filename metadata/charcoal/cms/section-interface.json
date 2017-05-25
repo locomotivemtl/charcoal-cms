@@ -5,8 +5,8 @@
             "en": "{{ title }}"
         },
         "prefix": {
-            "fr": "{{^ hasMaster }}/fr{{/ hasMaster }}{{# hasMaster}}{{ master.slug }}{{/ hasMaster}}/",
-            "en": "{{^ hasMaster }}/en{{/ hasMaster }}{{# hasMaster}}{{ master.slug }}{{/ hasMaster}}/"
+            "fr": "{{^ hasMaster }}fr{{/ hasMaster }}{{# hasMaster }}{{ master.slug }}{{/ hasMaster }}/",
+            "en": "{{^ hasMaster }}en{{/ hasMaster }}{{# hasMaster }}{{ master.slug }}{{/ hasMaster }}/"
         }
     },
 

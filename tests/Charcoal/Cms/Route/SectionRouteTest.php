@@ -14,6 +14,9 @@ use Charcoal\Object\ObjectRoute;
 // From 'charcoal-translator'
 use Charcoal\Translator\Translation;
 
+// From 'charcoal-app'
+use Charcoal\App\App;
+
 // From 'charcoal-cms'
 use Charcoal\Cms\Section;
 use Charcoal\Cms\Route\SectionRoute;
@@ -26,6 +29,13 @@ class SectionRouteTest extends \PHPUnit_Framework_TestCase
     use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
     /**
+     * Charcoal Application.
+     *
+     * @var App
+     */
+    private $app;
+
+    /**
      * Tested Class.
      *
      * @var SectionRoute
@@ -34,11 +44,12 @@ class SectionRouteTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Set up the test.
-     * @return \Pimple\Container
      */
     public function setUp()
     {
         $container = $this->getContainer();
+
+        $this->getContainerProvider()->registerTemplateFactory($container);
 
         $route = $container['model/factory']->get(ObjectRoute::class);
         if ($route->source()->tableExists() === false) {
@@ -50,8 +61,7 @@ class SectionRouteTest extends \PHPUnit_Framework_TestCase
             'path'   => 'en/sections/foo'
         ]);
 
-        $appConfig = $container['config'];
-        $appConfig['templates'] = [
+        $container['config']['templates'] = [
             [
                 'value'    => 'generic',
                 'label'    => [
@@ -61,9 +71,9 @@ class SectionRouteTest extends \PHPUnit_Framework_TestCase
                 'template' => 'tests/template/generic',
             ],
         ];
-        $appConfig['view.default_controller'] = 'Charcoal\\Tests\\Cms\\Mock\\Generic';
 
-        return $container;
+        /** @todo Hack: Ensure the instance is shared */
+        $this->app = App::instance($container);
     }
 
     /**
@@ -102,15 +112,31 @@ class SectionRouteTest extends \PHPUnit_Framework_TestCase
     public function testInvoke()
     {
         $container = $this->getContainer();
-        $request = $this->getMock(RequestInterface::class);
-        $response = new Response();
+        $request   = $this->getMock(RequestInterface::class);
+        $response  = new Response();
 
         // Create the section table
-        $section = $container['model/factory']->create(Section::class);
-        $section->source()->createTable();
+        $obj = $container['model/factory']->create(Section::class);
+        $obj->source()->createTable();
 
-        $obj = $this->obj;
-        $ret = $obj($container, $request, $response);
-        $this->assertEquals(404, $ret->getStatusCode());
+        $route  = $this->obj;
+        $return = $route($container, $request, $response);
+        $this->assertEquals(404, $return->getStatusCode());
+
+        $obj->setData([
+            'id'             => 1,
+            'title'          => 'Foo',
+            'template_ident' => ''
+        ]);
+        $obj->save();
+
+        $return = $route($container, $request, $response);
+        $this->assertEquals(404, $return->getStatusCode());
+
+        /*$obj->setTemplateIdent('bar');
+        $obj->update();
+
+        $return = $route($container, $request, $response);
+        $this->assertEquals(200, $return->getStatusCode());*/
     }
 }

@@ -65,7 +65,7 @@ class EventRoute extends TemplateRoute
     public function pathResolvable(Container $container)
     {
         $event = $this->loadEventFromPath($container);
-        return !!$event->id();
+        return ($event instanceof EventInterface) && $event->id();
     }
 
     /**
@@ -82,6 +82,10 @@ class EventRoute extends TemplateRoute
         $config = $this->config();
 
         $event = $this->loadEventFromPath($container);
+
+        if (!$event) {
+            return $response->withStatus(404);
+        }
 
         $templateIdent      = $event->templateIdent();
         $templateController = $event->templateIdent();
@@ -109,20 +113,22 @@ class EventRoute extends TemplateRoute
     /**
      * @todo   Add support for `@see setlocale()`; {@see GenericRoute::setLocale()}
      * @param  Container $container Pimple DI container.
-     * @return EventInterface
+     * @return EventInterface|null
      */
     protected function loadEventFromPath(Container $container)
     {
         if (!$this->event) {
             $config  = $this->config();
-            $objType = (isset($config['obj_type']) ? $config['obj_type'] : $this->objType);
-
-            $this->event = $container['model/factory']->create($objType);
-            $this->setTranslator($container['translator']);
+            $type   = (isset($config['obj_type']) ? $config['obj_type'] : $this->objType);
+            $model  = $container['model/factory']->create($type);
 
             $langs = $container['translator']->availableLocales();
-            $lang  = $this->event->loadFromL10n('slug', $this->path, $langs);
+            $lang  = $model->loadFromL10n('slug', $this->path, $langs);
             $container['translator']->setLocale($lang);
+
+            if ($model->id()) {
+                $this->event = $model;
+            }
         }
 
         return $this->event;

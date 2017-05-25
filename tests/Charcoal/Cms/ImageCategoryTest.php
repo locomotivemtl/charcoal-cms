@@ -28,8 +28,10 @@ class ImageCategoryTest extends \PHPUnit_Framework_TestCase
         $container = $this->getContainer();
 
         $this->obj = new ImageCategory([
-            'container' => $container,
-            'logger'    => $container['logger']
+            'container'        => $container,
+            'logger'           => $container['logger'],
+            'metadata_loader'  => $container['metadata/loader'],
+            'property_factory' => $container['property/factory']
         ]);
     }
 

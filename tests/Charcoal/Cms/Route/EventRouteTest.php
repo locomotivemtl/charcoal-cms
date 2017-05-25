@@ -39,6 +39,8 @@ class EventRouteTest extends \PHPUnit_Framework_TestCase
     {
         $container = $this->getContainer();
 
+        $this->getContainerProvider()->registerTemplateFactory($container);
+
         $route = $container['model/factory']->get(ObjectRoute::class);
         if ($route->source()->tableExists() === false) {
             $route->source()->createTable();
@@ -46,7 +48,7 @@ class EventRouteTest extends \PHPUnit_Framework_TestCase
 
         $this->obj = new EventRoute([
             'config' => [],
-            'path'   => 'en/events/foo'
+            'path'   => '/en/events/foo'
         ]);
     }
 
@@ -90,11 +92,11 @@ class EventRouteTest extends \PHPUnit_Framework_TestCase
         $response  = new Response();
 
         // Create the event table
-        $event = $container['model/factory']->create(Event::class);
-        $event->source()->createTable();
+        $obj = $container['model/factory']->create(Event::class);
+        $obj->source()->createTable();
 
-        $obj = $this->obj;
-        $ret = $obj($container, $request, $response);
-        $this->assertEquals(404, $ret->getStatusCode());
+        $route  = $this->obj;
+        $return = $route($container, $request, $response);
+        $this->assertEquals(404, $return->getStatusCode());
     }
 }

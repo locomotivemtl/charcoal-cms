@@ -3,8 +3,6 @@
 namespace Charcoal\Tests\Cms;
 
 use PDO;
-use Charcoal\Cms\Config\CmsConfig;
-use Charcoal\Cms\Support\Helpers\DateHelper;
 
 // From PSR-3
 use Psr\Log\NullLogger;
@@ -16,15 +14,21 @@ use Cache\Adapter\Void\VoidCachePool;
 use Stash\Pool;
 use Stash\Driver\Ephemeral;
 
-// From Pimple
-use Pimple\Container;
+// From 'symfony/translator'
+use Symfony\Component\Translation\Loader\ArrayLoader;
 
 // From 'charcoal-factory'
 use Charcoal\Factory\GenericFactory as Factory;
 
 // From 'charcoal-core'
 use Charcoal\Model\Service\MetadataLoader;
+use Charcoal\Loader\CollectionLoader;
 use Charcoal\Source\DatabaseSource;
+
+// From 'charcoal-view'
+use Charcoal\View\GenericView;
+use Charcoal\View\Mustache\MustacheEngine;
+use Charcoal\View\Mustache\MustacheLoader;
 
 // From 'charcoal-translator'
 use Charcoal\Translator\LocalesManager;
@@ -32,6 +36,12 @@ use Charcoal\Translator\Translator;
 
 // From 'charcoal-app'
 use Charcoal\App\AppConfig;
+use Charcoal\App\AppContainer as Container;
+
+// From 'charcoal-cms'
+use Charcoal\Cms\Config\CmsConfig;
+use Charcoal\Cms\Support\Helpers\DateHelper;
+use Charcoal\Tests\Cms\Mock\GenericTemplate;
 
 /**
  * Service Container for Unit Tests
@@ -51,7 +61,12 @@ class ContainerProvider
     public function registerConfig(Container $container)
     {
         $container['config'] = function (Container $container) {
-            return new AppConfig();
+            return new AppConfig([
+                'view' => [
+                    'default_controller' => GenericTemplate::class
+                ],
+                'templates' => []
+            ]);
         };
     }
 
@@ -96,14 +111,46 @@ class ContainerProvider
         };
     }
 
+    public function registerView(Container $container)
+    {
+        $container['view/loader'] = function (Container $container) {
+            return new MustacheLoader([
+                'logger'    => $container['logger'],
+                'base_path' => realpath(__DIR__.'/../../../'),
+                'paths'     => [
+                    'views'
+                ]
+            ]);
+        };
+
+        $container['view/engine'] = function (Container $container) {
+            return new MustacheEngine([
+                'logger' => $container['logger'],
+                'cache'  => $container['cache'],
+                'loader' => $container['view/loader']
+            ]);
+        };
+
+        $container['view'] = function (Container $container) {
+            return new GenericView([
+                'logger' => $container['logger'],
+                'engine' => $container['view/engine']
+            ]);
+        };
+    }
+
     public function registerTranslator(Container $container)
     {
         $container['locales/manager'] = function (Container $container) {
-            return new LocalesManager([
+            $manager = new LocalesManager([
                 'locales' => [
                     'en' => [ 'locale' => 'en-US' ]
                 ]
             ]);
+
+            $manager->setCurrentLocale($manager->currentLocale());
+
+            return $manager;
         };
 
         $container['translator'] = function (Container $container) {
@@ -132,7 +179,7 @@ class ContainerProvider
     {
         $container['source/factory'] = function ($container) {
             return new Factory([
-                'map'       => [
+                'map' => [
                     'database' => DatabaseSource::class
                 ],
                 'arguments' => [ [
@@ -180,9 +227,10 @@ class ContainerProvider
     public function registerModelCollectionLoader(Container $container)
     {
         $container['model/collection/loader'] = function (Container $container) {
-            return new \Charcoal\Loader\CollectionLoader([
-                'logger' => $container['logger'],
-                'cache'  => $container['cache']
+            return new CollectionLoader([
+                'logger'  => $container['logger'],
+                'cache'   => $container['cache'],
+                'factory' => $container['model/factory']
             ]);
         };
     }
