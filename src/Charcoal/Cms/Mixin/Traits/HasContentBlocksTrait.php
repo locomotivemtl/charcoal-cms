@@ -112,11 +112,12 @@ trait HasContentBlocksTrait
      *
      * As defined in Charcoal\Attachment\Traits\AttachmentAwareTrait.
      *
-     * @param  string|null   $group    Filter the attachments by a group identifier.
-     * @param  string|null   $type     Filter the attachments by type.
-     * @param  callable|null $callback Optional routine to apply to every attachment.
+     * @param  string|null   $group  Filter the attachments by a group identifier.
+     * @param  string|null   $type   Filter the attachments by type.
+     * @param  callable|null $before Process each attachment before applying data.
+     * @param  callable|null $after  Process each attachment after applying data.
      * @throws InvalidArgumentException If the $group or $type is invalid.
      * @return Collection|Attachment[]
      */
-    abstract public function attachments($group = null, $type = null, callable $callback = null);
+    abstract public function attachments($group = null, $type = null, callable $before = null, callable $after = null);
 }
