@@ -5,7 +5,7 @@ namespace Charcoal\Admin\Widget\Cms;
 use Pimple\Container;
 
 // From 'charcoal-support'
-use Charcoal\Support\Admin\Widget\TableWidget;
+use Charcoal\Admin\Widget\TableWidget;
 
 /**
  * The hierarchical table widget displays a collection in a tabular (table) format.

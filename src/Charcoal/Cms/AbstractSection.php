@@ -45,11 +45,11 @@ use Charcoal\Cms\TemplateableInterface;
  *
  */
 abstract class AbstractSection extends Content implements
+    SectionInterface,
     HierarchicalInterface,
     MetatagInterface,
     RoutableInterface,
     SearchableInterface,
-    SectionInterface,
     TemplateableInterface
 {
     use HierarchicalTrait;

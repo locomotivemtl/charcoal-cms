@@ -109,8 +109,7 @@
             "label": "Position"
         },
         "master": {
-            "type_foo": "object",
-            "type": "Charcoal\\Support\\Property\\HierarchicalObjectProperty",
+            "type": "Charcoal\\Admin\\Property\\HierarchicalObjectProperty",
             "obj_type": "charcoal/cms/section",
             "pattern": "{{ hierarchicalLabel }}",
             "label": {
@@ -215,7 +214,7 @@
                 ],
                 "properties_options": {
                     "title": {
-                        "display_type": "charcoal/support/admin/property/display/hierarchical",
+                        "display_type": "charcoal/admin/property/display/hierarchical",
                         "view_options": {
                             "attr": {
                                 "width": "55%"
