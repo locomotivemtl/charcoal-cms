@@ -1,8 +1,0 @@
-{
-    "sources": {
-        "default": {
-            "table": "cms_videos"
-        }
-    },
-    "default_source": "default"
-}

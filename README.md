@@ -1,7 +1,8 @@
 Charcoal CMS
 ============
 
-The CMS Charcoal Module (Content Management System).
+The CMS Charcoal Module (Content Management System). Provides basic objects to build a website.
+Notably, `Section` (or _page_), `News`, `Event`
 
 # How to install
 
@@ -14,9 +15,16 @@ The preferred (and only supported) way of installing _charcoal-cms_ is with **co
 
 ## Dependencies
 
--   [`PHP 5.5+`](http://php.net)
+-   [`PHP 5.6+`](http://php.net)
+    - PHP 7 is recommended for security and performance reasons.
+-   [`locomotivemtl/charcoal-attachment`](https://github.com/locomotivemtl/charcoal-attachment)
 -   [`locomotivemtl/charcoal-core`](https://github.com/locomotivemtl/charcoal-core)
--   [`locomotivemtl/charcoal-base`](https://github.com/locomotivemtl/charcoal-base)
+-   [`locomotivemtl/charcoal-object`](https://github.com/locomotivemtl/charcoal-object)
+-   [`locomotivemtl/charcoal-translator`](https://github.com/locomotivemtl/charcoal-translator)
+
+### Recommended dependencies
+
+-   [`locomotivemtl/charcoal-admin`](https://github.com/locomotivemtl/charcoal-admin)
 
 # Objects
 
@@ -25,22 +33,14 @@ All objects in the `charcoal-cms` module implements `\Charcoal\Object\Content`, 
 
 -   **Core objects**
     -   [Section](#section-object)
-    -   [Text](#text-object)
-    -   [Block](#block-object)
 -   **CMS objets**
     -   [Event](#event-object)
     -   [FAQ](#faq-object)
     -   [News](#news-object)
--   **Media attachments objects**
-    -   [Document](#document-object)
-    -   [Image](#image-object)
-    -   [Video](#video-object)
 
 # Core objects
 
 -   [Section](#section-object)
--   [Text](#text-object)
--   [Block](#block-object)
 
 ## Section object
 
@@ -115,7 +115,7 @@ _Sections_ are hierarchical. They can be indented inside one another to create m
 | -------------------- | :--: | ---- | ----------- |
 | **master**           |      |
 
-The hierarchical interface also provide the following methods, amongst others:
+The hierarchical interface (`\Charcoal\Object\HierarchicalInterface`) also provide the following methods, amongst others:
 
 -   `hierarchy()`
 -   `children()`
@@ -142,37 +142,6 @@ Like all _Content_ objects, _sections_ implement the `\Charcoal\Object\Revisiona
 
 The `\Charcoal\Cms\Section\*` objects are `final`. To extend, use the `\Charcoal\Cms\AbstractSection` base object instead, to make sure no metadata conflicts arise.
 
-## Text object
-
-The **Text** object is a simple, translatable rich text snippet that can be embedded in any other objects, or displayed by itself. It is best used as an _attachment_ to other objects, like sections, news or events.
-
-Texts are standard Charcoal `Model`, meaning they are definable with a `Metadata` object (which define a map of `properties`) and storable with a `Source` object.
-
-Base text properties:
-
-| Name                 | L10n | Type      | Description |
-| -------------------- | :--: | --------- | ----------- |
-| **title**            | ✔    | string    |
-| **subtitle**         | ✔    | html      |
-| **content**          |      | string    |
-
---
-
-Because _texts_ extends `\Charcoal\Object\Content`, they also have the following standard properties:
-
-| Name                  | L10n | Type | Description |
-| --------------------- | :--: | ---- | ----------- |
-| **id<sup>1</sup>**    |      |
-| **active**            |      |
-| **position**          |      |
-| **created**           |      |
-| **created_by**        |      |
-| **last_modified**     |      |
-| **last\_modified_by** |      |
-
-<small>[1] By default, the **key** of the text is the **id**.</small>.
-
-## Block object
 
 # CMS objects
 
@@ -186,19 +155,6 @@ Because _texts_ extends `\Charcoal\Object\Content`, they also have the following
 
 ## News object
 
-# Media attachments objects
-
--   [Document](#document-object)
--   [Image](#image-object)
--   [Video](#video-object)
-
-## Document object
-
-## Image object
-
-## Video object
-
-# Extending objects
 
 # Development
 
@@ -209,7 +165,6 @@ $ composer install --prefer-source
 ```
 
 ## API documentation
-
 -   The auto-generated `phpDocumentor` API documentation is available at [https://locomotivemtl.github.io/charcoal-cms/docs/master/](https://locomotivemtl.github.io/charcoal-cms/docs/master/)
 -   The auto-generated `apigen` API documentation is available at [https://codedoc.pub/locomotivemtl/charcoal-cms/master/](https://codedoc.pub/locomotivemtl/charcoal-cms/master/index.html)
 
@@ -252,7 +207,7 @@ The Charcoal-App module follows the Charcoal coding-style:
 
 **The MIT License (MIT)**
 
-_Copyright © 2016 Locomotive inc._
+_Copyright © Locomotive inc._
 > See [Authors](#authors).
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:

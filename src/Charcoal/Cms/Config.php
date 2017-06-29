@@ -2,7 +2,7 @@
 
 namespace Charcoal\Cms;
 
-// dependencies from `charcoal-base`
+// dependencies from `charcoal-object`
 use Charcoal\Object\Content;
 
 // dependencies from `charcoal-property`
@@ -18,22 +18,22 @@ class Config extends Content implements
     ConfigInterface
 {
     /**
-     * @var string $defaultMetaTitle
+     * @var string
      */
     protected $defaultMetaTitle;
 
     /**
-     * @var string $defaultMetaDescription
+     * @var string
      */
     protected $defaultMetaDescription;
 
     /**
-     * @var string $defaultMetaImage
+     * @var string
      */
     protected $defaultMetaImage;
 
     /**
-     * @var string $defaultMetaUrl
+     * @var string
      */
     protected $defaultMetaUrl;
 
