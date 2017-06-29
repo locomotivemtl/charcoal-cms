@@ -134,7 +134,7 @@ class TemplatePropertyTest extends \PHPUnit_Framework_TestCase
         /** Test translatable value with a multilingual property */
         $this->obj->setL10n(true);
 
-        $this->assertEquals('',       $this->obj->displayVal('foo'));
+        $this->assertEquals('', $this->obj->displayVal('foo'));
         $this->assertEquals('Oofoof', $this->obj->displayVal($val, [ 'lang' => 'fr' ]));
         $this->assertEquals('Foofoo', $this->obj->displayVal($val, [ 'lang' => 'de' ]));
         $this->assertEquals('Foofoo', $this->obj->displayVal($val));

@@ -13,7 +13,7 @@ class EventLoader extends AbstractLoader
 {
     /**
      * Event prototype.
-     * @var ModelInterface $proto
+     * @var \Charcoal\Model\ModelInterface $proto
      */
     private $proto;
 

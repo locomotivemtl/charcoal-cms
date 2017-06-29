@@ -158,7 +158,7 @@ class NewsManager extends AbstractManager
         }
 
         if (!isset($this->entry[$id])) {
-            $entry = $this->modelFactory()->get($this->objType())->loadFrom('id', $id);
+            $entry = $this->modelFactory()->create($this->objType())->loadFrom('id', $id);
             $this->entry[$id] = $entry->id() ? $entry : $this->currentNews();
         }
 
