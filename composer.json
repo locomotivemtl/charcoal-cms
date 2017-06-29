@@ -42,12 +42,6 @@
         "tedivm/stash": "~0.14",
         "mustache/mustache": "^2.11"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/locomotivemtl/charcoal-attachment"
-        }
-    ],
     "autoload": {
         "psr-4": {
             "Charcoal\\": "src/Charcoal"
@@ -71,11 +65,5 @@
         "phpunit": "php vendor/bin/phpunit --configuration tests/phpunit.xml --coverage-text",
         "phpcs": "php vendor/bin/phpcs --config-set ignore_warnings_on_exit 1;php vendor/bin/phpcs -ps --colors --standard=phpcs.xml src/",
         "phpcbf": "php vendor/bin/phpcbf -ps --colors --standard=phpcs.xml src/ tests/"
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://bitbucket.org/beneroch/charcoal-attachment.git"
-        }
-    ]
+    }
 }
