@@ -79,18 +79,12 @@ class CmsServiceProvider implements ServiceProviderInterface
             return $cmsConfig;
         };
 
+
         /**
          * @param Container $container Pimple DI Container.
          * @return DateHelper
          */
-        $container['date/helper'] = function (Container $container) {
-
-            trigger_error(sprintf(
-                '%s is deprecated, use %s instead',
-                '$container[\'date/helper\']',
-                '$container[\'date/helper\']'
-            ));
-
+        $container['cms/date/helper'] = function (Container $container) {
             return new DateHelper([
                 'date_formats' => $container['cms/config']->get('date_formats'),
                 'time_formats' => $container['cms/config']->get('time_formats'),
@@ -102,13 +96,14 @@ class CmsServiceProvider implements ServiceProviderInterface
          * @param Container $container Pimple DI Container.
          * @return DateHelper
          */
-        $container['cms/date/helper'] = function (Container $container) {
+        $container['date/helper'] = function (Container $container) {
+            trigger_error(sprintf(
+                '%s is deprecated, use %s instead',
+                '$container[\'date/helper\']',
+                '$container[\'cms/date/helper\']'
+            ));
 
-            return new DateHelper([
-                'date_formats' => $container['cms/config']->get('date_formats'),
-                'time_formats' => $container['cms/config']->get('time_formats'),
-                'translator'   => $container['translator']
-            ]);
+            return $container['cms/date/helper'];
         };
 
         $this->registerSectionServices($container);

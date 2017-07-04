@@ -214,10 +214,6 @@ trait EventManagerAwareTrait
             return $event->dateNotes();
         }
 
-        if (!$event->displayHours()) {
-            return null;
-        }
-
         return $this->dateHelper()->formatTime([
             $event->startDate(),
             $event->endDate(),

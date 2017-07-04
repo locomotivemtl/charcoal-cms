@@ -331,7 +331,7 @@
                 },
                 "widgets": {
                     "table": {
-                        "type": "charcoal/support/admin/widget/table",
+                        "type": "charcoal/admin/widget/table",
                         "collection_ident": "cms.default",
                         "data_sources": ["request"]
                     }
