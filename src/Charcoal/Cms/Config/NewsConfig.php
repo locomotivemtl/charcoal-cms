@@ -227,7 +227,7 @@ class NewsConfig extends AbstractConfig
      */
     public function setParentSectionSlug($parentSectionSlug)
     {
-        $this->parentSectionSlug = $this->translator()->translation($parentSectionSlug);
+        $this->parentSectionSlug = $parentSectionSlug;
 
         return $this;
     }
