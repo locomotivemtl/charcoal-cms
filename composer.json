@@ -30,6 +30,7 @@
         "locomotivemtl/charcoal-core": "~0.2",
         "locomotivemtl/charcoal-factory": "~0.4",
         "locomotivemtl/charcoal-object": "~0.2",
+        "locomotivemtl/charcoal-property": "~0.5",
         "locomotivemtl/charcoal-translator": "~0.1"
     },
     "require-dev": {
