@@ -13,21 +13,21 @@ trait TemplateableTrait
      *
      * @var mixed
      */
-    private $templateIdent;
+    protected $templateIdent;
 
     /**
      * The object's template controller identifier.
      *
      * @var mixed
      */
-    private $controllerIdent;
+    protected $controllerIdent;
 
     /**
      * The customized template options.
      *
      * @var array
      */
-    private $templateOptions = [];
+    protected $templateOptions = [];
 
     /**
      * Set the renderable object's template identifier.
