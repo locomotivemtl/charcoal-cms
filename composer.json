@@ -29,7 +29,7 @@
         "locomotivemtl/charcoal-attachment": "~0.2",
         "locomotivemtl/charcoal-core": "~0.2",
         "locomotivemtl/charcoal-factory": "~0.4",
-        "locomotivemtl/charcoal-object": "~0.2",
+        "locomotivemtl/charcoal-object": "~0.3",
         "locomotivemtl/charcoal-property": "~0.5",
         "locomotivemtl/charcoal-translator": "~0.1"
     },
