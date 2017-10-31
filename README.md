@@ -1,8 +1,10 @@
 Charcoal CMS
 ============
 
-The CMS Charcoal Module (Content Management System). Provides basic objects to build a website.
-Notably, `Section` (or _page_), `News`, `Event`
+The CMS Charcoal Module (_Content Management System_). Provides basic objects to build a website.
+Notably, `Section` (or _page_), `News`, `Event` and `Faq` as well as to ather user data, notably `ContactInquiry`.
+
+This module is heavily dependant on [`charcoal-object`](https://github.com/locomotivemtl/charcoal-object) (and therefore `charcoal-core`) which provides the base `Content` and `UserData` classes the CMS objects are dependant on.
 
 # How to install
 
@@ -12,6 +14,11 @@ The preferred (and only supported) way of installing _charcoal-cms_ is with **co
 ★ composer require locomotivemtl/charcoal-cms
 ```
 
+For a complete, ready-to-use project, start from the [`boilerplate`](https://github.com/locomotivemtl/charcoal-project-boilerplate):
+
+```shell
+★ composer create-project locomotivemtl/charcoal-project-boilerplate:@dev --prefer-source
+```
 
 ## Dependencies
 
@@ -19,6 +26,8 @@ The preferred (and only supported) way of installing _charcoal-cms_ is with **co
     - PHP 7 is recommended for security and performance reasons.
 -   [`locomotivemtl/charcoal-attachment`](https://github.com/locomotivemtl/charcoal-attachment)
 -   [`locomotivemtl/charcoal-core`](https://github.com/locomotivemtl/charcoal-core)
+    - Core charcoal models and storage class.
+    - Provides base Model, which depends on Storable and Describable.
 -   [`locomotivemtl/charcoal-object`](https://github.com/locomotivemtl/charcoal-object)
 -   [`locomotivemtl/charcoal-translator`](https://github.com/locomotivemtl/charcoal-translator)
 
@@ -59,7 +68,7 @@ Types of sections:
 
 All section types, except _external_, make use of a `Template` object to be rendered. Typically, a charcoal `view` make sure of linking the `template` (by default, _mustache_
 
-Sections are standard Charcoal `Model`, meaning they are definable with a `Metadata` object (which define a map of `properties`) and storable with a `Source` object.
+> Sections are standard Charcoal `Model`, meaning they are _describable_ with a `Metadata` object (which define a map of `properties`) and _storable_ with a `Source` object.
 
 Base section properties:
 
