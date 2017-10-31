@@ -214,10 +214,6 @@ trait EventManagerAwareTrait
             return $event->dateNotes();
         }
 
-        if (!$event->displayHours()) {
-            return null;
-        }
-
         return $this->dateHelper()->formatTime([
             $event->startDate(),
             $event->endDate(),
@@ -232,13 +228,15 @@ trait EventManagerAwareTrait
     protected function eventFormatShort(EventInterface $event)
     {
         return [
-            'title'     => (string)$event->title(),
-            'url'       => (string)$event->url(),
-            'startDate' => $this->getEventStartDateFormat($event),
-            'endDate'   => $this->getEventEndDateFormat($event),
-            'date'      => $this->getEventDateFormat($event),
-            'time'      => $this->getEventTimeFormat($event),
-            'active'    => ($this->currentEvent() && ($this->currentEvent()['id'] == $event->id()))
+            'title'         => (string)$event->title(),
+            'url'           => (string)$event->url(),
+            'startDate'     => $this->getEventStartDateFormat($event),
+            'startDateTime' => $event->startDate()->format('Y-m-d h:i'),
+            'endDate'       => $this->getEventEndDateFormat($event),
+            'endDateTime'   => $event->endDate()->format('Y-m-d h:i'),
+            'date'          => $this->getEventDateFormat($event),
+            'time'          => $this->getEventTimeFormat($event),
+            'active'        => ($this->currentEvent() && ($this->currentEvent()['id'] == $event->id()))
         ];
     }
 
@@ -250,12 +248,14 @@ trait EventManagerAwareTrait
     protected function eventFormatNav(EventInterface $event)
     {
         return [
-            'startDate' => $this->getEventStartDateFormat($event),
-            'endDate'   => $this->getEventEndDateFormat($event),
-            'date'      => $this->getEventDateFormat($event),
-            'time'      => $this->getEventTimeFormat($event),
-            'title'     => (string)$event->title(),
-            'url'       => $event->url()
+            'startDate'     => $this->getEventStartDateFormat($event),
+            'startDateTime' => $event->startDate()->format('Y-m-d h:i'),
+            'endDate'       => $this->getEventEndDateFormat($event),
+            'endDateTime'   => $event->endDate()->format('Y-m-d h:i'),
+            'date'          => $this->getEventDateFormat($event),
+            'time'          => $this->getEventTimeFormat($event),
+            'title'         => (string)$event->title(),
+            'url'           => $event->url()
         ];
     }
 
@@ -276,7 +276,9 @@ trait EventManagerAwareTrait
             'content'          => (string)$event->content(),
             'image'            => $event->image(),
             'startDate'        => $this->getEventStartDateFormat($event),
+            'startDateTime'    => $event->startDate()->format('Y-m-d h:i'),
             'endDate'          => $this->getEventEndDateFormat($event),
+            'endDateTime'      => $event->endDate()->format('Y-m-d h:i'),
             'date'             => $this->getEventDateFormat($event),
             'time'             => $this->getEventTimeFormat($event),
             'contentBlocks'    => $contentBlocks,

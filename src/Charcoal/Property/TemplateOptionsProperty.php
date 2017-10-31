@@ -5,13 +5,13 @@ namespace Charcoal\Property;
 use InvalidArgumentException;
 
 // From 'charcoal-property'
-use Charcoal\Property\StructureProperty;
+use Charcoal\Property\ModelStructureProperty;
 use Charcoal\Property\TemplateProperty;
 
 /**
  * Template Options Property
  */
-class TemplateOptionsProperty extends StructureProperty
+class TemplateOptionsProperty extends ModelStructureProperty
 {
     /**
      * Retrieve the property's type identifier.

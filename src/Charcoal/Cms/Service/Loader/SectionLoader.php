@@ -276,10 +276,10 @@ class SectionLoader extends AbstractLoader
     }
 
     /**
-     * @param  array $sectionTypes Available section types.
+     * @param  array|null $sectionTypes Available section types.
      * @return self
      */
-    public function setSectionTypes(array $sectionTypes)
+    public function setSectionTypes(array $sectionTypes = null)
     {
         $this->sectionTypes = $sectionTypes;
 

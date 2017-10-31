@@ -231,7 +231,7 @@ abstract class AbstractSection extends Content implements
      */
     public function setKeywords($keywords)
     {
-        $this->keywords = $this->parseAsMultiple($keywords);
+        $this->keywords = $keywords;
 
         return $this;
     }
@@ -453,47 +453,6 @@ abstract class AbstractSection extends Content implements
     public function defaultMetaImage()
     {
         return $this->image();
-    }
-
-    // ==========================================================================
-    // Utils
-    // ==========================================================================
-
-    /**
-     * Parse the property value as a "multiple" value type.
-     *
-     * @param  mixed                    $value     The value being converted to an array.
-     * @param  string|PropertyInterface $separator The boundary string.
-     * @return array
-     */
-    public function parseAsMultiple($value, $separator = ',')
-    {
-        if (!isset($value) ||
-            (is_string($value) && !strlen(trim($value))) ||
-            (is_array($value) && !count(array_filter($value, 'strlen')))
-        ) {
-            return [];
-        }
-
-        /**
-         * This property is marked as "multiple".
-         * Manually handling the resolution to array
-         * until the property itself manages this.
-         */
-        if (is_string($value)) {
-            return explode($separator, $value);
-        }
-
-        /**
-         * If the parameter isn't an array yet,
-         * means we might be dealing with an integer,
-         * an empty string, or an object.
-         */
-        if (!is_array($value)) {
-            return [ $value ];
-        }
-
-        return $value;
     }
 
     // ==========================================================================

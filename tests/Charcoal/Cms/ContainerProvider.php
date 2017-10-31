@@ -70,6 +70,47 @@ class ContainerProvider
         };
     }
 
+    public function registerTemplateDependencies(Container $container)
+    {
+        $container->extend('config', function (AppConfig $config) {
+            $config['templates'] = [
+                [
+                    'value'  => 'foo',
+                    'label'  => [
+                        'en' => 'Foofoo',
+                        'fr' => 'Oofoof'
+                    ],
+                    'controller' => 'templateable/foo'
+                ],
+                [
+                    'value'  => 'baz',
+                    'label'  => [
+                        'en' => 'Bazbaz',
+                        'fr' => 'Zabzab'
+                    ],
+                    'template' => 'templateable/baz'
+                ],
+                [
+                    'value'  => 'qux',
+                    'label'  => [
+                        'en' => 'Quxqux',
+                        'fr' => 'Xuqxuq'
+                    ],
+                    'class' => 'templateable/qux'
+                ],
+                [
+                    'value'  => 'xyz',
+                    'label'  => [
+                        'en' => 'Xyzzy',
+                        'fr' => 'YzzyX'
+                    ]
+                ]
+            ];
+
+            return $config;
+        });
+    }
+
     public function registerCmsConfig(Container $container)
     {
         $container['cms/config'] = function (Container $container) {
@@ -226,6 +267,7 @@ class ContainerProvider
                 'base_path' => realpath(__DIR__.'/../../../'),
                 'paths'     => [
                     'metadata',
+                    'tests/Fixtures/metadata',
                     'vendor/locomotivemtl/charcoal-object/metadata'
                 ],
                 'cache'     => $container['cache']

@@ -383,12 +383,14 @@ class GenericRoute extends TemplateRoute
 
         // Load current slug
         // Slug are uniq
+        // Slug can be duplicated by adding the front "/" to it hence the order by last_modification_date
         $route = $this->createRouteObject();
         $route->loadFromQuery(
-            'SELECT * FROM `'.$route->source()->table().'` WHERE (`slug` = :route1 OR `slug` = :route2) LIMIT 1',
+            'SELECT * FROM `'.$route->source()->table().'` WHERE (`slug` = :route1 OR `slug` = :route2) AND `lang` = :lang ORDER BY last_modification_date DESC LIMIT 1',
             [
                 'route1' => '/'.$this->path(),
-                'route2' => $this->path()
+                'route2' => $this->path(),
+                'lang'   => $this->translator()->getLocale()
             ]
         );
 

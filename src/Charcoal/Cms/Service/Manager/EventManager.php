@@ -242,7 +242,7 @@ class EventManager extends AbstractManager
             /** @var Model $model */
             $model = $this->modelFactory();
             /** @var EventInterface $entry */
-            $entry = $model->get($this->objType())->loadfrom('id', $id);
+            $entry = $model->create($this->objType())->loadfrom('id', $id);
             $this->entry[$id] = $entry->id() ? $entry : $this->currentEvent();
         }
 
@@ -272,7 +272,7 @@ class EventManager extends AbstractManager
     {
         /** @var Model $model */
         $model = $this->modelFactory();
-        $proto = $model->get($this->categoryItemType());
+        $proto = $model->create($this->categoryItemType());
         $loader = $this->collectionLoader()->setModel($proto);
         $loader->addFilter('active', true);
 
@@ -285,7 +285,7 @@ class EventManager extends AbstractManager
      */
     public function categoryItem($id)
     {
-        $category = $this->modelFactory()->get($this->categoryItemType());
+        $category = $this->modelFactory()->create($this->categoryItemType());
 
         return $category->load($id);
     }

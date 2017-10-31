@@ -28,42 +28,10 @@ class TemplatePropertyTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $container = $this->getContainer();
+        $provider  = $this->getContainerProvider();
 
-        $this->getContainerProvider()->registerMultilingualTranslator($container);
-
-        $container['config']['templates'] = [
-            [
-                'value'  => 'foo',
-                'label'  => [
-                    'en' => 'Foofoo',
-                    'fr' => 'Oofoof'
-                ],
-                'controller' => 'charcoal/tests/cms/mocks/foo'
-            ],
-            [
-                'value'  => 'baz',
-                'label'  => [
-                    'en' => 'Bazbaz',
-                    'fr' => 'Zabzab'
-                ],
-                'template' => 'charcoal/tests/cms/views/baz'
-            ],
-            [
-                'value'  => 'qux',
-                'label'  => [
-                    'en' => 'Quxqux',
-                    'fr' => 'Xuqxuq'
-                ],
-                'class' => 'charcoal/tests/cms/mocks/qux'
-            ],
-            [
-                'value'  => 'xyz',
-                'label'  => [
-                    'en' => 'Xyzzy',
-                    'fr' => 'YzzyX'
-                ]
-            ]
-        ];
+        $provider->registerMultilingualTranslator($container);
+        $provider->registerTemplateDependencies($container);
 
         $this->obj = new TemplateProperty([
             'container'  => $container,
@@ -152,13 +120,13 @@ class TemplatePropertyTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('', (string)$this->obj);
 
         $this->obj->setVal('foo');
-        $this->assertEquals('charcoal/tests/cms/mocks/foo', (string)$this->obj);
+        $this->assertEquals('templateable/foo', (string)$this->obj);
 
         $this->obj->setVal('baz');
-        $this->assertEquals('charcoal/tests/cms/views/baz', (string)$this->obj);
+        $this->assertEquals('templateable/baz', (string)$this->obj);
 
         $this->obj->setVal('qux');
-        $this->assertEquals('charcoal/tests/cms/mocks/qux', (string)$this->obj);
+        $this->assertEquals('templateable/qux', (string)$this->obj);
 
         $this->obj->setVal('xyz');
         $this->assertEquals('', (string)$this->obj);
