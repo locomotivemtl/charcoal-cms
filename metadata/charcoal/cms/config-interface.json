@@ -4,7 +4,7 @@
             "type": "id"
         },
         "social_medias": {
-            "type": "structure",
+            "type": "model-structure",
             "label": {
                 "en": "Social medias",
                 "fr": "Médias sociaux"
