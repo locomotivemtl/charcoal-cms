@@ -13,9 +13,15 @@ use Charcoal\Cms\Event;
 /**
  * Event Category
  */
-final class EventCategory extends Content implements CategoryInterface
+class EventCategory extends Content implements CategoryInterface
 {
     use CategoryTrait;
+
+    /**
+     * Translatable
+     * @var string[] $name
+     */
+    protected $name;
 
     /**
      * CategoryTrait > itemType()
@@ -33,5 +39,24 @@ final class EventCategory extends Content implements CategoryInterface
     public function loadCategoryItems()
     {
         return [];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function name()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name The category name.
+     * @return self
+     */
+    public function setName($name)
+    {
+        $this->name = $this->translator()->translation($name);
+
+        return $this;
     }
 }
