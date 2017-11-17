@@ -42,7 +42,7 @@ All objects in the `charcoal-cms` module implements `\Charcoal\Object\Content`, 
 
 -   **Core objects**
     -   [Section](#section-object)
--   **CMS objets**
+-   **CMS objects**
     -   [Event](#event-object)
     -   [FAQ](#faq-object)
     -   [News](#news-object)
