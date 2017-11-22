@@ -411,7 +411,7 @@
                     {
                         "property": "in_menu",
                         "operator": "FIND_IN_SET",
-                        "val": true
+                        "value": true
                     }
                 ],
                 "orders": [
@@ -563,7 +563,7 @@
                         "filters": [
                             {
                                 "property": "master",
-                                "val": "{{id}}"
+                                "value": "{{id}}"
                             }
                         ],
                         "list_actions": {

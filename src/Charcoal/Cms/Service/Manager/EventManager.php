@@ -331,7 +331,7 @@ class EventManager extends AbstractManager
                         $filters = $option;
                         foreach ($filters as $f) {
                             $filter[] = $f['property'] ?: '';
-                            $filter[] = $f['val'] ?: '';
+                            $filter[] = $f['value'] ?: '';
                             $filter[] = $f['options'] ?: '';
                             $filter = join(',', $filter);
 

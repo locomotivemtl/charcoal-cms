@@ -112,7 +112,7 @@ class SectionLoader extends AbstractLoader
             $masters = $this->all()
                 ->addFilter([
                     'property' => 'master',
-                    'val'      => $ids,
+                    'value'      => $ids,
                     'operator' => 'IN'
                 ])
                 ->load();

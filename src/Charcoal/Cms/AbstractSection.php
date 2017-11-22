@@ -169,13 +169,14 @@ abstract class AbstractSection extends Content implements
             'factory' => $this->modelFactory()
         ]);
         $loader->setModel($this);
+
         $loader->addFilter([
             'property' => 'master',
-            'val'      => $this->id()
+            'value'      => $this->id()
         ]);
         $loader->addFilter([
             'property' => 'active',
-            'val'      => true
+            'value'      => true
         ]);
 
         $loader->addOrder([
