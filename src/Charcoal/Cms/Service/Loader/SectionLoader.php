@@ -68,8 +68,8 @@ class SectionLoader extends AbstractLoader
      */
     public function all()
     {
-        $proto = $this->modelFactory()->get($this->objType());
-        $loader = $this->collectionLoader();
+        $proto = $this->modelFactory()->create($this->objType());
+        $loader = $this->collectionLoader()->reset();
         $loader->setModel($proto);
         $loader->addFilter('active', true);
         $loader->addOrder('position', 'asc');
@@ -134,7 +134,7 @@ class SectionLoader extends AbstractLoader
             return $this->sectionRoutes;
         }
 
-        $proto = $this->modelFactory()->get(ObjectRoute::class);
+        $proto = $this->modelFactory()->create(ObjectRoute::class);
 
         $sectionTypes = $this->sectionTypes();
         if (empty($sectionTypes)) {
@@ -143,7 +143,7 @@ class SectionLoader extends AbstractLoader
             ];
         }
 
-        $loader = $this->collectionLoader();
+        $loader = $this->collectionLoader()->reset();
         $loader->setModel($proto);
 
         $filters = [];
