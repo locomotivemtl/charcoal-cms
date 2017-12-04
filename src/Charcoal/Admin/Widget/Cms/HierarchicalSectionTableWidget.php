@@ -75,5 +75,4 @@ class HierarchicalSectionTableWidget extends TableWidget
             $this->display->setCurrentLevel($object->hierarchyLevel());
         }
     }
-
 }

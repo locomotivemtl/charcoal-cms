@@ -112,7 +112,7 @@ class SectionRouteTest extends \PHPUnit_Framework_TestCase
     public function testInvoke()
     {
         $container = $this->getContainer();
-        $request   = $this->getMock(RequestInterface::class);
+        $request   = $this->createMock(RequestInterface::class);
         $response  = new Response();
 
         // Create the section table

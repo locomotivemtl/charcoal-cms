@@ -225,8 +225,5 @@ class TemplateableTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(Model::class, $struct);
         $this->assertEquals($templateData, $struct->data());
         $this->assertEquals($templateMetadata, $struct->metadata()->data());
-
-        error_log(var_export($struct->metadata()->data(), true));
-        error_log(var_export($struct->data(), true));
     }
 }
