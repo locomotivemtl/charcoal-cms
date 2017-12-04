@@ -41,22 +41,6 @@ class TemplateProperty extends AbstractProperty implements SelectablePropertyInt
     }
 
     /**
-     * Inject dependencies from a DI Container.
-     *
-     * @param  Container $container A dependencies container instance.
-     * @return void
-     */
-    public function setDependencies(Container $container)
-    {
-        parent::setDependencies($container);
-
-        if (isset($container['config']['templates'])) {
-            $this->availableTemplates = $this->parseChoices($container['config']['templates']);
-            $this->choices = $this->availableTemplates;
-        }
-    }
-
-    /**
      * Set the available choices.
      *
      * @param  array $choices One or more choice structures.
@@ -215,5 +199,21 @@ class TemplateProperty extends AbstractProperty implements SelectablePropertyInt
     public function sqlPdoType()
     {
         return PDO::PARAM_STR;
+    }
+
+    /**
+     * Inject dependencies from a DI Container.
+     *
+     * @param  Container $container A dependencies container instance.
+     * @return void
+     */
+    protected function setDependencies(Container $container)
+    {
+        parent::setDependencies($container);
+
+        if (isset($container['config']['templates'])) {
+            $this->availableTemplates = $this->parseChoices($container['config']['templates']);
+            $this->choices = $this->availableTemplates;
+        }
     }
 }

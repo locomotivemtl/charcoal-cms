@@ -108,23 +108,6 @@ class GenericRoute extends TemplateRoute
     }
 
     /**
-     * Inject dependencies from a DI Container.
-     *
-     * @param  Container $container A dependencies container instance.
-     * @return void
-     */
-    public function setDependencies(Container $container)
-    {
-        $this->setTranslator($container['translator']);
-        $this->setModelFactory($container['model/factory']);
-        $this->setCollectionLoader($container['model/collection/loader']);
-
-        if (isset($container['config']['templates'])) {
-            $this->availableTemplates = $container['config']['templates'];
-        }
-    }
-
-    /**
      * Determine if the URI path resolves to an object.
      *
      * @param  Container $container A DI (Pimple) container.
@@ -172,6 +155,45 @@ class GenericRoute extends TemplateRoute
         }
 
         return $response;
+    }
+
+    /**
+     * Create a route object.
+     *
+     * @return ObjectRouteInterface
+     */
+    public function createRouteObject()
+    {
+        $route = $this->modelFactory()->create($this->objectRouteClass());
+
+        return $route;
+    }
+
+    /**
+     * Retrieve the class name of the object route model.
+     *
+     * @return string
+     */
+    public function objectRouteClass()
+    {
+        return $this->objectRouteClass;
+    }
+
+    /**
+     * Inject dependencies from a DI Container.
+     *
+     * @param  Container $container A dependencies container instance.
+     * @return void
+     */
+    protected function setDependencies(Container $container)
+    {
+        $this->setTranslator($container['translator']);
+        $this->setModelFactory($container['model/factory']);
+        $this->setCollectionLoader($container['model/collection/loader']);
+
+        if (isset($container['config']['templates'])) {
+            $this->availableTemplates = $container['config']['templates'];
+        }
     }
 
     /**
@@ -305,18 +327,6 @@ class GenericRoute extends TemplateRoute
     }
 
     /**
-     * Create a route object.
-     *
-     * @return ObjectRouteInterface
-     */
-    public function createRouteObject()
-    {
-        $route = $this->modelFactory()->create($this->objectRouteClass());
-
-        return $route;
-    }
-
-    /**
      * Set the class name of the object route model.
      *
      * @param  string $className The class name of the object route model.
@@ -334,16 +344,6 @@ class GenericRoute extends TemplateRoute
         $this->objectRouteClass = $className;
 
         return $this;
-    }
-
-    /**
-     * Retrieve the class name of the object route model.
-     *
-     * @return string
-     */
-    public function objectRouteClass()
-    {
-        return $this->objectRouteClass;
     }
 
     /**
