@@ -436,5 +436,4 @@ abstract class AbstractEvent extends Content implements
 
         return parent::postUpdate($properties);
     }
-
 }
