@@ -456,10 +456,6 @@ abstract class AbstractSection extends Content implements
         return $this->image();
     }
 
-    // ==========================================================================
-    // EVENTS
-    // ==========================================================================
-
     /**
      * Route generated on postSave in case
      * it contains the ID of the section, which
@@ -467,7 +463,7 @@ abstract class AbstractSection extends Content implements
      *
      * @return boolean
      */
-    public function postSave()
+    protected function postSave()
     {
         // RoutableTrait
         if (!$this->locked()) {
@@ -483,7 +479,7 @@ abstract class AbstractSection extends Content implements
      * @param  array|null $properties Properties.
      * @return boolean
      */
-    public function postUpdate(array $properties = null)
+    protected function postUpdate(array $properties = null)
     {
         if (!$this->locked()) {
             $this->generateObjectRoute($this->slug());
@@ -497,7 +493,7 @@ abstract class AbstractSection extends Content implements
      *
      * @return boolean
      */
-    public function preSave()
+    protected function preSave()
     {
         if (!$this->locked()) {
             $this->setSlug($this->generateSlug());
@@ -514,7 +510,7 @@ abstract class AbstractSection extends Content implements
      * @param array $properties Optional properties to update.
      * @return boolean
      */
-    public function preUpdate(array $properties = null)
+    protected function preUpdate(array $properties = null)
     {
         if (!$this->locked()) {
             $this->setSlug($this->generateSlug());
@@ -531,7 +527,7 @@ abstract class AbstractSection extends Content implements
      * @see    \Charcoal\Model\AbstractModel::preDelete() For the "delete" Event.
      * @return boolean
      */
-    public function preDelete()
+    protected function preDelete()
     {
         if ($this->locked()) {
             return false;

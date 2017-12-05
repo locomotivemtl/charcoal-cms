@@ -371,16 +371,26 @@ abstract class AbstractEvent extends Content implements
         return $this->keywords;
     }
 
-    // ==========================================================================
-    // EVENTS
-    // ==========================================================================
+    /**
+     * GenericRoute checks if the route is active.
+     * Default in RoutableTrait.
+     *
+     * @return boolean
+     */
+    public function isActiveRoute()
+    {
+        return (
+            $this->active() &&
+            $this->isPublished()
+        );
+    }
 
     /**
      * {@inheritdoc}
      *
      * @return boolean
      */
-    public function preSave()
+    protected function preSave()
     {
         $this->verifyDates();
         $this->setSlug($this->generateSlug());
@@ -395,7 +405,7 @@ abstract class AbstractEvent extends Content implements
      * @param  array $properties Optional properties to update.
      * @return boolean
      */
-    public function preUpdate(array $properties = null)
+    protected function preUpdate(array $properties = null)
     {
         $this->verifyDates();
         $this->setSlug($this->generateSlug());
@@ -407,7 +417,7 @@ abstract class AbstractEvent extends Content implements
     /**
      * @return boolean Parent postSave().
      */
-    public function postSave()
+    protected function postSave()
     {
         // RoutableTrait
         $this->generateObjectRoute($this->slug());
@@ -419,7 +429,7 @@ abstract class AbstractEvent extends Content implements
      * @param array|null $properties Properties.
      * @return boolean
      */
-    public function postUpdate(array $properties = null)
+    protected function postUpdate(array $properties = null)
     {
         // RoutableTrait
         $this->generateObjectRoute($this->slug());
@@ -427,17 +437,4 @@ abstract class AbstractEvent extends Content implements
         return parent::postUpdate($properties);
     }
 
-    /**
-     * GenericRoute checks if the route is active.
-     * Default in RoutableTrait.
-     *
-     * @return boolean
-     */
-    public function isActiveRoute()
-    {
-        return (
-            $this->active() &&
-            $this->isPublished()
-        );
-    }
 }
