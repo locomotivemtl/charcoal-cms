@@ -117,12 +117,12 @@ class GenericRoute extends TemplateRoute
     {
         $this->setDependencies($container);
 
-        $object = $this->loadObjectRouteFromPath();
+        $object = $this->getObjectRouteFromPath();
         if (!$object->id()) {
             return false;
         }
 
-        $contextObject = $this->loadContextObject();
+        $contextObject = $this->getContextObject();
 
         if (!$contextObject || !$contextObject->id()) {
             return false;
@@ -206,7 +206,7 @@ class GenericRoute extends TemplateRoute
         ResponseInterface $response
     ) {
         // Current object route
-        $objectRoute = $this->loadObjectRouteFromPath();
+        $objectRoute = $this->getObjectRouteFromPath();
 
         // Could be the SAME as current object route
         $latest = $this->getLatestObjectPathHistory($objectRoute);
@@ -227,8 +227,8 @@ class GenericRoute extends TemplateRoute
     {
         $config = $this->config();
 
-        $objectRoute   = $this->loadObjectRouteFromPath();
-        $contextObject = $this->loadContextObject();
+        $objectRoute   = $this->getObjectRouteFromPath();
+        $contextObject = $this->getContextObject();
         $currentLang   = $objectRoute->lang();
 
         // Set language according to the route's language
@@ -320,7 +320,7 @@ class GenericRoute extends TemplateRoute
     {
         $template = parent::createTemplate($container, $request);
 
-        $contextObject = $this->loadContextObject();
+        $contextObject = $this->getContextObject();
         $template->setContextObject($contextObject);
 
         return $template;
@@ -347,6 +347,20 @@ class GenericRoute extends TemplateRoute
     }
 
     /**
+     * Get the object associated with the matching object route.
+     *
+     * @return RoutableInterface
+     */
+    protected function getContextObject()
+    {
+        if ($this->contextObject === null) {
+            $this->contextObject = $this->loadContextObject();
+        }
+
+        return $this->contextObject;
+    }
+
+    /**
      * Load the object associated with the matching object route.
      *
      * Validating if the object ID exists is delegated to the
@@ -356,18 +370,26 @@ class GenericRoute extends TemplateRoute
      */
     protected function loadContextObject()
     {
-        if ($this->contextObject) {
-            return $this->contextObject;
+        $route = $this->getObjectRouteFromPath();
+
+        $obj = $this->modelFactory()->create($route->routeObjType());
+        $obj->load($route->routeObjId());
+
+        return $obj;
+    }
+
+    /**
+     * Get the object route matching the URI path.
+     *
+     * @return \Charcoal\Object\ObjectRouteInterface
+     */
+    protected function getObjectRouteFromPath()
+    {
+        if ($this->objectRoute === null) {
+            $this->objectRoute = $this->loadObjectRouteFromPath();
         }
 
-        $objectRoute = $this->loadObjectRouteFromPath();
-
-        $obj = $this->modelFactory()->create($objectRoute->routeObjType());
-        $obj->load($objectRoute->routeObjId());
-
-        $this->contextObject = $obj;
-
-        return $this->contextObject;
+        return $this->objectRoute;
     }
 
     /**
@@ -377,12 +399,8 @@ class GenericRoute extends TemplateRoute
      */
     protected function loadObjectRouteFromPath()
     {
-        if ($this->objectRoute) {
-            return $this->objectRoute;
-        }
-
         // Load current slug
-        // Slug are uniq
+        // Slugs are unique
         // Slug can be duplicated by adding the front "/" to it hence the order by last_modification_date
         $route = $this->createRouteObject();
         $route->loadFromQuery(
@@ -394,9 +412,7 @@ class GenericRoute extends TemplateRoute
             ]
         );
 
-        $this->objectRoute = $route;
-
-        return $this->objectRoute;
+        return $route;
     }
 
     /**
@@ -569,7 +585,7 @@ class GenericRoute extends TemplateRoute
      */
     protected function cacheEnabled()
     {
-        $obj = $this->loadContextObject();
+        $obj = $this->getContextObject();
         return $obj['cache'] ?: false;
     }
 
@@ -578,7 +594,7 @@ class GenericRoute extends TemplateRoute
      */
     protected function cacheTtl()
     {
-        $obj = $this->loadContextObject();
+        $obj = $this->getContextObject();
         return $obj['cache_ttl'] ?: 0;
     }
 
@@ -587,7 +603,7 @@ class GenericRoute extends TemplateRoute
      */
     protected function cacheIdent()
     {
-        $obj = $this->loadContextObject();
+        $obj = $this->getContextObject();
         return $obj->objType().'.'.$obj->id();
     }
 }
