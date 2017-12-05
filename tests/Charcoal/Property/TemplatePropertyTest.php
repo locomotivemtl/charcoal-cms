@@ -4,6 +4,7 @@ namespace Charcoal\Tests\Property;
 
 use PDO;
 use ReflectionClass;
+use InvalidArgumentException;
 
 // From 'charcoal-property'
 use Charcoal\Property\TemplateProperty;
@@ -76,11 +77,50 @@ class TemplatePropertyTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(array_column($templates, 'value'), array_keys($choices));
 
-        /** Test immutability of choices */
         $this->obj->addChoice('xyz', 'xyz');
-        $this->obj->addChoices([ 'xyz' => 'xyz' ]);
-        $this->obj->setChoices([ 'zyx' => 'zyx' ]);
-        $this->assertEquals(array_column($templates, 'value'), array_keys($choices));
+        $this->obj->addChoices([
+            'xyz' => 'xyz',
+            'foo' => true,
+            'baz' => [
+                'label' => 'Bazbaz'
+            ]
+        ]);
+        $this->obj->setChoices([
+            'zyx' => [
+                'template' => 'templateable/zyx'
+            ]
+        ]);
+        $this->assertArrayHasKey('zyx', $this->obj->choices());
+    }
+
+    public function testChoicesInvalidKey()
+    {
+        $this->setExpectedException(InvalidArgumentException::class);
+        $this->obj->addChoice(3, 'boo');
+    }
+
+    public function testChoicesInvalidString()
+    {
+        $this->setExpectedException(InvalidArgumentException::class);
+        $this->obj->addChoice('boo', 'boo');
+    }
+
+    public function testChoicesInvalidBoolean()
+    {
+        $this->setExpectedException(InvalidArgumentException::class);
+        $this->obj->addChoice('boo', true);
+    }
+
+    public function testChoicesInvalidArray()
+    {
+        $this->setExpectedException(InvalidArgumentException::class);
+        $this->obj->addChoice('boo', [ 'foo' => 'boo' ]);
+    }
+
+    public function testChoicesInvalidType()
+    {
+        $this->setExpectedException(InvalidArgumentException::class);
+        $this->obj->addChoice('xyz', null);
     }
 
     public function testDisplayVal()

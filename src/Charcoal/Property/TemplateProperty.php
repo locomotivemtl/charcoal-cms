@@ -41,55 +41,82 @@ class TemplateProperty extends AbstractProperty implements SelectablePropertyInt
     }
 
     /**
-     * Set the available choices.
-     *
-     * @param  array $choices One or more choice structures.
-     * @return TemplateProperty Chainable.
-     */
-    public function setChoices(array $choices)
-    {
-        unset($choices);
-
-        $this->logger->debug(
-            'Choices can not be set for template properties. They are auto-generated from available languages.'
-        );
-
-        return $this;
-    }
-
-    /**
-     * Merge the available choices.
-     *
-     * @param  array $choices One or more choice structures.
-     * @return TemplateProperty Chainable.
-     */
-    public function addChoices(array $choices)
-    {
-        unset($choices);
-
-        $this->logger->debug(
-            'Choices can not be added for template properties. They are auto-generated from available languages.'
-        );
-
-        return $this;
-    }
-
-    /**
      * Add a choice to the available choices.
      *
-     * @param string       $choiceIdent The choice identifier (will be key / default ident).
-     * @param string|array $choice      A string representing the choice label or a structure.
-     * @return TemplateProperty Chainable.
+     * @param  string       $choiceIdent The choice identifier (will be key / default ident).
+     * @param  string|array $choice      A string representing the choice label or a structure.
+     * @return self
      */
     public function addChoice($choiceIdent, $choice)
     {
-        unset($choiceIdent, $choice);
+        $choice = $this->parseTemplateChoice($choice, strval($choiceIdent));
 
-        $this->logger->debug(
-            'Choices can not be added for template properties. They are auto-generated from available languages.'
-        );
+        $choiceIdent = $choice['value'];
+
+        $this->choices[$choiceIdent] = $choice;
 
         return $this;
+    }
+
+    /**
+     * Parse the given value into a choice structure from the available templates (if any).
+     *
+     * @param  string|array $choice      A string representing the choice label or a structure.
+     * @param  string       $choiceIdent The choice identifier.
+     * @throws InvalidArgumentException If the choice identifier is not a string.
+     * @return array Returns a choice structure.
+     */
+    protected function parseTemplateChoice($choice, $choiceIdent)
+    {
+        if (!is_string($choiceIdent)) {
+            throw new InvalidArgumentException(
+                'Choice identifier must be a string.'
+            );
+        }
+
+        if (is_string($choice)) {
+            if (isset($this->availableTemplates[$choice])) {
+                return $this->availableTemplates[$choice];
+            } else {
+                throw new InvalidArgumentException(sprintf(
+                    'Template choice "%s" is not available.',
+                    $choice
+                ));
+            }
+        } elseif (is_bool($choice) && $choice === true) {
+            if (isset($this->availableTemplates[$choiceIdent])) {
+                return $this->availableTemplates[$choiceIdent];
+            } else {
+                throw new InvalidArgumentException(sprintf(
+                    'Template choice "%s" is not available',
+                    $choiceIdent
+                ));
+            }
+        } elseif (is_array($choice)) {
+            if (isset($this->availableTemplates[$choiceIdent])) {
+                if (isset($choice['label'])) {
+                    $choice['label'] = $this->translator()->translation($choice['label']);
+                }
+
+                $struct    = $this->availableTemplates[$choiceIdent];
+                $immutable = [ 'value' => $struct['value'] ];
+
+                return array_replace($struct, $choice, $immutable);
+            } elseif (isset($choice['template']) || isset($choice['controller']) || isset($choice['class'])) {
+                return $this->parseChoice($choice, $choiceIdent);
+            } else {
+                throw new InvalidArgumentException(sprintf(
+                    'Custom template choice "%s" is requires a "template", "controller", or "class"',
+                    $choiceIdent
+                ));
+            }
+        } else {
+            throw new InvalidArgumentException(
+                'Template choice must be a template identifier or a choice structure'
+            );
+        }
+
+        return $choice;
     }
 
     /**
