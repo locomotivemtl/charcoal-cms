@@ -12,6 +12,7 @@ use Charcoal\Source\StorableTrait;
 // From 'charcoal-property'
 use Charcoal\Property\PropertyInterface;
 use Charcoal\Property\SelectablePropertyInterface;
+use Charcoal\Property\Structure\StructureMetadata;
 use Charcoal\Property\TemplateOptionsProperty;
 use Charcoal\Property\TemplateProperty;
 
@@ -41,11 +42,18 @@ trait TemplateableTrait
     protected $controllerIdent;
 
     /**
-     * The customized template options.
+     * The template options values.
      *
      * @var array
      */
     protected $templateOptions = [];
+
+    /**
+     * The template options structure.
+     *
+     * @var StructureMetadata
+     */
+    protected $templateOptionsMetadata;
 
     /**
      * Track the state of the template options structure.
@@ -70,7 +78,6 @@ trait TemplateableTrait
         $this->areTemplateOptionsFinalized = false;
 
         $this->templateIdent = $template;
-
         return $this;
     }
 
@@ -95,7 +102,6 @@ trait TemplateableTrait
         $this->areTemplateOptionsFinalized = false;
 
         $this->controllerIdent = $ident;
-
         return $this;
     }
 
@@ -126,7 +132,6 @@ trait TemplateableTrait
         }
 
         $this->templateOptions = $options;
-
         return $this;
     }
 
@@ -184,7 +189,9 @@ trait TemplateableTrait
      */
     protected function defaultTemplateProperties()
     {
-        return [ 'template_ident' ];
+        return [
+            'template_ident'
+        ];
     }
 
     /**
@@ -229,23 +236,31 @@ trait TemplateableTrait
      * Prepare the template options (structure) for use.
      *
      * @uses   self::assertValidTemplateStructureDependencies() Validates that the model meets requirements.
-     * @param  (PropertyInterface|string)[]|null $properties The template properties to parse.
+     * @param  (PropertyInterface|string)[]|null $templateIdentProperties The template key properties to parse.
      * @return boolean
      */
-    protected function prepareTemplateOptions(array $properties = null)
+    protected function prepareTemplateOptions(array $templateIdentProperties = null)
     {
         $this->assertValidTemplateStructureDependencies();
 
-        if ($properties === null) {
-            $properties = $this->defaultTemplateProperties();
+        if ($templateIdentProperties === null) {
+            $templateIdentProperties = $this->defaultTemplateProperties();
         }
 
-        $interfaces = $this->extractTemplateInterfacesFrom(...$properties);
-        if (empty($interfaces)) {
+        $templateInterfaces = $this->extractTemplateInterfacesFrom(...$templateIdentProperties);
+        if (empty($templateInterfaces)) {
             return false;
         }
 
-        $this->property('template_options')->addStructureInterfaces($interfaces);
+        $structureMetadata   = new StructureMetadata();
+        $templateStructIdent = sprintf('property/structure/%s/%s', $this->objType(), $this->id());
+        $structureMetadata   = $this->metadataLoader()->load(
+            $templateStructIdent,
+            $structureMetadata,
+            $templateInterfaces
+        );
+
+        $this->templateOptionsMetadata = $structureMetadata;
 
         return true;
     }
@@ -264,10 +279,11 @@ trait TemplateableTrait
 
         $this->prepareTemplateOptions($properties);
 
-        $prop = $this->property('template_options');
+        $key  = 'template_options';
+        $prop = $this->property($key);
         if ($prop->structureModelClass() === Model::class) {
-            $struct = $this->propertyValue('template_options');
-            $struct = $prop->structureVal($struct);
+            $struct = $this->propertyValue($key);
+            $struct = $prop->structureVal($struct, $this->templateOptionsMetadata());
             foreach ($struct->properties() as $propertyIdent => $property) {
                 $val = $struct[$propertyIdent];
                 if ($property->l10n()) {
@@ -280,7 +296,22 @@ trait TemplateableTrait
     }
 
     /**
-     * Retrieve the template options as a structured model.
+     * Retrieve the object's template options metadata.
+     *
+     * @return StructureMetadata|null
+     */
+    public function templateOptionsMetadata()
+    {
+        if ($this->areTemplateOptionsFinalized === false) {
+            $this->areTemplateOptionsFinalized = true;
+            $this->prepareTemplateOptions();
+        }
+
+        return $this->templateOptionsMetadata;
+    }
+
+    /**
+     * Retrieve the object's template options as a structured model.
      *
      * @return ModelInterface|ModelInterface[]|null
      */
@@ -295,6 +326,6 @@ trait TemplateableTrait
         $prop = $this->property($key);
         $val  = $this->propertyValue($key);
 
-        return $prop->structureVal($val);
+        return $prop->structureVal($val, $this->templateOptionsMetadata());
     }
 }
