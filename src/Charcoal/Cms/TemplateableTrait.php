@@ -198,7 +198,7 @@ trait TemplateableTrait
                 $val = $this->translator()->translation($obj[$propertyIdent]);
                 $obj[$propertyIdent] = $val;
             } elseif ($property instanceof ModelStructureProperty) {
-                $o = $prop->structureVal($obj[$propertyIdent]);
+                $o = $property->structureVal($obj[$propertyIdent]);
 
                 if ($o instanceof Model) {
                     $o = $this->translateTemplateOptionsModel($o);
@@ -347,10 +347,6 @@ trait TemplateableTrait
         $prop = $this->property($key);
         $val  = $this->propertyValue($key);
         $obj  = $prop->structureVal($val, $this->templateOptionsMetadata());
-
-        if ($obj instanceof Model) {
-            $obj = $this->translateTemplateOptionsModel($obj);
-        }
 
         return $obj;
     }
