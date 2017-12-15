@@ -62,7 +62,8 @@ class ContainerProvider
     {
         $container['config'] = function (Container $container) {
             return new AppConfig([
-                'view' => [
+                'base_path' => realpath(__DIR__.'/../../..'),
+                'view'      => [
                     'default_controller' => GenericTemplate::class
                 ],
                 'templates' => []
@@ -157,7 +158,7 @@ class ContainerProvider
         $container['view/loader'] = function (Container $container) {
             return new MustacheLoader([
                 'logger'    => $container['logger'],
-                'base_path' => realpath(__DIR__.'/../../../'),
+                'base_path' => $container['config']['base_path'],
                 'paths'     => [
                     'views'
                 ]
@@ -167,7 +168,7 @@ class ContainerProvider
         $container['view/engine'] = function (Container $container) {
             return new MustacheEngine([
                 'logger' => $container['logger'],
-                'cache'  => $container['cache'],
+                'cache'  => MustacheEngine::DEFAULT_CACHE_PATH,
                 'loader' => $container['view/loader']
             ]);
         };
@@ -264,7 +265,7 @@ class ContainerProvider
         $container['metadata/loader'] = function (Container $container) {
             return new MetadataLoader([
                 'logger'    => $container['logger'],
-                'base_path' => realpath(__DIR__.'/../../../'),
+                'base_path' => $container['config']['base_path'],
                 'paths'     => [
                     'metadata',
                     'tests/Fixtures/metadata',
