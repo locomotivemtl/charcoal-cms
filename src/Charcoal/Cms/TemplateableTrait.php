@@ -13,6 +13,7 @@ use Charcoal\Source\StorableTrait;
 use Charcoal\Property\PropertyInterface;
 use Charcoal\Property\SelectablePropertyInterface;
 use Charcoal\Property\Structure\StructureMetadata;
+use Charcoal\Property\ModelStructureProperty;
 use Charcoal\Property\TemplateOptionsProperty;
 use Charcoal\Property\TemplateProperty;
 
@@ -183,6 +184,34 @@ trait TemplateableTrait
     }
 
     /**
+     * Convert the given model's multilingual property values into {@see \Charcoal\Translator\Translation} objects.
+     *
+     * @param  ModelInterface $obj       The object to parse.
+     * @param  boolean        $recursive Whether we should traverse structure properties.
+     * @return ModelInterface The localized object.
+     */
+    protected function translateTemplateOptionsModel(ModelInterface $obj, $recursive = false)
+    {
+        foreach ($obj->properties() as $propertyIdent => $property) {
+            $val = $obj[$propertyIdent];
+            if ($property->l10n()) {
+                $val = $this->translator()->translation($obj[$propertyIdent]);
+                $obj[$propertyIdent] = $val;
+            } elseif ($property instanceof ModelStructureProperty) {
+                $o = $prop->structureVal($obj[$propertyIdent]);
+
+                if ($o instanceof Model) {
+                    $o = $this->translateTemplateOptionsModel($o);
+                }
+
+                $obj[$propertyIdent] = $o;
+            }
+        }
+
+        return $obj;
+    }
+
+    /**
      * Retrieve the default template propert(y|ies).
      *
      * @return string[]
@@ -277,22 +306,14 @@ trait TemplateableTrait
             $properties = $this->defaultTemplateProperties();
         }
 
-        $this->prepareTemplateOptions($properties);
+        if ($this->areTemplateOptionsFinalized === false) {
+            $this->areTemplateOptionsFinalized = true;
+            $this->prepareTemplateOptions();
+        }
 
         $key  = 'template_options';
         $prop = $this->property($key);
-        if ($prop->structureModelClass() === Model::class) {
-            $struct = $this->propertyValue($key);
-            $struct = $prop->structureVal($struct, $this->templateOptionsMetadata());
-            foreach ($struct->properties() as $propertyIdent => $property) {
-                $val = $struct[$propertyIdent];
-                if ($property->l10n()) {
-                    $val = $this->translator()->translation($struct[$propertyIdent]);
-                }
-
-                $struct[$propertyIdent] = $property->save($val);
-            }
-        }
+        $prop->setStructureMetadata($this->templateOptionsMetadata());
     }
 
     /**
@@ -325,7 +346,12 @@ trait TemplateableTrait
         $key  = 'template_options';
         $prop = $this->property($key);
         $val  = $this->propertyValue($key);
+        $obj  = $prop->structureVal($val, $this->templateOptionsMetadata());
 
-        return $prop->structureVal($val, $this->templateOptionsMetadata());
+        if ($obj instanceof Model) {
+            $obj = $this->translateTemplateOptionsModel($obj);
+        }
+
+        return $obj;
     }
 }
