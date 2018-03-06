@@ -1,22 +1,4 @@
 {
-    "properties": {
-        "category": {
-            "obj_type": "charcoal/cms/news-category"
-        }
-    },
-
-    "slug_pattern": {
-        "en": "en/news/{{title}}",
-        "fr": "fr/nouvelles/{{title}}"
-    },
-
-    "sources": {
-        "default": {
-            "table": "cms_news"
-        }
-    },
-    "default_source": "default",
-
     "admin": {
         "lists": {
             "default": {
