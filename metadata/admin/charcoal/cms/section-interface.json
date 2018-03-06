@@ -1,0 +1,483 @@
+{
+    "admin": {
+        "lists": {
+            "cms.default": {
+                "properties": [
+                    "title",
+                    "template_ident",
+                    "last_modified",
+                    "active"
+                ],
+                "properties_options": {
+                    "title": {
+                        "display_type": "charcoal/admin/property/display/hierarchical",
+                        "view_options": {
+                            "attr": {
+                                "width": "55%"
+                            }
+                        }
+                    },
+                    "template_ident": {
+                        "view_options": {
+                            "attr": {
+                                "width": "15%"
+                            }
+                        }
+                    },
+                    "last_modified": {
+                        "view_options": {
+                            "attr": {
+                                "width": "15%"
+                            }
+                        }
+                    },
+                    "active": {
+                        "view_options": {
+                            "attr": {
+                                "width": "5%",
+                                "class": "text-center"
+                            }
+                        }
+                    }
+                },
+                "list_actions": {
+                    "create": {
+                        "ident": "create",
+                        "priority": 10,
+                        "label": {
+                            "en": "new Page",
+                            "fr": "Nouvelle page"
+                        },
+                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}"
+                    },
+                    "main_menu": {
+                        "ident": "main_menu",
+                        "priority": 20,
+                        "label": {
+                            "en": "Pages in menu",
+                            "fr": "Pages dans le menu"
+                        },
+                        "url": "object/collection?main_menu={{main_menu}}&obj_type={{obj_type}}&dashboard_ident=cms.table&collection_ident=cms.in_menu"
+                    }
+                },
+                "object_actions": {
+                    "edit": {
+                        "label": {
+                            "en": "Modify",
+                            "fr": "Modifier"
+                        },
+                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&obj_id={{id}}",
+                        "priority": 1,
+                        "split_button": true,
+                        "actions": {
+                            "goto": {
+                                "label": {
+                                    "en": "Go to page",
+                                    "fr": "Voir la page"
+                                },
+                                "url": "{{baseUrl}}{{url}}",
+                                "target": "_blank",
+                                "priority": 2
+                            },
+                            "clone": {
+                                "label": {
+                                    "en": "Clone",
+                                    "fr": "Cloner"
+                                },
+                                "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&clone_id={{id}}",
+                                "priority": 3
+                            },
+                            "delete": {
+                                "label": {
+                                    "en": "Delete",
+                                    "fr": "Supprimer"
+                                },
+                                "priority": 4
+                            }
+                        }
+                    }
+                },
+                "orders": {
+                    "position": {
+                        "property": "position",
+                        "mode": "asc"
+                    }
+                }
+            },
+            "cms.in_menu": {
+                "label": {
+                    "fr": "Pages du menu principal",
+                    "en": "Pages in Main Menu"
+                },
+                "properties": [
+                    "title",
+                    "template_ident",
+                    "last_modified",
+                    "active"
+                ],
+                "properties_options": {
+                    "title": {
+                        "view_options": {
+                            "attr": {
+                                "width": "55%"
+                            }
+                        }
+                    },
+                    "template_ident": {
+                        "view_options": {
+                            "attr": {
+                                "width": "15%"
+                            }
+                        }
+                    },
+                    "last_modified": {
+                        "view_options": {
+                            "attr": {
+                                "width": "15%"
+                            }
+                        }
+                    },
+                    "active": {
+                        "view_options": {
+                            "attr": {
+                                "width": "5%",
+                                "class": "text-center"
+                            }
+                        }
+                    }
+                },
+                "list_actions": {
+                    "create": {
+                        "ident": "create",
+                        "priority": 1,
+                        "label": {
+                            "en": "New Page",
+                            "fr": "Nouvelle Page"
+                        },
+                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}"
+                    },
+                    "main_menu": {
+                        "ident": "sidebar",
+                        "priority": 2,
+                        "label": {
+                            "en": "All Pages",
+                            "fr": "Toutes les pages"
+                        },
+                        "url": "object/collection?main_menu={{main_menu}}&obj_type={{obj_type}}"
+                    }
+                },
+                "object_actions": {
+                    "edit": {
+                        "label": {
+                            "en": "Modify",
+                            "fr": "Modifier"
+                        },
+                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&obj_id={{id}}",
+                        "priority": 1,
+                        "split_button": true,
+                        "actions": {
+                            "goto": {
+                                "label": {
+                                    "en": "Go to page",
+                                    "fr": "Voir la page"
+                                },
+                                "url": "{{baseUrl}}{{url}}",
+                                "target": "_blank",
+                                "priority": 2
+                            },
+                            "clone": {
+                                "label": {
+                                    "en": "Clone",
+                                    "fr": "Cloner"
+                                },
+                                "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&clone_id={{id}}",
+                                "priority": 3
+                            },
+                            "delete": {
+                                "label": {
+                                    "en": "Delete",
+                                    "fr": "Supprimer"
+                                },
+                                "priority": 4
+                            }
+                        }
+                    }
+                },
+                "filters": [
+                    {
+                        "property": "in_menu",
+                        "operator": "FIND_IN_SET",
+                        "value": true
+                    }
+                ],
+                "orders": [
+                    {
+                        "property": "position",
+                        "mode": "asc"
+                    }
+                ]
+            }
+        },
+
+        "form_groups": {
+            "cms.template_options": {
+                "title": {
+                    "en": "Template Options",
+                    "fr": "Options de gabarit"
+                },
+                "show_header": false,
+                "show_title": false,
+                "icon": "wrench",
+                "template": "charcoal/admin/widget/form-group/structure",
+                "type": "charcoal/admin/widget/form-group/structure",
+                "storage_property": "template_options"
+            },
+            "cms.info": {
+                "title": "Info",
+                "show_title": false,
+                "show_header": false,
+                "icon": "info",
+                "properties": [
+                    "title",
+                    "summary",
+                    "image"
+                ]
+            },
+            "cms.gallery": {
+                "title": {
+                    "fr": "Galerie d'images",
+                    "en": "Gallery"
+                },
+                "show_title": false,
+                "show_header": false,
+                "icon": "photo",
+                "template": "charcoal/admin/widget/form-group/attachment",
+                "type": "charcoal/admin/widget/form-group/attachment",
+                "group": "image-gallery",
+                "attachable_objects": {
+                    "charcoal/attachment/image": {
+                        "label": {
+                            "fr": "Image",
+                            "en": "Image"
+                        }
+                    }
+                }
+            },
+            "cms.resources": {
+                "title": {
+                    "en": "Documents",
+                    "fr": "Ressources"
+                },
+                "show_title": false,
+                "show_header": false,
+                "icon": "paperclip",
+                "template": "charcoal/admin/widget/form-group/attachment",
+                "type": "charcoal/admin/widget/form-group/attachment",
+                "group": "document",
+                "attachable_objects": {
+                    "charcoal/attachment/file": {
+                        "label": {
+                            "fr": "Document",
+                            "en": "Document"
+                        }
+                    },
+                    "charcoal/attachment/link": {
+                        "label": {
+                            "fr": "Lien",
+                            "en": "Link"
+                        }
+                    }
+                }
+            },
+            "cms.meta": {
+                "show_title": false,
+                "show_header": false,
+                "icon": "tags",
+                "title": {
+                    "fr": "Description méta",
+                    "en": "Meta tags"
+                },
+                "properties": [
+                    "meta_title",
+                    "meta_description",
+                    "meta_image",
+                    "keywords"
+                ]
+            },
+            "cms.advanced": {
+                "title": "Options",
+                "show_title": false,
+                "show_header": false,
+                "icon": "cog",
+                "properties": [
+                    "master",
+                    "external_url",
+                    "slug",
+                    "in_menu",
+                    "active"
+                ]
+            },
+            "cms.dev": {
+                "title": "Dev",
+                "show_title": false,
+                "show_header": false,
+                "icon": "code",
+                "tabCssClasses": "pull-right",
+                "permissions": ["dev_tab"],
+                "properties": [
+                    "template_ident",
+                    "section_type",
+                    "locked"
+                ]
+            },
+            "cms.table": {
+                "title": {
+                    "fr": "Hiérarchie",
+                    "en": "Hierarchy"
+                },
+                "show_title": false,
+                "show_header": false,
+                "icon": "sitemap",
+                "template": "utils/widget/form-group/widget",
+                "type": "utils/widget/form-group/widget",
+                "widget_type": "charcoal/admin/widget/table",
+                "obj_type": "{{obj_type}}",
+                "collection_ident": "cms.default",
+                "priority": 7000,
+                "sortable": true,
+                "renderable_data": {
+                    "obj_type": "{{obj_type}}",
+                    "collection_config": {
+                        "properties": [
+                        ],
+                        "orders": [
+                            {
+                                "property": "position",
+                                "mode": "asc"
+                            }
+                        ],
+                        "filters": [
+                            {
+                                "property": "master",
+                                "value": "{{id}}"
+                            }
+                        ],
+                        "list_actions": {
+                            "create": {
+                                "label": {
+                                    "en": "New Page",
+                                    "fr": "Nouvelle Page"
+                                },
+                                "ident": "create",
+                                "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&form_data[master]={{id}}"
+                            },
+                            "main_menu": {
+                                "ident": "main_menu",
+                                "active": false
+                            }
+                        },
+                        "pagination": {
+                            "num_per_page": 100
+                        }
+                    }
+                }
+            },
+            "cms.revisions": {
+                "title": {
+                    "fr": "Révisions",
+                    "en": "Revisions"
+                },
+                "show_title": false,
+                "show_header": false,
+                "icon": "floppy-o",
+                "template": "charcoal/admin/widget/form-group/object-revisions",
+                "type": "charcoal/admin/widget/form-group/object-revisions"
+            }
+        },
+
+        "form_sidebars": {
+            "cms.default": {
+                "properties": [
+                    "created",
+                    "created_by",
+                    "last_modified",
+                    "last_modified_by"
+                ],
+                "actions": {
+                    "return_to_master": {
+                        "label": {
+                            "en": "Back up a level",
+                            "fr": "Remonter d'un niveau"
+                        },
+                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{master.objType}}&obj_id={{master.id}}&tab_ident=cms.table",
+                        "type": "default",
+                        "condition": "{{master}}",
+                        "priority": 1
+                    },
+                    "goto": {
+                        "label": {
+                            "en": "Go to page",
+                            "fr": "Voir la page"
+                        },
+                        "url": "{{baseUrl}}{{url}}",
+                        "target": "_blank",
+                        "priority": 2
+                    }
+                }
+            }
+        },
+
+        "dashboards": {
+            "cms.edit": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1]},
+                        {"columns": [1]},
+                        {"columns": [1]},
+                        {"columns": [1]}
+                    ]
+                },
+                "widgets": {
+                    "form": {
+                        "priority": 10,
+                        "type": "charcoal/admin/widget/objectForm",
+                        "form_ident": "cms.default",
+                        "group_display_mode": "tab"
+                    }
+                }
+            },
+            "cms.table.hierarchical": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1]}
+                    ]
+                },
+                "widgets": {
+                    "list": {
+                        "type": "charcoal/admin/widget/cms/hierarchical-section-table",
+                        "collection_ident": "cms.default",
+                        "data_sources": ["request"]
+                    }
+                }
+            },
+            "cms.table": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1]}
+                    ]
+                },
+                "widgets": {
+                    "table": {
+                        "type": "charcoal/admin/widget/table",
+                        "collection_ident": "cms.default",
+                        "sortable": true,
+                        "data_sources": ["request"]
+                    }
+                }
+            }
+        },
+        "default_create_dashboard": "cms.edit",
+        "default_edit_dashboard": "cms.edit",
+        "default_collection_dashboard": "cms.table.hierarchical"
+    }
+}

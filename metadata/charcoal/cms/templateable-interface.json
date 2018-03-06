@@ -23,18 +23,5 @@
                 "en": "Page Controller"
             }
         }
-    },
-
-    "admin": {
-        "form_groups": {
-            "template_options": {
-                "title": {
-                    "fr": "Options de gabarit",
-                    "en": "Template Options"
-                },
-                "type": "charcoal/admin/widget/form-group/template-options",
-                "template": "charcoal/admin/widget/form-group/structure"
-            }
-        }
     }
 }

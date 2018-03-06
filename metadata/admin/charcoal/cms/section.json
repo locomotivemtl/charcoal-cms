@@ -1,0 +1,101 @@
+{
+    "admin": {
+        "lists": {
+            "section": {
+                "properties": [
+                    "id",
+                    "title",
+                    "active"
+                ]
+            }
+        },
+        "default_list": "section",
+
+        "forms": {
+            "default": {
+                "groups": {
+                    "infos": {
+                        "priority": 1,
+                        "title": {
+                            "en": "Informations",
+                            "fr": "Informations"
+                        },
+                        "properties": [
+                            "id",
+                            "section_type",
+                            "template_ident",
+                            "template_options",
+                            "active"
+                        ]
+                    },
+                    "content": {
+                        "priority": 11,
+                        "title": {
+                            "en": "Content",
+                            "fr": "Contenu"
+                        },
+                        "properties": [
+                            "title",
+                            "subtitle",
+                            "content",
+                            "image"
+                        ]
+                    },
+                    "metadata": {
+                        "priority": 31,
+                        "title": {
+                            "en": "Metadata",
+                            "fr": "Metadata"
+                        },
+                        "properties": [
+                            "meta_title",
+                            "meta_description",
+                            "meta_image"
+                        ]
+                    }
+                },
+                "sidebars": {
+                    "default": {}
+                }
+            }
+        },
+        "default_form": "default",
+
+        "dashboards": {
+            "admin.edit": {
+                "layout": {
+                    "structure": [
+                        {
+                            "columns": [1]
+                        }
+                    ]
+                },
+                "widgets": {
+                    "form": {
+                        "type": "charcoal/admin/widget/objectForm",
+                        "form_ident": "default",
+                        "obj_type": "charcoal/cms/section"
+                    }
+                }
+            },
+            "admin.table": {
+                "layout": {
+                    "structure": [
+                        {
+                            "columns": [1]
+                        }
+                    ]
+                },
+                "widgets": {
+                    "list": {
+                        "type": "charcoal/admin/widget/table",
+                        "label": "Table label",
+                        "obj_type": "charcoal/cms/section"
+                    }
+                }
+            }
+        },
+        "default_edit_dashboard": "admin.edit",
+        "default_collection_dashboard": "admin.table"
+    }
+}

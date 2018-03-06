@@ -1,0 +1,104 @@
+{
+    "admin": {
+        "lists": {
+            "default": {
+                "properties": [
+                    "name"
+                ],
+                "orders": [
+                    {
+                        "property": "name",
+                        "mode": "asc"
+                    }
+                ],
+                "list_actions": [
+                    {
+                        "label": {
+                            "fr": "Nouvelle catégorie de nouvelle",
+                            "en": "New news category"
+                        },
+                        "ident": "create",
+                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}"
+                    }
+                ],
+                "object_actions": {
+                    "edit": {
+                        "label": {
+                            "en": "Modify",
+                            "fr": "Modifier"
+                        },
+                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&obj_id={{id}}",
+                        "priority": 1
+                    },
+                    "delete": {
+                        "label": {
+                            "en": "Delete",
+                            "fr": "Supprimer"
+                        },
+                        "priority": 2
+                    }
+                }
+            }
+        },
+        "default_list": "default",
+
+        "forms": {
+            "default": {
+                "groups": {
+                    "info": {
+                        "title": "Informations",
+                        "properties": [
+                            "name"
+                        ]
+                    }
+                },
+                "sidebars": {
+                    "actions": {}
+                }
+            }
+        },
+        "default_form": "default",
+
+        "dashboards": {
+            "cms.edit": {
+                "title": {
+                    "fr": "Catégorie de nouvelles",
+                    "en": "News category"
+                },
+                "layout": {
+                    "structure": [
+                        {"columns": [1]}
+                    ]
+                },
+                "widgets": {
+                    "form": {
+                        "type": "charcoal/admin/widget/objectForm",
+                        "form_ident": "default"
+                    }
+                }
+            },
+            "cms.table": {
+                "title": {
+                    "fr": "Liste des catégories de nouvelles",
+                    "en": "News categories list"
+                },
+                "layout": {
+                    "structure": [
+                        {"columns": [1]}
+                    ]
+                },
+                "widgets": {
+                    "form": {
+                        "type": "charcoal/admin/widget/table",
+                        "collection_ident": "default",
+                        "sortable": false,
+                        "data_sources": ["request"]
+                    }
+                }
+            }
+        },
+        "default_create_dashboard": "cms.edit",
+        "default_edit_dashboard": "cms.edit",
+        "default_collection_dashboard": "cms.table"
+    }
+}
