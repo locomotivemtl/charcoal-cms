@@ -19,7 +19,7 @@ matrix:
 before_script:
     ## Init Composer
     - composer selfupdate --quiet
-    - COMPOSER_ROOT_VERSION=dev-master composer install -n --dev
+    - composer install -n
 
     ## Create temporary folders
     - mkdir -p build/logs
