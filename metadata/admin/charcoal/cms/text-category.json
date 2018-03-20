@@ -1,0 +1,20 @@
+{
+    "admin": {
+        "lists": {
+            "default": {
+                "properties": []
+            }
+        },
+        "default_list": "default",
+
+        "forms": {
+            "default": {
+                "groups": {},
+                "sidebars": {
+                    "default": {}
+                }
+            }
+        },
+        "default_form": "default"
+    }
+}

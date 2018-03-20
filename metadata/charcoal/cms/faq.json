@@ -13,24 +13,5 @@
         "default": {
             "table": "cms_faqs"
         }
-    },
-
-    "admin": {
-        "lists": {
-            "default": {
-
-            }
-        },
-        "default_list": "default",
-
-        "forms": {
-            "default": {
-                "groups": {},
-                "sidebars": {
-                    "default": {}
-                }
-            }
-        },
-        "default_form": "default"
     }
 }
