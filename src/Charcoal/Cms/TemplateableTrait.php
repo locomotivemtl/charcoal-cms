@@ -79,6 +79,7 @@ trait TemplateableTrait
         $this->areTemplateOptionsFinalized = false;
 
         $this->templateIdent = $template;
+
         return $this;
     }
 
@@ -129,6 +130,7 @@ trait TemplateableTrait
         $this->areTemplateOptionsFinalized = false;
 
         $this->controllerIdent = $ident;
+
         return $this;
     }
 
@@ -159,6 +161,7 @@ trait TemplateableTrait
         }
 
         $this->templateOptions = $options;
+
         return $this;
     }
 
@@ -221,7 +224,7 @@ trait TemplateableTrait
         foreach ($obj->properties() as $propertyIdent => $property) {
             $val = $obj[$propertyIdent];
             if ($property->l10n()) {
-                $val = $this->translator()->translation($obj[$propertyIdent]);
+                $val                 = $this->translator()->translation($obj[$propertyIdent]);
                 $obj[$propertyIdent] = $val;
             } elseif ($property instanceof ModelStructureProperty) {
                 $o = $property->structureVal($obj[$propertyIdent]);
@@ -271,10 +274,18 @@ trait TemplateableTrait
             if ($property instanceof SelectablePropertyInterface) {
                 if ($property->hasChoice($val)) {
                     $choice = $property->choice($val);
-                    $keys   = [ 'controller', 'template', 'class' ];
+                    $keys   = ['controller', 'template', 'class'];
                     foreach ($keys as $key) {
                         if (isset($choice[$key])) {
-                            $interfaces[] = $choice[$key];
+                            $interface = $choice[$key];
+
+                            if ($key === 'template' || $key === 'controller') {
+                                if (substr($interface, -9) !== '-template') {
+                                    $interface .= '-template';
+                                }
+                            }
+
+                            $interfaces[] = $interface;
                             break;
                         }
                     }
