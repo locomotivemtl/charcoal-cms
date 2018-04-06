@@ -93,6 +93,32 @@ trait TemplateableTrait
     }
 
     /**
+     * Retrieve the template identifier as class path.
+     *
+     * @return mixed
+     */
+    public function templateIdentClass()
+    {
+        $templateIdent = $this->templateIdent();
+        $property      = $this->property('template_ident');
+
+        $key = $property->ident();
+        if ($property instanceof SelectablePropertyInterface) {
+            if ($property->hasChoice($templateIdent)) {
+                $choice = $property->choice($templateIdent);
+                $keys   = ['controller', 'template', 'class'];
+                foreach ($keys as $key) {
+                    if (isset($choice[$key])) {
+                        return $choice[$key];
+                    }
+                }
+            }
+        } else {
+            return $templateIdent;
+        }
+    }
+
+    /**
      * Set the renderable object's template controller identifier.
      *
      * @param  mixed $ident The template controller identifier.
