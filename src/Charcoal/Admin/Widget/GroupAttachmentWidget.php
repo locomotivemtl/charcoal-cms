@@ -2,17 +2,28 @@
 
 namespace Charcoal\Admin\Widget;
 
-use Charcoal\Admin\Widget\AttachmentWidget;
-use Charcoal\App\Template\TemplateInterface;
+// dependencies from `PHP`
+use Charcoal\Model\MetadataInterface;
+use InvalidArgumentException;
+use RuntimeException;
+
+// local dependencies
 use Charcoal\Cms\TemplateableInterface;
-use Charcoal\Model\ModelInterface;
+
+// dependencies from `charcoal-model`
 use Charcoal\Model\Service\MetadataLoader;
+
+// dependencies from `charcoal-property`
 use Charcoal\Property\Structure\StructureMetadata;
+
+// dependencies from `charcoal-ui`
 use Charcoal\Ui\Form\FormInterface;
 use Charcoal\Ui\Form\FormTrait;
 use Charcoal\Ui\Layout\LayoutAwareInterface;
 use Charcoal\Ui\Layout\LayoutAwareTrait;
 use Charcoal\Ui\PrioritizableInterface;
+
+// dependencies from `pimple`
 use Pimple\Container;
 
 /**
@@ -52,6 +63,11 @@ class GroupAttachmentWidget extends AttachmentWidget implements
     protected $isAttachmentMetadataFinalized;
 
     /**
+     * @var string
+     */
+    protected $controllerIdent;
+
+    /**
      * Comparison function used by {@see uasort()}.
      *
      * @param  PrioritizableInterface $a Sortable entity A.
@@ -68,6 +84,7 @@ class GroupAttachmentWidget extends AttachmentWidget implements
         if ($priorityA === $priorityB) {
             return 0;
         }
+
         return ($priorityA < $priorityB) ? (-1) : 1;
     }
 
@@ -110,7 +127,7 @@ class GroupAttachmentWidget extends AttachmentWidget implements
         if ($this->metadataLoader === null) {
             throw new RuntimeException(sprintf(
                 'Metadata Loader is not defined for "%s"',
-                get_class($this)
+                \get_class($this)
             ));
         }
 
@@ -132,6 +149,7 @@ class GroupAttachmentWidget extends AttachmentWidget implements
     }
 
     /**
+     * @throws InvalidArgumentException If structureMetadata $data is note defined.
      * @return MetadataInterface
      */
     protected function createMetadata()
@@ -149,6 +167,14 @@ class GroupAttachmentWidget extends AttachmentWidget implements
         $this->addAttachmentGroupFromMetadata();
     }
 
+    /**
+     * Load attachments group widget and them as form groups.
+     *
+     * @param boolean $reload Allows to reload the data.
+     * @throws InvalidArgumentException If structureMetadata $data is note defined.
+     * @throws RuntimeException If the metadataLoader is not defined.
+     * @return void
+     */
     protected function addAttachmentGroupFromMetadata($reload = false)
     {
         if ($this->obj() instanceof TemplateableInterface) {
@@ -156,18 +182,17 @@ class GroupAttachmentWidget extends AttachmentWidget implements
         }
 
         if ($reload || !$this->isAttachmentMetadataFinalized) {
-            $obj = $this->obj();
-            $objectMetadata = $obj->metadata();
+            $obj                 = $this->obj();
             $controllerInterface = $this->controllerIdent();
 
             $interfaces = [];
             array_push($interfaces, $this->objType(), $controllerInterface);
 
-            // error_log(var_export($objectMetadata, true));
-            $structureMetadata   = new StructureMetadata();
+            $structureMetadata = $this->createMetadata();
+
             if (count($interfaces)) {
                 $controllerMetadataIdent = sprintf('widget/metadata/%s/%s', $obj->objType(), $obj->id());
-                $structureMetadata = $this->metadataLoader()->load(
+                $structureMetadata       = $this->metadataLoader()->load(
                     $controllerMetadataIdent,
                     $structureMetadata,
                     $interfaces
@@ -175,7 +200,7 @@ class GroupAttachmentWidget extends AttachmentWidget implements
             }
 
             $attachmentWidgets = $structureMetadata->get('attachments.widgets');
-            foreach ($attachmentWidgets as $ident => $metadata) {
+            foreach ((array)$attachmentWidgets as $ident => $metadata) {
                 $this->addGroup($ident, $metadata);
             }
 
@@ -187,7 +212,7 @@ class GroupAttachmentWidget extends AttachmentWidget implements
      * Set the form object's template controller identifier.
      *
      * @param  mixed $ident The template controller identifier.
-     * @return TemplateableInterface Chainable
+     * @return self
      */
     public function setControllerIdent($ident)
     {
@@ -214,48 +239,5 @@ class GroupAttachmentWidget extends AttachmentWidget implements
     public function controllerIdent()
     {
         return $this->controllerIdent;
-    }
-
-    /**
-     * Convert a snake-cased namespace to CamelCase.
-     *
-     * @param  string $ident The namespace to convert.
-     * @return string Returns a valid PHP namespace.
-     */
-    private function identToClassname($ident)
-    {
-        $key = $ident;
-
-        if (isset(static::$camelCache[$key])) {
-            return static::$camelCache[$key];
-        }
-
-        // Change "foo-bar" to "fooBar"
-        $parts = explode('-', $ident);
-        array_walk(
-            $parts,
-            function (&$i) {
-                $i = ucfirst($i);
-            }
-        );
-        $ident = implode('', $parts);
-
-        // Change "/foo/bar" to "\Foo\Bar"
-        $classname = str_replace('/', '\\', $ident);
-        $parts     = explode('\\', $classname);
-
-        array_walk(
-            $parts,
-            function (&$i) {
-                $i = ucfirst($i);
-            }
-        );
-
-        $classname = trim(implode('\\', $parts), '\\');
-
-        static::$camelCache[$key]       = $classname;
-        static::$snakeCache[$classname] = $key;
-
-        return $classname;
     }
 }
