@@ -64,7 +64,6 @@ trait TemplateableTrait
     protected $areTemplateOptionsFinalized = false;
 
 
-
     // Properties
     // =========================================================================
 
@@ -175,7 +174,13 @@ trait TemplateableTrait
         return $this->templateOptions;
     }
 
-
+    /**
+     * @return boolean
+     */
+    public function hasTemplateOptions(): bool
+    {
+        return empty($this->templateOptions());
+    }
 
     // Utilities
     // =========================================================================
