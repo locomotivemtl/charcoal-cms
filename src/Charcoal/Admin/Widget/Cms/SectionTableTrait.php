@@ -102,7 +102,7 @@ trait SectionTableTrait
                             'data-placement="auto" title="%1$s"></span>';
 
                         if ($externalUrl) {
-                            $tagTemplate = '<a class="btn btn-default btn-xs" href="%2$s" target="_blank">'.
+                            $tagTemplate = '<a class="btn btn-secondary btn-sm" href="%2$s" target="_blank">'.
                                 '<span class="fa fa-link" aria-hidden="true"></span> '.
                                 '<span class="sr-only">URL:</span> %3$s'.
                                 '</a>';
