@@ -72,7 +72,7 @@
                 },
                 "widgets": {
                     "form": {
-                        "type": "charcoal/admin/widget/objectForm",
+                        "type": "charcoal/admin/widget/object-form",
                         "form_ident": "default",
                         "obj_type": "charcoal/cms/section"
                     }
