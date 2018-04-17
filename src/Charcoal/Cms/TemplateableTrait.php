@@ -175,11 +175,21 @@ trait TemplateableTrait
     }
 
     /**
+     * Validate the model has template options properties.
+     *
      * @return boolean
      */
-    public function hasTemplateOptions(): bool
+    public function hasTemplateOptions()
     {
-        return empty($this->templateOptions());
+        if ($this->templateOptionsStructure()) {
+            return (bool)count(
+                iterator_to_array(
+                    $this->templateOptionsStructure()->properties()
+                )
+            );
+        }
+
+        return false;
     }
 
     // Utilities
