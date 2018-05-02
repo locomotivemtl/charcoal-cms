@@ -141,7 +141,7 @@
                 },
                 "widgets": {
                     "form": {
-                        "type": "charcoal/admin/widget/objectForm",
+                        "type": "charcoal/admin/widget/object-form",
                         "form_ident": "cms.default",
                         "request": "main_menu=configuration",
                         "group_display_mode": "tab"

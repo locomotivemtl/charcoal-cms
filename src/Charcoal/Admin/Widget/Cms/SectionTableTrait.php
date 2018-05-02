@@ -98,12 +98,12 @@ trait SectionTableTrait
                     case AbstractSection::TYPE_EXTERNAL:
                         $externalUrl = (string)$object->externalUrl();
                         $linkExcerpt = '';
-                        $tagTemplate = '<span class="glyphicon glyphicon-link" data-toggle="tooltip" '.
+                        $tagTemplate = '<span class="fa fa-link" data-toggle="tooltip" '.
                             'data-placement="auto" title="%1$s"></span>';
 
                         if ($externalUrl) {
-                            $tagTemplate = '<a class="btn btn-default btn-xs" href="%2$s" target="_blank">'.
-                                '<span class="glyphicon glyphicon-link" aria-hidden="true"></span> '.
+                            $tagTemplate = '<a class="btn btn-secondary btn-sm" href="%2$s" target="_blank">'.
+                                '<span class="fa fa-link" aria-hidden="true"></span> '.
                                 '<span class="sr-only">URL:</span> %3$s'.
                                 '</a>';
 
@@ -126,7 +126,7 @@ trait SectionTableTrait
             if (is_callable([ $object, 'navMenu' ]) && $object->navMenu()) {
                 $propertyValue .= sprintf(
                     ' &nbsp; '.
-                    '<span class="glyphicon glyphicon-list" data-toggle="tooltip" '.
+                    '<span class="fa fa-list" data-toggle="tooltip" '.
                     'data-placement="auto" title="%s"></span>',
                     $this->translator()->translation([
                         'en' => 'Present in a menu',
@@ -138,7 +138,7 @@ trait SectionTableTrait
             if (is_callable([ $object, 'locked' ]) && $object->locked()) {
                 $propertyValue .= sprintf(
                     ' &nbsp; '.
-                    '<span class="glyphicon glyphicon-lock" data-toggle="tooltip" '.
+                    '<span class="fa fa-lock" data-toggle="tooltip" '.
                     'data-placement="auto" title="%s"></span>',
                     $object->p('locked')->label()
                 );

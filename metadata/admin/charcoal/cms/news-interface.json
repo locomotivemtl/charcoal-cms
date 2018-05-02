@@ -187,7 +187,7 @@
                 "widgets": {
                     "form": {
                         "priority": 10,
-                        "type": "charcoal/admin/widget/objectForm",
+                        "type": "charcoal/admin/widget/object-form",
                         "form_ident": "cms.default",
                         "group_display_mode": "tab"
                     }
