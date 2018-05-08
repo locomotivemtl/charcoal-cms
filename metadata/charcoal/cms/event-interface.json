@@ -17,7 +17,7 @@
 
     "default_data": {
         "main_menu": "content",
-        "side_menu": "content"
+        "secondary_menu": "content"
     },
 
     "sources": {

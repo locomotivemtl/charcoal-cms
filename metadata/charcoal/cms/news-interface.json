@@ -18,7 +18,7 @@
     "default_data": {
         "template_ident": "generic",
         "main_menu": "content",
-        "side_menu": "content"
+        "secondary_menu": "content"
     },
 
     "sources": {

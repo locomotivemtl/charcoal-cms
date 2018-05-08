@@ -1,7 +1,7 @@
 {
     "default_data": {
         "main_menu": "options",
-        "side_menu": "options"
+        "secondary_menu": "options"
     },
 
     "sources": {
