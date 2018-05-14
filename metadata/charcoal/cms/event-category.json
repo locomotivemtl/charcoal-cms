@@ -1,8 +1,27 @@
 {
+    "category_item_type": "cms/object/event",
+
+    "default_data": {
+        "main_menu": "content",
+        "side_menu": "content"
+    },
+
     "sources": {
         "default": {
             "table": "cms_events_categories"
         }
     },
-    "default_source": "default"
+    "default_source": "default",
+
+    "properties": {
+        "id": {
+            "type": "id"
+        },
+        "name": {
+            "label": {
+                "fr": "Nom",
+                "en": "Name"
+            }
+        }
+    }
 }

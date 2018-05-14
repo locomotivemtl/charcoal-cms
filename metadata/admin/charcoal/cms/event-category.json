@@ -1,20 +1,129 @@
 {
+    "labels": {
+        "name": {
+            "en": "Events Category",
+            "fr": "Catégorie d'événements"
+        },
+        "singular_name": {
+            "en": "Events Category",
+            "fr": "Catégorie d'événements"
+        },
+        "edit_item": {
+            "en": "Edit Events Category",
+            "fr": "Modifier la catégorie d'événements"
+        },
+        "new_item": {
+            "en": "New Events Category",
+            "fr": "Nouvelle catégorie d'événements"
+        },
+        "create_item": {
+            "en": "Create Events Category",
+            "fr": "Créer une catégorie d'événements"
+        },
+        "all_items": {
+            "en": "All Events Categories",
+            "fr": "Toutes les catégories d'événements"
+        },
+        "menu_items": {
+            "en": "Events Category",
+            "fr": "Catégorie d'événements"
+        }
+    },
+
+    "properties": {
+        "name": {
+            "required": true
+        }
+    },
+
     "admin": {
         "lists": {
             "default": {
-                "properties": []
+                "properties": [
+                    "name"
+                ],
+                "orders": [
+                    {
+                        "property": "name",
+                        "mode": "asc"
+                    }
+                ],
+                "list_actions": [
+                    {
+                        "ident": "create",
+                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}"
+                    }
+                ],
+                "object_actions": {
+                    "edit": {
+                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&obj_id={{id}}",
+                        "priority": 1,
+                        "split_button": true,
+                        "actions": {
+                            "delete": {
+                                "label": {
+                                    "en": "Delete",
+                                    "fr": "Supprimer"
+                                },
+                                "priority": 2
+                            }
+                        }
+                    }
+                }
             }
         },
         "default_list": "default",
 
         "forms": {
             "default": {
-                "groups": {},
+                "groups": {
+                    "info": {
+                        "title": "Informations",
+                        "properties": [
+                            "name"
+                        ]
+                    }
+                },
                 "sidebars": {
                     "default": {}
                 }
             }
         },
-        "default_form": "default"
+        "default_form": "default",
+
+        "dashboards": {
+            "cms.edit": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1]}
+                    ]
+                },
+                "widgets": {
+                    "form": {
+                        "type": "charcoal/admin/widget/object-form",
+                        "novalidate": true,
+                        "form_ident": "default"
+                    }
+                }
+            },
+            "cms.table": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1]}
+                    ]
+                },
+                "widgets": {
+                    "form": {
+                        "type": "charcoal/admin/widget/table",
+                        "collection_ident": "default",
+                        "sortable": false,
+                        "data_sources": ["request"]
+                    }
+                }
+            }
+        },
+        "default_create_dashboard": "cms.edit",
+        "default_edit_dashboard": "cms.edit",
+        "default_collection_dashboard": "cms.table"
     }
 }
