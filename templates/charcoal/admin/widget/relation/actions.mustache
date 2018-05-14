@@ -1,0 +1,10 @@
+<div class="btn-group" role="group">
+    <button class="btn {{# active }}btn-primary{{/ active }}{{^ active }}btn-danger{{/ active }} dropdown-toggle" type="button" data-toggle="dropdown">
+        <span class="btn-label">{{# _t }}Actions{{/ _t }}</span>
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li><a href="object/edit?main_menu={{ main_menu }}&obj_type={{ objType }}&obj_id={{ id }}" target="_blank">{{# _t }}Edit{{/ _t }}</a></li>
+        <li><a href="object/delete?obj_type={{ pivotObjType }}&obj_id={{ pivotObjId }}" data-type="{{ pivotObjType }}" data-id="{{ pivotObjId }}" data-action="unlink">{{# _t }}Remove{{/ _t }}</a></li>
+    </ul>
+</div>

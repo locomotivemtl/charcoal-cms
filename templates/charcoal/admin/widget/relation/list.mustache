@@ -1,0 +1,24 @@
+{{!
+
+    Relation Widget \ Object List
+    =============================
+
+    The objects must be PivotAware
+    Use the `obj` available from the dashboard / ObjectContainerTrait
+
+    The `obj` has the `relations` method (@see PivotAwareTrait)
+
+}}
+<section class="c-attachments_container js-relation-container js-relation-sortable">
+    <div role="tablist"
+         id="{{ widgetId }}_accordion"
+         class="panel-group js-grid-container"
+         aria-multiselectable="false">
+    {{# relations }}
+    {{> charcoal/admin/widget/relation/object }}
+    {{/ relations }}
+    {{^ hasRelations }}
+    {{> charcoal/admin/widget/relation/empty }}
+    {{/ hasRelations }}
+    </div>
+</section>

@@ -6,6 +6,8 @@ Notably, `Section` (or _page_), `News`, `Event` and `Faq` as well as to ather us
 
 This module is heavily dependant on [`charcoal-object`](https://github.com/locomotivemtl/charcoal-object) (and therefore `charcoal-core`) which provides the base `Content` and `UserData` classes the CMS objects are dependant on.
 
+Adds support for working with [relationships](#relationships) between models using an intermediate object.
+
 # How to install
 
 The preferred (and only supported) way of installing _charcoal-cms_ is with **composer**:
@@ -164,6 +166,102 @@ The `\Charcoal\Cms\Section\*` objects are `final`. To extend, use the `\Charcoal
 
 ## News object
 
+# Relationships
+
+-   [Concept](#concept)
+-   [Models](#models)
+-   [Widgets](#widgets)
+-   [Configuration](#configuration)
+-   [Usage](#usage)
+
+## Concept
+
+A **source** model has one or many relationships with a **target** model. These relationships are stored in an intermediate **pivot** model.
+
+## Models
+
+The `Pivot` Model extends `AbstractModel` and implements some new properties:
+
+    - `source_object_id`
+    - `source_object_type`
+    - `target_object_id`
+    - `target_object_type`
+
+## Widgets
+
+The module provides its own Admin widgets namespaced as `Charcoal\Admin\Widget\Relation`.
+
+## Configuration
+
+Add the View paths in `config/config.json`.
+```json
+"view": {
+    "paths": [
+        "...",
+        "vendor/locomotivemtl/charcoal-cms/templates/"
+    ]
+}
+```
+
+## Usage
+
+Your models need to know that they may have relationships to other models. To do that, use and implement the `PivotAware` concept:
+```php
+use Charcoal\Relation\Interfaces\PivotAwareInterface;
+use Charcoal\Relation\Traits\PivotAwareTrait;
+```
+
+In your **source** model metadata, add the widget configuration in the default form group (see example below).
+```json
+"forms": {
+    "default": {
+        "groups": {
+            "target_object_pivot_group": {
+                "priority": 10,
+                "show_header": false,
+                "title": "Target Objects",
+                "type": "charcoal/admin/widget/relation/form-group/pivot",
+                "template": "charcoal/admin/widget/relation/form-group/pivot",
+                "target_object_type": "my/namespace/target-object-type"
+            }
+        }
+    }
+}
+```
+
+To create a new `Pivot` model, your **target** model needs to provide a quick form.
+```json
+"forms": {
+    "project_name.quick": {
+        "group_display_mode": "tab",
+        "groups": {
+            "body": {
+                "title": "Target Object Information",
+                "show_header": false,
+                "properties": [
+                    "title"
+                ],
+                "layout": {
+                    "structure": [
+                        { "columns": [ 1 ] }
+                    ]
+                }
+            }
+        }
+    }
+},
+"default_quick_form": "project_name.quick",
+```
+
+Hooks allow the **source** model to remove unnecessary relationships when deleted.
+```php
+public function preDelete()
+{
+    // PivotAwareTrait
+    $this->removePivots();
+    return parent::preDelete();
+}
+```
 
 # Development
 

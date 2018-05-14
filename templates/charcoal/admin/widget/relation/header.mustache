@@ -1,0 +1,18 @@
+<div class="btn-toolbar" role="toolbar">
+    <div class="btn-group js-relation-manager" role="group">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+            <span class="btn-label">{{# _t }}Add{{/ _t }}</span>
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu js-relation-manager">
+            {{# objectTypes }}
+            <li>
+                <a href="{{ baseUrl }}admin/object/edit?obj_type={{ val }}{{# id }}&obj_id={{ . }}{{/ id }}" data-type="{{ val }}" data-title="{{ label }}" class="js-add-relation" target="_blank">
+                    <span class="glyphicon"></span>
+                    <span class="glyphicon-class">{{ label }}</span>
+                </a>
+            </li>
+            {{/ objectTypes }}
+        </ul>
+    </div>
+</div>

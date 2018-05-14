@@ -1,0 +1,23 @@
+{{!--
+
+    Relation Widget \ Single Object
+    ===============================
+
+    @used-by `charcoal/admin/widget/relation/list`
+
+--}}
+<article
+    class="panel {{# active }}panel-default{{/ active}}{{^ active }}panel-danger{{/ active}} js-relation"
+    id="{{ widgetId }}_{{ id }}"
+    data-id="{{ id }}"
+    data-type="{{ objType }}">
+    <header draggable="true" id="{{ widgetId }}_heading_{{ id }}" class="panel-heading">
+        <h4 class="panel-title">
+            <span class="panel-title-icon glyphicon glyphicon-{{ pivotGlyphicon }}"></span>
+            <a href="object/edit?main_menu={{ main_menu }}&obj_type={{ objType }}&obj_id={{ id }}">{{& pivotHeading }}{{^ active }}&mdash; <span class="small">{{# _t }}Disabled{{/ _t }}</span>{{/ active }}</a>
+        </h4>
+    </header>
+    <aside class="panel-actions panel-actions-float btn-toolbar js-relation-actions" role="toolbar">
+        {{> charcoal/admin/widget/relation/actions }}
+    </aside>
+</article>

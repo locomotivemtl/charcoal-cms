@@ -1,0 +1,195 @@
+{
+    "properties": {
+        "id": {
+            "type": "id",
+            "mode": "uniqid",
+            "label": "ID"
+        },
+        "active": {
+            "type": "boolean",
+            "label": {
+                "en": "Active",
+                "fr": "Actif"
+            }
+        },
+        "position": {
+            "type": "number",
+            "label": "Position"
+        },
+        "group": {
+            "type": "string",
+            "hidden": true,
+            "required": true,
+            "allow_null": false,
+            "label": {
+                "en": "Group",
+                "fr": "Groupe"
+            }
+        },
+        "source_object_type": {
+            "type": "string",
+            "hidden": true,
+            "required": true,
+            "allow_null": false,
+            "label": {
+                "en": "Source Object Type",
+                "fr": "Type de l'objet source"
+            }
+        },
+        "source_object_id": {
+            "type": "string",
+            "hidden": true,
+            "required": true,
+            "allow_null": false,
+            "label": {
+                "en": "Source Object",
+                "fr": "Objet source"
+            }
+        },
+        "target_object_type": {
+            "type": "string",
+            "hidden": true,
+            "required": true,
+            "allow_null": false,
+            "label": {
+                "en": "Target Object Type",
+                "fr": "Type de l'object ciblé"
+            }
+        },
+        "target_object_id": {
+            "type": "string",
+            "input_type": "charcoal/admin/property/input/selectize/relation",
+            "required": true,
+            "allow_null": false,
+            "label": {
+                "en": "Target Object",
+                "fr": "Object ciblé"
+            },
+
+            "multiple": false,
+
+            "selectize_options": {
+                "create": false,
+                "plugins": {
+                    "btn_remove": {}
+                },
+                "maxItems": 1
+            },
+            "form_ident": {
+                "create": "quick.create",
+                "update": "quick.update"
+            }
+        }
+    },
+
+    "sources": {
+        "default": {
+            "type": "database",
+            "table": "charcoal_pivots"
+        }
+    },
+    "default_source": "default",
+
+    "admin": {
+        "lists": {
+            "default": {}
+        },
+        "default_list": "default",
+
+        "forms": {
+            "relation.create": {
+                "groups": {
+                    "basic": {}
+                },
+                "sidebars": {
+                    "default": {}
+                }
+            },
+            "relation.edit": {
+                "groups": {
+                    "basic": {}
+                },
+                "sidebars": {
+                    "default": {}
+                }
+            }
+        },
+        "default_form": "relation.edit",
+        "default_quick_form": "relation.edit",
+
+        "form_groups": {
+            "basic": {
+                "group_display_mode": false,
+                "priority": 10,
+                "show_title": false,
+                "show_header": false,
+                "title": "Relation",
+                "properties": [
+                    "source_object_type",
+                    "source_object_id",
+                    "target_object_type",
+                    "target_object_id",
+                    "group"
+                ],
+                "layout": {
+                    "structure": [
+                        { "columns": [ 1 ] },
+                        { "columns": [ 1, 1 ] },
+                        { "columns": [ 1, 1 ] }
+                    ]
+                }
+            }
+        },
+
+        "dashboards": {
+            "admin.create": {
+                "widgets": {
+                    "form": {
+                        "type": "charcoal/admin/widget/objectForm",
+                        "group_display_mode": "tab",
+                        "form_ident": "relation.create",
+                        "permissions": [ "object/create" ]
+                    }
+                },
+                "layout": {
+                    "structure": [
+                        { "columns": [ 1 ] }
+                    ]
+                }
+            },
+            "admin.edit": {
+                "widgets": {
+                    "form": {
+                        "type": "charcoal/admin/widget/objectForm",
+                        "group_display_mode": "tab",
+                        "form_ident": "{{ formIdent }}",
+                        "permissions": [ "object/edit" ]
+                    }
+                },
+                "layout": {
+                    "structure": [
+                        { "columns": [ 1 ] }
+                    ]
+                }
+            },
+            "admin.table": {
+                "widgets": {
+                    "list": {
+                        "type": "charcoal/support/admin/widget/table",
+                        "collection_ident": "default",
+                        "data_sources": [ "request" ],
+                        "sortable": true
+                    }
+                },
+                "layout": {
+                    "structure": [
+                        { "columns": [ 1 ] }
+                    ]
+                }
+            }
+        },
+        "default_create_dashboard": "admin.create",
+        "default_edit_dashboard": "admin.edit",
+        "default_collection_dashboard": "admin.table"
+    }
+}
