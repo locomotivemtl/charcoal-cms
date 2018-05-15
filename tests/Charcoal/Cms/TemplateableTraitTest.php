@@ -4,8 +4,8 @@ namespace Charcoal\Tests\Property;
 
 use RuntimeException;
 
-// From 'charcoal-core'
-use Charcoal\Model\Model;
+// From 'charcoal-property'
+use Charcoal\Property\Structure\StructureModel;
 
 // From 'charcoal-cms'
 use Charcoal\Cms\TemplateableTrait;
@@ -245,7 +245,7 @@ class TemplateableTraitTest extends AbstractTestCase
 
         $struct = $obj->templateOptionsStructure();
 
-        $this->assertInstanceOf(Model::class, $struct);
+        $this->assertInstanceOf(StructureModel::class, $struct);
         $this->assertEquals($templateData, $struct->data());
         $this->assertEquals($templateMetadata, $struct->metadata()->data());
     }
