@@ -399,7 +399,6 @@ abstract class AbstractNews extends Content implements
     {
         $this->verifyDates();
         $this->setSlug($this->generateSlug());
-        $this->generateDefaultMetaTags();
 
         return parent::preSave();
     }
@@ -414,7 +413,6 @@ abstract class AbstractNews extends Content implements
     {
         $this->verifyDates();
         $this->setSlug($this->generateSlug());
-        $this->generateDefaultMetaTags();
 
         return parent::preUpdate($properties);
     }

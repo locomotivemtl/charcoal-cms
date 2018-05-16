@@ -394,7 +394,6 @@ abstract class AbstractEvent extends Content implements
     {
         $this->verifyDates();
         $this->setSlug($this->generateSlug());
-        $this->generateDefaultMetaTags();
 
         return parent::preSave();
     }
@@ -409,7 +408,6 @@ abstract class AbstractEvent extends Content implements
     {
         $this->verifyDates();
         $this->setSlug($this->generateSlug());
-        $this->generateDefaultMetaTags();
 
         return parent::preUpdate($properties);
     }
