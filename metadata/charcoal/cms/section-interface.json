@@ -121,16 +121,12 @@
             "type": "string",
             "l10n": true,
             "label": {
-                "fr": "Hyperlien",
-                "en": "Hyperlink"
-            },
-            "description": {
-                "en": "If the page is an \"External Destination\", visistors will be redirected to the URL defined below when accessing this page's route.",
-                "fr": "Si la page est une \"Destination externe\", les visiteurs seront redirigés vers l'URL défini ci-dessous lors de l'accès de l'URL de cette page."
+                "fr": "Lien externe",
+                "en": "External URL"
             },
             "notes": {
-                "en": "Will replace the section url for this external url",
-                "fr": "Remplaçera le liens de la section pour ce liens externe"
+                "en": "If the page is an \"External Destination\", visitors will be redirected to the URL defined below when accessing this page's route.",
+                "fr": "Si la page est une \"Destination externe\", les visiteurs seront redirigés vers l'URL défini ci-dessous lors de l'accès de l'URL de cette page."
             }
         },
         "in_menu": {
