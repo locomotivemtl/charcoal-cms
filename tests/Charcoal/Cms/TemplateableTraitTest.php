@@ -209,19 +209,16 @@ class TemplateableTraitTest extends \PHPUnit_Framework_TestCase
 
     public function testTemplateOptionsStructure()
     {
-        $templateData     = [ 'foo' => 'Huxley' ];
-        $templateMetadata = json_decode(
-            file_get_contents(
-                realpath(__DIR__.'/../../Fixtures/metadata/templateable/foo.json')
-            ),
-            true
-        );
+        $templateData         = [ 'foo' => 'Huxley' ];
+        $templateMetadataFile = realpath('tests/Charcoal/Cms/Fixture/metadata/templateable/foo-template.json');
+        $templateMetadata     = json_decode(file_get_contents($templateMetadataFile), true);
 
         $obj = $this->obj;
         $obj->setTemplateIdent('foo');
         $obj->setTemplateOptions($templateData);
 
         $struct = $obj->templateOptionsStructure();
+
         $this->assertInstanceOf(Model::class, $struct);
         $this->assertEquals($templateData, $struct->data());
         $this->assertEquals($templateMetadata, $struct->metadata()->data());

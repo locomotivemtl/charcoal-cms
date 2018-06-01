@@ -106,7 +106,7 @@ trait TemplateableTrait
         if ($property instanceof SelectablePropertyInterface) {
             if ($property->hasChoice($templateIdent)) {
                 $choice = $property->choice($templateIdent);
-                $keys   = ['controller', 'template', 'class'];
+                $keys   = [ 'controller', 'template', 'class' ];
                 foreach ($keys as $key) {
                     if (isset($choice[$key])) {
                         return $choice[$key];
@@ -289,7 +289,7 @@ trait TemplateableTrait
             if ($property instanceof SelectablePropertyInterface) {
                 if ($property->hasChoice($val)) {
                     $choice = $property->choice($val);
-                    $keys   = ['controller', 'template', 'class'];
+                    $keys   = [ 'controller', 'template', 'class' ];
                     foreach ($keys as $key) {
                         if (isset($choice[$key])) {
                             $interface = $choice[$key];
@@ -329,6 +329,7 @@ trait TemplateableTrait
         }
 
         $templateInterfaces = $this->extractTemplateInterfacesFrom(...$templateIdentProperties);
+
         if (empty($templateInterfaces)) {
             return false;
         }
