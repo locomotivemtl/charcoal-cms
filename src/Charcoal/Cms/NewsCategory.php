@@ -2,6 +2,9 @@
 
 namespace Charcoal\Cms;
 
+// From 'charcoal-core'
+use Charcoal\Validator\ValidatorInterface;
+
 // From 'charcoal-object'
 use Charcoal\Object\Content;
 use Charcoal\Object\CategoryInterface;
@@ -9,9 +12,6 @@ use Charcoal\Object\CategoryTrait;
 
 // From 'charcoal-cms'
 use Charcoal\Cms\News;
-
-// From `charcoal-validator`
-use Charcoal\Validator\ValidatorInterface;
 
 /**
  * News Category

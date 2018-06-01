@@ -10,6 +10,9 @@ use InvalidArgumentException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
+// From Pimple
+use Pimple\Container;
+
 // From 'charcoal-object'
 use Charcoal\Object\Content;
 use Charcoal\Object\CategorizableInterface;
@@ -28,12 +31,7 @@ use Charcoal\Cms\NewsInterface;
 use Charcoal\Cms\SearchableInterface;
 use Charcoal\Cms\SearchableTrait;
 use Charcoal\Cms\TemplateableInterface;
-
-// Local dependencies
 use Charcoal\Cms\Support\Helpers\DateHelper;
-
-// Pimple dependencies
-use Pimple\Container;
 
 /**
  * News

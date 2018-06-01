@@ -15,9 +15,11 @@ use Charcoal\Translator\TranslatorAwareTrait;
 // From 'charcoal-app'
 use Charcoal\App\Route\TemplateRoute;
 
+// From 'charcoal-object'
+use Charcoal\Object\RoutableInterface;
+
 // From 'charcoal-cms'
 use Charcoal\Cms\EventInterface;
-use Charcoal\Object\RoutableInterface;
 
 /**
  * Event Route Handler

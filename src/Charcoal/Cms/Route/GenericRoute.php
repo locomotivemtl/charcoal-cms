@@ -12,26 +12,26 @@ use Pimple\Container;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-// From 'charcoal-app'
-use Charcoal\App\Route\TemplateRoute;
-
-// From 'charcoal-cms'
-use Charcoal\Cms\TemplateableInterface;
-
 // From 'charcoal-factory'
 use Charcoal\Factory\FactoryInterface;
+
+// From 'charcoal-translator'
+use Charcoal\Translator\TranslatorAwareTrait;
 
 // From 'charcoal-core'
 use Charcoal\Model\ModelInterface;
 use Charcoal\Loader\CollectionLoader;
 
-// From 'charcoal-translator'
-use Charcoal\Translator\TranslatorAwareTrait;
+// From 'charcoal-app'
+use Charcoal\App\Route\TemplateRoute;
 
 // From 'charcoal-object'
 use Charcoal\Object\ObjectRoute;
 use Charcoal\Object\ObjectRouteInterface;
 use Charcoal\Object\RoutableInterface;
+
+// From 'charcoal-cms'
+use Charcoal\Cms\TemplateableInterface;
 
 /**
  * Generic Object Route Handler

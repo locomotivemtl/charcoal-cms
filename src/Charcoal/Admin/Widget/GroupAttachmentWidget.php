@@ -2,29 +2,28 @@
 
 namespace Charcoal\Admin\Widget;
 
-// dependencies from `PHP`
-use Charcoal\Model\MetadataInterface;
 use InvalidArgumentException;
 use RuntimeException;
 
-// local dependencies
-use Charcoal\Cms\TemplateableInterface;
+// From Pimple
+use Pimple\Container;
 
-// dependencies from `charcoal-model`
+// From 'charcoal-core'
+use Charcoal\Model\MetadataInterface;
 use Charcoal\Model\Service\MetadataLoader;
 
-// dependencies from `charcoal-property`
+// From 'charcoal-property'
 use Charcoal\Property\Structure\StructureMetadata;
 
-// dependencies from `charcoal-ui`
+// From 'charcoal-ui'
 use Charcoal\Ui\Form\FormInterface;
 use Charcoal\Ui\Form\FormTrait;
 use Charcoal\Ui\Layout\LayoutAwareInterface;
 use Charcoal\Ui\Layout\LayoutAwareTrait;
 use Charcoal\Ui\PrioritizableInterface;
 
-// dependencies from `pimple`
-use Pimple\Container;
+// From 'charcoal-cms'
+use Charcoal\Cms\TemplateableInterface;
 
 /**
  * Class TemplateAttachmentWidget
@@ -158,13 +157,18 @@ class GroupAttachmentWidget extends AttachmentWidget implements
     }
 
     /**
-     * @inheritDoc
+     * Sets data on this widget.
+     *
+     * @param  array $data Key-value array of data to append.
+     * @return self
      */
     public function setData(array $data)
     {
         parent::setData($data);
 
         $this->addAttachmentGroupFromMetadata();
+
+        return $this;
     }
 
     /**

@@ -14,7 +14,7 @@ use Charcoal\Factory\FactoryInterface;
 // From 'charcoal-property'
 use Charcoal\Property\PropertyInterface;
 
-// Local dependency
+// From 'charcoal-cms'
 use Charcoal\Cms\AbstractSection;
 
 /**

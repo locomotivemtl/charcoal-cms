@@ -2,17 +2,14 @@
 
 namespace Charcoal\Admin\Widget\FormGroup;
 
-// From 'charcoal-cms'
-use Charcoal\Admin\Widget\GroupAttachmentWidget;
-
 // From 'charcoal-ui'
-use Charcoal\App\Template\WidgetInterface;
 use Charcoal\Ui\FormGroup\FormGroupInterface;
 use Charcoal\Ui\FormGroup\FormGroupTrait;
-use Charcoal\Ui\Layout\LayoutAwareInterface;
-use Charcoal\Ui\Layout\LayoutAwareTrait;
 use Charcoal\Ui\UiItemInterface;
 use Charcoal\Ui\UiItemTrait;
+
+// From 'charcoal-cms'
+use Charcoal\Admin\Widget\GroupAttachmentWidget;
 
 /**
  * Class TemplateAttachmentFormGroup
@@ -25,7 +22,7 @@ class GroupAttachmentFormGroup extends GroupAttachmentWidget implements
     use UiItemTrait;
 
     /**
-     * @inheritDoc
+     * @return boolean
      */
     public function active()
     {

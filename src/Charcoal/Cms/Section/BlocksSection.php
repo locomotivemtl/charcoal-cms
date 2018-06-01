@@ -7,7 +7,7 @@ use RuntimeException;
 // From Pimple
 use Pimple\Container;
 
-// From `charcoal-core`
+// From 'charcoal-core'
 use Charcoal\Loader\CollectionLoader;
 
 // From 'charcoal-cms'

@@ -1,18 +1,14 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ruleset name="Charcoal">
-<!-- PHP CodeSniffer ruleset -->
-
     <description>Charcoal Coding Standard</description>
+
     <arg name="encoding" value="utf-8" />
-    <arg name="tab-width" value="4" />
 
-<!-- Include the whole PSR-1 standard -->
+    <config name="show_progress" value="1" />
+    <config name="ignore_warnings_on_exit" value="1" />
+    <config name="php_version" value="50630" />
 
-    <rule ref="PSR1"/>
-
-<!-- Include the whole PSR-2 standard -->
-
-    <rule ref="PSR2"/>
+    <rule ref="PSR2" />
 
 <!-- Array Sniffs -->
 

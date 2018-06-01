@@ -2,7 +2,7 @@
 
 namespace Charcoal\Cms\Mixin\Traits;
 
-// dependencies from `charcoal-translation`
+// From 'charcoal-translator'
 use Charcoal\Translator\Translation;
 
 /**

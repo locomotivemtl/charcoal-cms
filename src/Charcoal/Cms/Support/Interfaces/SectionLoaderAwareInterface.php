@@ -2,6 +2,7 @@
 
 namespace Charcoal\Cms\Support\Interfaces;
 
+// From 'charcoal-cms'
 use Charcoal\Cms\SectionInterface;
 
 interface SectionLoaderAwareInterface

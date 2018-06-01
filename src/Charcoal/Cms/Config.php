@@ -2,13 +2,13 @@
 
 namespace Charcoal\Cms;
 
-// dependencies from `charcoal-object`
+// From 'charcoal-object'
 use Charcoal\Object\Content;
 
-// dependencies from `charcoal-property`
+// From 'charcoal-property'
 use Charcoal\Property\Structure\StructureMetadata;
 
-// local dependencies
+// From 'charcoal-cms'
 use Charcoal\Cms\ConfigInterface;
 
 /**

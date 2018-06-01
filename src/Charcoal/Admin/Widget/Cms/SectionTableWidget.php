@@ -4,7 +4,7 @@ namespace Charcoal\Admin\Widget\Cms;
 
 use Pimple\Container;
 
-// From 'charcoal-support'
+// From 'charcoal-admin'
 use Charcoal\Admin\Widget\TableWidget;
 
 /**

@@ -7,11 +7,12 @@ use Charcoal\Object\ObjectRoute;
 
 // From 'charcoal-cms'
 use Charcoal\Cms\Section;
+use Charcoal\Tests\AbstractTestCase;
 
 /**
  *
  */
-class SectionTest extends \PHPUnit_Framework_TestCase
+class SectionTest extends AbstractTestCase
 {
     use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
@@ -24,6 +25,8 @@ class SectionTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Set up the test.
+     *
+     * @return void
      */
     public function setUp()
     {
@@ -43,6 +46,9 @@ class SectionTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
+    /**
+     * @return void
+     */
     public function testSetData()
     {
         $obj = $this->obj;
@@ -68,16 +74,22 @@ class SectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals([ 'x' => 'y' ], $obj->templateOptions());
     }
 
+    /**
+     * @return void
+     */
     public function testSetSectionType()
     {
         $ret = $this->obj->setSectionType(Section::TYPE_EMPTY);
         $this->assertSame($ret, $this->obj);
         $this->assertEquals(Section::TYPE_EMPTY, $this->obj->sectionType());
 
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->expectException('\InvalidArgumentException');
         $this->obj->setSectionType(false);
     }
 
+    /**
+     * @return void
+     */
     public function testSetTitle()
     {
         $this->assertEquals('', (string)$this->obj->title());
@@ -92,6 +104,9 @@ class SectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Hello', (string)$this->obj['title']);
     }
 
+    /**
+     * @return void
+     */
     public function testSetSubtitle()
     {
         $this->assertEquals('', (string)$this->obj->subtitle());
@@ -106,6 +121,9 @@ class SectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('foo', (string)$this->obj['subtitle']);
     }
 
+    /**
+     * @return void
+     */
     public function testSetContent()
     {
         $this->assertEquals('', (string)$this->obj->content());
@@ -120,6 +138,9 @@ class SectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('foo', (string)$this->obj['content']);
     }
 
+    /**
+     * @return void
+     */
     public function testSetImage()
     {
         $this->assertEquals('', (string)$this->obj->image());
@@ -134,6 +155,9 @@ class SectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('foo.webp', $this->obj['image']);
     }
 
+    /**
+     * @return void
+     */
     public function testMetaTitleDefaultsToTitle()
     {
         $this->assertEquals('', (string)$this->obj->metaTitle());
@@ -146,6 +170,9 @@ class SectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Barfoo', (string)$this->obj->metaTitle());
     }
 
+    /**
+     * @return void
+     */
     public function testMetaDescriptionDefaultsToDescription()
     {
         $this->assertEquals('', (string)$this->obj->metaDescription());
@@ -158,6 +185,9 @@ class SectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Barfoo', (string)$this->obj->metaDescription());
     }
 
+    /**
+     * @return void
+     */
     public function testMetaImageDefaultsToImage()
     {
         $this->assertEquals('', (string)$this->obj->metaImage());
@@ -170,6 +200,9 @@ class SectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Bar.jpg', (string)$this->obj->metaImage());
     }
 
+    /**
+     * @return void
+     */
     public function testSaveGeneratesSlug()
     {
         $this->assertEquals('', $this->obj->slug());
@@ -181,6 +214,9 @@ class SectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('en/foo', (string)$this->obj->slug());
     }
 
+    /**
+     * @return void
+     */
     public function testUpdateGeneratesSlug()
     {
         $this->assertEquals('', $this->obj->slug());
@@ -192,6 +228,9 @@ class SectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('en/foo', (string)$this->obj->slug());
     }
 
+    /**
+     * @return void
+     */
     public function testLoadChildren()
     {
         $this->obj->source()->createTable();

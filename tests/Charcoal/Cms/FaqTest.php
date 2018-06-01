@@ -5,11 +5,12 @@ namespace Charcoal\Cms\Tests;
 // From 'charcoal-cms'
 use Charcoal\Cms\Faq;
 use Charcoal\Cms\FaqCategory;
+use Charcoal\Tests\AbstractTestCase;
 
 /**
  *
  */
-class FaqTest extends \PHPUnit_Framework_TestCase
+class FaqTest extends AbstractTestCase
 {
     use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
@@ -22,6 +23,8 @@ class FaqTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Set up the test.
+     *
+     * @return void
      */
     public function setUp()
     {
@@ -33,6 +36,9 @@ class FaqTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
+    /**
+     * @return void
+     */
     public function testSetData()
     {
         $ret = $this->obj->setData([
@@ -44,6 +50,9 @@ class FaqTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Bar', (string)$this->obj->answer());
     }
 
+    /**
+     * @return void
+     */
     public function testSetQuestion()
     {
         $ret = $this->obj->setQuestion('Foo?');
@@ -51,6 +60,9 @@ class FaqTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Foo?', $this->obj->question());
     }
 
+    /**
+     * @return void
+     */
     public function testSetAnswer()
     {
         $ret = $this->obj->setAnswer('Bar');
@@ -58,6 +70,9 @@ class FaqTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Bar', $this->obj->answer());
     }
 
+    /**
+     * @return void
+     */
     public function testCategoryType()
     {
         $this->assertEquals(FaqCategory::class, $this->obj->categoryType());

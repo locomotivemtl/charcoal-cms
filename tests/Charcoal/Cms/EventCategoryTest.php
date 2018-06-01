@@ -5,11 +5,12 @@ namespace Charcoal\Cms\Tests;
 // From 'charcoal-cms'
 use Charcoal\Cms\EventCategory;
 use Charcoal\Cms\Event;
+use Charcoal\Tests\AbstractTestCase;
 
 /**
  *
  */
-class EventCategoryTest extends \PHPUnit_Framework_TestCase
+class EventCategoryTest extends AbstractTestCase
 {
     use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
@@ -22,6 +23,8 @@ class EventCategoryTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Set up the test.
+     *
+     * @return void
      */
     public function setUp()
     {
@@ -35,6 +38,9 @@ class EventCategoryTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
+    /**
+     * @return void
+     */
     public function testItemType()
     {
         $this->assertEquals(Event::class, $this->obj->itemType());

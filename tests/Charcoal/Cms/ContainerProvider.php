@@ -48,6 +48,10 @@ use Charcoal\Tests\Cms\Mock\GenericTemplate;
  */
 class ContainerProvider
 {
+    /**
+     * @param  Container $container A DI container.
+     * @return void
+     */
     public function registerBaseServices(Container $container)
     {
         $this->registerConfig($container);
@@ -58,9 +62,28 @@ class ContainerProvider
         $this->registerCache($container);
     }
 
+    /**
+     * @param  Container $container A DI container.
+     * @return void
+     */
+    public function registerModelDependencies(Container $container)
+    {
+        $this->registerBaseServices($container);
+        $this->registerTranslator($container);
+        $this->registerMetadataLoader($container);
+        $this->registerSourceFactory($container);
+        $this->registerPropertyFactory($container);
+        $this->registerModelFactory($container);
+        $this->registerModelCollectionLoader($container);
+    }
+
+    /**
+     * @param  Container $container A DI container.
+     * @return void
+     */
     public function registerConfig(Container $container)
     {
-        $container['config'] = function (Container $container) {
+        $container['config'] = function () {
             return new AppConfig([
                 'base_path' => realpath(__DIR__.'/../../..'),
                 'view'      => [
@@ -71,6 +94,10 @@ class ContainerProvider
         };
     }
 
+    /**
+     * @param  Container $container A DI container.
+     * @return void
+     */
     public function registerTemplateDependencies(Container $container)
     {
         $container->extend('config', function (AppConfig $config) {
@@ -112,16 +139,24 @@ class ContainerProvider
         });
     }
 
+    /**
+     * @param  Container $container A DI container.
+     * @return void
+     */
     public function registerCmsConfig(Container $container)
     {
-        $container['cms/config'] = function (Container $container) {
+        $container['cms/config'] = function () {
             return new CmsConfig();
         };
     }
 
+    /**
+     * @param  Container $container A DI container.
+     * @return void
+     */
     public function registerDateHelper(Container $container)
     {
-        $container['date/helper'] = function (Container $container) {
+        $container['date/helper'] = function () {
             return new DateHelper([
                 'date_formats' => '',
                 'time_formats' => ''
@@ -129,9 +164,13 @@ class ContainerProvider
         };
     }
 
+    /**
+     * @param  Container $container A DI container.
+     * @return void
+     */
     public function registerPdo(Container $container)
     {
-        $container['database'] = function (Container $container) {
+        $container['database'] = function () {
             $pdo = new PDO('sqlite::memory:');
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -139,20 +178,32 @@ class ContainerProvider
         };
     }
 
+    /**
+     * @param  Container $container A DI container.
+     * @return void
+     */
     public function registerLogger(Container $container)
     {
-        $container['logger'] = function (Container $container) {
+        $container['logger'] = function () {
             return new NullLogger();
         };
     }
 
+    /**
+     * @param  Container $container A DI container.
+     * @return void
+     */
     public function registerCache(Container $container)
     {
-        $container['cache'] = function ($container) {
-            return new Pool(new Ephemeral());
+        $container['cache'] = function () {
+            return new Pool();
         };
     }
 
+    /**
+     * @param  Container $container A DI container.
+     * @return void
+     */
     public function registerView(Container $container)
     {
         $container['view/loader'] = function (Container $container) {
@@ -181,9 +232,13 @@ class ContainerProvider
         };
     }
 
+    /**
+     * @param  Container $container A DI container.
+     * @return void
+     */
     public function registerTranslator(Container $container)
     {
-        $container['locales/manager'] = function (Container $container) {
+        $container['locales/manager'] = function () {
             $manager = new LocalesManager([
                 'locales' => [
                     'en' => [ 'locale' => 'en-US' ]
@@ -210,7 +265,7 @@ class ContainerProvider
      */
     public function registerMultilingualTranslator(Container $container)
     {
-        $container['locales/manager'] = function (Container $container) {
+        $container['locales/manager'] = function () {
             $manager = new LocalesManager([
                 'locales' => [
                     'en'  => [
@@ -260,6 +315,10 @@ class ContainerProvider
         };
     }
 
+    /**
+     * @param  Container $container A DI container.
+     * @return void
+     */
     public function registerMetadataLoader(Container $container)
     {
         $container['metadata/loader'] = function (Container $container) {
@@ -268,7 +327,7 @@ class ContainerProvider
                 'base_path' => $container['config']['base_path'],
                 'paths'     => [
                     'metadata',
-                    'tests/Fixtures/metadata',
+                    'tests/Charcoal/Cms/Fixture/metadata',
                     'vendor/locomotivemtl/charcoal-object/metadata'
                 ],
                 'cache'     => $container['cache']
@@ -276,9 +335,13 @@ class ContainerProvider
         };
     }
 
+    /**
+     * @param  Container $container A DI container.
+     * @return void
+     */
     public function registerSourceFactory(Container $container)
     {
-        $container['source/factory'] = function ($container) {
+        $container['source/factory'] = function (Container $container) {
             return new Factory([
                 'map' => [
                     'database' => DatabaseSource::class
@@ -292,9 +355,13 @@ class ContainerProvider
         };
     }
 
+    /**
+     * @param  Container $container A DI container.
+     * @return void
+     */
     public function registerModelFactory(Container $container)
     {
-        $container['model/factory'] = function ($container) {
+        $container['model/factory'] = function (Container $container) {
             return new Factory([
                 'arguments' => [ [
                     'container'        => $container,
@@ -307,6 +374,10 @@ class ContainerProvider
         };
     }
 
+    /**
+     * @param  Container $container A DI container.
+     * @return void
+     */
     public function registerPropertyFactory(Container $container)
     {
         $container['property/factory'] = function (Container $container) {
@@ -325,6 +396,10 @@ class ContainerProvider
         };
     }
 
+    /**
+     * @param  Container $container A DI container.
+     * @return void
+     */
     public function registerModelCollectionLoader(Container $container)
     {
         $container['model/collection/loader'] = function (Container $container) {
@@ -336,9 +411,13 @@ class ContainerProvider
         };
     }
 
+    /**
+     * @param  Container $container A DI container.
+     * @return void
+     */
     public function registerTemplateFactory(Container $container)
     {
-        $container['template/factory'] = function ($container) {
+        $container['template/factory'] = function (Container $container) {
             return new Factory([
                 'resolver_options' => [
                     'suffix' => 'Template'
@@ -349,16 +428,5 @@ class ContainerProvider
                 ] ]
             ]);
         };
-    }
-
-    public function registerModelDependencies(Container $container)
-    {
-        $this->registerBaseServices($container);
-        $this->registerTranslator($container);
-        $this->registerMetadataLoader($container);
-        $this->registerSourceFactory($container);
-        $this->registerPropertyFactory($container);
-        $this->registerModelFactory($container);
-        $this->registerModelCollectionLoader($container);
     }
 }
