@@ -499,8 +499,6 @@ abstract class AbstractSection extends Content implements
             $this->setSlug($this->generateSlug());
         }
 
-        $this->generateDefaultMetaTags();
-
         return parent::preSave();
     }
 
@@ -515,8 +513,6 @@ abstract class AbstractSection extends Content implements
         if (!$this->locked()) {
             $this->setSlug($this->generateSlug());
         }
-
-        $this->generateDefaultMetaTags();
 
         return parent::preUpdate($properties);
     }

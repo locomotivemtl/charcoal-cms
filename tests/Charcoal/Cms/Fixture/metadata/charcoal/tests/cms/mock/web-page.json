@@ -1,0 +1,8 @@
+{
+    "sources": {
+        "default": {
+            "table": "charcoal_tests"
+        }
+    },
+    "default_source": "default"
+}

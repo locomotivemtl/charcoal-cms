@@ -210,40 +210,4 @@ class NewsTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('en/news/foo', (string)$this->obj->slug());
     }
-
-    public function testSaveGeneratesMetaTags()
-    {
-        $this->assertEquals('', (string)$this->obj->metaTitle());
-        $this->assertEquals('', (string)$this->obj->metaDescription());
-        $this->assertEquals('', (string)$this->obj->metaImage());
-
-        $this->obj->setData([
-            'title'   => 'foo',
-            'content' => '<p>Foo bar</p>',
-            'image'   => 'x.jpg'
-        ]);
-        $this->obj->save();
-
-        $this->assertEquals('foo', (string)$this->obj->metaTitle());
-        $this->assertEquals('Foo bar', (string)$this->obj->metaDescription());
-        $this->assertEquals('x.jpg', (string)$this->obj->metaImage());
-    }
-
-    public function testUpdateGeneratesMetaTags()
-    {
-        $this->assertEquals('', (string)$this->obj->metaTitle());
-        $this->assertEquals('', (string)$this->obj->metaDescription());
-        $this->assertEquals('', (string)$this->obj->metaImage());
-
-        $this->obj->setData([
-            'title'   => 'foo',
-            'content' => '<p>Foo bar</p>',
-            'image'   => 'x.jpg'
-        ]);
-        $this->obj->update();
-
-        $this->assertEquals('foo', (string)$this->obj->metaTitle());
-        $this->assertEquals('Foo bar', (string)$this->obj->metaDescription());
-        $this->assertEquals('x.jpg', (string)$this->obj->metaImage());
-    }
 }
