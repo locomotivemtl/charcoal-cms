@@ -259,7 +259,6 @@
     <!--<rule ref="Squiz.PHP.DisallowInlineIf" />-->
 
     <rule ref="Squiz.PHP.DisallowMultipleAssignments" />
-    <rule ref="Squiz.PHP.DisallowObEndFlush" />
     <rule ref="Squiz.PHP.DisallowSizeFunctionsInLoops" />
     <!-- @todo Doc me -->
     <rule ref="Squiz.PHP.DiscouragedFunctions">
@@ -273,7 +272,7 @@
     </rule>
     <rule ref="Squiz.PHP.Eval" />
     <!-- Disallow usage of functions that should be obsolete but kept for compatibility. -->
-    <rule ref="Squiz.PHP.ForbiddenFunctions" />
+    <rule ref="Generic.PHP.ForbiddenFunctions" />
     <rule ref="Squiz.PHP.GlobalKeyword" />
     <rule ref="Squiz.PHP.Heredoc" />
     <rule ref="Squiz.PHP.InnerFunctions" />
