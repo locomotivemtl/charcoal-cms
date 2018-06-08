@@ -2,20 +2,19 @@
 
 namespace Charcoal\Cms\Service\Manager;
 
-// dependencies from `charcoal-core`
+use Exception;
+
+// From 'charcoal-core'
 use Charcoal\Model\Collection;
 
-// dependencies from `charcoal-base`
+// From 'charcoal-object'
 use Charcoal\Object\CategoryInterface;
 use Charcoal\Object\CategoryTrait;
 
-// Local dependencies
+// From 'charcoal-cms'
 use Charcoal\Cms\Config\CmsConfig;
 use Charcoal\Cms\NewsInterface;
 use Charcoal\Cms\Service\Loader\NewsLoader;
-
-// Psr-7 dependencies
-use Exception;
 
 /**
  * News manager

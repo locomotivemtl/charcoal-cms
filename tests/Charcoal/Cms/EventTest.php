@@ -10,11 +10,12 @@ use Charcoal\Object\ObjectRoute;
 // From 'charcoal-cms'
 use Charcoal\Cms\Event;
 use Charcoal\Cms\EventCategory;
+use Charcoal\Tests\AbstractTestCase;
 
 /**
  *
  */
-class EventTest extends \PHPUnit_Framework_TestCase
+class EventTest extends AbstractTestCase
 {
     use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
@@ -27,6 +28,8 @@ class EventTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Set up the test.
+     *
+     * @return void
      */
     public function setUp()
     {
@@ -46,6 +49,9 @@ class EventTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
+    /**
+     * @return void
+     */
     public function testSetData()
     {
         $ret = $this->obj->setData([
@@ -63,6 +69,9 @@ class EventTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(new DateTime('2015-01-01 20:00:00'), $this->obj->startDate());
     }
 
+    /**
+     * @return void
+     */
     public function testSetTitle()
     {
         $this->assertEquals('', (string)$this->obj->title());
@@ -77,6 +86,9 @@ class EventTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Hello', (string)$this->obj['title']);
     }
 
+    /**
+     * @return void
+     */
     public function testSetSubtitle()
     {
         $this->assertEquals('', (string)$this->obj->subtitle());
@@ -91,6 +103,9 @@ class EventTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('foo', (string)$this->obj['subtitle']);
     }
 
+    /**
+     * @return void
+     */
     public function testSetSummary()
     {
         $this->assertEquals('', (string)$this->obj->summary());
@@ -105,6 +120,9 @@ class EventTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('foo', (string)$this->obj['summary']);
     }
 
+    /**
+     * @return void
+     */
     public function testSetContent()
     {
         $this->assertEquals('', (string)$this->obj->content());
@@ -119,6 +137,9 @@ class EventTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('foo', (string)$this->obj['content']);
     }
 
+    /**
+     * @return void
+     */
     public function testSetStartDate()
     {
         $this->assertEquals(null, $this->obj->startDate());
@@ -129,16 +150,22 @@ class EventTest extends \PHPUnit_Framework_TestCase
         $this->obj->setStartDate(null);
         $this->assertEquals(null, $this->obj->startDate());
 
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->expectException('\InvalidArgumentException');
         $this->obj->setStartDate([]);
     }
 
+    /**
+     * @return void
+     */
     public function testSetStartDateInvalidString()
     {
-        $this->setExpectedException('\Exception');
+        $this->expectException('\Exception');
         $this->obj->setStartDate('foo.bar');
     }
 
+    /**
+     * @return void
+     */
     public function testSetEndDate()
     {
         $this->assertEquals(null, $this->obj->endDate());
@@ -149,21 +176,30 @@ class EventTest extends \PHPUnit_Framework_TestCase
         $this->obj->setEndDate(null);
         $this->assertEquals(null, $this->obj->endDate());
 
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->expectException('\InvalidArgumentException');
         $this->obj->setEndDate([]);
     }
 
+    /**
+     * @return void
+     */
     public function testSetEndDateInvalidString()
     {
-        $this->setExpectedException('\Exception');
+        $this->expectException('\Exception');
         $this->obj->setEndDate('foo.bar');
     }
 
+    /**
+     * @return void
+     */
     public function testCategoryType()
     {
         $this->assertEquals(EventCategory::class, $this->obj->categoryType());
     }
 
+    /**
+     * @return void
+     */
     public function testMetaTitleDefaultsToTitle()
     {
         $this->assertEquals('', (string)$this->obj->metaTitle());
@@ -176,6 +212,9 @@ class EventTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Barfoo', (string)$this->obj->metaTitle());
     }
 
+    /**
+     * @return void
+     */
     public function testMetaDescriptionDefaultsToDescription()
     {
         $this->assertEquals('', (string)$this->obj->metaDescription());
@@ -188,6 +227,9 @@ class EventTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Barfoo', (string)$this->obj->metaDescription());
     }
 
+    /**
+     * @return void
+     */
     /*
     public function testMetaImageDefaultsToImage()
     {
@@ -202,6 +244,9 @@ class EventTest extends \PHPUnit_Framework_TestCase
     }
     */
 
+    /**
+     * @return void
+     */
     public function testSaveGeneratesSlug()
     {
         $this->assertEquals('', $this->obj->slug());
@@ -213,6 +258,9 @@ class EventTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('en/events/foo', (string)$this->obj->slug());
     }
 
+    /**
+     * @return void
+     */
     public function testUpdateGeneratesSlug()
     {
         $this->assertEquals('', $this->obj->slug());
@@ -222,41 +270,5 @@ class EventTest extends \PHPUnit_Framework_TestCase
         $this->obj->update();
 
         $this->assertEquals('en/events/foo', (string)$this->obj->slug());
-    }
-
-    public function testSaveGeneratesMetaTags()
-    {
-        $this->assertEquals('', (string)$this->obj->metaTitle());
-        $this->assertEquals('', (string)$this->obj->metaDescription());
-        $this->assertEquals('', (string)$this->obj->metaImage());
-
-        $this->obj->setData([
-            'title'   => 'foo',
-            'content' => '<p>Foo bar</p>',
-            'image'   => 'x.jpg'
-        ]);
-        $this->obj->save();
-
-        $this->assertEquals('foo', (string)$this->obj->metaTitle());
-        $this->assertEquals('Foo bar', (string)$this->obj->metaDescription());
-        $this->assertEquals('x.jpg', (string)$this->obj->metaImage());
-    }
-
-    public function testUpdateGeneratesMetaTags()
-    {
-        $this->assertEquals('', (string)$this->obj->metaTitle());
-        $this->assertEquals('', (string)$this->obj->metaDescription());
-        $this->assertEquals('', (string)$this->obj->metaImage());
-
-        $this->obj->setData([
-            'title'   => 'foo',
-            'content' => '<p>Foo bar</p>',
-            'image'   => 'x.jpg'
-        ]);
-        $this->obj->update();
-
-        $this->assertEquals('foo', (string)$this->obj->metaTitle());
-        $this->assertEquals('Foo bar', (string)$this->obj->metaDescription());
-        $this->assertEquals('x.jpg', (string)$this->obj->metaImage());
     }
 }

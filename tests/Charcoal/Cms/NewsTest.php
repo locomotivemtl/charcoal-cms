@@ -10,11 +10,12 @@ use Charcoal\Object\ObjectRoute;
 // From 'charcoal-cms'
 use Charcoal\Cms\News;
 use Charcoal\Cms\NewsCategory;
+use Charcoal\Tests\AbstractTestCase;
 
 /**
  *
  */
-class NewsTest extends \PHPUnit_Framework_TestCase
+class NewsTest extends AbstractTestCase
 {
     use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
@@ -27,6 +28,8 @@ class NewsTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Set up the test.
+     *
+     * @return void
      */
     public function setUp()
     {
@@ -46,6 +49,9 @@ class NewsTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
+    /**
+     * @return void
+     */
     public function testSetData()
     {
         $ret = $this->obj->setData([
@@ -62,6 +68,9 @@ class NewsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(new DateTime('2015-01-01 20:00:00'), $this->obj->newsDate());
     }
 
+    /**
+     * @return void
+     */
     public function testSetTitle()
     {
         $this->assertEquals('', (string)$this->obj->title());
@@ -76,6 +85,9 @@ class NewsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Hello', (string)$this->obj['title']);
     }
 
+    /**
+     * @return void
+     */
     public function testSetSubtitle()
     {
         $this->assertEquals('', (string)$this->obj->subtitle());
@@ -90,6 +102,9 @@ class NewsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('foo', (string)$this->obj['subtitle']);
     }
 
+    /**
+     * @return void
+     */
     public function testSetSummary()
     {
         $this->assertEquals('', (string)$this->obj->summary());
@@ -104,7 +119,9 @@ class NewsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('foo', (string)$this->obj['summary']);
     }
 
-
+    /**
+     * @return void
+     */
     public function testSetContent()
     {
         $this->assertEquals('', (string)$this->obj->content());
@@ -119,6 +136,9 @@ class NewsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('foo', (string)$this->obj['content']);
     }
 
+    /**
+     * @return void
+     */
     public function testSetNewsDate()
     {
         $this->assertEquals(null, $this->obj->newsDate());
@@ -129,16 +149,22 @@ class NewsTest extends \PHPUnit_Framework_TestCase
         $this->obj->setNewsDate(null);
         $this->assertEquals(null, $this->obj->newsDate());
 
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->expectException('\InvalidArgumentException');
         $this->obj->setNewsDate([]);
     }
 
+    /**
+     * @return void
+     */
     public function testSetNewsDateInvalidString()
     {
-        $this->setExpectedException('\Exception');
+        $this->expectException('\Exception');
         $this->obj->setNewsDate('foo.bar');
     }
 
+    /**
+     * @return void
+     */
     public function testMetaTitleDefaultsToTitle()
     {
         $this->assertEquals('', (string)$this->obj->metaTitle());
@@ -151,6 +177,9 @@ class NewsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Barfoo', (string)$this->obj->metaTitle());
     }
 
+    /**
+     * @return void
+     */
     public function testMetaDescriptionDefaultsToDescription()
     {
         $this->assertEquals('', (string)$this->obj->metaDescription());
@@ -163,6 +192,9 @@ class NewsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Barfoo', (string)$this->obj->metaDescription());
     }
 
+    /**
+     * @return void
+     */
     /*
     public function testMetaImageDefaultsToImage()
     {
@@ -177,11 +209,17 @@ class NewsTest extends \PHPUnit_Framework_TestCase
     }
     */
 
+    /**
+     * @return void
+     */
     public function testCategoryType()
     {
         $this->assertEquals(NewsCategory::class, $this->obj->categoryType());
     }
 
+    /**
+     * @return void
+     */
     /*
     public function testSave()
     {
@@ -189,6 +227,9 @@ class NewsTest extends \PHPUnit_Framework_TestCase
     }
     */
 
+    /**
+     * @return void
+     */
     public function testSaveGeneratesSlug()
     {
         $this->assertEquals('', $this->obj->slug());
@@ -200,6 +241,9 @@ class NewsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('en/news/foo', (string)$this->obj->slug());
     }
 
+    /**
+     * @return void
+     */
     public function testUpdateGeneratesSlug()
     {
         $this->assertEquals('', $this->obj->slug());
@@ -209,41 +253,5 @@ class NewsTest extends \PHPUnit_Framework_TestCase
         $this->obj->update();
 
         $this->assertEquals('en/news/foo', (string)$this->obj->slug());
-    }
-
-    public function testSaveGeneratesMetaTags()
-    {
-        $this->assertEquals('', (string)$this->obj->metaTitle());
-        $this->assertEquals('', (string)$this->obj->metaDescription());
-        $this->assertEquals('', (string)$this->obj->metaImage());
-
-        $this->obj->setData([
-            'title'   => 'foo',
-            'content' => '<p>Foo bar</p>',
-            'image'   => 'x.jpg'
-        ]);
-        $this->obj->save();
-
-        $this->assertEquals('foo', (string)$this->obj->metaTitle());
-        $this->assertEquals('Foo bar', (string)$this->obj->metaDescription());
-        $this->assertEquals('x.jpg', (string)$this->obj->metaImage());
-    }
-
-    public function testUpdateGeneratesMetaTags()
-    {
-        $this->assertEquals('', (string)$this->obj->metaTitle());
-        $this->assertEquals('', (string)$this->obj->metaDescription());
-        $this->assertEquals('', (string)$this->obj->metaImage());
-
-        $this->obj->setData([
-            'title'   => 'foo',
-            'content' => '<p>Foo bar</p>',
-            'image'   => 'x.jpg'
-        ]);
-        $this->obj->update();
-
-        $this->assertEquals('foo', (string)$this->obj->metaTitle());
-        $this->assertEquals('Foo bar', (string)$this->obj->metaDescription());
-        $this->assertEquals('x.jpg', (string)$this->obj->metaImage());
     }
 }

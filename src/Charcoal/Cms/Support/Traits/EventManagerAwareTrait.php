@@ -2,11 +2,19 @@
 
 namespace Charcoal\Cms\Support\Traits;
 
-use Charcoal\Cms\EventInterface;
-use Charcoal\Cms\Service\Manager\EventManager;
-use Charcoal\Object\CategoryInterface;
+// From Slim
 use Slim\Exception\ContainerException;
 
+// From 'charcoal-object'
+use Charcoal\Object\CategoryInterface;
+
+// From 'charcoal-cms'
+use Charcoal\Cms\EventInterface;
+use Charcoal\Cms\Service\Manager\EventManager;
+
+/**
+ *
+ */
 trait EventManagerAwareTrait
 {
     /**

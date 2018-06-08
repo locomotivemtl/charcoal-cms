@@ -2,17 +2,17 @@
 
 namespace Charcoal\Cms\Service\Manager;
 
-// dependency from charcoal-factory
-use Charcoal\Factory\FactoryInterface;
-
-// dependency from charcoal-core
-use Charcoal\Loader\CollectionLoader;
-
-// Psr-7 dependencies
 use RuntimeException;
 use Exception;
 
-use \Charcoal\Translator\TranslatorAwareTrait;
+// From 'charcoal-translator'
+use Charcoal\Translator\TranslatorAwareTrait;
+
+// From 'charcoal-factory'
+use Charcoal\Factory\FactoryInterface;
+
+// From 'charcoal-core'
+use Charcoal\Loader\CollectionLoader;
 
 /**
  * Abstract Manager

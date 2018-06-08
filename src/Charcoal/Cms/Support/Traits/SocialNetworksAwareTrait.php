@@ -2,9 +2,15 @@
 
 namespace Charcoal\Cms\Support\Traits;
 
-use Charcoal\Cms\ConfigInterface;
+// From 'charcoal-core'
 use Charcoal\Model\ModelInterface;
 
+// From 'charcoal-cms'
+use Charcoal\Cms\ConfigInterface;
+
+/**
+ *
+ */
 trait SocialNetworksAwareTrait
 {
     /**

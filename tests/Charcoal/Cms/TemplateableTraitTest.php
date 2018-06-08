@@ -4,17 +4,18 @@ namespace Charcoal\Tests\Property;
 
 use RuntimeException;
 
-// From 'charcoal-core'
-use Charcoal\Model\Model;
-
 // From 'charcoal-property'
+use Charcoal\Property\Structure\StructureModel;
+
+// From 'charcoal-cms'
 use Charcoal\Cms\TemplateableTrait;
+use Charcoal\Tests\AbstractTestCase;
 use Charcoal\Tests\Cms\Mock\TemplateableModel;
 
 /**
  * Template Property Test
  */
-class TemplateableTraitTest extends \PHPUnit_Framework_TestCase
+class TemplateableTraitTest extends AbstractTestCase
 {
     use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
@@ -27,6 +28,8 @@ class TemplateableTraitTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Set up the test.
+     *
+     * @return void
      */
     public function setUp()
     {
@@ -54,6 +57,8 @@ class TemplateableTraitTest extends \PHPUnit_Framework_TestCase
      * Tear down the test.
      *
      * Drop any existing SQL table.
+     *
+     * @return void
      */
     public function tearDown()
     {
@@ -135,20 +140,29 @@ class TemplateableTraitTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
+    /**
+     * @return void
+     */
     public function testMissingPropertyDependency()
     {
-        $this->setExpectedException(RuntimeException::class);
+        $this->expectException(RuntimeException::class);
         $obj = new TemplateableModel($this->getModelDependencies());
         $obj->templateOptionsStructure();
     }
 
+    /**
+     * @return void
+     */
     public function testMissingInterfaceDependency()
     {
-        $this->setExpectedException(RuntimeException::class);
+        $this->expectException(RuntimeException::class);
         $obj = $this->getMockForTrait(TemplateableTrait::class);
         $obj->templateOptionsStructure();
     }
 
+    /**
+     * @return void
+     */
     public function testTemplateIdent()
     {
         $this->assertNull($this->obj->templateIdent());
@@ -157,6 +171,9 @@ class TemplateableTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('foobar', $this->obj->templateIdent());
     }
 
+    /**
+     * @return void
+     */
     public function testControllerIdent()
     {
         $this->assertNull($this->obj->controllerIdent());
@@ -165,6 +182,9 @@ class TemplateableTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('foobar', $this->obj->controllerIdent());
     }
 
+    /**
+     * @return void
+     */
     public function testTemplateOptions()
     {
         $this->assertInternalType('array', $this->obj->templateOptions());
@@ -190,6 +210,9 @@ class TemplateableTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($obj, $this->obj->templateOptions());
     }
 
+    /**
+     * @return void
+     */
     public function testSavingTemplateOptions()
     {
         $obj = $this->obj;
@@ -207,22 +230,22 @@ class TemplateableTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($result);
     }
 
+    /**
+     * @return void
+     */
     public function testTemplateOptionsStructure()
     {
-        $templateData     = [ 'foo' => 'Huxley' ];
-        $templateMetadata = json_decode(
-            file_get_contents(
-                realpath(__DIR__.'/../../Fixtures/metadata/templateable/foo.json')
-            ),
-            true
-        );
+        $templateData         = [ 'foo' => 'Huxley' ];
+        $templateMetadataFile = realpath('tests/Charcoal/Cms/Fixture/metadata/templateable/foo-template.json');
+        $templateMetadata     = json_decode(file_get_contents($templateMetadataFile), true);
 
         $obj = $this->obj;
         $obj->setTemplateIdent('foo');
         $obj->setTemplateOptions($templateData);
 
         $struct = $obj->templateOptionsStructure();
-        $this->assertInstanceOf(Model::class, $struct);
+
+        $this->assertInstanceOf(StructureModel::class, $struct);
         $this->assertEquals($templateData, $struct->data());
         $this->assertEquals($templateMetadata, $struct->metadata()->data());
     }

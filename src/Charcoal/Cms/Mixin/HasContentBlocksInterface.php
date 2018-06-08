@@ -2,7 +2,7 @@
 
 namespace Charcoal\Cms\Mixin;
 
-// dependencies from `beneroch/charcoal-attachment`
+// From 'charcoal-attachment'
 use Charcoal\Attachment\Interfaces\AttachmentAwareInterface;
 
 /**

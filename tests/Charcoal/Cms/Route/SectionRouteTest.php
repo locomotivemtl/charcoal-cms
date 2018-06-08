@@ -20,11 +20,12 @@ use Charcoal\App\App;
 // From 'charcoal-cms'
 use Charcoal\Cms\Section;
 use Charcoal\Cms\Route\SectionRoute;
+use Charcoal\Tests\AbstractTestCase;
 
 /**
  *
  */
-class SectionRouteTest extends \PHPUnit_Framework_TestCase
+class SectionRouteTest extends AbstractTestCase
 {
     use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
@@ -44,6 +45,8 @@ class SectionRouteTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Set up the test.
+     *
+     * @return void
      */
     public function setUp()
     {
@@ -77,7 +80,7 @@ class SectionRouteTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     *
+     * @return void
      */
     public function testPathResolvable()
     {
@@ -107,7 +110,7 @@ class SectionRouteTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     *
+     * @return void
      */
     public function testInvoke()
     {

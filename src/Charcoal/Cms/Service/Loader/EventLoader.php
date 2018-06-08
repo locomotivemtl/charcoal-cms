@@ -2,9 +2,11 @@
 
 namespace Charcoal\Cms\Service\Loader;
 
-use Charcoal\Loader\CollectionLoader;
 use DateTime;
 use DateTimeInterface;
+
+// From 'charcoal-core'
+use Charcoal\Loader\CollectionLoader;
 
 /**
  * Event Loader

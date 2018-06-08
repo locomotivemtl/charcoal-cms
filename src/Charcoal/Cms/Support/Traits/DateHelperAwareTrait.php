@@ -2,12 +2,15 @@
 
 namespace Charcoal\Cms\Support\Traits;
 
-// local dependencies
-use Charcoal\Cms\Support\Helpers\DateHelper;
-
-// dependencies from `pimple`
+// From Slim
 use Slim\Exception\ContainerException;
 
+// From 'charcoal-cms'
+use Charcoal\Cms\Support\Helpers\DateHelper;
+
+/**
+ *
+ */
 trait DateHelperAwareTrait
 {
     /**

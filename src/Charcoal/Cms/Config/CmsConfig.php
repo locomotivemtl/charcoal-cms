@@ -2,14 +2,16 @@
 
 namespace Charcoal\Cms\Config;
 
-// Local dependencies
+// From 'charcoal-config'
+use Charcoal\Config\AbstractConfig;
+
+// From 'charcoal-core'
+use Charcoal\Model\ModelInterface;
+
+// From 'charcoal-cms'
 use Charcoal\Cms\Config\EventConfig;
 use Charcoal\Cms\Config\NewsConfig;
 use Charcoal\Cms\Config\SectionConfig;
-
-// dependencies from `charcoal-base`
-use Charcoal\Config\AbstractConfig;
-use Charcoal\Model\ModelInterface;
 
 /**
  * Class Config

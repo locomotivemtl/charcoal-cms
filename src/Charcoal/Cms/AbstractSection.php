@@ -36,7 +36,7 @@ use Charcoal\Cms\TemplateableInterface;
  *
  * ## External implementations
  * Sections implement the following _Interface_ / _Trait_:
- * - From the `Charcoal\Object` namespace (in `charcoal-base`)
+ * - From the `Charcoal\Object` namespace (in `charcoal-object`)
  *   - `Hierarchical`
  *   - `Routable`
  * - From the local `Charcoal\Cms` namespace
@@ -499,8 +499,6 @@ abstract class AbstractSection extends Content implements
             $this->setSlug($this->generateSlug());
         }
 
-        $this->generateDefaultMetaTags();
-
         return parent::preSave();
     }
 
@@ -515,8 +513,6 @@ abstract class AbstractSection extends Content implements
         if (!$this->locked()) {
             $this->setSlug($this->generateSlug());
         }
-
-        $this->generateDefaultMetaTags();
 
         return parent::preUpdate($properties);
     }

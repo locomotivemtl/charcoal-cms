@@ -2,17 +2,17 @@
 
 namespace Charcoal\Cms\Service\Loader;
 
-// dependency from charcoal-factory
-use Charcoal\Factory\FactoryInterface;
-
-// dependency from charcoal-core
-use Charcoal\Loader\CollectionLoader;
-
-// dependency from php
 use RuntimeException;
 use Exception;
 
-use \Charcoal\Translator\TranslatorAwareTrait;
+// From 'charcoal-translator'
+use Charcoal\Translator\TranslatorAwareTrait;
+
+// From 'charcoal-factory'
+use Charcoal\Factory\FactoryInterface;
+
+// From 'charcoal-core'
+use Charcoal\Loader\CollectionLoader;
 
 /**
  * Abstract Loader

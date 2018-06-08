@@ -2,13 +2,21 @@
 
 namespace Charcoal\Admin\Widget\Cms;
 
-use Charcoal\Model\ModelInterface;
-use Charcoal\Property\PropertyInterface;
+// From Pimple
 use Pimple\Container;
 
+// From 'charcoal-core'
+use Charcoal\Model\ModelInterface;
+
+// From 'charcoal-property'
+use Charcoal\Property\PropertyInterface;
+
+// From 'charcoal-object'
+use Charcoal\Object\HierarchicalCollection;
+
+// From 'charcoal-admin'
 use Charcoal\Admin\Property\Display\HierarchicalDisplay;
 use Charcoal\Admin\Widget\TableWidget;
-use Charcoal\Object\HierarchicalCollection;
 
 /**
  * The hierarchical table widget displays a collection in a tabular (table) format.
@@ -26,6 +34,7 @@ class HierarchicalSectionTableWidget extends TableWidget
     {
         return 'charcoal/admin/widget/table';
     }
+
     /**
      * Sort the objects before they are displayed as rows.
      *

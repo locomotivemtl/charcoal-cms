@@ -2,6 +2,7 @@
 
 namespace Charcoal\Cms;
 
+// From 'charcoal-property'
 use Charcoal\Property\Structure\StructureMetadata;
 
 /**

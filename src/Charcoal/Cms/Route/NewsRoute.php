@@ -15,9 +15,11 @@ use Charcoal\Translator\TranslatorAwareTrait;
 // From 'charcoal-app'
 use Charcoal\App\Route\TemplateRoute;
 
+// From 'charcoal-object'
+use Charcoal\Object\RoutableInterface;
+
 // From 'charcoal-cms'
 use Charcoal\Cms\NewsInterface;
-use Charcoal\Object\RoutableInterface;
 
 /**
  * News Route Handler

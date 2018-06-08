@@ -13,6 +13,7 @@ use Charcoal\Source\StorableTrait;
 use Charcoal\Property\PropertyInterface;
 use Charcoal\Property\SelectablePropertyInterface;
 use Charcoal\Property\Structure\StructureMetadata;
+use Charcoal\Property\Structure\StructureModel;
 use Charcoal\Property\ModelStructureProperty;
 use Charcoal\Property\TemplateOptionsProperty;
 use Charcoal\Property\TemplateProperty;
@@ -106,7 +107,7 @@ trait TemplateableTrait
         if ($property instanceof SelectablePropertyInterface) {
             if ($property->hasChoice($templateIdent)) {
                 $choice = $property->choice($templateIdent);
-                $keys   = ['controller', 'template', 'class'];
+                $keys   = [ 'controller', 'template', 'class' ];
                 foreach ($keys as $key) {
                     if (isset($choice[$key])) {
                         return $choice[$key];
@@ -239,16 +240,16 @@ trait TemplateableTrait
         foreach ($obj->properties() as $propertyIdent => $property) {
             $val = $obj[$propertyIdent];
             if ($property->l10n()) {
-                $val                 = $this->translator()->translation($obj[$propertyIdent]);
-                $obj[$propertyIdent] = $val;
+                $obj[$propertyIdent] = $this->translator()->translation($obj[$propertyIdent]);
             } elseif ($property instanceof ModelStructureProperty) {
-                $o = $property->structureVal($obj[$propertyIdent]);
+                $struct = $property->structureVal($obj[$propertyIdent]);
 
-                if ($o instanceof Model) {
-                    $o = $this->translateTemplateOptionsModel($o);
+                /** Provide support for dynamically wrapping translation sets.  */
+                if (in_array(get_class($struct), [ Model::class, StructureModel::class ])) {
+                    $struct = $this->translateTemplateOptionsModel($struct);
                 }
 
-                $obj[$propertyIdent] = $o;
+                $obj[$propertyIdent] = $struct;
             }
         }
 
@@ -289,7 +290,7 @@ trait TemplateableTrait
             if ($property instanceof SelectablePropertyInterface) {
                 if ($property->hasChoice($val)) {
                     $choice = $property->choice($val);
-                    $keys   = ['controller', 'template', 'class'];
+                    $keys   = [ 'controller', 'template', 'class' ];
                     foreach ($keys as $key) {
                         if (isset($choice[$key])) {
                             $interface = $choice[$key];
@@ -329,15 +330,20 @@ trait TemplateableTrait
         }
 
         $templateInterfaces = $this->extractTemplateInterfacesFrom(...$templateIdentProperties);
+
         if (empty($templateInterfaces)) {
             return false;
         }
 
-        $structureMetadata   = new StructureMetadata();
-        $templateStructIdent = sprintf('property/structure/%s/%s', $this->objType(), $this->id());
-        $structureMetadata   = $this->metadataLoader()->load(
-            $templateStructIdent,
-            $structureMetadata,
+        $metadataLoader = $this->metadataLoader();
+
+        $templateStructKey = $templateInterfaces;
+        array_unshift($templateStructKey, $this->objType(), $this->id());
+        $templateStructKey = 'template/structure='.$metadataLoader->serializeMetaKey($templateStructKey);
+
+        $structureMetadata = $metadataLoader->load(
+            $templateStructKey,
+            StructureMetadata::class,
             $templateInterfaces
         );
 

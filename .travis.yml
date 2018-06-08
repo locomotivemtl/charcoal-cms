@@ -16,26 +16,24 @@ matrix:
     allow_failures:
         - php: nightly
 
-before_script:
-    ## Init Composer
-    - composer selfupdate --quiet
-    - composer install -n
+cache:
+    directories:
+        - $HOME/.composer/cache
 
-    ## Create temporary folders
-    - mkdir -p build/logs
+before_install:
+    - composer self-update --quiet
+
+install:
+    - composer install --no-interaction --no-suggest
+    - mkdir -p build/logs/
 
 script:
-    ## Lint PHP Files
-    - find {src,tests} -name '*.php' -print0 | xargs -0 -n1 -P8 php -l | grep -v '^No syntax errors detected'; test $? -eq 1
+    - composer phplint
+    - composer phpcs
+    - composer phpunit -- --coverage-clover "build/logs/clover.xml"
 
-    ## Run PHP Code Sniffer
-    - ./vendor/bin/phpcs --config-set ignore_warnings_on_exit 1;./vendor/bin/phpcs -ps --colors --standard=phpcs.xml src/
-
-    ## Run PHPUnit Tests
-    - ./vendor/bin/phpunit --configuration ./tests/phpunit.xml --coverage-text --coverage-clover build/logs/clover.xml
-
-after_script:
-    - php vendor/bin/coveralls -v
+after_success:
+    - php vendor/bin/php-coveralls -v
     - bash build/travis/phpdoc_ghpages.sh
     - bash build/travis/apigen_ghpages.sh
 

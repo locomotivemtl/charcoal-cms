@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         verbose="true">
+>
+    <testsuites>
+        <testsuite name="Charcoal Test Suite">
+            <directory>./tests/Charcoal</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./src/Charcoal</directory>
+        </whitelist>
+    </filter>
+
+    <php>
+        <env name="APPLICATION_ENV" value="testing" />
+    </php>
+
+    <logging>
+        <log type="coverage-html" target="build/report/" charset="UTF-8" highlight="true" lowUpperBound="40" highLowerBound="80" />
+    </logging>
+</phpunit>

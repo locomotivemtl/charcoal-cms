@@ -1,6 +1,10 @@
 <?php
+
 namespace Charcoal\Cms\Support\Interfaces;
 
+/**
+ *
+ */
 interface EventManagerAwareInterface
 {
     /**

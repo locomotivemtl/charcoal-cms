@@ -2,30 +2,26 @@
 
 namespace Charcoal\Cms\ServiceProvider;
 
-// Pimple dependencies
-use Charcoal\Cms\Service\Loader\EventLoader;
-use Charcoal\Cms\Service\Loader\NewsLoader;
-use Charcoal\Cms\Service\Manager\EventManager;
-use Charcoal\Cms\Service\Manager\NewsManager;
-use Charcoal\Cms\Support\Helpers\DateHelper;
+// From Pimple
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 
-// Local dependencies
-use Charcoal\Cms\Config;
-
-// Cms Loaders
-use Charcoal\Cms\Service\Loader\SectionLoader;
-
-// dependencies from `charcoal-core`
+// From 'charcoal-core'
 use Charcoal\Model\AbstractModel;
 
-// dependencies from `charcoal-cms`
-use Charcoal\Cms\SectionInterface;
-use Charcoal\Cms\Config\CmsConfig;
+// From 'charcoal-factory'
+use Charcoal\Factory\GenericFactory as Factory;
 
-// dependencies from `charcoal-factory`
-use Charcoal\Factory\GenericFactory;
+// From 'charcoal-cms'
+use Charcoal\Cms\SectionInterface;
+use Charcoal\Cms\Config;
+use Charcoal\Cms\Config\CmsConfig;
+use Charcoal\Cms\Service\Loader\EventLoader;
+use Charcoal\Cms\Service\Loader\NewsLoader;
+use Charcoal\Cms\Service\Loader\SectionLoader;
+use Charcoal\Cms\Service\Manager\EventManager;
+use Charcoal\Cms\Service\Manager\NewsManager;
+use Charcoal\Cms\Support\Helpers\DateHelper;
 
 /**
  * Cms Service Provider
@@ -119,10 +115,10 @@ class CmsServiceProvider implements ServiceProviderInterface
     {
         /**
          * @param Container $container Pimple DI Container.
-         * @return GenericFactory
+         * @return Factory
          */
         $container['cms/section/factory'] = function (Container $container) {
-            return new GenericFactory([
+            return new Factory([
                 'base_class'       => SectionInterface::class,
                 'arguments'        => $container['model/factory']->arguments(),
                 'resolver_options' => [

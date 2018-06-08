@@ -2,11 +2,11 @@
 
 namespace Charcoal\Cms\Support\Helpers;
 
-// Psr-7 dependencies
 use DateTime;
 use Exception;
 
-use \Charcoal\Translator\TranslatorAwareTrait;
+// From 'charcoal-translator'
+use Charcoal\Translator\TranslatorAwareTrait;
 
 /**
  * Class DateHelper

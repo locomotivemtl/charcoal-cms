@@ -5,11 +5,12 @@ namespace Charcoal\Cms\Tests;
 // From 'charcoal-cms'
 use Charcoal\Cms\NewsCategory;
 use Charcoal\Cms\News;
+use Charcoal\Tests\AbstractTestCase;
 
 /**
  *
  */
-class NewsCategoryTest extends \PHPUnit_Framework_TestCase
+class NewsCategoryTest extends AbstractTestCase
 {
     use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
@@ -22,6 +23,8 @@ class NewsCategoryTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Set up the test.
+     *
+     * @return void
      */
     public function setUp()
     {
@@ -35,6 +38,9 @@ class NewsCategoryTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
+    /**
+     * @return void
+     */
     public function testItemType()
     {
         $this->assertEquals(News::class, $this->obj->itemType());

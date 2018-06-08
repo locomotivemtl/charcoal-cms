@@ -17,11 +17,12 @@ use Charcoal\Translator\Translation;
 // From 'charcoal-cms'
 use Charcoal\Cms\Event;
 use Charcoal\Cms\Route\EventRoute;
+use Charcoal\Tests\AbstractTestCase;
 
 /**
  *
  */
-class EventRouteTest extends \PHPUnit_Framework_TestCase
+class EventRouteTest extends AbstractTestCase
 {
     use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
@@ -34,6 +35,8 @@ class EventRouteTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Set up the test.
+     *
+     * @return void
      */
     public function setUp()
     {
@@ -53,7 +56,7 @@ class EventRouteTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     *
+     * @return void
      */
     public function testPathResolvable()
     {
@@ -83,7 +86,7 @@ class EventRouteTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     *
+     * @return void
      */
     public function testInvoke()
     {

@@ -4,14 +4,15 @@ namespace Charcoal\Tests\Property;
 
 use InvalidArgumentException;
 
-// From 'charcoal-property'
+// From 'charcoal-cms'
 use Charcoal\Property\TemplateProperty;
 use Charcoal\Property\TemplateOptionsProperty;
+use Charcoal\Tests\AbstractTestCase;
 
 /**
  * Template Property Test
  */
-class TemplateOptionsPropertyTest extends \PHPUnit_Framework_TestCase
+class TemplateOptionsPropertyTest extends AbstractTestCase
 {
     use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
@@ -24,6 +25,8 @@ class TemplateOptionsPropertyTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Set up the test.
+     *
+     * @return void
      */
     public function setUp()
     {
@@ -50,11 +53,17 @@ class TemplateOptionsPropertyTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
+    /**
+     * @return void
+     */
     public function testType()
     {
         $this->assertEquals('template-options', $this->obj->type());
     }
 
+    /**
+     * @return void
+     */
     public function testAddStructureInterface()
     {
         $container = $this->getContainer();
@@ -68,12 +77,15 @@ class TemplateOptionsPropertyTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals([ 'charcoal/tests/cms/mocks/generic' ], $interfaces);
     }
 
+    /**
+     * @return void
+     */
     public function testAddStructureInterfaceException()
     {
         $container = $this->getContainer();
         $property  = $container['property/factory']->create(TemplateProperty::class);
 
-        $this->setExpectedException(InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->obj->addStructureInterface($property);
     }
 }

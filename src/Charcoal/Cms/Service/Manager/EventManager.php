@@ -2,24 +2,23 @@
 
 namespace Charcoal\Cms\Service\Manager;
 
-// dependencies from `charcoal-core`
-use Charcoal\Model\Collection;
-use Charcoal\Model\Model;
-
-// dependencies from `charcoal-base`
-use Charcoal\Object\CategoryInterface;
-use Charcoal\Object\CategoryTrait;
-
-// Local dependencies
-use Charcoal\Cms\EventCategory;
-use Charcoal\Cms\Config\CmsConfig;
-use Charcoal\Cms\EventInterface;
-use Charcoal\Cms\Service\Loader\EventLoader;
-
-// Psr-7 dependencies
 use DateTime;
 use DateTimeInterface;
 use Exception;
+
+// From 'charcoal-core'
+use Charcoal\Model\Collection;
+use Charcoal\Model\Model;
+
+// From 'charcoal-object'
+use Charcoal\Object\CategoryInterface;
+use Charcoal\Object\CategoryTrait;
+
+// From 'charcoal-cms'
+use Charcoal\Cms\Config\CmsConfig;
+use Charcoal\Cms\EventCategory;
+use Charcoal\Cms\EventInterface;
+use Charcoal\Cms\Service\Loader\EventLoader;
 
 /**
  * Event manager

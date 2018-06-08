@@ -1,7 +1,7 @@
 <?php
 namespace Charcoal\Cms\Config;
 
-// dependencies from `charcoal-config`
+// From 'charcoal-config'
 use Charcoal\Config\AbstractConfig;
 
 /**

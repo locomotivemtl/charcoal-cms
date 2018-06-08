@@ -4,7 +4,7 @@ namespace Charcoal\Cms\Service\Loader;
 
 use DateTime;
 
-// From `charcoal-core`
+// From 'charcoal-core'
 use Charcoal\Loader\CollectionLoader;
 
 // From 'charcoal-cms'

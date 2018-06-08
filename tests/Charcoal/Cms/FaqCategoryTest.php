@@ -5,11 +5,12 @@ namespace Charcoal\Cms\Tests;
 // From 'charcoal-cms'
 use Charcoal\Cms\FaqCategory;
 use Charcoal\Cms\Faq;
+use Charcoal\Tests\AbstractTestCase;
 
 /**
  *
  */
-class FaqCategoryTest extends \PHPUnit_Framework_TestCase
+class FaqCategoryTest extends AbstractTestCase
 {
     use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
@@ -22,6 +23,8 @@ class FaqCategoryTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Set up the test.
+     *
+     * @return void
      */
     public function setUp()
     {
@@ -35,6 +38,9 @@ class FaqCategoryTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
+    /**
+     * @return void
+     */
     public function testItemType()
     {
         $this->assertEquals(Faq::class, $this->obj->itemType());
