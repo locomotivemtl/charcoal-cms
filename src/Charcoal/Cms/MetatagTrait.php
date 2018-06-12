@@ -288,7 +288,7 @@ trait MetatagTrait
     public function opengraphImage()
     {
         if (!$this->opengraphImage) {
-            return $this->metatagImage();
+            return $this->metaImage();
         }
         return $this->opengraphImage;
     }
