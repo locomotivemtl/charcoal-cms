@@ -4,13 +4,16 @@ namespace Charcoal\Cms;
 
 use DateTimeInterface;
 
+// From 'charcoal-object'
+use Charcoal\Object\ContentInterface;
+
 // From 'charcoal-translator'
 use Charcoal\Translator\Translation;
 
 /**
  *
  */
-interface EventInterface
+interface EventInterface  extends ContentInterface
 {
     /**
      * @param  mixed $title Event title (localized).

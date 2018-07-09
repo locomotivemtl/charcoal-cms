@@ -2,13 +2,16 @@
 
 namespace Charcoal\Cms;
 
+// From 'charcoal-object'
+use Charcoal\Object\ContentInterface;
+
 // From 'charcoal-translator'
 use Charcoal\Translator\Translation;
 
 /**
  *
  */
-interface SectionInterface
+interface SectionInterface extends ContentInterface
 {
     /**
      * @param string $type The section type.

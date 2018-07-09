@@ -2,13 +2,16 @@
 
 namespace Charcoal\Cms;
 
+// From 'charcoal-object'
+use Charcoal\Object\ContentInterface;
+
 // From 'charcoal-translator'
 use Charcoal\Translator\Translation;
 
 /**
  *
  */
-interface NewsInterface
+interface NewsInterface extends ContentInterface
 {
     /**
      * @param  mixed $title News title (localized).
