@@ -20,15 +20,4 @@ final class Event extends AbstractEvent
     {
         return EventCategory::class;
     }
-
-    /**
-     * MetatagTrait > canonical_url
-     *
-     * @todo
-     * @return string
-     */
-    public function canonicalUrl()
-    {
-        return '';
-    }
 }
