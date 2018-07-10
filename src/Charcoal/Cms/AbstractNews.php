@@ -8,11 +8,8 @@ use InvalidArgumentException;
 
 // From 'charcoal-object'
 use Charcoal\Object\Content;
-use Charcoal\Object\CategorizableInterface;
 use Charcoal\Object\CategorizableTrait;
-use Charcoal\Object\PublishableInterface;
 use Charcoal\Object\PublishableTrait;
-use Charcoal\Object\RoutableInterface;
 use Charcoal\Object\RoutableTrait;
 
 // From 'charcoal-translator'
@@ -21,14 +18,7 @@ use Charcoal\Translator\Translation;
 /**
  * News
  */
-abstract class AbstractNews extends Content implements
-    CategorizableInterface,
-    MetatagInterface,
-    NewsInterface,
-    PublishableInterface,
-    RoutableInterface,
-    SearchableInterface,
-    TemplateableInterface
+abstract class AbstractNews extends Content implements NewsInterface
 {
     use CategorizableTrait;
     use PublishableTrait;

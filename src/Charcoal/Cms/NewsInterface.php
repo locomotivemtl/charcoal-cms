@@ -4,6 +4,9 @@ namespace Charcoal\Cms;
 
 // From 'charcoal-object'
 use Charcoal\Object\ContentInterface;
+use Charcoal\Object\CategorizableInterface;
+use Charcoal\Object\PublishableInterface;
+use Charcoal\Object\RoutableInterface;
 
 // From 'charcoal-translator'
 use Charcoal\Translator\Translation;
@@ -11,7 +14,14 @@ use Charcoal\Translator\Translation;
 /**
  *
  */
-interface NewsInterface extends ContentInterface
+interface NewsInterface extends
+    CategorizableInterface,
+    ContentInterface,
+    PublishableInterface,
+    RoutableInterface,
+    MetatagInterface,
+    SearchableInterface,
+    TemplateableInterface
 {
     /**
      * @param  mixed $title News title (localized).

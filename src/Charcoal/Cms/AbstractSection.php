@@ -10,9 +10,7 @@ use Charcoal\Loader\CollectionLoader;
 
 // From 'charcoal-object'
 use Charcoal\Object\Content;
-use Charcoal\Object\HierarchicalInterface;
 use Charcoal\Object\HierarchicalTrait;
-use Charcoal\Object\RoutableInterface;
 use Charcoal\Object\RoutableTrait;
 
 // From 'charcoal-translator'
@@ -38,13 +36,7 @@ use Charcoal\Translator\Translation;
  *   - `Searchable`
  *
  */
-abstract class AbstractSection extends Content implements
-    SectionInterface,
-    HierarchicalInterface,
-    MetatagInterface,
-    RoutableInterface,
-    SearchableInterface,
-    TemplateableInterface
+abstract class AbstractSection extends Content implements SectionInterface
 {
     use HierarchicalTrait;
     use MetatagTrait;

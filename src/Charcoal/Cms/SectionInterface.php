@@ -4,6 +4,8 @@ namespace Charcoal\Cms;
 
 // From 'charcoal-object'
 use Charcoal\Object\ContentInterface;
+use Charcoal\Object\HierarchicalInterface;
+use Charcoal\Object\RoutableInterface;
 
 // From 'charcoal-translator'
 use Charcoal\Translator\Translation;
@@ -11,7 +13,13 @@ use Charcoal\Translator\Translation;
 /**
  *
  */
-interface SectionInterface extends ContentInterface
+interface SectionInterface extends
+    ContentInterface,
+    HierarchicalInterface,
+    RoutableInterface,
+    MetatagInterface,
+    SearchableInterface,
+    TemplateableInterface
 {
     /**
      * @param string $type The section type.

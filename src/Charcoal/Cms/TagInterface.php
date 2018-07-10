@@ -3,11 +3,14 @@
 namespace Charcoal\Cms;
 
 use Charcoal\Object\ContentInterface;
+use Charcoal\Object\CategoryInterface;
 
 /**
  *
  */
-interface TagInterface extends ContentInterface
+interface TagInterface extends
+    CategoryInterface,
+    ContentInterface
 {
     /**
      * @param  mixed $name The name of the tag.

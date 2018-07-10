@@ -4,9 +4,7 @@ namespace Charcoal\Cms;
 
 // From 'charcoal-object'
 use Charcoal\Object\Content;
-use Charcoal\Object\CategorizableInterface;
 use Charcoal\Object\CategorizableTrait;
-use Charcoal\Object\PublishableInterface;
 use Charcoal\Object\PublishableTrait;
 
 // From 'charcoal-translator'
@@ -15,11 +13,7 @@ use Charcoal\Translator\Translation;
 /**
  * FAQ Entry.
  */
-abstract class AbstractFaq extends Content implements
-    CategorizableInterface,
-    FaqInterface,
-    PublishableInterface,
-    SearchableInterface
+abstract class AbstractFaq extends Content implements FaqInterface
 {
     use CategorizableTrait;
     use PublishableTrait;

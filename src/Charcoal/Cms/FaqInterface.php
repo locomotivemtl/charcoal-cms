@@ -4,6 +4,8 @@ namespace Charcoal\Cms;
 
 // From 'charcoal-object'
 use Charcoal\Object\ContentInterface;
+use Charcoal\Object\CategorizableInterface;
+use Charcoal\Object\PublishableInterface;
 
 // From 'charcoal-translator'
 use Charcoal\Translator\Translation;
@@ -11,7 +13,11 @@ use Charcoal\Translator\Translation;
 /**
  *
  */
-interface FaqInterface extends ContentInterface
+interface FaqInterface extends
+    CategorizableInterface,
+    ContentInterface,
+    PublishableInterface,
+    SearchableInterface
 {
     /**
      * @param  mixed $question The question (localized).

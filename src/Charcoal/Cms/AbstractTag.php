@@ -5,7 +5,6 @@ namespace Charcoal\Cms;
 use Exception;
 
 // From 'charcoal-cms'
-use Charcoal\Object\CategoryInterface;
 use Charcoal\Object\CategoryTrait;
 use Charcoal\Object\Content;
 
@@ -15,9 +14,7 @@ use Charcoal\Translator\Translation;
 /**
  * CMS Tag
  */
-abstract class AbstractTag extends Content implements
-    CategoryInterface,
-    TagInterface
+abstract class AbstractTag extends Content implements TagInterface
 {
     use CategoryTrait;
 
