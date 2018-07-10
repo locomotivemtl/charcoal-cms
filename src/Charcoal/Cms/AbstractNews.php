@@ -92,10 +92,6 @@ abstract class AbstractNews extends Content implements
      */
     protected $keywords;
 
-    // ==========================================================================
-    // INIT
-    // ==========================================================================
-
     /**
      * Section constructor.
      * @param array $data The data.
@@ -108,10 +104,6 @@ abstract class AbstractNews extends Content implements
             $this->setData($this->defaultData());
         }
     }
-
-    // ==========================================================================
-    // FUNCTIONS
-    // ==========================================================================
 
     /**
      * In the datetime attribute of the <time> tag
@@ -146,10 +138,6 @@ abstract class AbstractNews extends Content implements
     {
         return $this->newsDate()->format('Y-m-d');
     }
-
-    // ==========================================================================
-    // SETTERS
-    // ==========================================================================
 
     /**
      * @param mixed $title The news title (localized).
@@ -218,7 +206,7 @@ abstract class AbstractNews extends Content implements
     }
 
     /**
-     * @param  string|DateTimeInterface $newsDate The news date.
+     * @param  string|DateTimeInterface|null $newsDate The news date.
      * @throws InvalidArgumentException If the timestamp is invalid.
      * @return self
      */
@@ -254,10 +242,6 @@ abstract class AbstractNews extends Content implements
 
         return $this;
     }
-
-    // ==========================================================================
-    // GETTERS
-    // ==========================================================================
 
     /**
      * @return Translation|string|null
@@ -314,10 +298,6 @@ abstract class AbstractNews extends Content implements
     {
         return $this->image;
     }
-
-    // ==========================================================================
-    // META TAGS
-    // ==========================================================================
 
     /**
      * MetatagTrait > canonical_url

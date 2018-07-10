@@ -44,10 +44,6 @@ class Tag extends Content implements
         $this->setData($this->defaultData());
     }
 
-    // ==========================================================================
-    // Functions
-    // ==========================================================================
-
     /**
      * @throws Exception If function is called.
      * @return void
@@ -56,34 +52,6 @@ class Tag extends Content implements
     {
         throw new Exception('Cannot use loadCategoryItems');
     }
-
-    // ==========================================================================
-    // GETTERS
-    // ==========================================================================
-
-    /**
-     * The tag's name.
-     *
-     * @return Translation|string|null
-     */
-    public function name()
-    {
-        return $this->name;
-    }
-
-    /**
-     * The tag's color.
-     *
-     * @return mixed
-     */
-    public function color()
-    {
-        return $this->color;
-    }
-
-    // ==========================================================================
-    // SETTERS
-    // ==========================================================================
 
     /**
      * @param  mixed $name The name of the tag.
@@ -96,6 +64,16 @@ class Tag extends Content implements
     }
 
     /**
+     * Retrieve the tag's name.
+     *
+     * @return Translation|string|null
+     */
+    public function name()
+    {
+        return $this->name;
+    }
+
+    /**
      * @param  string $color The color in HEX format as a string.
      * @return self
      */
@@ -103,5 +81,15 @@ class Tag extends Content implements
     {
         $this->color = $color;
         return $this;
+    }
+
+    /**
+     * Retrieve the tag's color.
+     *
+     * @return mixed
+     */
+    public function color()
+    {
+        return $this->color;
     }
 }

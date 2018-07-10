@@ -118,10 +118,6 @@ class EventLoader extends AbstractLoader
         return $loader;
     }
 
-    // ==========================================================================
-    // GETTERS
-    // ==========================================================================
-
     /**
      * @return mixed
      */
@@ -137,10 +133,6 @@ class EventLoader extends AbstractLoader
     {
         return $this->objType;
     }
-
-    // ==========================================================================
-    // SETTERS
-    // ==========================================================================
 
     /**
      * @param string $lifespan The lifespan of events.
@@ -163,10 +155,6 @@ class EventLoader extends AbstractLoader
 
         return $this;
     }
-
-    // ==========================================================================
-    // UTILS
-    // ==========================================================================
 
     /**
      * @param mixed $date The date to convert.

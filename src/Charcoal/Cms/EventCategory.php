@@ -76,9 +76,6 @@ class EventCategory extends Content implements CategoryInterface
         return $this;
     }
 
-    // Events
-    // ==========================================================================
-
     /**
      * @param ValidatorInterface $v Optional. A custom validator object to use for validation. If null, use object's.
      * @return boolean

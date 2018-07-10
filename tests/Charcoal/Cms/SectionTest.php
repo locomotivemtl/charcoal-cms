@@ -227,13 +227,4 @@ class SectionTest extends AbstractTestCase
 
         $this->assertEquals('en/foo', (string)$this->obj->slug());
     }
-
-    /**
-     * @return void
-     */
-    public function testLoadChildren()
-    {
-        $this->obj->source()->createTable();
-        //$this->assertEquals([], $this->obj->children()->objects());
-    }
 }

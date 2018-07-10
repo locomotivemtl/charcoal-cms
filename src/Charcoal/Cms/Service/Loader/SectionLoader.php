@@ -221,10 +221,6 @@ class SectionLoader extends AbstractLoader
         return $sId;
     }
 
-    // ==========================================================================
-    // GETTERS
-    // ==========================================================================
-
     /**
      * @return object
      */
@@ -248,10 +244,6 @@ class SectionLoader extends AbstractLoader
     {
         return $this->sectionTypes;
     }
-
-    // ==========================================================================
-    // SETTERS
-    // ==========================================================================
 
     /**
      * @param object $objType The object type.
@@ -285,10 +277,6 @@ class SectionLoader extends AbstractLoader
 
         return $this;
     }
-
-    // ==========================================================================
-    // UTILS
-    // ==========================================================================
 
     /**
      * Convert a string to snake case.

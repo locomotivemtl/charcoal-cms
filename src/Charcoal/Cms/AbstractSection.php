@@ -116,10 +116,6 @@ abstract class AbstractSection extends Content implements
      */
     protected $locked;
 
-    // ==========================================================================
-    // INIT
-    // ==========================================================================
-
     /**
      * Section constructor.
      * @param array $data Init data.
@@ -132,10 +128,6 @@ abstract class AbstractSection extends Content implements
             $this->setData($this->defaultData());
         }
     }
-
-    // ==========================================================================
-    // FUNCTIONS
-    // ==========================================================================
 
     /**
      * Determine if the object can be deleted.
@@ -186,10 +178,6 @@ abstract class AbstractSection extends Content implements
 
         return $loader->load();
     }
-
-    // ==========================================================================
-    // SETTERS
-    // ==========================================================================
 
     /**
      * Set the section's type.
@@ -315,10 +303,6 @@ abstract class AbstractSection extends Content implements
         return $this;
     }
 
-    // ==========================================================================
-    // GETTERS
-    // ==========================================================================
-
     /**
      * Retrieve the section's type.
      *
@@ -406,10 +390,6 @@ abstract class AbstractSection extends Content implements
     {
         return $this->locked;
     }
-
-    // ==========================================================================
-    // DEFAULT META
-    // ==========================================================================
 
     /**
      * MetatagTrait > canonicalUrl

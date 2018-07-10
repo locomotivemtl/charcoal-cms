@@ -91,7 +91,6 @@ trait SectionTableTrait
 
             case 'title':
             case 'menu_label':
-                $sectionTag = null;
                 $sectionType = $object->sectionType();
 
                 switch ($sectionType) {

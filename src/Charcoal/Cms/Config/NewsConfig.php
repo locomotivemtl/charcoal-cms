@@ -81,7 +81,6 @@ class NewsConfig extends AbstractConfig
     }
 
     /**
-     * @todo Tell me more about this.
      * @return string Datetime value.
      */
     public function median()
@@ -164,7 +163,6 @@ class NewsConfig extends AbstractConfig
     }
 
     /**
-     * @todo What is this?
      * @param string $median DateTime string.
      * @return NewsConfig
      */

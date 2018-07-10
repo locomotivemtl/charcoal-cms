@@ -365,10 +365,6 @@ class NewsManager extends AbstractManager
         return $this->currentPage;
     }
 
-    // ==========================================================================
-    // GETTERS
-    // ==========================================================================
-
     /**
      * @return mixed
      */
@@ -464,10 +460,6 @@ class NewsManager extends AbstractManager
         return $this->loader;
     }
 
-    // ==========================================================================
-    // SETTERS
-    // ==========================================================================
-
     /**
      * @param mixed $currentNews The current news context.
      * @return self .
@@ -555,10 +547,6 @@ class NewsManager extends AbstractManager
 
         return $this;
     }
-
-    // ==========================================================================
-    // UTILS
-    // ==========================================================================
 
     /**
      * Set the Prev and Next news

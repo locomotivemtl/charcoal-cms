@@ -18,7 +18,7 @@ final class FaqCategory extends Content implements CategoryInterface
     use CategoryTrait;
 
     /**
-     * CategoryTrait > item_type()
+     * CategoryTrait > itemType()
      *
      * @return string
      */

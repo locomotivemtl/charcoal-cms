@@ -239,7 +239,6 @@ class GenericRoute extends TemplateRoute
         // Templateable Objects have specific methods
         if ($contextObject instanceof TemplateableInterface) {
             $identProperty = $contextObject->property('template_ident');
-            $controllerProperty = $contextObject->property('controller_ident');
 
             // Methods from TemplateableInterface / Trait
             $templateIdent = $contextObject->templateIdent() ?: $objectRoute->routeTemplate();

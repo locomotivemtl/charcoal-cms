@@ -93,10 +93,6 @@ class NewsLoader extends AbstractLoader
         return $loader;
     }
 
-    // ==========================================================================
-    // GETTERS
-    // ==========================================================================
-
     /**
      * @return mixed
      */
@@ -112,10 +108,6 @@ class NewsLoader extends AbstractLoader
     {
         return $this->objType;
     }
-
-    // ==========================================================================
-    // SETTERS
-    // ==========================================================================
 
     /**
      * @param string $median The median between upcoming and archive.

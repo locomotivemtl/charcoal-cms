@@ -90,10 +90,6 @@ abstract class AbstractEvent extends Content implements
      */
     protected $keywords;
 
-    // ==========================================================================
-    // INIT
-    // ==========================================================================
-
     /**
      * Section constructor.
      * @param array $data The data.
@@ -106,10 +102,6 @@ abstract class AbstractEvent extends Content implements
             $this->setData($this->defaultData());
         }
     }
-
-    // ==========================================================================
-    // FUNCTIONS
-    // ==========================================================================
 
     /**
      * Some dates cannot be null
@@ -146,10 +138,6 @@ abstract class AbstractEvent extends Content implements
 
         return $date;
     }
-
-    // ==========================================================================
-    // SETTERS and GETTERS
-    // ==========================================================================
 
     /**
      * @param  mixed $title The event title (localized).
@@ -247,7 +235,7 @@ abstract class AbstractEvent extends Content implements
     }
 
     /**
-     * @param  string|DateTimeInterface $startDate Event starting date.
+     * @param  string|DateTimeInterface|null $startDate Event starting date.
      * @throws InvalidArgumentException If the timestamp is invalid.
      * @return self
      */
@@ -280,7 +268,7 @@ abstract class AbstractEvent extends Content implements
     }
 
     /**
-     * @param  string|DateTimeInterface $endDate Event end date.
+     * @param  string|DateTimeInterface|null $endDate Event end date.
      * @throws InvalidArgumentException If the timestamp is invalid.
      * @return self
      */
@@ -312,12 +300,8 @@ abstract class AbstractEvent extends Content implements
         return $this->endDate;
     }
 
-    // ==========================================================================
-    // META TAGS
-    // ==========================================================================
-
     /**
-     * MetatagTrait > canonical_url
+     * MetatagTrait > canonicalUrl
      *
      * @todo
      * @return string

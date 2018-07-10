@@ -13,7 +13,7 @@ use Charcoal\Translator\Translation;
 /**
  *
  */
-interface EventInterface  extends ContentInterface
+interface EventInterface extends ContentInterface
 {
     /**
      * @param  mixed $title Event title (localized).

@@ -469,10 +469,6 @@ class EventManager extends AbstractManager
         return [];
     }
 
-    // ==========================================================================
-    // GETTERS
-    // ==========================================================================
-
     /**
      * @return mixed
      */
@@ -616,10 +612,6 @@ class EventManager extends AbstractManager
     {
         return $this->day;
     }
-
-    // ==========================================================================
-    // SETTERS
-    // ==========================================================================
 
     /**
      * @param mixed $currentEvent The current event context.
@@ -768,10 +760,6 @@ class EventManager extends AbstractManager
 
         return $this;
     }
-
-    // ==========================================================================
-    // UTILS
-    // ==========================================================================
 
     /**
      * Set the Prev and Next event
