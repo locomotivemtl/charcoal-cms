@@ -4,15 +4,13 @@ namespace Charcoal\Cms;
 
 use Exception;
 
-// From 'charcoal-translator'
-use Charcoal\Translator\Translation;
-
 // From 'charcoal-cms'
 use Charcoal\Object\CategoryInterface;
 use Charcoal\Object\CategoryTrait;
 use Charcoal\Object\Content;
 
-use Charcoal\Cms\TagInterface;
+// From 'charcoal-translator'
+use Charcoal\Translator\Translation;
 
 /**
  * CMS Tag

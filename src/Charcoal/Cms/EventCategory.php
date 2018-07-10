@@ -10,9 +10,6 @@ use Charcoal\Object\Content;
 use Charcoal\Object\CategoryInterface;
 use Charcoal\Object\CategoryTrait;
 
-// From 'charcoal-cms'
-use Charcoal\Cms\Event;
-
 /**
  * Event Category
  */

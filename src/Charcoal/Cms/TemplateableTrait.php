@@ -64,10 +64,6 @@ trait TemplateableTrait
      */
     protected $areTemplateOptionsFinalized = false;
 
-
-    // Properties
-    // =========================================================================
-
     /**
      * Set the renderable object's template identifier.
      *
@@ -193,8 +189,40 @@ trait TemplateableTrait
         return false;
     }
 
-    // Utilities
-    // =========================================================================
+    /**
+     * Retrieve the object's template options metadata.
+     *
+     * @return StructureMetadata|null
+     */
+    public function templateOptionsMetadata()
+    {
+        if ($this->areTemplateOptionsFinalized === false) {
+            $this->areTemplateOptionsFinalized = true;
+            $this->prepareTemplateOptions();
+        }
+
+        return $this->templateOptionsMetadata;
+    }
+
+    /**
+     * Retrieve the object's template options as a structured model.
+     *
+     * @return ModelInterface|ModelInterface[]|null
+     */
+    public function templateOptionsStructure()
+    {
+        if ($this->areTemplateOptionsFinalized === false) {
+            $this->areTemplateOptionsFinalized = true;
+            $this->prepareTemplateOptions();
+        }
+
+        $key  = 'template_options';
+        $prop = $this->property($key);
+        $val  = $this->propertyValue($key);
+        $obj  = $prop->structureVal($val, $this->templateOptionsMetadata());
+
+        return $obj;
+    }
 
     /**
      * Asserts that the templateable class meets the requirements,
@@ -372,40 +400,5 @@ trait TemplateableTrait
         $key  = 'template_options';
         $prop = $this->property($key);
         $prop->setStructureMetadata($this->templateOptionsMetadata());
-    }
-
-    /**
-     * Retrieve the object's template options metadata.
-     *
-     * @return StructureMetadata|null
-     */
-    public function templateOptionsMetadata()
-    {
-        if ($this->areTemplateOptionsFinalized === false) {
-            $this->areTemplateOptionsFinalized = true;
-            $this->prepareTemplateOptions();
-        }
-
-        return $this->templateOptionsMetadata;
-    }
-
-    /**
-     * Retrieve the object's template options as a structured model.
-     *
-     * @return ModelInterface|ModelInterface[]|null
-     */
-    public function templateOptionsStructure()
-    {
-        if ($this->areTemplateOptionsFinalized === false) {
-            $this->areTemplateOptionsFinalized = true;
-            $this->prepareTemplateOptions();
-        }
-
-        $key  = 'template_options';
-        $prop = $this->property($key);
-        $val  = $this->propertyValue($key);
-        $obj  = $prop->structureVal($val, $this->templateOptionsMetadata());
-
-        return $obj;
     }
 }

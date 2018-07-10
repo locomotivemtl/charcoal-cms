@@ -2,10 +2,6 @@
 
 namespace Charcoal\Cms;
 
-// From 'charcoal-cms'
-use Charcoal\Cms\AbstractEvent;
-use Charcoal\Cms\EventCategory;
-
 /**
  * CMS Event
  */

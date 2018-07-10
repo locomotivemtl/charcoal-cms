@@ -6,13 +6,6 @@ use DateTime;
 use DateTimeInterface;
 use InvalidArgumentException;
 
-// From PSR-7
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
-
-// From Pimple
-use Pimple\Container;
-
 // From 'charcoal-object'
 use Charcoal\Object\Content;
 use Charcoal\Object\CategorizableInterface;
@@ -24,14 +17,6 @@ use Charcoal\Object\RoutableTrait;
 
 // From 'charcoal-translator'
 use Charcoal\Translator\Translation;
-
-// From 'charcoal-cms'
-use Charcoal\Cms\MetatagInterface;
-use Charcoal\Cms\NewsInterface;
-use Charcoal\Cms\SearchableInterface;
-use Charcoal\Cms\SearchableTrait;
-use Charcoal\Cms\TemplateableInterface;
-use Charcoal\Cms\Support\Helpers\DateHelper;
 
 /**
  * News

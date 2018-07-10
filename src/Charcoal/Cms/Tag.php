@@ -2,8 +2,6 @@
 
 namespace Charcoal\Cms;
 
-use Charcoal\Cms\AbstractTag;
-
 /**
  * CMS Tag
  */

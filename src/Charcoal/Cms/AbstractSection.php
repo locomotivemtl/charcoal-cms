@@ -18,12 +18,6 @@ use Charcoal\Object\RoutableTrait;
 // From 'charcoal-translator'
 use Charcoal\Translator\Translation;
 
-// From 'charcoal-cms'
-use Charcoal\Cms\MetatagInterface;
-use Charcoal\Cms\SearchableInterface;
-use Charcoal\Cms\SectionInterface;
-use Charcoal\Cms\TemplateableInterface;
-
 /**
  * A Section is a unique, reachable page.
  *

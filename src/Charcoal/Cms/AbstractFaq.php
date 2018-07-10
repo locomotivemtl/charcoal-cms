@@ -12,12 +12,6 @@ use Charcoal\Object\PublishableTrait;
 // From 'charcoal-translator'
 use Charcoal\Translator\Translation;
 
-// From 'charcoal-cms'
-use Charcoal\Cms\FaqInterface;
-use Charcoal\Cms\MetatagInterface;
-use Charcoal\Cms\SearchableInterface;
-use Charcoal\Cms\SearchableTrait;
-
 /**
  * FAQ Entry.
  */

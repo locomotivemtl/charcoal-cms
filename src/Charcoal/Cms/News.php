@@ -2,10 +2,6 @@
 
 namespace Charcoal\Cms;
 
-// From 'charcoal-cms'
-use Charcoal\Cms\AbstractNew;
-use Charcoal\Cms\NewsCategory;
-
 /**
  * CMS News
  */

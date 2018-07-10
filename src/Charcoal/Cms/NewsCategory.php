@@ -10,9 +10,6 @@ use Charcoal\Object\Content;
 use Charcoal\Object\CategoryInterface;
 use Charcoal\Object\CategoryTrait;
 
-// From 'charcoal-cms'
-use Charcoal\Cms\News;
-
 /**
  * News Category
  */
@@ -75,9 +72,6 @@ class NewsCategory extends Content implements CategoryInterface
 
         return $this;
     }
-
-    // Events
-    // ==========================================================================
 
     /**
      * @param ValidatorInterface $v Optional. A custom validator object to use for validation. If null, use object's.

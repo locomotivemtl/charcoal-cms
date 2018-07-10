@@ -2,10 +2,6 @@
 
 namespace Charcoal\Cms;
 
-// From 'charcoal-cms'
-use Charcoal\Cms\AbstractFaq;
-use Charcoal\Cms\FaqCategory;
-
 /**
  *
  */
