@@ -72,5 +72,4 @@ class TagTest extends AbstractTestCase
         $this->assertSame($ret, $this->obj);
         $this->assertEquals('Bar', $this->obj->color());
     }
-
 }

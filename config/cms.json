@@ -2,6 +2,7 @@
     "section": {
         "obj_type": "cms/section"
     },
+
     "news": {
         "num_per_page": 0,
         "entry_cycle": false,
@@ -16,6 +17,7 @@
             }
         }
     },
+
     "event": {
         "num_per_page": 0,
         "entry_cycle": false,
@@ -29,6 +31,7 @@
             }
         }
     },
+
     "date_formats": {
         "default": {
             "single": {
@@ -155,6 +158,7 @@
             }
         }
     },
+
     "time_formats": {
         "default": {
             "single": {
