@@ -43,8 +43,21 @@ class CmsServiceProvider implements ServiceProviderInterface
      */
     public function register(Container $container)
     {
+        $this->registerConfig($container);
+        $this->reggisterDateHelper($container);
+        $this->registerSectionServices($container);
+        $this->registerNewsServices($container);
+        $this->registerEventServices($container);
+    }
+
+    /**
+     * @param Container $container Pimple DI Container
+     * @return void
+     */
+    private function registerConfig(Container $container)
+    {
         /**
-         * @param Container $container
+         * @param Container $container Pimple DI Container
          * @return CmsConfig Website configurations (from cms.json).
          */
         $container['cms/config'] = function (Container $container) {
@@ -52,20 +65,16 @@ class CmsServiceProvider implements ServiceProviderInterface
             $cms = $appConfig->get('cms');
 
             $cmsConfig = new CmsConfig();
-
             $cmsConfig->addFile(__DIR__.'/../../../../config/cms.json');
             $cmsConfig->setData($cms);
 
-            $config = $cmsConfig->get('config_obj');
+            $configType = $cmsConfig->get('config_obj');
 
-            if ($config) {
-                $factory = $container['model/factory'];
-
+            if ($configType) {
                 $configId = $cmsConfig->get('config_obj_id') ?: 1;
 
-                $model = $factory
-                    ->create($config)
-                    ->load($configId);
+                $model = $container['model/factory']->create($configType);
+                $model->load($configId);
 
                 if (!!$model->id()) {
                     $cmsConfig->addModel($model);
@@ -74,8 +83,14 @@ class CmsServiceProvider implements ServiceProviderInterface
 
             return $cmsConfig;
         };
+    }
 
-
+    /**
+     * @param Container $container Pimple DI Container
+     * @return void
+     */
+    private function reggisterDateHelper(Container $container)
+    {
         /**
          * @param Container $container Pimple DI Container.
          * @return DateHelper
@@ -101,10 +116,6 @@ class CmsServiceProvider implements ServiceProviderInterface
 
             return $container['cms/date/helper'];
         };
-
-        $this->registerSectionServices($container);
-        $this->registerNewsServices($container);
-        $this->registerEventServices($container);
     }
 
     /**
