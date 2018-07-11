@@ -4,7 +4,7 @@ Charcoal CMS
 The CMS Charcoal Module (_Content Management System_). Provides basic objects to build a website.
 Notably, `Section` (or _page_), `News`, `Event` and `Faq` as well as to ather user data, notably `ContactInquiry`.
 
-This module is heavily dependant on [`charcoal-object`](https://github.com/locomotivemtl/charcoal-object) (and therefore `charcoal-core`) which provides the base `Content` and `UserData` classes the CMS objects are dependant on.
+This module is heavily dependant on [`charcoal-object`](https://github.com/locomotivemtl/charcoal-object) (and therefore `charcoal-core`) which provides the base `Content` class the CMS objects are dependant on, as well as many trait / interface behaviors.
 
 # How to install
 
@@ -14,7 +14,7 @@ The preferred (and only supported) way of installing _charcoal-cms_ is with **co
 ★ composer require locomotivemtl/charcoal-cms
 ```
 
-For a complete, ready-to-use project, start from the [`boilerplate`](https://github.com/locomotivemtl/charcoal-project-boilerplate):
+For a complete, ready-to-use project, start from the [`charcoal project boilerplate`](https://github.com/locomotivemtl/charcoal-project-boilerplate):
 
 ```shell
 ★ composer create-project locomotivemtl/charcoal-project-boilerplate:@dev --prefer-source
@@ -25,23 +25,25 @@ For a complete, ready-to-use project, start from the [`boilerplate`](https://git
 -   [`PHP 5.6+`](http://php.net)
     - PHP 7 is recommended for security and performance reasons.
 -   [`locomotivemtl/charcoal-attachment`](https://github.com/locomotivemtl/charcoal-attachment)
+    - Content blocks are provided with _attachments_.
 -   [`locomotivemtl/charcoal-core`](https://github.com/locomotivemtl/charcoal-core)
     - Core charcoal models and storage class.
     - Provides base Model, which depends on Storable and Describable.
 -   [`locomotivemtl/charcoal-object`](https://github.com/locomotivemtl/charcoal-object)
+    - CMS objects are based on `\Charcoal\Oject\Content`.
 -   [`locomotivemtl/charcoal-translator`](https://github.com/locomotivemtl/charcoal-translator)
+    - Localization is provided by symfony translator (charcoal).
 
 ### Recommended dependencies
 
 -   [`locomotivemtl/charcoal-admin`](https://github.com/locomotivemtl/charcoal-admin)
+    - The backend (admin panel).
 
 # Objects
 
-All objects in the `charcoal-cms` module implements `\Charcoal\Object\Content`, which allows to store creation & modification dates. Many objects also implement the `\Charcoal\Object\PublishableInterface`.
-
-
 -   **Core objects**
     -   [Section](#section-object)
+    -   [Tag](#tag-object)
 -   **CMS objets**
     -   [Event](#event-object)
     -   [FAQ](#faq-object)
@@ -50,10 +52,11 @@ All objects in the `charcoal-cms` module implements `\Charcoal\Object\Content`, 
 # Core objects
 
 -   [Section](#section-object)
+-   [Tag](#tag-object)
 
 ## Section object
 
-A **section**, in Charcoal, is a reachable page on the website, as part of the full hierarchical site map. They can be displayed in menus or breadcrumbs and be reached with a unique URL (`routable`).
+A **section**, in Charcoal, is a reachable _page_ on the website, as part of the full hierarchical site map. They can be displayed in menus or breadcrumbs and be reached with a unique URL (`routable`).
 
 Types of sections:
 
@@ -72,85 +75,62 @@ All section types, except _external_, make use of a `Template` object to be rend
 
 Base section properties:
 
-| Name                 | L10n | Type      | Description |
-| -------------------- | :--: | --------- | ----------- |
-| **title**            | ✔    | string    |
-| **subtitle**         | ✔    | html      |
-| **template_ident**   |      | string    |
-| **template_options** |      | structure |
-| **attachments**      | ✔    | multi-object |
+| Interface     | Name                 | L10n | Type      | Description |
+| ------------- | -------------------- | :--: | --------- | ----------- |
+| Section       | **section_type**     |      | choice    |
+| Section       | **title**            | ✔    | string    |
+| Section       | **subtitle**         | ✔    | html      |
+| Section       | **summary**          | ✔    | html      |
+| Section       | **image**            | ✔    | image     |
+| Section       | **template_ident**    |      | string    |
+| Section       | **template_options**  |      | structure |
+| Section       | **content**           | ✔    | html      |
+| Section       | **attachments**       | ✔    | multi-object |
+| Section       | **external_url**      | ✔    | url       | For external URLs. Note that all content-related properties are ignored if this property is set. |
+| Content       | **id**                |      | id        | The model's `key`. |
+| Content       | **active**            |      | bool      | Inactive events should not appear in public API / frontend. |
+| Content       | **position**          |      | int       | Default order property. |
+| Authorable    | **created_by**        |      | string    | Admin user.
+| Authorable    | **last\_modified_by** |      | string    | Admin user.
+| Authorable    | **required\_acl_permissions** | array    | To do... 
+| Timestampable | **created**           |      | date-time |
+| Timestampable | **last_modified**     |      | date-time |
+| Hierarchical  | **master**            |      | object | `SectionInterface`. |
+| Routable      | **slug**              | ✔    | string | Permalink. Auto-generated from title. |
 
-Extra _blocks_ properties:
+### Interfaces
 
-| Name                 | L10n | Type      | Description |
-| -------------------- | :--: | --------- | ----------- |
-| **blocks**           | ✔    | structure |
+From model:
 
-Extra _content_ properties:
+- `Describable`: The objects can be defined by Metadata.
+- `Storable`: Objects have unique IDs and can be stored in storage / database. 
 
-| Name                 | L10n | Type | Description |
-| -------------------- | :--: | ---- | ----------- |
-| **content**          | ✔    | html |
+From content:
 
-Extra _external_ properties:
+- `Content`: A "managed" charcoal model (describable with metadata / storable).
+- `Authorable`: Creation and modification user (admin) are kept in the storage.
+- `Revisionable`: Copy of changes will be kept upon each object update in the storage.
+- `Timestampable`: Creation and modification time are kept into the storage.
 
-| Name                 | L10n | Type | Description |
-| -------------------- | :--: | ---- | ----------- |
-| **external_url**     | ✔    | url  |
+From charcoal-object
 
-<small>Note that `external` sections ignore the _template\_ident_ & _template\_options_ properties as well as the _metatags_ set of properties.</small>
+- `Hierarchicale`: The objects can be stacked hierarchically.
+- ~~`Publishable`: Objects have publish status, date and expiry. Allows moderation.~~
+- `Routable`: Objects are reachable through a URL.
 
---
+From charcoal-cms:
 
-Because _sections_ extends `\Charcoal\Object\Content`, they also have the following standard properties:
-
-| Name                  | L10n | Type | Description |
-| --------------------- | :--: | ---- | ----------- |
-| **id<sup>1</sup>**    |      |
-| **active**            |      |
-| **position**          |      |
-| **created**           |      |
-| **created_by**        |      |
-| **last_modified**     |      |
-| **last\_modified_by** |      |
-
-<small>[1] By default, the **key** of the section is the **id**.</small>.
-
---
-
-_Sections_ are hierarchical. They can be indented inside one another to create multi-dimensional site maps. The additional properties are therefore available:
-
-| Name                 | L10n | Type | Description |
-| -------------------- | :--: | ---- | ----------- |
-| **master**           |      |
-
-The hierarchical interface (`\Charcoal\Object\HierarchicalInterface`) also provide the following methods, amongst others:
-
--   `hierarchy()`
--   `children()`
--   `siblings()`
-
---
-
-_Sections_ have _metatags_.
-
-| Name                 | L10n | Type   | Description |
-| -------------------- | :--: | ------ | ----------- |
-| **meta_title**       | ✔    | string |
-| **meta_description** | ✔    | text   |
-| **meta_image**       | ✔    | image  |
-| **meta_author**      | ✔    | string |
-
-...and more specialized properties, for _facebook_ / _opengraph_.
-
-__
-
-Like all _Content_ objects, _sections_ implement the `\Charcoal\Object\RevisionableInterface`, which tracks all save / update into _revisions_.
+- `Metatag`: The objects have meta-information for SEO purpose.
+- `Searchable`: Extra keywords can be used to help search engine.
+- `Templateable`: The objects can be rendered with a template / controller / config combo.
 
 ### Extending the section object
 
 The `\Charcoal\Cms\Section\*` objects are `final`. To extend, use the `\Charcoal\Cms\AbstractSection` base object instead, to make sure no metadata conflicts arise.
 
+## Tag object
+
+**Tag** objects link any objects together by providing an extra taxonomy layer. Tags may also be used to enhance internal search engines. 
 
 # CMS objects
 
@@ -160,10 +140,158 @@ The `\Charcoal\Cms\Section\*` objects are `final`. To extend, use the `\Charcoal
 
 ## Event object
 
+Charcoal **Event** is a specialized content object to describe an event, which typically happens at a given date in a certain location.
+
+Base events properties:
+
+| Interface     | Name                  | L10n | Type      | Description |
+| ------------- | --------------------- | :--: | --------- | ----------- |
+| Event         | **title**             | ✔    | string    |
+| Event         | **subtitle**          | ✔    | html      |
+| Event         | **summary**           | ✔    | html      |
+| Event         | **content**           | ✔    | html      |
+| Event         | **image**             | ✔    | image     |
+| Event         | **start_date**        |      | date-time |
+| Event         | **end_date**          |      | date-time |
+| Event         | **info_url**          | ✔    | image     |
+| Content       | **id**                |      | id        | The model's `key`. |
+| Content       | **active**            |      | bool      | Inactive events should not appear in public API / frontend. |
+| Content       | **position**          |      | int       | Default order property. |
+| Authorable    | **created_by**        |      | string    | Admin user.
+| Authorable    | **last\_modified_by** |      | string    | Admin user.
+| Authorable    | **required\_acl_permissions** | array    | To do... 
+| Timestampable | **created**           |      | date-time |
+| Timestampable | **last_modified**     |      | date-time |
+| Categorizable | **category**          | ✔    | object    | `EventCategory`, or custom. |
+| Publishable   | **publish_date**      |      | date-time |
+| Publishable   | **expiry_date**       |      | date-time |
+| Publishable   | **publish_status**    |      | string    | `draft`, `pending`, or `published`. |
+| Routable      | **slug**              | ✔    | string    | Permalink. Auto-generated from title. |
+| Metatag       | **meta_title**       | ✔    | string    |
+| Metatag       | **meta_description** | ✔    | string    |
+| Metatag       | **meta_image**       | ✔    | image     |
+| Metatag       | **meta_author**      | ✔    | string    |
+| Templateable  | **controller_ident** |      | string    |
+| Templateable  | **template_ident**   |      | string    |
+| Templateable  | **template_options** |      | structure |
+
+### Interfaces
+
+From model:
+
+- `Describable`: The objects can be defined by Metadata.
+- `Storable`: Objects have unique IDs and can be stored in storage / database. 
+
+From content:
+
+- `Content`: A "managed" charcoal model (describable with metadata / storable).
+- `Authorable`: Creation and modification user (admin) are kept in the storage.
+- `Revisionable`: Copy of changes will be kept upon each object update in the storage.
+- `Timestampable`: Creation and modification time are kept into the storage.
+
+From charcoal-object:
+
+- `Categorizable`: The objects can be put into a category.
+- `Publishable`: Objects have publish status, date and expiry. Allows moderation.
+- `Routable`: Objects are reachable through a URL.
+ 
+From charcoal-cms:
+
+- `Metatag`: The objects have meta-information for SEO purpose.
+- `Searchable`: Extra keywords can be used to help search engine.
+- `Templateable`: The objects can be rendered with a template / controller / config combo.
+
+### Extending the event object
+
+The `\Charcoal\Cms\Event` object is `final`. To extend, use the `\Charcoal\Cms\AbstractEvent` base object instead, to make sure no metadata conflicts arise.
+
+### Event categories
+
+**Event category** objects are simple `charcoal/object/category` used to group / categorize events. The default type is `Charcoal\Cms\EventCategory`.
+
+_Events_ implement the `Categorizable` interface, from charcoal-object.
+
 ## FAQ object
+
+**FAQ** objects are a special content type that is split in a "question" / "answer" format.
+
+### FAQ categories
+
+**FAQ category** objects are simple `charcoal/object/category` used to group / categorize FAQ objects. The default type is `Charcoal\Cms\FaqCategory`.
+
+_FAQs_ implement the `Categorizable` interface, from charcoal-object.
 
 ## News object
 
+News object are a special content type that with a specific news date.
+
+Base news properties:
+
+| Interface     | Name                  | L10n | Type      | Description |
+| ------------- | --------------------- | :--: | --------- | ----------- |
+| News          | **title**             | ✔    | string    |
+| News          | **subtitle**          | ✔    | html      |
+| News          | **summary**           | ✔    | html      |
+| News          | **content**           | ✔    | html      |
+| News          | **image**             | ✔    | image     |
+| News          | **news_date**         |      | date-time |
+| News          | **info_url**          | ✔    | image     |
+| Content       | **id**                |      | id        | The model's `key`. |
+| Content       | **active**            |      | bool      | Inactive news should not appear in public API / frontend. |
+| Content       | **position**          |      | int       | Default order property. |
+| Authorable    | **created_by**        |      | string    | Admin user.
+| Authorable    | **last\_modified_by** |      | string    | Admin user.
+| Authorable    | **required\_acl_permissions** | array    | To do... 
+| Timestampable | **created**           |      | date-time |
+| Timestampable | **last_modified**     |      | date-time |
+| Categorizable | **category**          | ✔    | object    | `NewsCategory`, or custom. |
+| Publishable   | **publish_date**      |      | date-time |
+| Publishable   | **expiry_date**       |      | date-time |
+| Publishable   | **publish_status**    |      | string    | `draft`, `pending`, or `published`. |
+| Routable      | **slug**              | ✔    | string    | Permalink. Auto-generated from title. |
+| Metatag       | **meta_title**       | ✔    | string    |
+| Metatag       | **meta_description** | ✔    | string    |
+| Metatag       | **meta_image**       | ✔    | image     |
+| Metatag       | **meta_author**      | ✔    | string    |
+| Templateable  | **controller_ident** |      | string    |
+| Templateable  | **template_ident**   |      | string    |
+| Templateable  | **template_options** |      | structure |
+
+### Interfaces
+
+From model:
+
+- `Describable`: The objects can be defined by Metadata.
+- `Storable`: Objects have unique IDs and can be stored in storage / database. 
+
+From content:
+
+- `Content`: A "managed" charcoal model (describable with metadata / storable).
+- `Authorable`: Creation and modification user (admin) are kept in the storage.
+- `Revisionable`: Copy of changes will be kept upon each object update in the storage.
+- `Timestampable`: Creation and modification time are kept into the storage.
+
+From charcoal-object:
+
+- `Categorizable`: The objects can be put into a category.
+- `Publishable`: Objects have publish status, date and expiry. Allows moderation.
+- `Routable`: Objects are reachable through a URL.
+ 
+From charcoal-cms:
+
+- `Metatag`: The objects have meta-information for SEO purpose.
+- `Searchable`: Extra keywords can be used to help search engine.
+- `Templateable`: The objects can be rendered with a template / controller / config combo.
+
+### Extending the news object
+
+The `\Charcoal\Cms\News` object is `final`. To extend, use the `\Charcoal\Cms\AbstractNews` base object instead, to make sure no metadata conflicts arise.
+
+### News categories
+
+**News category** objects are simple `charcoal/object/category` used to group / categorize events. The default type is `Charcoal\Cms\NewsCategory`.
+
+_News_ implement the `Categorizable` interface, from charcoal-object.
 
 # Development
 
@@ -194,7 +322,7 @@ $ composer install --prefer-source
 
 ## Coding Style
 
-The Charcoal-App module follows the Charcoal coding-style:
+The `charcoal-cms` module follows the Charcoal coding-style:
 
 -   [_PSR-1_](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md)
 -   [_PSR-2_](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)
@@ -206,7 +334,7 @@ The Charcoal-App module follows the Charcoal coding-style:
 
 # Authors
 
--   Mathieu Ducharme <mat@locomotive.ca>
+-   [Locomotive](https://locomotive.ca)
 
 # License
 

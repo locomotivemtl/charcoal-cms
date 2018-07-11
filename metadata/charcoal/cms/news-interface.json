@@ -101,8 +101,8 @@
                 "fr": "La date affichée de la nouvelle."
             },
             "notes": {
-                "en": "Will be set to the current date if blank.",
-                "fr": "La date actuelle sera utilisée si laissé vide."
+                "en": "Will be set automatically to the current date if blank.",
+                "fr": "La date actuelle sera utilisée automatiquement si laissé vide."
             }
         },
         "info_url": {
