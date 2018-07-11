@@ -38,7 +38,7 @@ class CmsServiceProvider implements ServiceProviderInterface
      * This method should only be used to configure services and parameters.
      * It should not get services.
      *
-     * @param \Pimple\Container $container A container instance.
+     * @param \Pimple\Container $container Pimple DI Container.
      * @return void
      */
     public function register(Container $container)
@@ -51,13 +51,13 @@ class CmsServiceProvider implements ServiceProviderInterface
     }
 
     /**
-     * @param Container $container Pimple DI Container
+     * @param Container $container Pimple DI Container.
      * @return void
      */
     private function registerConfig(Container $container)
     {
         /**
-         * @param Container $container Pimple DI Container
+         * @param Container $container Pimple DI Container.
          * @return CmsConfig Website configurations (from cms.json).
          */
         $container['cms/config'] = function (Container $container) {
@@ -86,7 +86,7 @@ class CmsServiceProvider implements ServiceProviderInterface
     }
 
     /**
-     * @param Container $container Pimple DI Container
+     * @param Container $container Pimple DI Container.
      * @return void
      */
     private function reggisterDateHelper(Container $container)
