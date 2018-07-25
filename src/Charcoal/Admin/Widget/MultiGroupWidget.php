@@ -125,20 +125,14 @@ class MultiGroupWidget extends AdminWidget implements
         $obj                = $this->obj();
         $objMetadata        = $obj->metadata();
         $adminMetadata      = (isset($objMetadata['admin']) ? $objMetadata['admin'] : null);
+        $adminFormGroups    = (isset($adminMetadata['form_groups']) ? $adminMetadata['form_groups'] : null);
 
-        if (isset($adminMetadata['form_groups'])) {
-            $extraFormGroups = array_intersect(
-                array_keys($groups),
-                array_keys($adminMetadata['form_groups'])
-            );
-            foreach ($extraFormGroups as $groupIdent) {
-                $groups[$groupIdent] = array_replace_recursive(
-                    $adminMetadata['form_groups'][$groupIdent],
-                    $groups[$groupIdent]
-                );
-
-                $this->addGroup($groupIdent, $groups[$groupIdent]);
+        foreach ($groups as $ident => $metadata) {
+            if ($adminFormGroups && isset($adminFormGroups[$ident])) {
+                $metadata = array_replace_recursive($adminFormGroups[$ident], $metadata);
             }
+
+            $this->addGroup($ident, $metadata);
         }
 
         return $this;
