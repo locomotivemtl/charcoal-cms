@@ -5,7 +5,6 @@ namespace Charcoal\Admin\Widget;
 use Charcoal\Admin\Ui\ObjectContainerInterface;
 use Charcoal\Admin\Ui\ObjectContainerTrait;
 use Charcoal\Factory\FactoryInterface;
-use InvalidArgumentException;
 use RuntimeException;
 
 use Charcoal\Admin\AdminWidget;
@@ -13,22 +12,12 @@ use Charcoal\Admin\AdminWidget;
 // From Pimple
 use Pimple\Container;
 
-// From 'charcoal-core'
-use Charcoal\Model\MetadataInterface;
-use Charcoal\Model\Service\MetadataLoader;
-
-// From 'charcoal-property'
-use Charcoal\Property\Structure\StructureMetadata;
-
 // From 'charcoal-ui'
 use Charcoal\Ui\Form\FormInterface;
 use Charcoal\Ui\Form\FormTrait;
 use Charcoal\Ui\Layout\LayoutAwareInterface;
 use Charcoal\Ui\Layout\LayoutAwareTrait;
 use Charcoal\Ui\PrioritizableInterface;
-
-// From 'charcoal-cms'
-use Charcoal\Cms\TemplateableInterface;
 
 /**
  * Class TemplateAttachmentWidget
@@ -55,18 +44,6 @@ class MultiGroupWidget extends AdminWidget implements
      * @var array
      */
     protected static $camelCache = [];
-
-    /**
-     * Store the metadata loader instance.
-     *
-     * @var MetadataLoader
-     */
-    private $metadataLoader;
-
-    /**
-     * @var boolean
-     */
-    protected $isAttachmentMetadataFinalized;
 
     /**
      * @var string
@@ -126,90 +103,6 @@ class MultiGroupWidget extends AdminWidget implements
 
         // Satisfies FormInterface
         $this->setFormGroupFactory($container['form/group/factory']);
-        $this->setMetadataLoader($container['metadata/loader']);
-    }
-
-    /**
-     * Set a metadata loader.
-     *
-     * @param  MetadataLoader $loader The loader instance, used to load metadata.
-     * @return self
-     */
-    protected function setMetadataLoader(MetadataLoader $loader)
-    {
-        $this->metadataLoader = $loader;
-
-        return $this;
-    }
-
-    /**
-     * Retrieve the metadata loader.
-     *
-     * @throws RuntimeException If the metadata loader was not previously set.
-     * @return MetadataLoader
-     */
-    protected function metadataLoader()
-    {
-        if ($this->metadataLoader === null) {
-            throw new RuntimeException(sprintf(
-                'Metadata Loader is not defined for "%s"',
-                \get_class($this)
-            ));
-        }
-
-        return $this->metadataLoader;
-    }
-
-    /**
-     * Load a metadata file.
-     *
-     * @param  string $metadataIdent A metadata file path or namespace.
-     * @return MetadataInterface
-     */
-    protected function loadMetadata($metadataIdent)
-    {
-        $metadataLoader = $this->metadataLoader();
-        $metadata       = $metadataLoader->load($metadataIdent, $this->createMetadata());
-
-        return $metadata;
-    }
-
-    /**
-     * @throws InvalidArgumentException If structureMetadata $data is note defined.
-     * @return MetadataInterface
-     */
-    protected function createMetadata()
-    {
-        return new StructureMetadata();
-    }
-
-    /**
-     * Sets data on this widget.
-     *
-     * @param  array $data Key-value array of data to append.
-     * @return self
-     */
-    public function setData(array $data)
-    {
-        $this->isMergingData = true;
-        /**
-         * @todo Kinda hacky, but works with the concept of form.
-         *     Should work embeded in a form group or in a dashboard.
-         */
-        $data = array_merge($_GET, $data);
-
-        parent::setData($data);
-
-        /** Merge any available presets */
-        // $data = $this->mergePresets($data);
-
-        // parent::setData($data);
-
-        $this->addGroupFromMetadata();
-
-        $this->isMergingData = false;
-
-        return $this;
     }
 
     /**
@@ -221,62 +114,34 @@ class MultiGroupWidget extends AdminWidget implements
     }
 
     /**
-     * Load attachments group widget and them as form groups.
+     * Set the object's form groups.
      *
-     * @param boolean $reload Allows to reload the data.
-     * @throws InvalidArgumentException If structureMetadata $data is note defined.
-     * @throws RuntimeException If the metadataLoader is not defined.
-     * @return void
+     * @param array $groups A collection of group structures.
+     * @return FormInterface Chainable
      */
-    protected function addGroupFromMetadata($reload = false)
+    public function setGroups(array $groups)
     {
-        if ($reload || !$this->isAttachmentMetadataFinalized) {
-            $obj                 = $this->obj();
-            $formGroupsMetadata  = $obj->metadata()->get('admin.form_groups');
+        $this->groups       = [];
+        $obj                = $this->obj();
+        $objMetadata        = $obj->metadata();
+        $adminMetadata      = (isset($objMetadata['admin']) ? $objMetadata['admin'] : null);
 
-            foreach ($this->formGroups() as $ident => $metadata) {
-                if (isset($formGroupsMetadata[$ident])) {
-                    $metadata = array_replace_recursive($formGroupsMetadata[$ident], $metadata);
-                }
+        if (isset($adminMetadata['form_groups'])) {
+            $extraFormGroups = array_intersect(
+                array_keys($groups),
+                array_keys($adminMetadata['form_groups'])
+            );
+            foreach ($extraFormGroups as $groupIdent) {
+                $groups[$groupIdent] = array_replace_recursive(
+                    $adminMetadata['form_groups'][$groupIdent],
+                    $groups[$groupIdent]
+                );
 
-                $this->addGroup($ident, $metadata);
+                $this->addGroup($groupIdent, $groups[$groupIdent]);
             }
-
-            $this->isAttachmentMetadataFinalized = true;
         }
-    }
-
-    /**
-     * Set the form object's template controller identifier.
-     *
-     * @param  mixed $ident The template controller identifier.
-     * @return self
-     */
-    public function setControllerIdent($ident)
-    {
-        if (class_exists($ident)) {
-            $this->controllerIdent = $ident;
-
-            return $this;
-        }
-
-        if (substr($ident, -9) !== '-template') {
-            $ident .= '-template';
-        }
-
-        $this->controllerIdent = $ident;
 
         return $this;
-    }
-
-    /**
-     * Retrieve the form object's template controller identifier.
-     *
-     * @return mixed
-     */
-    public function controllerIdent()
-    {
-        return $this->controllerIdent;
     }
 
     /**
@@ -356,27 +221,5 @@ class MultiGroupWidget extends AdminWidget implements
     protected function formWidget()
     {
         return $this->form();
-    }
-
-    /**
-     * Makes the form properties accessible from the object.
-     *
-     * @return \Charcoal\Property\PropertyInterface[]
-     */
-    public function formProperties()
-    {
-        return $this->obj()->properties();
-    }
-
-    /**
-     * Retrieve the widget's data options for JavaScript components.
-     *
-     * @return array
-     */
-    public function widgetDataForJs()
-    {
-        return [
-            'conditional_liaisons' => $this->widgetId()
-        ];
     }
 }
