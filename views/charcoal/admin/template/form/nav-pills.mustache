@@ -1,0 +1,39 @@
+{{!--
+    Togglable Pills
+    ==============
+
+    @used-by charcoal/admin/template/object-form
+    @used-by charcoal/admin/template/quick-form
+--}}
+<ul class="nav nav-pills{{# tabCssClasses }} {{.}}{{/ tabCssClasses }} justify-content-end" role="tablist">
+    {{# groups }}
+    <li class="nav-item">
+        <a class="nav-link{{^ showTitle }} hide-title{{/ showTitle }}{{^ isHidden }} active{{/ isHidden }} js-group-tabs"
+           id="form_group_{{ widgetId }}_tab_{{ ident }}"
+           href="#form_group_{{ widgetId }}"
+           role="tab"
+           data-toggle="tab"
+           data-tab-ident="{{ ident }}"
+           data-show-title="{{# showTitle }}true{{/ showTitle }}{{^ showTitle }}false{{/ showTitle }}"
+           aria-controls="form_group_{{ widgetId }}"
+           aria-selected="{{# isHidden }}false{{/ isHidden }}{{^ isHidden }}true{{/ isHidden }}">
+            {{# showIcon }}
+                {{# icon }}
+                    <span class="nav-icon fa fa-{{ . }}" aria-hidden="true"></span>
+                {{/ icon }}
+            {{/ showIcon }}
+            {{# showTabTitle }}
+                <span class="nav-title">{{& tabTitle }}</span>
+            {{/ showTabTitle }}
+        </a>
+        {{^ showTabTitle }}
+            <div class="tooltip bs-tooltip-bottom" aria-hidden="true">
+                <div class="arrow"></div>
+                <div class="tooltip-inner">
+                    {{& title }}
+                </div>
+            </div>
+        {{/ showTabTitle }}
+    </li>
+    {{/ groups }}
+</ul>

@@ -6,11 +6,31 @@
 
     This widget expects to be in a context (model) of type `Charcoal\Admin\Widget\Form`.
 --}}
+{{# showHeader }}
+    <header class="o-header -small">
+        {{# showTitle }}
+            <h3>{{ title }}</h3>
+        {{/ showTitle }}
+        {{> charcoal/admin/template/inc.description }}
+    </header>
+{{/ showHeader }}
 <div id="{{ widgetId }}">
-    <div class="o-flex c-form-widget{{# isTabbable }} -tabbed{{/ isTabbable }}">
+    <div class="o-flex {{# isTabbable }} -tabbed{{/ isTabbable }}">
         <div class="o-flex_main c-form-widget_form">
+            {{^ showHeader }}
+                {{# showDescription }}
+                    <div class="form-text border-bottom mb-4 pb-4">{{& description }}</div>
+                {{/ showDescription }}
+            {{/ showHeader }}
+            {{# showNotesAbove }}
+                {{> charcoal/admin/template/inc.notes }}
+            {{/ showNotesAbove }}
             {{# isTabbable }}
-                {{> charcoal/admin/template/form/nav-tabs }}
+                {{# displayPills }}
+                <div class="mt-4">
+                {{> charcoal/admin/template/form/nav-pills }}
+                </div>
+                {{/ displayPills }}
             {{/ isTabbable }}
 
             {{# hasGroups }}

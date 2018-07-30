@@ -244,4 +244,14 @@ class GroupAttachmentWidget extends AttachmentWidget implements
     {
         return $this->controllerIdent;
     }
+
+    /**
+     * Disable the pill nav if there is only one group.
+     *
+     * @return boolean
+     */
+    public function displayPills()
+    {
+        return $this->numGroups() > 1;
+    }
 }
