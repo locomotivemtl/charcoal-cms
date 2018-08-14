@@ -2,12 +2,20 @@
 
 namespace Charcoal\Admin\Widget;
 
-use Charcoal\Admin\Ui\ObjectContainerInterface;
-use Charcoal\Admin\Ui\ObjectContainerTrait;
-use Charcoal\Factory\FactoryInterface;
 use RuntimeException;
 
+// from 'charcoal-admin'
+use Charcoal\Admin\Ui\ObjectContainerInterface;
+use Charcoal\Admin\Ui\ObjectContainerTrait;
 use Charcoal\Admin\AdminWidget;
+
+// form 'charcoal-factory'
+use Charcoal\Factory\FactoryInterface;
+
+// from 'charcoal-property'
+use Charcoal\Property\ModelStructureProperty;
+use Charcoal\Property\PropertyInterface;
+use Charcoal\Property\StructureProperty;
 
 // From Pimple
 use Pimple\Container;
@@ -66,9 +74,21 @@ class MultiGroupWidget extends AdminWidget implements
     protected $formGroups;
 
     /**
-     * @var FormWidget
+     * @var array|mixed
      */
-    protected $form;
+    protected $widgetMetadata;
+
+    /**
+     * @var array|mixed
+     */
+    protected $extraFormGroups;
+
+    /**
+     * The form group's storage target.
+     *
+     * @var ModelStructureProperty|null
+     */
+    protected $storageProperty;
 
     /**
      * Comparison function used by {@see uasort()}.
@@ -89,6 +109,19 @@ class MultiGroupWidget extends AdminWidget implements
         }
 
         return ($priorityA < $priorityB) ? (-1) : 1;
+    }
+
+    /**
+     * @param array $data The widget data.
+     * @return self
+     */
+    public function setData(array $data)
+    {
+        parent::setData($data);
+
+        $this->mergeDataSources($data);
+
+        return $this;
     }
 
     /**
@@ -114,28 +147,13 @@ class MultiGroupWidget extends AdminWidget implements
     }
 
     /**
-     * Set the object's form groups.
+     * Retrieve the default data sources (when setting data on an entity).
      *
-     * @param array $groups A collection of group structures.
-     * @return FormInterface Chainable
+     * @return string[]
      */
-    public function setGroups(array $groups)
+    protected function defaultDataSources()
     {
-        $this->groups       = [];
-        $obj                = $this->obj();
-        $objMetadata        = $obj->metadata();
-        $adminMetadata      = (isset($objMetadata['admin']) ? $objMetadata['admin'] : null);
-        $adminFormGroups    = (isset($adminMetadata['form_groups']) ? $adminMetadata['form_groups'] : null);
-
-        foreach ($groups as $ident => $metadata) {
-            if ($adminFormGroups && isset($adminFormGroups[$ident])) {
-                $metadata = array_replace_recursive($adminFormGroups[$ident], $metadata);
-            }
-
-            $this->addGroup($ident, $metadata);
-        }
-
-        return $this;
+        return [self::DATA_SOURCE_OBJECT];
     }
 
     /**
@@ -170,25 +188,6 @@ class MultiGroupWidget extends AdminWidget implements
     }
 
     /**
-     * @return FormWidget
-     */
-    public function form()
-    {
-        return $this->form;
-    }
-
-    /**
-     * @param FormInterface $form Form for MultiGroupWidget.
-     * @return self
-     */
-    public function setForm(FormInterface $form)
-    {
-        $this->form = $form;
-
-        return $this;
-    }
-
-    /**
      * @return mixed
      */
     public function formGroups()
@@ -208,12 +207,99 @@ class MultiGroupWidget extends AdminWidget implements
     }
 
     /**
-     * So that the formTrait can access the current From widget.
-     *
-     * @return FormWidget
+     * @return array|mixed
      */
-    protected function formWidget()
+    public function widgetMetadata()
     {
-        return $this->form();
+        return $this->widgetMetadata;
+    }
+
+    /**
+     * @param array|mixed $widgetMetadata WidgetMetadata for MultiGroupWidget.
+     * @return self
+     */
+    public function setWidgetMetadata($widgetMetadata)
+    {
+        if (is_string($widgetMetadata) && $this->view()) {
+            $widgetMetadata = $this->view()->renderTemplate($widgetMetadata, $this->obj());
+
+            if ($widgetMetadata !== '') {
+                $widgetMetadata = json_decode($widgetMetadata, true);
+            } else {
+                $widgetMetadata = null;
+            }
+        }
+
+        $this->widgetMetadata = $widgetMetadata;
+
+        return $this;
+    }
+
+    /**
+     * Set the form group's storage target.
+     *
+     * Must be a property of the form's object model that will receive an associative array
+     * of the form group's data.
+     *
+     * @param  string|ModelStructureProperty $propertyIdent The property identifier—or instance—of a storage property.
+     * @throws \InvalidArgumentException If the property identifier is not a string.
+     * @throws \UnexpectedValueException If a property is invalid.
+     * @return self
+     */
+    public function setStorageProperty($propertyIdent)
+    {
+        $property = null;
+        if ($propertyIdent instanceof PropertyInterface) {
+            $property      = $propertyIdent;
+            $propertyIdent = $property->ident();
+        } elseif (!is_string($propertyIdent)) {
+            throw new \InvalidArgumentException(
+                'Storage Property identifier must be a string'
+            );
+        }
+
+        $obj = $this->obj();
+        if (!$obj->hasProperty($propertyIdent)) {
+            throw new \UnexpectedValueException(sprintf(
+                'The "%1$s" property is not defined on [%2$s]',
+                $propertyIdent,
+                get_class($obj)
+            ));
+        }
+
+        if ($property === null) {
+            $property = $obj->property($propertyIdent);
+        }
+
+        if ($property instanceof StructureProperty) {
+            $this->storageProperty = $property;
+        } else {
+            throw new \UnexpectedValueException(sprintf(
+                '"%s" [%s] is not a model structure property on [%s].',
+                $propertyIdent,
+                (is_object($property) ? get_class($property) : gettype($property)),
+                (is_object($obj) ? get_class($obj) : gettype($obj))
+            ));
+        }
+
+        return $this;
+    }
+
+    /**
+     * Retrieve the form group's storage property master.
+     *
+     * @throws RuntimeException If the storage property was not previously set.
+     * @return ModelStructureProperty
+     */
+    public function storageProperty()
+    {
+        if ($this->storageProperty === null) {
+            throw new RuntimeException(sprintf(
+                'Storage property owner is not defined for "%s"',
+                get_class($this)
+            ));
+        }
+
+        return $this->storageProperty;
     }
 }
