@@ -189,8 +189,11 @@ class GroupAttachmentWidget extends AttachmentWidget implements
             $obj                 = $this->obj();
             $controllerInterface = $this->controllerIdent();
 
-            $interfaces = [];
-            array_push($interfaces, $this->objType(), $controllerInterface);
+            $interfaces = [$this->objType()];
+
+            if ($controllerInterface) {
+                array_push($interfaces, $controllerInterface);
+            }
 
             $structureMetadata = $this->createMetadata();
 
