@@ -19,7 +19,7 @@ trait HasContentBlocksTrait
      */
     public function contentBlocks()
     {
-        return $this->attachments('contents');
+        return $this->getAttachments('contents');
     }
 
     /**
@@ -68,7 +68,7 @@ trait HasContentBlocksTrait
      */
     private function metaDescFromAttachments()
     {
-        $attachments = $this->attachments();
+        $attachments = $this->getAttachments();
 
         if (!$attachments) {
             return null;
@@ -119,5 +119,10 @@ trait HasContentBlocksTrait
      * @throws InvalidArgumentException If the $group or $type is invalid.
      * @return Collection|Attachment[]
      */
-    abstract public function attachments($group = null, $type = null, callable $before = null, callable $after = null);
+    abstract public function getAttachments(
+        $group = null,
+        $type = null,
+        callable $before = null,
+        callable $after = null
+    );
 }
