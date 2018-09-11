@@ -102,7 +102,7 @@
             },
             "notes": {
                 "en": "Will be set automatically to the current date if blank.",
-                "fr": "La date actuelle sera utilisée automatiquement si laissé vide."
+                "fr": "La date actuelle sera utilisée automatiquement si laissée vide."
             }
         },
         "info_url": {

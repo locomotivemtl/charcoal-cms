@@ -101,7 +101,7 @@
             },
             "notes": {
                 "en": "Will be set to the start date if blank.",
-                "fr": "La date actuelle sera utilisée si laissé vide."
+                "fr": "La date actuelle sera utilisée si laissée vide."
             }
         },
         "end_date": {
