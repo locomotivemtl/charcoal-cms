@@ -113,12 +113,12 @@ abstract class AbstractTag extends Content implements TagInterface
      */
     public function setVariations($variations)
     {
-        $this->variations = $variations;
+        $this->variations = $this->translator()->translation($variations);
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return Translation|null
      */
     public function variations()
     {
