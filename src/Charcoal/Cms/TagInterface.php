@@ -24,6 +24,7 @@ interface TagInterface extends
      * @return \Charcoal\Translator\Translation|string|null
      */
     public function name();
+
     /**
      * @param  string $color The color in HEX format as a string.
      * @return self
@@ -36,4 +37,28 @@ interface TagInterface extends
      * @return mixed
      */
     public function color();
+
+    /**
+     * @param mixed $variations The tag's variations.
+     * @return self
+     */
+    public function setVariations($variations);
+
+    /**
+     * Retrieve the tag's variations.
+     *
+     * @return mixed
+     */
+    public function variations();
+
+    /**
+     * @param integer $priority Priority (type).
+     * @return self
+     */
+    public function setSearchWeight($priority);
+
+    /**
+     * @return string
+     */
+    public function searchWeight();
 }

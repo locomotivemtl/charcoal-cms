@@ -42,6 +42,26 @@
                 "en": "The color for the tag",
                 "fr": "La couleur du tag"
             }
+        },
+        "variations": {
+            "type": "string",
+            "l10n": true,
+            "multiple": true,
+            "label": {
+                "en": "Synonyms & variations",
+                "fr": "Synonymes & variations"
+            },
+            "description": {
+                "en": "Tag synonyms and variations help search and reduce number of overall tags.",
+                "fr": "Les synonymes et variations aident à la recherche et à réduire le nombre de tags."
+            }
+        },
+        "search_weight": {
+            "type": "number",
+            "label": {
+                "en": "Seach weight",
+                "fr": "Poids de recherche"
+            }
         }
     },
     "key": "id"

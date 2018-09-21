@@ -33,15 +33,27 @@ abstract class AbstractTag extends Content implements TagInterface
     protected $color;
 
     /**
+     * The tag's variations & variations
+     *
+     * @var mixed
+     */
+    protected $variations;
+
+    /**
+     * To change the orders of the result, when searching through tags.
+     *
+     * @var integer
+     */
+    protected $searchWeight;
+
+    /**
      * @param array $data The object's data options.
      */
     public function __construct(array $data = null)
     {
         parent::__construct($data);
 
-        if (is_callable([ $this, 'defaultData' ])) {
-            $this->setData($this->defaultData());
-        }
+        $this->setData($this->defaultData());
     }
 
     /**
@@ -50,7 +62,9 @@ abstract class AbstractTag extends Content implements TagInterface
      */
     public function loadCategoryItems()
     {
-        throw new Exception('Cannot use loadCategoryItems');
+        throw new Exception(
+            'Cannot use loadCategoryItems with tags.'
+        );
     }
 
     /**
@@ -91,5 +105,41 @@ abstract class AbstractTag extends Content implements TagInterface
     public function color()
     {
         return $this->color;
+    }
+
+    /**
+     * @param mixed $variations The tag's variations.
+     * @return self
+     */
+    public function setVariations($variations)
+    {
+        $this->variations = $variations;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function variations()
+    {
+        return $this->variations;
+    }
+
+    /**
+     * @param integer $weight Search priority / weight of this tag.
+     * @return self
+     */
+    public function setSearchWeight($weight)
+    {
+        $this->searchWeight = $weight;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function searchWeight()
+    {
+        return $this->searchWeight;
     }
 }
