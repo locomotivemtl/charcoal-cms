@@ -46,11 +46,17 @@ class TagTest extends AbstractTestCase
     {
         $ret = $this->obj->setData([
             'name' => 'Foo?',
-            'color'   => 'Bar'
+            'color'   => 'Bar',
+            'variations' => [
+                'en' => 'a,b,c'
+            ],
+            'search_weight' => 42
         ]);
         $this->assertSame($ret, $this->obj);
         $this->assertEquals('Foo?', (string)$this->obj->name());
         $this->assertEquals('Bar', (string)$this->obj->color());
+        $this->assertEquals('a,b,c', $this->obj->variations());
+        $this->assertEquals(42, $this->obj->searchWeight());
     }
 
     /**
@@ -71,5 +77,19 @@ class TagTest extends AbstractTestCase
         $ret = $this->obj->setColor('Bar');
         $this->assertSame($ret, $this->obj);
         $this->assertEquals('Bar', $this->obj->color());
+    }
+
+    public function testSetVariations()
+    {
+        $ret = $this->obj->setVariations('foo,bar,baz');
+        $this->assertSame($ret, $this->obj);
+        $this->assertEquals('foo,bar,baz', $this->obj->variations());
+    }
+
+    public function testSetSearchWeight()
+    {
+        $ret = $this->obj->setSearchWeight(1984);
+        $this->assertSame($ret, $this->obj);
+        $this->assertEquals(42, $this->obj->searchWeight());
     }
 }
