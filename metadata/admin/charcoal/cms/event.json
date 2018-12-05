@@ -10,15 +10,16 @@
                 "widgets": {
                     "form": {
                         "type": "charcoal/admin/widget/object-form",
-                        "form_ident": "default",
-                        "obj_type": "charcoal/cms/event"
+                        "form_ident": "cms.default",
+                        "obj_type": "charcoal/cms/event",
+                        "group_display_mode": "tab"
                     }
                 }
             },
             "table": {
                 "title": {
-                    "fr": "Liste des nouvelles",
-                    "en": "News list"
+                    "fr": "Liste des événements",
+                    "en": "Events list"
                 },
                 "layout": {
                     "structure": [{
@@ -28,7 +29,7 @@
                 "widgets": {
                     "form": {
                         "type": "charcoal/admin/widget/table",
-                        "collection_ident": "default",
+                        "collection_ident": "cms.default",
                         "obj_type": "charcoal/cms/event"
                     }
                 }

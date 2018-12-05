@@ -20,36 +20,6 @@
         "secondary_menu": "content"
     },
 
-    "sources": {
-        "default": {
-            "table": "cms_events"
-        }
-    },
-    "default_source": "default",
-
-    "labels": {
-        "name": {
-            "fr": "Événements",
-            "en": "Event"
-        },
-        "singular_name": {
-            "fr": "Événement",
-            "en": "Event"
-        },
-        "edit_item": {
-            "fr": "Modifier l'événement",
-            "en": "Edit event"
-        },
-        "all_items": {
-            "fr": "Tous les événements",
-            "en": "All Events"
-        },
-        "menu_items": {
-            "fr": "Événements",
-            "en": "Events"
-        }
-    },
-
     "properties": {
         "id": {
             "type": "id"
@@ -116,8 +86,64 @@
             }
         },
         "info_url": {
-          "type": "url",
-          "l10n": true
+            "type": "url",
+            "l10n": true,
+            "label": {
+                "fr": "URL externe",
+                "en": "Information URL"
+            },
+            "description": {
+                "fr": "Si l'événement possède un URL externe dédié pour avoir de l'information supplémentaire.",
+                "en": "Custom event URL."
+            }
+        },
+        "info_phone": {
+            "type": "phone",
+            "label": {
+                "en": "Phone",
+                "fr": "Téléphone"
+            },
+            "description":{
+                "fr": "Numéro de téléphone à contacter pour avoir de l'information supplémentaire sur l'événement.",
+                "en": "Phone number to contact to have more information on the event."
+            }
+        },
+        "ticket_price_min": {
+            "type": "number",
+            "label": {
+                "en": "Minimum ticket price",
+                "fr": "Prix minimal des billets"
+            }
+        },
+        "ticket_price_max":{
+            "type": "number",
+            "label": {
+                "en": "Maximum ticket price",
+                "fr": "Prix maximal des billets"
+            }
+        },
+        "ticket_summary":{
+            "type": "html",
+            "l10n": true,
+            "label": {
+                "en": "More tickets information",
+                "fr": "Informations supplémentaires sur les billets"
+            }
+        },
+        "ticket_url": {
+            "type": "url",
+            "l10n": true,
+            "label": {
+                "en": "URL for tickets",
+                "fr": "URL pour les billets"
+            }
+        },
+        "ticket_phone": {
+            "type": "phone",
+            "label": {
+                "en": "Phone for tickets",
+                "fr": "Téléphone pour les billets"
+            }
         },
         "keywords": {
             "type": "object",
@@ -129,8 +155,8 @@
                 "en": "Keywords"
             },
             "description": {
-                "fr": "Les mots-clés permettent d'optimiser la recherche",
-                "en": "Key-words optimises research"
+                "fr": "Les mots-clés permettent d'optimiser la recherche.",
+                "en": "Keywords optimize search results."
             }
         }
     }

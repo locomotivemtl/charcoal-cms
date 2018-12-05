@@ -1,8 +1,32 @@
 {
+    "labels": {
+        "name": {
+            "fr": "Événements",
+            "en": "Event"
+        },
+        "singular_name": {
+            "fr": "Événement",
+            "en": "Event"
+        },
+        "edit_item": {
+            "fr": "Modifier l'événement",
+            "en": "Edit event"
+        },
+        "all_items": {
+            "fr": "Tous les événements",
+            "en": "All Events"
+        },
+        "menu_items": {
+            "fr": "Événements",
+            "en": "Events"
+        }
+    },
+
     "admin": {
         "lists": {
             "cms.default": {
                 "properties": [
+                    "category",
                     "title",
                     "start_date",
                     "end_date",
@@ -65,19 +89,48 @@
             }
         },
 
-        "forms": {},
+        "forms": {
+            "cms.default": {
+                "groups": {
+                    "cms.info": {},
+                    "cms.meta": {},
+                    "cms.advanced": {},
+                    "cms.tickets": {},
+                    "cms.revisions": {}
+                },
+                "sidebars": {
+                    "default": {
+                        "properties": [
+                            "created",
+                            "created_by",
+                            "last_modified",
+                            "last_modified_by"
+                        ]
+                    }
+                }
+            }
+        },
 
         "form_groups": {
             "cms.info": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1]},
+                        {"columns": [1]},
+                        {"columns": [1]},
+                        {"columns": [1]},
+                        {"columns": [1, 1]}
+                    ]
+                },
                 "title": "Info",
-                "show_title": false,
-                "show_header": false,
                 "icon": "info",
                 "properties": [
                     "title",
                     "summary",
                     "content",
-                    "image"
+                    "image",
+                    "info_url",
+                    "info_phone"
                 ]
             },
             "cms.gallery": {
@@ -85,8 +138,6 @@
                     "fr": "Galerie d'images",
                     "en": "Gallery"
                 },
-                "show_title": false,
-                "show_header": false,
                 "icon": "photo",
                 "template": "charcoal/admin/widget/form-group/attachment",
                 "type": "charcoal/admin/widget/form-group/attachment",
@@ -105,8 +156,6 @@
                     "en": "Documents",
                     "fr": "Ressources"
                 },
-                "show_title": false,
-                "show_header": false,
                 "icon": "paperclip",
                 "template": "charcoal/admin/widget/form-group/attachment",
                 "type": "charcoal/admin/widget/form-group/attachment",
@@ -127,8 +176,6 @@
                 }
             },
             "cms.meta": {
-                "show_title": false,
-                "show_header": false,
                 "icon": "tags",
                 "title": {
                     "fr": "Description méta",
@@ -142,15 +189,23 @@
                 ]
             },
             "cms.advanced": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1]},
+                        {"columns": [1, 1]},
+                        {"columns": [1, 1]},
+                        {"columns": [1]},
+                        {"columns": [1]}
+                    ]
+                },
                 "title": "Options",
-                "show_title": false,
-                "show_header": false,
                 "icon": "cog",
                 "properties": [
                     "category",
                     "start_date",
                     "end_date",
                     "publish_date",
+                    "expiry_date",
                     "slug",
                     "active"
                 ],
@@ -161,11 +216,30 @@
                     "fr": "Révisions",
                     "en": "Revisions"
                 },
-                "show_title": false,
-                "show_header": false,
                 "icon": "floppy-o",
                 "template": "charcoal/admin/widget/form-group/object-revisions",
                 "type": "charcoal/admin/widget/form-group/object-revisions"
+            },
+            "cms.tickets": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1, 1]},
+                        {"columns": [1]},
+                        {"columns": [1, 1]}
+                    ]
+                },
+                "title": {
+                    "fr": "Billets",
+                    "en": "Tickets"
+                },
+                "icon": "credit-card",
+                "properties": [
+                    "ticket_price_min",
+                    "ticket_price_max",
+                    "ticket_summary",
+                    "ticket_url",
+                    "ticket_phone"
+                ]
             }
         },
         "dashboards": {

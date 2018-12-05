@@ -22,8 +22,8 @@ use Charcoal\Translator\Translation;
 abstract class AbstractEvent extends Content implements EventInterface
 {
     use CategorizableTrait;
-    use PublishableTrait;
     use MetatagTrait;
+    use PublishableTrait;
     use RoutableTrait;
     use SearchableTrait;
     use TemplateableTrait;
@@ -64,6 +64,42 @@ abstract class AbstractEvent extends Content implements EventInterface
     private $endDate;
 
     /**
+     * @var Translation|string|null
+     */
+    private $infoUrl;
+
+    /**
+     * @var string
+     */
+    private $infoPhone;
+
+
+    /**
+     * @var float|null
+     */
+    private $ticketPriceMin;
+
+    /**
+     * @var float|null
+     */
+    private $ticketPriceMax;
+
+    /**
+     * @var Translation|string|null
+     */
+    private $ticketSummary;
+
+    /**
+     * @var Translation|string|null
+     */
+    private $ticketUrl;
+
+    /**
+     * @var string
+     */
+    private $ticketPhone;
+
+    /**
      * @var array
      */
     protected $keywords;
@@ -79,6 +115,15 @@ abstract class AbstractEvent extends Content implements EventInterface
         if (is_callable([ $this, 'defaultData' ])) {
             $this->setData($this->defaultData());
         }
+    }
+
+    /**
+     * @see MetataTrait::canonicalUrl
+     * @return string
+     */
+    public function canonicalUrl()
+    {
+        return '';
     }
 
     /**
@@ -279,18 +324,133 @@ abstract class AbstractEvent extends Content implements EventInterface
     }
 
     /**
-     * MetatagTrait > canonicalUrl
-     *
-     * @todo
-     * @return string
+     * @param mixed $url The information URL (localized).
+     * @return self
      */
-    public function canonicalUrl()
+    public function setInfoUrl($url)
     {
-        return '';
+        $this->infoUrl = $this->translator()->translation($url);
+        return $this;
     }
 
     /**
-     * @return Translation|string|null
+     * @return Translation|null|string
+     */
+    public function infoUrl()
+    {
+        return $this->infoUrl;
+    }
+
+    /**
+     * @param mixed $phone General information phone number.
+     * @return self
+     */
+    public function setInfoPhone($phone)
+    {
+        $this->infoPhone = $phone;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function infoPhone()
+    {
+        return $this->infoPhone;
+    }
+
+    /**
+     * @param float $price The minimum ticket price.
+     * @return self
+     */
+    public function setTicketPriceMin($price)
+    {
+        $this->ticketPriceMin = (float)$price;
+        return $this;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function ticketPriceMin()
+    {
+        return $this->ticketPriceMin;
+    }
+
+    /**
+     * @param float $price The maximum ticket price.
+     * @return self
+     */
+    public function setTicketPriceMax($price)
+    {
+        $this->ticketPriceMax = (float)$price;
+        return $this;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function ticketPriceMax()
+    {
+        return $this->ticketPriceMax;
+    }
+
+    /**
+     * @param mixed $summary The ticket summary / information (localized).
+     * @return self
+     */
+    public function setTicketSummary($summary)
+    {
+        $this->ticketSummary = $this->translator()->translation($summary);
+        return $this;
+    }
+
+    /**
+     * @return Translation|null
+     */
+    public function ticketSummary()
+    {
+        return $this->ticketSummary;
+    }
+
+    /**
+     * @param mixed $url The ticket URL (localized).
+     * @return self
+     */
+    public function setTicketUrl($url)
+    {
+        $this->ticketUrl = $this->translator()->translation($url);
+        return $this;
+    }
+
+    /**
+     * @return Translation|null
+     */
+    public function ticketUrl()
+    {
+        return $this->ticketUrl;
+    }
+
+    /**
+     * @param string|null $phone Tickets phone number.
+     * @return self
+     */
+    public function setTicketPhone($phone)
+    {
+        $this->ticketPhone = $phone;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function ticketPhone()
+    {
+        return $this->ticketPhone;
+    }
+
+    /**
+     * @return Translation|null
      */
     public function defaultMetaTitle()
     {

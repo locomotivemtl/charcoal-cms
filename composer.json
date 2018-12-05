@@ -64,7 +64,7 @@
             "@phpunit"
         ],
         "phplint": "find src tests -type f -name '*.php' -print0 | xargs -0 -n1 -P8 php -l | grep -v '^No syntax errors detected'; test $? -eq 1",
-        "phpcs": "php vendor/bin/phpcs -ps --colors src/ tests/",
+        "phpcs": "php vendor/bin/phpcs -ps --colors src/",
         "phpcbf": "php vendor/bin/phpcbf -ps --colors src/ tests/",
         "phpunit": "php vendor/bin/phpunit --coverage-text"
     }
