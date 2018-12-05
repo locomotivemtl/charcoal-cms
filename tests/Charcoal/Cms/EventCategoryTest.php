@@ -45,4 +45,16 @@ class EventCategoryTest extends AbstractTestCase
     {
         $this->assertEquals(Event::class, $this->obj->itemType());
     }
+
+    /**
+     * @return void
+     */
+    public function testValidate()
+    {
+        $this->assertFalse($this->obj->validate());
+        $this->obj->setName(['fr'=>'Titre']);
+        $this->assertFalse($this->obj->validate());
+        $this->obj->setName(['fr'=>'Titre', 'en'=>'Title']);
+        $this->assertTrue($this->obj->validate());
+    }
 }

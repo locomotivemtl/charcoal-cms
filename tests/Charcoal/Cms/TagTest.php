@@ -90,6 +90,6 @@ class TagTest extends AbstractTestCase
     {
         $ret = $this->obj->setSearchWeight(1984);
         $this->assertSame($ret, $this->obj);
-        $this->assertEquals(42, $this->obj->searchWeight());
+        $this->assertEquals(1984, $this->obj->searchWeight());
     }
 }

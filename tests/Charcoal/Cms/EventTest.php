@@ -57,9 +57,18 @@ class EventTest extends AbstractTestCase
         $ret = $this->obj->setData([
             'title'      => 'Example title',
             'subtitle'   => 'Subtitle',
+            'summary'    => 'Summary <p>yeah</p>',
             'content'    => 'foobar',
+            'image'      => 'foo.png',
             'start_date' => '2015-01-01 20:00:00',
-            'end_date'   => '2015-01-01 21:30:00'
+            'end_date'   => '2015-01-01 21:30:00',
+            'info_url'   => 'https://example.com/event',
+            'info_phone' => '514 555-1212',
+            'ticket_price_min' => 25,
+            'ticket_price_max' => 50,
+            'ticket_summary' => 'Infos ticket',
+            'ticket_url' => 'https://example.com/tickets',
+            'ticket_phone' => '1-555-555-1234'
         ]);
 
         $this->assertSame($ret, $this->obj);
@@ -67,6 +76,11 @@ class EventTest extends AbstractTestCase
         $this->assertEquals('Subtitle', (string)$this->obj->subtitle());
         $this->assertEquals('foobar', (string)$this->obj->content());
         $this->assertEquals(new DateTime('2015-01-01 20:00:00'), $this->obj->startDate());
+        $this->assertEquals(new DateTime('2015-01-01 21:30:00'), $this->obj->endDate());
+        $this->assertEquals('https://example.com/event', $this->obj->infoUrl());
+        $this->assertEquals('514 555-1212', $this->obj->infoPhone());
+        $this->assertEquals(25, $this->obj->ticketPriceMin());
+        $this->assertEquals(50, $this->obj->ticketPriceMax());
     }
 
     /**
