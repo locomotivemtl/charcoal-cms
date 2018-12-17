@@ -25,6 +25,7 @@ abstract class AbstractNews extends Content implements NewsInterface
     use MetatagTrait;
     use RoutableTrait;
     use SearchableTrait;
+    use TaggableTrait;
     use TemplateableTrait;
 
     /**
