@@ -12,6 +12,14 @@
             "fr": "Modifier l'événement",
             "en": "Edit event"
         },
+        "create_item": {
+            "fr": "Créer un événement",
+            "en": "Create an event"
+        },
+        "new_item": {
+            "fr": "Nouvel événement",
+            "en": "New event"
+        },
         "all_items": {
             "fr": "Tous les événements",
             "en": "All Events"
@@ -24,7 +32,7 @@
 
     "admin": {
         "lists": {
-            "cms.default": {
+            "charcoal/cms/event-interface/default": {
                 "properties": [
                     "category",
                     "title",
@@ -36,10 +44,6 @@
                     {
                         "ident": "create",
                         "priority": 10,
-                        "label": {
-                            "en": "New event",
-                            "fr": "Nouvel événement"
-                        },
                         "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}"
                     }
                 ],
@@ -90,23 +94,27 @@
         },
 
         "forms": {
-            "cms.default": {
+            "charcoal/cms/event-interface/create": {
                 "groups": {
                     "cms.info": {},
                     "cms.meta": {},
                     "cms.advanced": {},
-                    "cms.tickets": {},
+                    "charcoal/cms/event-interface/tickets": {}
+                },
+                "sidebars": {
+                    "charcoal/cms/event-interface/create": {}
+                }
+            },
+            "charcoal/cms/event-interface/edit": {
+                "groups": {
+                    "cms.info": {},
+                    "cms.meta": {},
+                    "cms.advanced": {},
+                    "charcoal/cms/event-interface/tickets": {},
                     "cms.revisions": {}
                 },
                 "sidebars": {
-                    "default": {
-                        "properties": [
-                            "created",
-                            "created_by",
-                            "last_modified",
-                            "last_modified_by"
-                        ]
-                    }
+                    "charcoal/cms/event-interface/default": {}
                 }
             }
         },
@@ -206,8 +214,7 @@
                     "end_date",
                     "publish_date",
                     "expiry_date",
-                    "slug",
-                    "active"
+                    "slug"
                 ],
                 "priority": 600
             },
@@ -220,7 +227,7 @@
                 "template": "charcoal/admin/widget/form-group/object-revisions",
                 "type": "charcoal/admin/widget/form-group/object-revisions"
             },
-            "cms.tickets": {
+            "charcoal/cms/event-interface/tickets": {
                 "layout": {
                     "structure": [
                         {"columns": [1, 1]},
@@ -242,13 +249,25 @@
                 ]
             }
         },
+
+        "form_sidebars": {
+            "charcoal/cms/event-interface/create": {
+                "properties": []
+            },
+            "charcoal/cms/event-interface/default": {
+                "properties": [
+                    "created",
+                    "created_by",
+                    "last_modified",
+                    "last_modified_by"
+                ]
+            }
+        },
+
         "dashboards": {
-            "cms.edit": {
+            "cms.create": {
                 "layout": {
                     "structure": [
-                        {"columns": [1]},
-                        {"columns": [1]},
-                        {"columns": [1]},
                         {"columns": [1]}
                     ]
                 },
@@ -256,7 +275,22 @@
                     "form": {
                         "priority": 10,
                         "type": "charcoal/admin/widget/object-form",
-                        "form_ident": "cms.default",
+                        "form_ident": "charcoal/cms/event-interface/create",
+                        "group_display_mode": "tab"
+                    }
+                }
+            },
+            "cms.edit": {
+                "layout": {
+                    "structure": [
+                        {"columns": [1]}
+                    ]
+                },
+                "widgets": {
+                    "form": {
+                        "priority": 10,
+                        "type": "charcoal/admin/widget/object-form",
+                        "form_ident": "charcoal/cms/event-interface/edit",
                         "group_display_mode": "tab"
                     }
                 }
@@ -270,7 +304,7 @@
                 "widgets": {
                     "table": {
                         "type": "charcoal/admin/widget/table",
-                        "collection_ident": "cms.default",
+                        "collection_ident": "charcoal/cms/event-interface/default",
                         "data_sources": ["request"]
                     }
                 }

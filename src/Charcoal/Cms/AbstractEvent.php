@@ -17,7 +17,7 @@ use Charcoal\Object\RoutableTrait;
 use Charcoal\Translator\Translation;
 
 /**
- *
+ * Abstract CMS Event
  */
 abstract class AbstractEvent extends Content implements EventInterface
 {

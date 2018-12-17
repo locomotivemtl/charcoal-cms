@@ -16,7 +16,7 @@ use Charcoal\Object\RoutableTrait;
 use Charcoal\Translator\Translation;
 
 /**
- * News
+ * CMS News
  */
 abstract class AbstractNews extends Content implements NewsInterface
 {
@@ -275,17 +275,28 @@ abstract class AbstractNews extends Content implements NewsInterface
     }
 
     /**
-     * MetatagTrait > canonical_url
+     * Retrieve the object's keywords.
      *
-     * @return string
-     * @todo
+     * @return string[]
      */
-    public function canonicalUrl()
+    public function keywords()
     {
-        return '';
+        return $this->keywords;
     }
 
     /**
+     * MetatagTrait > canonical_url
+     *
+     * @see MetatagTrait::canonicalUrl()
+     * @return string
+     */
+    public function canonicalUrl()
+    {
+        return $this->slug();
+    }
+
+    /**
+     * @see MetatagTrait::defaultMetaTitle()
      * @return Translation|string|null
      */
     public function defaultMetaTitle()
@@ -294,6 +305,7 @@ abstract class AbstractNews extends Content implements NewsInterface
     }
 
     /**
+     * @see MetatagTrait::defaultMetaDescription()
      * @return Translation|string|null
      */
     public function defaultMetaDescription()
@@ -312,6 +324,7 @@ abstract class AbstractNews extends Content implements NewsInterface
     }
 
     /**
+     * @see MetatagTrait::defaultMetaImage()
      * @return Translation|string|null
      */
     public function defaultMetaImage()
@@ -320,19 +333,10 @@ abstract class AbstractNews extends Content implements NewsInterface
     }
 
     /**
-     * Retrieve the object's keywords.
-     *
-     * @return string[]
-     */
-    public function keywords()
-    {
-        return $this->keywords;
-    }
-
-    /**
      * GenericRoute checks if the route is active.
-     * Default in RoutableTrait.
      *
+     * @see RoutableTrait::isActiveRoute()
+     * @see PublishableTrait::isPublished()
      * @return boolean
      */
     public function isActiveRoute()
@@ -346,6 +350,7 @@ abstract class AbstractNews extends Content implements NewsInterface
     /**
      * {@inheritdoc}
      *
+     * @see \Charcoal\Source\StorableTrait::preSave()
      * @return boolean
      */
     protected function preSave()
@@ -359,6 +364,7 @@ abstract class AbstractNews extends Content implements NewsInterface
     /**
      * {@inheritdoc}
      *
+     * @see \Charcoal\Source\StorableTrait::preUpdate()
      * @param array $properties Optional properties to update.
      * @return boolean
      */
@@ -371,6 +377,7 @@ abstract class AbstractNews extends Content implements NewsInterface
     }
 
     /**
+     * @see \Charcoal\Source\StorableTrait::postSave()
      * @return boolean Parent postSave().
      */
     protected function postSave()
@@ -382,6 +389,7 @@ abstract class AbstractNews extends Content implements NewsInterface
     }
 
     /**
+     * @see \Charcoal\Source\StorableTrait::postUpdate()
      * @param array|null $properties Properties.
      * @return boolean
      */

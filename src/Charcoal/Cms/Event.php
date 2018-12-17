@@ -8,8 +8,8 @@ namespace Charcoal\Cms;
 final class Event extends AbstractEvent
 {
     /**
-     * CategorizableTrait > category_type()
      *
+     * @see CategorizableTrait::$ategoryType()
      * @return string
      */
     public function categoryType()

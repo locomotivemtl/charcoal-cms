@@ -12,7 +12,7 @@ use Charcoal\Object\RoutableInterface;
 use Charcoal\Translator\Translation;
 
 /**
- *
+ * CMS News
  */
 interface NewsInterface extends
     CategorizableInterface,
@@ -21,6 +21,7 @@ interface NewsInterface extends
     RoutableInterface,
     MetatagInterface,
     SearchableInterface,
+    TaggableInterface,
     TemplateableInterface
 {
     /**

@@ -21,29 +21,6 @@
         "secondary_menu": "content"
     },
 
-    "labels": {
-        "name": {
-            "fr": "Nouvelles",
-            "en": "News"
-        },
-        "singular_name": {
-            "fr": "Nouvelle",
-            "en": "News"
-        },
-        "edit_item": {
-            "fr": "Modifier la nouvelle",
-            "en": "Edit news"
-        },
-        "all_items": {
-            "fr": "Toutes les nouvelles",
-            "en": "All News"
-        },
-        "menu_items": {
-            "fr": "Nouvelles",
-            "en": "News"
-        }
-    },
-
     "properties": {
         "id": {
             "type": "id"
