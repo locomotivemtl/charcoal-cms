@@ -148,7 +148,7 @@
         "keywords": {
             "type": "object",
             "obj_type": "charcoal/cms/tag",
-            "input_type": "charcoal/admin/property/input/selectize/tags",
+            "input_type": "charcoal/admin/property/input/selectize",
             "multiple": true,
             "label": {
                 "fr": "Mots-clés",
