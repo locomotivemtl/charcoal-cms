@@ -82,7 +82,7 @@ class EventCategory extends Content implements CategoryInterface
         parent::validate($v);
 
         foreach ($this->translator()->locales() as $locale => $value) {
-            if (!(string)$this->name()[$locale]) {
+            if (!(string)$this['name'][$locale]) {
                 $this->validator()->error(
                     (string)$this->translator()->translation([
                         'fr' => 'Le NOM doit être rempli dans toutes les langues.',

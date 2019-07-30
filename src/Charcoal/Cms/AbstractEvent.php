@@ -132,15 +132,15 @@ abstract class AbstractEvent extends Content implements EventInterface
      */
     public function verifyDates()
     {
-        if (!$this->startDate()) {
+        if (!$this['startDate']) {
             $this->setStartDate('now');
         }
 
-        if (!$this->endDate()) {
-            $this->setEndDate($this->startDate());
+        if (!$this['endDate']) {
+            $this->setEndDate($this['startDate']);
         }
 
-        if (!$this->publishDate()) {
+        if (!$this['publishDate']) {
             $this->setPublishDate('now');
         }
     }
@@ -150,8 +150,8 @@ abstract class AbstractEvent extends Content implements EventInterface
      */
     public function adminDateFilter()
     {
-        $start = $this->startDate()->format('Y-m-d');
-        $end = $this->endDate()->format('Y-m-d');
+        $start = $this['startDate']->format('Y-m-d');
+        $end = $this['endDate']->format('Y-m-d');
 
         if ($start === $end) {
             $date = $start;
@@ -502,7 +502,7 @@ abstract class AbstractEvent extends Content implements EventInterface
     public function isActiveRoute()
     {
         return (
-            $this->active() &&
+            $this['active'] &&
             $this->isPublished()
         );
     }
@@ -540,7 +540,7 @@ abstract class AbstractEvent extends Content implements EventInterface
     protected function postSave()
     {
         // RoutableTrait
-        $this->generateObjectRoute($this->slug());
+        $this->generateObjectRoute($this['slug']);
 
         return parent::postSave();
     }
@@ -552,7 +552,7 @@ abstract class AbstractEvent extends Content implements EventInterface
     protected function postUpdate(array $properties = null)
     {
         // RoutableTrait
-        $this->generateObjectRoute($this->slug());
+        $this->generateObjectRoute($this['slug']);
 
         return parent::postUpdate($properties);
     }

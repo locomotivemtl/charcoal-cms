@@ -87,7 +87,7 @@ abstract class AbstractNews extends Content implements NewsInterface
      */
     public function dateTimeDate()
     {
-        $newsDate = $this->newsDate();
+        $newsDate = $this['newsDate'];
 
         return $newsDate->format('Y-m-d H:i:s');
     }
@@ -98,11 +98,11 @@ abstract class AbstractNews extends Content implements NewsInterface
      */
     public function verifyDates()
     {
-        if (!$this->newsDate()) {
+        if (!$this['newsDate']) {
             $this->setNewsDate('now');
         }
 
-        if (!$this->publishDate()) {
+        if (!$this['publishDate']) {
             $this->setPublishDate('now');
         }
     }
@@ -112,7 +112,7 @@ abstract class AbstractNews extends Content implements NewsInterface
      */
     public function adminDateFilter()
     {
-        return $this->newsDate()->format('Y-m-d');
+        return $this['newsDate']->format('Y-m-d');
     }
 
     /**
@@ -311,7 +311,7 @@ abstract class AbstractNews extends Content implements NewsInterface
      */
     public function defaultMetaDescription()
     {
-        $content = $this->translator()->translation($this->content());
+        $content = $this->translator()->translation($this['content']);
         if ($content instanceof Translation) {
             $desc = [];
             foreach ($content->data() as $lang => $text) {
@@ -343,7 +343,7 @@ abstract class AbstractNews extends Content implements NewsInterface
     public function isActiveRoute()
     {
         return (
-            $this->active() &&
+            $this['active'] &&
             $this->isPublished()
         );
     }
@@ -384,7 +384,7 @@ abstract class AbstractNews extends Content implements NewsInterface
     protected function postSave()
     {
         // RoutableTrait
-        $this->generateObjectRoute($this->slug());
+        $this->generateObjectRoute($this['slug']);
 
         return parent::postSave();
     }
@@ -397,7 +397,7 @@ abstract class AbstractNews extends Content implements NewsInterface
     protected function postUpdate(array $properties = null)
     {
         // RoutableTrait
-        $this->generateObjectRoute($this->slug());
+        $this->generateObjectRoute($this['slug']);
 
         return parent::postUpdate($properties);
     }

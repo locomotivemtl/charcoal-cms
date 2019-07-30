@@ -133,7 +133,7 @@ class TemplateProperty extends AbstractProperty implements SelectablePropertyInt
         }
 
         /** Parse multilingual values */
-        if ($this->l10n()) {
+        if ($this['l10n']) {
             $propertyValue = $this->l10nVal($val, $options);
             if ($propertyValue === null) {
                 return '';
@@ -147,7 +147,7 @@ class TemplateProperty extends AbstractProperty implements SelectablePropertyInt
         $separator = $this->multipleSeparator();
 
         /** Parse multiple values / ensure they are of array type. */
-        if ($this->multiple()) {
+        if ($this['multiple']) {
             if (!is_array($propertyValue)) {
                 $propertyValue = explode($separator, $propertyValue);
             }

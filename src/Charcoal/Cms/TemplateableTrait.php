@@ -267,7 +267,7 @@ trait TemplateableTrait
     {
         foreach ($obj->properties() as $propertyIdent => $property) {
             $val = $obj[$propertyIdent];
-            if ($property->l10n()) {
+            if ($property['l10n']) {
                 $obj[$propertyIdent] = $this->translator()->translation($obj[$propertyIdent]);
             } elseif ($property instanceof ModelStructureProperty) {
                 $struct = $property->structureVal($obj[$propertyIdent]);

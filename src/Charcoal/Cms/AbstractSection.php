@@ -401,7 +401,7 @@ abstract class AbstractSection extends Content implements SectionInterface
      */
     public function defaultMetaDescription()
     {
-        $content = $this->translator()->translation($this->content());
+        $content = $this->translator()->translation($this['content']);
         if ($content instanceof Translation) {
             $desc = [];
             foreach ($content->data() as $lang => $text) {
@@ -433,7 +433,7 @@ abstract class AbstractSection extends Content implements SectionInterface
     {
         // RoutableTrait
         if (!$this->locked()) {
-            $this->generateObjectRoute($this->slug());
+            $this->generateObjectRoute($this['slug']);
         }
 
         return parent::postSave();
@@ -448,7 +448,7 @@ abstract class AbstractSection extends Content implements SectionInterface
     protected function postUpdate(array $properties = null)
     {
         if (!$this->locked()) {
-            $this->generateObjectRoute($this->slug());
+            $this->generateObjectRoute($this['slug']);
         }
 
         return parent::postUpdate($properties);
