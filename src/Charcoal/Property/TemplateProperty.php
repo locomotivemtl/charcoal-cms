@@ -213,7 +213,7 @@ class TemplateProperty extends AbstractProperty implements SelectablePropertyInt
      */
     public function sqlType()
     {
-        if ($this->multiple()) {
+        if ($this['multiple']) {
             return 'TEXT';
         }
 
