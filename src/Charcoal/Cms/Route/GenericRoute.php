@@ -403,7 +403,8 @@ class GenericRoute extends TemplateRoute
         // Slug can be duplicated by adding the front "/" to it hence the order by last_modification_date
         $route = $this->createRouteObject();
         $route->loadFromQuery(
-            sprintf('
+            sprintf(
+                '
                 SELECT * FROM `%s`
                 WHERE (`slug` = :route1 OR `slug` = :route2)
                 AND `lang` = :lang

@@ -265,7 +265,7 @@ trait TemplateableTrait
      */
     protected function translateTemplateOptionsModel(ModelInterface $obj, $recursive = false)
     {
-        unset ($recursive);
+        unset($recursive);
         foreach ($obj->properties() as $propertyIdent => $property) {
             $val = $obj[$propertyIdent];
             if ($property['l10n']) {
