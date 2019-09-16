@@ -72,7 +72,7 @@ trait LocaleAwareTrait
      */
     private function parseLocale(array $localeStruct, $langCode)
     {
-        $trans = 'locale.' . $langCode;
+        $trans = 'locale.'.$langCode;
 
         /** Setup the name of the language in the current locale */
         if (isset($localeStruct['name'])) {

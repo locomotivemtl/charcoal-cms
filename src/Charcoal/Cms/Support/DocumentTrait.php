@@ -117,6 +117,7 @@ trait DocumentTrait
      */
     protected function parseDocumentTitlePart($value, $key, array $parts)
     {
+        unset($key, $parts);
         return $value;
     }
 

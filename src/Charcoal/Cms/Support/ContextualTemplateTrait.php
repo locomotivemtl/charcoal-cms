@@ -140,7 +140,7 @@ trait ContextualTemplateTrait
 
                 $base = $uri->getBasePath();
                 $path = $uri->getPath();
-                $path = $base . '/' . ltrim($path, '/');
+                $path = $base.'/'.ltrim($path, '/');
 
                 $endpoint[$lang] = $path;
             }
