@@ -1,0 +1,24 @@
+{{!--
+
+    Web Metadata \ Document Information
+    ===================================
+
+--}}
+<title>{{& documentTitle }}</title>
+
+{{# hasAlternateTranslations }}
+{{# alternateTranslations }}
+<link rel="alternate" hreflang="{{ hreflang }}" href="{{ url }}">
+{{/ alternateTranslations }}
+
+{{/ hasAlternateTranslations }}
+{{# hasSeoMetadata }}
+{{# seoMetadata }}
+<meta name="{{ name }}" content="{{ content }}">
+{{/ seoMetadata }}
+
+{{/ hasSeoMetadata }}
+{{# metaDescription }}
+<meta name="description" content="{{ . }}">
+
+{{/ metaDescription }}

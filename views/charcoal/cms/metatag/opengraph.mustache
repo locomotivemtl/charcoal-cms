@@ -1,0 +1,24 @@
+{{!--
+
+    Web Metadata \ OpenGraph Data
+    =============================
+
+--}}
+{{# opengraphType }}
+<meta property="og:type"        content="{{ . }}">
+{{/ opengraphType }}
+{{# currentUrl }}
+<meta property="og:url"         content="{{ . }}">
+{{/ currentUrl }}
+{{# siteName }}
+<meta property="og:site_name"   content="{{ . }}">
+{{/ siteName }}
+{{# metaTitle }}
+<meta property="og:title"       content="{{ . }}">
+{{/ metaTitle }}
+{{# opengraphImage }}
+<meta property="og:image"       content="{{ . }}">
+{{/ opengraphImage }}
+{{# metaDescription }}
+<meta property="og:description" content="{{ . }}">
+{{/ metaDescription }}

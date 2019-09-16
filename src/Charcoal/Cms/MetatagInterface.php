@@ -10,6 +10,8 @@ use Charcoal\Translator\Translation;
  */
 interface MetatagInterface
 {
+    const DEFAULT_OPENGRAPH_TYPE = 'website';
+
     /**
      * @return string
      */
