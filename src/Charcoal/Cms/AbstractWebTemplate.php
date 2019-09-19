@@ -88,6 +88,7 @@ abstract class AbstractWebTemplate extends AbstractTemplate
         $this->setDebug($container['debug']);
         $this->setModelFactory($container['model/factory']);
         $this->setTranslator($container['translator']);
+        $this->setLocales($this->translator()->locales());
 
         $metatags = $this->appConfig('cms.metatags');
         if (is_array($metatags)) {
