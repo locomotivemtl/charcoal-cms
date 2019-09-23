@@ -163,9 +163,9 @@ Base events properties:
 | Timestampable | **created**           |      | date-time |
 | Timestampable | **last_modified**     |      | date-time |
 | Categorizable | **category**          | ✔    | object    | `EventCategory`, or custom. |
-| Publishable   | **publish_date**      |      | date-time |
-| Publishable   | **expiry_date**       |      | date-time |
-| Publishable   | **publish_status**    |      | string    | `draft`, `pending`, or `published`. |
+| Publishable   | **publishDate**      |      | date-time |
+| Publishable   | **expiryDate**       |      | date-time |
+| Publishable   | **publishStatus**    |      | string    | `draft`, `pending`, or `published`. |
 | Routable      | **slug**              | ✔    | string    | Permalink. Auto-generated from title. |
 | Metatag       | **meta_title**       | ✔    | string    |
 | Metatag       | **meta_description** | ✔    | string    |
@@ -245,9 +245,9 @@ Base news properties:
 | Timestampable | **created**           |      | date-time |
 | Timestampable | **last_modified**     |      | date-time |
 | Categorizable | **category**          | ✔    | object    | `NewsCategory`, or custom. |
-| Publishable   | **publish_date**      |      | date-time |
-| Publishable   | **expiry_date**       |      | date-time |
-| Publishable   | **publish_status**    |      | string    | `draft`, `pending`, or `published`. |
+| Publishable   | **publishDate**      |      | date-time |
+| Publishable   | **expiryDate**       |      | date-time |
+| Publishable   | **publishStatus**    |      | string    | `draft`, `pending`, or `published`. |
 | Routable      | **slug**              | ✔    | string    | Permalink. Auto-generated from title. |
 | Metatag       | **meta_title**       | ✔    | string    |
 | Metatag       | **meta_description** | ✔    | string    |

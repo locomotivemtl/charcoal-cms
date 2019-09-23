@@ -67,7 +67,7 @@
             "public_access": true,
             "upload_path": "uploads/news/"
         },
-        "news_date": {
+        "newsDate": {
             "type": "date-time",
             "label": {
                 "en": "News date",
@@ -82,7 +82,7 @@
                 "fr": "La date actuelle sera utilisée automatiquement si laissée vide."
             }
         },
-        "info_url": {
+        "infoUrl": {
             "type": "url",
             "l10n": true
         },

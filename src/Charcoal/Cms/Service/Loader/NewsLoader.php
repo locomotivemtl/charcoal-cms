@@ -52,8 +52,8 @@ class NewsLoader extends AbstractLoader
     {
         $now = new DateTime();
         $loader = $this->all();
-        $loader->addFilter('publish_date', $now->format('Y-m-d H:i:s'), [ 'operator' => '<=' ])
-            ->addFilter('expiry_date', $now->format('Y-m-d H:i:s'), [ 'operator' => '>=' ]);
+        $loader->addFilter('publishDate', $now->format('Y-m-d H:i:s'), [ 'operator' => '<=' ])
+            ->addFilter('expiryDate', $now->format('Y-m-d H:i:s'), [ 'operator' => '>=' ]);
 
         return $loader;
     }
@@ -65,8 +65,8 @@ class NewsLoader extends AbstractLoader
     {
         $now = new DateTime();
         $loader = $this->all();
-        $loader->addFilter('publish_date', $now->format('Y-m-d H:i:s'), [ 'operator' => '<=' ])
-            ->addFilter('expiry_date', $now->format('Y-m-d H:i:s'), [ 'operator' => '<=' ]);
+        $loader->addFilter('publishDate', $now->format('Y-m-d H:i:s'), [ 'operator' => '<=' ])
+            ->addFilter('expiryDate', $now->format('Y-m-d H:i:s'), [ 'operator' => '<=' ]);
 
         return $loader;
     }

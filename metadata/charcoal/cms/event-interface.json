@@ -63,7 +63,7 @@
             "public_access": true,
             "upload_path": "uploads/events/"
         },
-        "start_date": {
+        "startDate": {
             "type": "date-time",
             "label": {
                 "fr": "Date de début",
@@ -74,7 +74,7 @@
                 "fr": "La date actuelle sera utilisée si laissée vide."
             }
         },
-        "end_date": {
+        "endDate": {
             "type": "date-time",
             "label": {
                 "fr": "Date de fin",
@@ -85,7 +85,7 @@
                 "fr": "La date de début sera utilisée si laissé vide."
             }
         },
-        "info_url": {
+        "infoUrl": {
             "type": "url",
             "l10n": true,
             "label": {
@@ -97,7 +97,7 @@
                 "en": "Custom event URL."
             }
         },
-        "info_phone": {
+        "infoPhone": {
             "type": "phone",
             "label": {
                 "en": "Phone",
@@ -108,21 +108,21 @@
                 "en": "Phone number to contact to have more information on the event."
             }
         },
-        "ticket_price_min": {
+        "ticketPriceMin": {
             "type": "number",
             "label": {
                 "en": "Minimum ticket price",
                 "fr": "Prix minimal des billets"
             }
         },
-        "ticket_price_max":{
+        "ticketPriceMax":{
             "type": "number",
             "label": {
                 "en": "Maximum ticket price",
                 "fr": "Prix maximal des billets"
             }
         },
-        "ticket_summary":{
+        "ticketSummary":{
             "type": "html",
             "l10n": true,
             "label": {
@@ -130,7 +130,7 @@
                 "fr": "Informations supplémentaires sur les billets"
             }
         },
-        "ticket_url": {
+        "ticketUrl": {
             "type": "url",
             "l10n": true,
             "label": {
@@ -138,7 +138,7 @@
                 "fr": "URL pour les billets"
             }
         },
-        "ticket_phone": {
+        "ticketPhone": {
             "type": "phone",
             "label": {
                 "en": "Phone for tickets",

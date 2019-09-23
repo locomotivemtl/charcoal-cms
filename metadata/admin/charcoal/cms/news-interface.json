@@ -35,7 +35,7 @@
             "charcoal/cms/news-interface/default": {
                 "properties": [
                     "category",
-                    "news_date",
+                    "newsDate",
                     "title"
                 ],
                 "list_actions": [
@@ -204,9 +204,9 @@
                 },
                 "properties": [
                     "category",
-                    "news_date",
-                    "publish_date",
-                    "expiry_date",
+                    "newsDate",
+                    "publishDate",
+                    "expiryDate",
                     "slug"
                 ]
             },

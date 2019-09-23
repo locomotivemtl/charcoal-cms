@@ -36,9 +36,9 @@
                 "properties": [
                     "category",
                     "title",
-                    "start_date",
-                    "end_date",
-                    "publish_date"
+                    "startDate",
+                    "endDate",
+                    "publishDate"
                 ],
                 "list_actions": [
                     {
@@ -137,8 +137,8 @@
                     "summary",
                     "content",
                     "image",
-                    "info_url",
-                    "info_phone"
+                    "infoUrl",
+                    "infoPhone"
                 ]
             },
             "cms.gallery": {
@@ -210,10 +210,10 @@
                 "icon": "cog",
                 "properties": [
                     "category",
-                    "start_date",
-                    "end_date",
-                    "publish_date",
-                    "expiry_date",
+                    "startDate",
+                    "endDate",
+                    "publishDate",
+                    "expiryDate",
                     "slug"
                 ],
                 "priority": 600
@@ -241,11 +241,11 @@
                 },
                 "icon": "credit-card",
                 "properties": [
-                    "ticket_price_min",
-                    "ticket_price_max",
-                    "ticket_summary",
-                    "ticket_url",
-                    "ticket_phone"
+                    "ticketPriceMin",
+                    "ticketPriceMax",
+                    "ticketSummary",
+                    "ticketUrl",
+                    "ticketPhone"
                 ]
             }
         },

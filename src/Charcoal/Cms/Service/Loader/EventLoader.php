@@ -56,7 +56,7 @@ class EventLoader extends AbstractLoader
     {
         $now = new DateTime();
         $loader = $this->all();
-        $loader->addFilter('publish_date', $now->format('Y-m-d H:i:s'), [ 'operator' => '<=' ])
+        $loader->addFilter('publishDate', $now->format('Y-m-d H:i:s'), [ 'operator' => '<=' ])
             ->addOrder('start_date', 'asc');
 
         return $loader;
