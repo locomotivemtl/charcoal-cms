@@ -30,7 +30,7 @@ For a complete, ready-to-use project, start from the [`charcoal project boilerpl
     - Core charcoal models and storage class.
     - Provides base Model, which depends on Storable and Describable.
 -   [`locomotivemtl/charcoal-object`](https://github.com/locomotivemtl/charcoal-object)
-    - CMS objects are based on `\Charcoal\Oject\Content`.
+    - CMS objects are based on `\Charcoal\Object\Content`.
 -   [`locomotivemtl/charcoal-translator`](https://github.com/locomotivemtl/charcoal-translator)
     - Localization is provided by symfony translator (charcoal).
 
@@ -92,7 +92,7 @@ Base section properties:
 | Content       | **position**          |      | int       | Default order property. |
 | Authorable    | **created_by**        |      | string    | Admin user.
 | Authorable    | **last\_modified_by** |      | string    | Admin user.
-| Authorable    | **required\_acl_permissions** | array    | To do... 
+| Authorable    | **required\_acl_permissions** | array    | To do...
 | Timestampable | **created**           |      | date-time |
 | Timestampable | **last_modified**     |      | date-time |
 | Hierarchical  | **master**            |      | object | `SectionInterface`. |
@@ -103,7 +103,7 @@ Base section properties:
 From model:
 
 - `Describable`: The objects can be defined by Metadata.
-- `Storable`: Objects have unique IDs and can be stored in storage / database. 
+- `Storable`: Objects have unique IDs and can be stored in storage / database.
 
 From content:
 
@@ -130,7 +130,7 @@ The `\Charcoal\Cms\Section\*` objects are `final`. To extend, use the `\Charcoal
 
 ## Tag object
 
-**Tag** objects link any objects together by providing an extra taxonomy layer. Tags may also be used to enhance internal search engines. 
+**Tag** objects link any objects together by providing an extra taxonomy layer. Tags may also be used to enhance internal search engines.
 
 # CMS objects
 
@@ -159,7 +159,7 @@ Base events properties:
 | Content       | **position**          |      | int       | Default order property. |
 | Authorable    | **created_by**        |      | string    | Admin user.
 | Authorable    | **last\_modified_by** |      | string    | Admin user.
-| Authorable    | **required\_acl_permissions** | array    | To do... 
+| Authorable    | **required\_acl_permissions** | array    | To do...
 | Timestampable | **created**           |      | date-time |
 | Timestampable | **last_modified**     |      | date-time |
 | Categorizable | **category**          | ✔    | object    | `EventCategory`, or custom. |
@@ -180,7 +180,7 @@ Base events properties:
 From model:
 
 - `Describable`: The objects can be defined by Metadata.
-- `Storable`: Objects have unique IDs and can be stored in storage / database. 
+- `Storable`: Objects have unique IDs and can be stored in storage / database.
 
 From content:
 
@@ -194,7 +194,7 @@ From charcoal-object:
 - `Categorizable`: The objects can be put into a category.
 - `Publishable`: Objects have publish status, date and expiry. Allows moderation.
 - `Routable`: Objects are reachable through a URL.
- 
+
 From charcoal-cms:
 
 - `Metatag`: The objects have meta-information for SEO purpose.
@@ -241,7 +241,7 @@ Base news properties:
 | Content       | **position**          |      | int       | Default order property. |
 | Authorable    | **created_by**        |      | string    | Admin user.
 | Authorable    | **last\_modified_by** |      | string    | Admin user.
-| Authorable    | **required\_acl_permissions** | array    | To do... 
+| Authorable    | **required\_acl_permissions** | array    | To do...
 | Timestampable | **created**           |      | date-time |
 | Timestampable | **last_modified**     |      | date-time |
 | Categorizable | **category**          | ✔    | object    | `NewsCategory`, or custom. |
@@ -262,7 +262,7 @@ Base news properties:
 From model:
 
 - `Describable`: The objects can be defined by Metadata.
-- `Storable`: Objects have unique IDs and can be stored in storage / database. 
+- `Storable`: Objects have unique IDs and can be stored in storage / database.
 
 From content:
 
@@ -276,7 +276,7 @@ From charcoal-object:
 - `Categorizable`: The objects can be put into a category.
 - `Publishable`: Objects have publish status, date and expiry. Allows moderation.
 - `Routable`: Objects are reachable through a URL.
- 
+
 From charcoal-cms:
 
 - `Metatag`: The objects have meta-information for SEO purpose.
