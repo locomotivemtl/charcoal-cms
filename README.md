@@ -44,7 +44,7 @@ For a complete, ready-to-use project, start from the [`charcoal project boilerpl
 -   **Core objects**
     -   [Section](#section-object)
     -   [Tag](#tag-object)
--   **CMS objets**
+-   **CMS objects**
     -   [Event](#event-object)
     -   [FAQ](#faq-object)
     -   [News](#news-object)
