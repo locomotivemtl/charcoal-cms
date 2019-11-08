@@ -32,6 +32,11 @@ trait MetatagTrait
     protected $metaAuthor;
 
     /**
+     * @var Translation|string|null
+     */
+    protected $metaTags;
+
+    /**
      * @var string $facebookAppId
      */
     protected $facebookAppId;
@@ -70,6 +75,21 @@ trait MetatagTrait
      * @var Translation|string|null
      */
     protected $opengraphPublisher;
+
+    /**
+     * @var Translation|string|null
+     */
+    protected $opengraphTags;
+
+    /**
+     * @var Translation|string|null
+     */
+    protected $twitterCardImage;
+
+    /**
+     * @var Translation|string|null
+     */
+    protected $twitterCardType;
 
     /**
      * @return string
@@ -164,12 +184,21 @@ trait MetatagTrait
     }
 
     /**
+     * @param  string $tags Comma separated list of tags.
+     * @return string
+     */
+    public function setMetaTags($tags)
+    {
+        $this->metaTags = $this->translator()->translation($tags);
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function metaTags()
     {
-        $tags = '';
-        return $tags;
+        return $this->metaTags;
     }
 
     /**
@@ -318,7 +347,7 @@ trait MetatagTrait
      * @param  mixed $publisher The opengraph publisher (localized).
      * @return self
      */
-    public function setOpengraphPulisher($publisher)
+    public function setOpengraphPublisher($publisher)
     {
         $this->opengraphPublisher = $this->translator()->translation($publisher);
         return $this;
@@ -336,11 +365,44 @@ trait MetatagTrait
     }
 
     /**
-     * @return string
+     * @param  string $type The twitter card type.
+     * @return self
      */
-    public function opengraphTags()
+    public function setTwitterCardType($type)
     {
-        return '';
+        $this->twitterCardType = $type;
+        return $this;
+    }
+
+    /**
+     * Retrieve the object's {@link https://dev.twitter.com/cards/types card type},
+     * for the "twitter:card" meta-property.
+     *
+     * @return string|null
+     */
+    public function twitterCardType()
+    {
+        return $this->twitterCardType;
+    }
+
+    /**
+     * @param  mixed $image The twitter card image (localized).
+     * @return self
+     */
+    public function setTwitterCardImage($image)
+    {
+        $this->twitterCardImage = $image;
+        return $this;
+    }
+
+    /**
+     * Retrieve the URL to the object's social image for the "twitter:image" meta-property.
+     *
+     * @return string|null
+     */
+    public function twitterCardImage()
+    {
+        return $this->twitterCardImage;
     }
 
     /**
