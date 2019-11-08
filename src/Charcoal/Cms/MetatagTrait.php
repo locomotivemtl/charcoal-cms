@@ -184,6 +184,7 @@ trait MetatagTrait
     }
 
     /**
+     * @param  string $tags Comma separated list of tags.
      * @return string
      */
     public function setMetaTags($tags)
