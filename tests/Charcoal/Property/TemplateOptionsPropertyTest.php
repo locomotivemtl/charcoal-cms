@@ -73,7 +73,7 @@ class TemplateOptionsPropertyTest extends AbstractTestCase
         $return = $this->obj->addStructureInterface($property);
         $this->assertSame($return, $this->obj);
 
-        $interfaces = $this->obj->structureInterfaces();
+        $interfaces = $this->obj['structureInterfaces'];
         $this->assertEquals([ 'charcoal/tests/cms/mocks/generic' ], $interfaces);
     }
 

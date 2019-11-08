@@ -232,13 +232,13 @@ class NewsTest extends AbstractTestCase
      */
     public function testSaveGeneratesSlug()
     {
-        $this->assertEquals('', $this->obj->slug());
+        $this->assertEquals('', $this->obj['slug']);
         $this->obj->setData([
             'title' => 'foo'
         ]);
         $this->obj->save();
 
-        $this->assertEquals('en/news/foo', (string)$this->obj->slug());
+        $this->assertEquals('en/news/foo', (string)$this->obj['slug']);
     }
 
     /**
@@ -246,12 +246,12 @@ class NewsTest extends AbstractTestCase
      */
     public function testUpdateGeneratesSlug()
     {
-        $this->assertEquals('', $this->obj->slug());
+        $this->assertEquals('', $this->obj['slug']);
         $this->obj->setData([
             'title' => 'foo'
         ]);
         $this->obj->update();
 
-        $this->assertEquals('en/news/foo', (string)$this->obj->slug());
+        $this->assertEquals('en/news/foo', (string)$this->obj['slug']);
     }
 }
