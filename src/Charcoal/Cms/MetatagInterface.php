@@ -77,6 +77,12 @@ interface MetatagInterface
     public function metaAuthor();
 
     /**
+     * @param  mixed $tags The meta tags (localized).
+     * @return self
+     */
+    public function setMetaTags($tags);
+
+    /**
      * @return string
      */
     public function metaTags();
@@ -160,9 +166,9 @@ interface MetatagInterface
 
     /**
      * @param  mixed $publisher The opengraph publisher (localized).
-     * @return MetatagInterface
+     * @return self
      */
-    public function setOpengraphPulisher($publisher);
+    public function setOpengraphPublisher($publisher);
 
     /**
      * @return Translation|string|null
@@ -170,7 +176,29 @@ interface MetatagInterface
     public function opengraphPublisher();
 
     /**
-     * @return string
+     * @param  string $type The twitter card type.
+     * @return self
      */
-    public function opengraphTags();
+    public function setTwitterCardType($type);
+
+    /**
+     * Retrieve the object's {@link https://dev.twitter.com/cards/types card type},
+     * for the "twitter:card" meta-property.
+     *
+     * @return string|null
+     */
+    public function twitterCardType();
+
+    /**
+     * @param  mixed $image The twitter card image (localized).
+     * @return self
+     */
+    public function setTwitterCardImage($image);
+
+    /**
+     * Retrieve the URL to the object's social image for the "twitter:image" meta-property.
+     *
+     * @return string|null
+     */
+    public function twitterCardImage();
 }
