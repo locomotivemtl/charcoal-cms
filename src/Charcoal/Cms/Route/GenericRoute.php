@@ -212,7 +212,7 @@ class GenericRoute extends TemplateRoute
         $latest = $this->getLatestObjectPathHistory($objectRoute);
 
         // Redirect if latest route is newer
-        if ($latest->creationDate() > $objectRoute->creationDate()) {
+        if ($latest && $latest->getCreationDate() > $current->getCreationDate()) {
             $redirection = $this->parseRedirect($latest->slug(), $request);
             $response = $response->withRedirect($redirection, 301);
         }
@@ -238,22 +238,19 @@ class GenericRoute extends TemplateRoute
 
         // Templateable Objects have specific methods
         if ($contextObject instanceof TemplateableInterface) {
-            $identProperty = $contextObject->property('template_ident');
-
-            // Methods from TemplateableInterface / Trait
-            $templateIdent = $contextObject->templateIdent() ?: $objectRoute->getRouteTemplate();
-            // Default fallback to routeTemplate
-            $controllerIdent = $contextObject->controllerIdent() ?: $templateIdent;
-
-            $templateChoice = $identProperty->choice($templateIdent);
+            $identProperty   = $contextObject->property('templateIdent');
+            $templateIdent   = $contextObject['templateIdent'] ?: $objectRoute->getRouteTemplate();
+            $controllerIdent = $contextObject['controllerIdent'] ?: $templateIdent;
+            $templateChoice  = $identProperty->choice($templateIdent);
         } else {
             // Use global templates to verify for custom paths
-            $templateIdent = $objectRoute->getRouteTemplate();
+            $templateIdent   = $objectRoute->getRouteTemplate();
             $controllerIdent = $templateIdent;
             foreach ($this->availableTemplates as $templateKey => $templateData) {
                 if (!isset($templateData['value'])) {
                     $templateData['value'] = $templateKey;
                 }
+
                 if ($templateData['value'] === $templateIdent) {
                     $templateChoice = $templateData;
                     break;
@@ -289,8 +286,8 @@ class GenericRoute extends TemplateRoute
 
         // Overwrite from custom object template_options
         if ($contextObject instanceof TemplateableInterface) {
-            if (!empty($contextObject->templateOptions())) {
-                $templateOptions = $contextObject->templateOptions();
+            if (!empty($contextObject['templateOptions'])) {
+                $templateOptions = $contextObject['templateOptions'];
             }
         }
 
@@ -429,7 +426,7 @@ class GenericRoute extends TemplateRoute
      * Should never MISS, the given object route should exist.
      *
      * @param  ObjectRouteInterface $route Routable Object.
-     * @return ObjectRouteInterface
+     * @return ObjectRouteInterface|null
      */
     public function getLatestObjectPathHistory(ObjectRouteInterface $route)
     {
