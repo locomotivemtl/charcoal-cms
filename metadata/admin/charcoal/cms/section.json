@@ -9,7 +9,8 @@
                 ]
             }
         },
-        "default_list": "section",
+
+        "defaultList": "section",
 
         "forms": {
             "default": {
@@ -22,9 +23,9 @@
                         },
                         "properties": [
                             "id",
-                            "section_type",
-                            "template_ident",
-                            "template_options",
+                            "sectionType",
+                            "templateIdent",
+                            "templateOptions",
                             "active"
                         ]
                     },
@@ -48,9 +49,9 @@
                             "fr": "Metadata"
                         },
                         "properties": [
-                            "meta_title",
-                            "meta_description",
-                            "meta_image"
+                            "metaTitle",
+                            "metaDescription",
+                            "metaImage"
                         ]
                     }
                 },
@@ -59,7 +60,8 @@
                 }
             }
         },
-        "default_form": "default",
+
+        "defaultForm": "default",
 
         "dashboards": {
             "admin.edit": {
@@ -73,8 +75,8 @@
                 "widgets": {
                     "form": {
                         "type": "charcoal/admin/widget/object-form",
-                        "form_ident": "default",
-                        "obj_type": "charcoal/cms/section"
+                        "formIdent": "default",
+                        "objType": "charcoal/cms/section"
                     }
                 }
             },
@@ -90,12 +92,13 @@
                     "list": {
                         "type": "charcoal/admin/widget/table",
                         "label": "Table label",
-                        "obj_type": "charcoal/cms/section"
+                        "objType": "charcoal/cms/section"
                     }
                 }
             }
         },
-        "default_edit_dashboard": "admin.edit",
-        "default_collection_dashboard": "admin.table"
+
+        "defaultEditDashboard": "admin.edit",
+        "defaultCollectionDashboard": "admin.table"
     }
 }

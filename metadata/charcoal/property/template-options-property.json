@@ -1,11 +1,11 @@
 {
     "example": {
-        "form_group": {
+        "formGroup": {
             "type": "charcoal/admin/widget/form-group/template-options",
             "template": "charcoal/admin/widget/form-group/structure",
-            "storage_property": null,
-            "template_property": null,
-            "controller_ident": null
+            "storageProperty": null,
+            "templateProperty": null,
+            "controllerIdent": null
         }
     }
 }

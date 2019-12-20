@@ -1,7 +1,7 @@
 {
-    "default_data": {
-        "main_menu": "options",
-        "secondary_menu": "options"
+    "defaultData": {
+        "mainMenu": "options",
+        "secondaryMenu": "options"
     },
 
     "sources": {
@@ -10,5 +10,5 @@
             "table": "cms_config"
         }
     },
-    "default_source": "default"
+    "defaultSource": "default"
 }

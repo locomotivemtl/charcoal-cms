@@ -1,9 +1,9 @@
 {
-    "category_item_type": "cms/object/news",
+    "categoryItemType": "cms/object/news",
 
-    "default_data": {
-        "main_menu": "content",
-        "secondary_menu": "content"
+    "defaultData": {
+        "mainMenu": "content",
+        "secondaryMenu": "content"
     },
 
     "sources": {
@@ -11,7 +11,8 @@
             "table": "cms_news_categories"
         }
     },
-    "default_source": "default",
+
+    "defaultSource": "default",
 
     "properties": {
         "id": {

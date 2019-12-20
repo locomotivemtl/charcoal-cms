@@ -1,36 +1,36 @@
 {
-    "labels": {
-        "name": {
-            "fr": "Nouvelles",
-            "en": "News"
-        },
-        "singular_name": {
-            "fr": "Nouvelle",
-            "en": "News"
-        },
-        "edit_item": {
-            "fr": "Modifier la nouvelle",
-            "en": "Edit news"
-        },
-        "create_item": {
-            "fr": "Créer une nouvelle",
-            "en": "Create a news"
-        },
-        "new_item": {
-            "fr": "Nouvelle actualité",
-            "en": "New news"
-        },
-        "all_items": {
-            "fr": "Toutes les nouvelles",
-            "en": "All News"
-        },
-        "menu_items": {
-            "fr": "Nouvelles",
-            "en": "News"
-        }
-    },
-
     "admin": {
+        "labels": {
+            "name": {
+                "fr": "Nouvelles",
+                "en": "News"
+            },
+            "singularName": {
+                "fr": "Nouvelle",
+                "en": "News"
+            },
+            "editItem": {
+                "fr": "Modifier la nouvelle",
+                "en": "Edit news"
+            },
+            "createItem": {
+                "fr": "Créer une nouvelle",
+                "en": "Create a news"
+            },
+            "newItem": {
+                "fr": "Nouvelle actualité",
+                "en": "New news"
+            },
+            "allItems": {
+                "fr": "Toutes les nouvelles",
+                "en": "All News"
+            },
+            "menuItems": {
+                "fr": "Nouvelles",
+                "en": "News"
+            }
+        },
+
         "lists": {
             "charcoal/cms/news-interface/default": {
                 "properties": [
@@ -38,14 +38,14 @@
                     "newsDate",
                     "title"
                 ],
-                "list_actions": [
+                "listActions": [
                     {
                         "ident": "create",
                         "priority": 10,
                         "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}"
                     }
                 ],
-                "object_actions": {
+                "objectActions": {
                     "edit": {
                         "label": {
                             "en": "Modify",
@@ -53,7 +53,7 @@
                         },
                         "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&obj_id={{id}}",
                         "priority": 1,
-                        "split_button": true,
+                        "splitButton": true,
                         "actions": {
                             "goto": {
                                 "label": {
@@ -114,13 +114,14 @@
                 }
             }
         },
-        "default_form": "charcoal/cms/news-interface/edit",
 
-        "form_groups": {
+        "defaultForm": "charcoal/cms/news-interface/edit",
+
+        "formGroups": {
             "charcoal/cms/news-interface/info": {
                 "title": "Info",
-                "show_title": false,
-                "show_header": false,
+                "showTitle": false,
+                "showHeader": false,
                 "icon": "info",
                 "properties": [
                     "title",
@@ -134,13 +135,13 @@
                     "fr": "Galerie d'images",
                     "en": "Gallery"
                 },
-                "show_title": false,
-                "show_header": false,
+                "showTitle": false,
+                "showHeader": false,
                 "icon": "photo",
                 "template": "charcoal/admin/widget/form-group/attachment",
                 "type": "charcoal/admin/widget/form-group/attachment",
                 "group": "image-gallery",
-                "attachable_objects": {
+                "attachableObjects": {
                     "charcoal/attachment/object/image": {
                         "label": {
                             "fr": "Image",
@@ -154,13 +155,13 @@
                     "en": "Documents",
                     "fr": "Ressources"
                 },
-                "show_title": false,
-                "show_header": false,
+                "showTitle": false,
+                "showHeader": false,
                 "icon": "paperclip",
                 "template": "charcoal/admin/widget/form-group/attachment",
                 "type": "charcoal/admin/widget/form-group/attachment",
                 "group": "document",
-                "attachable_objects": {
+                "attachableObjects": {
                     "charcoal/attachment/object/file": {
                         "label": {
                             "fr": "Document",
@@ -176,23 +177,23 @@
                 }
             },
             "charcoal/cms/news-interface/meta": {
-                "show_title": false,
-                "show_header": false,
+                "showTitle": false,
+                "showHeader": false,
                 "icon": "tags",
                 "title": {
                     "fr": "Description méta",
                     "en": "Meta tags"
                 },
                 "properties": [
-                    "meta_title",
-                    "meta_description",
-                    "meta_image"
+                    "metaTitle",
+                    "metaDescription",
+                    "metaImage"
                 ]
             },
             "charcoal/cms/news-interface/advanced": {
                 "title": "Options",
-                "show_title": false,
-                "show_header": false,
+                "showTitle": false,
+                "showHeader": false,
                 "icon": "cog",
                 "layout": {
                     "structure": [
@@ -215,24 +216,24 @@
                     "fr": "Révisions",
                     "en": "Revisions"
                 },
-                "show_title": false,
-                "show_header": false,
+                "showTitle": false,
+                "showHeader": false,
                 "icon": "floppy-o",
                 "template": "charcoal/admin/widget/form-group/object-revisions",
                 "type": "charcoal/admin/widget/form-group/object-revisions"
             }
         },
 
-        "form_sidebars": {
+        "formSidebars": {
             "charcoal/cms/event-interface/create": {
                 "properties": []
             },
             "charcoal/cms/event-interface/default": {
                 "properties": [
                     "created",
-                    "created_by",
-                    "last_modified",
-                    "last_modified_by"
+                    "createdBy",
+                    "lastModified",
+                    "lastModifiedBy"
                 ]
             }
         },
@@ -248,8 +249,8 @@
                     "form": {
                         "priority": 10,
                         "type": "charcoal/admin/widget/object-form",
-                        "form_ident": "charcoal/cms/news-interface/edit",
-                        "group_display_mode": "tab"
+                        "formIdent": "charcoal/cms/news-interface/edit",
+                        "groupDisplayMode": "tab"
                     }
                 }
             },
@@ -263,8 +264,8 @@
                     "form": {
                         "priority": 10,
                         "type": "charcoal/admin/widget/object-form",
-                        "form_ident": "charcoal/cms/news-interface/edit",
-                        "group_display_mode": "tab"
+                        "formIdent": "charcoal/cms/news-interface/edit",
+                        "groupDisplayMode": "tab"
                     }
                 }
             },
@@ -277,14 +278,15 @@
                 "widgets": {
                     "table": {
                         "type": "charcoal/admin/widget/table",
-                        "collection_ident": "charcoal/cms/news-interface/default",
-                        "data_sources": ["request"]
+                        "collectionIdent": "charcoal/cms/news-interface/default",
+                        "dataSources": ["request"]
                     }
                 }
             }
         },
-        "default_create_dashboard": "cms.create",
-        "default_edit_dashboard": "cms.edit",
-        "default_collection_dashboard": "cms.table"
+
+        "defaultCreateDashboard": "cms.create",
+        "defaultEditDashboard": "cms.edit",
+        "defaultCollectionDashboard": "cms.table"
     }
 }

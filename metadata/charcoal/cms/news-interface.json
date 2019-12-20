@@ -15,10 +15,10 @@
         }
     },
 
-    "default_data": {
-        "template_ident": "generic",
-        "main_menu": "content",
-        "secondary_menu": "content"
+    "defaultData": {
+        "templateIdent": "generic",
+        "mainMenu": "content",
+        "secondaryMenu": "content"
     },
 
     "properties": {
@@ -36,7 +36,7 @@
         "subtitle": {
             "type": "text",
             "l10n": true,
-            "input_type": "charcoal/admin/property/input/textarea",
+            "inputType": "charcoal/admin/property/input/textarea",
             "label": {
                 "en": "Subtitle",
                 "fr": "Sous-titre"
@@ -59,13 +59,13 @@
             }
         },
         "category": {
-            "obj_type": "charcoal/cms/news-category"
+            "objType": "charcoal/cms/news-category"
         },
         "image": {
             "type": "image",
             "l10n": true,
-            "public_access": true,
-            "upload_path": "uploads/news/"
+            "publicAccess": true,
+            "uploadPath": "uploads/news/"
         },
         "newsDate": {
             "type": "date-time",
@@ -88,8 +88,8 @@
         },
         "keywords": {
             "type": "object",
-            "obj_type": "charcoal/cms/tag",
-            "input_type": "charcoal/admin/property/input/selectize",
+            "objType": "charcoal/cms/tag",
+            "inputType": "charcoal/admin/property/input/selectize",
             "multiple": true,
             "label": {
                 "fr": "Mots-clés",

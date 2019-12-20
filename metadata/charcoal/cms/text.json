@@ -4,5 +4,6 @@
             "table": "cms_texts"
         }
     },
-    "default_source": "default"
+
+    "defaultSource": "default"
 }

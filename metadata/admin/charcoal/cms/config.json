@@ -9,7 +9,7 @@
                 "properties": [
                     ""
                 ],
-                "list_actions": [
+                "listActions": [
                     {
                         "label": {
                             "en": "New config",
@@ -60,7 +60,7 @@
             }
         },
 
-        "form_groups": {
+        "formGroups": {
             "cms.general": {
                 "layout": {
                     "structure": [
@@ -73,10 +73,10 @@
                     "en": "General",
                     "fr": "Général"
                 },
-                "show_title": false,
+                "showTitle": false,
                 "icon": "wrench",
                 "properties": [
-                    "default_from_email"
+                    "defaultFromEmail"
                 ]
             },
             "cms.sharer": {
@@ -93,11 +93,11 @@
                     "en": "Social media",
                     "fr": "Média sociaux"
                 },
-                "show_title": false,
+                "showTitle": false,
                 "icon": "share-square",
                 "template": "charcoal/admin/widget/form-group/structure",
                 "type": "charcoal/admin/widget/form-group/structure",
-                "storage_property": "social_medias"
+                "storageProperty": "social_medias"
             },
             "cms.meta": {
                 "layout": {
@@ -110,13 +110,13 @@
                     "en": "Meta tags",
                     "fr": "Tags Méta"
                 },
-                "show_title": false,
+                "showTitle": false,
                 "icon": "tag",
                 "properties": [
-                    "default_meta_title",
-                    "default_meta_description",
-                    "default_meta_url",
-                    "default_meta_image"
+                    "defaultMetaTitle",
+                    "defaultMetaDescription",
+                    "defaultMetaUrl",
+                    "defaultMetaImage"
                 ]
             },
             "cms.revisions": {
@@ -124,8 +124,8 @@
                     "fr": "Révisions",
                     "en": "Revisions"
                 },
-                "show_title": false,
-                "show_header": false,
+                "showTitle": false,
+                "showHeader": false,
                 "icon": "floppy-o",
                 "template": "charcoal/admin/widget/form-group/object-revisions",
                 "type": "charcoal/admin/widget/form-group/object-revisions"
@@ -142,9 +142,9 @@
                 "widgets": {
                     "form": {
                         "type": "charcoal/admin/widget/object-form",
-                        "form_ident": "cms.default",
+                        "formIdent": "cms.default",
                         "request": "main_menu=configuration",
-                        "group_display_mode": "tab"
+                        "groupDisplayMode": "tab"
                     }
                 }
             },
@@ -157,14 +157,15 @@
                 "widgets": {
                     "table": {
                         "type": "charcoal/admin/widget/table",
-                        "collection_ident": "cms.default",
+                        "collectionIdent": "cms.default",
                         "sortable": true
                     }
                 }
             }
         },
-        "default_create_dashboard": "admin.edit",
-        "default_edit_dashboard": "admin.edit",
-        "default_collection_dashboard": "admin.table"
+
+        "defaultCreateDashboard": "admin.edit",
+        "defaultEditDashboard": "admin.edit",
+        "defaultCollectionDashboard": "admin.table"
     }
 }

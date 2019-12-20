@@ -10,10 +10,10 @@
         }
     },
 
-    "default_data": {
-        "template_ident": "generic",
-        "main_menu": "content",
-        "secondary_menu": "content"
+    "defaultData": {
+        "templateIdent": "generic",
+        "mainMenu": "content",
+        "secondaryMenu": "content"
     },
 
     "sources": {
@@ -21,20 +21,21 @@
             "table": "cms_sections"
         }
     },
-    "default_source": "default",
+
+    "defaultSource": "default",
 
     "labels": {
         "name": "Pages",
-        "singular_name": "Page",
-        "edit_item": {
+        "singularName": "Page",
+        "editItem": {
             "en": "Edit Page",
             "fr": "Modifier la page"
         },
-        "all_items": {
+        "allItems": {
             "en": "All Pages",
             "fr": "Toutes les pages"
         },
-        "menu_items": "Pages"
+        "menuItems": "Pages"
     },
 
     "properties": {
@@ -54,9 +55,9 @@
                 "fr": "Un objet verrouillé ne peut être supprimé et son slug ne peut être modifié."
             }
         },
-        "section_type": {
+        "sectionType": {
             "type": "string",
-            "allow_null": false,
+            "allowNull": false,
             "label": {
                 "fr": "Type de section",
                 "en": "Section Type"
@@ -85,13 +86,13 @@
             },
             "type": "text",
             "l10n": true,
-            "input_type": "charcoal/admin/property/input/textarea",
+            "inputType": "charcoal/admin/property/input/textarea",
             "rows": 5,
-            "input_class": "u-resize-vertical"
+            "inputClass": "u-resize-vertical"
         },
         "content": {
             "type": "html",
-            "input_type": "charcoal/admin/property/input/tinymce",
+            "inputType": "charcoal/admin/property/input/tinymce",
             "l10n": true,
             "label": {
                 "fr": "Contenu",
@@ -101,8 +102,8 @@
         "image": {
             "type": "image",
             "l10n": true,
-            "public_access": true,
-            "upload_path": "uploads/sections/"
+            "publicAccess": true,
+            "uploadPath": "uploads/sections/"
         },
         "position": {
             "type": "number",
@@ -110,14 +111,14 @@
         },
         "master": {
             "type": "Charcoal\\Admin\\Property\\HierarchicalObjectProperty",
-            "obj_type": "charcoal/cms/section",
+            "objType": "charcoal/cms/section",
             "pattern": "{{ hierarchicalLabel }}",
             "label": {
                 "fr": "Page Parente",
                 "en": "Parent Page"
             }
         },
-        "external_url": {
+        "externalUrl": {
             "type": "string",
             "l10n": true,
             "label": {
@@ -129,14 +130,14 @@
                 "fr": "Si la page est une \"Destination externe\", les visiteurs seront redirigés vers l'URL défini ci-dessous lors de l'accès de l'URL de cette page."
             }
         },
-        "in_menu": {
+        "inMenu": {
             "type": "boolean",
             "label": {
                 "fr": "Inclure dans le menu principal",
                 "en": "Include in the main menu"
             }
         },
-        "meta_title": {
+        "metaTitle": {
             "description": {
                 "en": "Meta tags are useful for search engine optimisation and sharing on social medias",
                 "fr": "Les tags méta sont utilisés pour optimiser les moteurs de cherches et lors des partages sur les résaux sociaux"
@@ -146,10 +147,10 @@
                 "fr": "Les tags méta seront générés automatiquement si laissés vide"
             }
         },
-        "meta_description": {
-            "input_type": "charcoal/admin/property/input/textarea",
+        "metaDescription": {
+            "inputType": "charcoal/admin/property/input/textarea",
             "rows": 5,
-            "input_class": "u-resize-vertical",
+            "inputClass": "u-resize-vertical",
             "description": {
                 "en": "Meta tags are useful for search engine optimisation and sharing on social medias",
                 "fr": "Les tags méta sont utilisés pour optimiser les moteurs de cherches et lors des partages sur les résaux sociaux"
@@ -159,7 +160,7 @@
                 "fr": "Les tags méta seront générés automatiquement si laissés vide"
             }
         },
-        "meta_image": {
+        "metaImage": {
             "description": {
                 "en": "Meta tags are useful for search engine optimisation and sharing on social medias",
                 "fr": "Les tags méta sont utilisés pour optimiser les moteurs de cherches et lors des partages sur les résaux sociaux"
@@ -171,8 +172,8 @@
         },
         "keywords": {
             "type": "object",
-            "obj_type": "charcoal/cms/tag",
-            "input_type": "charcoal/admin/property/input/selectize",
+            "objType": "charcoal/cms/tag",
+            "inputType": "charcoal/admin/property/input/selectize",
             "multiple": true,
             "label": {
                 "fr": "Mots-clés",
@@ -193,9 +194,9 @@
                 "fr": "Sera généré automatiquement si laissé vide"
             }
         },
-        "template_ident": {
+        "templateIdent": {
             "type": "template",
-            "allow_null": false
+            "allowNull": false
         }
     }
 }

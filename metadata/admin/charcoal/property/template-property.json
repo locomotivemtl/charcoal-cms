@@ -1,5 +1,5 @@
 {
     "admin": {
-        "input_type": "charcoal/admin/property/input/select"
+        "inputType": "charcoal/admin/property/input/select"
     }
 }

@@ -1,9 +1,9 @@
 {
-    "category_item_type": "cms/object/event",
+    "categoryItemType": "cms/object/event",
 
-    "default_data": {
-        "main_menu": "content",
-        "side_menu": "content"
+    "defaultData": {
+        "mainMenu": "content",
+        "sideMenu": "content"
     },
 
     "sources": {
@@ -11,7 +11,8 @@
             "table": "cms_events_categories"
         }
     },
-    "default_source": "default",
+
+    "defaultSource": "default",
 
     "properties": {
         "id": {

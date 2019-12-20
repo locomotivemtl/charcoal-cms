@@ -5,7 +5,8 @@
                 "properties": []
             }
         },
-        "default_list": "default",
+
+        "defaultList": "default",
 
         "forms": {
             "default": {
@@ -15,6 +16,7 @@
                 }
             }
         },
-        "default_form": "default"
+
+        "defaultForm": "default"
     }
 }

@@ -1,35 +1,4 @@
 {
-    "labels": {
-        "name": {
-            "en": "Events Category",
-            "fr": "Catégorie d'événements"
-        },
-        "singular_name": {
-            "en": "Events Category",
-            "fr": "Catégorie d'événements"
-        },
-        "edit_item": {
-            "en": "Edit Events Category",
-            "fr": "Modifier la catégorie d'événements"
-        },
-        "new_item": {
-            "en": "New Events Category",
-            "fr": "Nouvelle catégorie d'événements"
-        },
-        "create_item": {
-            "en": "Create Events Category",
-            "fr": "Créer une catégorie d'événements"
-        },
-        "all_items": {
-            "en": "All Events Categories",
-            "fr": "Toutes les catégories d'événements"
-        },
-        "menu_items": {
-            "en": "Events Category",
-            "fr": "Catégorie d'événements"
-        }
-    },
-
     "properties": {
         "name": {
             "required": true
@@ -37,6 +6,37 @@
     },
 
     "admin": {
+        "labels": {
+            "name": {
+                "en": "Events Category",
+                "fr": "Catégorie d'événements"
+            },
+            "singularName": {
+                "en": "Events Category",
+                "fr": "Catégorie d'événements"
+            },
+            "editItem": {
+                "en": "Edit Events Category",
+                "fr": "Modifier la catégorie d'événements"
+            },
+            "newItem": {
+                "en": "New Events Category",
+                "fr": "Nouvelle catégorie d'événements"
+            },
+            "createItem": {
+                "en": "Create Events Category",
+                "fr": "Créer une catégorie d'événements"
+            },
+            "allItems": {
+                "en": "All Events Categories",
+                "fr": "Toutes les catégories d'événements"
+            },
+            "menuItems": {
+                "en": "Events Category",
+                "fr": "Catégorie d'événements"
+            }
+        },
+
         "lists": {
             "default": {
                 "properties": [
@@ -48,17 +48,17 @@
                         "mode": "asc"
                     }
                 ],
-                "list_actions": [
+                "listActions": [
                     {
                         "ident": "create",
                         "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}"
                     }
                 ],
-                "object_actions": {
+                "objectActions": {
                     "edit": {
                         "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&obj_id={{id}}",
                         "priority": 1,
-                        "split_button": true,
+                        "splitButton": true,
                         "actions": {
                             "delete": {
                                 "label": {
@@ -72,7 +72,8 @@
                 }
             }
         },
-        "default_list": "default",
+
+        "defaultList": "default",
 
         "forms": {
             "default": {
@@ -89,7 +90,8 @@
                 }
             }
         },
-        "default_form": "default",
+
+        "defaultForm": "default",
 
         "dashboards": {
             "cms.edit": {
@@ -102,7 +104,7 @@
                     "form": {
                         "type": "charcoal/admin/widget/object-form",
                         "novalidate": true,
-                        "form_ident": "default"
+                        "formIdent": "default"
                     }
                 }
             },
@@ -115,15 +117,15 @@
                 "widgets": {
                     "form": {
                         "type": "charcoal/admin/widget/table",
-                        "collection_ident": "default",
+                        "collectionIdent": "default",
                         "sortable": false,
-                        "data_sources": ["request"]
+                        "dataSources": ["request"]
                     }
                 }
             }
         },
-        "default_create_dashboard": "cms.edit",
-        "default_edit_dashboard": "cms.edit",
-        "default_collection_dashboard": "cms.table"
+        "defaultCreateDashboard": "cms.edit",
+        "defaultEditDashboard": "cms.edit",
+        "defaultCollectionDashboard": "cms.table"
     }
 }

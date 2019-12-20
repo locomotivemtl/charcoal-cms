@@ -1,9 +1,9 @@
 {
     "properties": {
-        "meta_title": {
+        "metaTitle": {
             "type": "string",
             "l10n": true,
-            "l10n_mode": "loop_inputs",
+            "l10nMode": "loopInputs",
             "label": {
                 "en": "Title",
                 "fr": "Titre"
@@ -13,36 +13,36 @@
                 "fr": "Nom de l'objet"
             }
         },
-        "meta_description": {
+        "metaDescription": {
             "type": "text",
-            "input_type": "charcoal/admin/property/input/textarea",
+            "inputType": "charcoal/admin/property/input/textarea",
             "l10n": true,
-            "l10n_mode": "loop_inputs",
+            "l10nMode": "loopInputs",
             "label": "Description",
             "notes": {
                 "en": "Short description of object",
                 "fr": "Description sommaire de l'objet"
             }
         },
-        "meta_image": {
+        "metaImage": {
             "type": "image",
             "label": {
                 "en": "Thumbnail",
                 "fr": "Vignette"
             },
-            "upload_path": "/uploads/metadata/images/",
-            "public_access": true,
+            "uploadPath": "/uploads/metadata/images/",
+            "publicAccess": true,
             "description": {
                 "en": "You should not use a generic image such as your website logo, author photo, or other image that spans multiple pages. The image must be less than 1MB in file size.",
                 "fr": "Vous ne devriez pas utiliser une image générique tel que votre logo de site web, une photo de l'auteur ou toute autre image qui couvre plusieurs pages. La taille du fichier de l'image doit être inférieure à 1 Mo."
             },
-            "show_notes": "above",
+            "showNotes": "above",
             "notes": {
                 "en": "<p>A unique image representing the content of the object.</p><p>The minimum image size is 200×200 pixels.</p>",
                 "fr": "<p>Une image unique représentant le contenu de l'objet.</p><p>La taille d'image minimale est de 200×200 pixels.</p>"
             }
         },
-        "meta_author": {
+        "metaAuthor": {
             "type": "string",
             "l10n": true,
             "label": {
@@ -54,7 +54,7 @@
                 "fr": "Nom de l'auteur"
             }
         },
-        "meta_tags": {
+        "metaTags": {
             "type": "string",
             "l10n": true,
             "label": {
@@ -66,7 +66,7 @@
                 "fr": "Liste de mots-clés séparés par des virgules"
             }
         },
-        "facebook_app_id": {
+        "facebookAppId": {
             "type": "string",
             "l10n": true,
             "label": {
@@ -74,7 +74,7 @@
                 "fr": "App ID de Facebook"
             }
         },
-        "opengraph_title": {
+        "opengraphTitle": {
             "type": "string",
             "label": {
                 "en": "OpenGraph Title",
@@ -85,7 +85,7 @@
                 "fr": "Le méta-titre peut être utilisé pour spécifier le titre de la page dans les tags OpenGraph."
             }
         },
-        "opengraph_site_name": {
+        "opengraphSiteName": {
             "type": "string",
             "label": {
                 "en": "OpenGraph site name",
@@ -96,7 +96,7 @@
                 "fr": "Le nom du site peut être utilisé pour spécifier le nom du site dans les tags OpenGraph."
             }
         },
-        "opengraph_description": {
+        "opengraphDescription": {
             "type": "text",
             "label": {
                 "en": "OpenGraph description",
@@ -107,7 +107,7 @@
                 "fr": "La description peut être utilisé pour spécifier la description de la page dans les tags OpenGraph."
             }
         },
-        "opengraph_type": {
+        "opengraphType": {
             "type": "string",
             "label": {
                 "en": "OpenGraph content type",
@@ -119,25 +119,25 @@
             },
             "placeholder": "website"
         },
-        "opengraph_image": {
+        "opengraphImage": {
             "type": "image",
             "label": {
                 "en": "OpenGraph Thumbnail",
                 "fr": "Vignette OpenGraph"
             },
-            "upload_path": "/uploads/metadata/opengraph/images/",
-            "public_access": true,
+            "uploadPath": "/uploads/metadata/opengraph/images/",
+            "publicAccess": true,
             "description": {
                 "en": "You should not use a generic image such as your website logo, author photo, or other image that spans multiple pages. The image must be less than 1MB in file size.",
                 "fr": "Vous ne devriez pas utiliser une image générique tel que votre logo de site web, une photo de l'auteur ou toute autre image qui couvre plusieurs pages. La taille de l'image doit être inférieure à 1 Mo."
             },
-            "show_notes": "above",
+            "showNotes": "above",
             "notes": {
                 "en": "<p>A unique image representing the content of the object.</p><p>Use images that are at least 1200×630 pixels for the best display on high resolution devices. At the minimum, you should use images that are 600×315 pixels to display with larger images.</p><p>The minimum image size is 200×200 pixels. If you try to use an image smaller than this you will see an error in the <a target=\"_blank\" href=\"https://developers.facebook.com/tools/debug\">URL Debugger</a>.</p>",
                 "fr": "<p>Une image unique représentant le contenu de l'objet.</p><p>Utiliser des images qui sont au moins 1200×630 pixels pour le meilleur affichage sur les dispositifs à haute résolution. Au minimum, vous devriez utiliser des images qui sont de 600×315 pixels pour afficher avec de plus grandes images.</p><p>La taille d'image minimale est de 200×200 pixels. Si vous essayez d'utiliser une image plus petite que cela, vous verrez une erreur dans le <a target=\"_blank\" href=\"https://developers.facebook.com/tools/debug\">Débogueur d'URL</a>.</p>"
             }
         },
-        "opengraph_author": {
+        "opengraphAuthor": {
             "type": "string",
             "label": {
                 "en": "OpenGraph author",
@@ -148,7 +148,7 @@
                 "fr": "Le nom de l'auteur peut être utilisé pour spécifier l'auteur de la page dans les tags OpenGraph."
             }
         },
-        "opengraph_publisher": {
+        "opengraphPublisher": {
             "type": "string",
             "label": {
                 "en": "OpenGraph publisher",
@@ -159,9 +159,9 @@
                 "fr": "Le nom de l'éditeur peut être utilisé pour spécifier l'éditeur de la page dans les tags OpenGraph."
             }
         },
-        "twitter_card_type": {
+        "twitterCardType": {
             "type": "string",
-            "input_type": "charcoal/admin/property/input/select",
+            "inputType": "charcoal/admin/property/input/select",
             "label": {
                 "en": "Twitter Card Type",
                 "fr": "Type de carte Twitter"
@@ -177,7 +177,7 @@
                         "fr": "Résumé"
                     }
                 },
-                "summary_large_image": {
+                "summaryLargeImage": {
                     "label": {
                         "en": "Summary with large image",
                         "fr": "Résumé avec une grande image"
@@ -185,19 +185,19 @@
                 }
             }
         },
-        "twitter_card_image": {
+        "twitterCardImage": {
             "type": "image",
             "label": {
                 "en": "Twitter Card Image",
                 "fr": "Vignette de carte Twitter"
             },
-            "upload_path": "/uploads/metadata/twitter/images/",
-            "public_access": true,
+            "uploadPath": "/uploads/metadata/twitter/images/",
+            "publicAccess": true,
             "description": {
                 "en": "You should not use a generic image such as your website logo, author photo, or other image that spans multiple pages. The image must be less than 1MB in file size.",
                 "fr": "Vous ne devriez pas utiliser une image générique tel que le logo du site web, une photo de l'auteur ou toute autre image qui couvre plusieurs pages. La taille de l'image doit être inférieure à 1 Mo."
             },
-            "show_notes": "above",
+            "showNotes": "above",
             "notes": {
                 "en": "<p>A unique image representing the content of the object.</p><p>For a thumbnail alongside the tweet, the image must be a minimum size of 120px by 120px. The image will be cropped to a square on all platforms.</p><p>For a full-width prominent image, should be at least 280px in width and at least 150px in height.</p>",
                 "fr": "<p>Une image unique représentant le contenu de l'objet.</p><p>Pour une vignette à côté du tweet, l'image doit être d'une taille minimale de 120×120 pixels. L'image sera rognée à une place sur toutes les plateformes.</p><p>Pour une image pleine largeur, il devrait être au moins 280px de largeur et au moins 150px en hauteur.</p>"
@@ -205,18 +205,18 @@
         }
     },
     "admin": {
-        "form_groups": {
-            "web-metadata": {
+        "formGroups": {
+            "webMetadata": {
                 "title": {
                     "en": "Metadata",
                     "fr": "Méta-données"
                 },
                 "properties": [
-                    "meta_title",
-                    "meta_description",
-                    "meta_image",
-                    "opengraph_image",
-                    "twitter_card_image"
+                    "metaTitle",
+                    "metaDescription",
+                    "metaImage",
+                    "opengraphImage",
+                    "twitterCardImage"
                 ],
                 "layout": {
                     "structure": [

@@ -1,36 +1,36 @@
 {
-    "labels": {
-        "name": {
-            "fr": "Événements",
-            "en": "Event"
-        },
-        "singular_name": {
-            "fr": "Événement",
-            "en": "Event"
-        },
-        "edit_item": {
-            "fr": "Modifier l'événement",
-            "en": "Edit event"
-        },
-        "create_item": {
-            "fr": "Créer un événement",
-            "en": "Create an event"
-        },
-        "new_item": {
-            "fr": "Nouvel événement",
-            "en": "New event"
-        },
-        "all_items": {
-            "fr": "Tous les événements",
-            "en": "All Events"
-        },
-        "menu_items": {
-            "fr": "Événements",
-            "en": "Events"
-        }
-    },
-
     "admin": {
+        "labels": {
+            "name": {
+                "fr": "Événements",
+                "en": "Event"
+            },
+            "singularName": {
+                "fr": "Événement",
+                "en": "Event"
+            },
+            "editItem": {
+                "fr": "Modifier l'événement",
+                "en": "Edit event"
+            },
+            "createItem": {
+                "fr": "Créer un événement",
+                "en": "Create an event"
+            },
+            "newItem": {
+                "fr": "Nouvel événement",
+                "en": "New event"
+            },
+            "allItems": {
+                "fr": "Tous les événements",
+                "en": "All Events"
+            },
+            "menuItems": {
+                "fr": "Événements",
+                "en": "Events"
+            }
+        },
+
         "lists": {
             "charcoal/cms/event-interface/default": {
                 "properties": [
@@ -40,14 +40,14 @@
                     "endDate",
                     "publishDate"
                 ],
-                "list_actions": [
+                "listActions": [
                     {
                         "ident": "create",
                         "priority": 10,
                         "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}"
                     }
                 ],
-                "object_actions": {
+                "objectActions": {
                     "edit": {
                         "label": {
                             "en": "Modify",
@@ -55,7 +55,7 @@
                         },
                         "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&obj_id={{id}}",
                         "priority": 1,
-                        "split_button": true,
+                        "splitButton": true,
                         "actions": {
                             "goto": {
                                 "label": {
@@ -86,7 +86,7 @@
                 },
                 "orders": [
                     {
-                        "property": "start_date",
+                        "property": "startDate",
                         "mode": "desc"
                     }
                 ]
@@ -119,7 +119,7 @@
             }
         },
 
-        "form_groups": {
+        "formGroups": {
             "cms.info": {
                 "layout": {
                     "structure": [
@@ -150,7 +150,7 @@
                 "template": "charcoal/admin/widget/form-group/attachment",
                 "type": "charcoal/admin/widget/form-group/attachment",
                 "group": "image-gallery",
-                "attachable_objects": {
+                "attachableObjects": {
                     "charcoal/attachment/object/image": {
                         "label": {
                             "fr": "Image",
@@ -168,7 +168,7 @@
                 "template": "charcoal/admin/widget/form-group/attachment",
                 "type": "charcoal/admin/widget/form-group/attachment",
                 "group": "document",
-                "attachable_objects": {
+                "attachableObjects": {
                     "charcoal/attachment/object/file": {
                         "label": {
                             "fr": "Document",
@@ -190,9 +190,9 @@
                     "en": "Meta tags"
                 },
                 "properties": [
-                    "meta_title",
-                    "meta_description",
-                    "meta_image",
+                    "metaTitle",
+                    "metaDescription",
+                    "metaImage",
                     "keywords"
                 ]
             },
@@ -250,16 +250,16 @@
             }
         },
 
-        "form_sidebars": {
+        "formSidebars": {
             "charcoal/cms/event-interface/create": {
                 "properties": []
             },
             "charcoal/cms/event-interface/default": {
                 "properties": [
                     "created",
-                    "created_by",
-                    "last_modified",
-                    "last_modified_by"
+                    "createdBy",
+                    "lastModified",
+                    "lastModifiedBy"
                 ]
             }
         },
@@ -275,8 +275,8 @@
                     "form": {
                         "priority": 10,
                         "type": "charcoal/admin/widget/object-form",
-                        "form_ident": "charcoal/cms/event-interface/create",
-                        "group_display_mode": "tab"
+                        "formIdent": "charcoal/cms/event-interface/create",
+                        "groupDisplayMode": "tab"
                     }
                 }
             },
@@ -290,8 +290,8 @@
                     "form": {
                         "priority": 10,
                         "type": "charcoal/admin/widget/object-form",
-                        "form_ident": "charcoal/cms/event-interface/edit",
-                        "group_display_mode": "tab"
+                        "formIdent": "charcoal/cms/event-interface/edit",
+                        "groupDisplayMode": "tab"
                     }
                 }
             },
@@ -304,14 +304,14 @@
                 "widgets": {
                     "table": {
                         "type": "charcoal/admin/widget/table",
-                        "collection_ident": "charcoal/cms/event-interface/default",
-                        "data_sources": ["request"]
+                        "collectionIdent": "charcoal/cms/event-interface/default",
+                        "dataSources": ["request"]
                     }
                 }
             }
         },
-        "default_create_dashboard": "cms.edit",
-        "default_edit_dashboard": "cms.edit",
-        "default_collection_dashboard": "cms.table"
+        "defaultCreateDashboard": "cms.edit",
+        "defaultEditDashboard": "cms.edit",
+        "defaultCollectionDashboard": "cms.table"
     }
 }

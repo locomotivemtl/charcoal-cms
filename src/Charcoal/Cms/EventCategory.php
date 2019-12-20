@@ -55,14 +55,6 @@ class EventCategory extends Content implements CategoryInterface
     }
 
     /**
-     * @return mixed
-     */
-    public function name()
-    {
-        return $this->name;
-    }
-
-    /**
      * @param mixed $name The category name.
      * @return self
      */

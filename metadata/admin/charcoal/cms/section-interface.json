@@ -4,35 +4,35 @@
             "cms.default": {
                 "properties": [
                     "title",
-                    "template_ident",
-                    "last_modified",
+                    "templateIdent",
+                    "lastModified",
                     "active"
                 ],
-                "properties_options": {
+                "propertiesOptions": {
                     "title": {
-                        "display_type": "charcoal/admin/property/display/hierarchical",
-                        "view_options": {
+                        "displayType": "charcoal/admin/property/display/hierarchical",
+                        "viewOptions": {
                             "attr": {
                                 "width": "55%"
                             }
                         }
                     },
-                    "template_ident": {
-                        "view_options": {
+                    "templateIdent": {
+                        "viewOptions": {
                             "attr": {
                                 "width": "15%"
                             }
                         }
                     },
-                    "last_modified": {
-                        "view_options": {
+                    "lastModified": {
+                        "viewOptions": {
                             "attr": {
                                 "width": "15%"
                             }
                         }
                     },
                     "active": {
-                        "view_options": {
+                        "viewOptions": {
                             "attr": {
                                 "width": "5%",
                                 "class": "text-center"
@@ -40,7 +40,7 @@
                         }
                     }
                 },
-                "list_actions": {
+                "listActions": {
                     "create": {
                         "ident": "create",
                         "priority": 10,
@@ -50,7 +50,7 @@
                         },
                         "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}"
                     },
-                    "main_menu": {
+                    "mainMenu": {
                         "ident": "main_menu",
                         "priority": 20,
                         "label": {
@@ -60,7 +60,7 @@
                         "url": "object/collection?main_menu={{main_menu}}&obj_type={{obj_type}}&dashboard_ident=cms.table&collection_ident=cms.in_menu"
                     }
                 },
-                "object_actions": {
+                "objectActions": {
                     "edit": {
                         "label": {
                             "en": "Modify",
@@ -68,7 +68,7 @@
                         },
                         "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&obj_id={{id}}",
                         "priority": 1,
-                        "split_button": true,
+                        "splitButton": true,
                         "actions": {
                             "goto": {
                                 "label": {
@@ -111,34 +111,34 @@
                 },
                 "properties": [
                     "title",
-                    "template_ident",
-                    "last_modified",
+                    "templateIdent",
+                    "lastModified",
                     "active"
                 ],
-                "properties_options": {
+                "propertiesOptions": {
                     "title": {
-                        "view_options": {
+                        "viewOptions": {
                             "attr": {
                                 "width": "55%"
                             }
                         }
                     },
-                    "template_ident": {
-                        "view_options": {
+                    "templateIdent": {
+                        "viewOptions": {
                             "attr": {
                                 "width": "15%"
                             }
                         }
                     },
-                    "last_modified": {
-                        "view_options": {
+                    "lastModified": {
+                        "viewOptions": {
                             "attr": {
                                 "width": "15%"
                             }
                         }
                     },
                     "active": {
-                        "view_options": {
+                        "viewOptions": {
                             "attr": {
                                 "width": "5%",
                                 "class": "text-center"
@@ -146,7 +146,7 @@
                         }
                     }
                 },
-                "list_actions": {
+                "listActions": {
                     "create": {
                         "ident": "create",
                         "priority": 1,
@@ -156,7 +156,7 @@
                         },
                         "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}"
                     },
-                    "main_menu": {
+                    "mainMenu": {
                         "ident": "sidebar",
                         "priority": 2,
                         "label": {
@@ -166,7 +166,7 @@
                         "url": "object/collection?main_menu={{main_menu}}&obj_type={{obj_type}}"
                     }
                 },
-                "object_actions": {
+                "objectActions": {
                     "edit": {
                         "label": {
                             "en": "Modify",
@@ -174,7 +174,7 @@
                         },
                         "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&obj_id={{id}}",
                         "priority": 1,
-                        "split_button": true,
+                        "splitButton": true,
                         "actions": {
                             "goto": {
                                 "label": {
@@ -219,23 +219,23 @@
             }
         },
 
-        "form_groups": {
+        "formGroups": {
             "cms.template_options": {
                 "title": {
                     "en": "Template Options",
                     "fr": "Options de gabarit"
                 },
-                "show_header": false,
-                "show_title": false,
+                "showHeader": false,
+                "showTitle": false,
                 "icon": "wrench",
                 "template": "charcoal/admin/widget/form-group/structure",
                 "type": "charcoal/admin/widget/form-group/structure",
-                "storage_property": "template_options"
+                "storageProperty": "template_options"
             },
             "cms.info": {
                 "title": "Info",
-                "show_title": false,
-                "show_header": false,
+                "showTitle": false,
+                "showHeader": false,
                 "icon": "info",
                 "properties": [
                     "title",
@@ -248,13 +248,13 @@
                     "fr": "Galerie d'images",
                     "en": "Gallery"
                 },
-                "show_title": false,
-                "show_header": false,
+                "showTitle": false,
+                "showHeader": false,
                 "icon": "photo",
                 "template": "charcoal/admin/widget/form-group/attachment",
                 "type": "charcoal/admin/widget/form-group/attachment",
                 "group": "image-gallery",
-                "attachable_objects": {
+                "attachableObjects": {
                     "charcoal/attachment/image": {
                         "label": {
                             "fr": "Image",
@@ -268,13 +268,13 @@
                     "en": "Documents",
                     "fr": "Ressources"
                 },
-                "show_title": false,
-                "show_header": false,
+                "showTitle": false,
+                "showHeader": false,
                 "icon": "paperclip",
                 "template": "charcoal/admin/widget/form-group/attachment",
                 "type": "charcoal/admin/widget/form-group/attachment",
                 "group": "document",
-                "attachable_objects": {
+                "attachableObjects": {
                     "charcoal/attachment/file": {
                         "label": {
                             "fr": "Document",
@@ -290,43 +290,43 @@
                 }
             },
             "cms.meta": {
-                "show_title": false,
-                "show_header": false,
+                "showTitle": false,
+                "showHeader": false,
                 "icon": "tags",
                 "title": {
                     "fr": "Description méta",
                     "en": "Meta tags"
                 },
                 "properties": [
-                    "meta_title",
-                    "meta_description",
-                    "meta_image",
+                    "metaTitle",
+                    "metaDescription",
+                    "metaImage",
                     "keywords"
                 ]
             },
             "cms.advanced": {
                 "title": "Options",
-                "show_title": false,
-                "show_header": false,
+                "showTitle": false,
+                "showHeader": false,
                 "icon": "cog",
                 "properties": [
                     "master",
-                    "external_url",
+                    "externalUrl",
                     "slug",
-                    "in_menu",
+                    "inMenu",
                     "active"
                 ]
             },
             "cms.dev": {
                 "title": "Dev",
-                "show_title": false,
-                "show_header": false,
+                "showTitle": false,
+                "showHeader": false,
                 "icon": "code",
                 "tabCssClasses": "pull-right",
                 "permissions": ["dev_tab"],
                 "properties": [
-                    "template_ident",
-                    "section_type",
+                    "templateIdent",
+                    "sectionType",
                     "locked"
                 ]
             },
@@ -335,19 +335,19 @@
                     "fr": "Hiérarchie",
                     "en": "Hierarchy"
                 },
-                "show_title": false,
-                "show_header": false,
+                "showTitle": false,
+                "showHeader": false,
                 "icon": "sitemap",
                 "template": "utils/widget/form-group/widget",
                 "type": "utils/widget/form-group/widget",
-                "widget_type": "charcoal/admin/widget/table",
-                "obj_type": "{{obj_type}}",
-                "collection_ident": "cms.default",
+                "widgetType": "charcoal/admin/widget/table",
+                "objType": "{{obj_type}}",
+                "collectionIdent": "cms.default",
                 "priority": 7000,
                 "sortable": true,
-                "renderable_data": {
-                    "obj_type": "{{obj_type}}",
-                    "collection_config": {
+                "renderableData": {
+                    "objType": "{{obj_type}}",
+                    "collectionConfig": {
                         "properties": [
                         ],
                         "orders": [
@@ -362,7 +362,7 @@
                                 "value": "{{id}}"
                             }
                         ],
-                        "list_actions": {
+                        "listActions": {
                             "create": {
                                 "label": {
                                     "en": "New Page",
@@ -371,13 +371,13 @@
                                 "ident": "create",
                                 "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&form_data[master]={{id}}"
                             },
-                            "main_menu": {
+                            "mainMenu": {
                                 "ident": "main_menu",
                                 "active": false
                             }
                         },
                         "pagination": {
-                            "num_per_page": 100
+                            "numPerPage": 100
                         }
                     }
                 }
@@ -387,24 +387,24 @@
                     "fr": "Révisions",
                     "en": "Revisions"
                 },
-                "show_title": false,
-                "show_header": false,
+                "showTitle": false,
+                "showHeader": false,
                 "icon": "floppy-o",
                 "template": "charcoal/admin/widget/form-group/object-revisions",
                 "type": "charcoal/admin/widget/form-group/object-revisions"
             }
         },
 
-        "form_sidebars": {
+        "formSidebars": {
             "cms.default": {
                 "properties": [
                     "created",
-                    "created_by",
-                    "last_modified",
-                    "last_modified_by"
+                    "createdBy",
+                    "lastModified",
+                    "lastModifiedBy"
                 ],
                 "actions": {
-                    "return_to_master": {
+                    "returnToMaster": {
                         "label": {
                             "en": "Back up a level",
                             "fr": "Remonter d'un niveau"
@@ -441,8 +441,8 @@
                     "form": {
                         "priority": 10,
                         "type": "charcoal/admin/widget/object-form",
-                        "form_ident": "cms.default",
-                        "group_display_mode": "tab"
+                        "formIdent": "cms.default",
+                        "groupDisplayMode": "tab"
                     }
                 }
             },
@@ -455,8 +455,8 @@
                 "widgets": {
                     "list": {
                         "type": "charcoal/admin/widget/cms/hierarchical-section-table",
-                        "collection_ident": "cms.default",
-                        "data_sources": ["request"]
+                        "collectionIdent": "cms.default",
+                        "dataSources": ["request"]
                     }
                 }
             },
@@ -469,15 +469,16 @@
                 "widgets": {
                     "table": {
                         "type": "charcoal/admin/widget/table",
-                        "collection_ident": "cms.default",
+                        "collectionIdent": "cms.default",
                         "sortable": true,
-                        "data_sources": ["request"]
+                        "dataSources": ["request"]
                     }
                 }
             }
         },
-        "default_create_dashboard": "cms.edit",
-        "default_edit_dashboard": "cms.edit",
-        "default_collection_dashboard": "cms.table.hierarchical"
+
+        "defaultCreateDashboard": "cms.edit",
+        "defaultEditDashboard": "cms.edit",
+        "defaultCollectionDashboard": "cms.table.hierarchical"
     }
 }

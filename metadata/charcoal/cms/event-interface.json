@@ -15,9 +15,9 @@
         }
     },
 
-    "default_data": {
-        "main_menu": "content",
-        "secondary_menu": "content"
+    "defaultData": {
+        "mainMenu": "content",
+        "secondaryMenu": "content"
     },
 
     "properties": {
@@ -35,7 +35,7 @@
         "subtitle": {
             "type": "text",
             "l10n": true,
-            "input_type": "charcoal/admin/property/input/textarea",
+            "inputType": "charcoal/admin/property/input/textarea",
             "label": {
                 "en": "Subtitle",
                 "fr": "Sous-titre"
@@ -60,8 +60,8 @@
         "image": {
             "type": "image",
             "l10n": true,
-            "public_access": true,
-            "upload_path": "uploads/events/"
+            "publicAccess": true,
+            "uploadPath": "uploads/events/"
         },
         "startDate": {
             "type": "date-time",
@@ -147,8 +147,8 @@
         },
         "keywords": {
             "type": "object",
-            "obj_type": "charcoal/cms/tag",
-            "input_type": "charcoal/admin/property/input/selectize",
+            "objType": "charcoal/cms/tag",
+            "inputType": "charcoal/admin/property/input/selectize",
             "multiple": true,
             "label": {
                 "fr": "Mots-clés",

@@ -1,28 +1,28 @@
 {
-  "properties": {
-    "tags": {
-      "type": "object",
-      "obj_type": "charcoal/cms/tag",
-      "multiple": true,
-      "icon": "tags",
-      "label": {
-        "en": "Tags",
-        "fr": "Mots-clés"
-      },
-      "description": {
-        "en": "",
-        "fr": ""
-      },
-      "input_type": "charcoal/admin/property/input/selectize",
-      "allow_create": true,
-      "allow_update": true,
-      "selectize_options": {
-        "plugins": {
-          "drag_drop": {},
-          "btn_remove": {},
-          "btn_update": {}
+    "properties": {
+        "tags": {
+            "type": "object",
+            "objType": "charcoal/cms/tag",
+            "multiple": true,
+            "icon": "tags",
+            "label": {
+                "en": "Tags",
+                "fr": "Mots-clés"
+            },
+            "description": {
+                "en": "",
+                "fr": ""
+            },
+            "inputType": "charcoal/admin/property/input/selectize",
+            "allowCreate": true,
+            "allowUpdate": true,
+            "selectizeOptions": {
+                "plugins": {
+                    "dragDrop": {},
+                    "btnRemove": {},
+                    "btnUpdate": {}
+                }
+            }
         }
-      }
     }
-  }
 }

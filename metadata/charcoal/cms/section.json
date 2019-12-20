@@ -1,11 +1,11 @@
 {
     "properties": {
         "master": {
-            "obj_type": "charcoal/cms/section"
+            "objType": "charcoal/cms/section"
         }
     },
 
-    "slug_pattern": {
+    "slugPattern": {
         "en": "en/{{title}}",
         "fr": "fr/{{title}}"
     },
@@ -16,5 +16,6 @@
             "table": "cms_sections"
         }
     },
-    "default_source": "default"
+
+    "defaultSource": "default"
 }

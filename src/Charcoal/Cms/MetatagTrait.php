@@ -416,13 +416,13 @@ trait MetatagTrait
     public function generateDefaultMetaTags()
     {
         if ($this->isEmptyMeta($this->metaTitle)) {
-            $this->setMetaTitle($this->defaultMetaTitle());
+            $this->setMetaTitle($this['defaultMetaTitle']);
         }
         if ($this->isEmptyMeta($this->metaDescription)) {
-            $this->setMetaDescription($this->defaultMetaDescription());
+            $this->setMetaDescription($this['defaultMetaDescription']);
         }
         if ($this->isEmptyMeta($this->metaImage)) {
-            $this->setMetaImage($this->defaultMetaImage());
+            $this->setMetaImage($this['defaultMetaImage']);
         }
         return $this;
     }

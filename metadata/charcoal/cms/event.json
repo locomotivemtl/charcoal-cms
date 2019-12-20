@@ -1,11 +1,11 @@
 {
     "properties": {
-        "category":{
-            "obj_type":"charcoal/cms/event-category"
+        "category": {
+            "objType": "charcoal/cms/event-category"
         }
     },
 
-    "slug_pattern": {
+    "slugPattern": {
         "en": "en/events/{{title}}",
         "fr": "fr/evenements/{{title}}"
     },
@@ -15,5 +15,6 @@
             "table": "cms_events"
         }
     },
-    "default_source": "default"
+
+    "defaultSource": "default"
 }

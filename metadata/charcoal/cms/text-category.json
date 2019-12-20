@@ -4,5 +4,6 @@
             "table": "charcoal_cms_texts_categories"
         }
     },
-    "default_source": "default"
+
+    "defaultSource": "default"
 }

@@ -1,7 +1,7 @@
 {
     "admin": {
-        "form_groups": {
-            "template_options": {
+        "formGroups": {
+            "templateOptions": {
                 "title": {
                     "fr": "Options de gabarit",
                     "en": "Template Options"

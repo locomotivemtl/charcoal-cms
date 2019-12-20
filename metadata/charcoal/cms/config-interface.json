@@ -3,17 +3,17 @@
         "id": {
             "type": "id"
         },
-        "social_medias": {
+        "socialMedias": {
             "type": "model-structure",
             "label": {
                 "en": "Social medias",
                 "fr": "Médias sociaux"
             },
-            "structure_metadata": {
+            "structureMetadata": {
                 "properties": {
                     "facebook": {
                         "type": "string",
-                        "input_prefix": "https://facebook.com/",
+                        "inputPrefix": "https://facebook.com/",
                         "label": {
                             "fr": "Page facebook",
                             "en": "Facebook page"
@@ -21,7 +21,7 @@
                     },
                     "twitter": {
                         "type": "string",
-                        "input_prefix": "https://twitter.com/",
+                        "inputPrefix": "https://twitter.com/",
                         "label": {
                             "fr": "Page twitter",
                             "en": "Twitter page"
@@ -29,7 +29,7 @@
                     },
                     "instagram": {
                         "type": "string",
-                        "input_prefix": "https://www.instagram.com/",
+                        "inputPrefix": "https://www.instagram.com/",
                         "label": {
                             "fr": "Page instagram",
                             "en": "Instagram page"
@@ -38,7 +38,7 @@
                 }
             }
         },
-        "default_from_email": {
+        "defaultFromEmail": {
             "type": "string",
             "l10n": false,
             "label": {
@@ -50,7 +50,7 @@
                 "fr": "Le courriel émetteur lors d'un envoie de confirmation"
             }
         },
-        "default_meta_title": {
+        "defaultMetaTitle": {
             "type": "string",
             "l10n": true,
             "label": {
@@ -62,7 +62,7 @@
                 "fr": "Les étiquettes méta sont utilisées lors du partage sur les résaux sociaux et pour faciliter le référencement"
             }
         },
-        "default_meta_description": {
+        "defaultMetaDescription": {
             "type": "string",
             "l10n": true,
             "label": {
@@ -74,15 +74,15 @@
                 "fr": "Les étiquettes méta sont utilisées lors du partage sur les résaux sociaux et pour faciliter le référencement"
             }
         },
-        "default_meta_image": {
+        "defaultMetaImage": {
             "type": "image",
             "label": {
                 "en": "Default meta image",
                 "fr": "Image méta par default"
             },
-            "upload_path": "uploads/options/config/",
-            "public_access": true,
-            "view_options": {
+            "uploadPath": "uploads/options/config/",
+            "publicAccess": true,
+            "viewOptions": {
                 "charcoal/admin/property/display/image": {
                     "height": 50
                 }
@@ -92,7 +92,7 @@
                 "fr": "Les étiquettes méta sont utilisées lors du partage sur les résaux sociaux et pour faciliter le référencement"
             }
         },
-        "default_meta_url": {
+        "defaultMetaUrl": {
             "type": "string",
             "l10n": true,
             "label": {

@@ -118,13 +118,14 @@ class GenericRoute extends TemplateRoute
         $this->setDependencies($container);
 
         $object = $this->getObjectRouteFromPath();
-        if (!$object->id()) {
+
+        if (!$object['id']) {
             return false;
         }
 
         $contextObject = $this->getContextObject();
 
-        if (!$contextObject || !$contextObject->id()) {
+        if (!$contextObject || !$contextObject['id']) {
             return false;
         }
 
@@ -212,8 +213,8 @@ class GenericRoute extends TemplateRoute
         $latest = $this->getLatestObjectPathHistory($objectRoute);
 
         // Redirect if latest route is newer
-        if ($latest->creationDate() > $objectRoute->creationDate()) {
-            $redirection = $this->parseRedirect($latest->slug(), $request);
+        if ($latest['creationDate'] > $objectRoute['creationDate']) {
+            $redirection = $this->parseRedirect($latest['slug'], $request);
             $response = $response->withRedirect($redirection, 301);
         }
 
@@ -229,7 +230,7 @@ class GenericRoute extends TemplateRoute
 
         $objectRoute   = $this->getObjectRouteFromPath();
         $contextObject = $this->getContextObject();
-        $currentLang   = $objectRoute->getLang();
+        $currentLang   = $objectRoute['lang'];
 
         // Set language according to the route's language
         $this->setLocale($currentLang);
@@ -241,14 +242,14 @@ class GenericRoute extends TemplateRoute
             $identProperty = $contextObject->property('template_ident');
 
             // Methods from TemplateableInterface / Trait
-            $templateIdent = $contextObject->templateIdent() ?: $objectRoute->getRouteTemplate();
+            $templateIdent = $contextObject['templateIdent'] ?: $objectRoute['routeTemplate'];
             // Default fallback to routeTemplate
-            $controllerIdent = $contextObject->controllerIdent() ?: $templateIdent;
+            $controllerIdent = $contextObject['controllerIdent'] ?: $templateIdent;
 
             $templateChoice = $identProperty->choice($templateIdent);
         } else {
             // Use global templates to verify for custom paths
-            $templateIdent = $objectRoute->getRouteTemplate();
+            $templateIdent = $objectRoute['routeTemplate'];
             $controllerIdent = $templateIdent;
             foreach ($this->availableTemplates as $templateKey => $templateData) {
                 if (!isset($templateData['value'])) {
@@ -289,8 +290,8 @@ class GenericRoute extends TemplateRoute
 
         // Overwrite from custom object template_options
         if ($contextObject instanceof TemplateableInterface) {
-            if (!empty($contextObject->templateOptions())) {
-                $templateOptions = $contextObject->templateOptions();
+            if (!empty($contextObject['templateOptions'])) {
+                $templateOptions = $contextObject['templateOptions'];
             }
         }
 
@@ -300,7 +301,7 @@ class GenericRoute extends TemplateRoute
         }
 
         // Merge Route options from object-route
-        $routeOptions = $objectRoute->getRouteOptions();
+        $routeOptions = $objectRoute['routeOptions'];
         if ($routeOptions && count($routeOptions)) {
             $config['template_data'] = array_merge($config['template_data'], $routeOptions);
         }
@@ -371,8 +372,8 @@ class GenericRoute extends TemplateRoute
     {
         $route = $this->getObjectRouteFromPath();
 
-        $obj = $this->modelFactory()->create($route->getRouteObjType());
-        $obj->load($route->getRouteObjId());
+        $obj = $this->modelFactory()->create($route['routeObjType']);
+        $obj->load($route['routeObjId']);
 
         return $obj;
     }
@@ -437,15 +438,15 @@ class GenericRoute extends TemplateRoute
         $loader
             ->setModel($route)
             ->addFilter('active', true)
-            ->addFilter('route_obj_type', $route->getRouteObjType())
-            ->addFilter('route_obj_id', $route->getRouteObjId())
-            ->addFilter('lang', $route->getLang())
+            ->addFilter('route_obj_type', $route['routeObjType'])
+            ->addFilter('route_obj_id', $route['routeObjId'])
+            ->addFilter('lang', $route['lang'])
             ->addOrder('creation_date', 'desc')
             ->setPage(1)
             ->setNumPerPage(1);
 
-        if ($route->getRouteOptionsIdent()) {
-            $loader->addFilter('route_options_ident', $route->getRouteOptionsIdent());
+        if ($route['routeOptionsIdent']) {
+            $loader->addFilter('route_options_ident', $route['routeOptionsIdent']);
         } else {
             $loader->addFilter('route_options_ident', '', ['operator' => 'IS NULL']);
         }

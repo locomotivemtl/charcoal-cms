@@ -11,7 +11,7 @@
         "subtitle": {
             "type": "text",
             "l10n": true,
-            "input_type": "charcoal/admin/property/input/textarea",
+            "inputType": "charcoal/admin/property/input/textarea",
             "label": {
                 "en": "Subtitle",
                 "fr": "Sous-titre"

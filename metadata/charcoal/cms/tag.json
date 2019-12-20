@@ -1,5 +1,5 @@
 {
-    "default_data": {
+    "defaultData": {
         "color": "#D6E066"
     },
 
@@ -9,5 +9,6 @@
 			"table": "charcoal_cms_tags"
 		}
 	},
-	"default_source": "default"
+
+	"defaultSource": "default"
 }

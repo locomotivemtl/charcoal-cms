@@ -311,7 +311,7 @@ trait EventManagerAwareTrait
     {
         return [
             'id'   => $category->id(),
-            'name' => (string)$category->name(),
+            'name' => (string)$category['name'],
         ];
     }
 

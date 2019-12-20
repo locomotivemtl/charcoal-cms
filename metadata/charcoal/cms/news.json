@@ -1,11 +1,11 @@
 {
     "properties": {
         "category": {
-            "obj_type": "charcoal/cms/news-category"
+            "objType": "charcoal/cms/news-category"
         }
     },
 
-    "slug_pattern": {
+    "slugPattern": {
         "en": "en/news/{{title}}",
         "fr": "fr/nouvelles/{{title}}"
     },
@@ -15,5 +15,6 @@
             "table": "cms_news"
         }
     },
-    "default_source": "default"
+
+    "defaultSource": "default"
 }

@@ -201,7 +201,7 @@ trait NewsManagerAwareTrait
             'dateTime'     => $news->newsDate()->format('Y-m-d h:i'),
             'active'       => ($this->currentNews() && ($this->currentNews()['id'] == $news->id())),
             'category'     => $news->category(),
-            'categoryName' => $this->newsCategory($news)->name()
+            'categoryName' => $this->newsCategory($news)['name']
         ];
     }
 
@@ -218,7 +218,7 @@ trait NewsManagerAwareTrait
             'title'        => (string)$news->title(),
             'url'          => $news->url(),
             'category'     => $news->category(),
-            'categoryName' => $this->newsCategory($news)->name()
+            'categoryName' => $this->newsCategory($news)['name']
         ];
     }
 
@@ -249,7 +249,7 @@ trait NewsManagerAwareTrait
             'url'              => $news->url(),
             'metaTitle'        => (string)$news->metaTitle(),
             'category'         => $news->category(),
-            'categoryName'     => $this->newsCategory($news)->name()
+            'categoryName'     => $this->newsCategory($news)['name']
         ];
     }
 
@@ -261,7 +261,7 @@ trait NewsManagerAwareTrait
     {
         return [
             'id'   => $category->id(),
-            'name' => (string)$category->name(),
+            'name' => (string)$category['name'],
         ];
     }
 

@@ -1,7 +1,7 @@
 {
     "properties": {
         "attachments": {
-            "allowed_types": {
+            "allowedTypes": {
                 "charcoal/cms/document": {},
                 "charcoal/cms/image": {},
                 "charcoal/cms/video": {}
