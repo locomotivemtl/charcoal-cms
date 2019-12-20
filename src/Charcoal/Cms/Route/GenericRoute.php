@@ -118,18 +118,23 @@ class GenericRoute extends TemplateRoute
         $this->setDependencies($container);
 
         $object = $this->getObjectRouteFromPath();
+        if (!$object || !$object->id()) {
+            return false;
+        }
 
         if (!$object['id']) {
             return false;
         }
 
-        $contextObject = $this->getContextObject();
-
-        if (!$contextObject || !$contextObject['id']) {
-            return false;
+        if ($contextObject instanceof RoutableInterface) {
+            return $contextObject->isActiveRoute();
         }
 
-        return (!!$contextObject['active'] && !!$contextObject->isActiveRoute());
+        if (isset($contextObject['active'])) {
+            return (bool)$contextObject['active'];
+        }
+
+        return true;
     }
 
     /**
@@ -198,6 +203,11 @@ class GenericRoute extends TemplateRoute
     }
 
     /**
+     * Determine if the current object route is the latest object route.
+     *
+     * This method loads the latest object route from the datasource and compares
+     * their creation dates. Both instances could be the same object (ID).
+     *
      * @param  RequestInterface  $request  A PSR-7 compatible Request instance.
      * @param  ResponseInterface $response A PSR-7 compatible Response instance.
      * @return ResponseInterface
@@ -206,11 +216,8 @@ class GenericRoute extends TemplateRoute
         RequestInterface $request,
         ResponseInterface $response
     ) {
-        // Current object route
-        $objectRoute = $this->getObjectRouteFromPath();
-
-        // Could be the SAME as current object route
-        $latest = $this->getLatestObjectPathHistory($objectRoute);
+        $current = $this->getObjectRouteFromPath();
+        $latest  = $this->getLatestObjectPathHistory($current);
 
         // Redirect if latest route is newer
         if ($latest['creationDate'] > $objectRoute['creationDate']) {
@@ -239,14 +246,10 @@ class GenericRoute extends TemplateRoute
 
         // Templateable Objects have specific methods
         if ($contextObject instanceof TemplateableInterface) {
-            $identProperty = $contextObject->property('template_ident');
-
-            // Methods from TemplateableInterface / Trait
+            $identProperty   = $contextObject->property('templateIdent');
             $templateIdent = $contextObject['templateIdent'] ?: $objectRoute['routeTemplate'];
-            // Default fallback to routeTemplate
             $controllerIdent = $contextObject['controllerIdent'] ?: $templateIdent;
-
-            $templateChoice = $identProperty->choice($templateIdent);
+            $templateChoice  = $identProperty->choice($templateIdent);
         } else {
             // Use global templates to verify for custom paths
             $templateIdent = $objectRoute['routeTemplate'];
@@ -255,6 +258,7 @@ class GenericRoute extends TemplateRoute
                 if (!isset($templateData['value'])) {
                     $templateData['value'] = $templateKey;
                 }
+
                 if ($templateData['value'] === $templateIdent) {
                     $templateChoice = $templateData;
                     break;
@@ -321,7 +325,7 @@ class GenericRoute extends TemplateRoute
         $template = parent::createTemplate($container, $request);
 
         $contextObject = $this->getContextObject();
-        $template->setContextObject($contextObject);
+        $template['contextObject'] = $contextObject;
 
         return $template;
     }
@@ -403,21 +407,16 @@ class GenericRoute extends TemplateRoute
         // Slugs are unique
         // Slug can be duplicated by adding the front "/" to it hence the order by last_modification_date
         $route = $this->createRouteObject();
-        $route->loadFromQuery(
-            sprintf(
-                '
-                SELECT * FROM `%s`
-                WHERE (`slug` = :route1 OR `slug` = :route2)
-                AND `lang` = :lang
-                ORDER BY last_modification_date DESC LIMIT 1',
-                $route->source()->table()
-            ),
-            [
+        $table = '`'.$route->source()->table().'`';
+        $where = '`lang` = :lang AND (`slug` = :route1 OR `slug` = :route2)';
+        $order = '`last_modification_date` DESC';
+        $query = 'SELECT * FROM '.$table.' WHERE '.$where.' ORDER BY '.$order.' LIMIT 1';
+
+        $route->loadFromQuery($query, [
                 'route1' => '/'.$this->path(),
                 'route2' => $this->path(),
-                'lang'   => $this->translator()->getLocale()
-            ]
-        );
+            'lang'   => $this->translator()->getLocale(),
+        ]);
 
         return $route;
     }
@@ -430,10 +429,14 @@ class GenericRoute extends TemplateRoute
      * Should never MISS, the given object route should exist.
      *
      * @param  ObjectRouteInterface $route Routable Object.
-     * @return ObjectRouteInterface
+     * @return ObjectRouteInterface|null
      */
     public function getLatestObjectPathHistory(ObjectRouteInterface $route)
     {
+        if (!$route->id()) {
+            return null;
+        }
+
         $loader = $this->collectionLoader();
         $loader
             ->setModel($route)
@@ -448,15 +451,10 @@ class GenericRoute extends TemplateRoute
         if ($route['routeOptionsIdent']) {
             $loader->addFilter('route_options_ident', $route['routeOptionsIdent']);
         } else {
-            $loader->addFilter('route_options_ident', '', ['operator' => 'IS NULL']);
+            $loader->addFilter('route_options_ident', '', [ 'operator' => 'IS NULL' ]);
         }
 
-        $collection = $loader->load();
-        $routes = $collection->objects();
-
-        $latestRoute = $routes[0];
-
-        return $latestRoute;
+        return $loader->load()->first();
     }
 
     /**
