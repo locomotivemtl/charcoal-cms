@@ -136,6 +136,9 @@ class MultiGroupWidget extends AdminWidget implements
 
         // Satisfies FormInterface
         $this->setFormGroupFactory($container['form/group/factory']);
+
+        // Satisfies LayoutAwareInterface dependencies
+        $this->setLayoutBuilder($container['layout/builder']);
     }
 
     /**
