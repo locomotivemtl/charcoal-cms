@@ -118,14 +118,11 @@ class GenericRoute extends TemplateRoute
         $this->setDependencies($container);
 
         $object = $this->getObjectRouteFromPath();
-        if (!$object || !$object->id()) {
+        if (!$object || !$object['id']) {
             return false;
         }
 
-        if (!$object['id']) {
-            return false;
-        }
-
+        $contextObject = $this->getContextObject();
         if ($contextObject instanceof RoutableInterface) {
             return $contextObject->isActiveRoute();
         }
