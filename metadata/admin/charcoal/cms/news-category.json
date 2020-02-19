@@ -51,12 +51,12 @@
                 "list_actions": [
                     {
                         "ident": "create",
-                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}"
+                        "url": "object/edit?obj_type={{obj_type}}"
                     }
                 ],
                 "object_actions": {
                     "edit": {
-                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&obj_id={{id}}",
+                        "url": "object/edit?obj_type={{obj_type}}&obj_id={{id}}",
                         "priority": 1,
                         "split_button": true,
                         "actions": {
