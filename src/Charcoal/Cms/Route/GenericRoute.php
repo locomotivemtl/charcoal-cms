@@ -152,7 +152,6 @@ class GenericRoute extends TemplateRoute
         ResponseInterface $response
     ) {
         $response = $this->resolveLatestObjectRoute($request, $response);
-
         if (!$response->isRedirect()) {
             $this->resolveTemplateContextObject();
 

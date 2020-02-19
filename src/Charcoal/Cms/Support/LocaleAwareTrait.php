@@ -112,7 +112,7 @@ trait LocaleAwareTrait
      */
     protected function availableLanguages()
     {
-        return array_keys($this->availableLocales);
+        return array_keys($this->locales());
     }
 
     /**
