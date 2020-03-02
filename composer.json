@@ -44,6 +44,9 @@
         "mustache/mustache": "^2.11",
         "locomotivemtl/charcoal-admin": "~0.6"
     },
+    "conflict": {
+        "locomotivemtl/charcoal-admin": "<0.23.0"
+    },
     "autoload": {
         "psr-4": {
             "Charcoal\\": "src/Charcoal"
