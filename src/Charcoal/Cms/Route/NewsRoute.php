@@ -2,6 +2,8 @@
 
 namespace Charcoal\Cms\Route;
 
+use Exception;
+
 // From Pimple
 use Pimple\Container;
 
@@ -84,16 +86,21 @@ class NewsRoute extends TemplateRoute
         $config = $this->config();
 
         $news = $this->loadNewsFromPath($container);
-
-        if (!$news) {
+        if ($news === null) {
             return $response->withStatus(404);
         }
 
-        $templateIdent      = $news->templateIdent();
-        $templateController = $news->templateIdent();
+        $templateIdent      = (string)$news['templateIdent'];
+        $templateController = (string)$news['templateIdent'];
 
         if (!$templateController) {
-            return $response->withStatus(404);
+            $container['logger']->warning(sprintf(
+                '[%s] Missing template controller on model [%s] for ID [%s]',
+                get_class($this),
+                get_class($news),
+                $news['id']
+            ));
+            return $response->withStatus(500);
         }
 
         $templateFactory = $container['template/factory'];
@@ -106,6 +113,15 @@ class NewsRoute extends TemplateRoute
         $template->setNews($news);
 
         $templateContent = $container['view']->render($templateIdent, $template);
+        if ($templateContent === $templateIdent || $templateContent === '') {
+            $container['logger']->warning(sprintf(
+                '[%s] Missing or bad template identifier on model [%s] for ID [%s]',
+                get_class($this),
+                get_class($news),
+                $templateIdent
+            ));
+            return $response->withStatus(500);
+        }
 
         $response->write($templateContent);
 
@@ -119,20 +135,35 @@ class NewsRoute extends TemplateRoute
      */
     protected function loadNewsFromPath(Container $container)
     {
-        if (!$this->news) {
+        if ($this->news === null) {
             $config  = $this->config();
-            $type   = (isset($config['obj_type']) ? $config['obj_type'] : $this->objType);
-            $model  = $container['model/factory']->create($type);
+            $objType = (isset($config['obj_type']) ? $config['obj_type'] : $this->objType);
 
-            $langs = $container['translator']->availableLocales();
-            $lang  = $model->loadFromL10n('slug', $this->path, $langs);
-            $container['translator']->setLocale($lang);
+            try {
+                $model = $container['model/factory']->create($objType);
+                $langs = $container['translator']->availableLocales();
+                $lang  = $model->loadFromL10n('slug', $this->path, $langs);
 
-            if ($model->id()) {
-                $this->news = $model;
+                if ($lang) {
+                    $container['translator']->setLocale($lang);
+                }
+
+                if ($model->id()) {
+                    $this->news = $model;
+                    return $model;
+                }
+            } catch (Exception $e) {
+                $container['logger']->debug(sprintf(
+                    '[%s] Unable to load model [%s] for path [%s]',
+                    get_class($this),
+                    get_class($model),
+                    $this->path
+                ));
             }
+
+            $this->news = false;
         }
 
-        return $this->news;
+        return $this->news ?: null;
     }
 }

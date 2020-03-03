@@ -2,6 +2,8 @@
 
 namespace Charcoal\Cms\Route;
 
+use Exception;
+
 // From Pimple
 use Pimple\Container;
 
@@ -85,16 +87,21 @@ class SectionRoute extends TemplateRoute
         $config = $this->config();
 
         $section = $this->loadSectionFromPath($container);
-
-        if (!$section) {
+        if ($section === null) {
             return $response->withStatus(404);
         }
 
-        $templateIdent      = (string)$section->templateIdent();
-        $templateController = (string)$section->templateIdent();
+        $templateIdent      = (string)$section['templateIdent'];
+        $templateController = (string)$section['templateIdent'];
 
         if (!$templateController) {
-            return $response->withStatus(404);
+            $container['logger']->warning(sprintf(
+                '[%s] Missing template controller on model [%s] for ID [%s]',
+                get_class($this),
+                get_class($section),
+                $section['id']
+            ));
+            return $response->withStatus(500);
         }
 
         $templateFactory = $container['template/factory'];
@@ -108,6 +115,15 @@ class SectionRoute extends TemplateRoute
         $template->setSection($section);
 
         $templateContent = $container['view']->render($templateIdent, $template);
+        if ($templateContent === $templateIdent || $templateContent === '') {
+            $container['logger']->warning(sprintf(
+                '[%s] Missing or bad template identifier on model [%s] for ID [%s]',
+                get_class($this),
+                get_class($section),
+                $templateIdent
+            ));
+            return $response->withStatus(500);
+        }
 
         $response->write($templateContent);
 
@@ -121,20 +137,35 @@ class SectionRoute extends TemplateRoute
      */
     protected function loadSectionFromPath(Container $container)
     {
-        if (!$this->section) {
-            $config = $this->config();
-            $type   = (isset($config['obj_type']) ? $config['obj_type'] : $this->objType);
-            $model  = $container['model/factory']->create($type);
+        if ($this->section === null) {
+            $config  = $this->config();
+            $objType = (isset($config['obj_type']) ? $config['obj_type'] : $this->objType);
 
-            $langs = $container['translator']->availableLocales();
-            $lang  = $model->loadFromL10n('slug', $this->path, $langs);
-            $container['translator']->setLocale($lang);
+            try {
+                $model = $container['model/factory']->create($objType);
+                $langs = $container['translator']->availableLocales();
+                $lang  = $model->loadFromL10n('slug', $this->path, $langs);
 
-            if ($model->id()) {
-                $this->section = $model;
+                if ($lang) {
+                    $container['translator']->setLocale($lang);
+                }
+
+                if ($model->id()) {
+                    $this->section = $model;
+                    return $model;
+                }
+            } catch (Exception $e) {
+                $container['logger']->debug(sprintf(
+                    '[%s] Unable to load model [%s] for path [%s]',
+                    get_class($this),
+                    get_class($model),
+                    $this->path
+                ));
             }
+
+            $this->section = false;
         }
 
-        return $this->section;
+        return $this->section ?: null;
     }
 }

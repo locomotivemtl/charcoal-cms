@@ -2,138 +2,198 @@
 
 namespace Charcoal\Tests\Cms\Route;
 
-// From PSR-7
-use Psr\Http\Message\RequestInterface;
-
-// From Slim
-use Slim\Http\Response;
-
-// From 'charcoal-object'
-use Charcoal\Object\ObjectRoute;
-
-// From 'charcoal-translator'
-use Charcoal\Translator\Translation;
+use InvalidArgumentException;
 
 // From 'charcoal-cms'
 use Charcoal\Cms\News;
 use Charcoal\Cms\Route\NewsRoute;
-use Charcoal\Tests\AbstractTestCase;
 
 /**
- *
+ * Test NewsRoute
  */
-class NewsRouteTest extends AbstractTestCase
+class NewsRouteTest extends AbstractRouteTestCase
 {
-    use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
-
     /**
-     * Tested Class.
-     *
-     * @var NewsRoute
-     */
-    private $obj;
-
-    /**
-     * Set up the test.
+     * Asserts that `NewsRoute::__invoke()` method returns an HTTP Response object
+     * with a 404 status code if the path does not resolve to any routable model.
      *
      * @return void
      */
-    public function setUp()
+    public function testInvokeOnNonexistentModel()
     {
         $container = $this->getContainer();
-        $provider  = $this->getContainerProvider();
+        $router    = $this->createRouter([
+            'path' => '/en/news/nonexistent',
+        ]);
 
-        $provider->registerTemplateFactory($container);
+        $result = $router->pathResolvable($container);
+        $this->assertFalse($result);
 
-        $route = $container['model/factory']->get(ObjectRoute::class);
-        if ($route->source()->tableExists() === false) {
-            $route->source()->createTable();
-        }
+        $request   = $this->createHttpRequest();
+        $response  = $this->createHttpResponse();
 
-        $this->obj = new NewsRoute([
+        $response = $router($container, $request, $response);
+        $this->assertEquals(404, $response->getStatusCode());
+    }
+
+    /**
+     * Asserts that an Exception is raised from the `NewsRoute::__invoke()` method
+     * if the resolved model has a nonexistent template controller.
+     *
+     * The "template/factory" service throws an Exception when a model's template controller can not be found.
+     *
+     * @return void
+     */
+    public function testInvokeOnExistingModelWithMissingTemplateController()
+    {
+        $this->insertMockRoutableContextObjects([
+            'templateIdent' => 'nonexistent',
+        ]);
+
+        $container = $this->getContainer();
+        $router    = $this->createRouter([
+            'path' => '/en/news/hello-world',
+        ]);
+
+        $result = $router->pathResolvable($container);
+        $this->assertTrue($result);
+
+        $request   = $this->createHttpRequest();
+        $response  = $this->createHttpResponse();
+
+        $this->expectException(InvalidArgumentException::class);
+        $response = $router($container, $request, $response);
+    }
+
+    /**
+     * Asserts that `NewsRoute::__invoke()` method returns an HTTP Response object
+     * with a 500 status code if the resolved model does not have a template identifier.
+     *
+     * @return void
+     */
+    public function testInvokeOnExistingModelWithoutTemplateIdent()
+    {
+        $this->insertMockRoutableContextObjects([
+            'templateIdent' => '',
+        ]);
+
+        $container = $this->getContainer();
+        $router    = $this->createRouter([
+            'path' => '/en/news/hello-world',
+        ]);
+
+        $result = $router->pathResolvable($container);
+        $this->assertTrue($result);
+
+        $request   = $this->createHttpRequest();
+        $response  = $this->createHttpResponse();
+
+        $response = $router($container, $request, $response);
+        $this->assertEquals(500, $response->getStatusCode());
+    }
+
+    /**
+     * Asserts that `NewsRoute::__invoke()` method returns an HTTP Response object
+     * with a 500 status code if the resolved model does not have a rendered template view.
+     *
+     * @return void
+     */
+    public function testInvokeOnExistingModelWithBadTemplateIdent()
+    {
+        $this->insertMockRoutableContextObjects([
+            'templateIdent' => 'charcoal/tests/cms/mock/broken',
+        ]);
+
+        $container = $this->getContainer();
+        $router    = $this->createRouter([
+            'path' => '/en/news/hello-world',
+        ]);
+
+        $result = $router->pathResolvable($container);
+        $this->assertTrue($result);
+
+        $request   = $this->createHttpRequest();
+        $response  = $this->createHttpResponse();
+
+        $response = $router($container, $request, $response);
+        $this->assertEquals(500, $response->getStatusCode());
+    }
+
+    /**
+     * Asserts that `NewsRoute::__invoke()` method returns an HTTP Response object
+     * with a 2XX status code if the path does resolve to a specific routable model.
+     *
+     * @return void
+     */
+    public function testInvokeOnExistingModelWithTemplateIdent()
+    {
+        $this->insertMockRoutableContextObjects([
+            'templateIdent' => 'charcoal/tests/cms/mock/news',
+        ]);
+
+        $container = $this->getContainer();
+        $router    = $this->createRouter([
+            'path' => '/en/news/hello-world',
+        ]);
+
+        $result = $router->pathResolvable($container);
+        $this->assertTrue($result);
+
+        $request   = $this->createHttpRequest();
+        $response  = $this->createHttpResponse();
+
+        $response = $router($container, $request, $response);
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertEquals('<h1>News</h1>', (string)$response->getBody());
+    }
+
+    /**
+     * Create the dynamic route to test.
+     *
+     * @param  array $data The dynamic route dependencies.
+     * @return NewsRoute
+     */
+    protected function createRouter(array $data = [])
+    {
+        return new NewsRoute($data + [
             'config' => [],
-            'path'   => '/en/news/foo',
+            'path'   => '',
         ]);
     }
 
     /**
+     * Create the model's database table to test lookup.
+     *
      * @return void
      */
-    public function testPathResolvableThrowsException()
+    protected function setUpRoutableContextModel()
     {
         $container = $this->getContainer();
 
-        $locales   = $container['locales/manager'];
-        $locales->setCurrentLocale($locales->currentLocale());
-
-        // Create the news table
-        $news = $container['model/factory']->create(News::class);
-        $news->source()->createTable();
-
-        $this->expectException(\PDOException::class);
-        $ret = $this->obj->pathResolvable($container);
+        $news = $container['model/factory']->get(News::class);
+        if ($news->source()->tableExists() === false) {
+            $news->source()->createTable();
+        }
     }
 
     /**
+     * Insert an entity into the model's database table to test a resolvable route.
+     *
+     * @param  array $data The model data.
      * @return void
      */
-    public function testPathResolvable()
+    protected function insertMockRoutableContextObjects(array $data = [])
     {
         $container = $this->getContainer();
 
-        $locales   = $container['locales/manager'];
-        $locales->setCurrentLocale($locales->currentLocale());
-
-        // Create the news table
         $news = $container['model/factory']->create(News::class);
-        $news->source()->createTable();
 
-        // Now try with a resolvable news.
-        $news->setData([
-            'id'             => 1,
-            'title'          => 'Foo',
-            'slug'           => new Translation('foo', $locales),
-            'template_ident' => 'bar',
+        $news->setData($data + [
+            'id'    => 1,
+            'title' => 'Hello, World!',
+            'slug'  => 'hello-world',
         ]);
-        $id = $news->save();
 
-        $ret = $this->obj->pathResolvable($container);
-        $this->assertTrue($ret);
+        $news->save();
     }
-
-    /**
-     * @return void
-     */
-    public function testInvokeThrowsException()
-    {
-        $container = $this->getContainer();
-        $request   = $this->createMock(RequestInterface::class);
-        $response  = new Response();
-
-        // Create the news table
-        $obj = $container['model/factory']->create(News::class);
-        $obj->source()->createTable();
-
-        $route  = $this->obj;
-        $this->expectException(\PDOException::class);
-        $return = $route($container, $request, $response);
-    }
-
-    /**
-     * @return void
-     */
-    /*public function testInvoke()
-    {
-        $container = $this->getContainer();
-        $request   = $this->createMock(RequestInterface::class);
-        $response  = new Response();
-
-        // Create the news table
-        $obj = $container['model/factory']->create(News::class);
-        $obj->source()->createTable();
-
-        $route  = $this->obj;
-        $return = $route($container, $request, $response);
-        $this->assertEquals(404, $return->getStatusCode());
-    }*/
 }

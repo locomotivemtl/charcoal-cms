@@ -2,175 +2,206 @@
 
 namespace Charcoal\Tests\Cms\Route;
 
-// From PSR-7
-use Psr\Http\Message\RequestInterface;
-
-// From Slim
-use Slim\Http\Response;
-
-// From 'charcoal-object'
-use Charcoal\Object\ObjectRoute;
-
-// From 'charcoal-translator'
-use Charcoal\Translator\Translation;
-
-// From 'charcoal-app'
-use Charcoal\App\App;
+use InvalidArgumentException;
 
 // From 'charcoal-cms'
 use Charcoal\Cms\Section;
 use Charcoal\Cms\Route\SectionRoute;
-use Charcoal\Tests\AbstractTestCase;
 
 /**
- *
+ * Test SectionRoute
  */
-class SectionRouteTest extends AbstractTestCase
+class SectionRouteTest extends AbstractRouteTestCase
 {
-    use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
-
     /**
-     * Charcoal Application.
-     *
-     * @var App
-     */
-    private $app;
-
-    /**
-     * Tested Class.
-     *
-     * @var SectionRoute
-     */
-    private $obj;
-
-    /**
-     * Set up the test.
+     * Asserts that `SectionRoute::__invoke()` method returns an HTTP Response object
+     * with a 404 status code if the path does not resolve to any routable model.
      *
      * @return void
      */
-    public function setUp()
+    public function testInvokeOnNonexistentModel()
     {
         $container = $this->getContainer();
-        $provider  = $this->getContainerProvider();
+        $router    = $this->createRouter([
+            'path' => '/en/nonexistent',
+        ]);
 
-        $provider->registerTemplateFactory($container);
+        $result = $router->pathResolvable($container);
+        $this->assertFalse($result);
 
-        $route = $container['model/factory']->get(ObjectRoute::class);
-        if ($route->source()->tableExists() === false) {
-            $route->source()->createTable();
-        }
+        $request   = $this->createHttpRequest();
+        $response  = $this->createHttpResponse();
 
-        $this->obj = new SectionRoute([
+        $response = $router($container, $request, $response);
+        $this->assertEquals(404, $response->getStatusCode());
+    }
+
+    /**
+     * Asserts that `SectionRoute::__invoke()` method returns an HTTP Response object
+     * with a 500 status code and the "templateIdent" as the body
+     * if the resolved model has a nonexistent template controller.
+     *
+     * The "config.view.defaultController" option ensures the "template/factory" service
+     * does not throw an Exception when a model's template controller can not be found.
+     *
+     * @return void
+     */
+    public function testInvokeOnExistingModelWithMissingTemplateController()
+    {
+        $this->insertMockRoutableContextObjects([
+            'templateIdent' => 'nonexistent',
+        ]);
+
+        $container = $this->getContainer();
+        $router    = $this->createRouter([
+            'path' => '/en/charcoal',
+        ]);
+
+        $result = $router->pathResolvable($container);
+        $this->assertTrue($result);
+
+        $request   = $this->createHttpRequest();
+        $response  = $this->createHttpResponse();
+
+        $response = $router($container, $request, $response);
+        $this->assertEquals(500, $response->getStatusCode());
+    }
+
+    /**
+     * Asserts that `SectionRoute::__invoke()` method returns an HTTP Response object
+     * with a 500 status code if the resolved model does not have a template identifier.
+     *
+     * @return void
+     */
+    public function testInvokeOnExistingModelWithoutTemplateIdent()
+    {
+        $this->insertMockRoutableContextObjects([
+            'templateIdent' => '',
+        ]);
+
+        $container = $this->getContainer();
+        $router    = $this->createRouter([
+            'path' => '/en/charcoal',
+        ]);
+
+        $result = $router->pathResolvable($container);
+        $this->assertTrue($result);
+
+        $request   = $this->createHttpRequest();
+        $response  = $this->createHttpResponse();
+
+        $response = $router($container, $request, $response);
+        $this->assertEquals(500, $response->getStatusCode());
+    }
+
+    /**
+     * Asserts that `SectionRoute::__invoke()` method returns an HTTP Response object
+     * with a 500 status code if the resolved model does not have a rendered template view.
+     *
+     * @return void
+     */
+    public function testInvokeOnExistingModelWithBadTemplateIdent()
+    {
+        $this->insertMockRoutableContextObjects([
+            'templateIdent' => 'charcoal/tests/cms/mock/broken',
+        ]);
+
+        $container = $this->getContainer();
+        $router    = $this->createRouter([
+            'path' => '/en/charcoal',
+        ]);
+
+        $result = $router->pathResolvable($container);
+        $this->assertTrue($result);
+
+        $request   = $this->createHttpRequest();
+        $response  = $this->createHttpResponse();
+
+        $response = $router($container, $request, $response);
+        $this->assertEquals(500, $response->getStatusCode());
+    }
+
+    /**
+     * Asserts that `SectionRoute::__invoke()` method returns an HTTP Response object
+     * with a 2XX status code if the path does resolve to a specific routable model.
+     *
+     * @return void
+     */
+    public function testInvokeOnExistingModelWithTemplateIdent()
+    {
+        $this->insertMockRoutableContextObjects([
+            'templateIdent' => 'charcoal/tests/cms/mock/home',
+        ]);
+
+        $container = $this->getContainer();
+        $router    = $this->createRouter([
+            'path' => '/en/charcoal',
+        ]);
+
+        $result = $router->pathResolvable($container);
+        $this->assertTrue($result);
+
+        $request   = $this->createHttpRequest();
+        $response  = $this->createHttpResponse();
+
+        $response = $router($container, $request, $response);
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertEquals('<h1>Home</h1>', (string)$response->getBody());
+    }
+
+    /**
+     * Create the dynamic route to test.
+     *
+     * @param  array $data The dynamic route dependencies.
+     * @return SectionRoute
+     */
+    protected function createRouter(array $data = [])
+    {
+        return new SectionRoute($data + [
             'config' => [],
-            'path'   => 'en/foo',
+            'path'   => '',
         ]);
-
-        $container['config']['templates'] = [
-            [
-                'value'    => 'generic',
-                'label'    => [
-                    'en' => 'Generic',
-                    'fr' => 'Générique',
-                ],
-                'template' => 'tests/template/generic',
-            ],
-        ];
-
-        /** @todo Hack: Ensure the instance is shared */
-        $this->app = App::instance($container);
     }
 
     /**
+     * Create the model's database table to test lookup.
+     *
      * @return void
      */
-    public function testPathResolvableThrowsException()
+    protected function setUpRoutableContextModel()
     {
         $container = $this->getContainer();
 
-        $locales   = $container['locales/manager'];
-        $locales->setCurrentLocale($locales->currentLocale());
-
-        // Create the section table
-        $section = $container['model/factory']->create(Section::class);
-        $section->source()->createTable();
-
-        $this->expectException(\PDOException::class);
-        $ret = $this->obj->pathResolvable($container);
+        $section = $container['model/factory']->get(Section::class);
+        if ($section->source()->tableExists() === false) {
+            $section->source()->createTable();
+        }
     }
 
     /**
+     * Insert an entity into the model's database table to test a resolvable route.
+     *
+     * @param  array $data The model data.
      * @return void
      */
-    public function testPathResolvable()
+    protected function insertMockRoutableContextObjects(array $data = [])
     {
         $container = $this->getContainer();
+        $factory   = $container['model/factory'];
 
-        $locales = $container['locales/manager'];
-        $locales->setCurrentLocale($locales->currentLocale());
+        $factory->create(Section::class)
+                ->setData($data + [
+                    'id'    => 1,
+                    'title' => 'Charcoal',
+                    'slug'  => 'charcoal',
+                ])->save();
 
-        // Create the section table
-        $section = $container['model/factory']->create(Section::class);
-        $section->source()->createTable();
-
-        // Now try with a resolvable section.
-        $section->setData([
-            'id'             => 1,
-            'title'          => 'Foo',
-            'slug'           => new Translation('foo', $locales),
-            'template_ident' => 'bar',
-        ]);
-        $id = $section->save();
-
-        $ret = $this->obj->pathResolvable($container);
-        $this->assertTrue($ret);
+        $factory->create(Section::class)
+                ->setData($data + [
+                    'id'     => 2,
+                    'master' => 1,
+                    'title'  => 'Memo',
+                    'slug'   => 'memo',
+                ])->save();
     }
-
-    /**
-     * @return void
-     */
-    public function testInvokeThrowsException()
-    {
-        $container = $this->getContainer();
-        $request   = $this->createMock(RequestInterface::class);
-        $response  = new Response();
-
-        // Create the section table
-        $obj = $container['model/factory']->create(Section::class);
-        $obj->source()->createTable();
-
-        $route  = $this->obj;
-        $this->expectException(\PDOException::class);
-        $return = $route($container, $request, $response);
-    }
-
-    /**
-     * @return void
-     */
-    /*public function testInvoke()
-    {
-        $container = $this->getContainer();
-        $request   = $this->createMock(RequestInterface::class);
-        $response  = new Response();
-
-        // Create the section table
-        $obj = $container['model/factory']->create(Section::class);
-        $obj->source()->createTable();
-
-        $obj->setData([
-            'id'             => 1,
-            'title'          => 'Foo',
-            'template_ident' => '',
-        ]);
-        $obj->save();
-
-        $route  = $this->obj;
-        $return = $route($container, $request, $response);
-        $this->assertEquals(404, $return->getStatusCode());
-
-        $obj->setTemplateIdent('bar');
-        $obj->update();
-
-        $return = $route($container, $request, $response);
-        $this->assertEquals(200, $return->getStatusCode());
-    }*/
 }

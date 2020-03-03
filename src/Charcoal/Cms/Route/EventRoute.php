@@ -2,6 +2,8 @@
 
 namespace Charcoal\Cms\Route;
 
+use Exception;
+
 // From Pimple
 use Pimple\Container;
 
@@ -84,16 +86,21 @@ class EventRoute extends TemplateRoute
         $config = $this->config();
 
         $event = $this->loadEventFromPath($container);
-
-        if (!$event) {
+        if ($event === null) {
             return $response->withStatus(404);
         }
 
-        $templateIdent      = $event->templateIdent();
-        $templateController = $event->templateIdent();
+        $templateIdent      = (string)$event['templateIdent'];
+        $templateController = (string)$event['templateIdent'];
 
         if (!$templateController) {
-            return $response->withStatus(404);
+            $container['logger']->warning(sprintf(
+                '[%s] Missing template controller on model [%s] for ID [%s]',
+                get_class($this),
+                get_class($event),
+                $event['id']
+            ));
+            return $response->withStatus(500);
         }
 
         $templateFactory = $container['template/factory'];
@@ -106,6 +113,15 @@ class EventRoute extends TemplateRoute
         $template->setEvent($event);
 
         $templateContent = $container['view']->render($templateIdent, $template);
+        if ($templateContent === $templateIdent || $templateContent === '') {
+            $container['logger']->warning(sprintf(
+                '[%s] Missing or bad template identifier on model [%s] for ID [%s]',
+                get_class($this),
+                get_class($event),
+                $templateIdent
+            ));
+            return $response->withStatus(500);
+        }
 
         $response->write($templateContent);
 
@@ -119,20 +135,35 @@ class EventRoute extends TemplateRoute
      */
     protected function loadEventFromPath(Container $container)
     {
-        if (!$this->event) {
+        if ($this->event === null) {
             $config  = $this->config();
-            $type   = (isset($config['obj_type']) ? $config['obj_type'] : $this->objType);
-            $model  = $container['model/factory']->create($type);
+            $objType = (isset($config['obj_type']) ? $config['obj_type'] : $this->objType);
 
-            $langs = $container['translator']->availableLocales();
-            $lang  = $model->loadFromL10n('slug', $this->path, $langs);
-            $container['translator']->setLocale($lang);
+            try {
+                $model = $container['model/factory']->create($objType);
+                $langs = $container['translator']->availableLocales();
+                $lang  = $model->loadFromL10n('slug', $this->path, $langs);
 
-            if ($model->id()) {
-                $this->event = $model;
+                if ($lang) {
+                    $container['translator']->setLocale($lang);
+                }
+
+                if ($model->id()) {
+                    $this->event = $model;
+                    return $model;
+                }
+            } catch (Exception $e) {
+                $container['logger']->debug(sprintf(
+                    '[%s] Unable to load model [%s] for path [%s]',
+                    get_class($this),
+                    get_class($model),
+                    $this->path
+                ));
             }
+
+            $this->event = false;
         }
 
-        return $this->event;
+        return $this->event ?: null;
     }
 }
