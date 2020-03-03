@@ -9,10 +9,6 @@ use Psr\Log\NullLogger;
 
 // From 'tedivm/stash' (PSR-6)
 use Stash\Pool;
-use Stash\Driver\Ephemeral;
-
-// From 'symfony/translator'
-use Symfony\Component\Translation\Loader\ArrayLoader;
 
 // From 'charcoal-factory'
 use Charcoal\Factory\GenericFactory as Factory;
@@ -21,19 +17,21 @@ use Charcoal\Factory\GenericFactory as Factory;
 use Charcoal\Model\Service\MetadataLoader;
 use Charcoal\Loader\CollectionLoader;
 use Charcoal\Source\DatabaseSource;
+use Charcoal\Model\ServiceProvider\ModelServiceProvider;
 
-// From 'charcoal-view'
-use Charcoal\View\GenericView;
-use Charcoal\View\Mustache\MustacheEngine;
-use Charcoal\View\Mustache\MustacheLoader;
+// From 'charcoal-user'
+use Charcoal\User\ServiceProvider\AuthServiceProvider;
 
 // From 'charcoal-translator'
-use Charcoal\Translator\LocalesManager;
-use Charcoal\Translator\Translator;
+use Charcoal\Translator\ServiceProvider\TranslatorServiceProvider;
+
+// From 'charcoal-view'
+use Charcoal\View\ViewServiceProvider;
 
 // From 'charcoal-app'
 use Charcoal\App\AppConfig;
 use Charcoal\App\AppContainer as Container;
+use Charcoal\App\Template\TemplateInterface;
 
 // From 'charcoal-cms'
 use Charcoal\Cms\Config\CmsConfig;
@@ -51,12 +49,12 @@ class ContainerProvider
      */
     public function registerBaseServices(Container $container)
     {
-        $this->registerConfig($container);
-        $this->registerCmsConfig($container);
-        $this->registerDateHelper($container);
-        $this->registerPdo($container);
         $this->registerLogger($container);
         $this->registerCache($container);
+        $this->registerCmsConfig($container);
+        $this->registerDateHelper($container);
+        $this->registerConfig($container);
+        $this->withUnilingualConfig($container);
     }
 
     /**
@@ -65,13 +63,9 @@ class ContainerProvider
      */
     public function registerModelDependencies(Container $container)
     {
-        $this->registerBaseServices($container);
-        $this->registerTranslator($container);
-        $this->registerMetadataLoader($container);
-        $this->registerSourceFactory($container);
-        $this->registerPropertyFactory($container);
-        $this->registerModelFactory($container);
-        $this->registerModelCollectionLoader($container);
+        $this->registerDatabase($container);
+        $this->registerViewServices($container);
+        $this->registerModelServices($container);
     }
 
     /**
@@ -83,19 +77,123 @@ class ContainerProvider
         $container['config'] = function () {
             return new AppConfig([
                 'base_path' => realpath(__DIR__.'/../../..'),
-                'view'      => [
-                    'default_controller' => GenericTemplate::class
+                'templates' => [],
+                'metadata'  => [
+                    'paths' => [
+                        'metadata',
+                        'tests/Charcoal/Cms/Fixture/metadata',
+                        'vendor/locomotivemtl/charcoal-object/metadata',
+                    ],
                 ],
-                'templates' => []
+                'view'      => [
+                    'paths' => [
+                        'views',
+                        'tests/Charcoal/Cms/Fixture/views',
+                    ],
+                    'default_controller' => GenericTemplate::class,
+                ],
             ]);
         };
     }
 
     /**
+     * Extend the application configset for a unilingual setup.
+     *
      * @param  Container $container A DI container.
      * @return void
      */
-    public function registerTemplateDependencies(Container $container)
+    public function withUnilingualConfig(Container $container)
+    {
+        $container->extend('config', function (AppConfig $config) {
+            $config['locales'] = [
+                'languages' => [
+                    'en' => [
+                        'locale' => 'en-US',
+                    ],
+                ],
+                'default_language'   => 'en',
+                'fallback_languages' => [ 'en' ],
+            ];
+
+            $config['translator'] = [
+                'translations' => [
+                    'messages' => [
+                    ],
+                ],
+            ];
+
+            return $config;
+        });
+    }
+
+    /**
+     * Extend the application configset for a multilingual setup.
+     *
+     * @param  Container $container A DI container.
+     * @return void
+     */
+    public function withMultilingualConfig(Container $container)
+    {
+        $container->extend('config', function (AppConfig $config) {
+            $config['locales'] = [
+                'languages' => [
+                    'en'  => [
+                        'locale' => 'en-US',
+                        'name'   => [
+                            'en' => 'English',
+                            'fr' => 'Anglais',
+                            'es' => 'Inglés',
+                        ],
+                    ],
+                    'fr' => [
+                        'locale' => 'fr-CA',
+                        'name'   => [
+                            'en' => 'French',
+                            'fr' => 'Français',
+                            'es' => 'Francés',
+                        ],
+                    ],
+                    'de' => [
+                        'locale' => 'de-DE',
+                    ],
+                    'es' => [
+                        'locale' => 'es-MX',
+                    ],
+                ],
+                'default_language'   => 'en',
+                'fallback_languages' => [ 'en' ],
+            ];
+
+            $config['translator'] = [
+                'translations' => [
+                    'messages' => [
+                        'en' => [
+                            'locale.de' => 'German',
+                        ],
+                        'fr' => [
+                            'locale.de' => 'Allemand',
+                        ],
+                        'es' => [
+                            'locale.de' => 'Deutsch',
+                        ],
+                        'de' => [
+                            'locale.de' => 'Alemán',
+                        ],
+                    ],
+                ],
+            ];
+
+            return $config;
+        });
+    }
+
+    /**
+     * Extend the application configset with templates.
+     *
+     * @param  Container $container A DI container.
+     * @return void
+     */
+    public function withTemplatesConfig(Container $container)
     {
         $container->extend('config', function (AppConfig $config) {
             $config['templates'] = [
@@ -103,33 +201,33 @@ class ContainerProvider
                     'value'  => 'foo',
                     'label'  => [
                         'en' => 'Foofoo',
-                        'fr' => 'Oofoof'
+                        'fr' => 'Oofoof',
                     ],
-                    'controller' => 'templateable/foo'
+                    'controller' => 'templateable/foo',
                 ],
                 [
                     'value'  => 'baz',
                     'label'  => [
                         'en' => 'Bazbaz',
-                        'fr' => 'Zabzab'
+                        'fr' => 'Zabzab',
                     ],
-                    'template' => 'templateable/baz'
+                    'template' => 'templateable/baz',
                 ],
                 [
                     'value'  => 'qux',
                     'label'  => [
                         'en' => 'Quxqux',
-                        'fr' => 'Xuqxuq'
+                        'fr' => 'Xuqxuq',
                     ],
-                    'class' => 'templateable/qux'
+                    'class' => 'templateable/qux',
                 ],
                 [
                     'value'  => 'xyz',
                     'label'  => [
                         'en' => 'Xyzzy',
-                        'fr' => 'YzzyX'
-                    ]
-                ]
+                        'fr' => 'YzzyX',
+                    ],
+                ],
             ];
 
             return $config;
@@ -140,32 +238,7 @@ class ContainerProvider
      * @param  Container $container A DI container.
      * @return void
      */
-    public function registerCmsConfig(Container $container)
-    {
-        $container['cms/config'] = function () {
-            return new CmsConfig();
-        };
-    }
-
-    /**
-     * @param  Container $container A DI container.
-     * @return void
-     */
-    public function registerDateHelper(Container $container)
-    {
-        $container['date/helper'] = function () {
-            return new DateHelper([
-                'date_formats' => '',
-                'time_formats' => ''
-            ]);
-        };
-    }
-
-    /**
-     * @param  Container $container A DI container.
-     * @return void
-     */
-    public function registerPdo(Container $container)
+    public function registerDatabase(Container $container)
     {
         $container['database'] = function () {
             $pdo = new PDO('sqlite::memory:');
@@ -198,60 +271,37 @@ class ContainerProvider
     }
 
     /**
+     * Register the admin services.
+     *
      * @param  Container $container A DI container.
      * @return void
      */
-    public function registerView(Container $container)
+    public function registerModelServices(Container $container)
     {
-        $container['view/loader'] = function (Container $container) {
-            return new MustacheLoader([
-                'logger'    => $container['logger'],
-                'base_path' => $container['config']['base_path'],
-                'paths'     => [
-                    'views'
-                ]
-            ]);
-        };
+        static $provider = null;
 
-        $container['view/engine'] = function (Container $container) {
-            return new MustacheEngine([
-                'logger' => $container['logger'],
-                'cache'  => MustacheEngine::DEFAULT_CACHE_PATH,
-                'loader' => $container['view/loader']
-            ]);
-        };
+        if ($provider === null) {
+            $provider = new ModelServiceProvider();
+        }
 
-        $container['view'] = function (Container $container) {
-            return new GenericView([
-                'logger' => $container['logger'],
-                'engine' => $container['view/engine']
-            ]);
-        };
+        $provider->register($container);
     }
 
     /**
+     * Register the admin services.
+     *
      * @param  Container $container A DI container.
      * @return void
      */
-    public function registerTranslator(Container $container)
+    public function registerAuthServices(Container $container)
     {
-        $container['locales/manager'] = function () {
-            $manager = new LocalesManager([
-                'locales' => [
-                    'en' => [ 'locale' => 'en-US' ]
-                ]
-            ]);
+        static $provider = null;
 
-            $manager->setCurrentLocale($manager->currentLocale());
+        if ($provider === null) {
+            $provider = new AuthServiceProvider();
+        }
 
-            return $manager;
-        };
-
-        $container['translator'] = function (Container $container) {
-            return new Translator([
-                'manager' => $container['locales/manager']
-            ]);
-        };
+        $provider->register($container);
     }
 
     /**
@@ -260,55 +310,42 @@ class ContainerProvider
      * @param  Container $container A DI container.
      * @return void
      */
-    public function registerMultilingualTranslator(Container $container)
+    public function registerTranslatorServices(Container $container)
     {
-        $container['locales/manager'] = function () {
-            $manager = new LocalesManager([
-                'locales' => [
-                    'en'  => [
-                        'locale' => 'en-US',
-                        'name'   => [
-                            'en' => 'English',
-                            'fr' => 'Anglais',
-                            'es' => 'Inglés'
-                        ]
-                    ],
-                    'fr' => [
-                        'locale' => 'fr-CA',
-                        'name'   => [
-                            'en' => 'French',
-                            'fr' => 'Français',
-                            'es' => 'Francés'
-                        ]
-                    ],
-                    'de' => [
-                        'locale' => 'de-DE'
-                    ],
-                    'es' => [
-                        'locale' => 'es-MX'
-                    ]
-                ],
-                'default_language'   => 'en',
-                'fallback_languages' => [ 'en' ]
-            ]);
+        static $provider = null;
 
-            $manager->setCurrentLocale($manager->currentLocale());
+        if ($provider === null) {
+            $provider = new TranslatorServiceProvider();
+        }
 
-            return $manager;
-        };
+        $provider->register($container);
+    }
 
-        $container['translator'] = function (Container $container) {
-            $translator = new Translator([
-                'manager' => $container['locales/manager']
-            ]);
+    /**
+     * Setup the framework's view renderer.
+     *
+     * @param  Container $container A DI container.
+     * @return void
+     */
+    public function registerViewServices(Container $container)
+    {
+        static $provider = null;
 
-            $translator->addLoader('array', new ArrayLoader());
-            $translator->addResource('array', [ 'locale.de' => 'German'   ], 'en', 'messages');
-            $translator->addResource('array', [ 'locale.de' => 'Allemand' ], 'fr', 'messages');
-            $translator->addResource('array', [ 'locale.de' => 'Deutsch'  ], 'es', 'messages');
-            $translator->addResource('array', [ 'locale.de' => 'Alemán'   ], 'de', 'messages');
+        if ($provider === null) {
+            $provider = new ViewServiceProvider();
+        }
 
-            return $translator;
+        $provider->register($container);
+    }
+
+    /**
+     * @param  Container $container A DI container.
+     * @return void
+     */
+    public function registerCmsConfig(Container $container)
+    {
+        $container['cms/config'] = function () {
+            return new CmsConfig();
         };
     }
 
@@ -316,94 +353,12 @@ class ContainerProvider
      * @param  Container $container A DI container.
      * @return void
      */
-    public function registerMetadataLoader(Container $container)
+    public function registerDateHelper(Container $container)
     {
-        $container['metadata/loader'] = function (Container $container) {
-            return new MetadataLoader([
-                'logger'    => $container['logger'],
-                'base_path' => $container['config']['base_path'],
-                'paths'     => [
-                    'metadata',
-                    'tests/Charcoal/Cms/Fixture/metadata',
-                    'vendor/locomotivemtl/charcoal-object/metadata'
-                ],
-                'cache'     => $container['cache']
-            ]);
-        };
-    }
-
-    /**
-     * @param  Container $container A DI container.
-     * @return void
-     */
-    public function registerSourceFactory(Container $container)
-    {
-        $container['source/factory'] = function (Container $container) {
-            return new Factory([
-                'map' => [
-                    'database' => DatabaseSource::class
-                ],
-                'arguments' => [ [
-                    'logger' => $container['logger'],
-                    'cache'  => $container['cache'],
-                    'pdo'    => $container['database']
-                ] ]
-            ]);
-        };
-    }
-
-    /**
-     * @param  Container $container A DI container.
-     * @return void
-     */
-    public function registerModelFactory(Container $container)
-    {
-        $container['model/factory'] = function (Container $container) {
-            return new Factory([
-                'arguments' => [ [
-                    'container'        => $container,
-                    'logger'           => $container['logger'],
-                    'metadata_loader'  => $container['metadata/loader'],
-                    'source_factory'   => $container['source/factory'],
-                    'property_factory' => $container['property/factory']
-                ] ]
-            ]);
-        };
-    }
-
-    /**
-     * @param  Container $container A DI container.
-     * @return void
-     */
-    public function registerPropertyFactory(Container $container)
-    {
-        $container['property/factory'] = function (Container $container) {
-            return new Factory([
-                'resolver_options' => [
-                    'prefix' => '\\Charcoal\\Property\\',
-                    'suffix' => 'Property'
-                ],
-                'arguments'      => [[
-                    'container'  => $container,
-                    'database'   => $container['database'],
-                    'logger'     => $container['logger'],
-                    'translator' => $container['translator']
-                ]]
-            ]);
-        };
-    }
-
-    /**
-     * @param  Container $container A DI container.
-     * @return void
-     */
-    public function registerModelCollectionLoader(Container $container)
-    {
-        $container['model/collection/loader'] = function (Container $container) {
-            return new CollectionLoader([
-                'logger'  => $container['logger'],
-                'cache'   => $container['cache'],
-                'factory' => $container['model/factory']
+        $container['date/helper'] = function () {
+            return new DateHelper([
+                'date_formats' => '',
+                'time_formats' => '',
             ]);
         };
     }
@@ -416,13 +371,16 @@ class ContainerProvider
     {
         $container['template/factory'] = function (Container $container) {
             return new Factory([
+                'base_class'       => TemplateInterface::class,
                 'resolver_options' => [
-                    'suffix' => 'Template'
+                    'suffix' => 'Template',
                 ],
-                'arguments'        => [ [
-                    'container' => $container,
-                    'logger'    => $container['logger']
-                ] ]
+                'arguments'        => [
+                    [
+                        'container' => $container,
+                        'logger'    => $container['logger'],
+                    ],
+                ],
             ]);
         };
     }

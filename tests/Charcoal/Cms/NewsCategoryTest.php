@@ -6,13 +6,14 @@ namespace Charcoal\Cms\Tests;
 use Charcoal\Cms\NewsCategory;
 use Charcoal\Cms\News;
 use Charcoal\Tests\AbstractTestCase;
+use Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
 /**
  *
  */
 class NewsCategoryTest extends AbstractTestCase
 {
-    use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
+    use ContainerIntegrationTrait;
 
     /**
      * Tested Class.
@@ -28,14 +29,9 @@ class NewsCategoryTest extends AbstractTestCase
      */
     public function setUp()
     {
-        $container = $this->getContainer();
+        $dependencies = $this->getModelDependenciesWithContainer();
 
-        $this->obj = new NewsCategory([
-            'container'        => $container,
-            'logger'           => $container['logger'],
-            'metadata_loader'  => $container['metadata/loader'],
-            'property_factory' => $container['property/factory']
-        ]);
+        $this->obj = new NewsCategory($dependencies);
     }
 
     /**

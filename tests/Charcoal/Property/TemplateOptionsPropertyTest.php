@@ -8,13 +8,14 @@ use InvalidArgumentException;
 use Charcoal\Property\TemplateProperty;
 use Charcoal\Property\TemplateOptionsProperty;
 use Charcoal\Tests\AbstractTestCase;
+use Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
 /**
  * Template Property Test
  */
 class TemplateOptionsPropertyTest extends AbstractTestCase
 {
-    use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
+    use ContainerIntegrationTrait;
 
     /**
      * Tested Class.
@@ -31,26 +32,24 @@ class TemplateOptionsPropertyTest extends AbstractTestCase
     public function setUp()
     {
         $container = $this->getContainer();
+        $provider  = $this->getContainerProvider();
 
-        $this->getContainerProvider()->registerMultilingualTranslator($container);
+        $provider->withMultilingualConfig($container);
 
         $container['config']['templates'] = [
             [
                 'value'  => 'foo',
                 'label'  => [
                     'en' => 'Foofoo',
-                    'fr' => 'Oofoof'
+                    'fr' => 'Oofoof',
                 ],
-                'controller' => 'charcoal/tests/cms/mocks/generic'
+                'controller' => 'charcoal/tests/cms/mock/generic',
             ]
         ];
 
-        $this->obj = new TemplateOptionsProperty([
-            'container'  => $container,
-            'database'   => $container['database'],
-            'logger'     => $container['logger'],
-            'translator' => $container['translator']
-        ]);
+        $dependencies = $this->getPropertyDependenciesWithContainer();
+
+        $this->obj = new TemplateOptionsProperty($dependencies);
     }
 
     /**
@@ -74,7 +73,7 @@ class TemplateOptionsPropertyTest extends AbstractTestCase
         $this->assertSame($return, $this->obj);
 
         $interfaces = $this->obj['structureInterfaces'];
-        $this->assertEquals([ 'charcoal/tests/cms/mocks/generic' ], $interfaces);
+        $this->assertEquals([ 'charcoal/tests/cms/mock/generic' ], $interfaces);
     }
 
     /**

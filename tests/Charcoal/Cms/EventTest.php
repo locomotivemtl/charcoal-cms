@@ -11,13 +11,14 @@ use Charcoal\Object\ObjectRoute;
 use Charcoal\Cms\Event;
 use Charcoal\Cms\EventCategory;
 use Charcoal\Tests\AbstractTestCase;
+use Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
 /**
  *
  */
 class EventTest extends AbstractTestCase
 {
-    use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
+    use ContainerIntegrationTrait;
 
     /**
      * Tested Class.
@@ -40,13 +41,9 @@ class EventTest extends AbstractTestCase
             $route->source()->createTable();
         }
 
-        $this->obj = new Event([
-            'container'         => $container,
-            'logger'            => $container['logger'],
-            'metadata_loader'   => $container['metadata/loader'],
-            'property_factory'  => $container['property/factory'],
-            'source_factory'    => $container['source/factory']
-        ]);
+        $dependencies = $this->getModelDependenciesWithContainer();
+
+        $this->obj = new Event($dependencies);
     }
 
     /**
@@ -55,20 +52,20 @@ class EventTest extends AbstractTestCase
     public function testSetData()
     {
         $ret = $this->obj->setData([
-            'title'      => 'Example title',
-            'subtitle'   => 'Subtitle',
-            'summary'    => 'Summary <p>yeah</p>',
-            'content'    => 'foobar',
-            'image'      => 'foo.png',
-            'start_date' => '2015-01-01 20:00:00',
-            'end_date'   => '2015-01-01 21:30:00',
-            'info_url'   => 'https://example.com/event',
-            'info_phone' => '514 555-1212',
+            'title'            => 'Example title',
+            'subtitle'         => 'Subtitle',
+            'summary'          => 'Summary <p>yeah</p>',
+            'content'          => 'foobar',
+            'image'            => 'foo.png',
+            'start_date'       => '2015-01-01 20:00:00',
+            'end_date'         => '2015-01-01 21:30:00',
+            'info_url'         => 'https://example.com/event',
+            'info_phone'       => '514 555-1212',
             'ticket_price_min' => 25,
             'ticket_price_max' => 50,
-            'ticket_summary' => 'Infos ticket',
-            'ticket_url' => 'https://example.com/tickets',
-            'ticket_phone' => '1-555-555-1234'
+            'ticket_summary'   => 'Infos ticket',
+            'ticket_url'       => 'https://example.com/tickets',
+            'ticket_phone'     => '1-555-555-1234',
         ]);
 
         $this->assertSame($ret, $this->obj);
@@ -265,7 +262,7 @@ class EventTest extends AbstractTestCase
     {
         $this->assertEquals('', $this->obj['slug']);
         $this->obj->setData([
-            'title' => 'foo'
+            'title' => 'foo',
         ]);
         $this->obj->save();
 
@@ -279,7 +276,7 @@ class EventTest extends AbstractTestCase
     {
         $this->assertEquals('', $this->obj['slug']);
         $this->obj->setData([
-            'title' => 'foo'
+            'title' => 'foo',
         ]);
         $this->obj->update();
 

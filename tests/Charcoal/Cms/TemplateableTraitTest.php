@@ -10,6 +10,7 @@ use Charcoal\Property\Structure\StructureModel;
 // From 'charcoal-cms'
 use Charcoal\Cms\TemplateableTrait;
 use Charcoal\Tests\AbstractTestCase;
+use Charcoal\Tests\Cms\ContainerIntegrationTrait;
 use Charcoal\Tests\Cms\Mock\TemplateableModel;
 
 /**
@@ -17,7 +18,7 @@ use Charcoal\Tests\Cms\Mock\TemplateableModel;
  */
 class TemplateableTraitTest extends AbstractTestCase
 {
-    use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
+    use ContainerIntegrationTrait;
 
     /**
      * Tested Class.
@@ -38,7 +39,7 @@ class TemplateableTraitTest extends AbstractTestCase
         $container = $this->getContainer();
         $provider  = $this->getContainerProvider();
 
-        $provider->registerTemplateDependencies($container);
+        $provider->withTemplatesConfig($container);
 
         $dependencies = $this->getModelDependencies();
         $dependencies['metadata'] = $this->getModelMetadata();
@@ -87,56 +88,39 @@ class TemplateableTraitTest extends AbstractTestCase
         return [
             'properties' => [
                 'id' => [
-                    'type' => 'id'
+                    'type' => 'id',
                 ],
                 'name' => [
-                    'type' => 'string'
+                    'type' => 'string',
                 ],
                 'controller_ident' => [
                     'type'    => 'string',
                     'choices' => [
                         'foo' => [
-                            'controller' => 'templateable/foo'
+                            'controller' => 'templateable/foo',
                         ],
                         'baz' => [
-                            'template' => 'templateable/baz'
+                            'template' => 'templateable/baz',
                         ],
                         'qux' => [
-                            'class' => 'templateable/qux'
-                        ]
-                    ]
+                            'class' => 'templateable/qux',
+                        ],
+                    ],
                 ],
                 'template_ident' => [
-                    'type' => 'template'
+                    'type' => 'template',
                 ],
                 'template_options' => [
-                    'type' => 'template-options'
-                ]
+                    'type' => 'template-options',
+                ],
             ],
             'key' => 'id',
             'sources' => [
                 'default' => [
-                    'table' => 'charcoal_models'
-                ]
+                    'table' => 'charcoal_models',
+                ],
             ],
-            'default_source' => 'default'
-        ];
-    }
-
-    /**
-     * Retrieve the model's mock dependencies.
-     *
-     * @return array
-     */
-    public function getModelDependencies()
-    {
-        $container = $this->getContainer();
-
-        return [
-            'logger'           => $container['logger'],
-            'property_factory' => $container['property/factory'],
-            'metadata_loader'  => $container['metadata/loader'],
-            'source_factory'   => $container['source/factory']
+            'default_source' => 'default',
         ];
     }
 
