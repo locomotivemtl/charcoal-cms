@@ -139,7 +139,7 @@ trait SectionTableTrait
                     ' &nbsp; '.
                     '<span class="fa fa-lock" data-toggle="tooltip" '.
                     'data-placement="auto" title="%s"></span>',
-                    $object->p('locked')->label()
+                    $object->p('locked')['label']
                 );
             }
         }
