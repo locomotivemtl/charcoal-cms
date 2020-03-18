@@ -11,13 +11,14 @@ use Charcoal\Object\ObjectRoute;
 use Charcoal\Cms\News;
 use Charcoal\Cms\NewsCategory;
 use Charcoal\Tests\AbstractTestCase;
+use Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
 /**
  *
  */
 class NewsTest extends AbstractTestCase
 {
-    use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
+    use ContainerIntegrationTrait;
 
     /**
      * Tested Class.
@@ -40,13 +41,9 @@ class NewsTest extends AbstractTestCase
             $route->source()->createTable();
         }
 
-        $this->obj = new News([
-            'container'         => $container,
-            'logger'            => $container['logger'],
-            'metadata_loader'   => $container['metadata/loader'],
-            'property_factory'  => $container['property/factory'],
-            'source_factory'    => $container['source/factory']
-        ]);
+        $dependencies = $this->getModelDependenciesWithContainer();
+
+        $this->obj = new News($dependencies);
     }
 
     /**
@@ -58,7 +55,7 @@ class NewsTest extends AbstractTestCase
             'title'     => 'Example title',
             'subtitle'  => 'Subtitle',
             'content'   => 'foobar',
-            'news_date' => '2015-01-01 20:00:00'
+            'news_date' => '2015-01-01 20:00:00',
         ]);
 
         $this->assertSame($ret, $this->obj);
@@ -234,7 +231,7 @@ class NewsTest extends AbstractTestCase
     {
         $this->assertEquals('', $this->obj['slug']);
         $this->obj->setData([
-            'title' => 'foo'
+            'title' => 'foo',
         ]);
         $this->obj->save();
 
@@ -248,7 +245,7 @@ class NewsTest extends AbstractTestCase
     {
         $this->assertEquals('', $this->obj['slug']);
         $this->obj->setData([
-            'title' => 'foo'
+            'title' => 'foo',
         ]);
         $this->obj->update();
 

@@ -6,13 +6,14 @@ namespace Charcoal\Cms\Tests;
 use Charcoal\Cms\Faq;
 use Charcoal\Cms\FaqCategory;
 use Charcoal\Tests\AbstractTestCase;
+use Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
 /**
  *
  */
 class FaqTest extends AbstractTestCase
 {
-    use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
+    use ContainerIntegrationTrait;
 
     /**
      * Tested Class.
@@ -28,12 +29,9 @@ class FaqTest extends AbstractTestCase
      */
     public function setUp()
     {
-        $container = $this->getContainer();
+        $dependencies = $this->getModelDependenciesWithContainer();
 
-        $this->obj = new Faq([
-            'container' => $container,
-            'logger'    => $container['logger']
-        ]);
+        $this->obj = new Faq($dependencies);
     }
 
     /**
@@ -43,7 +41,7 @@ class FaqTest extends AbstractTestCase
     {
         $ret = $this->obj->setData([
             'question' => 'Foo?',
-            'answer'   => 'Bar'
+            'answer'   => 'Bar',
         ]);
         $this->assertSame($ret, $this->obj);
         $this->assertEquals('Foo?', (string)$this->obj->question());

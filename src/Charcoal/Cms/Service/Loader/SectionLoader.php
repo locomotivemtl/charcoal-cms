@@ -170,12 +170,12 @@ class SectionLoader extends AbstractLoader
         // The current language
         $lang = $this->translator()->getLocale();
         foreach ($objectRoutes as $o) {
-            if ($o->lang() === $lang) {
+            if ($o['lang'] === $lang) {
                 // Will automatically override previous slug set
-                $sections[$o->routeObjId()] = $o->slug();
+                $sections[$o['routeObjId']] = $o['slug'];
             }
             // Keep track of EVERY slug.
-            $routes[$o->slug()] = $o->routeObjId();
+            $routes[$o['slug']] = $o['routeObjId'];
         }
 
         $this->sectionRoutes = [

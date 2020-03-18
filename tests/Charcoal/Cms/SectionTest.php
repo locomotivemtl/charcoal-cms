@@ -8,13 +8,14 @@ use Charcoal\Object\ObjectRoute;
 // From 'charcoal-cms'
 use Charcoal\Cms\Section;
 use Charcoal\Tests\AbstractTestCase;
+use Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
 /**
  *
  */
 class SectionTest extends AbstractTestCase
 {
-    use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
+    use ContainerIntegrationTrait;
 
     /**
      * Tested Class.
@@ -37,13 +38,9 @@ class SectionTest extends AbstractTestCase
             $route->source()->createTable();
         }
 
-        $this->obj = new Section([
-            'container'         => $container,
-            'logger'            => $container['logger'],
-            'metadata_loader'   => $container['metadata/loader'],
-            'property_factory'  => $container['property/factory'],
-            'source_factory'    => $container['source/factory']
-        ]);
+        $dependencies = $this->getModelDependenciesWithContainer();
+
+        $this->obj = new Section($dependencies);
     }
 
     /**
@@ -60,8 +57,8 @@ class SectionTest extends AbstractTestCase
             'image'            => 'foobar.png',
             'template_ident'   => 'foobar',
             'template_options' => [
-                'x' => 'y'
-            ]
+                'x' => 'y',
+            ],
         ]);
         $this->assertSame($ret, $obj);
 
@@ -207,7 +204,7 @@ class SectionTest extends AbstractTestCase
     {
         $this->assertEquals('', $this->obj['slug']);
         $this->obj->setData([
-            'title' => 'foo'
+            'title' => 'foo',
         ]);
         $this->obj->save();
 
@@ -221,7 +218,7 @@ class SectionTest extends AbstractTestCase
     {
         $this->assertEquals('', $this->obj['slug']);
         $this->obj->setData([
-            'title' => 'foo'
+            'title' => 'foo',
         ]);
         $this->obj->update();
 

@@ -46,6 +46,13 @@ abstract class AbstractWebTemplate extends AbstractTemplate
     use TranslatorAwareTrait;
 
     /**
+     * The default image for social media sharing.
+     *
+     * @var string
+     */
+    const DEFAULT_SOCIAL_MEDIA_IMAGE = '';
+
+    /**
      * The application's configuration container.
      *
      * @var AppConfig
@@ -58,13 +65,6 @@ abstract class AbstractWebTemplate extends AbstractTemplate
      * @var UriInterface|null
      */
     protected $baseUrl;
-
-    /**
-     * The default image for social media sharing.
-     *
-     * @var string
-     */
-    const DEFAULT_SOCIAL_MEDIA_IMAGE = '';
 
     /**
      * Additional SEO metadata.

@@ -26,6 +26,52 @@ trait ContainerIntegrationTrait
     private $containerProvider;
 
     /**
+     * Retrieve the model's mock dependencies.
+     *
+     * @return array
+     */
+    protected function getModelDependencies()
+    {
+        $container = $this->getContainer();
+
+        return [
+            'logger'           => $container['logger'],
+            'property_factory' => $container['property/factory'],
+            'metadata_loader'  => $container['metadata/loader'],
+            'source_factory'   => $container['source/factory'],
+        ];
+    }
+
+    /**
+     * Retrieve the model's mock dependencies with the service locator.
+     *
+     * @return array
+     */
+    protected function getModelDependenciesWithContainer()
+    {
+        return $this->getModelDependencies() + [
+            'container' => $this->getContainer(),
+        ];
+    }
+
+    /**
+     * Retrieve the property's mock dependencies with the service locator.
+     *
+     * @return array
+     */
+    protected function getPropertyDependenciesWithContainer()
+    {
+        $container = $this->getContainer();
+
+        return [
+            'container'  => $container,
+            'logger'     => $container['logger'],
+            'database'   => $container['database'],
+            'translator' => $container['translator'],
+        ];
+    }
+
+    /**
      * @return Container
      */
     protected function getContainer()
@@ -59,12 +105,7 @@ trait ContainerIntegrationTrait
         $container = new Container();
 
         $provider->registerBaseServices($container);
-        $provider->registerTranslator($container);
-        $provider->registerMetadataLoader($container);
-        $provider->registerSourceFactory($container);
-        $provider->registerPropertyFactory($container);
-        $provider->registerModelFactory($container);
-        $provider->registerModelCollectionLoader($container);
+        $provider->registerModelDependencies($container);
 
         $this->container = $container;
         $this->containerProvider = $provider;

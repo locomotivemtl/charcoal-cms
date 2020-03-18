@@ -16,7 +16,7 @@
                             "fr": "Nouvel config"
                         },
                         "ident": "create",
-                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{objType}}"
+                        "url": "object/edit?obj_type={{objType}}"
                     }
                 ],
                 "orders": {

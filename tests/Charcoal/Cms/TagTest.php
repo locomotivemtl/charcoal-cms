@@ -6,13 +6,14 @@ namespace Charcoal\Cms\Tests;
 use Charcoal\Cms\Tag;
 
 use Charcoal\Tests\AbstractTestCase;
+use Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
 /**
  *
  */
 class TagTest extends AbstractTestCase
 {
-    use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
+    use ContainerIntegrationTrait;
 
     /**
      * Tested Class.
@@ -28,15 +29,9 @@ class TagTest extends AbstractTestCase
      */
     public function setUp()
     {
-        $container = $this->getContainer();
+        $dependencies = $this->getModelDependenciesWithContainer();
 
-        $this->obj = new Tag([
-            'container' => $container,
-            'logger'    => $container['logger'],
-            'metadata_loader'   => $container['metadata/loader'],
-            'property_factory'  => $container['property/factory'],
-            'source_factory'    => $container['source/factory']
-        ]);
+        $this->obj = new Tag($dependencies);
     }
 
     /**
@@ -45,12 +40,12 @@ class TagTest extends AbstractTestCase
     public function testSetData()
     {
         $ret = $this->obj->setData([
-            'name' => 'Foo?',
-            'color'   => 'Bar',
+            'name'       => 'Foo?',
+            'color'      => 'Bar',
             'variations' => [
-                'en' => 'a,b,c'
+                'en' => 'a,b,c',
             ],
-            'search_weight' => 42
+            'search_weight' => 42,
         ]);
         $this->assertSame($ret, $this->obj);
         $this->assertEquals('Foo?', (string)$this->obj->name());

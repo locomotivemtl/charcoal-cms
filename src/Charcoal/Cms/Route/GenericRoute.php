@@ -36,7 +36,7 @@ use Charcoal\Cms\TemplateableInterface;
 /**
  * Generic Object Route Handler
  *
- * Uses implementations of {@see \Charcoal\Object\ObjectRouteInterface}
+ * Uses implementations of {@see ObjectRouteInterface}
  * to match routes for catch-all routing patterns.
  */
 class GenericRoute extends TemplateRoute
@@ -79,10 +79,17 @@ class GenericRoute extends TemplateRoute
     private $collectionLoader;
 
     /**
+     * Track the state of required dependencies.
+     *
+     * @var boolean
+     */
+    protected $hasDependencies = false;
+
+    /**
      * The class name of the object route model.
      *
      * Must be a fully-qualified PHP namespace and an implementation of
-     * {@see \Charcoal\Object\ObjectRouteInterface}. Used by the model factory.
+     * {@see ObjectRouteInterface}. Used by the model factory.
      *
      * @var string
      */
@@ -115,20 +122,18 @@ class GenericRoute extends TemplateRoute
      */
     public function pathResolvable(Container $container)
     {
-        $this->setDependencies($container);
+        if ($this->hasDependencies === false) {
+            $this->setDependencies($container);
+        }
 
-        $object = $this->getObjectRouteFromPath();
-        if (!$object || !$object['id']) {
+        $objectRoute = $this->getObjectRouteFromPath();
+        if (!$objectRoute || !$this->isValidObjectRoute($objectRoute)) {
             return false;
         }
 
         $contextObject = $this->getContextObject();
-        if ($contextObject instanceof RoutableInterface) {
-            return $contextObject->isActiveRoute();
-        }
-
-        if (isset($contextObject['active'])) {
-            return (bool)$contextObject['active'];
+        if (!$contextObject || !$this->isValidContextObject($contextObject)) {
+            return false;
         }
 
         return true;
@@ -147,12 +152,41 @@ class GenericRoute extends TemplateRoute
         RequestInterface $request,
         ResponseInterface $response
     ) {
-        $response = $this->resolveLatestObjectRoute($request, $response);
+        if ($this->hasDependencies === false) {
+            $this->setDependencies($container);
+        }
 
+        $response = $this->resolveLatestObjectRoute($request, $response);
         if (!$response->isRedirect()) {
+            $objectRoute = $this->getObjectRouteFromPath();
+            if (!$objectRoute || !$this->isValidObjectRoute($objectRoute)) {
+                // If the ObjectRoute is invalid, it probably does not exist
+                // which also means a Model does not exist.
+                return $response->withStatus(404);
+            }
+
             $this->resolveTemplateContextObject();
 
+            $contextObject = $this->getContextObject();
+            if (!$contextObject || !$this->isValidContextObject($contextObject)) {
+                // If the Model is invalid, it probably does not exist.
+                return $response->withStatus(404);
+            }
+
             $templateContent = $this->templateContent($container, $request);
+
+            $config = $this->config();
+            $templateIdent = $config['template'];
+
+            if ($templateContent === $templateIdent || $templateContent === '') {
+                $container['logger']->warning(sprintf(
+                    '[%s] Missing or bad template identifier on model [%s] for ID [%s]',
+                    get_class($this),
+                    get_class($this->getContextObject()),
+                    $templateIdent
+                ));
+                return $response->withStatus(500);
+            }
 
             $response->write($templateContent);
         }
@@ -197,6 +231,8 @@ class GenericRoute extends TemplateRoute
         if (isset($container['config']['templates'])) {
             $this->availableTemplates = $container['config']['templates'];
         }
+
+        $this->hasDependencies = true;
     }
 
     /**
@@ -236,15 +272,17 @@ class GenericRoute extends TemplateRoute
         $contextObject = $this->getContextObject();
         $currentLang   = $objectRoute['lang'];
 
-        // Set language according to the route's language
-        $this->setLocale($currentLang);
+        if ($currentLang) {
+            // Set language according to the route's language
+            $this->setLocale($currentLang);
+        }
 
         $templateChoice = [];
 
         // Templateable Objects have specific methods
         if ($contextObject instanceof TemplateableInterface) {
             $identProperty   = $contextObject->property('templateIdent');
-            $templateIdent = $contextObject['templateIdent'] ?: $objectRoute['routeTemplate'];
+            $templateIdent   = $contextObject['templateIdent'] ?: $objectRoute['routeTemplate'];
             $controllerIdent = $contextObject['controllerIdent'] ?: $templateIdent;
             $templateChoice  = $identProperty->choice($templateIdent);
         } else {
@@ -348,6 +386,43 @@ class GenericRoute extends TemplateRoute
     }
 
     /**
+     * Asserts that the object route is valid, throws an Exception if not.
+     *
+     * @param  RoutableInterface $contextObject A context object to test.
+     * @throws InvalidArgumentException If the context object is invalid.
+     * @return void
+     */
+    protected function assertValidContextObject(RoutableInterface $contextObject)
+    {
+        if (!$this->isValidContextObject($contextObject)) {
+            throw new InvalidArgumentException('Invalid context object');
+        }
+    }
+
+    /**
+     * Determine if the object route is valid.
+     *
+     * @param  RoutableInterface $contextObject A context object to test.
+     * @return boolean
+     */
+    protected function isValidContextObject(RoutableInterface $contextObject)
+    {
+        if (!$contextObject['id']) {
+            return false;
+        }
+
+        if ($contextObject instanceof RoutableInterface) {
+            return $contextObject->isActiveRoute();
+        }
+
+        if (isset($contextObject['active'])) {
+            return (bool)$contextObject['active'];
+        }
+
+        return true;
+    }
+
+    /**
      * Get the object associated with the matching object route.
      *
      * @return RoutableInterface
@@ -367,11 +442,14 @@ class GenericRoute extends TemplateRoute
      * Validating if the object ID exists is delegated to the
      * {@see GenericRoute Chainable::pathResolvable()} method.
      *
+     * @throws RuntimeException If the object route is incomplete.
      * @return RoutableInterface
      */
     protected function loadContextObject()
     {
         $route = $this->getObjectRouteFromPath();
+
+        $this->assertValidObjectRoute($route);
 
         $obj = $this->modelFactory()->create($route['routeObjType']);
         $obj->load($route['routeObjId']);
@@ -380,9 +458,34 @@ class GenericRoute extends TemplateRoute
     }
 
     /**
+     * Asserts that the object route is valid, throws an Exception if not.
+     *
+     * @param  ObjectRouteInterface $route An object route to test.
+     * @throws InvalidArgumentException If the object route is incomplete.
+     * @return void
+     */
+    protected function assertValidObjectRoute(ObjectRouteInterface $route)
+    {
+        if (!$this->isValidObjectRoute($route)) {
+            throw new InvalidArgumentException('Incomplete object route');
+        }
+    }
+
+    /**
+     * Determine if the object route is valid.
+     *
+     * @param  ObjectRouteInterface $route An object route to test.
+     * @return boolean
+     */
+    protected function isValidObjectRoute(ObjectRouteInterface $route)
+    {
+        return ($route['id'] && $route['routeObjType'] && $route['routeObjId']);
+    }
+
+    /**
      * Get the object route matching the URI path.
      *
-     * @return \Charcoal\Object\ObjectRouteInterface
+     * @return ObjectRouteInterface
      */
     protected function getObjectRouteFromPath()
     {
@@ -396,7 +499,7 @@ class GenericRoute extends TemplateRoute
     /**
      * Load the object route matching the URI path.
      *
-     * @return \Charcoal\Object\ObjectRouteInterface
+     * @return ObjectRouteInterface
      */
     protected function loadObjectRouteFromPath()
     {
@@ -410,8 +513,8 @@ class GenericRoute extends TemplateRoute
         $query = 'SELECT * FROM '.$table.' WHERE '.$where.' ORDER BY '.$order.' LIMIT 1';
 
         $route->loadFromQuery($query, [
-                'route1' => '/'.$this->path(),
-                'route2' => $this->path(),
+            'route1' => '/'.$this->path(),
+            'route2' => $this->path(),
             'lang'   => $this->translator()->getLocale(),
         ]);
 
@@ -430,7 +533,7 @@ class GenericRoute extends TemplateRoute
      */
     public function getLatestObjectPathHistory(ObjectRouteInterface $route)
     {
-        if (!$route->id()) {
+        if (!$this->isValidObjectRoute($route)) {
             return null;
         }
 
@@ -606,6 +709,6 @@ class GenericRoute extends TemplateRoute
     protected function cacheIdent()
     {
         $obj = $this->getContextObject();
-        return $obj->objType().'.'.$obj->id();
+        return $obj->objType().'.'.$obj['id'];
     }
 }

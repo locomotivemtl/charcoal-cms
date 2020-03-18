@@ -6,13 +6,14 @@ namespace Charcoal\Cms\Tests;
 use Charcoal\Cms\FaqCategory;
 use Charcoal\Cms\Faq;
 use Charcoal\Tests\AbstractTestCase;
+use Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
 /**
  *
  */
 class FaqCategoryTest extends AbstractTestCase
 {
-    use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
+    use ContainerIntegrationTrait;
 
     /**
      * Tested Class.
@@ -28,14 +29,9 @@ class FaqCategoryTest extends AbstractTestCase
      */
     public function setUp()
     {
-        $container = $this->getContainer();
+        $dependencies = $this->getModelDependenciesWithContainer();
 
-        $this->obj = new FaqCategory([
-            'container'        => $container,
-            'logger'           => $container['logger'],
-            'metadata_loader'  => $container['metadata/loader'],
-            'property_factory' => $container['property/factory']
-        ]);
+        $this->obj = new FaqCategory($dependencies);
     }
 
     /**

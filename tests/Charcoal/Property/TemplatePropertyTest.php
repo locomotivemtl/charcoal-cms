@@ -9,13 +9,14 @@ use InvalidArgumentException;
 // From 'charcoal-cms'
 use Charcoal\Property\TemplateProperty;
 use Charcoal\Tests\AbstractTestCase;
+use Charcoal\Tests\Cms\ContainerIntegrationTrait;
 
 /**
  * Template Property Test
  */
 class TemplatePropertyTest extends AbstractTestCase
 {
-    use \Charcoal\Tests\Cms\ContainerIntegrationTrait;
+    use ContainerIntegrationTrait;
 
     /**
      * Tested Class.
@@ -34,15 +35,12 @@ class TemplatePropertyTest extends AbstractTestCase
         $container = $this->getContainer();
         $provider  = $this->getContainerProvider();
 
-        $provider->registerMultilingualTranslator($container);
-        $provider->registerTemplateDependencies($container);
+        $provider->withMultilingualConfig($container);
+        $provider->withTemplatesConfig($container);
 
-        $this->obj = new TemplateProperty([
-            'container'  => $container,
-            'database'   => $container['database'],
-            'logger'     => $container['logger'],
-            'translator' => $container['translator']
-        ]);
+        $dependencies = $this->getPropertyDependenciesWithContainer();
+
+        $this->obj = new TemplateProperty($dependencies);
     }
 
     /**
@@ -100,13 +98,13 @@ class TemplatePropertyTest extends AbstractTestCase
             'xyz' => 'xyz',
             'foo' => true,
             'baz' => [
-                'label' => 'Bazbaz'
-            ]
+                'label' => 'Bazbaz',
+            ],
         ]);
         $this->obj->setChoices([
             'zyx' => [
-                'template' => 'templateable/zyx'
-            ]
+                'template' => 'templateable/zyx',
+            ],
         ]);
         $this->assertArrayHasKey('zyx', $this->obj->choices());
     }

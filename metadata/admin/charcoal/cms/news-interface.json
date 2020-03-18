@@ -42,7 +42,7 @@
                     {
                         "ident": "create",
                         "priority": 10,
-                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}"
+                        "url": "object/edit?obj_type={{obj_type}}"
                     }
                 ],
                 "objectActions": {
@@ -51,7 +51,7 @@
                             "en": "Modify",
                             "fr": "Modifier"
                         },
-                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&obj_id={{id}}",
+                        "url": "object/edit?obj_type={{obj_type}}&obj_id={{id}}",
                         "priority": 1,
                         "splitButton": true,
                         "actions": {
@@ -69,7 +69,7 @@
                                     "en": "Clone",
                                     "fr": "Cloner"
                                 },
-                                "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&clone_id={{id}}",
+                                "url": "object/edit?obj_type={{obj_type}}&clone_id={{id}}",
                                 "priority": 3
                             },
                             "delete": {

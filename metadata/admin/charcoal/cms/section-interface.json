@@ -48,7 +48,7 @@
                             "en": "new Page",
                             "fr": "Nouvelle page"
                         },
-                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}"
+                        "url": "object/edit?obj_type={{obj_type}}"
                     },
                     "mainMenu": {
                         "ident": "main_menu",
@@ -57,7 +57,7 @@
                             "en": "Pages in menu",
                             "fr": "Pages dans le menu"
                         },
-                        "url": "object/collection?main_menu={{main_menu}}&obj_type={{obj_type}}&dashboard_ident=cms.table&collection_ident=cms.in_menu"
+                        "url": "object/collection?obj_type={{obj_type}}&dashboard_ident=cms.table&collection_ident=cms.in_menu"
                     }
                 },
                 "objectActions": {
@@ -66,7 +66,7 @@
                             "en": "Modify",
                             "fr": "Modifier"
                         },
-                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&obj_id={{id}}",
+                        "url": "object/edit?obj_type={{obj_type}}&obj_id={{id}}",
                         "priority": 1,
                         "splitButton": true,
                         "actions": {
@@ -84,7 +84,7 @@
                                     "en": "Clone",
                                     "fr": "Cloner"
                                 },
-                                "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&clone_id={{id}}",
+                                "url": "object/edit?obj_type={{obj_type}}&clone_id={{id}}",
                                 "priority": 3
                             },
                             "delete": {
@@ -154,7 +154,7 @@
                             "en": "New Page",
                             "fr": "Nouvelle Page"
                         },
-                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}"
+                        "url": "object/edit?obj_type={{obj_type}}"
                     },
                     "mainMenu": {
                         "ident": "sidebar",
@@ -163,7 +163,7 @@
                             "en": "All Pages",
                             "fr": "Toutes les pages"
                         },
-                        "url": "object/collection?main_menu={{main_menu}}&obj_type={{obj_type}}"
+                        "url": "object/collection?obj_type={{obj_type}}"
                     }
                 },
                 "objectActions": {
@@ -172,7 +172,7 @@
                             "en": "Modify",
                             "fr": "Modifier"
                         },
-                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&obj_id={{id}}",
+                        "url": "object/edit?obj_type={{obj_type}}&obj_id={{id}}",
                         "priority": 1,
                         "splitButton": true,
                         "actions": {
@@ -190,7 +190,7 @@
                                     "en": "Clone",
                                     "fr": "Cloner"
                                 },
-                                "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&clone_id={{id}}",
+                                "url": "object/edit?obj_type={{obj_type}}&clone_id={{id}}",
                                 "priority": 3
                             },
                             "delete": {
@@ -338,13 +338,18 @@
                 "showTitle": false,
                 "showHeader": false,
                 "icon": "sitemap",
-                "template": "utils/widget/form-group/widget",
-                "type": "utils/widget/form-group/widget",
+                "template": "charcoal/admin/widget/form-group/nested-widget",
+                "type": "charcoal/admin/widget/form-group/nested-widget",
                 "widgetType": "charcoal/admin/widget/table",
                 "objType": "{{obj_type}}",
                 "collectionIdent": "cms.default",
                 "priority": 7000,
                 "sortable": true,
+                "widgetData": {
+                    "type": "charcoal/admin/widget/table",
+                    "collectionIdent": "cms.default",
+                    "sortable": true
+                },
                 "renderableData": {
                     "objType": "{{obj_type}}",
                     "collectionConfig": {
@@ -369,7 +374,7 @@
                                     "fr": "Nouvelle Page"
                                 },
                                 "ident": "create",
-                                "url": "object/edit?main_menu={{main_menu}}&obj_type={{obj_type}}&form_data[master]={{id}}"
+                                "url": "object/edit?obj_type={{obj_type}}&form_data[master]={{id}}"
                             },
                             "mainMenu": {
                                 "ident": "main_menu",
@@ -409,7 +414,7 @@
                             "en": "Back up a level",
                             "fr": "Remonter d'un niveau"
                         },
-                        "url": "object/edit?main_menu={{main_menu}}&obj_type={{master.objType}}&obj_id={{master.id}}&tab_ident=cms.table",
+                        "url": "object/edit?obj_type={{master.objType}}&obj_id={{master.id}}&tab_ident=cms.table",
                         "type": "default",
                         "condition": "{{master}}",
                         "priority": 1

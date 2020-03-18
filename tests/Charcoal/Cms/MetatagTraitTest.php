@@ -35,13 +35,9 @@ class MetatagTraitTest extends AbstractTestCase
             $route->source()->createTable();
         }
 
-        $this->obj = new WebPage([
-            'container'         => $container,
-            'logger'            => $container['logger'],
-            'metadata_loader'   => $container['metadata/loader'],
-            'property_factory'  => $container['property/factory'],
-            'source_factory'    => $container['source/factory']
-        ]);
+        $dependencies = $this->getModelDependenciesWithContainer();
+
+        $this->obj = new WebPage($dependencies);
     }
 
     /**
@@ -67,7 +63,7 @@ class MetatagTraitTest extends AbstractTestCase
         $this->obj->setData([
             'title'   => 'foo',
             'content' => '<p>Foo bar</p>',
-            'image'   => 'x.jpg'
+            'image'   => 'x.jpg',
         ]);
         $this->obj->save();
 
@@ -88,7 +84,7 @@ class MetatagTraitTest extends AbstractTestCase
         $this->obj->setData([
             'title'   => 'foo',
             'content' => '<p>Foo bar</p>',
-            'image'   => 'x.jpg'
+            'image'   => 'x.jpg',
         ]);
         $this->obj->update();
 

@@ -9,13 +9,13 @@
     {{# groups }}
     <li class="nav-item">
         <a class="nav-link{{^ showTitle }} hide-title{{/ showTitle }}{{^ isHidden }} active{{/ isHidden }} js-group-tabs"
-           id="form_group_{{ widgetId }}_tab_{{ ident }}"
-           href="#form_group_{{ widgetId }}"
+           id="{{ widgetId }}_tab_{{ ident }}"
+           href="#{{ widgetId }}"
            role="tab"
            data-toggle="tab"
            data-tab-ident="{{ ident }}"
            data-show-title="{{# showTitle }}true{{/ showTitle }}{{^ showTitle }}false{{/ showTitle }}"
-           aria-controls="form_group_{{ widgetId }}"
+           aria-controls="{{ widgetId }}"
            aria-selected="{{# isHidden }}false{{/ isHidden }}{{^ isHidden }}true{{/ isHidden }}">
             {{# showIcon }}
                 {{# icon }}
