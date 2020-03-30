@@ -77,6 +77,7 @@
         },
         "opengraph_title": {
             "type": "string",
+            "l10n": true,
             "label": {
                 "en": "OpenGraph Title",
                 "fr": "Titre OpenGraph"
@@ -88,6 +89,7 @@
         },
         "opengraph_site_name": {
             "type": "string",
+            "l10n": true,
             "label": {
                 "en": "OpenGraph site name",
                 "fr": "Nom du site OpenGraph"
@@ -99,6 +101,7 @@
         },
         "opengraph_description": {
             "type": "text",
+            "l10n": true,
             "label": {
                 "en": "OpenGraph description",
                 "fr": "Description OpenGraph"
@@ -122,6 +125,7 @@
         },
         "opengraph_image": {
             "type": "image",
+            "l10n": true,
             "label": {
                 "en": "OpenGraph Thumbnail",
                 "fr": "Vignette OpenGraph"
@@ -140,6 +144,7 @@
         },
         "opengraph_author": {
             "type": "string",
+            "l10n": true,
             "label": {
                 "en": "OpenGraph author",
                 "fr": "Auteur OpenGraph"
@@ -151,6 +156,7 @@
         },
         "opengraph_publisher": {
             "type": "string",
+            "l10n": true,
             "label": {
                 "en": "OpenGraph publisher",
                 "fr": "Éditeur OpenGraph"
@@ -188,6 +194,7 @@
         },
         "twitter_card_image": {
             "type": "image",
+            "l10n": true,
             "label": {
                 "en": "Twitter Card Image",
                 "fr": "Vignette de carte Twitter"

@@ -230,17 +230,10 @@ trait MetatagTrait
     }
 
     /**
-     * Get the opengraph title.
-     *
-     * If not expilicitely defined, use the meta title as opengraph title.
-     *
      * @return Translation|string|null
      */
     public function opengraphTitle()
     {
-        if (!$this->opengraphTitle) {
-            return $this->metaTitle();
-        }
         return $this->opengraphTitle;
     }
 
@@ -277,9 +270,6 @@ trait MetatagTrait
      */
     public function opengraphDescription()
     {
-        if (!$this->opengraphDescription) {
-            return $this->metaDescription();
-        }
         return $this->opengraphDescription;
     }
 
@@ -316,9 +306,6 @@ trait MetatagTrait
      */
     public function opengraphImage()
     {
-        if (!$this->opengraphImage) {
-            return $this->metaImage();
-        }
         return $this->opengraphImage;
     }
 
@@ -337,9 +324,6 @@ trait MetatagTrait
      */
     public function opengraphAuthor()
     {
-        if (!$this->opengraphAuthor) {
-            return $this->metaAuthor();
-        }
         return $this->opengraphAuthor;
     }
 
@@ -358,9 +342,6 @@ trait MetatagTrait
      */
     public function opengraphPublisher()
     {
-        if (!$this->opengraphPublisher) {
-            return $this->opengraphAuthor();
-        }
         return $this->opengraphPublisher;
     }
 
@@ -391,7 +372,7 @@ trait MetatagTrait
      */
     public function setTwitterCardImage($image)
     {
-        $this->twitterCardImage = $image;
+        $this->twitterCardImage = $this->translator()->translation($image);
         return $this;
     }
 
