@@ -26,6 +26,7 @@
         },
         "meta_image": {
             "type": "image",
+            "l10n": true,
             "label": {
                 "en": "Thumbnail",
                 "fr": "Vignette"
