@@ -157,7 +157,7 @@ trait EventManagerAwareTrait
      */
     public function eventCategoryList()
     {
-        $cats = $this->eventManager()->categoryItems();
+        $cats = $this->eventManager()->loadCategoryItems();
         foreach ($cats as $cat) {
             yield $this->eventFormatCategory($cat);
         }

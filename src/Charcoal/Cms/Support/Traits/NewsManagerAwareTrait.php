@@ -155,7 +155,7 @@ trait NewsManagerAwareTrait
      */
     public function newsCategoryList()
     {
-        $cats = $this->newsManager()->categoryItems();
+        $cats = $this->newsManager()->loadCategoryItems();
         foreach ($cats as $cat) {
             yield $this->newsFormatCategory($cat);
         }
