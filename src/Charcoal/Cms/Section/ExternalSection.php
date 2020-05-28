@@ -1,9 +1,6 @@
 <?php
 
-namespace Charcoal\Cms;
-
-// From 'charcoal-translator'
-use Charcoal\Translator\Translation;
+namespace Charcoal\Cms\Section;
 
 // From 'charcoal-cms'
 use Charcoal\Cms\AbstractSection;

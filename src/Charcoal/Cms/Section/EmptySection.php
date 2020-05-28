@@ -1,10 +1,9 @@
 <?php
 
-namespace Charcoal\Cms;
+namespace Charcoal\Cms\Section;
 
 // From 'charcoal-cms'
 use Charcoal\Cms\AbstractSection;
-use Charcoal\Cms\Mixin\EmptySectionInterface;
 
 /**
  * Empty section
