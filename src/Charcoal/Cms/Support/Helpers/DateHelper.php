@@ -81,13 +81,13 @@ class DateHelper
 
         if (is_array($date)) {
             $this->from = $this->parseAsDate($date[0]);
-            $this->to = $this->parseAsDate($date[1]);
+            $this->to = !!($date[1]) ? $this->parseAsDate($date[1]) : null;
         } else {
             $this->from = $this->parseAsDate($date);
             $this->to = null;
         }
 
-        return $this->formatDateFromCase($this->getDateCase());
+        return (string)$this->formatDateFromCase($this->getDateCase());
     }
 
     /**
