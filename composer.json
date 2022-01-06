@@ -34,7 +34,7 @@
         "locomotivemtl/charcoal-translator": "~0.3"
     },
     "require-dev": {
-        "locomotivemtl/charcoal-admin": "~0.23",
+        "locomotivemtl/charcoal-admin": "~0.28",
         "mustache/mustache": "^2.11",
         "php-coveralls/php-coveralls": "^2.2",
         "phpunit/phpunit": "^7.5",
@@ -42,7 +42,7 @@
         "tedivm/stash": "~0.14"
     },
     "conflict": {
-        "locomotivemtl/charcoal-admin": "<0.23.0"
+        "locomotivemtl/charcoal-admin": "<0.28.0"
     },
     "autoload": {
         "psr-4": {
