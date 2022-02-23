@@ -45,7 +45,7 @@
                         "ident": "create",
                         "priority": 10,
                         "label": {
-                            "en": "new Page",
+                            "en": "New Page",
                             "fr": "Nouvelle page"
                         },
                         "url": "object/edit?obj_type={{obj_type}}"
