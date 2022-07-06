@@ -40,20 +40,6 @@ class MultiGroupWidget extends AdminWidget implements
     use ObjectContainerTrait;
 
     /**
-     * The cache of snake-cased words.
-     *
-     * @var array
-     */
-    protected static $snakeCache = [];
-
-    /**
-     * The cache of camel-cased words.
-     *
-     * @var array
-     */
-    protected static $camelCache = [];
-
-    /**
      * @var string
      */
     protected $controllerIdent;
