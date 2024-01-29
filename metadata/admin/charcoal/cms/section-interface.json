@@ -60,6 +60,20 @@
                     {
                         "property": "in_menu",
                         "value": true
+                    },
+                    {
+                        "property": "master",
+                        "conjunction": "OR",
+                        "filters": [
+                            {
+                                "property": "master",
+                                "value": 0
+                            },
+                            {
+                                "property": "master",
+                                "operator": "IS NULL"
+                            }
+                        ]
                     }
                 ],
                 "orders": {
