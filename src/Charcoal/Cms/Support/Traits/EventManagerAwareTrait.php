@@ -299,7 +299,7 @@ trait EventManagerAwareTrait
             'metaTitle'        => (string)$event->metaTitle(),
             'locationName'     => (string)$event->locationName(),
             'dateNotes'        => (string)$event->dateNotes(),
-            'category'         => $event->category()
+            'category'         => $event->getCategory()
         ];
     }
 

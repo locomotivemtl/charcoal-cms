@@ -167,7 +167,7 @@ trait NewsManagerAwareTrait
      */
     public function newsCategory(NewsInterface $news)
     {
-        $id = $news->category();
+        $id = $news->getCategory();
 
         return $this->newsManager()->categoryItem($id);
     }
@@ -200,7 +200,7 @@ trait NewsManagerAwareTrait
             'date'         => $this->getNewsDateFormat($news),
             'dateTime'     => $news->newsDate()->format('Y-m-d h:i'),
             'active'       => ($this->currentNews() && ($this->currentNews()['id'] == $news->id())),
-            'category'     => $news->category(),
+            'category'     => $news->getCategory(),
             'categoryName' => $this->newsCategory($news)->name()
         ];
     }
@@ -217,7 +217,7 @@ trait NewsManagerAwareTrait
             'dateTime'     => $news->newsDate()->format('Y-m-d h:i'),
             'title'        => (string)$news->title(),
             'url'          => $news->url(),
-            'category'     => $news->category(),
+            'category'     => $news->getCategory(),
             'categoryName' => $this->newsCategory($news)->name()
         ];
     }
@@ -248,7 +248,7 @@ trait NewsManagerAwareTrait
             'hasGallery'       => !!(count($gallery)),
             'url'              => $news->url(),
             'metaTitle'        => (string)$news->metaTitle(),
-            'category'         => $news->category(),
+            'category'         => $news->getCategory(),
             'categoryName'     => $this->newsCategory($news)->name()
         ];
     }
@@ -261,7 +261,7 @@ trait NewsManagerAwareTrait
     {
         return [
             'id'   => $category->id(),
-            'name' => (string)$category->name(),
+            'name' => (string)$category['name'],
         ];
     }
 
