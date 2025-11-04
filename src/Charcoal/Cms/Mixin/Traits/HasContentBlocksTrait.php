@@ -19,7 +19,7 @@ trait HasContentBlocksTrait
      */
     public function contentBlocks()
     {
-        return $this->getAttachments('contents');
+        return $this->getAttachments([ 'group' => 'contents' ]);
     }
 
     /**

@@ -273,9 +273,9 @@ trait EventManagerAwareTrait
      */
     protected function eventFormatFull(EventInterface $event)
     {
-        $contentBlocks = $event->getAttachments('content-blocks');
-        $gallery = $event->getAttachments('image-gallery');
-        $documents = $event->getAttachments('document');
+        $contentBlocks = $event->getAttachments([ 'group' => 'content-blocks' ]);
+        $gallery = $event->getAttachments([ 'group' => 'image-gallery' ]);
+        $documents = $event->getAttachments([ 'group' => 'document' ]);
 
         return [
             'id'               => $event->id(),

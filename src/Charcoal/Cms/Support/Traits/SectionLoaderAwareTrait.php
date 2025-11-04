@@ -180,9 +180,9 @@ trait SectionLoaderAwareTrait
      */
     protected function formatSection(SectionInterface $section)
     {
-        $contentBlocks = $section->getAttachments('content-blocks');
-        $gallery = $section->getAttachments('image-gallery');
-        $documents = $section->getAttachments('document');
+        $contentBlocks = $section->getAttachments([ 'group' => 'content-blocks' ]);
+        $gallery = $section->getAttachments([ 'group' => 'image-gallery' ]);
+        $documents = $section->getAttachments([ 'group' => 'document' ]);
 
         return [
             'title'         => (string)$section->title(),
